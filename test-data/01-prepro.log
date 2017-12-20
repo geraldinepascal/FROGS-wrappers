@@ -1,0 +1,227 @@
+## Application
+Software: preprocess.py (version: 1.7.0)
+Command: ../app/preprocess.py illumina --min-amplicon-size 380 --max-amplicon-size 460 --five-prim-primer GGCGVACGGGTGAGTAA --three-prim-primer GTGCCAGCNGCNGCGG --R1-size 250 --R2-size 250 --expected-amplicon-size 420 --input-archive /test/data/test_dataset.tar.gz --output-dereplicated /tmp/frogs-test-result/01-prepro.fasta --output-count /tmp/frogs-test-result/01-prepro.tsv --summary /tmp/frogs-test-result/01-prepro.html --log-file /tmp/frogs-test-result/01-prepro.log --nb-cpus 1 --mismatch-rate 0.15
+
+## Application
+Software: preprocess.py (version: 1.7.0)
+Command: /root/mydisk/miniconda2/envs/frogs-2.0.1/bin/preprocess.py illumina --min-amplicon-size 380 --max-amplicon-size 460 --five-prim-primer GGCGVACGGGTGAGTAA --three-prim-primer GTGCCAGCNGCNGCGG --R1-size 250 --R2-size 250 --expected-amplicon-size 420 --input-archive /root/mydisk/miniconda2/envs/frogs-2.0.1/share/FROGS-2.0.0/test/data/test_dataset.tar.gz --output-dereplicated /tmp/frogs-test-result/01-prepro.fasta --output-count /tmp/frogs-test-result/01-prepro.tsv --summary /tmp/frogs-test-result/01-prepro.html --log-file /tmp/frogs-test-result/01-prepro.log --nb-cpus 1 --mismatch-rate 0.15
+
+## Application
+Software: preprocess.py (version: 1.7.0)
+Command: /root/mydisk/miniconda2/envs/frogs-2.0.1/bin/preprocess.py illumina --min-amplicon-size 380 --max-amplicon-size 460 --five-prim-primer GGCGVACGGGTGAGTAA --three-prim-primer GTGCCAGCNGCNGCGG --R1-size 250 --R2-size 250 --expected-amplicon-size 420 --input-archive /root/mydisk/miniconda2/envs/frogs-2.0.1/share/FROGS-2.0.0/test/data/test_dataset.tar.gz --output-dereplicated /tmp/frogs-test-result/01-prepro.fasta --output-count /tmp/frogs-test-result/01-prepro.tsv --summary /tmp/frogs-test-result/01-prepro.html --log-file /tmp/frogs-test-result/01-prepro.log --nb-cpus 1 --mismatch-rate 0.15
+
+## Application
+Software: preprocess.py (version: 1.7.0)
+Command: /root/mydisk/miniconda2/envs/frogs-2.0.1/bin/preprocess.py illumina --min-amplicon-size 380 --max-amplicon-size 460 --five-prim-primer GGCGVACGGGTGAGTAA --three-prim-primer GTGCCAGCNGCNGCGG --R1-size 250 --R2-size 250 --expected-amplicon-size 420 --input-archive /root/mydisk/miniconda2/envs/frogs-2.0.1/share/FROGS-2.0.1/test/data/test_dataset.tar.gz --output-dereplicated /tmp/frogs-test-result/01-prepro.fasta --output-count /tmp/frogs-test-result/01-prepro.tsv --summary /tmp/frogs-test-result/01-prepro.html --log-file /tmp/frogs-test-result/01-prepro.log --nb-cpus 1 --mismatch-rate 0.15
+
+
+##Sample
+R1 : /tmp/frogs-test-result/1513692667.58_13126_splA_01_R1.fastq.gz
+R2 : /tmp/frogs-test-result/1513692667.58_13126_splA_01_R2.fastq.gz
+Sample name : splA_01
+nb seq before process : 88684
+##Commands
+# Join overlapping paired reads. (flash version : v1.2.11)
+Command:
+	flash --threads 1 --min-overlap 40 --max-overlap 100  --max-mismatch-density 0.15 --compress /tmp/frogs-test-result/1513692667.58_13126_splA_01_R1.fastq.gz /tmp/frogs-test-result/1513692667.58_13126_splA_01_R2.fastq.gz --to-stdout > /tmp/frogs-test-result/1513692668.28_13126_splA_01_flash.fastq.gz 2> /dev/null
+
+Execution:
+	start: 19 Dec 2017 15:11:09
+	end:   19 Dec 2017 15:11:21
+
+Results:
+	nb seq overlapped: 84138
+# Filters amplicons by length. (filterSeq.py version : 1.4.0)
+Command:
+	filterSeq.py --compress --min-length 380 --max-length 460 --input-file /tmp/frogs-test-result/1513692668.28_13126_splA_01_flash.fastq.gz --output-file /tmp/frogs-test-result/1513692668.28_13126_splA_01_length_filter.fastq.gz --log-file /tmp/frogs-test-result/1513692668.28_13126_splA_01_length_filter_log.txt
+
+Execution:
+	start: 19 Dec 2017 15:11:22
+	end:   19 Dec 2017 15:12:36
+
+Results:
+	nb seq with expected length : 82277
+# Removes reads without the 5' primer and removes primer sequence. (cutadapt version : 1.15)
+Command:
+	cutadapt -g GGCGVACGGGTGAGTAA --error-rate 0.1 --discard-untrimmed --match-read-wildcards --overlap 16 -o /tmp/frogs-test-result/1513692668.28_13126_splA_01_cutadapt_5prim_trim.fastq.gz /tmp/frogs-test-result/1513692668.28_13126_splA_01_length_filter.fastq.gz > /tmp/frogs-test-result/1513692668.28_13126_splA_01_cutadapt_5prim_log.txt
+
+Execution:
+	start: 19 Dec 2017 15:12:37
+	end:   19 Dec 2017 15:12:44
+
+Results:
+	nb seq with 5' primer : 80896
+# Removes reads without the 3' primer and removes primer sequence. (cutadapt version : 1.15)
+Command:
+	cutadapt -a GTGCCAGCNGCNGCGG --error-rate 0.1 --discard-untrimmed --match-read-wildcards --overlap 15 -o /tmp/frogs-test-result/1513692668.28_13126_splA_01_cutadapt.fastq.gz /tmp/frogs-test-result/1513692668.28_13126_splA_01_cutadapt_5prim_trim.fastq.gz > /tmp/frogs-test-result/1513692668.28_13126_splA_01_cutadapt_3prim_log.txt
+
+Execution:
+	start: 19 Dec 2017 15:12:46
+	end:   19 Dec 2017 15:12:53
+
+Results:
+	nb seq with 3' primer : 80638
+# Filters amplicons without primers by length and N count. (filterSeq.py version : 1.4.0)
+Command:
+	filterSeq.py --force-fasta --max-N 0 --min-length 347 --max-length 427 --input-file /tmp/frogs-test-result/1513692668.28_13126_splA_01_cutadapt.fastq.gz --output-file /tmp/frogs-test-result/1513692668.28_13126_splA_01_N_and_length_filter.fasta --log-file /tmp/frogs-test-result/1513692668.28_13126_splA_01_N_and_length_filter_log.txt
+
+Execution:
+	start: 19 Dec 2017 15:12:55
+	end:   19 Dec 2017 15:12:57
+
+Results:
+	nb seq with expected length : 80630
+	nb seq without N : 80630
+# Dereplicates sample sequences. (derepSamples.py version : 1.5.0)
+Command:
+	derepSamples.py --sequences-files /tmp/frogs-test-result/1513692668.28_13126_splA_01_N_and_length_filter.fasta --dereplicated-file /tmp/frogs-test-result/1513692667.58_13126_splA_01_filtered.fasta --count-file /tmp/frogs-test-result/1513692668.28_13126_splA_01_derep_count.tsv
+
+Execution:
+	start: 19 Dec 2017 15:12:57
+	end:   19 Dec 2017 15:12:59
+
+
+##Sample
+R1 : /tmp/frogs-test-result/1513692667.58_13126_splA_02_R1.fastq.gz
+R2 : /tmp/frogs-test-result/1513692667.58_13126_splA_02_R2.fastq.gz
+Sample name : splA_02
+nb seq before process : 54167
+##Commands
+# Join overlapping paired reads. (flash version : v1.2.11)
+Command:
+	flash --threads 1 --min-overlap 40 --max-overlap 100  --max-mismatch-density 0.15 --compress /tmp/frogs-test-result/1513692667.58_13126_splA_02_R1.fastq.gz /tmp/frogs-test-result/1513692667.58_13126_splA_02_R2.fastq.gz --to-stdout > /tmp/frogs-test-result/1513692782.17_13126_splA_02_flash.fastq.gz 2> /dev/null
+
+Execution:
+	start: 19 Dec 2017 15:13:02
+	end:   19 Dec 2017 15:13:09
+
+Results:
+	nb seq overlapped: 51359
+# Filters amplicons by length. (filterSeq.py version : 1.4.0)
+Command:
+	filterSeq.py --compress --min-length 380 --max-length 460 --input-file /tmp/frogs-test-result/1513692782.17_13126_splA_02_flash.fastq.gz --output-file /tmp/frogs-test-result/1513692782.17_13126_splA_02_length_filter.fastq.gz --log-file /tmp/frogs-test-result/1513692782.17_13126_splA_02_length_filter_log.txt
+
+Execution:
+	start: 19 Dec 2017 15:13:10
+	end:   19 Dec 2017 15:13:56
+
+Results:
+	nb seq with expected length : 49979
+# Removes reads without the 5' primer and removes primer sequence. (cutadapt version : 1.15)
+Command:
+	cutadapt -g GGCGVACGGGTGAGTAA --error-rate 0.1 --discard-untrimmed --match-read-wildcards --overlap 16 -o /tmp/frogs-test-result/1513692782.17_13126_splA_02_cutadapt_5prim_trim.fastq.gz /tmp/frogs-test-result/1513692782.17_13126_splA_02_length_filter.fastq.gz > /tmp/frogs-test-result/1513692782.17_13126_splA_02_cutadapt_5prim_log.txt
+
+Execution:
+	start: 19 Dec 2017 15:13:56
+	end:   19 Dec 2017 15:14:00
+
+Results:
+	nb seq with 5' primer : 49063
+# Removes reads without the 3' primer and removes primer sequence. (cutadapt version : 1.15)
+Command:
+	cutadapt -a GTGCCAGCNGCNGCGG --error-rate 0.1 --discard-untrimmed --match-read-wildcards --overlap 15 -o /tmp/frogs-test-result/1513692782.17_13126_splA_02_cutadapt.fastq.gz /tmp/frogs-test-result/1513692782.17_13126_splA_02_cutadapt_5prim_trim.fastq.gz > /tmp/frogs-test-result/1513692782.17_13126_splA_02_cutadapt_3prim_log.txt
+
+Execution:
+	start: 19 Dec 2017 15:14:02
+	end:   19 Dec 2017 15:14:06
+
+Results:
+	nb seq with 3' primer : 48917
+# Filters amplicons without primers by length and N count. (filterSeq.py version : 1.4.0)
+Command:
+	filterSeq.py --force-fasta --max-N 0 --min-length 347 --max-length 427 --input-file /tmp/frogs-test-result/1513692782.17_13126_splA_02_cutadapt.fastq.gz --output-file /tmp/frogs-test-result/1513692782.17_13126_splA_02_N_and_length_filter.fasta --log-file /tmp/frogs-test-result/1513692782.17_13126_splA_02_N_and_length_filter_log.txt
+
+Execution:
+	start: 19 Dec 2017 15:14:07
+	end:   19 Dec 2017 15:14:09
+
+Results:
+	nb seq with expected length : 48917
+	nb seq without N : 48917
+# Dereplicates sample sequences. (derepSamples.py version : 1.5.0)
+Command:
+	derepSamples.py --sequences-files /tmp/frogs-test-result/1513692782.17_13126_splA_02_N_and_length_filter.fasta --dereplicated-file /tmp/frogs-test-result/1513692667.58_13126_splA_02_filtered.fasta --count-file /tmp/frogs-test-result/1513692782.17_13126_splA_02_derep_count.tsv
+
+Execution:
+	start: 19 Dec 2017 15:14:09
+	end:   19 Dec 2017 15:14:10
+
+
+##Sample
+R1 : /tmp/frogs-test-result/1513692667.58_13126_splA_03_R1.fastq.gz
+R2 : /tmp/frogs-test-result/1513692667.58_13126_splA_03_R2.fastq.gz
+Sample name : splA_03
+nb seq before process : 32386
+##Commands
+# Join overlapping paired reads. (flash version : v1.2.11)
+Command:
+	flash --threads 1 --min-overlap 40 --max-overlap 100  --max-mismatch-density 0.15 --compress /tmp/frogs-test-result/1513692667.58_13126_splA_03_R1.fastq.gz /tmp/frogs-test-result/1513692667.58_13126_splA_03_R2.fastq.gz --to-stdout > /tmp/frogs-test-result/1513692851.72_13126_splA_03_flash.fastq.gz 2> /dev/null
+
+Execution:
+	start: 19 Dec 2017 15:14:12
+	end:   19 Dec 2017 15:14:16
+
+Results:
+	nb seq overlapped: 30735
+# Filters amplicons by length. (filterSeq.py version : 1.4.0)
+Command:
+	filterSeq.py --compress --min-length 380 --max-length 460 --input-file /tmp/frogs-test-result/1513692851.72_13126_splA_03_flash.fastq.gz --output-file /tmp/frogs-test-result/1513692851.72_13126_splA_03_length_filter.fastq.gz --log-file /tmp/frogs-test-result/1513692851.72_13126_splA_03_length_filter_log.txt
+
+Execution:
+	start: 19 Dec 2017 15:14:17
+	end:   19 Dec 2017 15:14:44
+
+Results:
+	nb seq with expected length : 29964
+# Removes reads without the 5' primer and removes primer sequence. (cutadapt version : 1.15)
+Command:
+	cutadapt -g GGCGVACGGGTGAGTAA --error-rate 0.1 --discard-untrimmed --match-read-wildcards --overlap 16 -o /tmp/frogs-test-result/1513692851.72_13126_splA_03_cutadapt_5prim_trim.fastq.gz /tmp/frogs-test-result/1513692851.72_13126_splA_03_length_filter.fastq.gz > /tmp/frogs-test-result/1513692851.72_13126_splA_03_cutadapt_5prim_log.txt
+
+Execution:
+	start: 19 Dec 2017 15:14:44
+	end:   19 Dec 2017 15:14:47
+
+Results:
+	nb seq with 5' primer : 29396
+# Removes reads without the 3' primer and removes primer sequence. (cutadapt version : 1.15)
+Command:
+	cutadapt -a GTGCCAGCNGCNGCGG --error-rate 0.1 --discard-untrimmed --match-read-wildcards --overlap 15 -o /tmp/frogs-test-result/1513692851.72_13126_splA_03_cutadapt.fastq.gz /tmp/frogs-test-result/1513692851.72_13126_splA_03_cutadapt_5prim_trim.fastq.gz > /tmp/frogs-test-result/1513692851.72_13126_splA_03_cutadapt_3prim_log.txt
+
+Execution:
+	start: 19 Dec 2017 15:14:48
+	end:   19 Dec 2017 15:14:51
+
+Results:
+	nb seq with 3' primer : 29304
+# Filters amplicons without primers by length and N count. (filterSeq.py version : 1.4.0)
+Command:
+	filterSeq.py --force-fasta --max-N 0 --min-length 347 --max-length 427 --input-file /tmp/frogs-test-result/1513692851.72_13126_splA_03_cutadapt.fastq.gz --output-file /tmp/frogs-test-result/1513692851.72_13126_splA_03_N_and_length_filter.fasta --log-file /tmp/frogs-test-result/1513692851.72_13126_splA_03_N_and_length_filter_log.txt
+
+Execution:
+	start: 19 Dec 2017 15:14:51
+	end:   19 Dec 2017 15:14:52
+
+Results:
+	nb seq with expected length : 29304
+	nb seq without N : 29304
+# Dereplicates sample sequences. (derepSamples.py version : 1.5.0)
+Command:
+	derepSamples.py --sequences-files /tmp/frogs-test-result/1513692851.72_13126_splA_03_N_and_length_filter.fasta --dereplicated-file /tmp/frogs-test-result/1513692667.58_13126_splA_03_filtered.fasta --count-file /tmp/frogs-test-result/1513692851.72_13126_splA_03_derep_count.tsv
+
+Execution:
+	start: 19 Dec 2017 15:14:52
+	end:   19 Dec 2017 15:14:53
+
+
+
+##Sample
+All
+##Commands
+# Dereplicates together sequences from several samples. (derepSamples.py version : 1.5.0)
+Command:
+	derepSamples.py --nb-cpus 1 --size-separator ';size=' --samples-ref /tmp/frogs-test-result/1513692667.58_13126_derep_inputs.tsv --dereplicated-file /tmp/frogs-test-result/01-prepro.fasta --count-file /tmp/frogs-test-result/01-prepro.tsv
+
+Execution:
+	start: 19 Dec 2017 15:14:54
+	end:   19 Dec 2017 15:14:57
+
