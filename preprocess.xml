@@ -208,7 +208,7 @@
 				<param name="sequencer_selected" value="illumina"/>
                                 <conditional name="input_type">
 					<param name="input_type_selected" value="archive"/>
-					<param name="archive_file" value="test_dataset.tar.gz" ftype="tar"/>
+					<param name="archive_file" value="test_dataset.tar.gz"/>
 					<conditional name="archive_type">
 						<param name="archive_type_selected" value="paired"/>
 						<param name="R1_size" value="250"/>
@@ -225,9 +225,9 @@
 					<param name="three_prim_primer" value="GTGCCAGCNGCNGCGG"/>
 				</conditional>
                         </conditional>
-			<output name="dereplicated_file" file="01-prepro.fasta"/>
-			<output name="count_file" file="01-prepro.tsv"/>
-			<output name="summary_file" file="01-prepro.html"/>
+			<output name="dereplicated_file" file="references/01-prepro.fasta"/>
+			<output name="count_file" file="references/01-prepro.tsv"/>
+			<output name="summary_file" file="references/01-prepro.html"/>
                 </test>
         </tests>
 	<help>
