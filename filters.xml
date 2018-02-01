@@ -17,7 +17,15 @@
 -->
 <tool id="FROGS_filters" name="FROGS Filters" version="1.3.0">
 	<description>Filters OTUs on several criteria.</description>
-	<command interpreter="python2.7">
+        <requirements>
+                <requirement type="package" version="2.0.1">frogs</requirement>
+        </requirements>
+        <stdio> 
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+
+	<command>
 		filters.py
 			--nb-cpus $nb_cpu 
 			--input-biom $input_biom  
@@ -135,9 +143,22 @@
 	<outputs>
 		<data format="fasta" name="output_fasta" label="${tool.name}: sequences.fasta" from_work_dir="sequences.fasta" />
 		<data format="biom1" name="output_biom" label="${tool.name}: abundance.biom" from_work_dir="abundance.biom" />
-		<data format="tabular" name="output_excluded" type="data" label="${tool.name}: excluded.tsv" from_work_dir="excluded.tsv" />
+		<data format="tabular" name="output_excluded" label="${tool.name}: excluded.tsv" from_work_dir="excluded.tsv" />
 		<data format="html" name="output_summary" label="${tool.name}: report.html" from_work_dir="report.html" />
 	</outputs>
+	<tests>
+		<test>
+	                <param name="input_fasta" value="references/03-chimera.fasta" />
+	                <param name="input_biom" value="references/03-chimera.biom" />    
+			<conditional name="abundance_filters">
+	                        <param name="abundance_filters_areApplied" value="yes" />
+				<param name="min_abundance" value="0.00005" />	
+				<param name="min_sample_presence" value="3" />
+			</conditional>
+			<output name="output_fasta" file="references/04-filters.fasta" />
+			<output name="output_excluded" file="references/04-filters.excluded" />
+	        </test>
+	</tests>
 	<help>
 
 .. image:: ${static_path}/images/tools/frogs/FROGS_logo.png
@@ -254,4 +275,11 @@ Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L.,
 
 Depending on the help provided you can cite us in acknowledgements, references or both.
 	</help> 
+        <citations>
+                <citation type="doi">10.1093/bioinformatics/btx791</citation>
+                <citation type="doi">10.1128/AEM.01043-13</citation>
+                <citation type="doi">10.14806/ej.17.1.200</citation>
+                <citation type="doi">10.1093/bioinformatics/btr507</citation>
+        </citations>
+
 </tool>

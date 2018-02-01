@@ -17,7 +17,14 @@
 -->
 <tool id="FROGS_tsv_to_biom" name="FROGS TSV_to_BIOM" version="2.0.0">
 	<description>Converts a TSV file in a BIOM file.</description>
-	<command interpreter="python2.7">
+        <requirements>
+                <requirement type="package" version="2.0.1">frogs</requirement>
+        </requirements>
+        <stdio> 
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+	<command>
 		tsv_to_biom.py 
 		                --input-tsv $tsv_file
 		                --output-biom $biom_file
@@ -41,6 +48,14 @@
 			<filter>extract_fasta</filter>
 		</data>
 	</outputs>
+	<tests>
+		<test>
+			<param name="tsv_file" value="references/07-biom2tsv.tsv" />
+			<param name="multi_affi_file" value="references/07-biom2tsv.multi" />
+			<output name="biom_file" file="references/09-tsv2biom.biom" />
+			<output name="sequence_file" file="references/09-tsv2biom.fasta" />
+		</test>
+	</tests>
 	<help>
 .. image:: ${static_path}/images/tools/frogs/FROGS_logo.png
    :height: 144
@@ -119,4 +134,11 @@ Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L.,
 
 Depending on the help provided you can cite us in acknowledgements, references or both.
 	</help>
+        <citations>
+                <citation type="doi">10.1093/bioinformatics/btx791</citation>
+                <citation type="doi">10.1128/AEM.01043-13</citation>
+                <citation type="doi">10.14806/ej.17.1.200</citation>
+                <citation type="doi">10.1093/bioinformatics/btr507</citation>
+        </citations>
+
 </tool>

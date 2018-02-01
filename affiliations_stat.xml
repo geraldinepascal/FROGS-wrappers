@@ -17,7 +17,14 @@
 -->
 <tool id="FROGS_affiliations_stat" name="FROGS Affiliations stat" version="1.1.0">
 	<description>Process some metrics on taxonomies.</description>
-	<command interpreter="python2.7">
+        <requirements>
+                <requirement type="package" version="2.0.1">frogs</requirement>
+        </requirements>
+        <stdio> 
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+	<command>
 		affiliations_stat.py 
 		    --input-biom $biom
 		    --output-file $summary_file
@@ -69,6 +76,22 @@
 	<outputs>
 		<data format="html" name="summary_file" label="${tool.name}: summary.html" from_work_dir="summary.html"/>
 	</outputs>
+	<tests>
+		<test>
+			<param name="biom" value="references/04-affiliation.biom" />
+			<param name="rarefaction_ranks" value="Family Genus Species" />
+			<conditional name="affiliation">
+				<param name="affiliation_type" value="FROGS_blast" />
+				<param name="taxonomic_ranks" value="Domain Phylum Class Order Family Genus Species" />
+				<param name="taxonomy_tag" value="blast_taxonomy" />
+				<param name="identity_tag" value="perc_identity" />
+				<param name="coverage_tag" value="perc_query_coverage" />
+				<!-- pas de parametre dans le formulaire pour multiple-tag, uniquement une option dans la ligne de commande -->
+			</conditional>
+			<output name="summary_file" file="references/06-affiliationsStat.html" />
+			<!-- log-file option presente dans la ligne de commande dans le test.sh n'apparait pas du tout ici -->
+		</test>
+	</tests>
 	<help>
 
 .. image:: ${static_path}/images/tools/frogs/FROGS_logo.png
@@ -145,4 +168,11 @@ Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L.,
 
 Depending on the help provided you can cite us in acknowledgements, references or both.
 	</help>
+        <citations>
+                <citation type="doi">10.1093/bioinformatics/btx791</citation>
+                <citation type="doi">10.1128/AEM.01043-13</citation>
+                <citation type="doi">10.14806/ej.17.1.200</citation>
+                <citation type="doi">10.1093/bioinformatics/btr507</citation>
+        </citations>
+
 </tool>

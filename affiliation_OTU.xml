@@ -17,7 +17,14 @@
 -->
 <tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="0.8.0">
 	<description>Step 4 in metagenomics analysis : Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
-	<command interpreter="python2.7">
+ 	<requirements>
+                <requirement type="package" version="2.0.1">frogs</requirement>
+        </requirements>
+     	<stdio>
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+	<command>
 		affiliation_OTU.py 
 		                       --reference $ref_file
 		                       --input-biom $biom_abundance 
@@ -36,10 +43,10 @@
 		<param name="mem" type="hidden" label="Memory allocation" help="The number of Go to allocation for java" value="20"></param>
 		<!-- Database Choice -->
 		<param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
-       		<options from_file="frogs_db.loc">
-          		<column name="name" index="0"/>
-          		<column name="value" index="1"/>
-       		</options>
+       	        	<options from_data_table="frogs_db">
+				<filter type="sort_by" column="1" />
+	       		</options>
+			<validator type="no_options" message="A built-in database is not available" />
    		</param> 
    		<param name="rdp" type="boolean" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allow you to perform it also with RDP classifier (default No)" />
         <!-- Files -->
@@ -50,6 +57,18 @@
 		<data format="biom1" name="biom_affiliation" label="${tool.name}: affiliation.biom" from_work_dir="affiliation.biom" />
 		<data format="html" name="summary" label="${tool.name}: report.html" from_work_dir="report.html"/>
 	</outputs>
+	<!-- planemo test fail on the ref_file. The <options from_file> is not handle by the planemo test command
+	     see the following issue: https://github.com/galaxyproject/planemo/issues/530 -->
+	     <tests>
+		<test>
+			<param name="ref_file" value="db_test"/>
+			<!--<param name="ref_file" value="db.fasta"/>-->
+   			<param name="rdp" value="true"/>
+			<param name="fasta_sequences" value="references/04-filters.fasta" />
+        		<param name="biom_abundance" value="references/04-filters.biom" />
+			<output name="biom_affiliation" file="references/04-affiliation.biom"/>
+		</test>
+	     </tests>
   	<help>
 
 .. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 

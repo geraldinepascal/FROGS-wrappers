@@ -17,7 +17,14 @@
 -->
 <tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="1.0.0">
 	<description>with bar plot and composition plot</description>
-	<command interpreter="python2.7">r_composition.py 
+        <requirements>
+                <requirement type="package" version="2.0.1">frogs</requirement>
+        </requirements>
+        <stdio> 
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+	<command>r_composition.py 
                                               --rdata $data 
                                               --varExp $varExp 
                                               --taxaRank1 $taxaRank1 
@@ -51,6 +58,17 @@
 	<outputs>
 		<data format="html" name="html" label="${tool.name}: composition.html" from_work_dir="composition.html"/>
 	</outputs>
+	<tests>
+		<test>
+			<param name="data" value="references/11-phylo_import.Rdata" />
+			<param name="varExp" value="Color" />
+			<param name="taxaRank1" value="Kingdom" />
+			<param name="taxaSet1" value="Bacteria" />
+			<param name="taxaRank2" value="Phylum" />
+			<param name="numberOfTaxa" value="9" />
+			<output name="html" file="references/12-phylo_composition.html" />
+		</test>
+	</tests>
 	<help> 
 .. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 
    :height: 144
@@ -117,4 +135,11 @@ Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L.,
 Depending on the help provided you can cite us in acknowledgements, references or both.
 	
 	</help>
+        <citations>
+                <citation type="doi">10.1093/bioinformatics/btx791</citation>
+                <citation type="doi">10.1128/AEM.01043-13</citation>
+                <citation type="doi">10.14806/ej.17.1.200</citation>
+                <citation type="doi">10.1093/bioinformatics/btr507</citation>
+        </citations>
+
 </tool>
