@@ -1,0 +1,7 @@
+<tables>
+    <!-- Location of frogs database files -->
+    <table name="frogs_db" comment_char="#">
+        <columns>name, path</columns>
+        <file path="${__HERE__}/tool-data/frogs_db.loc" />
+    </table>
+</tables>
