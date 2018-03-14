@@ -46,4 +46,6 @@
 #-rw-r--r-- 1 mbernard FROGS    3420464  5 déc.  16:56 silva_128_16S.tax
 #-rw-r--r-- 1 mbernard FROGS     964048  5 déc.  16:57 wordConditionalProbIndexArr.txt
 #
-db_test	test-data/db.fasta
+#db.fasta	db.fasta	db.fasta	${__HERE__}/test-data/db.fasta
+#db.fasta	db.fasta	db.fasta	/root/mydisk/FROGS-wrappers/test-data/db.fasta
+db.fasta	A sample databank	/root/mydisk/FROGS-wrappers/test-data/db.fasta
