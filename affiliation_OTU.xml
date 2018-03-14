@@ -44,7 +44,7 @@
 		<!-- Database Choice -->
 		<param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
        	        	<options from_data_table="frogs_db">
-				<filter type="sort_by" column="1" />
+				<!-- filter type="sort_by" column="1" / -->
 	       		</options>
 			<validator type="no_options" message="A built-in database is not available" />
    		</param> 
@@ -61,9 +61,9 @@
 	     see the following issue: https://github.com/galaxyproject/planemo/issues/530 -->
 	     <tests>
 		<test>
-			<param name="ref_file" value="db_test"/>
+			<param name="ref_file" value="db.fasta"/>
 			<!--<param name="ref_file" value="db.fasta"/>-->
-   			<param name="rdp" value="true"/>
+   			<param name="rdp" value="false"/>
 			<param name="fasta_sequences" value="references/04-filters.fasta" />
         		<param name="biom_abundance" value="references/04-filters.biom" />
 			<output name="biom_affiliation" file="references/04-affiliation.biom"/>

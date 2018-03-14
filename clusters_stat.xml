@@ -17,7 +17,14 @@
 -->
 <tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="1.4.0">
 	<description>Process some metrics on clusters.</description>
-	<command interpreter="python2.7">
+ 	<requirements>
+                <requirement type="package" version="2.0.1">frogs</requirement>
+        </requirements>
+        <stdio>
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+	<command>
 		clusters_stat.py 
 		                 --input-biom $biom
 		                 --output-file $summary_file
@@ -28,6 +35,12 @@
 	<outputs>
 		<data format="html" name="summary_file" label="${tool.name}: summary.html" from_work_dir="summary.html"/>
 	</outputs>
+	<tests>
+		<test>
+			<param name="biom" value="references/04-affiliation.biom"/>
+			<output name="summary_file" value="references/05-clustersStat.html" compare="sim_size" delta="0"/>  
+		</test>
+	</tests>
 	<help>
 
 .. image:: ${static_path}/images/tools/frogs/FROGS_logo.png
@@ -109,4 +122,7 @@ Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L.,
 
 Depending on the help provided you can cite us in acknowledgements, references or both.
 	</help>
+	<citations>
+		<citation type="doi">10.7287/peerj.preprints.386v1</citation>
+	</citations>
 </tool>

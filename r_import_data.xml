@@ -17,7 +17,14 @@
 -->
 <tool name="FROGSSTAT Phyloseq Import Data" id="FROGSSTAT_Phyloseq_Import_Data" version="1.0.0">
 	<description>from 3 files: biomfile, samplefile, treefile </description>
-	<command interpreter="python2.7">r_import_data.py --biomfile $biomfile
+ 	<requirements>
+                <requirement type="package" version="2.0.1">frogs</requirement>
+        </requirements>
+        <stdio>
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+	<command>r_import_data.py --biomfile $biomfile
                                                    #if $samplefile
                                                       --samplefile $samplefile 
                                                    #end if
@@ -49,6 +56,15 @@
 		<data format="rdata" name="data" label="${tool.name}: data.Rdata" from_work_dir="data.Rdata"/>
 		<data format="html" name="html" label="${tool.name}: summary.html" from_work_dir="summary.html"/>
 	</outputs>
+	<tests>
+		<test>
+			<param name="biomfile" value="references/chaillou.biom"/>
+			<param name="samplefile" value="references/sample_metadata.tsv"/>
+			<param name="treefile" value="references/10b-tree.nwk"/>
+			<output name="data" value="references/11-phylo_import.Rdata"/>
+		</test>
+	</tests>
+
 	<help>
 
 .. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 
@@ -116,4 +132,7 @@ Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L.,
 Depending on the help provided you can cite us in acknowledgements, references or both.
 	
 	</help>
+	<citations>
+		<citation type="doi">10.7287/peerj.preprints.386v1</citation>
+	</citations>
 </tool>

@@ -17,7 +17,14 @@
 -->
 <tool id="FROGS_biom_to_stdBiom" name="FROGS BIOM to std BIOM" version="1.1.0">
 	<description>Converts a FROGS BIOM in fully compatible BIOM.</description>
-	<command interpreter="python2.7">
+ 	<requirements>
+                <requirement type="package" version="2.0.1">frogs</requirement>
+        </requirements>
+        <stdio>
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+	<command>
 		biom_to_stdBiom.py 
 		                --input-biom $input_biom
 		                --output-biom $output_biom
@@ -31,6 +38,13 @@
 		<data format="biom1" name="output_biom" label="${tool.name}: abundance.biom" from_work_dir="abundance.biom"/>
 		<data format="tabular" name="output_metadata" label="${tool.name}: blast_metadata.tsv" from_work_dir="blast_metadata.tsv" />
 	</outputs>
+	<tests>
+		<test>
+			<param name="input_biom" value="references/04-affiliation.biom"/>
+			<output name="output_biom" value="references/08-affiliation_std.biom"/>
+			<output name="output_metadata" value="references/08-affiliation_multihit.tsv"/>
+		</test>
+	</tests>
 	<help>
 
 .. image:: ${static_path}/images/tools/frogs/FROGS_logo.png
@@ -87,4 +101,7 @@ Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L.,
 
 Depending on the help provided you can cite us in acknowledgements, references or both.
 	</help>
+	<citations>
+		<citation type="doi">10.7287/peerj.preprints.386v1</citation>
+	</citations>
 </tool>

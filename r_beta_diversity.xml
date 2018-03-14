@@ -17,7 +17,14 @@
 -->
 <tool name="FROGSSTAT Phyloseq Beta Diversity" id="FROGSSTAT_Phyloseq_Beta_Diversity" version="1.0.0">
 	<description>distance matrix</description>
-	<command interpreter="python">r_beta_diversity.py 
+	<requirements>
+		<requirement type="package" version="2.0.1">frogs</requirement>
+	</requirements>
+	<stdio>
+		<exit_code range="1:" />
+		<exit_code range=":-1" />
+	</stdio>
+	<command>r_beta_diversity.py 
                                         --rdata $data
                                         --varExp $varExp
                                         #if $methods != "None"
@@ -56,6 +63,15 @@
             <discover_datasets pattern="__designation__" ext="tabular" directory="BetaMatrix" visible="true"/>
         </data>
 	</outputs>
+        <tests>
+                <test>
+                        <param name="data" value="references/11-phylo_import.Rdata" />
+                        <param name="varExp" value="EnvType" />
+                        <param name="methods" value="cc,unifrac" />
+                        <output name="html" file="references/14-phylo_beta_div.html" compare="sim_size" delta="0" />
+                </test>
+        </tests>
+
 	<help>
 	
 .. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 
@@ -117,4 +133,7 @@ Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L.,
 Depending on the help provided you can cite us in acknowledgements, references or both.
 	
 	</help>
+	<citations>
+		<citation type="doi">10.7287/peerj.preprints.386v1</citation>
+	</citations>
 </tool>

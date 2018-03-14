@@ -52,7 +52,8 @@
 		<test>
 			<param name="tsv_file" value="references/07-biom2tsv.tsv" />
 			<param name="multi_affi_file" value="references/07-biom2tsv.multi" />
-			<output name="biom_file" file="references/09-tsv2biom.biom" />
+			<param name="extract_fasta" value="true"/>
+			<output name="biom_file" file="references/09-tsv2biom.biom" compare="sim_size" delta="0"/>
 			<output name="sequence_file" file="references/09-tsv2biom.fasta" />
 		</test>
 	</tests>

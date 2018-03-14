@@ -17,7 +17,14 @@
 -->
 <tool id="FROGS_Tree" name="FROGS Tree" version="1.0.0">
 	<description>Reconstruction of phylogenetic tree </description>
-	<command interpreter="python2.7">tree.py 
+ 	<requirements>
+                <requirement type="package" version="2.0.1">frogs</requirement>
+        </requirements>
+        <stdio>
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+	<command>tree.py 
                                             --input-otu $input_otu
                                               #if $template.fileTemplate
                                             --template-pynast ${template.template_pynast}
@@ -49,6 +56,16 @@
 		<data format="nhx" name="out_tree" label="${tool.name}: tree.nwk" from_work_dir="tree.nwk"/>
         <data format="html" name="html" label="${tool.name}: summary.html" from_work_dir="summary.html"/>
 	</outputs>
+	<tests>
+		<test>
+			<param name="input_otu" value="references/04-filters.fasta"/>
+			<conditional name="template">
+				<param name="fileTemplate" value="false"/>
+			</conditional>
+			<param name="biomfile" value="references/04-affiliation.biom"/>
+			<output name="out_tree" value="references/10b-tree.nwk"/>
+		</test>
+	</tests>
 	<help>
 .. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 
    :height: 144
@@ -114,4 +131,7 @@ Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L.,
 Depending on the help provided you can cite us in acknowledgements, references or both.
 	
 	</help>
+	<citations>
+		<citation type="doi">10.7287/peerj.preprints.386v1</citation>
+	</citations>
 </tool>

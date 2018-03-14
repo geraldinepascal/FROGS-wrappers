@@ -88,7 +88,7 @@
 				<param name="coverage_tag" value="perc_query_coverage" />
 				<!-- pas de parametre dans le formulaire pour multiple-tag, uniquement une option dans la ligne de commande -->
 			</conditional>
-			<output name="summary_file" file="references/06-affiliationsStat.html" />
+			<output name="summary_file" file="references/06-affiliationsStat.html" compare="sim_size" delta="0" />
 			<!-- log-file option presente dans la ligne de commande dans le test.sh n'apparait pas du tout ici -->
 		</test>
 	</tests>

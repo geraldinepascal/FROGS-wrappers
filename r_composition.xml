@@ -61,12 +61,12 @@
 	<tests>
 		<test>
 			<param name="data" value="references/11-phylo_import.Rdata" />
-			<param name="varExp" value="Color" />
+			<param name="varExp" value="EnvType" />
 			<param name="taxaRank1" value="Kingdom" />
 			<param name="taxaSet1" value="Bacteria" />
 			<param name="taxaRank2" value="Phylum" />
 			<param name="numberOfTaxa" value="9" />
-			<output name="html" file="references/12-phylo_composition.html" />
+			<output name="html" file="references/12-phylo_composition.html" compare="sim_size" delta="0" />
 		</test>
 	</tests>
 	<help> 

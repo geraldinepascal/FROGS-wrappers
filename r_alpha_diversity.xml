@@ -17,7 +17,14 @@
 -->
 <tool name="FROGSSTAT Phyloseq Alpha Diversity" id="FROGSSTAT_Phyloseq_Alpha_Diversity" version="1.0.0">
 	<description>with richness plot</description>
-	<command interpreter="python">r_alpha_diversity.py
+	<requirements>
+		<requirement type="package" version="2.0.1">frogs</requirement>
+	</requirements>
+	<stdio>
+		<exit_code range="1:" />
+		<exit_code range=":-1" />
+	</stdio>
+	<command>r_alpha_diversity.py
                                              --rdata $data 
                                              --varExp $varExp
                                              --alpha-measures $measures
@@ -47,7 +54,15 @@
 		<data format="tabular" name="alphaD" label="${tool.name}: alpha_diversity.tsv" from_work_dir="alpha_diversity.tsv"/>
 		<data format="html" name="html" label="${tool.name}: alpha_diversity.html" from_work_dir="alpha_diversity.html"/>
 	</outputs>
-	<help>
+        <tests>
+                <test>
+                        <param name="data" value="references/11-phylo_import.Rdata" />
+                        <param name="varExp" value="EnvType" />
+                        <param name="measures" value="Observed,Chao1,Shannon" />
+                        <output name="alphaD" file="references/13-phylo_alpha_div.tsv" compare="diff" lines_diff="0" />
+                </test>
+        </tests>
+<help>
 		
 .. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 
    :height: 144
@@ -107,4 +122,7 @@ Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L.,
 Depending on the help provided you can cite us in acknowledgements, references or both.
 	
 	</help>
+	<citations>
+		<citation type="doi">10.7287/peerj.preprints.386v1</citation>
+	</citations>
 </tool>
