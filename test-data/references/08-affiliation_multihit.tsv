@@ -1,0 +1,947 @@
+#OTUID	taxonomy	subject	evalue	perc_identity	perc_query_coverage	aln_length
+Cluster_1	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-68	84.31	70.8333333333	255
+Cluster_2	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-70	84.77	70.9141274238	256
+Cluster_3	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-83	92.06	53.807106599	214
+Cluster_4	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	2e-78	86.49	72.4719101124	259
+Cluster_5	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-79	90.0	56.4102564103	220
+Cluster_6	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-59	82.35	70.8333333333	255
+Cluster_8	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-78	89.86	55.9278350515	217
+Cluster_10	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-66	83.98	70.9141274238	256
+Cluster_11	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-69	84.71	70.8333333333	255
+Cluster_12	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-69	84.71	71.2290502793	255
+Cluster_13	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-83	92.72	53.0927835052	206
+Cluster_15	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-63	82.95	71.6666666667	258
+Cluster_16	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	4e-71	88.07	57.9787234043	218
+Cluster_16	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	4e-71	89.0	55.3191489362	209
+Cluster_16	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	4e-71	89.0	55.3191489362	209
+Cluster_17	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-68	84.31	71.0306406685	255
+Cluster_18	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-69	84.71	71.0306406685	255
+Cluster_19	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-78	91.22	52.8350515464	205
+Cluster_25	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	4e-56	81.04	70.9333333333	269
+Cluster_26	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-78	91.22	52.8350515464	205
+Cluster_27	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	5e-70	87.91	54.9872122762	215
+Cluster_28	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	9e-83	90.27	57.3604060914	226
+Cluster_30	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-78	91.22	52.8350515464	205
+Cluster_32	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-79	90.32	55.9278350515	217
+Cluster_33	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-70	83.96	71.4666666667	268
+Cluster_35	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	3e-72	93.26	48.8950276243	178
+Cluster_37	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-70	85.04	70.3601108033	254
+Cluster_40	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-80	91.08	54.0609137056	213
+Cluster_45	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-81	90.78	55.641025641	217
+Cluster_46	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	8e-68	85.36	66.7605633803	239
+Cluster_47	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	4e-76	86.05	72.191011236	258
+Cluster_48	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;bacterium enrichment culture clone B213(2011)	JF830237.1.1494	8e-78	87.4	68.6274509804	246
+Cluster_49	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	5e-70	89.22	51.5228426396	204
+Cluster_51	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	9e-78	93.58	45.1690821256	187
+Cluster_52	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	3e-82	91.55	53.7878787879	213
+Cluster_53	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	9e-58	83.48	58.2278481013	230
+Cluster_54	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	1e-75	85.94	72.1126760563	256
+Cluster_55	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	1e-75	88.5	56.8181818182	226
+Cluster_56	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-61	90.23	47.0108695652	174
+Cluster_57	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	4e-76	93.05	45.1690821256	187
+Cluster_58	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-81	91.12	54.3147208122	214
+Cluster_59	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	3e-82	91.55	54.6153846154	213
+Cluster_64	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-65	83.59	70.9141274238	256
+Cluster_65	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	8e-63	85.71	58.0213903743	217
+Cluster_65	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	8e-63	85.2	59.6256684492	223
+Cluster_67	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	2e-74	85.71	72.191011236	259
+Cluster_68	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	4e-66	91.48	47.5543478261	176
+Cluster_70	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	2e-69	90.91	47.461928934	187
+Cluster_70	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	2e-69	90.91	47.461928934	187
+Cluster_70	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	2e-69	88.46	52.7918781726	208
+Cluster_72	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	3e-72	85.06	72.4233983287	261
+Cluster_74	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-71	88.94	52.7918781726	208
+Cluster_75	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto73_4W	GU731322.1.1376	2e-69	90.91	45.8333333333	187
+Cluster_76	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-71	88.32	54.3147208122	214
+Cluster_77	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-80	90.37	55.0505050505	218
+Cluster_81	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-59	83.77	57.7215189873	228
+Cluster_82	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	4e-71	90.31	49.8727735369	196
+Cluster_83	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	9e-83	92.34	52.7918781726	209
+Cluster_84	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-63	82.18	72.8	275
+Cluster_85	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-68	84.31	71.2290502793	255
+Cluster_87	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	3e-72	89.37	52.6717557252	207
+Cluster_88	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	6e-69	87.0	60.0	223
+Cluster_90	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-63	83.14	70.8333333333	255
+Cluster_94	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-51	82.87	54.4303797468	216
+Cluster_96	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	5e-70	89.22	49.2753623188	204
+Cluster_96	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	5e-70	88.26	51.2077294686	213
+Cluster_98	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-65	83.59	70.9141274238	256
+Cluster_101	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	1e-76	83.5	84.3137254902	303
+Cluster_103	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-64	83.53	70.8333333333	255
+Cluster_104	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	5e-75	91.79	49.3638676845	195
+Cluster_106	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-70	89.85	50.3836317136	197
+Cluster_107	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-88	88.17	73.3893557423	262
+Cluster_110	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-68	83.65	70.6989247312	263
+Cluster_111	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	2e-49	85.8	43.6408977556	176
+Cluster_114	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	6e-74	86.92	66.7605633803	237
+Cluster_117	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	2e-70	87.73	53.1400966184	220
+Cluster_120	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	6e-69	86.08	63.2432432432	237
+Cluster_120	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	6e-69	84.96	66.4864864865	246
+Cluster_122	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-66	83.78	71.9444444444	259
+Cluster_123	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-65	83.86	70.3601108033	254
+Cluster_126	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	5e-70	87.91	54.9872122762	215
+Cluster_127	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	2e-73	84.96	73.7430167598	266
+Cluster_130	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	2e-74	83.62	76.7379679144	287
+Cluster_132	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	9e-68	88.04	52.7918781726	209
+Cluster_134	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	3e-127	88.16	100.0	380
+Cluster_137	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	2e-73	89.47	53.0456852792	209
+Cluster_140	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-68	84.38	67.5461741425	256
+Cluster_141	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	5e-55	87.93	46.6307277628	174
+Cluster_144	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-73	87.39	59.3264248705	230
+Cluster_145	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	1e-76	85.61	74.8603351955	271
+Cluster_147	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	1e-76	87.76	59.746835443	237
+Cluster_148	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-65	84.81	66.7605633803	237
+Cluster_150	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	5e-70	89.22	49.3917274939	204
+Cluster_150	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	5e-70	89.22	49.3917274939	204
+Cluster_151	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-65	82.96	71.4666666667	270
+Cluster_154	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-76	90.73	52.0304568528	205
+Cluster_158	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	3e-77	91.26	51.8987341772	206
+Cluster_160	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-55	82.55	61.5183246073	235
+Cluster_163	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-63	83.07	70.7520891365	254
+Cluster_164	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-51	84.54	48.3790523691	194
+Cluster_164	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;Iamia majanohamensis	AB360448.1.1474	1e-51	84.54	48.3790523691	194
+Cluster_165	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-68	84.38	71.3091922006	256
+Cluster_168	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	1e-76	90.48	55.585106383	210
+Cluster_169	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-63	86.05	57.486631016	215
+Cluster_170	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-71	87.28	55.0970873786	228
+Cluster_172	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-63	82.18	72.8	275
+Cluster_174	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-79	90.0	56.7010309278	220
+Cluster_175	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-75	90.64	51.3924050633	203
+Cluster_176	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-66	83.92	70.8333333333	255
+Cluster_177	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;Iamia majanohamensis	AB360448.1.1474	3e-57	88.89	42.4317617866	171
+Cluster_182	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	7e-79	91.71	49.7549019608	205
+Cluster_186	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	1e-71	88.37	54.9872122762	215
+Cluster_189	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-81	90.78	55.641025641	217
+Cluster_190	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	4e-81	91.16	51.9323671498	215
+Cluster_191	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;bacterium enrichment culture clone B213(2011)	JF830237.1.1494	6e-79	88.84	65.2542372881	233
+Cluster_194	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-75	87.39	66.7605633803	238
+Cluster_195	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	5e-75	89.95	53.0456852792	209
+Cluster_197	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	8e-63	85.33	60.2702702703	225
+Cluster_200	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-64	85.71	60.2702702703	224
+Cluster_201	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-65	89.42	47.7272727273	189
+Cluster_204	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-69	86.52	57.9746835443	230
+Cluster_205	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	5e-70	88.52	53.0456852792	209
+Cluster_207	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	3e-67	83.58	70.9333333333	268
+Cluster_208	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-69	84.71	71.0306406685	255
+Cluster_210	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-61	82.75	66.7539267016	255
+Cluster_213	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	8e-78	86.43	72.191011236	258
+Cluster_214	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;unknown species	KF182279.1.1326	4e-76	84.45	78.9915966387	283
+Cluster_216	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	2e-83	87.6	72.4719101124	258
+Cluster_218	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	5e-70	87.91	54.9872122762	215
+Cluster_219	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	9e-78	93.58	45.1690821256	187
+Cluster_220	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	4e-76	88.03	65.2661064426	234
+Cluster_223	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-81	90.5	56.0913705584	221
+Cluster_227	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-83	91.24	55.9278350515	217
+Cluster_228	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-80	90.05	55.8080808081	221
+Cluster_229	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	9e-78	91.22	52.0304568528	205
+Cluster_230	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-61	91.93	40.6565656566	161
+Cluster_230	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	1e-61	91.93	40.6565656566	161
+Cluster_231	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	3e-67	86.03	55.3398058252	229
+Cluster_232	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-66	83.98	70.9141274238	256
+Cluster_233	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-63	84.68	65.3631284916	235
+Cluster_234	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-73	79.68	99.4652406417	374
+Cluster_235	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-66	83.86	70.9497206704	254
+Cluster_238	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	5e-70	87.91	54.9872122762	215
+Cluster_239	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-70	84.03	70.6989247312	263
+Cluster_245	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-75	85.34	71.0455764075	266
+Cluster_246	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	6e-59	81.41	71.4666666667	269
+Cluster_249	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-69	84.71	70.8333333333	255
+Cluster_252	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	7e-54	85.79	46.9135802469	190
+Cluster_253	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-78	89.86	55.641025641	217
+Cluster_254	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	3e-77	87.76	66.7605633803	237
+Cluster_256	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	5e-65	87.75	51.5228426396	204
+Cluster_261	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	5e-70	89.22	49.2753623188	204
+Cluster_261	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	5e-70	88.26	51.2077294686	213
+Cluster_262	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	5e-55	87.86	46.7567567568	173
+Cluster_265	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-78	91.22	52.8350515464	205
+Cluster_266	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	6e-109	85.37	100.0	376
+Cluster_270	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	1e-71	90.77	49.2385786802	195
+Cluster_271	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-69	87.56	54.6835443038	217
+Cluster_274	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-78	90.7	53.807106599	215
+Cluster_276	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-73	90.15	51.6539440204	203
+Cluster_277	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	4e-71	88.94	52.7918781726	208
+Cluster_278	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-63	82.18	72.6063829787	275
+Cluster_279	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unknown species	HQ183925.1.1489	5e-55	86.81	45.1612903226	182
+Cluster_280	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-80	89.47	58.4615384615	228
+Cluster_281	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-59	83.77	57.7215189873	228
+Cluster_283	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	8e-63	85.98	57.0666666667	214
+Cluster_288	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-79	86.26	73.3893557423	262
+Cluster_290	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-86	92.17	55.9278350515	217
+Cluster_292	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-61	91.93	40.8629441624	161
+Cluster_293	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-81	80.91	99.4623655914	372
+Cluster_295	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-71	87.28	55.9113300493	228
+Cluster_296	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-59	85.05	57.0666666667	214
+Cluster_297	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5247	AY234598.1.1446	2e-64	85.78	56.5989847716	225
+Cluster_298	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-73	90.15	51.2626262626	203
+Cluster_299	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	4e-76	91.84	49.7461928934	196
+Cluster_300	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	5e-60	87.11	48.0198019802	194
+Cluster_301	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-76	89.4	55.641025641	217
+Cluster_302	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	4e-106	91.82	71.4666666667	269
+Cluster_304	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	2e-58	86.67	48.3790523691	195
+Cluster_306	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	5e-75	87.88	55.9322033898	231
+Cluster_310	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-76	91.13	51.6539440204	203
+Cluster_312	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-80	90.05	55.8080808081	221
+Cluster_313	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	3e-77	87.76	66.7605633803	237
+Cluster_314	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-74	91.33	49.7461928934	196
+Cluster_315	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5273	AY234624.1.1446	4e-61	85.92	53.68956743	213
+Cluster_315	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5247	AY234598.1.1446	4e-61	85.92	53.68956743	213
+Cluster_317	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiales Incertae Sedis;Aciditerrimonas;unknown species	AF225451.1.1418	2e-44	82.09	49.6259351621	201
+Cluster_317	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	2e-44	84.09	43.6408977556	176
+Cluster_318	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	1e-55	85.35	51.832460733	198
+Cluster_319	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	5e-75	85.28	70.9677419355	265
+Cluster_321	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	1e-71	90.4	50.0	198
+Cluster_321	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	1e-71	89.0	53.0456852792	209
+Cluster_322	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	5e-60	89.6	46.7567567568	173
+Cluster_323	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	9e-78	93.58	45.1690821256	187
+Cluster_325	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	5e-60	84.62	58.9333333333	221
+Cluster_326	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;Iamia majanohamensis	AB360448.1.1474	7e-69	86.46	55.6097560976	229
+Cluster_330	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;Iamia majanohamensis	AB360448.1.1474	7e-74	90.59	48.9104116223	202
+Cluster_330	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unknown species	HQ183925.1.1489	7e-74	87.72	55.205811138	228
+Cluster_332	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-73	89.86	52.538071066	207
+Cluster_335	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	6e-59	81.23	73.6559139785	277
+Cluster_339	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-86	88.8	70.4225352113	250
+Cluster_340	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	7e-59	86.14	51.9379844961	202
+Cluster_341	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5273	AY234624.1.1446	2e-59	85.45	53.9641943734	213
+Cluster_341	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5247	AY234598.1.1446	2e-59	85.45	53.9641943734	213
+Cluster_345	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	3e-78	91.67	49.2753623188	204
+Cluster_347	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	1e-66	82.91	72.6063829787	275
+Cluster_350	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	5e-60	87.24	47.9012345679	196
+Cluster_351	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-75	87.39	64.0540540541	238
+Cluster_352	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	4e-76	85.71	69.7612732095	266
+Cluster_357	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiales Incertae Sedis;Aciditerrimonas;unknown species	AF225451.1.1418	2e-83	83.13	84.9740932642	332
+Cluster_358	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	3e-57	84.02	58.5561497326	219
+Cluster_361	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	8e-73	86.61	66.7605633803	239
+Cluster_362	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-61	90.23	46.8834688347	174
+Cluster_364	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-64	86.96	52.538071066	207
+Cluster_366	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5273	AY234624.1.1446	9e-63	86.38	53.8265306122	213
+Cluster_366	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5247	AY234598.1.1446	9e-63	86.38	53.8265306122	213
+Cluster_367	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-61	82.75	70.8333333333	255
+Cluster_368	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-83	91.24	55.641025641	217
+Cluster_370	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-76	91.13	51.6539440204	203
+Cluster_372	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-75	89.4	55.076142132	217
+Cluster_374	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	9e-53	82.17	57.9746835443	230
+Cluster_377	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	1e-75	87.39	66.7605633803	238
+Cluster_380	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-76	82.12	82.7848101266	330
+Cluster_382	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	2e-69	90.91	47.461928934	187
+Cluster_382	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	2e-69	90.91	47.461928934	187
+Cluster_382	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	2e-69	88.46	52.7918781726	208
+Cluster_383	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	6e-89	88.85	72.268907563	260
+Cluster_386	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	1e-71	86.5	59.746835443	237
+Cluster_390	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-99	90.84	73.3893557423	262
+Cluster_391	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	5e-75	89.95	53.0456852792	209
+Cluster_393	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	3e-62	86.76	51.6455696203	204
+Cluster_394	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	6e-69	88.46	58.1460674157	208
+Cluster_395	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	7e-74	89.25	52.7227722772	214
+Cluster_395	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	7e-74	90.24	50.495049505	205
+Cluster_397	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	4e-81	91.87	52.7918781726	209
+Cluster_402	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	3e-67	86.76	53.1553398058	219
+Cluster_403	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	2e-79	89.38	54.5893719807	226
+Cluster_405	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-80	91.83	52.2842639594	208
+Cluster_410	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	2e-74	88.11	58.7012987013	227
+Cluster_410	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiales Incertae Sedis;Aciditerrimonas;unknown species	AF225451.1.1418	2e-74	88.39	57.9220779221	224
+Cluster_413	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	4e-76	87.1	68.6274509804	248
+Cluster_414	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-71	85.1	67.8191489362	255
+Cluster_415	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-76	85.61	70.509383378	264
+Cluster_416	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	3e-62	83.08	68.2926829268	260
+Cluster_418	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-71	86.19	66.6666666667	239
+Cluster_419	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-68	88.04	53.0456852792	209
+Cluster_420	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5273	AY234624.1.1446	5e-70	88.21	55.0649350649	212
+Cluster_420	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5247	AY234598.1.1446	5e-70	88.21	55.0649350649	212
+Cluster_423	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	4e-76	80.16	100.0	383
+Cluster_424	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	3e-82	91.55	54.6153846154	213
+Cluster_427	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	6e-74	86.97	66.7605633803	238
+Cluster_428	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	7e-79	91.3	52.538071066	207
+Cluster_431	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	3e-67	86.82	56.010230179	220
+Cluster_439	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiales Incertae Sedis;Aciditerrimonas;Aciditerrimonas ferrireducens	KC854987.1.1470	6e-79	86.49	72.5490196078	259
+Cluster_442	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-61	90.23	46.8834688347	174
+Cluster_443	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	2e-69	84.71	68.0965147453	255
+Cluster_444	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	1e-61	91.93	40.8629441624	161
+Cluster_449	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-83	92.06	53.807106599	214
+Cluster_450	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	9e-73	91.98	47.461928934	187
+Cluster_451	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	4e-66	89.84	46.5174129353	187
+Cluster_451	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	4e-66	89.89	46.5174129353	188
+Cluster_452	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-70	88.52	53.0456852792	209
+Cluster_453	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-69	87.85	54.3147208122	214
+Cluster_454	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-76	90.43	53.0456852792	209
+Cluster_456	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	4e-56	83.41	59.6256684492	223
+Cluster_457	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-59	85.51	51.364764268	207
+Cluster_459	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	8e-73	86.61	66.7605633803	239
+Cluster_460	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-70	85.08	67.2086720867	248
+Cluster_461	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	9e-63	87.82	48.0392156863	197
+Cluster_462	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiales Incertae Sedis;Aciditerrimonas;unknown species	AF225451.1.1418	5e-65	80.36	80.8933002481	331
+Cluster_463	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-59	83.98	59.9476439791	231
+Cluster_464	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	8e-68	92.05	47.5543478261	176
+Cluster_469	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	7e-79	91.3	52.538071066	207
+Cluster_470	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	9e-63	82.46	68.8311688312	268
+Cluster_471	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	6e-50	84.0	47.9217603912	200
+Cluster_472	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	5e-55	85.94	47.6309226933	192
+Cluster_476	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	4e-76	90.38	52.7918781726	208
+Cluster_477	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	8e-58	82.85	66.7605633803	239
+Cluster_478	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5273	AY234624.1.1446	1e-61	85.45	55.4707379135	220
+Cluster_478	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5247	AY234598.1.1446	1e-61	85.45	55.4707379135	220
+Cluster_480	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-65	89.42	47.9695431472	189
+Cluster_481	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	9e-83	92.31	52.7918781726	208
+Cluster_487	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-68	84.31	71.2290502793	255
+Cluster_489	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	4e-71	91.49	46.4019851117	188
+Cluster_490	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto73_4W	GU731322.1.1376	9e-53	84.42	48.3009708738	199
+Cluster_492	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-71	89.6	49.5098039216	202
+Cluster_496	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	9e-53	82.1	57.9746835443	229
+Cluster_497	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	1e-71	88.37	54.9872122762	215
+Cluster_501	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	9e-78	92.39	49.2462311558	197
+Cluster_503	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	3e-72	88.18	53.1400966184	220
+Cluster_504	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-60	84.21	57.7215189873	228
+Cluster_505	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	1e-80	87.9	63.8961038961	248
+Cluster_506	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-61	83.0	70.4735376045	253
+Cluster_507	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-69	88.21	53.807106599	212
+Cluster_510	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	4e-56	86.63	46.2871287129	187
+Cluster_512	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	1e-70	90.31	49.4923857868	196
+Cluster_513	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;bacterium enrichment culture clone B213(2011)	JF830237.1.1494	5e-55	89.44	40.5541561713	161
+Cluster_513	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	5e-55	89.44	40.5541561713	161
+Cluster_513	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	5e-55	89.44	40.5541561713	161
+Cluster_515	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	2e-73	85.23	73.1092436975	264
+Cluster_522	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	5e-55	87.93	46.6307277628	174
+Cluster_528	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-68	89.34	50.0	197
+Cluster_532	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	6e-59	84.3	60.0	223
+Cluster_537	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-60	81.78	71.2765957447	269
+Cluster_538	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	9e-78	93.58	45.1690821256	187
+Cluster_539	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	9e-58	87.17	46.2871287129	187
+Cluster_540	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-59	85.05	54.1772151899	214
+Cluster_541	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-59	84.55	56.1538461538	220
+Cluster_544	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	5e-55	87.86	46.7567567568	173
+Cluster_545	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-70	89.55	50.8860759494	201
+Cluster_547	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	1e-71	88.37	54.8469387755	215
+Cluster_548	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;microbial mat metagenome	AMFO01002406.8367.9873	6e-114	86.1	100.0	374
+Cluster_551	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-59	84.3	59.6256684492	223
+Cluster_552	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	3e-52	82.95	53.8653366584	217
+Cluster_553	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	2e-70	87.73	53.1400966184	220
+Cluster_556	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-76	91.13	51.6539440204	203
+Cluster_558	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-48	79.1	71.6981132075	268
+Cluster_560	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	2e-74	89.57	54.2416452442	211
+Cluster_560	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	2e-74	89.57	54.2416452442	211
+Cluster_562	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;unknown species	KF182279.1.1326	5e-70	79.47	98.927613941	375
+Cluster_565	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-60	85.71	52.3690773067	210
+Cluster_570	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-76	90.73	52.0304568528	205
+Cluster_571	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	1e-75	89.09	55.303030303	220
+Cluster_572	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;bacterium enrichment culture clone B213(2011)	JF830237.1.1494	2e-73	83.99	77.8711484594	281
+Cluster_572	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	2e-73	83.99	78.1512605042	281
+Cluster_574	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	2e-73	84.5	70.7124010554	271
+Cluster_576	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	6e-64	83.46	68.2926829268	260
+Cluster_577	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-84	91.07	57.7319587629	224
+Cluster_579	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unknown species	HQ183925.1.1489	1e-56	86.7	46.6501240695	188
+Cluster_580	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	5e-70	89.22	51.5228426396	204
+Cluster_582	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-63	83.2	69.1056910569	256
+Cluster_586	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-70	86.08	66.7605633803	237
+Cluster_587	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5273	AY234624.1.1446	2e-59	85.45	53.9641943734	213
+Cluster_587	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5247	AY234598.1.1446	2e-59	85.45	53.9641943734	213
+Cluster_588	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-59	87.05	48.1296758105	193
+Cluster_589	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	4e-76	91.84	49.7461928934	196
+Cluster_591	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-71	80.17	93.0107526882	348
+Cluster_593	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-80	90.09	55.919395466	222
+Cluster_595	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	2e-63	92.55	40.5541561713	161
+Cluster_598	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-71	89.37	52.538071066	207
+Cluster_600	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-73	89.47	53.0456852792	209
+Cluster_602	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	2e-69	84.5	71.9887955182	258
+Cluster_604	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	7e-74	89.25	52.7227722772	214
+Cluster_604	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	7e-74	90.24	50.495049505	205
+Cluster_607	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;Iamia majanohamensis	AB360448.1.1474	3e-72	90.1	48.9104116223	202
+Cluster_611	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-75	88.69	55.8080808081	221
+Cluster_617	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	7e-49	85.63	45.0777202073	174
+Cluster_619	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-81	86.79	68.8481675393	265
+Cluster_620	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	2e-78	85.82	74.5098039216	268
+Cluster_621	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	7e-79	90.61	53.7878787879	213
+Cluster_623	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-79	90.32	55.9278350515	217
+Cluster_628	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	3e-72	88.18	53.1400966184	220
+Cluster_629	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-83	91.24	55.7840616967	217
+Cluster_633	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	3e-72	91.19	47.5247524752	193
+Cluster_634	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-61	86.06	52.7918781726	208
+Cluster_638	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-70	84.98	70.6703910615	253
+Cluster_641	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	9e-68	89.29	49.4949494949	196
+Cluster_643	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;Iamia majanohamensis	AB360448.1.1474	3e-53	83.33	53.3498759305	216
+Cluster_645	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-65	89.42	47.7272727273	189
+Cluster_647	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-58	89.02	46.7567567568	173
+Cluster_649	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	1e-70	84.77	71.9101123596	256
+Cluster_652	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	4e-61	82.95	69.0217391304	258
+Cluster_653	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	8e-63	90.45	47.4254742547	178
+Cluster_654	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	5e-55	83.26	58.9333333333	221
+Cluster_655	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	1e-75	90.34	52.538071066	207
+Cluster_659	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-58	84.16	58.7765957447	221
+Cluster_661	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	8e-73	84.5	72.4324324324	271
+Cluster_662	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	5e-60	83.54	65.0406504065	243
+Cluster_662	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-60	83.4	65.0406504065	241
+Cluster_663	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	1e-76	92.31	49.2385786802	195
+Cluster_668	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-66	86.92	54.1772151899	214
+Cluster_669	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	7e-69	88.46	52.538071066	208
+Cluster_669	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	7e-69	87.27	55.5837563452	220
+Cluster_670	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-78	90.7	53.807106599	215
+Cluster_671	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	9e-73	89.52	52.5252525253	210
+Cluster_673	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	2e-70	87.73	53.1400966184	220
+Cluster_674	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-79	91.71	52.8350515464	205
+Cluster_675	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	4e-71	87.39	54.5893719807	230
+Cluster_676	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiales Incertae Sedis;Aciditerrimonas;unknown species	AF225451.1.1418	3e-77	85.45	72.8494623656	275
+Cluster_677	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	5e-85	87.27	70.2917771883	267
+Cluster_679	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-86	87.23	73.7837837838	274
+Cluster_684	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-63	84.23	65.0406504065	241
+Cluster_685	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	2e-73	88.84	54.8469387755	215
+Cluster_686	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	5e-70	85.37	65.6	246
+Cluster_686	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	5e-70	85.2	65.6	250
+Cluster_686	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	5e-70	85.37	65.6	246
+Cluster_687	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	9e-68	87.38	54.1772151899	214
+Cluster_688	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;bacterium enrichment culture clone B213(2011)	JF830237.1.1494	3e-72	86.25	64.5161290323	240
+Cluster_692	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	3e-82	91.55	54.6153846154	213
+Cluster_695	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-54	84.73	53.1413612565	203
+Cluster_697	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;Iamia majanohamensis	AB360448.1.1474	2e-75	89.4	52.1739130435	217
+Cluster_697	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	2e-75	91.41	47.8260869565	198
+Cluster_699	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	9e-68	92.94	42.8934010152	170
+Cluster_700	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	6e-69	86.08	63.2432432432	237
+Cluster_700	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	6e-69	84.96	66.4864864865	246
+Cluster_703	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-65	89.42	47.9695431472	189
+Cluster_704	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	4e-61	84.75	58.530183727	223
+Cluster_710	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-81	90.5	55.8080808081	221
+Cluster_714	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-74	88.94	55.076142132	217
+Cluster_715	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-70	84.09	70.9677419355	264
+Cluster_716	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	3e-77	91.22	50.495049505	205
+Cluster_718	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-68	85.02	65.8666666667	247
+Cluster_719	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	1e-75	88.5	57.6923076923	226
+Cluster_720	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	2e-69	85.77	66.7605633803	239
+Cluster_724	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-75	90.34	52.4050632911	207
+Cluster_725	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-78	89.59	55.8080808081	221
+Cluster_728	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	1e-70	88.94	52.2842639594	208
+Cluster_730	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-61	82.75	70.8333333333	255
+Cluster_731	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	9e-78	93.58	45.1690821256	187
+Cluster_733	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-89	89.06	71.7086834734	256
+Cluster_735	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5273	AY234624.1.1446	2e-59	85.45	53.8265306122	213
+Cluster_735	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5247	AY234598.1.1446	2e-59	85.45	53.8265306122	213
+Cluster_736	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	6e-69	87.0	60.0	223
+Cluster_739	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	6e-64	84.39	63.8814016173	237
+Cluster_743	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-71	85.49	70.4735376045	255
+Cluster_744	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-61	88.24	46.2871287129	187
+Cluster_745	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	2e-59	82.49	68.8346883469	257
+Cluster_747	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	3e-78	91.67	48.9156626506	204
+Cluster_752	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	5e-60	91.3	40.7594936709	161
+Cluster_754	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	1e-120	87.17	100.0	382
+Cluster_755	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-49	82.24	52.9850746269	214
+Cluster_756	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-81	92.23	53.0927835052	206
+Cluster_760	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	1e-56	90.06	40.7594936709	161
+Cluster_762	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	3e-62	85.39	58.4	219
+Cluster_763	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	3e-72	90.82	49.4923857868	196
+Cluster_766	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-49	82.24	52.9850746269	214
+Cluster_768	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-59	85.51	51.2376237624	207
+Cluster_770	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-56	84.19	57.486631016	215
+Cluster_771	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-76	85.55	70.6989247312	263
+Cluster_773	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	3e-77	90.82	52.538071066	207
+Cluster_774	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	5e-65	82.55	72.6063829787	275
+Cluster_777	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-64	88.89	47.9695431472	189
+Cluster_779	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	1e-71	91.15	48.4771573604	192
+Cluster_781	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	4e-56	83.41	59.6256684492	223
+Cluster_783	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	3e-77	86.15	68.9655172414	260
+Cluster_784	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	3e-82	87.31	68.9655172414	260
+Cluster_785	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	8e-78	92.39	50.2564102564	197
+Cluster_786	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-64	85.78	60.433604336	225
+Cluster_787	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	5e-75	84.15	79.2717086835	284
+Cluster_788	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	7e-54	85.79	46.9135802469	190
+Cluster_789	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-76	91.13	51.6539440204	203
+Cluster_790	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-81	90.18	56.8527918782	224
+Cluster_792	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	9e-68	87.16	52.4154589372	218
+Cluster_794	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	2e-79	90.0	56.1224489796	220
+Cluster_795	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	8e-63	82.12	73.3153638814	274
+Cluster_798	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	1e-60	83.47	64.5333333333	242
+Cluster_799	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiales Incertae Sedis;Aciditerrimonas;Aciditerrimonas ferrireducens	KC854987.1.1470	5e-110	88.27	82.6530612245	324
+Cluster_801	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	5e-75	85.71	72.268907563	259
+Cluster_802	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	4e-81	93.4	50.2564102564	197
+Cluster_804	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	9e-78	90.19	54.3147208122	214
+Cluster_809	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	6e-84	81.51	100.0	384
+Cluster_810	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-81	90.83	55.0505050505	218
+Cluster_811	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-73	86.31	67.5070028011	241
+Cluster_815	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	5e-85	89.3	68.1690140845	243
+Cluster_816	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-46	80.79	57.9081632653	229
+Cluster_821	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	6e-64	84.08	67.9665738162	245
+Cluster_823	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	1e-55	82.91	62.2994652406	234
+Cluster_825	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	4e-91	91.81	57.5682382134	232
+Cluster_826	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	3e-48	82.61	51.2437810945	207
+Cluster_831	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-66	88.83	50.0	197
+Cluster_834	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-69	88.46	52.6582278481	208
+Cluster_837	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	3e-72	86.55	66.7605633803	238
+Cluster_839	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	4e-56	84.69	53.1969309463	209
+Cluster_840	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-74	90.0	52.7918781726	210
+Cluster_842	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-55	84.21	51.8610421836	209
+Cluster_844	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	8e-78	88.46	65.4494382022	234
+Cluster_845	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	5e-65	84.21	65.8666666667	247
+Cluster_847	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	2e-64	81.27	74.9367088608	299
+Cluster_847	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-64	86.85	53.417721519	213
+Cluster_848	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-70	89.85	50.7731958763	197
+Cluster_849	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	9e-78	92.39	49.7461928934	197
+Cluster_850	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	3e-67	84.68	68.9075630252	248
+Cluster_853	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	1e-81	87.36	69.0860215054	261
+Cluster_855	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiales Incertae Sedis;Aciditerrimonas;Aciditerrimonas ferrireducens	KC854987.1.1470	1e-56	83.94	52.6570048309	218
+Cluster_858	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	8e-63	84.1	66.7605633803	239
+Cluster_861	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-69	86.46	59.067357513	229
+Cluster_862	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	3e-52	87.13	42.6433915212	171
+Cluster_865	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-65	87.44	52.538071066	207
+Cluster_866	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-56	83.7	60.1604278075	227
+Cluster_867	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	3e-67	86.03	59.067357513	229
+Cluster_868	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	3e-87	87.97	73.7430167598	266
+Cluster_870	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-69	87.56	55.076142132	217
+Cluster_871	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-69	84.71	68.0	255
+Cluster_872	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	4e-71	84.13	72.4324324324	271
+Cluster_873	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	7e-79	89.64	56.345177665	222
+Cluster_875	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-65	87.44	52.538071066	207
+Cluster_876	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-73	89.86	52.538071066	207
+Cluster_877	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	7e-79	89.33	54.347826087	225
+Cluster_878	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	7e-74	89.86	52.6717557252	207
+Cluster_879	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-66	87.5	52.7918781726	208
+Cluster_882	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	3e-62	84.78	58.4615384615	230
+Cluster_887	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	1e-80	86.92	68.7830687831	260
+Cluster_888	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-80	87.55	70.1408450704	249
+Cluster_891	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	7e-69	89.8	49.4923857868	196
+Cluster_892	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-51	84.26	47.4576271186	197
+Cluster_894	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	7e-79	92.04	51.8041237113	201
+Cluster_895	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	6e-89	88.85	68.9655172414	260
+Cluster_896	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	6e-74	86.92	66.7605633803	237
+Cluster_896	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	6e-74	86.92	66.7605633803	237
+Cluster_897	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	6e-69	87.0	60.0	223
+Cluster_900	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	3e-67	88.56	51.0152284264	201
+Cluster_901	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-66	89.18	49.2385786802	194
+Cluster_903	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	3e-162	93.82	100.0	372
+Cluster_904	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	7e-69	89.8	49.4923857868	196
+Cluster_905	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-81	90.83	55.0505050505	218
+Cluster_907	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;microbial mat metagenome	AMFO01002406.8367.9873	1e-75	83.56	78.7061994609	292
+Cluster_910	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-84	91.71	55.641025641	217
+Cluster_913	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-66	83.21	71.2765957447	268
+Cluster_914	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	4e-66	84.94	66.7605633803	239
+Cluster_917	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-81	91.51	51.4563106796	212
+Cluster_921	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	9e-83	91.59	54.3147208122	214
+Cluster_923	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	3e-67	86.03	59.067357513	229
+Cluster_924	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-75	90.64	51.3924050633	203
+Cluster_930	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	8e-73	84.64	73.7430167598	267
+Cluster_933	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	3e-52	85.48	45.145631068	186
+Cluster_935	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	7e-69	89.8	49.4923857868	196
+Cluster_936	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	6e-59	82.86	64.8936170213	245
+Cluster_939	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;bacterium enrichment culture clone B213(2011)	JF830237.1.1494	2e-69	85.54	67.5070028011	242
+Cluster_942	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	9e-58	85.1	52.9262086514	208
+Cluster_945	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	8e-73	89.42	58.1005586592	208
+Cluster_945	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	8e-73	85.27	71.7877094972	258
+Cluster_945	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	8e-73	89.47	58.1005586592	209
+Cluster_946	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-68	84.31	70.4419889503	255
+Cluster_948	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	2e-73	86.23	66.0427807487	247
+Cluster_949	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-69	86.46	59.067357513	229
+Cluster_950	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-81	90.78	55.076142132	217
+Cluster_951	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto73_4W	GU731322.1.1376	9e-73	88.89	54.0201005025	216
+Cluster_953	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-68	85.02	65.8666666667	247
+Cluster_954	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-66	83.98	70.9141274238	256
+Cluster_957	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-80	90.05	55.8080808081	221
+Cluster_958	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-65	85.59	55.3398058252	229
+Cluster_960	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	5e-60	81.95	73.6694677871	266
+Cluster_963	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	6e-69	84.71	68.0107526882	255
+Cluster_966	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	3e-67	81.39	77.6119402985	317
+Cluster_968	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	5e-70	87.73	56.4432989691	220
+Cluster_968	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;unknown species	KF182221.1.1489	5e-70	87.73	56.4432989691	220
+Cluster_969	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	2e-59	82.49	67.018469657	257
+Cluster_970	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	4e-71	86.19	66.7605633803	239
+Cluster_971	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	3e-72	88.18	53.1400966184	220
+Cluster_972	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	4e-56	84.69	51.8703241895	209
+Cluster_975	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	3e-72	89.37	52.538071066	207
+Cluster_976	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-79	90.0	56.4102564103	220
+Cluster_978	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	3e-77	91.22	49.7549019608	205
+Cluster_981	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	6e-109	85.33	100.0	375
+Cluster_982	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-51	83.33	55.7029177719	210
+Cluster_988	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-76	91.13	51.6539440204	203
+Cluster_991	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-70	87.22	63.3802816901	227
+Cluster_996	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-69	83.58	72.9222520107	274
+Cluster_998	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto73_4W	GU731322.1.1376	6e-55	82.68	56.067961165	231
+Cluster_999	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5273	AY234624.1.1446	2e-59	85.45	53.68956743	213
+Cluster_999	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5247	AY234598.1.1446	2e-59	85.45	53.68956743	213
+Cluster_1002	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;marine metagenome	AACY020174722.993.2486	3e-48	84.92	43.2367149758	179
+Cluster_1003	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;bacterium enrichment culture clone B213(2011)	JF830237.1.1494	7e-64	87.88	50.7692307692	198
+Cluster_1003	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	7e-64	85.15	58.4615384615	229
+Cluster_1004	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiales Incertae Sedis;Aciditerrimonas;unknown species	AF225451.1.1418	5e-65	80.36	80.8933002481	331
+Cluster_1005	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	4e-76	84.75	73.4210526316	282
+Cluster_1006	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	8e-58	83.86	59.6256684492	223
+Cluster_1013	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	5e-75	91.79	49.2385786802	195
+Cluster_1016	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-86	89.67	68.1690140845	242
+Cluster_1018	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-56	88.44	46.5053763441	173
+Cluster_1025	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-75	90.34	52.538071066	207
+Cluster_1026	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-88	88.17	73.3893557423	262
+Cluster_1028	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	8e-78	92.39	50.2564102564	197
+Cluster_1030	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	1e-76	90.43	53.0456852792	209
+Cluster_1031	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-78	81.38	93.0107526882	349
+Cluster_1032	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiales Incertae Sedis;Aciditerrimonas;Aciditerrimonas ferrireducens	KC854987.1.1470	1e-111	85.83	100.0	374
+Cluster_1033	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-80	90.05	55.8080808081	221
+Cluster_1036	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-76	85.82	69.8924731183	261
+Cluster_1037	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	3e-57	85.02	55.4959785523	207
+Cluster_1043	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	6e-64	82.64	71.0455764075	265
+Cluster_1045	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	8e-103	91.08	71.2765957447	269
+Cluster_1048	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	1e-80	90.09	56.6326530612	222
+Cluster_1049	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unknown species	HQ183925.1.1489	5e-70	84.35	69.7050938338	262
+Cluster_1050	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	8e-73	86.61	66.7605633803	239
+Cluster_1051	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	5e-80	92.16	48.9156626506	204
+Cluster_1054	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	2e-69	87.61	52.4154589372	218
+Cluster_1055	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5273	AY234624.1.1446	4e-61	85.92	53.9641943734	213
+Cluster_1055	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5247	AY234598.1.1446	4e-61	85.92	53.9641943734	213
+Cluster_1057	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-76	89.4	54.797979798	217
+Cluster_1060	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-81	90.5	55.8080808081	221
+Cluster_1061	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	3e-77	86.27	68.1818181818	255
+Cluster_1063	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-60	86.06	52.0100502513	208
+Cluster_1066	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-69	87.79	51.5738498789	213
+Cluster_1067	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	5e-85	88.12	69.0860215054	261
+Cluster_1068	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	9e-78	88.94	57.5063613232	226
+Cluster_1069	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	2e-78	90.57	54.6391752577	212
+Cluster_1069	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-78	89.91	56.1855670103	218
+Cluster_1069	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-78	92.42	50.7731958763	198
+Cluster_1071	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	7e-79	90.61	54.0609137056	213
+Cluster_1080	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-65	83.4	71.546961326	259
+Cluster_1082	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;microbial mat metagenome	AMFO01002406.8367.9873	3e-107	85.03	100.0	374
+Cluster_1090	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-79	91.0	54.381443299	211
+Cluster_1092	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5273	AY234624.1.1446	4e-61	85.92	53.8265306122	213
+Cluster_1092	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5247	AY234598.1.1446	4e-61	85.92	53.8265306122	213
+Cluster_1096	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-83	88.84	68.1690140845	242
+Cluster_1097	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-73	89.47	53.0456852792	209
+Cluster_1098	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	2e-58	85.78	51.9181585678	204
+Cluster_1100	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	5e-75	85.77	71.9444444444	260
+Cluster_1101	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	6e-59	82.61	66.6666666667	253
+Cluster_1103	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	3e-127	88.16	100.0	380
+Cluster_1104	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	1e-71	90.36	50.7731958763	197
+Cluster_1108	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Sva0996 marine group;unknown genus;unidentified bacterium wb1_P06	AF317769.1.1429	2e-69	79.46	97.5935828877	370
+Cluster_1109	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-98	90.46	73.3893557423	262
+Cluster_1116	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	4e-116	86.28	100.0	379
+Cluster_1117	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	5e-55	87.86	46.6307277628	173
+Cluster_1121	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	4e-81	82.13	92.4731182796	347
+Cluster_1124	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;microbial mat metagenome	AMFO01002406.8367.9873	2e-68	89.34	50.0	197
+Cluster_1125	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-81	90.83	55.0505050505	218
+Cluster_1127	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	6e-69	83.96	70.8556149733	268
+Cluster_1128	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-89	88.55	73.3893557423	262
+Cluster_1129	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-81	93.37	50.2564102564	196
+Cluster_1130	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	1e-80	90.09	56.6326530612	222
+Cluster_1131	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-71	87.28	55.0970873786	228
+Cluster_1133	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	1e-75	85.77	68.9655172414	260
+Cluster_1135	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	5e-60	91.3	40.8629441624	161
+Cluster_1138	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-78	91.71	51.5228426396	205
+Cluster_1140	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;microbial mat metagenome	AMFO01002406.8367.9873	3e-57	85.86	48.5294117647	198
+Cluster_1142	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	8e-73	85.33	72.268907563	259
+Cluster_1143	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-64	86.85	53.417721519	213
+Cluster_1144	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	3e-72	90.82	49.4923857868	196
+Cluster_1145	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	3e-72	88.18	53.1400966184	220
+Cluster_1150	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	8e-88	90.38	66.7605633803	239
+Cluster_1151	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	7e-74	91.33	48.8721804511	196
+Cluster_1154	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	9e-73	89.42	52.9262086514	208
+Cluster_1157	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	9e-73	89.42	52.7918781726	208
+Cluster_1162	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-74	88.94	55.076142132	217
+Cluster_1165	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;microbial mat metagenome	AMFO01002406.8367.9873	4e-76	90.43	52.7918781726	209
+Cluster_1169	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-46	81.69	52.4875621891	213
+Cluster_1171	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-71	89.6	51.269035533	202
+Cluster_1173	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-73	90.15	51.6539440204	203
+Cluster_1174	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	3e-62	92.95	39.5939086294	156
+Cluster_1175	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	1e-75	88.5	57.6923076923	226
+Cluster_1183	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	3e-72	89.37	52.538071066	207
+Cluster_1187	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	1e-75	90.34	52.538071066	207
+Cluster_1189	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-74	88.94	55.2162849873	217
+Cluster_1196	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	2e-74	87.03	66.7605633803	239
+Cluster_1198	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	2e-74	89.3	51.9323671498	215
+Cluster_1199	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	5e-90	91.74	56.9306930693	230
+Cluster_1201	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	2e-73	85.33	72.1448467967	259
+Cluster_1203	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-65	88.32	50.7731958763	197
+Cluster_1207	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-63	84.91	61.9302949062	232
+Cluster_1208	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	3e-63	85.84	52.784503632	219
+Cluster_1209	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	3e-62	86.47	50.0	207
+Cluster_1211	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-56	83.94	54.3640897756	218
+Cluster_1212	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	1e-60	87.56	47.8802992519	193
+Cluster_1213	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-76	88.5	57.3604060914	226
+Cluster_1216	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	5e-80	88.61	59.2964824121	237
+Cluster_1225	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	2e-53	82.96	59.5174262735	223
+Cluster_1227	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-90	89.23	72.676056338	260
+Cluster_1230	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-85	88.8	70.3389830508	250
+Cluster_1231	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	3e-52	82.05	62.0320855615	234
+Cluster_1232	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	1e-71	84.5	74.8603351955	271
+Cluster_1235	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	3e-68	88.73	49.2753623188	204
+Cluster_1236	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-71	84.41	70.6989247312	263
+Cluster_1237	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	3e-57	85.02	50.3649635036	207
+Cluster_1239	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	1e-85	84.0	86.6847826087	325
+Cluster_1242	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-79	90.32	55.076142132	217
+Cluster_1243	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	4e-61	85.58	57.5268817204	215
+Cluster_1246	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	2e-69	85.77	66.7605633803	239
+Cluster_1247	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;Iamia majanohamensis	AB360448.1.1474	3e-77	89.86	52.1739130435	217
+Cluster_1251	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto73_4W	GU731322.1.1376	7e-49	80.67	57.5242718447	238
+Cluster_1252	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-61	86.19	53.0456852792	210
+Cluster_1252	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-61	86.19	53.0456852792	210
+Cluster_1255	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	1e-70	85.71	68.6274509804	245
+Cluster_1257	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	3e-67	86.82	56.010230179	220
+Cluster_1266	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-58	85.31	56.0	211
+Cluster_1270	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-74	90.0	52.5252525253	210
+Cluster_1271	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	2e-78	88.19	59.2964824121	237
+Cluster_1274	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-80	91.43	53.2994923858	210
+Cluster_1281	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	5e-60	83.76	65.3521126761	234
+Cluster_1282	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	1e-80	91.87	52.4050632911	209
+Cluster_1283	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	8e-88	88.21	74.011299435	263
+Cluster_1284	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	5e-75	90.69	48.9156626506	204
+Cluster_1284	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	5e-75	89.09	52.5301204819	220
+Cluster_1287	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-73	90.15	51.6539440204	203
+Cluster_1291	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-76	89.4	55.641025641	217
+Cluster_1292	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	2e-74	87.03	66.7605633803	239
+Cluster_1295	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	4e-66	87.62	52.7918781726	210
+Cluster_1298	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-73	90.15	51.6539440204	203
+Cluster_1299	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-74	91.33	49.7461928934	196
+Cluster_1301	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	4e-71	86.19	66.7605633803	239
+Cluster_1302	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;unknown species	KF182279.1.1326	5e-70	83.16	79.2717086835	285
+Cluster_1303	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-81	91.12	54.3147208122	214
+Cluster_1304	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-83	87.6	72.1126760563	258
+Cluster_1306	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-65	84.87	66.7605633803	238
+Cluster_1306	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	1e-65	84.87	66.7605633803	238
+Cluster_1315	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	8e-98	90.19	71.2365591398	265
+Cluster_1319	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-89	89.15	72.1126760563	258
+Cluster_1320	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	1e-75	87.39	66.106442577	238
+Cluster_1323	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;bacterium enrichment culture clone B213(2011)	JF830237.1.1494	4e-66	84.71	67.5070028011	242
+Cluster_1328	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unknown species	HQ183925.1.1489	1e-65	82.78	73.0458221024	273
+Cluster_1330	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-69	84.71	70.8333333333	255
+Cluster_1331	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;microbial mat metagenome	AMFO01002406.8367.9873	3e-57	85.86	48.5294117647	198
+Cluster_1333	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-88	89.2	70.0280112045	250
+Cluster_1336	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	7e-69	88.57	50.0	210
+Cluster_1339	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	5e-75	87.34	66.384180791	237
+Cluster_1342	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;microbial mat metagenome	AMFO01002406.8367.9873	4e-56	84.69	53.1969309463	209
+Cluster_1347	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5273	AY234624.1.1446	9e-63	86.38	54.2416452442	213
+Cluster_1347	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5247	AY234598.1.1446	9e-63	86.38	54.2416452442	213
+Cluster_1348	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	1e-55	83.56	58.4	219
+Cluster_1349	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;Iamia majanohamensis	AB360448.1.1474	4e-61	88.3	46.4019851117	188
+Cluster_1350	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 74	GU167997.1.1474	3e-67	88.46	51.5228426396	208
+Cluster_1353	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	8e-58	83.93	60.2702702703	224
+Cluster_1358	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-85	87.88	70.6199460916	264
+Cluster_1360	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	3e-82	92.27	52.0100502513	207
+Cluster_1362	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	6e-84	87.64	68.8829787234	259
+Cluster_1364	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	9e-53	83.73	53.3333333333	209
+Cluster_1371	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	4e-66	91.48	47.4254742547	176
+Cluster_1373	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	7e-79	90.61	54.8969072165	213
+Cluster_1375	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-59	84.55	58.3554376658	220
+Cluster_1381	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	1e-71	89.0	53.0456852792	209
+Cluster_1383	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;microbial mat metagenome	AMFO01002406.8367.9873	3e-62	82.81	69.3766937669	256
+Cluster_1394	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	2e-63	85.33	63.0985915493	225
+Cluster_1396	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-63	82.95	71.6666666667	258
+Cluster_1399	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-58	84.65	55.5555555556	215
+Cluster_1399	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-58	84.16	57.1059431525	221
+Cluster_1400	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-76	90.43	53.0456852792	209
+Cluster_1407	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;bacterium enrichment culture clone B213(2011)	JF830237.1.1494	2e-63	84.08	67.217630854	245
+Cluster_1407	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	2e-63	84.02	67.217630854	244
+Cluster_1408	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	5e-70	87.91	54.7073791349	215
+Cluster_1410	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	2e-79	89.73	56.5989847716	224
+Cluster_1410	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-79	91.39	52.7918781726	209
+Cluster_1410	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-79	89.38	57.3604060914	226
+Cluster_1411	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	4e-71	87.84	53.1400966184	222
+Cluster_1411	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	4e-71	90.72	46.6183574879	194
+Cluster_1415	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	4e-81	91.16	51.9323671498	215
+Cluster_1419	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-65	85.59	55.6097560976	229
+Cluster_1426	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	6e-54	82.4	62.0967741935	233
+Cluster_1429	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	5e-55	83.64	54.6134663342	220
+Cluster_1431	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	9e-73	90.1	51.269035533	202
+Cluster_1437	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	2e-64	84.52	66.7605633803	239
+Cluster_1440	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-83	91.24	55.9278350515	217
+Cluster_1442	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	2e-63	86.67	53.0456852792	210
+Cluster_1444	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-73	90.15	51.6539440204	203
+Cluster_1445	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-73	87.67	58.5051546392	227
+Cluster_1449	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-56	88.51	46.6307277628	174
+Cluster_1452	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-69	92.57	47.4254742547	175
+Cluster_1454	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	3e-72	87.95	56.4885496183	224
+Cluster_1454	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	3e-72	87.39	58.0152671756	230
+Cluster_1456	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	4e-61	83.68	66.7605633803	239
+Cluster_1458	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-45	78.76	68.700265252	259
+Cluster_1465	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-65	86.1	53.6231884058	223
+Cluster_1467	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-66	84.71	68.3615819209	242
+Cluster_1468	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;Iamia majanohamensis	AB360448.1.1474	3e-53	83.33	53.3498759305	216
+Cluster_1472	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	2e-64	83.92	66.6666666667	255
+Cluster_1474	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	4e-61	88.24	45.2784503632	187
+Cluster_1480	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	3e-72	89.37	57.8212290503	207
+Cluster_1484	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	1e-70	91.01	47.9695431472	189
+Cluster_1486	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	2e-64	82.59	72.0867208672	270
+Cluster_1488	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-75	85.44	69.8924731183	261
+Cluster_1491	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	2e-73	89.47	53.0456852792	209
+Cluster_1495	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	1e-71	88.84	53.0	215
+Cluster_1499	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	2e-78	86.04	71.3513513514	265
+Cluster_1510	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;microbial mat metagenome	AMFO01002406.8367.9873	2e-69	83.52	75.9103641457	273
+Cluster_1516	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-58	84.65	57.486631016	215
+Cluster_1519	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	1e-71	89.0	53.0456852792	209
+Cluster_1520	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	9e-78	93.58	45.1690821256	187
+Cluster_1524	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-55	83.41	54.5454545455	223
+Cluster_1529	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	2e-83	87.12	74.0845070423	264
+Cluster_1532	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-85	92.49	54.0609137056	213
+Cluster_1533	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5247	AY234598.1.1446	5e-75	84.87	74.5152354571	271
+Cluster_1537	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	3e-87	91.89	55.919395466	222
+Cluster_1541	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	9e-63	86.6	52.5252525253	209
+Cluster_1543	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	1e-80	92.16	50.0	204
+Cluster_1550	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	1e-80	86.92	68.9655172414	260
+Cluster_1553	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	7e-69	87.56	55.5269922879	217
+Cluster_1553	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	7e-69	87.56	55.5269922879	217
+Cluster_1556	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-48	79.26	71.6981132075	270
+Cluster_1557	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-71	85.16	71.1111111111	256
+Cluster_1558	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-83	91.24	55.7840616967	217
+Cluster_1563	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	3e-68	88.73	49.2753623188	204
+Cluster_1563	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	3e-68	91.62	43.2367149758	179
+Cluster_1574	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;microbial mat metagenome	AMFO01002406.8367.9873	6e-59	84.79	61.0169491525	217
+Cluster_1578	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	2e-59	87.77	46.4197530864	188
+Cluster_1582	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;marine metagenome	AACY020174722.993.2486	3e-53	85.13	48.1389578164	195
+Cluster_1585	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-81	91.59	53.807106599	214
+Cluster_1586	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	2e-78	82.03	86.0759493671	345
+Cluster_1589	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	2e-79	90.65	59.943977591	214
+Cluster_1590	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	3e-82	90.91	55.6962025316	220
+Cluster_1591	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	3e-58	83.77	55.2311435523	228
+Cluster_1592	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	3e-72	86.55	66.7605633803	238
+Cluster_1593	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-70	84.77	70.9141274238	256
+Cluster_1594	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	9e-73	90.82	49.7461928934	196
+Cluster_1596	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-55	84.54	53.2133676093	207
+Cluster_1602	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;unknown species	KF182221.1.1489	5e-110	85.6	100.0	382
+Cluster_1606	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-75	90.34	52.538071066	207
+Cluster_1607	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-74	91.33	49.7461928934	196
+Cluster_1608	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-71	89.37	52.538071066	207
+Cluster_1609	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-60	85.99	51.2376237624	207
+Cluster_1612	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	8e-53	82.51	59.6256684492	223
+Cluster_1613	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 74	GU167997.1.1474	2e-69	88.83	51.7766497462	206
+Cluster_1620	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	4e-76	86.05	71.9887955182	258
+Cluster_1623	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-64	87.02	52.5252525253	208
+Cluster_1627	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-75	87.39	66.7605633803	238
+Cluster_1628	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	2e-84	87.45	73.595505618	263
+Cluster_1630	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiales Incertae Sedis;Aciditerrimonas;unknown species	AF225451.1.1418	6e-74	84.81	72.1621621622	270
+Cluster_1633	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-74	88.94	55.076142132	217
+Cluster_1636	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	7e-74	89.86	52.538071066	207
+Cluster_1640	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-81	90.78	55.9278350515	217
+Cluster_1641	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	3e-58	84.23	54.8387096774	222
+Cluster_1642	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	2e-69	90.91	47.461928934	187
+Cluster_1643	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	7e-54	83.41	54.0	217
+Cluster_1644	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	5e-80	90.45	52.278177458	220
+Cluster_1645	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	2e-78	85.82	74.9295774648	268
+Cluster_1649	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	9e-78	89.86	55.076142132	217
+Cluster_1650	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	9e-78	88.94	54.5893719807	226
+Cluster_1651	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	7e-79	90.61	54.6153846154	213
+Cluster_1652	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	2e-70	90.72	46.6019417476	194
+Cluster_1671	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-69	87.79	51.5738498789	213
+Cluster_1676	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	2e-73	90.2	51.5228426396	204
+Cluster_1680	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	9e-78	89.86	55.076142132	217
+Cluster_1690	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-84	92.82	52.7918781726	209
+Cluster_1691	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-75	85.17	70.6989247312	263
+Cluster_1693	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	1e-90	82.29	100.0	384
+Cluster_1696	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-81	91.59	53.807106599	214
+Cluster_1704	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-68	83.58	71.4666666667	268
+Cluster_1710	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	7e-74	89.25	52.7227722772	214
+Cluster_1710	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	7e-74	90.24	50.495049505	205
+Cluster_1722	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unknown species	HQ183925.1.1489	5e-85	87.55	70.2917771883	265
+Cluster_1725	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-75	89.67	54.0609137056	213
+Cluster_1730	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-68	90.16	48.2323232323	193
+Cluster_1731	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto73_4W	GU731322.1.1376	9e-53	84.42	48.3009708738	199
+Cluster_1746	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	3e-72	87.5	55.0724637681	232
+Cluster_1778	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-49	82.24	57.2192513369	214
+Cluster_1784	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	2e-74	87.03	66.7605633803	239
+Cluster_1786	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-54	80.44	71.6180371353	271
+Cluster_1787	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-79	90.32	55.076142132	217
+Cluster_1800	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;microbial mat metagenome	AMFO01002406.8367.9873	3e-57	85.86	48.5294117647	198
+Cluster_1802	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-83	87.6	72.1126760563	258
+Cluster_1806	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	5e-80	90.78	54.4303797468	217
+Cluster_1812	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;marine metagenome	AACY020174722.993.2486	1e-51	84.62	48.1389578164	195
+Cluster_1814	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-86	89.67	67.7871148459	242
+Cluster_1823	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	1e-71	86.75	60.0515463918	234
+Cluster_1828	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	2e-69	87.91	52.5672371638	215
+Cluster_1837	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5273	AY234624.1.1446	9e-63	86.38	53.9641943734	213
+Cluster_1837	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;bacterium Ellin5247	AY234598.1.1446	9e-63	86.38	53.9641943734	213
+Cluster_1840	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	2e-64	84.52	66.7605633803	239
+Cluster_1841	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	9e-53	83.73	51.8703241895	209
+Cluster_1858	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-54	82.96	59.6256684492	223
+Cluster_1865	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-61	86.06	52.5252525253	208
+Cluster_1866	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-66	89.18	48.743718593	194
+Cluster_1873	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	7e-79	90.61	54.0609137056	213
+Cluster_1874	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	7e-74	88.64	55.303030303	220
+Cluster_1886	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	5e-70	89.22	50.0	204
+Cluster_1890	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-63	85.78	61.1267605634	218
+Cluster_1891	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	4e-61	85.32	57.8666666667	218
+Cluster_1893	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	4e-56	86.63	45.7212713936	187
+Cluster_1902	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	1e-75	87.34	66.7605633803	237
+Cluster_1924	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-68	84.38	70.9141274238	256
+Cluster_1934	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	1e-71	88.37	54.7073791349	215
+Cluster_1937	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	4e-76	90.48	52.6582278481	210
+Cluster_1941	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	4e-51	83.66	49.0291262136	202
+Cluster_1949	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	3e-57	84.98	52.3690773067	213
+Cluster_1951	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-49	82.24	52.9850746269	214
+Cluster_1952	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	8e-83	86.55	73.3153638814	275
+Cluster_1956	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Sva0996 marine group;unknown genus;unidentified bacterium wb1_P06	AF317769.1.1429	6e-84	89.79	60.1542416452	235
+Cluster_1961	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-86	91.15	57.0707070707	226
+Cluster_1963	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-64	87.02	52.5252525253	208
+Cluster_1968	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	7e-74	88.94	55.076142132	217
+Cluster_1970	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	7e-74	89.95	52.6717557252	209
+Cluster_1974	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-70	89.32	52.3076923077	206
+Cluster_1977	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	2e-58	85.78	51.9181585678	204
+Cluster_1985	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-68	84.31	66.7539267016	255
+Cluster_1988	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	7e-84	91.71	54.6835443038	217
+Cluster_1992	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-73	90.15	51.5228426396	203
+Cluster_1996	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-80	91.75	52.6854219949	206
+Cluster_1999	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	5e-60	84.62	58.9333333333	221
+Cluster_2018	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	9e-83	90.27	57.3604060914	226
+Cluster_2058	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-70	83.96	71.4666666667	268
+Cluster_2068	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	8e-68	83.15	73.7127371274	273
+Cluster_2085	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	1e-65	86.64	55.3846153846	217
+Cluster_2154	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	5e-70	87.91	54.9872122762	215
+Cluster_2182	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	9e-83	90.04	57.7215189873	231
+Cluster_2288	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-71	89.37	52.538071066	207
+Cluster_2353	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	5e-70	84.77	71.3091922006	256
+Cluster_2495	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-61	87.31	50.0	197
+Cluster_2517	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-78	90.7	53.807106599	215
+Cluster_2588	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto8_4W	GU731331.1.1375	3e-72	87.28	58.7628865979	228
+Cluster_2588	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	3e-72	87.61	57.9896907216	226
+Cluster_2588	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	3e-72	87.89	57.2164948454	223
+Cluster_2613	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	2e-53	82.96	59.5174262735	223
+Cluster_2670	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-44	84.21	42.6433915212	171
+Cluster_2707	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	7e-59	85.31	53.417721519	211
+Cluster_2723	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	9e-63	87.82	47.9217603912	197
+Cluster_2840	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	2e-69	82.76	76.8	290
+Cluster_2840	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiales Incertae Sedis;Aciditerrimonas;unknown species	AF225451.1.1418	2e-69	82.59	77.6	293
+Cluster_2847	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	2e-58	90.74	40.8629441624	162
+Cluster_2848	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-49	82.63	52.4875621891	213
+Cluster_2882	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	9e-58	84.58	53.3665835411	214
+Cluster_2904	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	9e-73	92.82	46.0559796438	181
+Cluster_2919	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-80	90.05	55.8080808081	221
+Cluster_2928	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	6e-69	87.0	59.8382749326	223
+Cluster_2931	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	4e-56	86.7	46.1728395062	188
+Cluster_2931	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	4e-56	86.63	46.1728395062	187
+Cluster_2946	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	3e-72	88.18	56.010230179	220
+Cluster_2951	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	8e-93	89.31	73.3893557423	262
+Cluster_2975	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_G04	AF317765.1.1443	4e-61	82.05	72.0867208672	273
+Cluster_2983	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;microbial mat metagenome	AMFO01002406.8367.9873	2e-55	85.35	48.5294117647	198
+Cluster_2989	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Iamiaceae;Iamia;Iamia majanohamensis	AB360448.1.1474	3e-72	90.1	48.9104116223	202
+Cluster_2993	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-51	83.41	55.8510638298	211
+Cluster_3006	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-84	87.4	73.3893557423	262
+Cluster_3026	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-48	84.13	47.4747474747	189
+Cluster_3043	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	2e-59	84.3	58.530183727	223
+Cluster_3073	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-58	89.02	47.0108695652	173
+Cluster_3079	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	2e-65	86.98	51.8337408313	215
+Cluster_3079	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	2e-65	87.1	51.8337408313	217
+Cluster_3079	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;unknown species	KF182221.1.1489	2e-65	87.1	51.8337408313	217
+Cluster_3094	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;bacterium enrichment culture clone auto73_4W	GU731322.1.1376	1e-70	88.94	50.7352941176	208
+Cluster_3098	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	2e-68	88.73	51.5228426396	204
+Cluster_3134	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	4e-76	93.05	45.1690821256	187
+Cluster_3144	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	3e-67	87.98	52.2727272727	208
+Cluster_3170	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	7e-79	91.3	52.538071066	207
+Cluster_3171	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-81	90.5	56.0913705584	221
+Cluster_3175	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	4e-81	88.7	66.7605633803	239
+Cluster_3175	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	4e-81	87.21	72.1126760563	258
+Cluster_3190	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	4e-76	91.84	49.7461928934	196
+Cluster_3196	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	1e-71	87.34	55.0970873786	229
+Cluster_3204	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	1e-65	84.94	66.7605633803	239
+Cluster_3208	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	9e-73	91.98	47.461928934	187
+Cluster_3209	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-75	88.69	56.0913705584	221
+Cluster_3294	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-79	90.32	55.076142132	217
+Cluster_3458	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;microbial mat metagenome	AMFO01002406.8367.9873	3e-58	85.44	50.9900990099	206
+Cluster_3579	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;unidentified bacterium wb1_J07	AF317767.1.1444	3e-67	88.94	47.9318734793	199
+Cluster_3617	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-65	87.68	51.5228426396	203
+Cluster_3662	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	5e-75	90.64	51.6539440204	203
+Cluster_3676	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	3e-72	90.82	49.4923857868	196
+Cluster_3696	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;Ilumatobacter nonamiensis YM16-303	AB360345.1.1443	2e-78	90.91	53.0456852792	209
+Cluster_3746	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-68	89.69	48.743718593	194
+Cluster_3934	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	7e-69	87.79	54.0609137056	213
+Cluster_4037	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Acidimicrobium;unknown species	EU419133.1.1468	2e-73	89.57	51.7326732673	211
+Cluster_4748	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	2e-73	89.47	53.0456852792	209
+Cluster_5016	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;bacterium enrichment culture clone B213(2011)	JF830237.1.1494	4e-66	83.86	67.9144385027	254
+Cluster_5016	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	4e-66	83.98	67.9144385027	256
+Cluster_5432	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	6e-55	85.15	49.0243902439	202
+Cluster_6431	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	2e-79	86.25	73.4806629834	269
+Cluster_6858	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-74	89.25	54.3147208122	214
+Cluster_7323	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;OM1 clade;unknown genus;bacterium WH6-7	JQ269315.1.1487	8e-68	83.77	70.4	265
+Cluster_7769	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;unknown genus;unknown species	EF471700.1.1483	1e-56	88.51	46.6307277628	174
+Cluster_9149	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	1e-80	91.08	54.0609137056	213
+Cluster_9174	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium YJF2-33	FJ405887.1.1482	5e-75	91.79	49.2385786802	195
+Cluster_9447	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;actinobacterium BGR 43	GU167988.1.1472	8e-78	86.21	68.8829787234	261
+Cluster_10958	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;unknown family;unknown genus;unknown species	KF182287.1.1248	2e-79	91.71	52.8350515464	205
+Cluster_13089	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;bacterium enrichment culture clone B213(2011)	JF830237.1.1494	1e-66	88.24	54.5454545455	204
+Cluster_13801	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrithrix;actinobacterium BGR 77	GU168000.1.1473	2e-63	86.6	51.8610421836	209
+Cluster_13977	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;CL500-29 marine group;unknown species	GQ387491.21030.22531	5e-70	84.82	68.2666666667	257
+Cluster_15144	Bacteria;Actinobacteria;Acidimicrobiia;Acidimicrobiales;Acidimicrobiaceae;Ferrimicrobium;Ferrimicrobium acidiphilum	AF251436.1.1466	4e-71	87.61	54.0342298289	226
