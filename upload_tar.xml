@@ -18,7 +18,14 @@
 <tool id="FROGS_upload_tar" name="FROGS Upload archive" version="1.1.0" workflow_compatible="false">
 	<description>from your computer</description>
 	<action module="galaxy.tools.actions.upload" class="UploadToolAction"/>
-	<command interpreter="python">
+	<requirements>
+		<requirement type="package" version="2.0.1">frogs</requirement>
+	</requirements>
+	<stdio>
+		<exit_code range="1:" />
+		<exit_code range=":-1" />
+	</stdio>
+	<command>
 		upload_tar.py --param-file $paramfile
 	#set $outnum = 0
 	#while $varExists('output%i' % $outnum):
@@ -78,4 +85,7 @@ Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L.,
 
 Depending on the help provided you can cite us in acknowledgements, references or both.
 	</help>
+	<citations>
+		<citation type="doi">10.7287/peerj.preprints.386v1</citation>
+	</citations>
 </tool>

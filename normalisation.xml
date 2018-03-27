@@ -99,5 +99,8 @@ Repository: https://github.com/geraldinepascal/FROGS
 Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L., Vidal K., Maman S., Mariadassou M., Combes S., Hernandez-Raquet G., Pascal G., 2016. FROGS: Find Rapidly OTU with Galaxy Solution. In: ISME-2016 Montreal, CANADA ,* http://bioinfo.genotoul.fr/wp-content/uploads/FROGS_ISME2016_poster.pdf
 
 Depending on the help provided you can cite us in acknowledgements, references or both.
-	</help> 
+	</help>
+	<citations>
+		<citation type="doi">10.7287/peerj.preprints.386v1</citation>
+	</citations> 
 </tool>
