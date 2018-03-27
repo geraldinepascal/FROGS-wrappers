@@ -44,7 +44,6 @@
 		<!-- Database Choice -->
 		<param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
        	        	<options from_data_table="frogs_db">
-				<!-- filter type="sort_by" column="1" / -->
 	       		</options>
 			<validator type="no_options" message="A built-in database is not available" />
    		</param> 
@@ -57,18 +56,6 @@
 		<data format="biom1" name="biom_affiliation" label="${tool.name}: affiliation.biom" from_work_dir="affiliation.biom" />
 		<data format="html" name="summary" label="${tool.name}: report.html" from_work_dir="report.html"/>
 	</outputs>
-	<!-- planemo test fail on the ref_file. The <options from_file> is not handle by the planemo test command
-	     see the following issue: https://github.com/galaxyproject/planemo/issues/530 -->
-	     <tests>
-		<test>
-			<param name="ref_file" value="db.fasta"/>
-			<!--<param name="ref_file" value="db.fasta"/>-->
-   			<param name="rdp" value="false"/>
-			<param name="fasta_sequences" value="references/04-filters.fasta" />
-        		<param name="biom_abundance" value="references/04-filters.biom" />
-			<output name="biom_affiliation" file="references/04-affiliation.biom"/>
-		</test>
-	     </tests>
   	<help>
 
 .. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 

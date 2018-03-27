@@ -17,7 +17,14 @@
 -->
 <tool name="FROGSSTAT Phyloseq Sample Clustering" id="FROGSSTAT_Phyloseq_Sample_Clustering" version="1.0.0">
 	<description>of samples using different linkage methods</description>
-	<command interpreter="python">r_clustering.py 
+	<requirements>
+		<requirement type="package" version="2.0.1">frogs</requirement>
+	</requirements>
+	<stdio>
+		<exit_code range="1:" />
+		<exit_code range=":-1" />
+	</stdio>
+	<command>r_clustering.py 
                                                --html $html 
                                                --rdata $data 
                                                --varExp $varExp 
@@ -39,6 +46,14 @@
 	<outputs>
 		<data format="html" name="html" label="${tool.name}: clustering.html" from_work_dir="clustering.html"/>
 	</outputs>
+	<tests>
+		<test>
+			<param name="data" value="references/11-phylo_import.Rdata"/>
+			<param name="varExp" value="EnvType"/>
+			<param name="method" value="references/Unifrac.tsv"/>
+			<output name="html" file="references/16-phylo_structure.html" compare="sim_size" delta="0" />
+		</test>
+	</tests>
 	<help>
 		
 .. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 
@@ -93,4 +108,7 @@ Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L.,
 Depending on the help provided you can cite us in acknowledgements, references or both.
 	
 	</help>
+	<citations>
+		<citation type="doi">10.7287/peerj.preprints.386v1</citation>
+	</citations>
 </tool>
