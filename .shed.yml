@@ -1,0 +1,7 @@
+categories:
+- Metagenomics
+description: Suite for metabarcoding
+long_description: FROGS Find Rapidly OTUs through Galaxy Solution
+name: frogs_2_0_0
+owner: oinizan
+homepage_url: https://github.com/oinizan/FROGS-wrappers
