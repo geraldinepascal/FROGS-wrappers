@@ -54,6 +54,8 @@
 			<param name="to_posix_lines" type="hidden" value="Yes" />	
 		</upload_dataset>
 	</inputs>
+	<outputs>
+	</outputs>
 	<help>
 
 .. class:: infomark page-header h2
