@@ -58,8 +58,14 @@
                         <param name="varExp" value="EnvType" />
                         <param name="method" value="MDS" />
                         <param name="distance" value="references/Unifrac.tsv" />
-                        <!--<output name="html" file="references/15-phylo_structure.html" compare="sim_size" delta="10" />-->
-                        <output name="html" file="references/15-phylo_structure.html" compare="sim_size" delta="0" />
+                        <!--output name="html" file="references/15-phylo_structure.html" compare="sim_size" delta="10" /-->
+	                <output name="html">
+                                <assert_contents>
+                                        <has_text_matching expression="html\sxmlns=.*" />
+                                        <has_text_matching expression="application/json.*DesLardons" />
+                                </assert_contents>
+                        </output>
+
                 </test>
         </tests>
 	<help>

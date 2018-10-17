@@ -68,7 +68,13 @@
                         <param name="data" value="references/11-phylo_import.Rdata" />
                         <param name="varExp" value="EnvType" />
                         <param name="methods" value="cc,unifrac" />
-                        <output name="html" file="references/14-phylo_beta_div.html" compare="sim_size" delta="0" />
+                        <!--output name="html" file="references/14-phylo_beta_div.html" compare="sim_size" delta="0" /-->
+                        <output name="html">
+                                <assert_contents>
+                                        <has_text_matching expression="html\sxmlns=.*" />
+                                        <has_text_matching expression="Phyloseq\s+\d+\.\d+\.\d+" />
+                                </assert_contents>
+                        </output>
                 </test>
         </tests>
 

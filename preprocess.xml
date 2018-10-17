@@ -227,7 +227,7 @@
                         </conditional>
 			<output name="dereplicated_file" file="references/01-prepro.fasta"/>
 			<output name="count_file" file="references/01-prepro.tsv"/>
-			<output name="summary_file" file="references/01-prepro.html"/>
+			<output name="summary_file" file="references/01-prepro.html" compare="sim_size" delta="0"/>
                 </test>
         </tests>
 	<help>

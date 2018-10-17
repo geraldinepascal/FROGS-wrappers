@@ -1,0 +1,2 @@
+db	db	${__HERE__}/db.fasta
+

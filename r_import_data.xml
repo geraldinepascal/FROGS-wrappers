@@ -60,7 +60,7 @@
 		<test>
 			<param name="biomfile" value="references/chaillou.biom"/>
 			<param name="samplefile" value="references/sample_metadata.tsv"/>
-			<param name="treefile" value="references/10b-tree.nwk"/>
+			<param name="treefile" value="references/tree.nwk"/>
 			<output name="data" value="references/11-phylo_import.Rdata"/>
 		</test>
 	</tests>

@@ -66,7 +66,13 @@
 			<param name="taxaSet1" value="Bacteria" />
 			<param name="taxaRank2" value="Phylum" />
 			<param name="numberOfTaxa" value="9" />
-			<output name="html" file="references/12-phylo_composition.html" compare="sim_size" delta="0" />
+			<!--output name="html" file="references/12-phylo_composition.html" compare="sim_size" delta="0" /-->
+			<output name="html">
+				<assert_contents>	
+				        <has_text_matching expression="html\sxmlns=.*" />
+				        <has_text_matching expression="application/json.*Sample: BHT0.LOT01" />
+				</assert_contents>
+                        </output>
 		</test>
 	</tests>
 	<help> 
