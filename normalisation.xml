@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGS_normalisation" name="FROGS Abundance normalisation" version="2.0.0">
-        <description>Conserve a predefined number of sequence per sample.</description>
+        <description>Normalize OTUs abundance.</description>
         <requirements>
                 <requirement type="package" version="2.0.1">frogs</requirement>
         </requirements>
