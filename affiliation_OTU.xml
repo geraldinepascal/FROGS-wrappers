@@ -25,21 +25,16 @@
                 <exit_code range=":-1" />
         </stdio>
 	<command>
-		#set $reference_fasta_filename = "localref.fa"
-		#if str( $reference_source.reference_source_selector ) == "history":
-			ln -s "${reference_source.ref_file}" "${reference_fasta_filename}" &amp;&amp;
-		#else:
-			#set $reference_fasta_filename = str( $reference_source.ref_file.fields.path )
-		#end if
+		#set $reference_fasta_filename = str( $ref_file.fields.path )
 		affiliation_OTU.py 
 		                       --reference "${reference_fasta_filename}"
-		                       --input-biom $biom_abundance 
-		                       --input-fasta $fasta_sequences
-		                       --output-biom $biom_affiliation 
-		                       --summary $summary 
-		                       --nb-cpus $nb_cpu
-		                       --java-mem $mem 
-		                       #if $rdp
+					--input-biom $biom_abundance 
+					--input-fasta $fasta_sequences
+					--output-biom $biom_affiliation 
+					--summary $summary 
+					--nb-cpus $nb_cpu
+					--java-mem $mem 
+					#if $rdp
 		                       		--rdp
 		                       	#end if
 	</command>
@@ -47,25 +42,10 @@
 		<!-- JOB Parameter -->
 		<param name="nb_cpu" type="hidden" label="CPU number" help="The maximum number of CPUs used." value="1"></param>
 		<param name="mem" type="hidden" label="Memory allocation" help="The number of Go to allocation for java" value="20"></param>
-		<!-- Database Choice -->
-
-
-		<conditional name="reference_source">
-			<param name="reference_source_selector" type="select" label="Load reference genome from">
-			        <option value="cached">Local cache</option>
-			        <option value="history">History</option>
-			</param>
-			<when value="cached">
-				<param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
-	       	        		<options from_data_table="frogs_db">
-			       		</options>
-					<validator type="no_options" message="A built-in database is not available" />
-		   		</param> 
-			</when>
-			<when value="history">
-				<param name="ref_file" type="data" format="fasta" label="Use the folloing dataset as the reference genome" help="REFERENCE_SEQUENCE; You can upload a FASTA sequence to the history and use it as reference" />
-			</when>
-		</conditional>
+		<param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
+	       		<options from_data_table="frogs_db"></options>
+			<validator type="no_options" message="A built-in database is not available" />
+		</param> 
    		<param name="rdp" type="boolean" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allow you to perform it also with RDP classifier (default No)" />
 	        <!-- Files -->
 	        <param format="fasta" name="fasta_sequences" type="data" label="OTU seed sequence" help="OTU sequences (format: fasta)."/>
@@ -77,7 +57,6 @@
 	</outputs>
         <tests>
                 <test>
-			<param name="reference_source_selector" value="cached" />
                         <param name="ref_file" value="db"/>
                         <param name="fasta_sequences" value="swarm.fasta"/>
                         <param name="biom_abundance" value="swarm.biom"/>
