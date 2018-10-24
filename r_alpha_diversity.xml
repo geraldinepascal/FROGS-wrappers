@@ -64,7 +64,7 @@
         </tests>
 <help>
 		
-.. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png 
    :height: 144
    :width: 110
 
@@ -92,22 +92,22 @@ Output
 
 **Html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): the review of richness plots and rarefaction curves.
 
-.. image:: ${static_path}/images/tools/frogs/phyloseq_plot_richness.png 
+.. image:: static/images/phyloseq_plot_richness.png 
      :height: 400
      :width: 525 
 
-.. image:: ${static_path}/images/tools/frogs/phyloseq_plot_richness_box.png
+.. image:: static/images/phyloseq_plot_richness_box.png
      :height: 400
      :width: 499
      
-.. image:: ${static_path}/images/tools/frogs/phyloseq_rarefaction_curves.png
+.. image:: static/images/phyloseq_rarefaction_curves.png
      :height: 400
      :width: 498
 
 **Alpha diversity table** (alpha_diversity.tsv):
 The data file containing table of alpha diversity indices.
 
-.. image:: ${static_path}/images/tools/frogs/phyloseq_alpha_diversity_table.png
+.. image:: static/images/phyloseq_alpha_diversity_table.png
 
 .. class:: infomark page-header h2
 

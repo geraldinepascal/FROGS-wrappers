@@ -67,7 +67,7 @@
 
   	<help>
 
-.. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png 
    :height: 144
    :width: 110
 
@@ -107,7 +107,7 @@ Outputs
 
  This file presents the number of sequences affiliated by blast, and the number of multi-affiliation (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
  
- .. image:: ${static_path}/images/tools/frogs/FROGS_affiliation_summary.png 
+ .. image:: static/images/FROGS_affiliation_summary.png 
     :height: 800
     :width: 600
 

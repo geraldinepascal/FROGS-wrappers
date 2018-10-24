@@ -232,7 +232,7 @@
         </tests>
 	<help>
 
-.. image:: ${static_path}/images/tools/frogs/FROGS_logo.png
+.. image:: static/images/FROGS_logo.png
    :height: 144
    :width: 110
 
@@ -295,13 +295,13 @@ Outputs
 
  This file reports the number of remaining sequences after each filter (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
  
- .. image:: ${static_path}/images/tools/frogs/FROGS_preprocess_summary.png 
+ .. image:: static/images/FROGS_preprocess_summary.png 
      :height: 355
      :width: 676 
 
  It also presents the length distribution of the remaining sequences.
  
- .. image:: ${static_path}/images/tools/frogs/FROGS_preprocess_lengthsSamples.png 
+ .. image:: static/images/FROGS_preprocess_lengthsSamples.png 
      :height: 350
      :width: 676 
 
@@ -349,11 +349,11 @@ Amplicons sizes parameters
 
  The two following images show two examples of perfect values fors sizes parameters.
 
- .. image:: ${static_path}/images/tools/frogs/FROGS_preprocess_ampliconSize_unimodal.png
+ .. image:: static/images/FROGS_preprocess_ampliconSize_unimodal.png
     :height: 415
     :width: 676
  
- .. image:: ${static_path}/images/tools/frogs/FROGS_preprocess_ampliconSize_multimodal.png
+ .. image:: static/images/FROGS_preprocess_ampliconSize_multimodal.png
     :height: 415
     :width: 676
 
