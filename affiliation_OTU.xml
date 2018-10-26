@@ -15,59 +15,43 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="0.8.0">
+<tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="r3.0-2.0">
 	<description>Step 4 in metagenomics analysis : Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
- 	<requirements>
-                <requirement type="package" version="2.0.1">frogs</requirement>
-        </requirements>
-     	<stdio>
-                <exit_code range="1:" />
-                <exit_code range=":-1" />
-        </stdio>
-	<command>
-		#set $reference_fasta_filename = str( $ref_file.fields.path )
+	<command interpreter="python2.7">
 		affiliation_OTU.py 
-		                       --reference "${reference_fasta_filename}"
-					--input-biom $biom_abundance 
-					--input-fasta $fasta_sequences
-					--output-biom $biom_affiliation 
-					--summary $summary 
-					--nb-cpus $nb_cpu
-					--java-mem $mem 
-					#if $rdp
+		                       --reference $ref_file
+		                       --input-biom $biom_abundance 
+		                       --input-fasta $fasta_sequences
+		                       --output-biom $biom_affiliation 
+		                       --summary $summary 
+		                       --nb-cpus \${GALAXY_SLOTS:-1}
+		                       --java-mem $mem 
+		                       #if $rdp
 		                       		--rdp
 		                       	#end if
 	</command>
 	<inputs>
 		<!-- JOB Parameter -->
-		<param name="nb_cpu" type="hidden" label="CPU number" help="The maximum number of CPUs used." value="1"></param>
 		<param name="mem" type="hidden" label="Memory allocation" help="The number of Go to allocation for java" value="20"></param>
+		<!-- Database Choice -->
 		<param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
-	       		<options from_data_table="frogs_db"></options>
-			<validator type="no_options" message="A built-in database is not available" />
-		</param> 
+       		<options from_file="frogs_db.loc">
+          		<column name="name" index="0"/>
+          		<column name="value" index="1"/>
+       		</options>
+   		</param> 
    		<param name="rdp" type="boolean" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allow you to perform it also with RDP classifier (default No)" />
-	        <!-- Files -->
-	        <param format="fasta" name="fasta_sequences" type="data" label="OTU seed sequence" help="OTU sequences (format: fasta)."/>
-	        <param format="biom1" name="biom_abundance" type="data" label="Abundance file" help="OTU abundances (format: BIOM)."/>
+        <!-- Files -->
+        <param format="fasta" name="fasta_sequences" type="data" label="OTU seed sequence" help="OTU sequences (format: fasta)."/>
+        <param format="biom1" name="biom_abundance" type="data" label="Abundance file" help="OTU abundances (format: BIOM)."/>
 	</inputs>
 	<outputs>
 		<data format="biom1" name="biom_affiliation" label="${tool.name}: affiliation.biom" from_work_dir="affiliation.biom" />
 		<data format="html" name="summary" label="${tool.name}: report.html" from_work_dir="report.html"/>
 	</outputs>
-        <tests>
-                <test>
-                        <param name="ref_file" value="db"/>
-                        <param name="fasta_sequences" value="swarm.fasta"/>
-                        <param name="biom_abundance" value="swarm.biom"/>
-                        <output name="biom_affiliation" file="references/Blast_affiliation.biom"/>
-                        <output name="summary" file="references/Blast_affiliation.html" compare="sim_size" delta="0" />
-                </test>
-        </tests>
-
   	<help>
 
-.. image:: static/images/FROGS_logo.png 
+.. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 
    :height: 144
    :width: 110
 
@@ -107,7 +91,7 @@ Outputs
 
  This file presents the number of sequences affiliated by blast, and the number of multi-affiliation (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
  
- .. image:: static/images/FROGS_affiliation_summary.png 
+ .. image:: ${static_path}/images/tools/frogs/FROGS_affiliation_summary_v3.png 
     :height: 800
     :width: 600
 
@@ -116,16 +100,7 @@ Outputs
 
 Reference database
 
-The databases come from `SILVA &lt;http://www.arb-silva.de/&gt;`_ a comprehensive and quality checked rRNA database.
-
-FROGS database(s) pre-process:
-
-1. The non-redondant small sub-unit database is retrieved from SILVA.
-
-2. This database is processed to keep only the taxonomy level: Domain - Phylum - Class - Order - Family - Genus - Species
-
-3. The database is splitted in two databses: prokaryote and eukaryote.
-
+All the databases we format (on demand) for RDPClassifier and NCBI Blast+ are inventoried here: http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/readme.txt
 
 .. class:: infomark page-header h2
 
@@ -136,12 +111,48 @@ How it works
    :widths: 5, 150
    :class: table table-striped
 
-   "1", "`RDPClassifier &lt;https://rdp.cme.msu.edu/tutorials/classifier/RDPtutorial_RDP_classifier.html&gt;`_ is used with database to associate to each OTU a taxonomy and a bootstrap (example: *Bacteria;(1.0);Firmicutes;(1.0);Clostridia;(1.0);Clostridiales;(1.0);Clostridiaceae 1;(1.0);Clostridium sensu stricto;(1.0);*)."
-   "2", "`blastn+ &lt;http://blast.ncbi.nlm.nih.gov/&gt;`_ is used to find alignment between each OTU and the database. Only the bests hits with the same score has reported."
-   "3", "For each OTU with several blastn+ results a consensus is determined on each taxonomic level. If all the taxa in a taxonomic rank are identical the taxon name is reported otherwise *Multi-affiliation* is reported. By example, if you have an OTU with two corresponding sequences, the first is a *Bacteria;Proteobacteria;Gamma Proteobacteria;Enterobacteriales*, the second is a *Bacteria;Proteobacteria;Beta Proteobacteria;Methylophilales*, the consensus will be *Bacteria;Proteobacteria;Multi-affiliation;Multi-affiliation*."
-
+   "1", "`RDPClassifier &lt;https://rdp.cme.msu.edu/tutorials/classifier/RDPtutorial_RDP_classifier.html&gt;`_ may be used with database to associate to each OTU a taxonomy and a bootstrap (example: *Bacteria;(1.0);Firmicutes;(1.0);Clostridia;(1.0);Clostridiales;(1.0);Clostridiaceae 1;(1.0);Clostridium sensu stricto;(1.0);*)."
+   "2", "`blastn+ &lt;http://blast.ncbi.nlm.nih.gov/&gt;`_ or `needlall &lt;http://emboss.sourceforge.net/apps/release/6.6/emboss/apps/needleall.html&gt;`_ is used to find alignment between each OTU and the database. Only the bests hits with the same score are reported. blastn+ is used for merged read pair, and needall is used for artificially combined sequence. For each alignment returned, several metrics are computed: identity percentage, coverage percentage, and alignment length"
+   "3", "For each OTU with several blastn+/needlall alignment results a consensus is determined on each taxonomic level. If all the taxa in a taxonomic rank are identical the taxon name is reported otherwise *Multi-affiliation* is reported. By example, if you have an OTU with two corresponding sequences, the first is a *Bacteria;Proteobacteria;Gamma Proteobacteria;Enterobacteriales*, the second is a *Bacteria;Proteobacteria;Beta Proteobacteria;Methylophilales*, the consensus will be *Bacteria;Proteobacteria;Multi-affiliation;Multi-affiliation*."
 
 .. class:: infomark page-header h2
+
+Alignment metrics details on identity percentage calculation
+
+With classicala %id computation method, we will obtain for overlapped amplicon sequence and for artificially combined amplicon sequence :
+
+* **Case 1: a sequencing of overlapping sequences i.e. 16S V3-V4 amplicon MiSeq sequencing**
+
+.. image:: ${static_path}/images/tools/frogs/FROGS_affiliation_overlapped_percent_id.png
+    :height: 325
+    :width: 807
+
+* **Case 2 : a sequencing of non-overlapping sequences: case of ITS1 amplicon MiSeq sequencing**
+
+.. image:: ${static_path}/images/tools/frogs/FROGS_affiliation_combined_percent_id.png
+    :height: 310
+    :width: 887
+
+* **Finally, how percentage identity is computed ?**
+
+With the classical method of %id calculation, filtering on %id will systematically removed “FROGS combined” OTUs. So, we proposed to replace the classical %id by a %id computed on the sequenced bases only.
+
+.. image:: ${static_path}/images/tools/frogs/FROGS_affiliation_percent_id_formula.png
+    :height: 36
+    :width: 637
+
+For the precedent use cases we will obtain:
+
+* Case 1: 16S V3V4 overlapped sequence
+	% sequenced bases identity = 400 matches / 400 bp = 100%
+
+* Case 2: very large ITS1 “FROGS combined” shorter than the real sequence
+	% sequenced bases identity = (250 + 250 ) / (600 - 100) = 100%
+
+This calculation allows to return 100% of identity on sequenced bases for “FROGS combined” shorter or longer than reality in case of perfect sequencing, and a smaller percentage of identity in the case of small overlap repeat kept in FROGS combined sequence. 
+
+.. class:: infomark page-header h2
+
 
 Advices
 
@@ -157,13 +168,13 @@ As you can see the affiliation of each OTU is not human readable in outputed abu
 Contacts: frogs@inra.fr
 
 Repository: https://github.com/geraldinepascal/FROGS
+website: http://frogs.toulouse.inra.fr/
 
-Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L., Vidal K., Maman S., Mariadassou M., Hernadez-Raquet G., Pascal G., 2015. FROGS: Find Rapidly OTU with Galaxy Solution. In: The environmental genomic Conference, Montpellier, France,* http://bioinfo.genotoul.fr/fileadmin/user_upload/FROGS_2015_GE_Montpellier_poster.pdf
+Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
 
-Depending on the help provided you can cite us in acknowledgements, references or both.
 	</help>
 	<citations>
-		<citation type="doi">10.1186/1471-2105-10-421</citation>
-		<citation type="doi">10.1128/AEM.00062-07</citation>
+		<citation type="doi">10.1093/bioinformatics/btx791</citation>
 	</citations>
+
 </tool>

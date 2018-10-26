@@ -15,9 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Sample Clustering" id="FROGSSTAT_Phyloseq_Sample_Clustering" version="r3.0-1.0">
+<tool name="FROGSSTAT Phyloseq Sample Clustering" id="FROGSSTAT_Phyloseq_Sample_Clustering" version="1.0.0">
 	<description>of samples using different linkage methods</description>
-	<command interpreter="python">r_clustering.py 
+	<requirements>
+		<requirement type="package" version="2.0.1">frogs</requirement>
+	</requirements>
+	<stdio>
+		<exit_code range="1:" />
+		<exit_code range=":-1" />
+	</stdio>
+	<command>r_clustering.py 
                                                --html $html 
                                                --rdata $data 
                                                --varExp $varExp 
@@ -39,9 +46,24 @@
 	<outputs>
 		<data format="html" name="html" label="${tool.name}: clustering.html" from_work_dir="clustering.html"/>
 	</outputs>
+	<tests>
+		<test>
+			<param name="data" value="references/11-phylo_import.Rdata"/>
+			<param name="varExp" value="EnvType"/>
+			<param name="method" value="references/Unifrac.tsv"/>
+			<!--output name="html" file="references/16-phylo_structure.html" compare="sim_size" delta="0" /-->
+                        <output name="html">
+                                <assert_contents>
+                                        <has_text_matching expression="html\sxmlns=.*" />
+                                        <has_text_matching expression="Phyloseq\s+\d+\.\d+\.\d+" />
+                                </assert_contents>
+                        </output>
+
+		</test>
+	</tests>
 	<help>
 		
-.. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png 
    :height: 144
    :width: 110
 
@@ -76,7 +98,7 @@ Output
 
 .. container:: row
 
- .. image:: ${static_path}/images/tools/frogs/phyloseq_clustering_ward.png 
+ .. image:: static/images/phyloseq_clustering_ward.png 
    :height: 576
    :width: 768
 
@@ -87,13 +109,13 @@ Output
 Contacts: frogs@inra.fr
 
 Repository: https://github.com/geraldinepascal/FROGS
-website: http://frogs.toulouse.inra.fr/
 
-Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
+Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L., Vidal K., Maman S., Mariadassou M., Combes S., Hernandez-Raquet G., Pascal G., 2016. FROGS: Find Rapidly OTU with Galaxy Solution. In: ISME-2016 Montreal, CANADA ,* http://bioinfo.genotoul.fr/wp-content/uploads/FROGS_ISME2016_poster.pdf
 
+Depending on the help provided you can cite us in acknowledgements, references or both.
+	
 	</help>
 	<citations>
-		<citation type="doi">10.1093/bioinformatics/btx791</citation>
+		<citation type="doi">10.7287/peerj.preprints.386v1</citation>
 	</citations>
-
 </tool>

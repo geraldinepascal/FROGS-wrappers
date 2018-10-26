@@ -15,9 +15,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_demultiplex" name="FROGS Demultiplex reads" version="r3.0-2.0">
+<tool id="FROGS_demultiplex" name="FROGS Demultiplex reads" version="2.0.0">
 	<description>Attribute reads to samples in function of inner barcode.</description>
-	<command interpreter="python2.7">
+        <requirements>
+                <!--requirement type="binary">perl</requirement-->
+                <requirement type="package" version="2.0.1">frogs</requirement>
+                <requirement type="package" version="1.10">perl-io-zlib</requirement>
+                <requirement type="package" version="0.20">perl-io-gzip</requirement>
+                <requirement type="package">perl</requirement>
+        </requirements>
+        <stdio>
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+	<command>
 		demultiplex.py
 		#if str( $fastq_input.fastq_input_selector ) == "paired":
 		    --input-R1 "${fastq_input.fastq_input1}"               
@@ -48,7 +59,7 @@
 	        <when value="single">
 	        	<param name="fastq_input1" type="data" format="fastq" label="Select fastq dataset" help="Specify dataset of your single end reads"/>
 	      	</when>
-      	</conditional>
+	      	</conditional>
 
 		<!-- Option -->
 		<param name="mismatches" type="integer" label="Barcode mismatches" help="Number of mismatches allowed in barcode" value="0" optional="false" />
@@ -59,11 +70,23 @@
 		</param>
 	</inputs>
 	<outputs>
-		<data name="demultiplexed_archive" label="${tool.name}: demultiplexed.tar.gz" from_work_dir="demultiplexed.tar.gz"/>
-		<data name="undemultiplexed_archive" label="${tool.name}: undemultiplexed.tar.gz" from_work_dir="undemultiplexed.tar.gz"/>
-		<data format="tabular" name="summary" label="${tool.name}: report" from_work_dir="report.tsv"/>
+		<data name="demultiplexed_archive" format="tar" label="${tool.name}: demultiplexed.tar.gz" from_work_dir="demultiplexed.tar.gz"/>
+		<data name="undemultiplexed_archive" format="tar" label="${tool.name}: undemultiplexed.tar.gz" from_work_dir="undemultiplexed.tar.gz"/>
+		<data name="summary" format="tabular" label="${tool.name}: report" from_work_dir="report.tsv"/>
 	</outputs>
-
+        <tests>
+                <test>
+                        <param name="barcode_file" value="references/demultiplex_barcode.txt"/>
+			<conditional name="fastq_input">
+                                <param name="fastq_input_selector" value="paired"/>
+                        </conditional>
+                        <param name="fastq_input1" value="references/demultiplex_test2_R1.fq"/>
+                        <param name="fastq_input2" value="references/demultiplex_test2_R2.fq"/>
+                        <param name="mismatches" value="1"/>
+                        <param name="end" value="both"/>
+                        <output name="summary" file="references/demultiplex_log.txt" compare="sim_size" delta="0" />
+                </test>
+        </tests>
 	<help>
 .. class:: infomark page-header h2
 
@@ -124,7 +147,7 @@ All barcode sequences must have the same length
  
 Example of barcode file: Here the sample is multiplexed by both fragment ends.
 
-.. image:: ${static_path}/images/tools/frogs/demultiplex_barcode.png
+.. image:: static/images/demultiplex_barcode.png
    :height: 18
    :width: 286
 
@@ -143,7 +166,7 @@ FASTQ :
 
 Example of fastq read corresponding to the previous barcode file  
 
-.. image:: ${static_path}/images/tools/frogs/demultiplex_fastq_ex.png
+.. image:: static/images/demultiplex_fastq_ex.png
    :height: 57
    :width: 420
 
@@ -179,12 +202,12 @@ If you have Roche 454 sequences in sff format, you must convert them with some p
 Contacts: frogs@inra.fr
 
 Repository: https://github.com/geraldinepascal/FROGS
-website: http://frogs.toulouse.inra.fr/
 
-Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
+Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L., Vidal K., Maman S., Mariadassou M., Combes S., Hernandez-Raquet G., Pascal G., 2016. FROGS: Find Rapidly OTU with Galaxy Solution. In: ISME-2016 Montreal, CANADA ,* http://bioinfo.genotoul.fr/wp-content/uploads/FROGS_ISME2016_poster.pdf
 
+Depending on the help provided you can cite us in acknowledgements, references or both.
 	</help>
 	<citations>
-		<citation type="doi">10.1093/bioinformatics/btx791</citation>
+		<citation type="doi">10.7287/peerj.preprints.386v1</citation>
 	</citations>
 </tool>
