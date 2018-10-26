@@ -1,6 +1,7 @@
-# FROGS-wrappers 2.0.0
+# FROGS-wrappers 2.0.0 :soon: 3.0.0
 
-FROGS Galaxy Wrappers (for the Toolshed) for FROGS version 2.0.0
+:bell: Repo git to merge version 2.0.0 and 3.0.0 of FROGS wrappers :bell: 
+
 
 ## Description
 
@@ -9,10 +10,9 @@ FROGS Galaxy Wrappers (for the Toolshed) for FROGS version 2.0.0
     
 ## Sources
 
-FROGS 2.0.0 sources are here => [https://github.com/geraldinepascal/FROGS](https://github.com/geraldinepascal/FROGS)
+FROGS sources are here => [https://github.com/geraldinepascal/FROGS](https://github.com/geraldinepascal/FROGS)
 
 These wrappers use the FROGS Conda dependency => [https://bioconda.github.io/recipes/frogs/README.html](https://bioconda.github.io/recipes/frogs/README.html)
-
 
 ## License
     GNU GPL v3
