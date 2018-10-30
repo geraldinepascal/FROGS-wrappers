@@ -20,10 +20,10 @@
         <!--requirements>
                 <requirement type="package" version="2.0.1">frogs</requirement>
         </requirements-->
-        <!--stdio>
+        <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
-        </stdio-->
+        </stdio>
 	<command>
 		normalisation.py 
 		                       --input-biom $input_biom
