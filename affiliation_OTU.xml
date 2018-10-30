@@ -63,6 +63,14 @@
                         <output name="biom_affiliation" file="references/Blast_affiliation.biom"/>
                         <output name="summary" file="references/Blast_affiliation.html" compare="sim_size" delta="0" />
                 </test>
+                <test>
+                        <param name="ref_file" value="db"/>
+                        <param name="rdp" value="yes"/>
+                        <param name="fasta_sequences" value="swarm.fasta"/>
+                        <param name="biom_abundance" value="swarm.biom"/>
+                        <output name="biom_affiliation" file="references/Blast_affiliation_2.biom" compare="sim_size" delta="1000"/>
+                        <output name="summary" file="references/Blast_affiliation.html" compare="sim_size" delta="0" />
+                </test>
         </tests>
 
   	<help>
