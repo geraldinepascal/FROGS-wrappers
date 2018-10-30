@@ -17,9 +17,17 @@
 -->
 <tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="r3.0-2.0">
 	<description>Step 4 in metagenomics analysis : Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
-	<command interpreter="python2.7">
+ 	<requirements>
+                <requirement type="package" version="2.0.1">frogs</requirement>
+        </requirements>
+     	<stdio>
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+	<command>
+		#set $reference_filename = str( $ref_file.fields.path )
 		affiliation_OTU.py 
-		                       --reference $ref_file
+		                       --reference "${reference_filename}"
 		                       --input-biom $biom_abundance 
 		                       --input-fasta $fasta_sequences
 		                       --output-biom $biom_affiliation 
@@ -35,23 +43,31 @@
 		<param name="mem" type="hidden" label="Memory allocation" help="The number of Go to allocation for java" value="20"></param>
 		<!-- Database Choice -->
 		<param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
-       		<options from_file="frogs_db.loc">
-          		<column name="name" index="0"/>
-          		<column name="value" index="1"/>
-       		</options>
-   		</param> 
+	       		<options from_data_table="frogs_db"></options>
+			<validator type="no_options" message="A built-in database is not available" />
+		</param> 
    		<param name="rdp" type="boolean" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allow you to perform it also with RDP classifier (default No)" />
-        <!-- Files -->
-        <param format="fasta" name="fasta_sequences" type="data" label="OTU seed sequence" help="OTU sequences (format: fasta)."/>
-        <param format="biom1" name="biom_abundance" type="data" label="Abundance file" help="OTU abundances (format: BIOM)."/>
+	        <!-- Files -->
+	        <param format="fasta" name="fasta_sequences" type="data" label="OTU seed sequence" help="OTU sequences (format: fasta)."/>
+	        <param format="biom1" name="biom_abundance" type="data" label="Abundance file" help="OTU abundances (format: BIOM)."/>
 	</inputs>
 	<outputs>
 		<data format="biom1" name="biom_affiliation" label="${tool.name}: affiliation.biom" from_work_dir="affiliation.biom" />
 		<data format="html" name="summary" label="${tool.name}: report.html" from_work_dir="report.html"/>
 	</outputs>
+        <tests>
+                <test>
+                        <param name="ref_file" value="db"/>
+                        <param name="fasta_sequences" value="swarm.fasta"/>
+                        <param name="biom_abundance" value="swarm.biom"/>
+                        <output name="biom_affiliation" file="references/Blast_affiliation.biom"/>
+                        <output name="summary" file="references/Blast_affiliation.html" compare="sim_size" delta="0" />
+                </test>
+        </tests>
+
   	<help>
 
-.. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png 
    :height: 144
    :width: 110
 
@@ -91,7 +107,7 @@ Outputs
 
  This file presents the number of sequences affiliated by blast, and the number of multi-affiliation (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
  
- .. image:: ${static_path}/images/tools/frogs/FROGS_affiliation_summary_v3.png 
+ .. image:: static/images/FROGS_affiliation_summary.png 
     :height: 800
     :width: 600
 

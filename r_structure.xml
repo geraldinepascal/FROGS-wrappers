@@ -17,7 +17,14 @@
 -->
 <tool name="FROGSSTAT Phyloseq Structure Visualisation" id="FROGSSTAT_Phyloseq_Structure_Visualisation" version="r3.0-1.0">
 	<description>with heatmap plot and ordination plot</description>
-	<command interpreter="python">r_structure.py 
+	<requirements>
+		<requirement type="package" version="2.0.1">frogs</requirement>
+	</requirements>
+	<stdio>
+		<exit_code range="1:" />
+		<exit_code range=":-1" />
+	</stdio>
+	<command>r_structure.py 
                                          --html $html
                                          --rdata $data
                                          --varExp $varExp
@@ -45,9 +52,25 @@
 	<outputs>
 		<data format="html" name="html" label="${tool.name}: structure.html" from_work_dir="structure.html"/>
 	</outputs>
+        <tests>
+                <test>
+                        <param name="data" value="references/11-phylo_import.Rdata" />
+                        <param name="varExp" value="EnvType" />
+                        <param name="method" value="MDS" />
+                        <param name="distance" value="references/Unifrac.tsv" />
+                        <!--output name="html" file="references/15-phylo_structure.html" compare="sim_size" delta="10" /-->
+	                <output name="html">
+                                <assert_contents>
+                                        <has_text_matching expression="html\sxmlns=.*" />
+                                        <has_text_matching expression="application/json.*DesLardons" />
+                                </assert_contents>
+                        </output>
+
+                </test>
+        </tests>
 	<help>
 		
-.. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png 
    :height: 144
    :width: 110
 
@@ -81,11 +104,11 @@ Output
 
 The review of data structure with an ordination plot and with an heatmap plot:
 
-.. image:: ${static_path}/images/tools/frogs/phyloseq_plot_sample_ellipse.png 
+.. image:: static/images/phyloseq_plot_sample_ellipse.png 
      :height: 343
      :width: 450
 
-.. image:: ${static_path}/images/tools/frogs/phyloseq_plot_heatmap_red.png 
+.. image:: static/images/phyloseq_plot_heatmap_red.png 
      :height: 343
      :width: 450
 

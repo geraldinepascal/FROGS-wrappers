@@ -17,7 +17,14 @@
 -->
 <tool name="FROGSSTAT Phyloseq Beta Diversity" id="FROGSSTAT_Phyloseq_Beta_Diversity" version="r3.0-1.0">
 	<description>distance matrix</description>
-	<command interpreter="python">r_beta_diversity.py 
+	<requirements>
+		<requirement type="package" version="2.0.1">frogs</requirement>
+	</requirements>
+	<stdio>
+		<exit_code range="1:" />
+		<exit_code range=":-1" />
+	</stdio>
+	<command>r_beta_diversity.py 
                                         --rdata $data
                                         --varExp $varExp
                                         #if $methods != "None"
@@ -56,9 +63,24 @@
             <discover_datasets pattern="__designation__" ext="tabular" directory="BetaMatrix" visible="true"/>
         </data>
 	</outputs>
+        <tests>
+                <test>
+                        <param name="data" value="references/11-phylo_import.Rdata" />
+                        <param name="varExp" value="EnvType" />
+                        <param name="methods" value="cc,unifrac" />
+                        <!--output name="html" file="references/14-phylo_beta_div.html" compare="sim_size" delta="0" /-->
+                        <output name="html">
+                                <assert_contents>
+                                        <has_text_matching expression="html\sxmlns=.*" />
+                                        <has_text_matching expression="Phyloseq\s+\d+\.\d+\.\d+" />
+                                </assert_contents>
+                        </output>
+                </test>
+        </tests>
+
 	<help>
 	
-.. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png 
    :height: 144
    :width: 110
 
@@ -94,7 +116,7 @@ Output
 
 The review of beta diversity with heatmap plots:
 
-.. image:: ${static_path}/images/tools/frogs/phyloseq_beta_diversity.png 
+.. image:: static/images/phyloseq_beta_diversity.png 
      :height: 609
      :width: 800 
 
@@ -102,7 +124,7 @@ The review of beta diversity with heatmap plots:
 **beta diversity matrix** (format tabular):
 The distance matrix of beta diversity.
 
- .. image:: ${static_path}/images/tools/frogs/phyloseq_beta_diversity_matrix.png 
+ .. image:: static/images/phyloseq_beta_diversity_matrix.png 
 
 .. class:: infomark page-header h2
 

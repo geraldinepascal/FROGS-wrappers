@@ -2,7 +2,7 @@ categories:
 - Metagenomics
 description: Suite for metabarcoding
 long_description: |
-  This is FROGS version 2.0.0 Galaxy Wrappers
+  This is FROGS version 3.0.0 Galaxy Wrappers
   FROGS: Find Rapidly OTUs through Galaxy Solution 
   Authors:
   Valentin Marcon (valentin.marcon[a]inra.fr)
@@ -11,8 +11,8 @@ long_description: |
   Patrick Durand (pgdurand[a]ifremer.fr)
   Maria Bernard (maria.bernard[a]inra.fr)
   Géraldine Pascal (geraldine.pascal[a]inra.fr)
-name: frogs_2_0_0
+name: frogs_3_0_0
 #owner: oinizan #TestToolshed
 owner: frogs #Toolshed
 homepage_url: https://github.com/geraldinepascal/FROGS
-remote_repository_url: https://github.com/oinizan/FROGS-wrappers
+remote_repository_url: https://github.com/valentinmarcon/FROGS-wrappers

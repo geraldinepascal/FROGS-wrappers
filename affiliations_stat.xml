@@ -17,7 +17,14 @@
 -->
 <tool id="FROGS_affiliations_stat" name="FROGS Affiliations stat" version="r3.0-3.1">
 	<description>Process some metrics on taxonomies.</description>
-	<command interpreter="python2.7">
+        <requirements>
+                <requirement type="package" version="2.0.1">frogs</requirement>
+        </requirements>
+        <stdio> 
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+	<command>
 		affiliations_stat.py 
 		    --input-biom $biom
 		    --output-file $summary_file
@@ -69,9 +76,25 @@
 	<outputs>
 		<data format="html" name="summary_file" label="${tool.name}: summary.html" from_work_dir="summary.html"/>
 	</outputs>
+	<tests>
+		<test>
+			<param name="biom" value="references/04-affiliation.biom" />
+			<param name="rarefaction_ranks" value="Family Genus Species" />
+			<conditional name="affiliation">
+				<param name="affiliation_type" value="FROGS_blast" />
+				<param name="taxonomic_ranks" value="Domain Phylum Class Order Family Genus Species" />
+				<param name="taxonomy_tag" value="blast_taxonomy" />
+				<param name="identity_tag" value="perc_identity" />
+				<param name="coverage_tag" value="perc_query_coverage" />
+				<!-- pas de parametre dans le formulaire pour multiple-tag, uniquement une option dans la ligne de commande -->
+			</conditional>
+			<output name="summary_file" file="references/06-affiliationsStat.html" compare="sim_size" delta="0" />
+			<!-- log-file option presente dans la ligne de commande dans le test.sh n'apparait pas du tout ici -->
+		</test>
+	</tests>
 	<help>
 
-.. image:: ${static_path}/images/tools/frogs/FROGS_logo.png
+.. image:: static/images/FROGS_logo.png
    :height: 144
    :width: 110
 
@@ -107,27 +130,27 @@ Output
  
   *-Taxonomy distribution*: display the distribution of each taxon and the rarefaction for each taxonomic rank and for each sample
   
-  .. image:: ${static_path}/images/tools/frogs/FROGS_affiliation_stat_taxonomies.png
+  .. image:: static/images/FROGS_affiliation_stat_taxonomies.png
     :height: 380
     :width: 650  
 
-  .. image:: ${static_path}/images/tools/frogs/FROGS_affiliation_stat_rarefaction.png
+  .. image:: static/images/FROGS_affiliation_stat_rarefaction.png
     :height: 380
     :width: 550
 
-  .. image:: ${static_path}/images/tools/frogs/FROGS_affiliation_stat_sunburst.png
+  .. image:: static/images/FROGS_affiliation_stat_sunburst.png
     :height: 380
     :width: 430
   
   -Bootstrap distribution: display for affiliation methods with bootstrap the bootstrap on each taxonomic rank
 
-  .. image:: ${static_path}/images/tools/frogs/FROGS_affiliation_stat_bootstrap.png
+  .. image:: static/images/FROGS_affiliation_stat_bootstrap.png
     :height: 380
     :width: 650
 
   -Alignment distribution: display for affiliation methods with alignment the distribution of identity/covrage
 
-  .. image:: ${static_path}/images/tools/frogs/FROGS_affiliation_stat_alignment.png
+  .. image:: static/images/FROGS_affiliation_stat_alignment.png
     :height: 380
     :width: 650
 

@@ -17,7 +17,14 @@
 -->
 <tool id="FROGS_biom_to_tsv" name="FROGS BIOM to TSV" version="r3.0-3.0">
 	<description>Converts a BIOM file in TSV file.</description>
-	<command interpreter="python2.7">
+ 	<requirements>
+                <requirement type="package" version="2.0.1">frogs</requirement>
+        </requirements>
+        <stdio>
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+	<command>
 		biom_to_tsv.py 
 		                --input-biom $biom_file
 		              #if $sequence_file
@@ -41,9 +48,18 @@
 			<filter>extract_multi_align</filter>
 		</data>
 	</outputs>
+	<tests>
+		<test>
+			<param name="biom_file" value="references/04-affiliation.biom"/>
+			<param name="sequence_file" value="references/04-filters.fasta"/>
+			<param name="extract_multi_align" value="true"/>
+			<output name="tsv_file" value="references/07-biom2tsv.tsv"/>
+			<output name="multi_affi_file" value="references/07-biom2tsv.multi"/>
+		</test>
+	</tests>
 	<help>
 
-.. image:: ${static_path}/images/tools/frogs/FROGS_logo.png
+.. image:: static/images/FROGS_logo.png
    :height: 144
    :width: 110
 

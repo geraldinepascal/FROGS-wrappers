@@ -16,7 +16,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" version="r3.0-1.0">
-	<command interpreter="python">r_manova.py 
+        <description>perform Multivariate Analysis of Variance (MANOVA)</description>
+	<requirements>
+		<requirement type="package" version="2.0.1">frogs</requirement>
+	</requirements>
+	<stdio>
+		<exit_code range="1:" />
+		<exit_code range=":-1" />
+	</stdio>
+	<command>r_manova.py 
                                     --rdata $data
                                     --varExp "$varExp"
                                     --distance-matrix $method
@@ -38,9 +46,23 @@
 	<outputs>
 		<data format="html" name="html" label="${tool.name}: manova.html" from_work_dir="manova.html"/>
 	</outputs>
+	<tests>
+		<test>
+			<param name="data" value="references/11-phylo_import.Rdata"/>
+			<param name="varExp" value="EnvType"/>
+			<param name="method" value="references/Unifrac.tsv"/>
+			<!--output name="html" file="references/17-phylo_structure.html" compare="sim_size" delta="0" /-->
+                        <output name="html">
+                                <assert_contents>
+                                        <has_text_matching expression="html\sxmlns=.*" />
+                                        <has_text_matching expression="Phyloseq\s+\d+\.\d+\.\d+" />
+                                </assert_contents>
+                        </output>
+		</test>
+	</tests>
 	<help>
 		
-.. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png 
    :height: 144
    :width: 110
 
@@ -72,7 +94,7 @@ Output
 
 **html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): The review of Manova test.
 
-.. image:: ${static_path}/images/tools/frogs/phyloseq_manova.png 
+.. image:: static/images/phyloseq_manova.png 
      
 .. class:: infomark page-header h2
 
