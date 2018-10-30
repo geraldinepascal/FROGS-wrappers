@@ -1,2 +1,2 @@
-db	db	${__HERE__}/db.fasta
+ITS1_test	ITS1_test	${__HERE__}/ITS1.rdp.fasta
 
