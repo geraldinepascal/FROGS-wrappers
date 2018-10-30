@@ -61,10 +61,9 @@
 			<param name="biomfile" value="references/chaillou.biom"/>
 			<param name="samplefile" value="references/sample_metadata.tsv"/>
 			<param name="treefile" value="references/tree.nwk"/>
-			<output name="data" value="references/11-phylo_import.Rdata"/>
+			<output name="data" value="references/11-phylo_import.Rdata" compare="sim_size" delta="10"/>
 		</test>
 	</tests>
-
 	<help>
 
 .. image:: static/images/FROGS_logo.png 
