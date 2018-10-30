@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="r3.0-2.0">
+<tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="3.0">
 	<description>Step 4 in metagenomics analysis : Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
- 	<requirements>
+ 	<!--requirements>
                 <requirement type="package" version="2.0.1">frogs</requirement>
-        </requirements>
+        </requirements-->
      	<stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
@@ -56,13 +56,15 @@
 		<data format="html" name="summary" label="${tool.name}: report.html" from_work_dir="report.html"/>
 	</outputs>
         <tests>
-                <test>
-                        <param name="ref_file" value="db"/>
-                        <param name="fasta_sequences" value="swarm.fasta"/>
-                        <param name="biom_abundance" value="swarm.biom"/>
-                        <output name="biom_affiliation" file="references/Blast_affiliation.biom"/>
-                        <output name="summary" file="references/Blast_affiliation.html" compare="sim_size" delta="0" />
-                </test>
+            <test>
+                <param name="ref_file" value="ITS1_test"/>
+                <param name="fasta_sequences" value="references/04-filters.fasta"/>
+                <param name="biom_abundance" value="references/04-filters.biom"/>
+                <!-- <param name="fasta_sequences" value="swarm.fasta"/>
+                <param name="biom_abundance" value="swarm.biom"/> -->
+                <output name="biom_affiliation" file="references/06-affiliation.biom"/>
+                <output name="summary" file="references/06-affiliation.html" compare="sim_size" delta="0" />
+            </test>
         </tests>
 
   	<help>

@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_Tree" name="FROGS Tree" version="r3.0-1.0">
+<tool id="FROGS_Tree" name="FROGS Tree" version="3.0">
 	<description>Reconstruction of phylogenetic tree </description>
- 	<requirements>
+ 	<!--requirements>
                 <requirement type="package" version="2.0.1">frogs</requirement>
-        </requirements>
+        </requirements-->
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
@@ -60,8 +60,8 @@
 			<conditional name="template">
 				<param name="fileTemplate" value="false"/>
 			</conditional>
-			<param name="biomfile" value="references/04-affiliation.biom"/>
-			<output name="out_tree" value="references/10b-tree.nwk"/>
+			<param name="biomfile" value="references/06-affiliation.biom"/>
+			<output name="out_tree" value="references/13-tree-mafft.nwk"/>
 		</test>
 	</tests>
 	<help>

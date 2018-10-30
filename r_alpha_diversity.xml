@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Alpha Diversity" id="FROGSSTAT_Phyloseq_Alpha_Diversity" version="r3.0-1.0">
+<tool name="FROGSSTAT Phyloseq Alpha Diversity" id="FROGSSTAT_Phyloseq_Alpha_Diversity" version="3.0">
 	<description>with richness plot</description>
-	<requirements>
+	<!--requirements>
 		<requirement type="package" version="2.0.1">frogs</requirement>
-	</requirements>
+	</requirements-->
 	<stdio>
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
@@ -55,12 +55,12 @@
 		<data format="html" name="html" label="${tool.name}: alpha_diversity.html" from_work_dir="alpha_diversity.html"/>
 	</outputs>
         <tests>
-                <test>
-                        <param name="data" value="references/11-phylo_import.Rdata" />
-                        <param name="varExp" value="EnvType" />
-                        <param name="measures" value="Observed,Chao1,Shannon" />
-                        <output name="alphaD" file="references/13-phylo_alpha_div.tsv" compare="diff" lines_diff="0" />
-                </test>
+            <test>
+                <param name="data" value="references/14-phylo_import.Rdata" />
+                <param name="varExp" value="EnvType" />
+                <param name="measures" value="Observed,Chao1,Shannon" />
+                <output name="alphaD" file="references/16-phylo_alpha_div.tsv" compare="diff" lines_diff="0" />
+            </test>
         </tests>
 <help>
 		

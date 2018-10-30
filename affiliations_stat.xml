@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_affiliations_stat" name="FROGS Affiliations stat" version="r3.0-3.1">
+<tool id="FROGS_affiliations_stat" name="FROGS Affiliations stat" version="3.0">
 	<description>Process some metrics on taxonomies.</description>
-        <requirements>
+        <!--requirements>
                 <requirement type="package" version="2.0.1">frogs</requirement>
-        </requirements>
+        </requirements-->
         <stdio> 
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
@@ -78,7 +78,7 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="biom" value="references/04-affiliation.biom" />
+			<param name="biom" value="references/06-affiliation.biom" />
 			<param name="rarefaction_ranks" value="Family Genus Species" />
 			<conditional name="affiliation">
 				<param name="affiliation_type" value="FROGS_blast" />
@@ -88,7 +88,7 @@
 				<param name="coverage_tag" value="perc_query_coverage" />
 				<!-- pas de parametre dans le formulaire pour multiple-tag, uniquement une option dans la ligne de commande -->
 			</conditional>
-			<output name="summary_file" file="references/06-affiliationsStat.html" compare="sim_size" delta="0" />
+			<output name="summary_file" file="references/09-affiliationsStat.html" compare="sim_size" delta="0" />
 			<!-- log-file option presente dans la ligne de commande dans le test.sh n'apparait pas du tout ici -->
 		</test>
 	</tests>

@@ -15,9 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_itsx" name="FROGS ITSx" version="r3.0-1.0">
+<tool id="FROGS_itsx" name="FROGS ITSx" version="3.0">
 	<description>Extract the highly variable ITS1 and ITS2 subregions from ITS sequences.</description>
-	<command interpreter="python2.7">
+	<!--requirements>
+        <requirement type="package" version="2.0.1">frogs</requirement>
+    </requirements-->
+    <stdio>
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
+	<command>
 		itsx.py
 		                --nb-cpus \${GALAXY_SLOTS:-1}
 		                --region $region
@@ -46,6 +53,15 @@
 		<data format="fasta" name="out_excluded" label="${tool.name}: out_removed.fasta" from_work_dir="out_removed.fasta"/>
 		<data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="report.html"/>
 	</outputs>
+	<tests>
+		<test>
+			<param name="input_fasta" value="references/04-filters.fasta"/>
+			<param name="input_biom" value="references/04-filters.biom"/>
+			<param name="region" value="ITS1"/>
+			<param name="check_only" value="false"/>
+			<output name="summary_file" file="references/05-itsx.html"/>
+		</test>
+	</tests>
 	<help>
 
 .. image:: ${static_path}/images/tools/frogs/FROGS_logo.png 

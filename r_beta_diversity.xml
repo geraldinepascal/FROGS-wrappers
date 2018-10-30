@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Beta Diversity" id="FROGSSTAT_Phyloseq_Beta_Diversity" version="r3.0-1.0">
+<tool name="FROGSSTAT Phyloseq Beta Diversity" id="FROGSSTAT_Phyloseq_Beta_Diversity" version="3.0">
 	<description>distance matrix</description>
-	<requirements>
+	<!--requirements>
 		<requirement type="package" version="2.0.1">frogs</requirement>
-	</requirements>
+	</requirements-->
 	<stdio>
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
@@ -65,10 +65,10 @@
 	</outputs>
         <tests>
                 <test>
-                        <param name="data" value="references/11-phylo_import.Rdata" />
+                        <param name="data" value="references/14-phylo_import.Rdata" />
                         <param name="varExp" value="EnvType" />
                         <param name="methods" value="cc,unifrac" />
-                        <!--output name="html" file="references/14-phylo_beta_div.html" compare="sim_size" delta="0" /-->
+                        <!--output name="html" file="references/17-phylo_beta_div.html" compare="sim_size" delta="0" /-->
                         <output name="html">
                                 <assert_contents>
                                         <has_text_matching expression="html\sxmlns=.*" />

@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_filters" name="FROGS Filters" version="r3.0-3.2">
+<tool id="FROGS_filters" name="FROGS Filters" version="3.0">
 	<description>Filters OTUs on several criteria.</description>
-        <requirements>
+        <!--requirements>
                 <requirement type="package" version="2.0.1">frogs</requirement>
-        </requirements>
+        </requirements-->
         <stdio> 
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
@@ -145,10 +145,10 @@
 	</outputs>
 	<tests>
 		<test>
-	                <param name="input_fasta" value="references/03-chimera.fasta" />
-	                <param name="input_biom" value="references/03-chimera.biom" />    
+            <param name="input_fasta" value="references/03-chimera.fasta" />
+            <param name="input_biom" value="references/03-chimera.biom" />    
 			<conditional name="abundance_filters">
-	                        <param name="abundance_filters_areApplied" value="yes" />
+	            <param name="abundance_filters_areApplied" value="yes" />
 				<param name="min_abundance" value="0.00005" />	
 				<param name="min_sample_presence" value="3" />
 			</conditional>

@@ -15,15 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_demultiplex" name="FROGS Demultiplex reads" version="r3.0-2.0">
+<tool id="FROGS_demultiplex" name="FROGS Demultiplex reads" version="3.0">
 	<description>Attribute reads to samples in function of inner barcode.</description>
-        <requirements>
+        <!--requirements>
                 <!--requirement type="binary">perl</requirement-->
                 <requirement type="package" version="2.0.1">frogs</requirement>
                 <requirement type="package" version="1.10">perl-io-zlib</requirement>
                 <requirement type="package" version="0.20">perl-io-gzip</requirement>
                 <requirement type="package">perl</requirement>
-        </requirements>
+        </requirements-->
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
@@ -74,19 +74,19 @@
 		<data name="undemultiplexed_archive" format="tar" label="${tool.name}: undemultiplexed.tar.gz" from_work_dir="undemultiplexed.tar.gz"/>
 		<data name="summary" format="tabular" label="${tool.name}: report" from_work_dir="report.tsv"/>
 	</outputs>
-        <tests>
-                <test>
-                        <param name="barcode_file" value="references/demultiplex_barcode.txt"/>
+    <tests>
+        <test>
+            <param name="barcode_file" value="demultiplex_barcode.txt"/>
 			<conditional name="fastq_input">
-                                <param name="fastq_input_selector" value="paired"/>
-                        </conditional>
-                        <param name="fastq_input1" value="references/demultiplex_test2_R1.fq"/>
-                        <param name="fastq_input2" value="references/demultiplex_test2_R2.fq"/>
-                        <param name="mismatches" value="1"/>
-                        <param name="end" value="both"/>
-                        <output name="summary" file="references/demultiplex_log.txt" compare="sim_size" delta="0" />
-                </test>
-        </tests>
+                <param name="fastq_input_selector" value="paired"/>
+            </conditional>
+            <param name="fastq_input1" value="demultiplex_test2_R1.fq"/>
+            <param name="fastq_input2" value="demultiplex_test2_R2.fq"/>
+            <param name="mismatches" value="1"/>
+            <param name="end" value="both"/>
+            <output name="summary" file="references/demultiplex_log.txt" compare="sim_size" delta="0" />
+        </test>
+    </tests>
 	<help>
 .. class:: infomark page-header h2
 

@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_remove_chimera" name="FROGS Remove chimera" version="r3.0-7.0">
+<tool id="FROGS_remove_chimera" name="FROGS Remove chimera" version="3.0">
 	<description>Step 3 in metagenomics analysis : Remove PCR chimera in each sample.</description>
- 	<requirements>
+ 	<!--requirements>
                 <requirement type="package" version="2.0.1">frogs</requirement>
-        </requirements>
+        </requirements-->
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />

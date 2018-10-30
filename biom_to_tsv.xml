@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_biom_to_tsv" name="FROGS BIOM to TSV" version="r3.0-3.0">
+<tool id="FROGS_biom_to_tsv" name="FROGS BIOM to TSV" version="3.0">
 	<description>Converts a BIOM file in TSV file.</description>
- 	<requirements>
+ 	<!--requirements>
                 <requirement type="package" version="2.0.1">frogs</requirement>
-        </requirements>
+        </requirements-->
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
@@ -50,11 +50,11 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="biom_file" value="references/04-affiliation.biom"/>
+			<param name="biom_file" value="references/06-affiliation.biom"/>
 			<param name="sequence_file" value="references/04-filters.fasta"/>
 			<param name="extract_multi_align" value="true"/>
-			<output name="tsv_file" value="references/07-biom2tsv.tsv"/>
-			<output name="multi_affi_file" value="references/07-biom2tsv.multi"/>
+			<output name="tsv_file" value="references/10-biom2tsv.tsv"/>
+			<output name="multi_affi_file" value="references/10-biom2tsv-affiliation_multihit.tsv"/>
 		</test>
 	</tests>
 	<help>

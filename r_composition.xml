@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="r3.0-1.0">
+<tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="3.0">
 	<description>with bar plot and composition plot</description>
-        <requirements>
+        <!--requirements>
                 <requirement type="package" version="2.0.1">frogs</requirement>
-        </requirements>
+        </requirements-->
         <stdio> 
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
@@ -60,13 +60,13 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="data" value="references/11-phylo_import.Rdata" />
+			<param name="data" value="references/14-phylo_import.Rdata" />
 			<param name="varExp" value="EnvType" />
 			<param name="taxaRank1" value="Kingdom" />
 			<param name="taxaSet1" value="Bacteria" />
 			<param name="taxaRank2" value="Phylum" />
 			<param name="numberOfTaxa" value="9" />
-			<!--output name="html" file="references/12-phylo_composition.html" compare="sim_size" delta="0" /-->
+			<!--output name="html" file="references/15-phylo_composition.html" compare="sim_size" delta="0" /-->
 			<output name="html">
 				<assert_contents>	
 				        <has_text_matching expression="html\sxmlns=.*" />
