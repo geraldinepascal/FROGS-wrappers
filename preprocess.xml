@@ -244,17 +244,18 @@
 						<param name="archive_file" ftype="tar" value="test_dataset.tar.gz"/>
 						<conditional name="archive_type">
 							<param name="archive_type_selected" value="paired"/>
-							<param name="R1_size" value="250"/>
-							<param name="R2_size" value="250"/>
+							<param name="R1_size" value="267"/>
+							<param name="R2_size" value="266"/>
 							<param name="mm_rate" value="0.15"/>
 					 		<conditional name="merge_software_type">
 								<param name="merge_software_selected" value="flash" />
 								<param name="expected_amplicon_size" value="420"/>
 							</conditional>
+                            <param name="keep_unmerged" value=true/>
 						</conditional>
 					</conditional>
-					<param name="min_amplicon_size" value="380"/>
-					<param name="max_amplicon_size" value="460"/>
+					<param name="min_amplicon_size" value="44"/>
+					<param name="max_amplicon_size" value="490"/>
 					<conditional name="sequencing_protocol">
 						<param name="sequencing_protocol_selected" value="standard"/>
 						<param name="five_prim_primer" value="GGCGVACGGGTGAGTAA"/>
