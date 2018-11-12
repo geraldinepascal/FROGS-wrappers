@@ -61,8 +61,18 @@
 				<param name="fileTemplate" value="false"/>
 			</conditional>
 			<param name="biomfile" value="references/06-affiliation.biom"/>
-			<output name="out_tree" value="references/13-tree-mafft.nwk"/>
-			<output name="html" value="references/13-tree-mafft.html"/>
+			<!--output name="out_tree" value="references/13-tree-mafft.nwk"/-->
+			<!--output name="html" value="references/13-tree-mafft.html"/-->
+			<output name="html">
+                                <assert_contents>
+                                        <has_text_matching expression="FROGS\sTree" />
+                                        <has_text_matching expression="abundance_removed.*:\s0" />
+                                        <has_text_matching expression="abundance_kept.*:\s175968" />
+                                        <has_text_matching expression="otu_kept.*:\s142" />
+                                        <has_text_matching expression="number_otu_all.*:\s142" />
+                                        <has_text_matching expression="number_abundance_all.*:\s175968" />
+                                </assert_contents>
+			</output>
 		</test>
 	</tests>
 	<help>
