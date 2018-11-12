@@ -1,12 +1,79 @@
-#sample	count
-ambiguous	1
-MgArd0009	1
-MgArd0011	1
-MgArd0004	1
-MgArd0002	1
-MgArd0010	1
-MgArd0001_B	0
-MgArd0001_A	1
-unmatched	1
-MgArd0003	1
-MgArd0012	1
+## Application
+Software :/save/frogs/src/FROGS_dev/app/demultiplex.py (version : r3.0-2.0)
+Command : /save/frogs/src/FROGS_dev/app/demultiplex.py --input-R1 /save/frogs/src/FROGS_dev/tools/demultiplex/data/test2_R1.fq --input-R2 /save/frogs/src/FROGS_dev/tools/demultiplex/data/test2_R2.fq --input-barcode /save/frogs/src/FROGS_dev/tools/demultiplex/data/barcode2.txt --mismatches 1 --end both --output-demultiplexed demultiplexed.tar.gz --output-excluded undemultiplexed.tar.gz --log-file demultiplex_log.txt --summary summary.txt
+
+
+#Demultiplexing test2_R1.fq and test2_R2.fq with forward_bc in bol strand
+########################################################################################################
+# Demultiplex reads. (splitbc.pl version : unknown)
+Command:
+	splitbc.pl /save/frogs/src/FROGS_dev/tools/demultiplex/data/test2_R1.fq /save/frogs/src/FROGS_dev/tools/demultiplex/data/test2_R2.fq --bol --bcfile forward_bc --mismatches 1 --trim --no_adapt --prefix-r1 1542029855.1_51058_tmp/1542029855.13_51058/%_R1.fastq --prefix-r2 1542029855.1_51058_tmp/1542029855.13_51058/%_R2.fastq >> 1542029855.1_51058_Demult.log
+
+Execution:
+	start: 12 Nov 2018 14:37:35
+	end:   12 Nov 2018 14:37:35
+
+Results :
+	nb seq before demultiplexing : 10
+	nb seq after process matched : 9
+	nb seq after process non-ambiguous : 8
+
+#Demultiplexing ACAGCGT_R1.fastq and ACAGCGT_R2.fastq with ACAGCGT_reverse_bc in eol strand
+########################################################################################################
+# Demultiplex reads. (splitbc.pl version : unknown)
+Command:
+	splitbc.pl 1542029855.1_51058_tmp/1542029855.13_51058/ACAGCGT_R1.fastq 1542029855.1_51058_tmp/1542029855.13_51058/ACAGCGT_R2.fastq --eol --bcfile ACAGCGT_reverse_bc --mismatches 1 --trim --no_adapt --prefix-r1 1542029855.1_51058_tmp/1542029855.67_51058/%_R1.fastq --prefix-r2 1542029855.1_51058_tmp/1542029855.67_51058/%_R2.fastq >> 1542029855.1_51058_Demult.log
+
+Execution:
+	start: 12 Nov 2018 14:37:35
+	end:   12 Nov 2018 14:37:35
+
+Results :
+	nb seq before demultiplexing : 4
+	nb seq after process matched : 4
+	nb seq after process non-ambiguous : 4
+
+#Demultiplexing ACAGTAG_R1.fastq and ACAGTAG_R2.fastq with ACAGTAG_reverse_bc in eol strand
+########################################################################################################
+# Demultiplex reads. (splitbc.pl version : unknown)
+Command:
+	splitbc.pl 1542029855.1_51058_tmp/1542029855.13_51058/ACAGTAG_R1.fastq 1542029855.1_51058_tmp/1542029855.13_51058/ACAGTAG_R2.fastq --eol --bcfile ACAGTAG_reverse_bc --mismatches 1 --trim --no_adapt --prefix-r1 1542029855.1_51058_tmp/1542029855.93_51058/%_R1.fastq --prefix-r2 1542029855.1_51058_tmp/1542029855.93_51058/%_R2.fastq >> 1542029855.1_51058_Demult.log
+
+Execution:
+	start: 12 Nov 2018 14:37:35
+	end:   12 Nov 2018 14:37:36
+
+Results :
+	nb seq before demultiplexing : 4
+	nb seq after process matched : 4
+	nb seq after process non-ambiguous : 4
+
+#Summarising result
+
+#Concatenation of undemultiplexed files 1
+
+#Concatenation of undemultiplexed files 2
+
+#Archive demultiplexed R1 and R2 files
+########################################################################################################
+# Archives files. (tar version : unknown)
+Command:
+	tar -zcf demultiplexed.tar.gz -C 1542029856.15_51058 MgArd0001_A_R1.fastq MgArd0002_R1.fastq MgArd0003_R1.fastq MgArd0004_R1.fastq MgArd0009_R1.fastq MgArd0010_R1.fastq MgArd0011_R1.fastq MgArd0012_R1.fastq MgArd0001_A_R2.fastq MgArd0002_R2.fastq MgArd0003_R2.fastq MgArd0004_R2.fastq MgArd0009_R2.fastq MgArd0010_R2.fastq MgArd0011_R2.fastq MgArd0012_R2.fastq
+
+Execution:
+	start: 12 Nov 2018 14:37:36
+	end:   12 Nov 2018 14:37:36
+
+
+#Archive undemultiplexed R1 and R2 files
+########################################################################################################
+# Archives files. (tar version : unknown)
+Command:
+	tar -zcf undemultiplexed.tar.gz -C 1542029856.17_51058 test2_R1.fq_excluded_demult test2_R2.fq_excluded_demult
+
+Execution:
+	start: 12 Nov 2018 14:37:36
+	end:   12 Nov 2018 14:37:36
+
+
+#Removing temporary files
