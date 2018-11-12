@@ -21,8 +21,9 @@
 		<meta charset="UTF-8">
 		<meta name="version" content="2.0.1">
 		<!-- CSS -->
-		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.6/css/jquery.dataTables.css"></link>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></link>
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></link>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<style type="text/css">
 			#js-alert {
 				width: 90%;
@@ -33,6 +34,142 @@
 				width: 90%;
 				margin-right: auto;
 				margin-left: auto;
+			}
+			.clear {
+				clear: both;
+				height: 0px;
+				width: 100%;
+				float: none !important;
+			}
+			ul.nav-tabs {
+				margin-bottom: 30px;
+			}
+			
+			.page-item.active .page-link {
+				z-index: 1;
+				color: #fff;
+				background-color: #8EADAC;
+				border-color: #8EADAC;
+			}
+			
+			.btn {
+				color: #fff;
+				border:#8EADAC;
+				background-color: #8EADAC;
+			}
+			.btn:focus, .btn:active {
+				outline: none !important;
+				box-shadow: none !important;
+			}
+			.btn:hover:enabled{
+				color: #fff;
+				border:#648a89;
+				background-color: #648a89;
+				cursor:pointer !important;
+			}
+			
+			.pb-2, .py-2 {
+				padding-bottom: 1.5rem !important;
+				margin-bottom: 2rem !important;
+				margin-top: 4rem !important;
+			}
+			.pb-2-first{
+				padding-bottom: 1.5rem !important;
+				margin-bottom: 2rem !important;
+				margin-top: 1rem !important;
+			}
+			.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link{
+				color: #fff;
+				background-color: #8EADAF;
+				border-color: #dee2e6 #dee2e6 #fff;
+			}
+			a {
+				color: #8EAEAF;
+			}
+			a:hover{
+				color:#648a89;
+			}
+			
+			/* ##### THEME FOR CHECKBOXES ##### */
+			.container {
+				position: relative;
+				padding-left: 35px;
+				margin-bottom: 12px;
+				cursor: pointer;
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+
+			/* Hide the browser's default checkbox */
+			.container input {
+				position: absolute;
+				opacity: 0;
+				cursor: pointer;
+			}
+
+			/* Create a custom checkbox */
+			.checkmark {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 25px;
+				width: 25px;
+				background-color: #8EADAC;
+				border-radius: 5px;
+				opacity:0.65;
+			}
+
+			/* On mouse-over, add a grey background color */
+			.container:hover input ~ .checkmark {
+				background-color: #648a89;
+			}
+
+			/* When the checkbox is checked, add a blue background */
+			.container input:checked ~ .checkmark {
+				background-color: #8EADAC;
+				opacity:1;
+			}
+
+			/* Create the checkmark/indicator (hidden when not checked) */
+			.checkmark:after {
+				content: "";
+				position: absolute;
+				display: none;
+			}
+
+			/* Show the checkmark when checked */
+			.container input:checked ~ .checkmark:after {
+				display: block;
+			}
+
+			/* Style the checkmark/indicator */
+			.container .checkmark:after {
+				left: 9px;
+				top: 5px;
+				width: 5px;
+				height: 10px;
+				border: solid white;
+				border-width: 0 3px 3px 0;
+				-webkit-transform: rotate(45deg);
+				-ms-transform: rotate(45deg);
+				transform: rotate(45deg);
+			}
+			/* ##### END THEME CHECKBOXES ##### */
+			.highcharts-button > path{
+				stroke:#fff !important;
+				fill:#8EADAC !important;
+			}
+			g.highcharts-button{
+				cursor:pointer !important;
+			}
+			g.highcharts-button:hover{
+				color: #fff;
+				border:#648a89;
+				background-color: #648a89;
+				background-color: #648a89;
+				cursor:pointer !important;
 			}
             ul.nav-pills {
 				margin-bottom: 30px;
@@ -100,6 +237,8 @@
 		<script type="text/javascript" src="https://code.highcharts.com/4.1.4/highcharts.js"></script>
 		<script type="text/javascript" src="https://code.highcharts.com/4.1.4/modules/exporting.js"></script>
 		<script type="text/javascript" src="https://cdn.datatables.net/1.10.6/js/jquery.dataTables.min.js"></script>
+		<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 		<script type="text/javascript">
 			/*
 			 * HTMLTable.js 0.1.0 - HTMLTable Library
@@ -132,17 +271,48 @@
 		    	}
 		        return new_val ;
 		    }
+		    // Radializes colors
+			Highcharts.setOptions({
+				 colors : ['#8EADAC', '#DE9F73'] ,
+				});
+				Highcharts.SVGRenderer.prototype.symbols.download = function (x, y, w, h) {
+				var path = [
+					// Arrow stem
+					'M', x + w * 0.5, y,
+					'L', x + w * 0.5, y + h * 0.7,
+					// Arrow head
+					'M', x + w * 0.3, y + h * 0.5,
+					'L', x + w * 0.5, y + h * 0.7,
+					'L', x + w * 0.7, y + h * 0.5,
+					// Box
+					'M', x, y + h * 0.9,
+					'L', x, y + h,
+					'L', x + w, y + h,
+					'L', x + w, y + h * 0.9
+				];
+				return path;
+			};
+			/* Radial gradient ?*/
+			Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+				return {
+					radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
+					stops: [
+						[0, color],
+						[1, Highcharts.Color(color).brighten(-0.1).get('rgb')] // darken
+					]
+				};
+			});
 		    
 			/**
 			 * Returns the HTML table representation of the data. 
-			 * @param pTitle {String} The title of the table.
 			 * @param pCategories {Array} The title of each column.
 			 * @param pData {Array} 2D matrix with row and column data.
 			 * @return {String} The HTML table representation.
 			 */
-			var table = function( pTitle, pCategories, pData  ) {
+			var table = function( pCategories, pData  ) {
 				// Header
-				var table_header = '    <tr>\n<th colspan="' + pCategories.length + '">' + pTitle + '</th>    </tr>\n' ;
+				
+				var table_header = '' ;
 				var table_header_line = "" ;
 				for(var idx = 0 ; idx < pCategories.length ; idx++){
 					table_header_line += "      <th>" + pCategories[idx] + "</th>\n" ;
@@ -165,7 +335,7 @@
 				}
 				table_body = "  <tbody>\n" + table_body + "  </tbody>\n" ;
 
-				return '<table class="table table-striped">\n' + table_header + table_body + "</table>\n" ;
+				return '<table class="table table-striped table-bordered">\n' + table_header + table_body + "</table>\n" ;
 			}
 			 
 			 /**
@@ -244,6 +414,7 @@
 				$('#content').removeClass("hidden");
 				
 				// Radialize the colors
+				/*
 			    Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
 			        return {
 			            radialGradient: { cx: 0.5, cy: 0.3, r: 0.7 },
@@ -253,6 +424,7 @@
 			            ]
 			        };
 			    });
+			    */
 				
 			 	// Display summary
 				var nb_otu = [
@@ -275,12 +447,14 @@
 					nb_by_step.unshift( detection_series[spl_idx]['name'] );
 					table_series.push( nb_by_step );
 				};
-				$('#OTUs-fail').append( table("Informations of failed OTUs", table_categories, table_series) );
+				$('#OTUs-fail').append( table(table_categories, table_series) );
 				$('#OTUs-fail table').prop( 'id', 'details-table' );
 				$('#OTUs-fail table').DataTable({
-					"sDom": '<"top"<"#details-csv-export"><"clear">lf>rt<"bottom"ip><"clear">'
+					dom: 	"<'#details-csv-export'><'row'<'col-sm-5'l><'col-sm-7'f>>" +
+							"<'row'<'col-sm-12'tr>>" +
+							"<'row'<'col-sm-5'i><'col-sm-7'p>>"
 				});
-				$('#details-csv-export').html( '<button class="btn btn-primary"><span class="glyphicon glyphicon-open-file" aria-hidden="true">CSV</span></button>' );
+				$('#details-csv-export').html( '<button class="btn"><span class="fa fa-download" aria-hidden="true"> CSV</span></button>' );
 				$('#details-csv-export').addClass( 'dataTables_filter' );
 				$('#details-csv-export').datatableExport({
 					'table_id': "details-table"
@@ -300,9 +474,9 @@
                         tree.disableZoom = true;
                     }
                 });
-                tree.branchColour = "rgb(1, 110, 188)";
-                tree.selectedColour = "#f95d02";
-                tree.load('(((((((((((((((((Cluster_100 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Rasamsonia s__Rasamsonia_piperina:0.03917,Cluster_77 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Talaromyces s__Talaromyces_pittii:0.16998)0.905:0.05335,(Cluster_30 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Rasamsonia s__Rasamsonia_emersonii:0.00055,Cluster_104_FROGS_combined Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Rasamsonia s__Rasamsonia_emersonii:0.00054)0.957:0.08606)0.918:0.05882,(Cluster_72 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Aspergillus s__Aspergillus_ochraceus:0.16035,(Cluster_39 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Aspergillus s__Aspergillus_caninus:0.13387,(Cluster_79 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_levitum:0.0054,(Cluster_63 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_alutaceum:0.01959,(Cluster_73 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_brunneoconidiatum:0.02821,(Cluster_95 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_jensenii:0.05316,(Cluster_64 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_ribium:0.01411,(Cluster_61 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_crystallinum:0.01971,((Cluster_59 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_aurantiogriseum:0.00424,Cluster_65 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_paneum:0.02483)0.914:0.01488,Cluster_71 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_kongii:0.05629)0.687:0.00592)0.717:0.00379)0.81:0.01556)0.893:0.0252)0.883:0.02466)0.72:0.01285)0.871:0.03543)0.635:0.02965)0.761:0.02485)0.932:0.03958,((Cluster_41 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Elaphomycetaceae g__Elaphomyces s__Elaphomyces_compleximurus:0.23167,Cluster_86 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Aspergillus s__Aspergillus_ivoriensis:0.17452)0.229:0.03754,Cluster_51 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Aspergillus s__Aspergillus_microcysticus:0.11591)0.07:0.0178)0.879:0.04343,Cluster_93 Root k__Fungi p__Ascomycota c__Geoglossomycetes o__Geoglossales f__Geoglossaceae g__Geoglossum s__Geoglossum_dunense:0.14781)0.788:0.03606,((Cluster_33 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Chaetothyriales f__Herpotrichiellaceae g__Exophiala s__Exophiala_equina:0.00055,Cluster_111_FROGS_combined Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Chaetothyriales f__Herpotrichiellaceae g__Exophiala s__Exophiala_equina:0.00054)1:0.22846,(Cluster_81 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Verrucariales f__Verrucariaceae g__Verrucaria s__Verrucaria_hydrophila:0.07345,(Cluster_76 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Verrucariales f__Verrucariaceae g__Dermatocarpon s__Dermatocarpon_dolomiticum:0.14456,Cluster_84 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Verrucariales f__Verrucariaceae g__Verrucaria s__Verrucaria_lapidicola:0.03794)0.931:0.0524)0.912:0.0672)0.936:0.07906)0.863:0.07619,(Cluster_67 Root k__Fungi p__Ascomycota c__Lecanoromycetes o__Umbilicariales f__Umbilicariaceae g__Fulgidea s__Fulgidea_sierrae:0.0114,Cluster_98 Root k__Fungi p__Ascomycota c__Lecanoromycetes o__Umbilicariales f__Umbilicariaceae g__Fulgidea s__Fulgidea_oligospora:0.0331)0.997:0.19575)0.709:0.06948,(Cluster_57 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Botryosphaeriales f__Botryosphaeriaceae g__Neofusicoccum s__Neofusicoccum_eucalypticola:0.04881,Cluster_97 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Botryosphaeriales f__Botryosphaeriaceae g__Lasiodiplodia s__Lasiodiplodia_mediterranea:0.07323)0.984:0.1292)0.929:0.08128,((Cluster_9 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Diaporthales f__Togniniaceae g__Phaeoacremonium s__Phaeoacremonium_rubrigenum:0.00055,Cluster_110_FROGS_combined Root k__Fungi p__Ascomycota c__Sordariomycetes o__Diaporthales f__Togniniaceae g__Phaeoacremonium s__Phaeoacremonium_rubrigenum:0.00054)1:0.26158,(Cluster_62 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Diaporthales f__Diaporthaceae g__Diaporthe s__Diaporthe_lusitanicae:0.08663,Cluster_70 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Diaporthales f__Diaporthaceae g__Diaporthe s__Diaporthe_longispora:0.01505)1:0.18375)0.571:0.02392)0.843:0.05054,((Cluster_35 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Xylariales f__Xylariaceae g__Hypoxylon s__Hypoxylon_fragiforme:0.00055,Cluster_114_FROGS_combined Root k__Fungi p__Ascomycota c__Sordariomycetes o__Xylariales f__Xylariaceae g__Hypoxylon s__Hypoxylon_fragiforme:0.00054)1:0.31136,((Cluster_40 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Xylariales f__Amphisphaeriaceae g__Adisciso s__Adisciso_tricellulare:0.02061,(Cluster_31 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Xylariales f__Amphisphaeriaceae g__Pestalotiopsis s__Pestalotiopsis_diversiseta:0.00055,Cluster_115_FROGS_combined Root k__Fungi p__Ascomycota c__Sordariomycetes o__Xylariales f__Amphisphaeriaceae g__Pestalotiopsis s__Pestalotiopsis_diversiseta:0.00384)0.995:0.0766)0.995:0.13678,(Cluster_66 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Xylariales f__Xylariaceae g__Lopadostoma s__Lopadostoma_dryophilum:0.01122,Cluster_101 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Xylariales f__Xylariaceae g__Lopadostoma s__Lopadostoma_insulare:0.02834)0.577:0.02259)0.777:0.07645)0.977:0.12892)0.659:0.05663,(Cluster_90 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Cordycipitaceae g__Beauveria s__Beauveria_australis:0.14932,(Cluster_68 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Calosphaeriales f__Calosphaeriaceae g__Jattaea s__Jattaea_taediosa:0.19826,(Cluster_92 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Sepedonium s__Sepedonium_laevigatum:0.09127,(Cluster_78 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Hypomyces s__Hypomyces_australasiaticus:0.10316,((Cluster_50 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_rhododendri:0.04329,(Cluster_26 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_rodmanii:0.00054,Cluster_425_FROGS_combined Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_rodmanii:0.00377)0.83:0.01626)0.231:0.03034,((Cluster_6 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_mienum:0.00054,Cluster_103_FROGS_combined Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_mienum:0.00055)0.989:0.02761,((Cluster_37 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_cremeum:0.00055,Cluster_8543_FROGS_combined Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_cremeum:0.00406)0.998:0.04917,(Cluster_21 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_aggressivum:0.00055,Cluster_3034_FROGS_combined Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_aggressivum:0.00408)0.992:0.03518)0.914:0.01479)0.414:0.00895)1:0.14412)0.85:0.04439)0.874:0.05416)0.503:0.04573)0.621:0.03442)0.876:0.08417,(Cluster_55_FROGS_combined Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Lindgomycetaceae g__Lindgomyces s__Lindgomyces_breviappendiculatus:0.51734,((Cluster_60 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Phaeosphaeriaceae g__Neosphaerellopsis s__Neosphaerellopsis_thailandica:0.21681,Cluster_74 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Didymellaceae g__Allophoma s__Allophoma_piperis:0.12814)0.348:0.04463,(Cluster_47 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Leptosphaeriaceae g__Leptosphaeria s__Leptosphaeria_polylepidis:0.20686,((Cluster_89 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Pleosporaceae g__Bipolaris s__Bipolaris_microstegii:0.00156,Cluster_99 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Pleosporaceae g__Bipolaris s__Bipolaris_chloridis:0.03132)0.918:0.09013,(Cluster_75 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Pleosporaceae g__Curvularia s__Curvularia_sorghina:0.04328,Cluster_83 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Pleosporaceae g__Curvularia s__Curvularia_protuberata:0.01201)0.318:0.05907)0.963:0.12098)0.745:0.08133)0.935:0.16669)0.918:0.23202)0.827:0.09187,Cluster_56 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Microascales f__Ceratocystidaceae g__Ceratocystis s__Ceratocystis_manginecans:0.34779)0.882:0.11122,((Cluster_36 Root k__Fungi p__Ascomycota c__Pezizomycetes o__Pezizales f__Pezizaceae g__Terfezia s__Terfezia_claveryi:0.00351,Cluster_6752_FROGS_combined Root k__Fungi p__Ascomycota c__Pezizomycetes o__Pezizales f__Pezizaceae g__Terfezia s__Terfezia_claveryi:0.00054)0.994:0.35989,(Cluster_88 Root k__Fungi p__Ascomycota c__Saccharomycetes o__Saccharomycetales f__Lipomycetaceae g__Lipomyces s__Lipomyces_orientalis:0.48883,Cluster_27 Root k__Fungi p__Ascomycota c__Pezizomycetes o__Pezizales f__Tuberaceae g__Tuber s__Tuber_latisporum:0.40863)0.231:0.03717)0.832:0.12398)0.949:0.11754,(Cluster_8 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Marasmiaceae g__Megacollybia s__Megacollybia_subfurfuracea:0.37021,Cluster_80 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Sclerodermataceae g__Pisolithus s__Pisolithus_capsulifer:0.33165)0.765:0.06182)0.847:0.05295,((Cluster_7 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Hymenochaetales f__Hymenochaetaceae g__Hymenochaete s__Hymenochaete_longispora:0.00055,Cluster_732_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Hymenochaetales f__Hymenochaetaceae g__Hymenochaete s__Hymenochaete_longispora:0.00262)1:0.41432,((Cluster_11 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Russulales f__Russulaceae g__Lactarius s__Lactarius_semisanguifluus:0.00371,Cluster_200_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Russulales f__Russulaceae g__Lactarius s__Lactarius_semisanguifluus:0.00055)0.96:0.09473,((Cluster_42 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Russulales f__Russulaceae g__Lactarius s__Lactarius_cyathuliformis:0.00055,Cluster_108_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Russulales f__Russulaceae g__Lactarius s__Lactarius_cyathuliformis:0.00055)0.904:0.00799,((Cluster_32 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Russulales f__Russulaceae g__Lactarius s__Lactarius_sp:0.00054,Cluster_109_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Russulales f__Russulaceae g__Lactarius s__Lactarius_sp:0.00055)0.8:0.00053,Cluster_82 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Russulales f__Russulaceae g__Lactarius Multi-affiliation:0.00055)0.834:0.00697)0.92:0.07042)1:0.42907)0.084:0.00642)0.924:0.00635,((((Cluster_16 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Inocybaceae g__Inocybe s__Inocybe_sindonia:0.00055,Cluster_23916_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Inocybaceae g__Inocybe s__Inocybe_sindonia:0.00366)1:0.31855,(Cluster_54 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Amanitaceae g__Amanita s__Amanita_friabilis:0.36464,(((Cluster_22 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Hymenochaetales f__Hymenochaetaceae g__Pseudochaete s__Pseudochaete_subrigidula:0.00055,Cluster_3776_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Hymenochaetales f__Hymenochaetaceae g__Pseudochaete s__Pseudochaete_subrigidula:0.00055)1:0.41206,(Cluster_44 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Thelephorales f__Thelephoraceae g__Thelephora s__Thelephora_atra:0.2016,Cluster_94 Root k__Fungi p__Basidiomycota c__Exobasidiomycetes o__Microstromatales f__Microstromataceae g__Microstroma s__Microstroma_phylloplanum:0.41404)0.82:0.11254)0.85:0.12061,(Cluster_3 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Amanitaceae g__Amanita s__Amanita_franchetii:0.0046,Cluster_1135_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Amanitaceae g__Amanita s__Amanita_franchetii:0.02935)1:0.23851)0.709:0.06189)0:0.00086)0.811:0.04567,((((((Cluster_29 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Agaricaceae g__Lepiota s__Lepiota_geogenia:0.00054,Cluster_1150_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Agaricaceae g__Lepiota s__Lepiota_geogenia:0.00055)1:0.29208,((Cluster_58 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_savegrensis:0.0839,(Cluster_91 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_disjungendus:0.08896,(Cluster_69 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_subexitiosus:0.03593,Cluster_87 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_aavae:0.01711)0.65:0.01155)0.869:0.024)0.847:0.02932,(((Cluster_46 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_parkeri:0.10713,(Cluster_24 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_sinapivelus:0.00055,Cluster_4261_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_sinapivelus:0.00055)0.997:0.07564)0.791:0.02455,(Cluster_25 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_aurantiobasis:0.00055,Cluster_4264_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_aurantiobasis:0.00053)0.993:0.03048)0.673:0.00579,((Cluster_15 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_limonius:0.08713,(Cluster_20 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_gentianeus:0.00055,Cluster_4126_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_gentianeus:0.00055)0.998:0.05052)0.133:0.017,((Cluster_48 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_caesiocolor:0.00055,Cluster_12768_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_caesiocolor:0.00055)1:0.05278,((Cluster_14 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_amnicola:0.00055,Cluster_1436_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_amnicola:0.00054)0.997:0.04301,(Cluster_38 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_calojanthinus:0.00055,Cluster_112_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_calojanthinus:0.00743)0.972:0.02502)0.992:0.03158)0.832:0.01161)0.83:0.01281)0.537:0.0216)0.972:0.07886)0.37:0.04147,((((Cluster_23 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Psathyrella s__Psathyrella_sublatispora:0.00055,Cluster_105_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Psathyrella s__Psathyrella_sublatispora:0.00055)1:0.08236,(Cluster_2 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Psathyrella s__Psathyrella_multipedata:0.00055,Cluster_188_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Psathyrella s__Psathyrella_multipedata:0.00055)1:0.08371)1:0.11806,((Cluster_52 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Coprinopsis s__Coprinopsis_candidolanata:0.0035,Cluster_409_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Coprinopsis s__Coprinopsis_candidolanata:0.00054)1:0.1019,(Cluster_18 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Coprinopsis s__Coprinopsis_pachyderma:0.00055,Cluster_106_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Coprinopsis s__Coprinopsis_pachyderma:0.00055)0.986:0.05345)0.971:0.06294)1:0.13316,(((Cluster_85 Root k__Fungi p__Basidiomycota c__Pucciniomycetes o__Pucciniales f__Uropyxidaceae g__Dasyspora s__Dasyspora_mesoamericana:0.65454,(Cluster_34 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Tricholomataceae g__Gamundia s__Gamundia_leucophylla:0.00054,Cluster_2518_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Tricholomataceae g__Gamundia s__Gamundia_leucophylla:0.00383)0.541:0.06268)0.875:0.15669,((Cluster_4 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Strophariaceae g__Hypholoma s__Hypholoma_capnoides:0.00055,Cluster_11527_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Strophariaceae g__Hypholoma s__Hypholoma_capnoides:0.00054)1:0.11733,(Cluster_5 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Strophariaceae g__Pholiota s__Pholiota_highlandensis:0.00055,Cluster_178_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Strophariaceae g__Pholiota s__Pholiota_highlandensis:0.00054)1:0.08649)0.997:0.09426)0.09:0.02885,(Cluster_19 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Tricholomataceae g__Tricholoma s__Tricholoma_portentosum:0.00055,Cluster_6308_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Tricholomataceae g__Tricholoma s__Tricholoma_portentosum:0.00372)1:0.14302)0.409:0.02713)0.595:0.02505)0.883:0.0427,(Cluster_45 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Phaeocollybia s__Phaeocollybia_kauffmanii:0.00054,Cluster_1854_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Phaeocollybia s__Phaeocollybia_kauffmanii:0.00318)1:0.21747)0.763:0.03526,((Cluster_10 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Omphalotaceae g__Gymnopus s__Gymnopus_hybridus:0.00055,Cluster_6118_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Omphalotaceae g__Gymnopus s__Gymnopus_hybridus:0.0005)1:0.31285,((Cluster_53 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Suillaceae g__Truncocolumella s__Truncocolumella_rubra:0.00055,Cluster_1219_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Suillaceae g__Truncocolumella s__Truncocolumella_rubra:0.00053)0.969:0.09598,((Cluster_43 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Boletaceae g__Xerocomus s__Xerocomus_porophyllus:0.00055,Cluster_1502_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Boletaceae g__Xerocomus s__Xerocomus_porophyllus:0.00401)1:0.21018,(Cluster_13 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Paxillaceae g__Alpova s__Alpova_corsicus:0.00053,(Cluster_17 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Paxillaceae g__Alpova s__Alpova_alpestris:0.00055,Cluster_3213_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Paxillaceae g__Alpova s__Alpova_alpestris:0.00054)1:0.10533)1:0.30829)0.886:0.10574)0.992:0.15702)0.972:0.11581)0.398:0.03612,(Cluster_12 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Entolomataceae g__Entoloma s__Entoloma_sp:0.00055,Cluster_2718_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Entolomataceae g__Entoloma s__Entoloma_sp:0.00054)1:0.28892)0.31:0.03233)0.954:0.08853,(Cluster_96 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Polyporales f__Meruliaceae g__Junghuhnia s__Junghuhnia_nitida:0.29304,(((Cluster_49 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Thelephorales f__Bankeraceae g__Hydnellum s__Hydnellum_suaveolens:0.00349,Cluster_13923_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Thelephorales f__Bankeraceae g__Hydnellum s__Hydnellum_suaveolens:0.00055)1:0.27206,(Cluster_28 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Thelephorales f__Bankeraceae g__Hydnellum s__Hydnellum_peckii:0.0071,Cluster_107_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Thelephorales f__Bankeraceae g__Hydnellum s__Hydnellum_peckii:0.00507)0.999:0.17801)0.072:0.06885,(Cluster_1 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Thelephorales f__Bankeraceae g__Sarcodon s__Sarcodon_quercophilus:0.00055,Cluster_116_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Thelephorales f__Bankeraceae g__Sarcodon s__Sarcodon_quercophilus:0.00054)1:0.37969)0.901:0.10665)0.731:0.04103)0.924:0.07224)NA;');
+                tree.branchColour = "#8EADAC";
+                tree.selectedColour = "#DE9F73";
+                tree.load('((((((((((((Cluster_75 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Pleosporaceae g__Curvularia s__Curvularia_sorghina:0.03764,Cluster_83 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Pleosporaceae g__Curvularia s__Curvularia_protuberata:0.01113)0.995:0.07029,Cluster_89 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Pleosporaceae g__Bipolaris s__Bipolaris_microstegii:0.01026)0.928:0.03457,Cluster_99 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Pleosporaceae g__Bipolaris s__Bipolaris_chloridis:0.00053)0.985:0.13164,Cluster_47 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Leptosphaeriaceae g__Leptosphaeria s__Leptosphaeria_polylepidis:0.24639)0.86:0.06772,Cluster_60 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Phaeosphaeriaceae g__Neosphaerellopsis s__Neosphaerellopsis_thailandica:0.18481)0.49:0.06242,Cluster_74 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Didymellaceae g__Allophoma s__Allophoma_piperis:0.08761)0.999:0.43939,((Cluster_40 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Xylariales f__Amphisphaeriaceae g__Adisciso s__Adisciso_tricellulare:0.0084,(Cluster_31 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Xylariales f__Amphisphaeriaceae g__Pestalotiopsis s__Pestalotiopsis_diversiseta:0.00055,Cluster_115_FROGS_combined Root k__Fungi p__Ascomycota c__Sordariomycetes o__Xylariales f__Amphisphaeriaceae g__Pestalotiopsis s__Pestalotiopsis_diversiseta:0.00395)0.988:0.09418)0.997:0.15964,((Cluster_35 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Xylariales f__Xylariaceae g__Hypoxylon s__Hypoxylon_fragiforme:0.00055,Cluster_114_FROGS_combined Root k__Fungi p__Ascomycota c__Sordariomycetes o__Xylariales f__Xylariaceae g__Hypoxylon s__Hypoxylon_fragiforme:0.00054)1:0.30423,(Cluster_66 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Xylariales f__Xylariaceae g__Lopadostoma s__Lopadostoma_dryophilum:0.01407,Cluster_101 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Xylariales f__Xylariaceae g__Lopadostoma s__Lopadostoma_insulare:0.03038)0.306:0.00222)0.26:0.07076)0.152:0.04669)0.435:0.09222,((Cluster_62 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Diaporthales f__Diaporthaceae g__Diaporthe s__Diaporthe_lusitanicae:0.06806,Cluster_70 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Diaporthales f__Diaporthaceae g__Diaporthe s__Diaporthe_longispora:0.0463)0.998:0.20363,(Cluster_9 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Diaporthales f__Togniniaceae g__Phaeoacremonium s__Phaeoacremonium_rubrigenum:0.00055,Cluster_110_FROGS_combined Root k__Fungi p__Ascomycota c__Sordariomycetes o__Diaporthales f__Togniniaceae g__Phaeoacremonium s__Phaeoacremonium_rubrigenum:0.00055)0.992:0.22212)0.049:0.04573)0.779:0.06372,(Cluster_90 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Cordycipitaceae g__Beauveria s__Beauveria_australis:0.12591,(Cluster_92 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Sepedonium s__Sepedonium_laevigatum:0.07401,(Cluster_78 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Hypomyces s__Hypomyces_australasiaticus:0.11387,((Cluster_50 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_rhododendri:0.03317,(Cluster_26 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_rodmanii:0.00055,Cluster_425_FROGS_combined Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_rodmanii:0.00334)0.829:0.01264)0.514:0.03217,((Cluster_6 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_mienum:0.00053,Cluster_103_FROGS_combined Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_mienum:0.00055)0.994:0.02975,((Cluster_37 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_cremeum:0.00055,Cluster_8543_FROGS_combined Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_cremeum:0.00375)0.997:0.04256,(Cluster_21 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_aggressivum:0.00055,Cluster_3034_FROGS_combined Root k__Fungi p__Ascomycota c__Sordariomycetes o__Hypocreales f__Hypocreaceae g__Trichoderma s__Trichoderma_aggressivum:0.00474)0.983:0.02997)0.924:0.01454)0.765:0.00788)0.996:0.10928)0.898:0.04876)0.899:0.06548)0.937:0.07883)0.845:0.04297,(((((Cluster_33 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Chaetothyriales f__Herpotrichiellaceae g__Exophiala s__Exophiala_equina:0.00055,Cluster_111_FROGS_combined Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Chaetothyriales f__Herpotrichiellaceae g__Exophiala s__Exophiala_equina:0.00055)1:0.22362,(Cluster_81 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Verrucariales f__Verrucariaceae g__Verrucaria s__Verrucaria_hydrophila:0.07461,(Cluster_76 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Verrucariales f__Verrucariaceae g__Dermatocarpon s__Dermatocarpon_dolomiticum:0.15382,Cluster_84 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Verrucariales f__Verrucariaceae g__Verrucaria s__Verrucaria_lapidicola:0.02178)0.928:0.05043)0.881:0.05858)0.931:0.07135,(Cluster_93 Root k__Fungi p__Ascomycota c__Geoglossomycetes o__Geoglossales f__Geoglossaceae g__Geoglossum s__Geoglossum_dunense:0.12968,((((((Cluster_30 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Rasamsonia s__Rasamsonia_emersonii:0.00055,Cluster_104_FROGS_combined Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Rasamsonia s__Rasamsonia_emersonii:0.00055)0.972:0.07523,(Cluster_100 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Rasamsonia s__Rasamsonia_piperina:0.05512,Cluster_41 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Elaphomycetaceae g__Elaphomyces s__Elaphomyces_compleximurus:0.18831)0.378:0.03684)0.48:0.02572,Cluster_72 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Aspergillus s__Aspergillus_ochraceus:0.17106)0.092:0.0171,(((Cluster_73 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_brunneoconidiatum:0.03614,(Cluster_95 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_jensenii:0.05789,(Cluster_61 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_crystallinum:0.01939,(Cluster_64 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_ribium:0.01657,(Cluster_71 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_kongii:0.05584,(Cluster_59 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_aurantiogriseum:0.00357,Cluster_65 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_paneum:0.0254)0.926:0.01443)0.812:0.00546)0.438:0.00055)0.851:0.01319)0.884:0.02393)0.573:0.01082,(Cluster_63 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_alutaceum:0.02608,Cluster_79 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Penicillium s__Penicillium_levitum:0.01042)0.687:0.00869)0.876:0.03009,Cluster_39 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Aspergillus s__Aspergillus_caninus:0.11477)0.938:0.04779)0.39:0.02332,Cluster_77 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Talaromyces s__Talaromyces_pittii:0.1828)0.085:0.02333,(Cluster_51 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Aspergillus s__Aspergillus_microcysticus:0.11092,Cluster_86 Root k__Fungi p__Ascomycota c__Eurotiomycetes o__Eurotiales f__Trichocomaceae g__Aspergillus s__Aspergillus_ivoriensis:0.21247)0.654:0.02849)0.95:0.06254)0.766:0.03716)0.871:0.05134,(Cluster_67 Root k__Fungi p__Ascomycota c__Lecanoromycetes o__Umbilicariales f__Umbilicariaceae g__Fulgidea s__Fulgidea_sierrae:0.0085,Cluster_98 Root k__Fungi p__Ascomycota c__Lecanoromycetes o__Umbilicariales f__Umbilicariaceae g__Fulgidea s__Fulgidea_oligospora:0.03499)1:0.16349)0.575:0.05005,(Cluster_57 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Botryosphaeriales f__Botryosphaeriaceae g__Neofusicoccum s__Neofusicoccum_eucalypticola:0.03779,Cluster_97 Root k__Fungi p__Ascomycota c__Dothideomycetes o__Botryosphaeriales f__Botryosphaeriaceae g__Lasiodiplodia s__Lasiodiplodia_mediterranea:0.06533)0.997:0.15622)0.874:0.06514)0.729:0.05282,(Cluster_68 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Calosphaeriales f__Calosphaeriaceae g__Jattaea s__Jattaea_taediosa:0.05803,Cluster_55_FROGS_combined Root k__Fungi p__Ascomycota c__Dothideomycetes o__Pleosporales f__Lindgomycetaceae g__Lindgomyces s__Lindgomyces_breviappendiculatus:0.7457)0.836:0.12807)0.954:0.070635,(((((((((((Cluster_29 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Agaricaceae g__Lepiota s__Lepiota_geogenia:0.00055,Cluster_1150_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Agaricaceae g__Lepiota s__Lepiota_geogenia:0.00054)1:0.24527,(Cluster_45 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Phaeocollybia s__Phaeocollybia_kauffmanii:0.00061,Cluster_1854_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Phaeocollybia s__Phaeocollybia_kauffmanii:0.00321)1:0.16766)0.772:0.06549,(((Cluster_58 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_savegrensis:0.08461,((Cluster_87 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_aavae:0.01641,Cluster_69 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_subexitiosus:0.03496)0.71:0.01085,(Cluster_91 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_disjungendus:0.05812,(Cluster_16 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Inocybaceae g__Inocybe s__Inocybe_sindonia:0.00054,Cluster_23916_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Inocybaceae g__Inocybe s__Inocybe_sindonia:0.00345)1:0.38972)0.568:0.03217)0.807:0.01941)0.895:0.03894,(((Cluster_25 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_aurantiobasis:0.00055,Cluster_4264_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_aurantiobasis:0.00053)0.993:0.02894,(((Cluster_48 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_caesiocolor:0.00055,Cluster_12768_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_caesiocolor:0.00055)1:0.05232,(Cluster_15 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_limonius:0.08461,((Cluster_14 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_amnicola:0.00055,Cluster_1436_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_amnicola:0.00054)1:0.04242,(Cluster_38 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_calojanthinus:0.00055,Cluster_112_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_calojanthinus:0.00755)0.979:0.02472)0.949:0.02425)0.785:0.01031)0.866:0.0148,(Cluster_20 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_gentianeus:0.00055,Cluster_4126_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_gentianeus:0.00055)1:0.05851)0.921:0.01339)0.703:0.00561,(Cluster_46 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_parkeri:0.11085,(Cluster_24 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_sinapivelus:0.00055,Cluster_4261_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Cortinariaceae g__Cortinarius s__Cortinarius_sinapivelus:0.00054)0.994:0.07132)0.775:0.02449)0.973:0.05176)0.948:0.04909,(((Cluster_19 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Tricholomataceae g__Tricholoma s__Tricholoma_portentosum:0.00055,Cluster_6308_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Tricholomataceae g__Tricholoma s__Tricholoma_portentosum:0.00354)1:0.10313,(Cluster_12 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Entolomataceae g__Entoloma s__Entoloma_sp:0.00055,Cluster_2718_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Entolomataceae g__Entoloma s__Entoloma_sp:0.00054)1:0.32494)0.874:0.03864,(((Cluster_34 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Tricholomataceae g__Gamundia s__Gamundia_leucophylla:0.00055,Cluster_2518_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Tricholomataceae g__Gamundia s__Gamundia_leucophylla:0.00366)1:0.17363,(((Cluster_2 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Psathyrella s__Psathyrella_multipedata:0.00054,Cluster_188_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Psathyrella s__Psathyrella_multipedata:0.00055)1:0.07725,(Cluster_23 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Psathyrella s__Psathyrella_sublatispora:0.00054,Cluster_105_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Psathyrella s__Psathyrella_sublatispora:0.00055)1:0.08258)1:0.11331,((Cluster_52 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Coprinopsis s__Coprinopsis_candidolanata:0.00342,Cluster_409_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Coprinopsis s__Coprinopsis_candidolanata:0.00054)1:0.10108,(Cluster_18 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Coprinopsis s__Coprinopsis_pachyderma:0.00055,Cluster_106_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Psathyrellaceae g__Coprinopsis s__Coprinopsis_pachyderma:0.00053)0.994:0.05332)0.975:0.06979)0.999:0.12269)0.911:0.04539,((Cluster_5 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Strophariaceae g__Pholiota s__Pholiota_highlandensis:0.00055,Cluster_178_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Strophariaceae g__Pholiota s__Pholiota_highlandensis:0.00055)1:0.08424,(Cluster_4 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Strophariaceae g__Hypholoma s__Hypholoma_capnoides:0.00055,Cluster_11527_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Strophariaceae g__Hypholoma s__Hypholoma_capnoides:0.00054)1:0.11124)1:0.10931)0.123:0.01339)0.959:0.06236)0.705:0.02063)0.94:0.08245,((Cluster_10 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Omphalotaceae g__Gymnopus s__Gymnopus_hybridus:0.00055,Cluster_6118_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Omphalotaceae g__Gymnopus s__Gymnopus_hybridus:0.00055)1:0.33902,(((Cluster_3 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Amanitaceae g__Amanita s__Amanita_franchetii:0.00105,Cluster_1135_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Amanitaceae g__Amanita s__Amanita_franchetii:0.03953)1:0.27759,((Cluster_43 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Boletaceae g__Xerocomus s__Xerocomus_porophyllus:0.00054,Cluster_1502_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Boletaceae g__Xerocomus s__Xerocomus_porophyllus:0.00403)1:0.24054,(Cluster_53 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Suillaceae g__Truncocolumella s__Truncocolumella_rubra:0.00055,Cluster_1219_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Suillaceae g__Truncocolumella s__Truncocolumella_rubra:0.00055)0.984:0.10409)0.938:0.10721)0.101:0.06213,((Cluster_96 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Polyporales f__Meruliaceae g__Junghuhnia s__Junghuhnia_nitida:0.25207,Cluster_80 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Sclerodermataceae g__Pisolithus s__Pisolithus_capsulifer:0.38933)0.331:0.06503,(Cluster_13 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Paxillaceae g__Alpova s__Alpova_corsicus:0.01681,(Cluster_17 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Paxillaceae g__Alpova s__Alpova_alpestris:0.00053,Cluster_3213_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Boletales f__Paxillaceae g__Alpova s__Alpova_alpestris:0.00055)0.992:0.08873)0.988:0.2387)0.864:0.11104)0.548:0.03771)0.945:0.10717)0.919:0.07392,((Cluster_28 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Thelephorales f__Bankeraceae g__Hydnellum s__Hydnellum_peckii:0.0027,Cluster_107_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Thelephorales f__Bankeraceae g__Hydnellum s__Hydnellum_peckii:0.00482)0.998:0.17454,((Cluster_1 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Thelephorales f__Bankeraceae g__Sarcodon s__Sarcodon_quercophilus:0.00055,Cluster_116_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Thelephorales f__Bankeraceae g__Sarcodon s__Sarcodon_quercophilus:0.00054)1:0.42347,(Cluster_49 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Thelephorales f__Bankeraceae g__Hydnellum s__Hydnellum_suaveolens:0.00348,Cluster_13923_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Thelephorales f__Bankeraceae g__Hydnellum s__Hydnellum_suaveolens:0.00054)1:0.23116)0.896:0.09848)1:0.21271)0.266:0.00539,Cluster_44 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Thelephorales f__Thelephoraceae g__Thelephora s__Thelephora_atra:0.36918)0.692:0.03023,(((Cluster_11 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Russulales f__Russulaceae g__Lactarius s__Lactarius_semisanguifluus:0.00055,Cluster_200_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Russulales f__Russulaceae g__Lactarius s__Lactarius_semisanguifluus:0.00465)0.954:0.08194,((Cluster_42 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Russulales f__Russulaceae g__Lactarius s__Lactarius_cyathuliformis:0.00055,Cluster_108_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Russulales f__Russulaceae g__Lactarius s__Lactarius_cyathuliformis:0.00055)0.881:0.0075,((Cluster_32 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Russulales f__Russulaceae g__Lactarius s__Lactarius_sp:0.00055,Cluster_109_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Russulales f__Russulaceae g__Lactarius s__Lactarius_sp:0.00055)0.787:0.00055,Cluster_82 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Russulales f__Russulaceae g__Lactarius Multi-affiliation:0.00055)0.854:0.00962)0.855:0.04912)0.998:0.38795,(Cluster_22 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Hymenochaetales f__Hymenochaetaceae g__Pseudochaete s__Pseudochaete_subrigidula:0.00055,Cluster_3776_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Hymenochaetales f__Hymenochaetaceae g__Pseudochaete s__Pseudochaete_subrigidula:0.00054)1:0.44203)0.797:0.11159)0.345:0.02045,(Cluster_85 Root k__Fungi p__Basidiomycota c__Pucciniomycetes o__Pucciniales f__Uropyxidaceae g__Dasyspora s__Dasyspora_mesoamericana:0.67879,Cluster_54 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Amanitaceae g__Amanita s__Amanita_friabilis:0.29176)0.7:0.04539)0.787:0.0581,((Cluster_7 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Hymenochaetales f__Hymenochaetaceae g__Hymenochaete s__Hymenochaete_longispora:0.00055,Cluster_732_FROGS_combined Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Hymenochaetales f__Hymenochaetaceae g__Hymenochaete s__Hymenochaete_longispora:0.00269)0.999:0.35703,(Cluster_94 Root k__Fungi p__Basidiomycota c__Exobasidiomycetes o__Microstromatales f__Microstromataceae g__Microstroma s__Microstroma_phylloplanum:0.47956,Cluster_8 Root k__Fungi p__Basidiomycota c__Agaricomycetes o__Agaricales f__Marasmiaceae g__Megacollybia s__Megacollybia_subfurfuracea:0.44409)0.297:0.09058)0.729:0.06093)0.896:0.08749,(Cluster_56 Root k__Fungi p__Ascomycota c__Sordariomycetes o__Microascales f__Ceratocystidaceae g__Ceratocystis s__Ceratocystis_manginecans:0.38737,Cluster_88 Root k__Fungi p__Ascomycota c__Saccharomycetes o__Saccharomycetales f__Lipomycetaceae g__Lipomyces s__Lipomyces_orientalis:0.60587)0.529:0.07383)0.832:0.09013,(Cluster_27 Root k__Fungi p__Ascomycota c__Pezizomycetes o__Pezizales f__Tuberaceae g__Tuber s__Tuber_latisporum:0.3539,(Cluster_36 Root k__Fungi p__Ascomycota c__Pezizomycetes o__Pezizales f__Pezizaceae g__Terfezia s__Terfezia_claveryi:0.00351,Cluster_6752_FROGS_combined Root k__Fungi p__Ascomycota c__Pezizomycetes o__Pezizales f__Pezizaceae g__Terfezia s__Terfezia_claveryi:0.00055)0.994:0.29116)0.952:0.18359)0.954:0.090045)NA;');
                 tree.backColour = true;
                 tree.draw();
 			});
@@ -320,13 +494,13 @@
 		
 		<!-- Content -->
 		<div id="content" class="hidden">
-            <h1 class="page-header">Summary</h1>
+            <h2 class="pb-2 mt-4 mb-2 border-bottom">Summary</h2>
             <div class="row">
                 <div id="nb-otu" class="col-md-6"></div>
                 <div id="nb-abundance" class="col-md-6"></div>
             </div>
             <div id="OTUs-fail" style="display:none;">
-            	<h1 class="page-header">Table of failed OTUs</h1>
+            	<h2 class="pb-2 mt-4 mb-2 border-bottom">Table of failed OTUs</h2>
             </div>
             <h1 class="page-header">Tree View
                 <h5>Enabling zoom:</h5>
