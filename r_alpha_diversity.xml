@@ -17,9 +17,9 @@
 -->
 <tool name="FROGSSTAT Phyloseq Alpha Diversity" id="FROGSSTAT_Phyloseq_Alpha_Diversity" version="3.0">
 	<description>with richness plot</description>
-	<!--requirements>
-		<requirement type="package" version="2.0.1">frogs</requirement>
-	</requirements-->
+        <requirements>
+                <requirement type="package" version="3.0.0">frogs</requirement>
+        </requirements>
 	<stdio>
 		<exit_code range="1:" />
 		<exit_code range=":-1" />

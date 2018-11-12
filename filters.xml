@@ -17,9 +17,9 @@
 -->
 <tool id="FROGS_filters" name="FROGS Filters" version="3.0">
 	<description>Filters OTUs on several criteria.</description>
-        <!--requirements>
-                <requirement type="package" version="2.0.1">frogs</requirement>
-        </requirements-->
+        <requirements>
+                <requirement type="package" version="3.0.0">frogs</requirement>
+        </requirements>
         <stdio> 
                 <exit_code range="1:" />
                 <exit_code range=":-1" />

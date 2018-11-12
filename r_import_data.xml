@@ -17,9 +17,9 @@
 -->
 <tool name="FROGSSTAT Phyloseq Import Data" id="FROGSSTAT_Phyloseq_Import_Data" version="3.0">
 	<description>from 3 files: biomfile, samplefile, treefile </description>
- 	<!--requirements>
-                <requirement type="package" version="2.0.1">frogs</requirement>
-        </requirements-->
+        <requirements>
+                <requirement type="package" version="3.0.0">frogs</requirement>
+        </requirements>
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />

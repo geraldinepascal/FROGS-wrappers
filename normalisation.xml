@@ -17,9 +17,9 @@
 -->
 <tool id="FROGS_normalisation" name="FROGS Abundance normalisation" version="3.0">
         <description>Normalize OTUs abundance.</description>
-        <!--requirements>
-                <requirement type="package" version="2.0.1">frogs</requirement>
-        </requirements-->
+        <requirements>
+                <requirement type="package" version="3.0.0">frogs</requirement>
+        </requirements>
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
@@ -46,9 +46,10 @@
         <tests>
             <test>
                 <param name="input_fasta" value="references/04-filters.fasta"/>
-    	        <param name="input_biom" value="references/04-affiliation.biom"/>
+    	        <param name="input_biom" value="references/06-affiliation.biom"/>
             	<param name="num_reads" value="100"/>
-                <output name="summary_file" file="references/normalisation_report.html" compare="sim_size" delta="0" />
+                <output name="summary_file" file="references/normalisation_report.html"/>
+                <!--output name="summary_file" file="references/normalisation_report.html" compare="sim_size" delta="0" /-->
             </test>
         </tests>
 	<help>

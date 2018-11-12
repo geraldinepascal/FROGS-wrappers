@@ -17,18 +17,18 @@
 -->
 <tool id="FROGS_affiliation_postprocess" name="FROGS Affiliation postprocess" version="3.0">
 	<description>Optionnal step to resolve inclusive amplicon ambiguities and to aggregate OTUs based on alignment metrics</description>
-  <!--requirements>
-    <requirement type="package" version="2.0.1">frogs</requirement>
-  </requirements-->
+  <requirements>
+    <requirement type="package" version="3.0.0">frogs</requirement>
+  </requirements>
   <stdio>
     <exit_code range="1:" />
     <exit_code range=":-1" />
   </stdio>
 	<command>
+		#set $reference_filename = str( $is_HVL.ref_file.fields.path )
 		affiliation_postprocess.py 
-
 		        #if $is_HVL.HVL_amplicon
-                    --reference $is_HVL.ref_file
+                    --reference "${reference_filename}"
                 #end if
 				
 				--identity $identity
@@ -42,19 +42,19 @@
 	<inputs>
 		<!-- Files -->
 		<param format="biom1" name="biom_in" type="data" label="Abundance file of affiliated OTUs" help="Abundances of affiliated OTUs (format: BIOM)."/>
-    <param format="fasta" name="fasta_in" type="data" label="OTU seed sequences" help="OTU sequences (format: fasta)."/>
-    <conditional name="is_HVL">
-      <param name="HVL_amplicon" type="boolean" label="Is this an hyper variable in length amplicon ?" help="Multi-affiliation tag may be resolved by selecting the shortest amplicon reference. For this you need the reference fasta file of your kind of amplicon."/>
-      <when value="true">
-        <param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
- 				<options from_file="HVL_db.loc">
-    				<column name="name" index="0"/>
-    				<column name="value" index="1"/>
- 				</options>
-			</param> 
-      </when>
-      <when value="false"/>
-    </conditional>
+		<param format="fasta" name="fasta_in" type="data" label="OTU seed sequences" help="OTU sequences (format: fasta)."/>
+		<conditional name="is_HVL">
+			<param name="HVL_amplicon" type="boolean" label="Is this an hyper variable in length amplicon ?" help="Multi-affiliation tag may be resolved by selecting the shortest amplicon reference. For this you need the reference fasta file of your kind of amplicon."/>
+      			<when value="true">
+        			<param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
+ 					<options from_data_table="HVL_db"></options>
+	        			<validator type="no_options" message="A built-in database is not available" />
+    					<!--column name="name" index="0"/>
+    					<column name="value" index="1"/-->
+				</param> 
+      			</when>
+      			<when value="false"/>
+    		</conditional>
 
  		<param name="identity" type="float" min="0.0" max="100.0" value="99.0" label="minimum identity for aggregation" help="OTUs will be aggregated if they share the same taxonomy with at least X% identity." />
  		<param name="coverage" type="float" min="0.0" max="100.0" value="99.0" label="minimum coverage for aggregation" help="OTUs will be aggregated if they share the same taxonomy with at least X% alignment coverage." />
@@ -70,7 +70,7 @@
       <param name="fasta_in" value="references/04-filters.fasta"/>
       <conditional name="is_HVL">
         <param name="HVL_amplicon" value="true"/>
-        <param name="ref_file" value="Unite_extract_ITS1.fasta"/>
+        <param name="ref_file" value="Unite_extract_ITS1_test"/>
       </conditional>
       <output name="compo_out" file="references/07-affiliation_postprocessed.compo.tsv"/>
     </test>

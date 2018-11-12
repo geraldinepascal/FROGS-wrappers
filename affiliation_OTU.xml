@@ -17,9 +17,9 @@
 -->
 <tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="3.0">
 	<description>Step 4 in metagenomics analysis : Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
- 	<!--requirements>
-                <requirement type="package" version="2.0.1">frogs</requirement>
-        </requirements-->
+ 	<requirements>
+                <requirement type="package" version="3.0.0">frogs</requirement>
+        </requirements>
      	<stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
