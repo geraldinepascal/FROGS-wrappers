@@ -64,14 +64,33 @@
 			<!--output name="out_tree" value="references/13-tree-mafft.nwk"/-->
 			<!--output name="html" value="references/13-tree-mafft.html"/-->
 			<output name="html">
-                                <assert_contents>
-                                        <has_text_matching expression="FROGS\sTree" />
-                                        <has_text_matching expression="abundance_removed.*:\s0" />
-                                        <has_text_matching expression="abundance_kept.*:\s175968" />
-                                        <has_text_matching expression="otu_kept.*:\s142" />
-                                        <has_text_matching expression="number_otu_all.*:\s142" />
-                                        <has_text_matching expression="number_abundance_all.*:\s175968" />
-                                </assert_contents>
+                <assert_contents>
+                    <has_text_matching expression="FROGS\sTree" />
+                    <has_text_matching expression="abundance_removed.*:\s0" />
+                    <has_text_matching expression="abundance_kept.*:\s175968" />
+                    <has_text_matching expression="otu_kept.*:\s142" />
+                    <has_text_matching expression="number_otu_all.*:\s142" />
+                    <has_text_matching expression="number_abundance_all.*:\s175968" />
+                </assert_contents>
+			</output>
+		</test>
+		<test>
+			<param name="input_otu" value="to_test_pynast.fasta"/>
+			<conditional name="template">
+				<param name="fileTemplate" value="true"/>
+				<param name="template_pynast" value="otus_pynast.fasta" />
+			</conditional>
+			<param name="biomfile" value="to_test_pynast.biom"/>
+			<output name="html">
+                <assert_contents>
+                    <has_text_matching expression="FROGS\sTree" />
+                    <has_text_matching expression="otu_removed.*:\s4" />
+                    <has_text_matching expression="abundance_removed.*:\s22025" />
+                    <has_text_matching expression="otu_kept.*:\s48" />
+                    <has_text_matching expression="abundance_kept.*:\s233756" />
+                    <has_text_matching expression="number_otu_all.*:\s52" />
+                    <has_text_matching expression="number_abundance_all.*:\s255781" />
+                </assert_contents>
 			</output>
 		</test>
 	</tests>
