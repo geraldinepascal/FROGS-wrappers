@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_preprocess" name="FROGS Pre-process" version="3.0">
-	<description>Step 1 in metagenomics analysis: denoising and dereplication.</description>
+<tool id="FROGS_preprocess" name="FROGS Pre-process" version="3.1">
+	<description>merging, denoising and dereplication.</description>
         <requirements>
-                <requirement type="package" version="3.0.0">frogs</requirement>
+                <requirement type="package" version="3.1.0">frogs</requirement>
         </requirements>
         <stdio>
                 <exit_code range="1:" />

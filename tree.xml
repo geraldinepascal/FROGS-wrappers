@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_Tree" name="FROGS Tree" version="3.0">
+<tool id="FROGS_Tree" name="FROGS Tree" version="3.1">
 	<description>Reconstruction of phylogenetic tree </description>
  	<requirements>
-                <requirement type="package" version="3.0.0">frogs</requirement>
+                <requirement type="package" version="3.1.0">frogs</requirement>
         </requirements>
         <stdio>
                 <exit_code range="1:" />
@@ -64,14 +64,14 @@
 			<!--output name="out_tree" value="references/13-tree-mafft.nwk"/-->
 			<!--output name="html" value="references/13-tree-mafft.html"/-->
 			<output name="html">
-                <assert_contents>
-                    <has_text_matching expression="FROGS\sTree" />
-                    <has_text_matching expression="abundance_removed.*:\s0" />
-                    <has_text_matching expression="abundance_kept.*:\s175968" />
-                    <has_text_matching expression="otu_kept.*:\s142" />
-                    <has_text_matching expression="number_otu_all.*:\s142" />
-                    <has_text_matching expression="number_abundance_all.*:\s175968" />
-                </assert_contents>
+ 		        	<assert_contents>
+                    		<has_text_matching expression="FROGS\sTree" />
+                    		<has_text_matching expression="abundance_removed.*:\s0" />
+                    		<has_text_matching expression="abundance_kept.*:\s175968" />
+                    		<has_text_matching expression="otu_kept.*:\s142" />
+                    		<has_text_matching expression="number_otu_all.*:\s142" />
+                    		<has_text_matching expression="number_abundance_all.*:\s175968" />
+                		</assert_contents>
 			</output>
 		</test>
 		<test>
@@ -82,15 +82,15 @@
 			</conditional>
 			<param name="biomfile" value="to_test_pynast.biom"/>
 			<output name="html">
-                <assert_contents>
-                    <has_text_matching expression="FROGS\sTree" />
-                    <has_text_matching expression="otu_removed.*:\s4" />
-                    <has_text_matching expression="abundance_removed.*:\s22025" />
-                    <has_text_matching expression="otu_kept.*:\s48" />
-                    <has_text_matching expression="abundance_kept.*:\s233756" />
-                    <has_text_matching expression="number_otu_all.*:\s52" />
-                    <has_text_matching expression="number_abundance_all.*:\s255781" />
-                </assert_contents>
+                		<assert_contents>
+                    		<has_text_matching expression="FROGS\sTree" />
+                    		<has_text_matching expression="otu_removed.*:\s4" />
+                    		<has_text_matching expression="abundance_removed.*:\s22025" />
+                    		<has_text_matching expression="otu_kept.*:\s48" />
+                    		<has_text_matching expression="abundance_kept.*:\s233756" />
+                    		<has_text_matching expression="number_otu_all.*:\s52" />
+                    		<has_text_matching expression="number_abundance_all.*:\s255781" />
+                		</assert_contents>
 			</output>
 		</test>
 	</tests>
