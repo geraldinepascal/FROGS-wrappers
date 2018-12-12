@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="1.4.0">
+<tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="3.1">
 	<description>Process some metrics on clusters.</description>
- 	<requirements>
-                <requirement type="package" version="2.0.1">frogs</requirement>
+        <requirements>
+                <requirement type="package" version="3.1.0">frogs</requirement>
         </requirements>
         <stdio>
                 <exit_code range="1:" />
@@ -37,8 +37,8 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="biom" value="references/04-affiliation.biom"/>
-			<output name="summary_file" value="references/05-clustersStat.html" compare="sim_size" delta="0"/>  
+			<param name="biom" value="references/06-affiliation.biom"/>
+			<output name="summary_file" value="references/08-clustersStat.html" compare="sim_size" delta="0"/>  
 		</test>
 	</tests>
 	<help>
@@ -117,12 +117,12 @@ This is a very usefull tool to see the evolution of your OTU. Do not hesitate to
 Contacts: frogs@inra.fr
 
 Repository: https://github.com/geraldinepascal/FROGS
+website: http://frogs.toulouse.inra.fr/
 
-Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L., Vidal K., Maman S., Mariadassou M., Hernadez-Raquet G., Pascal G., 2015. FROGS: Find Rapidly OTU with Galaxy Solution. In: The environmental genomic Conference, Montpellier, France,* http://bioinfo.genotoul.fr/fileadmin/user_upload/FROGS_2015_GE_Montpellier_poster.pdf
+Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
 
-Depending on the help provided you can cite us in acknowledgements, references or both.
 	</help>
 	<citations>
-		<citation type="doi">10.7287/peerj.preprints.386v1</citation>
+		<citation type="doi">10.1093/bioinformatics/btx791</citation>
 	</citations>
 </tool>

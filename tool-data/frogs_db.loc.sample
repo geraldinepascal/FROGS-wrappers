@@ -51,4 +51,4 @@
 #
 #db.fasta	db.fasta	db.fasta	${__HERE__}/test-data/db.fasta
 #db.fasta	db.fasta	db.fasta	/root/mydisk/FROGS-wrappers/test-data/db.fasta
-db.fasta	db.fasta	/root/mydisk/FROGS-wrappers/test-data/db.fasta
+#db.fasta	db.fasta	/root/mydisk/FROGS-wrappers/test-data/db.fasta

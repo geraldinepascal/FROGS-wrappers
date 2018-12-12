@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Alpha Diversity" id="FROGSSTAT_Phyloseq_Alpha_Diversity" version="1.0.0">
+<tool name="FROGSSTAT Phyloseq Alpha Diversity" id="FROGSSTAT_Phyloseq_Alpha_Diversity" version="3.1">
 	<description>with richness plot</description>
-	<requirements>
-		<requirement type="package" version="2.0.1">frogs</requirement>
-	</requirements>
+        <requirements>
+                <requirement type="package" version="3.1.0">frogs</requirement>
+        </requirements>
 	<stdio>
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
@@ -55,12 +55,12 @@
 		<data format="html" name="html" label="${tool.name}: alpha_diversity.html" from_work_dir="alpha_diversity.html"/>
 	</outputs>
         <tests>
-                <test>
-                        <param name="data" value="references/11-phylo_import.Rdata" />
-                        <param name="varExp" value="EnvType" />
-                        <param name="measures" value="Observed,Chao1,Shannon" />
-                        <output name="alphaD" file="references/13-phylo_alpha_div.tsv" compare="diff" lines_diff="0" />
-                </test>
+            <test>
+                <param name="data" value="references/14-phylo_import.Rdata" />
+                <param name="varExp" value="EnvType" />
+                <param name="measures" value="Observed,Chao1,Shannon" />
+                <output name="alphaD" file="references/16-phylo_alpha_div.tsv" compare="diff" lines_diff="0" />
+            </test>
         </tests>
 <help>
 		
@@ -116,13 +116,12 @@ The data file containing table of alpha diversity indices.
 Contacts: frogs@inra.fr
 
 Repository: https://github.com/geraldinepascal/FROGS
+website: http://frogs.toulouse.inra.fr/
 
-Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L., Vidal K., Maman S., Mariadassou M., Combes S., Hernandez-Raquet G., Pascal G., 2016. FROGS: Find Rapidly OTU with Galaxy Solution. In: ISME-2016 Montreal, CANADA ,* http://bioinfo.genotoul.fr/wp-content/uploads/FROGS_ISME2016_poster.pdf
+Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
 
-Depending on the help provided you can cite us in acknowledgements, references or both.
-	
 	</help>
 	<citations>
-		<citation type="doi">10.7287/peerj.preprints.386v1</citation>
+		<citation type="doi">10.1093/bioinformatics/btx791</citation>
 	</citations>
 </tool>
