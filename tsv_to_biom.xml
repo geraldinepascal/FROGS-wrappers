@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_tsv_to_biom" name="FROGS TSV_to_BIOM" version="2.0.0">
+<tool id="FROGS_tsv_to_biom" name="FROGS TSV_to_BIOM" version="3.1">
 	<description>Converts a TSV file in a BIOM file.</description>
         <requirements>
-                <requirement type="package" version="2.0.1">frogs</requirement>
+                <requirement type="package" version="3.1.0">frogs</requirement>
         </requirements>
         <stdio> 
                 <exit_code range="1:" />
@@ -50,11 +50,11 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="tsv_file" value="references/07-biom2tsv.tsv" />
-			<param name="multi_affi_file" value="references/07-biom2tsv.multi" />
+			<param name="tsv_file" value="references/10-biom2tsv.tsv" />
+			<param name="multi_affi_file" value="references/10-biom2tsv-affiliation_multihit.tsv" />
 			<param name="extract_fasta" value="true"/>
-			<output name="biom_file" file="references/09-tsv2biom.biom" compare="sim_size" delta="0"/>
-			<output name="sequence_file" file="references/09-tsv2biom.fasta" />
+			<output name="biom_file" file="references/12-tsv2biom.biom" compare="sim_size" delta="0"/>
+			<output name="sequence_file" file="references/12-tsv2biom.fasta" />
 		</test>
 	</tests>
 	<help>
@@ -130,16 +130,13 @@ If you modify your abundance TSV file
 Contacts: frogs@inra.fr
 
 Repository: https://github.com/geraldinepascal/FROGS
+website: http://frogs.toulouse.inra.fr/
 
-Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L., Vidal K., Maman S., Mariadassou M., Combes S., Hernandez-Raquet G., Pascal G., 2016. FROGS: Find Rapidly OTU with Galaxy Solution. In: ISME-2016 Montreal, CANADA ,* http://bioinfo.genotoul.fr/wp-content/uploads/FROGS_ISME2016_poster.pdf
+Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
 
-Depending on the help provided you can cite us in acknowledgements, references or both.
 	</help>
-        <citations>
-                <citation type="doi">10.1093/bioinformatics/btx791</citation>
-                <citation type="doi">10.1128/AEM.01043-13</citation>
-                <citation type="doi">10.14806/ej.17.1.200</citation>
-                <citation type="doi">10.1093/bioinformatics/btr507</citation>
-        </citations>
+	<citations>
+		<citation type="doi">10.1093/bioinformatics/btx791</citation>
+	</citations>
 
 </tool>

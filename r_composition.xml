@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="1.0.0">
+<tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="3.1">
 	<description>with bar plot and composition plot</description>
         <requirements>
-                <requirement type="package" version="2.0.1">frogs</requirement>
+                <requirement type="package" version="3.1.0">frogs</requirement>
         </requirements>
         <stdio> 
                 <exit_code range="1:" />
@@ -60,13 +60,13 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="data" value="references/11-phylo_import.Rdata" />
+			<param name="data" value="references/14-phylo_import.Rdata" />
 			<param name="varExp" value="EnvType" />
 			<param name="taxaRank1" value="Kingdom" />
 			<param name="taxaSet1" value="Bacteria" />
 			<param name="taxaRank2" value="Phylum" />
 			<param name="numberOfTaxa" value="9" />
-			<!--output name="html" file="references/12-phylo_composition.html" compare="sim_size" delta="0" /-->
+			<!--output name="html" file="references/15-phylo_composition.html" compare="sim_size" delta="0" /-->
 			<output name="html">
 				<assert_contents>	
 				        <has_text_matching expression="html\sxmlns=.*" />
@@ -135,17 +135,13 @@ Composition plot: plot the most abundant sub taxonomic level among a selection o
 Contacts: frogs@inra.fr
 
 Repository: https://github.com/geraldinepascal/FROGS
+website: http://frogs.toulouse.inra.fr/
 
-Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L., Vidal K., Maman S., Mariadassou M., Combes S., Hernandez-Raquet G., Pascal G., 2016. FROGS: Find Rapidly OTU with Galaxy Solution. In: ISME-2016 Montreal, CANADA ,* http://bioinfo.genotoul.fr/wp-content/uploads/FROGS_ISME2016_poster.pdf
+Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
 
-Depending on the help provided you can cite us in acknowledgements, references or both.
-	
 	</help>
-        <citations>
-                <citation type="doi">10.1093/bioinformatics/btx791</citation>
-                <citation type="doi">10.1128/AEM.01043-13</citation>
-                <citation type="doi">10.14806/ej.17.1.200</citation>
-                <citation type="doi">10.1093/bioinformatics/btr507</citation>
-        </citations>
+	<citations>
+		<citation type="doi">10.1093/bioinformatics/btx791</citation>
+	</citations>
 
 </tool>

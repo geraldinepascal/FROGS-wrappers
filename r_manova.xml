@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" version="1.0.0">
+<tool name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" version="3.1">
         <description>perform Multivariate Analysis of Variance (MANOVA)</description>
-	<requirements>
-		<requirement type="package" version="2.0.1">frogs</requirement>
-	</requirements>
+        <requirements>
+                <requirement type="package" version="3.1.0">frogs</requirement>
+        </requirements>
 	<stdio>
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
@@ -48,16 +48,16 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="data" value="references/11-phylo_import.Rdata"/>
+			<param name="data" value="references/14-phylo_import.Rdata"/>
 			<param name="varExp" value="EnvType"/>
 			<param name="method" value="references/Unifrac.tsv"/>
-			<!--output name="html" file="references/17-phylo_structure.html" compare="sim_size" delta="0" /-->
-                        <output name="html">
-                                <assert_contents>
-                                        <has_text_matching expression="html\sxmlns=.*" />
-                                        <has_text_matching expression="Phyloseq\s+\d+\.\d+\.\d+" />
-                                </assert_contents>
-                        </output>
+			<!--output name="html" file="references/20-phylo_structure.html" compare="sim_size" delta="0" /-->
+            <output name="html">
+                <assert_contents>
+                    <has_text_matching expression="html\sxmlns=.*" />
+                    <has_text_matching expression="Phyloseq\s+\d+\.\d+\.\d+" />
+                </assert_contents>
+            </output>
 		</test>
 	</tests>
 	<help>
@@ -103,13 +103,13 @@ Output
 Contacts: frogs@inra.fr
 
 Repository: https://github.com/geraldinepascal/FROGS
+website: http://frogs.toulouse.inra.fr/
 
-Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L., Vidal K., Maman S., Mariadassou M., Combes S., Hernandez-Raquet G., Pascal G., 2016. FROGS: Find Rapidly OTU with Galaxy Solution. In: ISME-2016 Montreal, CANADA ,* http://bioinfo.genotoul.fr/wp-content/uploads/FROGS_ISME2016_poster.pdf
+Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
 
-Depending on the help provided you can cite us in acknowledgements, references or both.
-	
 	</help>
 	<citations>
-		<citation type="doi">10.7287/peerj.preprints.386v1</citation>
+		<citation type="doi">10.1093/bioinformatics/btx791</citation>
 	</citations>
+
 </tool>
