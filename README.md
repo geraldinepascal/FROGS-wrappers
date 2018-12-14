@@ -2,7 +2,7 @@
 
 
 
-[![Release](https://img.shields.io/badge/release-3.1.0-#8EADAC.svg)![Date](https://img.shields.io/badge/date-18%20December%202018-red.svg)](https://github.com/geraldinepascal/FROGS-wrappers/releases)
+[![Release](https://img.shields.io/badge/release-3.1.0-blue.svg)![Date](https://img.shields.io/badge/date-DD%20Month%20YYYY-red.svg)](https://github.com/geraldinepascal/FROGS-wrappers/releases)
 
 
 
