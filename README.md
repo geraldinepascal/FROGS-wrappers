@@ -75,6 +75,7 @@ FROGS python programs need to be available in your path, if installing from sour
            <tool file="FROGS/r_manova.xml" />
        </section>     
    ```
+   If you used previous version of FROGS, you must removed `app` direcotry path. 
 
 3. <u>Add images</u>
 
