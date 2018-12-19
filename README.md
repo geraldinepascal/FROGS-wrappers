@@ -1,4 +1,4 @@
-<img src="static/images/FROGS_logo.png" width="20%" style="display: block; margin: auto;"/>
+​					<img src="static/images/FROGS_logo.png" width="20%" style="display: block; margin: auto;"/>					<img src="galaxy_project_logo_square.png" width="20%" style="display: block; margin: auto;"/> 
 
 
 
@@ -12,9 +12,11 @@ FROGS is a workflow designed to produce an OTU count matrix from high depth sequ
 
 FROGS-wrapper allow to add FROGS on a Galaxy instance.
 
+# Table of content
 
-​    
-# Installing FROGS-wrapper
+[TOC]
+
+# Installing FROGS-wrappers
 
 ## Simplest way
 
@@ -146,6 +148,33 @@ FROGS python programs need to be available in your path, if installing from sour
 	<tool id="FROGS_affiliation_OTU" destination="FROGS_affiliation_OTU_job"/>
 </tools>
 ```
+
+## Use PEAR as reads merge software in preprocess
+[PEAR](https://cme.h-its.org/exelixis/web/software/pear/) is one of the most effective software for read pair merging, but as its licence is not free for private use, we can not distribute it in FROGS.
+If you work in an academic lab on a private Galaxy server, or if you have payed your licence you can use PEAR in FROGS preprocess.
+For that you need to:
+
+* have PEAR in your PATH or in the FROGS libexec directory
+
+* add PEAR in the FROGS preprocess Galaxy wrapper (<FROGS_DIR>/tools/preprocess/preprocess.xml): 
+
+  :warning: there is two places where the list merge_software is defined, add pear in both of them!
+
+  add pear value in the list of `merge_software`
+```
+    <conditional name="merge_software_type">
+        <param name="merge_software" type="select" label="Merge software" help="Select the software to merge paired-end reads.">
+            <option value="vsearch" selected="true">Vsearch</option>
+            <option value="flash">Flash</option>
+            <option value="pear">PEAR</option>
+        </param>
+        <when value="flash">
+            <param name="expected_amplicon_size" type="integer" label="Expected amplicon size" help="Maximum amplicon length expected in approximately 90% of the amplicons." value="" />
+        </when>
+    </conditional>
+```
+
+:warning: remember, there is two places where the list merge_software is defined, add pear in both of them!
 
 # Upload and configure the databanks
 
