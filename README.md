@@ -14,7 +14,17 @@ FROGS-wrapper allow to add FROGS on a Galaxy instance.
 
 # Table of content
 
-[TOC]
+* [Installing FROGS\-wrappers](#installing-frogs-wrappers)
+  * [Simplest way](#simplest-way)
+  * [From source](#from-source)
+      * [Prerequisites](#prerequisites)
+      * [FROGS\-wrapper installation](#frogs-wrapper-installation)
+  * [Use PEAR as reads merge software in preprocess](#use-pear-as-reads-merge-software-in-preprocess)
+* [Upload and configure the databanks](#upload-and-configure-the-databanks)
+* [License](#license)
+* [Copyright](#copyright)
+* [Citation](#citation)
+* [Contact](#contact)
 
 # Installing FROGS-wrappers
 
