@@ -59,9 +59,9 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="biomfile" value="chaillou.biom"/>
-			<param name="samplefile" value="sample_metadata.tsv"/>
-			<param name="treefile" value="tree.nwk"/>
+			<param name="biomfile" value="input/chaillou.biom"/>
+			<param name="samplefile" value="input/sample_metadata.tsv"/>
+			<param name="treefile" value="input/tree.nwk"/>
 			<output name="data" value="references/14-phylo_import.Rdata" compare="sim_size" delta="10"/>
 		</test>
 	</tests>

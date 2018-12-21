@@ -25,14 +25,13 @@
     <exit_code range=":-1" />
   </stdio>
 	<command>
-		#set $reference_filename = str( $is_HVL.ref_file.fields.path )
 		affiliation_postprocess.py 
-		        #if $is_HVL.HVL_amplicon
+		#if $is_HVL.HVL_amplicon
+		   #set $reference_filename = str( $is_HVL.ref_file.fields.path )
                     --reference "${reference_filename}"
                 #end if
-				
-				--identity $identity
-				--coverage $coverage
+		--identity $identity
+		--coverage $coverage
                 --input-biom $biom_in
                 --input-fasta $fasta_in
                 --output-biom $biom_out

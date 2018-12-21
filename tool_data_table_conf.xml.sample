@@ -8,4 +8,8 @@
         <columns>value, name, path</columns>
         <file path="${__HERE__}/tool-data/HVL_db.loc" />
     </table>
+    <table name="phiX_db" comment_char="#">
+        <columns>value, name, path</columns>
+        <file path="${__HERE__}/tool-data/phiX_db.loc" />
+    </table>
 </tables>

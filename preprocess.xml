@@ -241,7 +241,7 @@
 			<param name="sequencer_selected" value="illumina"/>
 			<conditional name="input_type">
 				<param name="input_type_selected" value="archive"/>
-				<param name="archive_file" ftype="tar" value="test_dataset.tar.gz"/>
+				<param name="archive_file" ftype="tar" value="input/test_dataset.tar.gz"/>
 				<conditional name="archive_type">
 					<param name="archive_type_selected" value="paired"/>
 					<param name="R1_size" value="267"/>

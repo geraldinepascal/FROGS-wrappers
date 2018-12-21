@@ -2,10 +2,14 @@
     <!-- Location of frogs database files -->
     <table name="frogs_db" comment_char="#">
         <columns>value, name, path</columns>
-        <file path="${__HERE__}/test-data/frogs_db.loc" />
+        <file path="${__HERE__}/test-data/databases/frogs_db.loc" />
     </table>
     <table name="HVL_db" comment_char="#">
         <columns>value, name, path</columns>
-        <file path="${__HERE__}/test-data/HVL_db.loc" />
+        <file path="${__HERE__}/test-data/databases/HVL_db.loc" />
+    </table>
+    <table name="phiX_db" comment_char="#">
+        <columns>value, name, path</columns>
+        <file path="${__HERE__}/test-data/databases/phiX_db.loc" />
     </table>
 </tables>

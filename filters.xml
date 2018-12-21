@@ -26,6 +26,7 @@
         </stdio>
 
 	<command>
+
 		filters.py
 			--nb-cpus \${GALAXY_SLOTS:-1} 
 			--input-biom $input_biom  
@@ -35,7 +36,8 @@
 			--excluded $output_excluded
 			--summary $output_summary
 			#if $contaminations_filter.contaminations_filter_isApplied == "yes"
-				--contaminant $contaminations_filter.contaminants_db
+                		#set $contaminants_filename = str( $contaminations_filter.contaminants_db.fields.path )
+				--contaminant $contaminants_filename
 			#end if	      
 			
 			#if $abundance_filters.abundance_filters_areApplied == "yes"
@@ -129,10 +131,8 @@
 			<when value="no"></when>
 			<when value="yes">
 				<param name="contaminants_db" type="select" label="Contaminant databank" help="The phiX databank (the phiX is a control added in Illumina sequencing technologies).">
-		       		<options from_file="phiX_db.loc">
-		          		<column name="name" index="0"/>
-		          		<column name="value" index="1"/>
-		       		</options>
+					<options from_data_table="phiX_db"></options>
+                        		<validator type="no_options" message="A built-in database is not available" />
 		   		</param>
 			</when>
 		</conditional>
@@ -145,15 +145,30 @@
 	</outputs>
 	<tests>
 		<test>
-            <param name="input_fasta" value="references/03-chimera.fasta" />
-            <param name="input_biom" value="references/03-chimera.biom" />    
-			<conditional name="abundance_filters">
-	            <param name="abundance_filters_areApplied" value="yes" />
-				<param name="min_abundance" value="0.00005" />	
-				<param name="min_sample_presence" value="3" />
-			</conditional>
-			<output name="output_fasta" file="references/04-filters.fasta" />
-			<output name="output_excluded" file="references/04-filters.excluded" />
+	            <param name="input_fasta" value="references/03-chimera.fasta" />
+        	    <param name="input_biom" value="references/03-chimera.biom" />    
+		    <conditional name="abundance_filters">
+	            	<param name="abundance_filters_areApplied" value="yes" />
+			<param name="min_abundance" value="0.00005" />	
+			<param name="min_sample_presence" value="3" />
+		    </conditional>
+	 	    <output name="output_fasta" file="references/04-filters.fasta" />
+		    <output name="output_excluded" file="references/04-filters.excluded" />
+	        </test>
+		<test>
+	            <param name="input_fasta" value="references/03-chimera.fasta" />
+        	    <param name="input_biom" value="references/03-chimera.biom" />    
+		    <conditional name="abundance_filters">
+	            	<param name="abundance_filters_areApplied" value="yes" />
+			<param name="min_abundance" value="0.00005" />	
+			<param name="min_sample_presence" value="3" />
+		    </conditional>
+		    <conditional name="contaminations_filter">
+	            	<param name="contaminations_filter_isApplied" value="yes" />
+			<param name="contaminants_db" value="phiX_test" />	
+		    </conditional>
+	 	    <output name="output_fasta" file="references/04-filters.fasta" />
+		    <output name="output_excluded" file="references/04-filters-phiX.excluded" />
 	        </test>
 	</tests>
 	<help>
