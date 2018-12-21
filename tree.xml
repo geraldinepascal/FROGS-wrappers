@@ -72,7 +72,7 @@
 What it does
 
 Creation of a multiple alignment of OTUs with `Mafft &lt;http://mafft.cbrc.jp/alignment/software&gt;`_.
-And creation of a rooted phylogenetic tree with `FastTree &lt;http://www.microbesonline.org/fasttree/&gt;`_ and `Phangorn R package &lt;https://cran.r-project.org/web/packages/phangorn/index.htmlgt;`_.
+And creation of a rooted phylogenetic tree with `FastTree &lt;http://www.microbesonline.org/fasttree/&gt;`_ and `Phangorn R package &lt;https://cran.r-project.org/web/packages/phangorn/index.html&gt;`_.
 
 .. class:: infomark page-header h2
 
