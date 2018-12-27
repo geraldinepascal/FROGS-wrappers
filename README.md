@@ -16,9 +16,9 @@ FROGS-wrapper allow to add FROGS on a Galaxy instance.
 
 * [Installing FROGS\-wrappers](#installing-frogs-wrappers)
   * [Simplest way](#simplest-way)
-  * [From source](#from-source)
+  * [From sources](#from-sources)
       * [Prerequisites](#prerequisites)
-      * [FROGS\-wrapper installation](#frogs-wrapper-installation)
+      * [FROGS\-wrappers installation](#frogs-wrappers-installation)
   * [Use PEAR as reads merge software in preprocess](#use-pear-as-reads-merge-software-in-preprocess)
 * [Upload and configure the databanks](#upload-and-configure-the-databanks)
 * [License](#license)
@@ -39,8 +39,6 @@ It will install FROGS thanks to [conda](https://anaconda.org/bioconda/frogs), do
 #### Prerequisites
 
 You should start by installing [FROGS](https://github.com/geraldinepascal/FROGS) (remember, FROGS is now installable via [conda](https://anaconda.org/bioconda/frogs) )
-
-FROGS python programs need to be available in your path, if installing from source, you need to add `<FROGS_PATH>/app` directory in the Galaxy PATH environment variable. (see [environment-setup-file parameter](https://docs.galaxyproject.org/en/latest/admin/config.html#environment-setup-file) )
 
 #### FROGS-wrappers installation
 
@@ -191,9 +189,9 @@ For that, you need to:
 
 Databanks are defined in `loc` files and `loc` files are defined in Galaxy datatable. 
 
-First, add FROGS-wrappers datatables (`<Galaxy_DIR>/tools/FROGS/tool_data_table_conf.xml.sample` in the `<Galaxy_DIR>/config/tool_data_table_conf.xml`, but replace `{__HERE__}` by `tools/FROGS`. 
+First, add FROGS-wrappers datatables (`<Galaxy_Dir>/tools/FROGS/tool_data_table_conf.xml.sample` in the `<Galaxy_Dir>/config/tool_data_table_conf.xml`, but replace `{__HERE__}` by `tools/FROGS`. 
 
-We provide some databanks, you simply need to download them and add them in the corresponding `loc` files. 
+We provide some databanks for each of these 3 data tables, you simply need to download them and add them in the corresponding `loc` files. 
 First copy loc.sample files and rename them as indicated in the tool_data_table.
 Then add entry as indicated in each loc files.
 If FROGS-wrappers are installed from the Toolshed, loc files to be filled in are here : *???*
@@ -202,21 +200,55 @@ If FROGS-wrappers are installed from the Toolshed, loc files to be filled in are
 
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation
 
-  loc file example : `<Galaxy_DIR>/tools/FROGS/tool-data/frogs_db.loc.sample`
+  loc file example : `<Galaxy_Dir>/tools/FROGS/tool-data/frogs_db.loc.sample`
 
 - Contaminant databank for filter tool
 
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/contaminants
 
-  loc file example : `<Galaxy_DIR>/tools/FROGS/tool-data/phiX_db.loc.sample`
+  loc file example : `<Galaxy_Dir>/tools/FROGS/tool-data/phiX_db.loc.sample`
   
 - Hyper variable in length amplicon databank for affiliation_postprocess tool
 
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/HVL
 
-  loc file example : `<Galaxy_DIR>/tools/FROGS/tool-data/HVL.loc.sample`
+  loc file example : `<Galaxy_Dir>/tools/FROGS/tool-data/HVL.loc.sample`
   
-  
+# Galaxy configuration 
+
+FROGS python programs need to be available in your path, if installing from source, you need to add `<FROGS_PATH>/app` directory in the Galaxy PATH environment variable. (see [environment-setup-file parameter](https://docs.galaxyproject.org/en/latest/admin/config.html#environment-setup-file) )
+
+Galaxy runs in a specific virtual env. To allow FROGS clusters stat to access to the python scipy library, you need to (re)install it inside the Galaxy virtual env
+```
+cd <Galaxy_Dir>
+source .venv/bin/activate
+pip install scipy
+deactivate
+```
+
+By default Galaxy sanitize HTML outputs to prevent XSS attacks.
+FROGS outputs for almost all tools report in HTML format. To allow their visualization inside Galaxy, we need to avoid the Galaxy sanitization.
+You need to uncomment `sanitize_whitelist_file` line in `<Galaxy_Dir>/config/galaxy.ini`, create the corresponding `<Galaxy_Dir>/config/sanitize_whitelist.txt` file if not already done, and add the following lines.
+```
+FROGSSTAT_Phyloseq_Alpha_Diversity
+FROGSSTAT_Phyloseq_Beta_Diversity
+FROGSSTAT_Phyloseq_Composition_Visualisation
+FROGSSTAT_Phyloseq_Import_Data
+FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance
+FROGSSTAT_Phyloseq_Sample_Clustering
+FROGSSTAT_Phyloseq_Structure_Visualisation
+FROGS_Tree
+FROGS_affiliation_OTU
+FROGS_affiliations_stat
+FROGS_clustering
+FROGS_clusters_stat
+FROGS_filters
+FROGS_itsx
+FROGS_normalisation
+FROGS_preprocess
+FROGS_remove_chimera
+```
+
 # License
     GNU GPL v3
 
