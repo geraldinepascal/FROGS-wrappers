@@ -216,7 +216,7 @@ If FROGS-wrappers are installed from the Toolshed, loc files to be filled in are
   
 # Galaxy configuration 
 
-FROGS python programs need to be available in your path, if installing from source, you need to add `<FROGS_PATH>/app` directory in the Galaxy PATH environment variable. (see [environment-setup-file parameter](https://docs.galaxyproject.org/en/latest/admin/config.html#environment-setup-file) )
+FROGS python programs need to be available in the PATH, if installing from source or via conda, you need to add `<FROGS_PATH>/app` directory in the Galaxy PATH environment variable. (see [environment-setup-file parameter](https://docs.galaxyproject.org/en/latest/admin/config.html#environment-setup-file) )
 
 Galaxy runs in a specific virtual env. To allow FROGS clusters stat to access to the python scipy library, you need to (re)install it inside the Galaxy virtual env
 ```
@@ -226,9 +226,9 @@ pip install scipy
 deactivate
 ```
 
-By default Galaxy sanitize HTML outputs to prevent XSS attacks.
-FROGS outputs for almost all tools report in HTML format. To allow their visualization inside Galaxy, we need to avoid the Galaxy sanitization.
-You need to uncomment `sanitize_whitelist_file` line in `<Galaxy_Dir>/config/galaxy.ini`, create the corresponding `<Galaxy_Dir>/config/sanitize_whitelist.txt` file if not already done, and add the following lines.
+By default Galaxy sanitizes HTML outputs to prevent XSS attacks.
+FROGS outputs, for almost all tools, report in HTML format. To allow their visualization inside Galaxy, we need to avoid the Galaxy sanitization.
+You need to uncomment `sanitize_whitelist_file` line in `<Galaxy_Dir>/config/galaxy.ini`, create the corresponding `<Galaxy_Dir>/config/sanitize_whitelist.txt` file if not already done, and add the following lines in it.
 ```
 FROGSSTAT_Phyloseq_Alpha_Diversity
 FROGSSTAT_Phyloseq_Beta_Diversity
