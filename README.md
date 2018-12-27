@@ -21,11 +21,11 @@ FROGS-wrapper allow to add FROGS on a Galaxy instance.
       * [FROGS\-wrappers installation](#frogs-wrappers-installation)
 * [Use PEAR as reads merge software in preprocess](#use-pear-as-reads-merge-software-in-preprocess)
 * [Upload and configure the databanks](#upload-and-configure-the-databanks)
-* [Galaxy configuration](#galaxy_configuration)
-  * [Setup Galaxy environment variables](#setup_galaxy_environment_variables)
-  * [Install python packages inside virtual env](#install_python_packages_inside_virtual_env)
-  * [Avoid FROGS HTML report sanitization](#avoid_FROGS_HTML_report_sanitization)
-  * [Set memory and parallelisation settings](#set_memory_and_parallelisation_settings)
+* [Galaxy configuration](#galaxy-configuration)
+  * [Setup Galaxy environment variables](#setup-galaxy-environment-variables)
+  * [Install python packages inside virtual env](#install-python-packages-inside-virtual-env)
+  * [Avoid FROGS HTML report sanitization](#avoid-FROGS-HTML-report-sanitization)
+  * [Set memory and parallelisation settings](#set-memory-and-parallelisation-settings)
 * [License](#license)
 * [Copyright](#copyright)
 * [Citation](#citation)
@@ -153,7 +153,8 @@ If FROGS-wrappers are installed from the Toolshed, loc files to be filled in are
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/HVL
 
   loc file example : `<Galaxy_Dir>/tools/FROGS/tool-data/HVL.loc.sample`
-  
+
+
 # Galaxy configuration
 
 ## setup Galaxy environment variables
