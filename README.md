@@ -19,8 +19,13 @@ FROGS-wrapper allow to add FROGS on a Galaxy instance.
   * [From sources](#from-sources)
       * [Prerequisites](#prerequisites)
       * [FROGS\-wrappers installation](#frogs-wrappers-installation)
-  * [Use PEAR as reads merge software in preprocess](#use-pear-as-reads-merge-software-in-preprocess)
+* [Use PEAR as reads merge software in preprocess](#use-pear-as-reads-merge-software-in-preprocess)
 * [Upload and configure the databanks](#upload-and-configure-the-databanks)
+* [Galaxy configuration](#galaxy_configuration)
+  * [Setup Galaxy environment variables](#setup_galaxy_environment_variables)
+  * [Install python packages inside virtual env](#install_python_packages_inside_virtual_env)
+  * [Avoid FROGS HTML report sanitization](#avoid_FROGS_HTML_report_sanitization)
+  * [Set memory and parallelisation settings](#set_memory_and_parallelisation_settings)
 * [License](#license)
 * [Copyright](#copyright)
 * [Citation](#citation)
@@ -92,11 +97,109 @@ You should start by installing [FROGS](https://github.com/geraldinepascal/FROGS)
    
    `cp -r <Galaxy_Dir>/tools/FROGS/static/frogs_images/ <Galaxy_Dir>/static/images/.`
 
-4. <u>Set memory and parallelisation settings</u>
 
-   If you have more than one CPU, it is recommended to increase the number of CPUs used by tools.
+# Use PEAR as reads merge software in preprocess
+[PEAR](https://cme.h-its.org/exelixis/web/software/pear/) is one of the most effective software for read pair merging, but as its licence is not free for private use, we can not distribute it in FROGS.
+If you work in an academic lab on a private Galaxy server, or if you have payed your licence you can use PEAR in FROGS preprocess.
+For that, you need to:
 
-   All CPUs must be on the same computer/node.
+* have PEAR in your PATH or in the FROGS libexec directory
+
+* add PEAR in the FROGS preprocess Galaxy wrapper (<FROGS_DIR>/tools/preprocess/preprocess.xml): 
+
+  :warning: there is two places where the list merge_software is defined, add pear in both of them!
+
+  add pear value in the list of `merge_software`
+```
+    <conditional name="merge_software_type">
+        <param name="merge_software" type="select" label="Merge software" help="Select the software to merge paired-end reads.">
+            <option value="vsearch" selected="true">Vsearch</option>
+            <option value="flash">Flash</option>
+            <option value="pear">PEAR</option>
+        </param>
+        <when value="flash">
+            <param name="expected_amplicon_size" type="integer" label="Expected amplicon size" help="Maximum amplicon length expected in approximately 90% of the amplicons." value="" />
+        </when>
+    </conditional>
+```
+
+:warning: remember, there is two places where the list merge_software is defined, add pear in both of them!
+
+# Upload and configure the databanks
+
+Databanks are defined in `loc` files and `loc` files are defined in Galaxy datatable. 
+
+First, add FROGS-wrappers datatables (`<Galaxy_Dir>/tools/FROGS/tool_data_table_conf.xml.sample` in the `<Galaxy_Dir>/config/tool_data_table_conf.xml`, but replace `{__HERE__}` by `tools/FROGS`. 
+
+We provide some databanks for each of these 3 data tables, you simply need to download them and add them in the corresponding `loc` files. 
+First copy loc.sample files and rename them as indicated in the tool_data_table.
+Then add entry as indicated in each loc files.
+If FROGS-wrappers are installed from the Toolshed, loc files to be filled in are here : *???*
+
+- Assignation databank for affiliation_OTU tool
+
+  URL : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation
+
+  loc file example : `<Galaxy_Dir>/tools/FROGS/tool-data/frogs_db.loc.sample`
+
+- Contaminant databank for filter tool
+
+  URL : http://genoweb.toulouse.inra.fr/frogs_databanks/contaminants
+
+  loc file example : `<Galaxy_Dir>/tools/FROGS/tool-data/phiX_db.loc.sample`
+  
+- Hyper variable in length amplicon databank for affiliation_postprocess tool
+
+  URL : http://genoweb.toulouse.inra.fr/frogs_databanks/HVL
+
+  loc file example : `<Galaxy_Dir>/tools/FROGS/tool-data/HVL.loc.sample`
+  
+# Galaxy configuration
+
+## setup Galaxy environment variables
+
+FROGS python programs need to be available in the PATH, if installing from source or via conda, you need to add `<FROGS_PATH>/app` directory in the Galaxy PATH environment variable. (see [environment-setup-file parameter](https://docs.galaxyproject.org/en/latest/admin/config.html#environment-setup-file) )
+
+## Install python packages inside virtual env
+
+Galaxy runs in a specific virtual env. To allow FROGS clusters stat to access to the python scipy library, you need to (re)install it inside the Galaxy virtual env
+```
+cd <Galaxy_Dir>
+source .venv/bin/activate
+pip install scipy
+deactivate
+```
+
+## Avoid FROGS HTML report sanitization
+
+By default Galaxy sanitizes HTML outputs to prevent XSS attacks.
+FROGS outputs, for almost all tools, report in HTML format. To allow their visualization inside Galaxy, we need to avoid the Galaxy sanitization.
+You need to uncomment `sanitize_whitelist_file` line in `<Galaxy_Dir>/config/galaxy.ini`, create the corresponding `<Galaxy_Dir>/config/sanitize_whitelist.txt` file if not already done, and add the following lines in it.
+```
+FROGSSTAT_Phyloseq_Alpha_Diversity
+FROGSSTAT_Phyloseq_Beta_Diversity
+FROGSSTAT_Phyloseq_Composition_Visualisation
+FROGSSTAT_Phyloseq_Import_Data
+FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance
+FROGSSTAT_Phyloseq_Sample_Clustering
+FROGSSTAT_Phyloseq_Structure_Visualisation
+FROGS_Tree
+FROGS_affiliation_OTU
+FROGS_affiliations_stat
+FROGS_clustering
+FROGS_clusters_stat
+FROGS_filters
+FROGS_itsx
+FROGS_normalisation
+FROGS_preprocess
+FROGS_remove_chimera
+```
+
+## Set memory and parallelisation settings
+
+If you have more than one CPU, it is recommended to increase the number of CPUs used by tools.
+
+All CPUs must be on the same computer/node.
 
 
    * Specifications
@@ -156,97 +259,6 @@ You should start by installing [FROGS](https://github.com/geraldinepascal/FROGS)
 	<tool id="FROGS_itsx" destination="FROGS_itsx_job"/> 
 	<tool id="FROGS_affiliation_OTU" destination="FROGS_affiliation_OTU_job"/>
 </tools>
-```
-
-## Use PEAR as reads merge software in preprocess
-[PEAR](https://cme.h-its.org/exelixis/web/software/pear/) is one of the most effective software for read pair merging, but as its licence is not free for private use, we can not distribute it in FROGS.
-If you work in an academic lab on a private Galaxy server, or if you have payed your licence you can use PEAR in FROGS preprocess.
-For that, you need to:
-
-* have PEAR in your PATH or in the FROGS libexec directory
-
-* add PEAR in the FROGS preprocess Galaxy wrapper (<FROGS_DIR>/tools/preprocess/preprocess.xml): 
-
-  :warning: there is two places where the list merge_software is defined, add pear in both of them!
-
-  add pear value in the list of `merge_software`
-```
-    <conditional name="merge_software_type">
-        <param name="merge_software" type="select" label="Merge software" help="Select the software to merge paired-end reads.">
-            <option value="vsearch" selected="true">Vsearch</option>
-            <option value="flash">Flash</option>
-            <option value="pear">PEAR</option>
-        </param>
-        <when value="flash">
-            <param name="expected_amplicon_size" type="integer" label="Expected amplicon size" help="Maximum amplicon length expected in approximately 90% of the amplicons." value="" />
-        </when>
-    </conditional>
-```
-
-:warning: remember, there is two places where the list merge_software is defined, add pear in both of them!
-
-# Upload and configure the databanks
-
-Databanks are defined in `loc` files and `loc` files are defined in Galaxy datatable. 
-
-First, add FROGS-wrappers datatables (`<Galaxy_Dir>/tools/FROGS/tool_data_table_conf.xml.sample` in the `<Galaxy_Dir>/config/tool_data_table_conf.xml`, but replace `{__HERE__}` by `tools/FROGS`. 
-
-We provide some databanks for each of these 3 data tables, you simply need to download them and add them in the corresponding `loc` files. 
-First copy loc.sample files and rename them as indicated in the tool_data_table.
-Then add entry as indicated in each loc files.
-If FROGS-wrappers are installed from the Toolshed, loc files to be filled in are here : *???*
-
-- Assignation databank for affiliation_OTU tool
-
-  URL : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation
-
-  loc file example : `<Galaxy_Dir>/tools/FROGS/tool-data/frogs_db.loc.sample`
-
-- Contaminant databank for filter tool
-
-  URL : http://genoweb.toulouse.inra.fr/frogs_databanks/contaminants
-
-  loc file example : `<Galaxy_Dir>/tools/FROGS/tool-data/phiX_db.loc.sample`
-  
-- Hyper variable in length amplicon databank for affiliation_postprocess tool
-
-  URL : http://genoweb.toulouse.inra.fr/frogs_databanks/HVL
-
-  loc file example : `<Galaxy_Dir>/tools/FROGS/tool-data/HVL.loc.sample`
-  
-# Galaxy configuration 
-
-FROGS python programs need to be available in the PATH, if installing from source or via conda, you need to add `<FROGS_PATH>/app` directory in the Galaxy PATH environment variable. (see [environment-setup-file parameter](https://docs.galaxyproject.org/en/latest/admin/config.html#environment-setup-file) )
-
-Galaxy runs in a specific virtual env. To allow FROGS clusters stat to access to the python scipy library, you need to (re)install it inside the Galaxy virtual env
-```
-cd <Galaxy_Dir>
-source .venv/bin/activate
-pip install scipy
-deactivate
-```
-
-By default Galaxy sanitizes HTML outputs to prevent XSS attacks.
-FROGS outputs, for almost all tools, report in HTML format. To allow their visualization inside Galaxy, we need to avoid the Galaxy sanitization.
-You need to uncomment `sanitize_whitelist_file` line in `<Galaxy_Dir>/config/galaxy.ini`, create the corresponding `<Galaxy_Dir>/config/sanitize_whitelist.txt` file if not already done, and add the following lines in it.
-```
-FROGSSTAT_Phyloseq_Alpha_Diversity
-FROGSSTAT_Phyloseq_Beta_Diversity
-FROGSSTAT_Phyloseq_Composition_Visualisation
-FROGSSTAT_Phyloseq_Import_Data
-FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance
-FROGSSTAT_Phyloseq_Sample_Clustering
-FROGSSTAT_Phyloseq_Structure_Visualisation
-FROGS_Tree
-FROGS_affiliation_OTU
-FROGS_affiliations_stat
-FROGS_clustering
-FROGS_clusters_stat
-FROGS_filters
-FROGS_itsx
-FROGS_normalisation
-FROGS_preprocess
-FROGS_remove_chimera
 ```
 
 # License
