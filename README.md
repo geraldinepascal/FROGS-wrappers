@@ -30,11 +30,11 @@ FROGS-wrapper allow to add FROGS on a Galaxy instance.
 
 ## Simplest way
 
-FROGS is available in the Toolshed : [release 2.0.0](https://toolshed.g2.bx.psu.edu/repository?repository_id=525e78406276b403&changeset_revision=76c750c5f0d1)
+FROGS is available on the Toolshed : https://toolshed.g2.bx.psu.edu/repository?repository_id=525e78406276b403&changeset_revision=76c750c5f0d1
 
 It will install FROGS thanks to [conda](https://anaconda.org/bioconda/frogs), download all these XML tools and well configure them in your Galaxy.
 
-## From source
+## From sources
 
 #### Prerequisites
 
@@ -42,18 +42,17 @@ You should start by installing [FROGS](https://github.com/geraldinepascal/FROGS)
 
 FROGS python programs need to be available in your path, if installing from source, you need to add `<FROGS_PATH>/app` directory in the Galaxy PATH environment variable. (see [environment-setup-file parameter](https://docs.galaxyproject.org/en/latest/admin/config.html#environment-setup-file) )
 
-#### FROGS-wrapper installation
+#### FROGS-wrappers installation
 
 1.    <u>Download wrapper</u>
 
-   Download the last released versions of FROGS-wrapper
-   ​        Available at https://github.com/geraldinepascal/FROGS-wrappers/releases
+   Download the last released versions of FROGS-wrappers: https://github.com/geraldinepascal/FROGS-wrappers/releases
 
    Uncompress and unarchive the release in your ` <Galaxy_Dir>/tools` directory
 
    (replace the) link to the new directory like this
 
-   ` ln -s <Galaxy_Dir>/tools/FROGS-wrapper-<Release_Number>  <Galaxy_Dir>/tools/FROGS`
+   ` ln -s <Galaxy_Dir>/tools/FROGS-wrappers-<Release_Number>  <Galaxy_Dir>/tools/FROGS`
 
 2.   <u>Add tools in galaxy</u>
 
@@ -87,11 +86,13 @@ FROGS python programs need to be available in your path, if installing from sour
            <tool file="FROGS/r_manova.xml" />
        </section>     
    ```
-   If you used previous version of FROGS, you must removed `app` direcotry path. 
+   NB: If you used previous version of FROGS, you must removed `app` direcotry name in the paths names. 
 
 3. <u>Add images</u>
 
-   **Deal with images ??**
+   Add the FROGS-wrappers images in `<Galaxy_Dir>/static/images` directory
+   
+   `cp -r <Galaxy_Dir>/tools/FROGS/static/frogs_images/ <Galaxy_Dir>/static/images/.`
 
 4. <u>Set memory and parallelisation settings</u>
 
@@ -162,7 +163,7 @@ FROGS python programs need to be available in your path, if installing from sour
 ## Use PEAR as reads merge software in preprocess
 [PEAR](https://cme.h-its.org/exelixis/web/software/pear/) is one of the most effective software for read pair merging, but as its licence is not free for private use, we can not distribute it in FROGS.
 If you work in an academic lab on a private Galaxy server, or if you have payed your licence you can use PEAR in FROGS preprocess.
-For that you need to:
+For that, you need to:
 
 * have PEAR in your PATH or in the FROGS libexec directory
 
@@ -188,32 +189,34 @@ For that you need to:
 
 # Upload and configure the databanks
 
-3 tools use external databanks. Theses databanks are defined in `loc` files and `loc` files are defined in Galaxy datatable. 
+Databanks are defined in `loc` files and `loc` files are defined in Galaxy datatable. 
 
-**Deal with data-table???**  
+First, add FROGS-wrappers datatables (`<Galaxy_DIR>/tools/FROGS/tool_data_table_conf.xml.sample` in the `<Galaxy_DIR>/config/tool_data_table_conf.xml`, but replace `{__HERE__}` by `tools/FROGS`. 
 
-We provide some databanks for each of them, you simply need to download them and add them in the corresponding `loc` files.
+We provide some databanks, you simply need to download them and add them in the corresponding `loc` files. 
+First copy loc.sample files and rename them as indicated in the tool_data_table.
+Then add entry as indicated in each loc files.
+If FROGS-wrappers are installed from the Toolshed, loc files to be filled in are here : *???*
 
 - Assignation databank for affiliation_OTU tool
 
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation
 
-  `loc` file example : `<FROGS-wrapper_Dir>/tool-data/frogs_db.loc.sample`
+  loc file example : `<Galaxy_DIR>/tools/FROGS/tool-data/frogs_db.loc.sample`
 
 - Contaminant databank for filter tool
 
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/contaminants
 
-  `loc` file example : `<FROGS-wrapper_Dir>/tool-data/phiX_db.loc.sample`
-
+  loc file example : `<Galaxy_DIR>/tools/FROGS/tool-data/phiX_db.loc.sample`
+  
 - Hyper variable in length amplicon databank for affiliation_postprocess tool
 
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/HVL
 
-  `loc` file example : `<FROGS-wrapper_Dir>/tool-data/HVL.loc.sample`
-
-
-
+  loc file example : `<Galaxy_DIR>/tools/FROGS/tool-data/HVL.loc.sample`
+  
+  
 # License
     GNU GPL v3
 
