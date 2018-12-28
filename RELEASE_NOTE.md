@@ -10,7 +10,7 @@ This release corresponds to the FROGS 3.1.0 release.
 
 * ### Modifications:
 
-  - use tool data table intead of simply loc files for filter, affiliation_OTU and affiliation_postprocess
+  - use tool data table instead of simple loc files for filters, affiliation_OTU and affiliation_postprocess
   - tree do no longer support Pynast alignment thanks to a template file
 
 # v2.0.0  [2018-12-11]
