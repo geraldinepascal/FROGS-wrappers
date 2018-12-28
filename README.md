@@ -2,7 +2,7 @@
 
 
 
-[![Release](https://img.shields.io/badge/release-3.1.0-blue.svg)![Date](https://img.shields.io/badge/date-DD%20Month%20YYYY-red.svg)](https://github.com/geraldinepascal/FROGS-wrappers/releases)
+[![Release](https://img.shields.io/badge/release-3.1.0-blue.svg)![Date](https://img.shields.io/badge/date-January%202018-red.svg)](https://github.com/geraldinepascal/FROGS-wrappers/releases)
 
 
 
@@ -39,6 +39,45 @@ FROGS is available on the Toolshed : https://toolshed.g2.bx.psu.edu/repository?r
 
 It will install FROGS thanks to [conda](https://anaconda.org/bioconda/frogs), download all these XML tools and well configure them in your Galaxy.
 
+The 22 FROGS tools will be in random order in your tools panel. We propose to control that order by modifying the `integrated_tool_panel.xml `. 
+
+We suppose that you installed FROGS in a spécific section named `FROGS` (update the FROGS version if necessary).
+
+```
+<section id="FROGS" name="FROGS" version="">
+
+    <label text="OTUs reconstruction" id="FROGS_OTU" />
+
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_demultiplex/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_preprocess/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_clustering/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_remove_chimera/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_filters/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_itsx/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_affiliation_OTU/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_affiliation_postprocess/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_normalisation/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_Tree/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_clusters_stat/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_affiliations_stat/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_biom_to_stdBiom/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_biom_to_tsv/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGS_tsv_to_biom/3.1" />
+
+    <label text="OTUs structure and composition analysis" id="FROGSSTAT_Phyloseq" />
+    
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGSSTAT_Phyloseq_Import_Data/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGSSTAT_Phyloseq_Composition_Visualisation/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGSSTAT_Phyloseq_Alpha_Diversity/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGSSTAT_Phyloseq_Beta_Diversity/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGSSTAT_Phyloseq_Sample_Clustering/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGSSTAT_Phyloseq_Structure_Visualisation/3.1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs_3_1_0/FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance/3.1" />
+</section>
+```
+
+
+
 ## From sources
 
 #### Prerequisites
@@ -73,12 +112,12 @@ You should start by installing [FROGS](https://github.com/geraldinepascal/FROGS)
            <tool file="FROGS/affiliation_OTU.xml" />
            <tool file="FROGS/affiliation_postprocess.xml" />
            <tool file="FROGS/normalisation.xml" />
+           <tool file="FROGS/tree.xml" />
            <tool file="FROGS/clusters_stat.xml" />
            <tool file="FROGS/affiliations_stat.xml" />
            <tool file="FROGS/biom_to_stdBiom.xml" />
            <tool file="FROGS/biom_to_tsv.xml" />
            <tool file="FROGS/tsv_to_biom.xml" />
-           <tool file="FROGS/tree.xml" />
        <label text="OTUs structure and composition analysis" id="FROGSSTAT_Phyloseq" />
            <tool file="FROGS/r_import_data.xml" />
            <tool file="FROGS/r_composition.xml" />
@@ -129,30 +168,44 @@ For that, you need to:
 
 Databanks are defined in `loc` files and `loc` files are defined in Galaxy datatable. 
 
-First, add FROGS-wrappers datatables (`<Galaxy_Dir>/tools/FROGS/tool_data_table_conf.xml.sample` in the `<Galaxy_Dir>/config/tool_data_table_conf.xml`, but replace `{__HERE__}` by `tools/FROGS`. 
+* Manual installation :
+
+  * datatables : `<Galaxy_Dir>/config/tool_data_table_conf.xml` , example : `<Galaxy_Dir>/tools/FROGS/tool_data_table_conf.xml.sample`
+
+    Add FROGS-wrappers datatables in the Galaxy datatables, but replace `{__HERE__}` by `tools/FROGS`. 
+
+  * loc files example : `<Galaxy_Dir>/tools/FROGS/tool-data/`
+
+    Copy and rename them as indicated in the tool_data_table.
+
+    Then add entry as indicated in each loc files.
+
+* Toolshed installation : 
+
+  * datatables : `<Galaxy_Dir>/config/shed_tool_data_table_conf.xml` (nothing to modify, FROGS datatables should automatically be added)
+  * loc files to filled in : `tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs_<VERSION>/<RANDOM>/`
+
+
 
 We provide some databanks for each of these 3 data tables, you simply need to download them and add them in the corresponding `loc` files. 
-First copy loc.sample files and rename them as indicated in the tool_data_table.
-Then add entry as indicated in each loc files.
-If FROGS-wrappers are installed from the Toolshed, loc files to be filled in are here : *???*
 
 - Assignation databank for affiliation_OTU tool
 
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation
 
-  loc file example : `<Galaxy_Dir>/tools/FROGS/tool-data/frogs_db.loc.sample`
+  loc file :`frogs_db.loc`
 
 - Contaminant databank for filter tool
 
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/contaminants
 
-  loc file example : `<Galaxy_Dir>/tools/FROGS/tool-data/phiX_db.loc.sample`
-  
+  loc file : `phiX_db.loc`
+
 - Hyper variable in length amplicon databank for affiliation_postprocess tool
 
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/HVL
 
-  loc file example : `<Galaxy_Dir>/tools/FROGS/tool-data/HVL.loc.sample`
+  loc file : `HVL.loc`
 
 
 # Galaxy configuration
