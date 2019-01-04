@@ -1,4 +1,4 @@
-​					<img src="static/frogs_images/FROGS_logo.png" width="20%" style="display: block; margin: auto;"/>					<img src="galaxy_project_logo_square.png" width="20%" style="display: block; margin: auto;"/> 
+​					<img src="static/images/frogs_images/FROGS_logo.png" width="20%" style="display: block; margin: auto;"/>					<img src="galaxy_project_logo_square.png" width="20%" style="display: block; margin: auto;"/> 
 
 
 
@@ -134,7 +134,7 @@ You should start by installing [FROGS](https://github.com/geraldinepascal/FROGS)
 
    Add the FROGS-wrappers images in `<Galaxy_Dir>/static/images` directory
    
-   `cp -r <Galaxy_Dir>/tools/FROGS/static/frogs_images/ <Galaxy_Dir>/static/images/.`
+   `cp -r <Galaxy_Dir>/tools/FROGS/static/images/frogs_images/ <Galaxy_Dir>/static/images/.`
 
 
 # Use PEAR as reads merge software in preprocess
