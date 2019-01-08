@@ -12,6 +12,8 @@ long_description: |
   Patrick Durand (pgdurand[a]ifremer.fr)
   Maria Bernard (maria.bernard[a]inra.fr)
   Géraldine Pascal (geraldine.pascal[a]inra.fr)
+  Adviced : 
+  reorder integrated_tool_panel.xml as indicated here : https://github.com/geraldinepascal/FROGS-wrappers#simplest-way
 name: frogs_3_1_0
 #owner: oinizan #TestToolshed
 owner: frogs #Toolshed
