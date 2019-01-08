@@ -55,9 +55,8 @@
                     		<has_text_matching expression="FROGS\sTree" />
                     		<has_text_matching expression="abundance_removed.*:\s0" />
                     		<has_text_matching expression="abundance_kept.*:\s175968" />
+                    		<has_text_matching expression="otu_removed.*:\s0" />
                     		<has_text_matching expression="otu_kept.*:\s142" />
-                    		<has_text_matching expression="number_otu_all.*:\s142" />
-                    		<has_text_matching expression="number_abundance_all.*:\s175968" />
                 		</assert_contents>
 			</output>
 		</test>
