@@ -272,6 +272,41 @@
                 	</assert_contents>
                 </output-->
             </test>
+            <test>
+                <conditional name="sequencer_type">
+			<param name="sequencer_selected" value="illumina"/>
+			<conditional name="input_type">
+				<param name="input_type_selected" value="archive"/>
+				<param name="archive_file" ftype="tar" value="input/test_dataset.tar.gz"/>
+				<conditional name="archive_type">
+					<param name="archive_type_selected" value="paired"/>
+					<param name="R1_size" value="267"/>
+					<param name="R2_size" value="266"/>
+					<param name="mm_rate" value="0.15"/>
+			 		<conditional name="merge_software_type">
+						<param name="merge_software_selected" value="vsearch" />
+					</conditional>
+					<param name="keep_unmerged" value="true"/>
+				</conditional>
+			</conditional>
+			<param name="min_amplicon_size" value="44"/>
+			<param name="max_amplicon_size" value="490"/>
+			<conditional name="sequencing_protocol">
+				<param name="sequencing_protocol_selected" value="standard"/>
+				<param name="five_prim_primer" value="GGCGVACGGGTGAGTAA"/>
+				<param name="three_prim_primer" value="GTGCCAGCNGCNGCGG"/>
+			</conditional>
+                </conditional>
+		<output name="dereplicated_file" file="references/01-prepro-vsearch.fasta"/>
+		<output name="count_file" file="references/01-prepro-vsearch.tsv"/>
+		<output name="summary_file" file="references/01-prepro-vsearch.html" compare="sim_size" delta="0"/>
+		<!--output name="summary_file">
+			<assert_contents>
+			<has_text_matching expression="FROGS\sPre-process" />
+ 			<has_text_matching expression="splA_01" />
+                	</assert_contents>
+                </output-->
+            </test>            
         </tests>
 	<help>
 
