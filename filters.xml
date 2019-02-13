@@ -145,31 +145,20 @@
 	</outputs>
 	<tests>
 		<test>
-	            <param name="input_fasta" value="references/03-chimera.fasta" />
-        	    <param name="input_biom" value="references/03-chimera.biom" />    
+	        <param name="input_fasta" value="references/03-chimera.fasta" />
+            <param name="input_biom" value="references/03-chimera.biom" />    
 		    <conditional name="abundance_filters">
-	            	<param name="abundance_filters_areApplied" value="yes" />
-			<param name="min_abundance" value="0.00005" />	
-			<param name="min_sample_presence" value="3" />
+	     	  	<param name="abundance_filters_areApplied" value="yes" />
+				<param name="min_abundance" value="0.00005" />	
+				<param name="min_sample_presence" value="3" />
+		    </conditional>
+		    <conditional name="contaminations_filter">
+	            <param name="contaminations_filter_isApplied" value="yes" />
+				<param name="contaminants_db" value="phiX_test" />	
 		    </conditional>
 	 	    <output name="output_fasta" file="references/04-filters.fasta" />
 		    <output name="output_excluded" file="references/04-filters.excluded" />
-	        </test>
-		<test>
-	            <param name="input_fasta" value="references/03-chimera.fasta" />
-        	    <param name="input_biom" value="references/03-chimera.biom" />    
-		    <conditional name="abundance_filters">
-	            	<param name="abundance_filters_areApplied" value="yes" />
-			<param name="min_abundance" value="0.00005" />	
-			<param name="min_sample_presence" value="3" />
-		    </conditional>
-		    <conditional name="contaminations_filter">
-	            	<param name="contaminations_filter_isApplied" value="yes" />
-			<param name="contaminants_db" value="phiX_test" />	
-		    </conditional>
-	 	    <output name="output_fasta" file="references/04-filters.fasta" />
-		    <output name="output_excluded" file="references/04-filters-phiX.excluded" />
-	        </test>
+	    </test>
 	</tests>
 	<help>
 
