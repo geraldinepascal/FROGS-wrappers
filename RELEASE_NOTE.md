@@ -1,4 +1,4 @@
-# v3.1 [2018-01-08]
+# v3.1 [2018-02-12]
 
 This release corresponds to the FROGS 3.1.0 release.
 
