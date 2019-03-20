@@ -37,7 +37,7 @@ FROGS-wrapper allow to add FROGS on a Galaxy instance.
 
 ## Simplest way
 
-FROGS is available on the Toolshed : https://toolshed.g2.bx.psu.edu/repository?repository_id=525e78406276b403&changeset_revision=76c750c5f0d1
+FROGS is available on the Toolshed.
 
 It will install FROGS thanks to [conda](https://anaconda.org/bioconda/frogs), download all these XML tools and well configure them in your Galaxy.
 
