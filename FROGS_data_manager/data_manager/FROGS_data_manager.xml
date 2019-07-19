@@ -1,0 +1,42 @@
+<tool id="FROGS_data_manager" name="FROGS Data manager" version="0.1.0">
+    <requirements>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        python $__tool_directory__/FROGS_data_manager.py
+            --database="$database.database"
+            --resource="$database.resource"
+            --output "$output"
+    ]]></command>
+    <inputs>
+        <conditional name="database">
+            <param name="database" type="select" label="Please select a database to update">
+                <option value="frogs_db_data">FROGS database (FROGS Affiliation OTU)</option>
+                <option value="HVL_db_data">HVL database (FROGS Affiliation postprocess)</option>
+                <option value="phiX_db_data">phiX database (FROGS Filters)</option>
+            </param>
+            <when value="frogs_db_data">
+                <param name="resource" type="select" label="Choose the resource to create/update">
+                    <option value="ITS">"ITS1 extract"</option>
+                    <option value="silva128">"silva128 16S pintail100"</option>
+                    <option value="silva132">"silva132 16S pintail100"></option>
+                </param>
+            </when>
+            <when value="HVL_db_data">
+                <param name="resource" type="select" label="Choose the resource to create/update">
+                    <option value="unite_7.1_ITS1">UNITE 7.1 ITS1</option>
+                </param>
+            </when>
+            <when value="phiX_db_data">
+                <param name="resource" type="select" label="Choose the resource to create/update">
+                    <option value="phiX">phiX</option>
+                </param>
+            </when>
+        </conditional>
+    </inputs>
+    <outputs>
+        <data name="output" format="data_manager_json"/>
+    </outputs>
+    <help><![CDATA[
+        TODO: Fill in help.
+    ]]></help>
+</tool>

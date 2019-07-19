@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<tables>
+    <!-- Location of frogs database files -->
+    <table name="frogs_db" comment_char="#">
+        <columns>value, name, path</columns>
+        <file path="tool-data/frogs_db.loc" />
+    </table>
+    <table name="HVL_db" comment_char="#">
+        <columns>value, name, path</columns>
+        <file path="tool-data/HVL_db.loc" />
+    </table>
+    <table name="phiX_db" comment_char="#">
+        <columns>value, name, path</columns>
+        <file path="tool-data/phiX_db.loc" />
+    </table>
+<tables>
