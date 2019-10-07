@@ -1,4 +1,4 @@
-<tool id="FROGS_data_manager" name="FROGS Data manager" version="2019.10.07" tool_type="manage_data">
+<tool id="FROGS_data_manager" name="FROGS Data manager" version="2019.10.07.1" tool_type="manage_data">
     <requirements>
     </requirements>
     <stdio>
@@ -7,6 +7,10 @@
     <command><![CDATA[
         python $__tool_directory__/FROGS_data_manager.py
             --database="$database.database"
+            #if $database.database=="frogs_db_data"
+                --custom_db="$database.db_type.custom_db"
+                --amplicons="$database.db_type.amplicons"
+            #end if 
             --output "$output"
     ]]></command>
     <inputs>
@@ -14,13 +18,52 @@
             <param name="database" type="select" label="Please select a database to update">
                 <option value="frogs_db_data">FROGS database (FROGS Affiliation OTU)</option>
                 <option value="HVL_db_data">HVL database (FROGS Affiliation postprocess)</option>
-                <option value="phiX_db_data">phiX database (FROGS Filters)</option>
             </param>
-            <when value="frogs_db_data"/>
-            <when value="HVL_db_data">
+            <when value="frogs_db_data">
+                <conditional name="db_type">
+                    <param name="custom_db" type="boolean" checked="false" truevalue="true" falsevalue="false" label="Build a custom database"/>
+                    <when value="true">
+                        <param name="amplicons" type="select" multiple="true">
+                            <option value="COI_MIDORI_MARINE_20180221">COI MIDORI MARINE 20180221</option>
+                            <option value="COI_MIDORI_20180221">COI MIDORI 20180221</option>
+                            <option value="COI_BOLD_1percentN_600nt_022019">COI BOLD 1percentN 600nt 022019</option>
+                            <option value="COI_BOLD_1percentN_630nt_022019">COI BOLD 1percentN 630nt 022019</option>
+                            <option value="ITS_UNITE_Euka_8.0">ITS UNITE Euka 8.0</option>
+                            <option value="ITS_UNITE_Fungi_8.0">ITS UNITE Fungi 8.0</option>
+                            <option value="COI_BOLD_022019">COI BOLD 022019</option>
+                            <option value="COI_BOLD_1percentN_022019">COI BOLD 1percentN 022019</option>
+                            <option value="EF1,18S_PHYMYCO-DB_2013">EF1,18S PHYMYCO-DB 2013</option>
+                            <option value="16S_EZBioCloud_052018">16S EZBioCloud 052018</option>
+                            <option value="18S_PR2_4.11.0">18S PR2 4.11.0</option>
+                            <option value="16S_DAIRYdb_V1.1.2">16S DAIRYdb V1.1.2</option>
+                            <option value="rbcL_Rsyst_Diatom_7">rbcL Rsyst Diatom 7</option>
+                            <option value="ITS_UNITE_7.1">ITS UNITE 7.1</option>
+                            <option value="rpoB_DB_NAME_TO_CHECK_122017">rpoB DB NAME TO CHECK 122017</option>
+                            <option value="16S_SILVA_Pintail100_132">16S SILVA Pintail100 132</option>
+                            <option value="16S_SILVA_Pintail50_132">16S SILVA Pintail50 132</option>
+                            <option value="16S_SILVA_Pintail80_132">16S SILVA Pintail80 132</option>
+                            <option value="16S_SILVA_132">16S SILVA 132</option>
+                            <option value="18S_SILVA_132">18S SILVA 132</option>
+                            <option value="23S_SILVA_132">23S SILVA 132</option>
+                            <option value="16S_SILVA_Pintail100_128">16S SILVA Pintail100 128</option>
+                            <option value="16S_SILVA_Pintail50_128">16S SILVA Pintail50 128</option>
+                            <option value="16S_SILVA_Pintail80_128">16S SILVA Pintail80 128</option>
+                            <option value="18S_PR2_Gb203_4.5">18S PR2 Gb203 4.5</option>
+                            <option value="16S_MIDAS_S123_2.1.3">16S MIDAS S123 2.1.3</option>
+                            <option value="16S_SILVA_128">16S SILVA 128</option>
+                            <option value="18S_SILVA_123">18S SILVA 123</option>
+                            <option value="18S_SILVA_128">18S SILVA 128</option>
+                            <option value="23S_SILVA_128">23S SILVA 128</option>
+                            <option value="16S_MIDAS_S119_1.20">16S MIDAS S119 1.20</option>
+                            <option value="16S_Greengenes_13.5">16S Greengenes 13.5</option>
+                            <option value="16S_SILVA_123">16S SILVA 123</option>
+                            <option value="18S_SILVA_119-1">18S SILVA 119-1</option>
+                            <option value="23S_SILVA_123">23S SILVA 123</option>
+                        </param>
+                    </when>
+                </conditional>
             </when>
-            <when value="phiX_db_data">
-            </when>
+            <when value="HVL_db_data"/>
         </conditional>
     </inputs>
     <outputs>
