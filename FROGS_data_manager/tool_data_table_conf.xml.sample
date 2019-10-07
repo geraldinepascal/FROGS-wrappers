@@ -13,4 +13,4 @@
         <columns>value, name, path</columns>
         <file path="tool-data/phiX_db.loc" />
     </table>
-<tables>
+</tables>
