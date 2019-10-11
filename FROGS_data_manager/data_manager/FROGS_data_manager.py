@@ -36,7 +36,6 @@ def _add_data_table_entry(data_manager_dict, data_table_entry,data_table):
 
 def frogs_sources(data_manager_dict,target_directory):
 
-    log = open("/home/dchristiany/galaxy_instances/galaxy/logs.txt","w")
     #variables
     amplicons_list=[]
     bases_list=[]
@@ -48,8 +47,6 @@ def frogs_sources(data_manager_dict,target_directory):
         bottom_date = int(args.date)
     tool_data_path=args.tool_data
 
-    log.write("variables ok\n")
-
     #get frogs database index
     frogs_db_index_link="http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv"
     with requests.Session() as s:
@@ -59,51 +56,29 @@ def frogs_sources(data_manager_dict,target_directory):
         db_index = [line.split("\t") for line in db_index[1:]]
         db_index = [[line[0],line[1].lower(),line[2].lower(),line[3].lower()]+line[4:] for line in db_index]
 
-    log.write("db_index\n")
-    log.write(str(len(db_index))+"\n")
-    log.write("\t".join(amplicons_list)+"\n")
-    log.write("bases_list length: "+str(len(bases_list))+"\n")
-    log.write(str(bases_list)+"\n")
-    log.write("amplicons_list length: "+str(len(amplicons_list))+"\n")
-    log.write(str(amplicons_list)+"\n")
-    log.write("filters_list length: "+str(len(filters_list))+"\n")
-    log.write(str(filters_list)+"\n")
     #filter databases
     last_version_dict=build_last_version_dict(db_index)
     if args.all_dbs=="false":
         if len(amplicons_list)!=0: db_index = [line for line in db_index if any([amplicon in amplicons_list for amplicon in line[1].split(',')])]   #filter by amplicons
-        log.write("after amplicons filter: "+str(len(db_index))+"\n")
         if len(bases_list)!=0: db_index = [line for line in db_index if line[2] in bases_list]                                                      #filter by base
-        log.write("after bases filter: "+str(len(db_index))+"\n")
         if len(filters_list)!=0: db_index = [line for line in db_index if line[3] in filters_list]                                                  #filter by filters
-        log.write("after filters filter: "+str(len(db_index))+"\n")
         if bottom_date!=0: db_index = [line for line in db_index if int(line[0])>=bottom_date]                                                      #filter by date
-        log.write("after date filter: "+str(len(db_index))+"\n")
     if args.only_last_versions=="true":
         db_index = [line for line in db_index if int(line[0])==last_version_dict[line[5]]]                                                          #keep only last version
-        log.write("after only_last_version filter: "+str(len(db_index))+"\n")
-
-    log.write("db_index filtered\n")
 
     #get frogs dbs
     os.chdir(target_directory)
     dir_name="frogs_db_"+time.strftime("%Y%m%d")
     os.mkdir(dir_name)
     dbs=set([])
-    log.write(str(len(db_index))+"\n")
     for line in db_index:
         value=line[5]
         name=value.replace("_"," ")
         link=line[6]
-        log.write(link+"\n")
         name_dir="".join([line[6].replace(".tar.gz","").split("/")[-1]])
         file_path=tool_data_path+"/frogs_db/"+name_dir
-        log.write(file_path+"\n")
         if not os.path.exists(file_path):   #if the file is not already in frogs_db directory
-
             
-            log.write("ok")
-
             #download frogs db
             dl_file = urllib.URLopener()
             dl_file.retrieve(link, "tmp.tar.gz")
