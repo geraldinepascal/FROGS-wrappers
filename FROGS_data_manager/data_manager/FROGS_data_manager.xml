@@ -1,4 +1,4 @@
-<tool id="FROGS_data_manager" name="FROGS Data manager" version="2019.10.09" tool_type="manage_data">
+<tool id="FROGS_data_manager" name="FROGS Data manager" version="2019.10.15" tool_type="manage_data">
     <requirements>
     </requirements>
     <stdio>

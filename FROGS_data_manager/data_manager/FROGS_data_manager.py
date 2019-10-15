@@ -41,9 +41,9 @@ def frogs_sources(data_manager_dict,target_directory):
     bases_list=[]
     filters_list=[]
     if  args.all_dbs=="false": 
-        amplicons_list = [amplicon.lower() for amplicon in args.amplicons.split(",") if amplicon != ""]
-        bases_list = [base.lower() for base in args.bases.split(",") if base != ""]
-        filters_list = [filter.lower() for filter in args.filters.split(",") if filter!=""]
+        amplicons_list = [amplicon.lower().strip() for amplicon in args.amplicons.split(",") if amplicon != ""]
+        bases_list = [base.lower().strip() for base in args.bases.split(",") if base != ""]
+        filters_list = [filter.lower().strip() for filter in args.filters.split(",") if filter!=""]
         bottom_date = int(args.date)
     tool_data_path=args.tool_data
 
