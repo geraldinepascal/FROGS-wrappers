@@ -27,9 +27,12 @@
 	<command>
 		affiliation_postprocess.py 
 		#if $is_HVL.HVL_amplicon
-		   #set $reference_filename = str( $is_HVL.ref_file.fields.path )
-                    --reference "${reference_filename}"
-                #end if
+		    #set $reference_filename = str( $is_HVL.ref_file.fields.path )
+            #if "tool-data" in str($reference_filename).split("/")
+                #set $reference_filename = str($__tool_directory__)+"/"+str($reference_filename)
+            #end if 
+            --reference "${reference_filename}"
+        #end if
 		--identity $identity
 		--coverage $coverage
                 --input-biom $biom_in

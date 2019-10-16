@@ -16,17 +16,20 @@
 #
 #This is a sample file that enables tools FROGS_filters to identify phix contaminant. You will #need to create or download Blast+ index.
 #download link : http://genoweb.toulouse.inra.fr/frogs_databanks/contaminants
-#Finally you will need to create phiX_db.loc file similar to this one.The phiX_db.loc file has this format (longer white space characters are
+#Finally you will need to create phiX_db.loc file similar to this one in your galaxy
+#tool-data directory.The phiX_db.loc file has this format (longer white space characters are
 #TAB characters):
 #
-#<unique_database_name>   <printed_database_name>   <file_path>
+#<contaminant_name>	<name>	<file_path>
 #
-#Second column will be the visible name in galaxy.
-#So, for example, if you had phix Blast+ indexed stored in
+#First column will be the visible name in galaxy.
+#So, for example, if you had phix indexed stored in
 #/galaxy_databanks/phiX/ 
 #then the phiX_db.loc entry would look like this:
 #
-#phiX	phiX    /galaxy_databanks/phiX/phi.fa
+#
+# EXAMPLE FOR TEST :
+#phiX_test	phiX_test	${__HERE__}/phiX_db_data/phi.fa
 #
 #and your /galaxy_databanks/phiX/ directory
 #would contain index files:
@@ -36,6 +39,4 @@
 #-rw-rwxr-- 1 gpascal FROGS   88 16 sept.  2015 phi.fa.nin
 #-rw-rwxr-- 1 gpascal FROGS 1348 16 sept.  2015 phi.fa.nsq
 #
-#<value>    <name>    <file_path>
-#
-#phiX	phiX	<FROGS-wrappers>/test-data/databases/phiX_db_data/phi.fa
+phiX	phiX	tool-data/phiX/phi.fa
