@@ -43,7 +43,7 @@
 	</tests>
 	<help>
 
-.. image:: static/images/frogs_images/FROGS_logo.png
+.. image:: static/images/FROGS_logo.png
    :height: 144
    :width: 110
 
@@ -79,27 +79,27 @@ Output
  
  *Clusters distribution* : describes the sizes distribution of all clusters thank to boxplot and tables
 
- .. image:: static/images/frogs_images/FROGS_cluster_stat_clusterDistrib1.png
+ .. image:: static/images/FROGS_cluster_stat_clusterDistrib1.png
     :height: 426
     :width: 520
 
- .. image:: static/images/frogs_images/FROGS_cluster_stat_clusterDistrib2.png
+ .. image:: static/images/FROGS_cluster_stat_clusterDistrib2.png
     :height: 300
     :width: 460
    
  *Sequences distributions* : describes the sequences distribution among clusters
 
- .. image:: static/images/frogs_images/FROGS_cluster_stat_seq_dist.png
+ .. image:: static/images/FROGS_cluster_stat_seq_dist.png
     :height: 326
     :width: 473
 
  *Samples distribution* : describes clusters distribution among sample and give an `hierarchical clustering &lt;http://en.wikipedia.org/wiki/Hierarchical_clustering&gt;`_ on samples abundance profile (distance method = `braycurtis &lt;http://fr.wikipedia.org/wiki/Distance_de_Bray-Curtis&gt;`_, linkage method = average)
 
- .. image:: static/images/frogs_images/FROGS_cluster_stat_sample_dist1.png
+ .. image:: static/images/FROGS_cluster_stat_sample_dist1.png
     :height: 400
     :width: 700
 
- .. image:: static/images/frogs_images/FROGS_cluster_stat_sample_dist2.png
+ .. image:: static/images/FROGS_cluster_stat_sample_dist2.png
     :height: 350
     :width: 610
 

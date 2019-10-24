@@ -310,7 +310,7 @@
         </tests>
 	<help>
 
-.. image:: static/images/frogs_images/FROGS_logo.png
+.. image:: static/images/FROGS_logo.png
    :height: 144
    :width: 110
 
@@ -372,13 +372,13 @@ Outputs
 
  This file reports the number of remaining sequences after each filter (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
  
- .. image:: static/images/frogs_images/FROGS_preprocess_summary_v3.png 
+ .. image:: static/images/FROGS_preprocess_summary_v3.png 
      :height: 850
      :width: 831 
 
  It also presents the length distribution of the remaining full amplicon sequences.
  
- .. image:: static/images/frogs_images/FROGS_preprocess_lengthsSamples_v3.png 
+ .. image:: static/images/FROGS_preprocess_lengthsSamples_v3.png 
      :height: 379
      :width: 364
 
@@ -407,13 +407,13 @@ What is the differency between overlapped sequences and combined sequences?
 
 - **Case of a sequencing of overlapping sequences: case of 16S V3-V4 amplicon MiSeq sequencing**
 
-.. image:: static/images/frogs_images/FROGS_preprocess_overlapped_sequence.png
+.. image:: static/images/FROGS_preprocess_overlapped_sequence.png
      :height: 261
      :width: 531
 
 - **Case of a sequencing of non-overlapping sequences: case of ITS1 amplicon MiSeq sequencing**
 
-.. image:: static/images/frogs_images/FROGS_preprocess_combined_sequence1.png
+.. image:: static/images/FROGS_preprocess_combined_sequence1.png
      :height: 279
      :width: 797
 
@@ -429,7 +429,7 @@ Reads pair are not merged because:
 Thus, “FROGS combined” sequences are artificial and present particular features especially on size.
 Imagine a MiSeq sequencing of 2x250pb with sequences that cannot overlap, the resulting “FROGS combined” sequences length will be 600 bp.
 
-.. image:: static/images/frogs_images/FROGS_preprocess_combined_sequence2.png
+.. image:: static/images/FROGS_preprocess_combined_sequence2.png
      :height: 357
      :width: 798
 
@@ -464,11 +464,11 @@ FLASH : Amplicons sizes parameters
 
  The two following images show two examples of perfect values fors sizes parameters.
 
- .. image:: static/images/frogs_images/FROGS_preprocess_ampliconSize_unimodal_v3.png
+ .. image:: static/images/FROGS_preprocess_ampliconSize_unimodal_v3.png
     :height: 415
     :width: 676
  
- .. image:: static/images/frogs_images/FROGS_preprocess_ampliconSize_multimodal_v3.png
+ .. image:: static/images/FROGS_preprocess_ampliconSize_multimodal_v3.png
     :height: 415
     :width: 676
 

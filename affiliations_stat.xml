@@ -94,7 +94,7 @@
 	</tests>
 	<help>
 
-.. image:: static/images/frogs_images/FROGS_logo.png
+.. image:: static/images/FROGS_logo.png
    :height: 144
    :width: 110
 
@@ -130,27 +130,27 @@ Output
  
   *-Taxonomy distribution*: display the distribution of each taxon and the rarefaction for each taxonomic rank and for each sample
   
-  .. image:: static/images/frogs_images/FROGS_affiliation_stat_taxonomies.png
+  .. image:: static/images/FROGS_affiliation_stat_taxonomies.png
     :height: 380
     :width: 650  
 
-  .. image:: static/images/frogs_images/FROGS_affiliation_stat_rarefaction.png
+  .. image:: static/images/FROGS_affiliation_stat_rarefaction.png
     :height: 380
     :width: 550
 
-  .. image:: static/images/frogs_images/FROGS_affiliation_stat_sunburst.png
+  .. image:: static/images/FROGS_affiliation_stat_sunburst.png
     :height: 380
     :width: 430
   
   -Bootstrap distribution: display for affiliation methods with bootstrap the bootstrap on each taxonomic rank
 
-  .. image:: static/images/frogs_images/FROGS_affiliation_stat_bootstrap.png
+  .. image:: static/images/FROGS_affiliation_stat_bootstrap.png
     :height: 380
     :width: 650
 
   -Alignment distribution: display for affiliation methods with alignment the distribution of identity/covrage
 
-  .. image:: static/images/frogs_images/FROGS_affiliation_stat_alignment.png
+  .. image:: static/images/FROGS_affiliation_stat_alignment.png
     :height: 380
     :width: 650
 

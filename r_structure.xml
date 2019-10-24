@@ -70,7 +70,7 @@
         </tests>
 	<help>
 		
-.. image:: static/images/frogs_images/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png 
    :height: 144
    :width: 110
 
@@ -104,11 +104,11 @@ Output
 
 The review of data structure with an ordination plot and with an heatmap plot:
 
-.. image:: static/images/frogs_images/phyloseq_plot_sample_ellipse.png 
+.. image:: static/images/FROGS_Phyloseq_plot_sample_ellipse.png 
      :height: 343
      :width: 450
 
-.. image:: static/images/frogs_images/phyloseq_plot_heatmap_red.png 
+.. image:: static/images/FROGS_Phyloseq_plot_heatmap_red.png 
      :height: 343
      :width: 450
 

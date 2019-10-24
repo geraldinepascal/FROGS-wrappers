@@ -63,7 +63,7 @@
 	</tests>
 	<help>
 		
-.. image:: static/images/frogs_images/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png 
    :height: 144
    :width: 110
 
@@ -98,7 +98,7 @@ Output
 
 .. container:: row
 
- .. image:: static/images/frogs_images/phyloseq_clustering_ward.png 
+ .. image:: static/images/FROGS_Phyloseq_clustering_ward.png 
    :height: 576
    :width: 768
 

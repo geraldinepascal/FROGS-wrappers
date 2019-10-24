@@ -65,7 +65,7 @@
 	</tests>
 	<help>
 
-.. image:: static/images/frogs_images/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png 
    :height: 144
    :width: 110
 
@@ -141,7 +141,7 @@ How it works
 
 Swarm use an iterative growth process and the use of sequence abundance values to delineate OTUs.
   
-.. image:: static/images/frogs_images/FROGS_cluster_swarm.png
+.. image:: static/images/FROGS_cluster_swarm.png
    :height: 223
    :width: 666	
 

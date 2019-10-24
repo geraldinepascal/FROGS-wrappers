@@ -76,7 +76,7 @@
 		</test>
 	</tests>
 	<help> 
-.. image:: static/images/frogs_images/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png 
    :height: 144
    :width: 110
 
@@ -107,7 +107,7 @@ Output
 
 Bar plot of OTUs is colored with aggregated taxonomic level *i.e* "Phylum" :
 
- .. image:: static/images/frogs_images/phyloseq_bar_plot.png 
+ .. image:: static/images/FROGS_Phyloseq_bar_plot.png 
      :height: 646
      :width: 800 
 
@@ -124,7 +124,7 @@ Composition plot: plot the most abundant sub taxonomic level among a selection o
  
 - Number of the most abundant taxa to keep: 5 
 
- .. image:: static/images/frogs_images/phyloseq_composition_plot.png 
+ .. image:: static/images/FROGS_Phyloseq_composition_plot.png 
      :height: 644
      :width: 800 
 

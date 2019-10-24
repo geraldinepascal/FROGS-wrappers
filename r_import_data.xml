@@ -67,7 +67,7 @@
 	</tests>
 	<help>
 
-.. image:: static/images/frogs_images/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png 
    :height: 144
    :width: 110
 
@@ -91,7 +91,7 @@ The OTU biom file (format `biom1 &lt;http://biom-format.org/documentation/format
 This file is the result of FROGS BIOM to std BIOM.
 The example of biom file: 
 
-  .. image:: static/images/frogs_images/biomfile.png 
+  .. image:: static/images/FROGS_Phyloseq_biomfile.png 
      :height: 30
      :width: 733 
 
@@ -99,12 +99,12 @@ The example of biom file:
 
 Newick file (format `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_) is the result of FROGS Tree:
 
-  .. image:: static/images/frogs_images/nwk_treefile.png
+  .. image:: static/images/FROGS_nwk_treefile.png
 
 **Sample file**:
 The file contains the conditions of experiment with sample ID in the first column:
   
-  .. image:: static/images/frogs_images/phyloseq_samplefile.png 
+  .. image:: static/images/FROGS_Phyloseq_samplefile.png 
      :height: 115
      :width: 369
       
@@ -114,7 +114,7 @@ Output
 
 **Html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): The summary of phyloseq object.
   
-  .. image:: static/images/frogs_images/phyloseq_import_data_html.png 
+  .. image:: static/images/FROGS_Phyloseq_import_data_html.png 
  
 **Data file** (format rdata): The informations of data in one phyloseq object.
 

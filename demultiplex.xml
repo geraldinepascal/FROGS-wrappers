@@ -147,7 +147,7 @@ All barcode sequences must have the same length
  
 Example of barcode file: Here the sample is multiplexed by both fragment ends.
 
-.. image:: static/images/frogs_images/demultiplex_barcode.png
+.. image:: static/images/FROGS_demultiplex_barcode.png
    :height: 18
    :width: 286
 
@@ -166,7 +166,7 @@ FASTQ :
 
 Example of fastq read corresponding to the previous barcode file  
 
-.. image:: static/images/frogs_images/demultiplex_fastq_ex.png
+.. image:: static/images/FROGS_demultiplex_fastq_ex.png
    :height: 57
    :width: 420
 
