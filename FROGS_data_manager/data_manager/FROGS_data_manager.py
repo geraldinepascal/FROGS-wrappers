@@ -34,6 +34,20 @@ def _add_data_table_entry(data_manager_dict, data_table_entry,data_table):
     data_manager_dict['data_tables'][data_table].append(data_table_entry)
     return data_manager_dict
 
+def keep_only_last_version(db_index):
+    values=["_".join(line[5].split("_")[:-1]) for line in db_index]
+    to_filter = list(set([val for val in values if values.count(val) >1]))
+    out = [line for line in db_index if "_".join(line[5].split("_")[:-1]) not in to_filter] 
+    for bd in to_filter:
+        versions = [line[4] for line in db_index if "_".join(line[5].split("_")[:-1])==bd]
+        to_keep = bd+"_"+sorted(versions)[-1]
+        for line in db_index:
+            if line[5]==to_keep:
+                out.append(line)
+                print(line)
+                break
+    return(out)
+
 def frogs_sources(data_manager_dict,target_directory):
 
     #variables
@@ -64,7 +78,7 @@ def frogs_sources(data_manager_dict,target_directory):
         if len(filters_list)!=0: db_index = [line for line in db_index if line[3] in filters_list]                                                  #filter by filters
         if bottom_date!=0: db_index = [line for line in db_index if int(line[0])>=bottom_date]                                                      #filter by date
     if args.only_last_versions=="true":
-        db_index = [line for line in db_index if int(line[0])==last_version_dict[line[5]]]                                                          #keep only last version
+        db_index = keep_only_last_version(db_index)                                                          #keep only last version
 
     #get frogs dbs
     os.chdir(target_directory)
