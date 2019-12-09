@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" version="3.1">
+<tool name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" version="3.2">
         <description>perform Multivariate Analysis of Variance (MANOVA)</description>
         <requirements>
-                <requirement type="package" version="3.1.0">frogs</requirement>
+                <requirement type="package" version="3.2.0">frogs</requirement>
         </requirements>
 	<stdio>
 		<exit_code range="1:" />
@@ -44,7 +44,7 @@
         </param>	
     </inputs>
 	<outputs>
-		<data format="html" name="html" label="${tool.name}: manova.html" from_work_dir="manova.html"/>
+		<data format="html" name="html" label="${tool.name}: manova.nb.html" from_work_dir="manova.nb.html"/>
 	</outputs>
 	<tests>
 		<test>

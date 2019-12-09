@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Structure Visualisation" id="FROGSSTAT_Phyloseq_Structure_Visualisation" version="3.1">
+<tool name="FROGSSTAT Phyloseq Structure Visualisation" id="FROGSSTAT_Phyloseq_Structure_Visualisation" version="3.2">
 	<description>with heatmap plot and ordination plot</description>
         <requirements>
-                <requirement type="package" version="3.1.0">frogs</requirement>
+                <requirement type="package" version="3.2.0">frogs</requirement>
         </requirements>
 	<stdio>
 		<exit_code range="1:" />
@@ -50,7 +50,7 @@
         </param>
 	</inputs>
 	<outputs>
-		<data format="html" name="html" label="${tool.name}: structure.html" from_work_dir="structure.html"/>
+		<data format="html" name="html" label="${tool.name}: structure.nb.html" from_work_dir="structure.nb.html"/>
 	</outputs>
         <tests>
                 <test>

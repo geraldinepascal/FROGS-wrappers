@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Sample Clustering" id="FROGSSTAT_Phyloseq_Sample_Clustering" version="3.1">
+<tool name="FROGSSTAT Phyloseq Sample Clustering" id="FROGSSTAT_Phyloseq_Sample_Clustering" version="3.2">
 	<description>of samples using different linkage methods</description>
         <requirements>
-                <requirement type="package" version="3.1.0">frogs</requirement>
+                <requirement type="package" version="3.2.0">frogs</requirement>
         </requirements>
 	<stdio>
 		<exit_code range="1:" />
@@ -44,7 +44,7 @@
         </param>	
 	</inputs>
 	<outputs>
-		<data format="html" name="html" label="${tool.name}: clustering.html" from_work_dir="clustering.html"/>
+		<data format="html" name="html" label="${tool.name}: clustering.nb.html" from_work_dir="clustering.nb.html"/>
 	</outputs>
 	<tests>
 		<test>

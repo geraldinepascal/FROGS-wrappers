@@ -17,6 +17,9 @@
 -->
 <tool name="FROGS Deseq2 Visualization" id="FROGSSTAT_DESeq2_Visualization" version="3.2">
 	<description>to extract and visualize differentially abundant OTUs</description>
+    <requirements>
+        <requirement type="package" version="3.2.0">frogs</requirement>
+    </requirements>
 	<command interpreter="python2.7">deseq2_visualization.py --phyloseqData $phyloseq_data
                                                              --dds $deseq2_dds
                                                              --varExp $varExp
@@ -61,7 +64,7 @@
         </param>        
 	</inputs>
 	<outputs>
-		<data format="html" name="html" label="${tool.name}: report.html" from_work_dir="report.html"/>
+		<data format="html" name="html" label="${tool.name}: report.nb.html" from_work_dir="report.nb.html"/>
 	</outputs>
 	<help>
 
