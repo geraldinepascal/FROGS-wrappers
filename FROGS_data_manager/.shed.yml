@@ -2,7 +2,7 @@ categories:
   - Data Managers
 description: frogs data manager
 name: frogs_data_manager
-owner: dchristiany
+owner: frogs
 include: 
   - data_manager/FROGS_data_manager.py
   - data_manager/FROGS_data_manager.xml
