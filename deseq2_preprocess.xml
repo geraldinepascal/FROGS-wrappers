@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGS DESeq2 Preprocess" id="FROGSSTAT_DESeq2_Preprocess" version="3.2">
+<tool name="FROGSSTAT DESeq2 Preprocess" id="FROGSSTAT_DESeq2_Preprocess" version="3.2">
 	<description>import a Pyloseq object and prepare it for DESeq2 differential abundance analysis </description>
   <requirements>
     <requirement type="package" version="3.2.0">frogs</requirement>
@@ -31,19 +31,19 @@
 	</command>
     <inputs>
 		  <!-- Files -->
-      <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data with normalize option set to NO (DESeq2 is more powerful on unnormalized counts)." optional="false">
+      <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGSSTAT Phyloseq Import Data with normalize option set to NO (DESeq2 is more powerful on unnormalized counts)." optional="false">
         <validator type="empty_field" message="This parameter is required." />
       </param>
       <!-- Parameters -->
-		  <param name="var1" type="text" label="Experimental variable" help="ex: pH, Time, Treatment, etc. The variable suspected to have an impact on OTUs' abundances." optional="false" value="" size="20">
+		  <param name="var1" type="text" label="Experimental variable" help="The factor suspected to have an effect on OTUs' abundances. Ex: Treatment, etc." optional="false" value="" size="20">
         <validator type="empty_field" message="This parameter is required." />
       </param>
 		  <conditional name="multiple">
-        <param name="seconde" type="boolean" label="Do you want use a model with two variables?" help="If yes, enter second variable." optional="false" />
+        <param name="seconde" type="boolean" label="Do you want to correct for a confounding factor?" help="If yes, specifiy counfouding factor." optional="false" />
 		    <when value="false"></when>           
 		    <when value="true">
-          <param name="var2" type="text" label="Variable 2" help="ex: Status, Batch number, etc." optional="false" value="" size="20"/>
-          <param name="mod" type="select" multiple="false" help="Choose interaction (*) only if the effect of the first variable depends on the value of the second one (e.g. if Treatment does not affect OTUs in the same way in samples of different Status)." label="Type of model">
+          <param name="var2" type="text" label="Variable 2" help="Confounding factor. Ex: Gender, etc." optional="false" value="" size="20"/>
+          <param name="mod" type="select" multiple="false" help="Choose an additive model (+) if the effects of Treatment and Gender are independent. Choose a model with interaction (*) if the effect of Treatment is expected to depend on Gender." label="Type of model">
             <option value="+" selected="true">Linear (+)</option>
             <option value="*">Interaction (*)</option>
           </param>
@@ -75,12 +75,12 @@ Inputs/Outputs
 Input
 
 **phyloseq object** (format rdata):
-One phyloseq object stored in a rdata file.
+A phyloseq object stored in a rdata file.
 This file is the result of FROGSSTAT Phyloseq Import Data.
 
 .. class:: warningmark
 
-we need unnormalized data to analyse the abundance differencies. So RData used here is the result of FROGSSTAT Phyloseq Import Data with "Normalize" option set to "NO".
+We need unnormalized data to analyse the abundance differencies.
 
 .. class:: h3
 
@@ -88,6 +88,27 @@ Ouput
 
 **dds object** (format rdata):
 A DESeq2 dataset (dds) stored in rdata file.
+This result will be one of the input of the FROGSSTAT DESeq Visualization tool.
+
+.. class:: infomark page-header h2
+
+How it works 
+
+The DESeq function performs a default analysis through the steps:
+
+       1. estimation of size factors: ‘estimateSizeFactors’
+
+       2. estimation of dispersion: ‘estimateDispersions’
+
+       3. Negative Binomial GLM fitting and Wald statistics:
+          ‘nbinomWaldTest’
+
+You must precise at least on variable on which the differential abundances will be compared.
+
+You may precise a confounding factor, wy adding an other variable and precise the relation between the two variables:
+
+- + for independant variables
+- * for interacting variables
 
 **Contact**
 
