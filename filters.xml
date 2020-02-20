@@ -36,7 +36,10 @@
 			--excluded $output_excluded
 			--summary $output_summary
 			#if $contaminations_filter.contaminations_filter_isApplied == "yes"
-                		#set $contaminants_filename = str( $contaminations_filter.contaminants_db.fields.path )
+                #set $contaminants_filename = str( $contaminations_filter.contaminants_db.fields.path )
+                #if "tool-data" in str($contaminants_filename).split("/")
+                    #set $contaminants_filename = str($__tool_directory__)+"/"+str($contaminants_filename)
+                #end if
 				--contaminant $contaminants_filename
 			#end if	      
 			
