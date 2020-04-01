@@ -198,10 +198,11 @@ If you have Roche 454 sequences in sff format, you must convert them with some p
 
 **Contact**
 
-Contacts: frogs@inra.fr
+Contacts: frogs-support@inrae.fr
 
-Repository: https://github.com/geraldinepascal/FROGS
-website: http://frogs.toulouse.inra.fr/
+Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
+
+Website: http://frogs.toulouse.inra.fr/
 
 Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
 

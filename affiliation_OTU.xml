@@ -113,9 +113,8 @@ Outputs
  This file presents the number of sequences affiliated by blast, and the number of multi-affiliation (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
  
  .. image:: static/images/FROGS_affiliation_summary.png 
-    :height: 800
-    :width: 600
-
+   :height: 975
+   :width: 867
 
 .. class:: infomark page-header h2
 
@@ -186,10 +185,11 @@ As you can see the affiliation of each OTU is not human readable in outputed abu
 
 **Contact**
 
-Contacts: frogs@inra.fr
+Contacts: frogs-support@inrae.fr
 
-Repository: https://github.com/geraldinepascal/FROGS
-website: http://frogs.toulouse.inra.fr/
+Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
+
+Website: http://frogs.toulouse.inra.fr/
 
 Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
 

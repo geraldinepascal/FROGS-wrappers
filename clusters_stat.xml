@@ -80,13 +80,9 @@ Output
  *Clusters distribution* : describes the sizes distribution of all clusters thank to boxplot and tables
 
  .. image:: static/images/FROGS_cluster_stat_clusterDistrib1.png
-    :height: 426
-    :width: 520
+    :height: 1180
+    :width: 900
 
- .. image:: static/images/FROGS_cluster_stat_clusterDistrib2.png
-    :height: 300
-    :width: 460
-   
  *Sequences distributions* : describes the sequences distribution among clusters
 
  .. image:: static/images/FROGS_cluster_stat_seq_dist.png
@@ -114,10 +110,11 @@ This is a very usefull tool to see the evolution of your OTU. Do not hesitate to
 
 **Contact**
 
-Contacts: frogs@inra.fr
+Contacts: frogs-support@inrae.fr
 
-Repository: https://github.com/geraldinepascal/FROGS
-website: http://frogs.toulouse.inra.fr/
+Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
+
+Website: http://frogs.toulouse.inra.fr/
 
 Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
 
