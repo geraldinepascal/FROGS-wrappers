@@ -18,7 +18,7 @@
 <tool id="FROGS_itsx" name="FROGS ITSx" version="3.2">
 	<description>Extract the highly variable ITS1 and ITS2 subregions from ITS sequences.</description>
     <requirements>
-        <requirement type="package" version="3.2.0">frogs</requirement>
+        <!-- <requirement type="package" version="3.2.0">frogs</requirement> -->
         <requirement type="package" version="1.1b">itsx</requirement>
     </requirements>
     <stdio>

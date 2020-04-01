@@ -18,7 +18,7 @@
 <tool name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" version="3.2">
         <description>perform Multivariate Analysis of Variance (MANOVA)</description>
         <requirements>
-            <requirement type="package" version="3.2.0">frogs</requirement>
+            <!-- <requirement type="package" version="3.2.0">frogs</requirement> -->
             <requirement type="package" version="3.6.1">r-base</requirement>
             <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
             <requirement type="package" version="2.9.2">pandoc</requirement>

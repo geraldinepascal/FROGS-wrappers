@@ -18,13 +18,13 @@
 <tool name="FROGSTAT Deseq2 Visualization" id="FROGSSTAT_DESeq2_Visualization" version="3.2">
 	<description>to extract and visualize differentially abundant OTUs</description>
     <requirements>
-        <requirement type="package" version="3.2.0">frogs</requirement>
-            <requirement type="package" version="3.6.1">r-base</requirement>
-            <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
-            <requirement type="package" version="1.26.0">bioconductor-deseq2</requirement>
-            <requirement type="package" version="0.2.01">r-formattable</requirement>
-            <requirement type="package" version="0.8.4">r-dplyr</requirement>
-            <requirement type="package" version="2.9.2">pandoc</requirement>
+        <!-- <requirement type="package" version="3.2.0">frogs</requirement> -->
+        <requirement type="package" version="3.6.1">r-base</requirement>
+        <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
+        <requirement type="package" version="1.26.0">bioconductor-deseq2</requirement>
+        <requirement type="package" version="0.2.01">r-formattable</requirement>
+        <requirement type="package" version="0.8.4">r-dplyr</requirement>
+        <requirement type="package" version="2.9.2">pandoc</requirement>
     </requirements>
 	<command interpreter="python2.7">deseq2_visualization.py --phyloseqData $phyloseq_data
                                                              --dds $deseq2_dds

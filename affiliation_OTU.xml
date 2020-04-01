@@ -18,7 +18,7 @@
 <tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="3.2">
 	<description>Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
  	<requirements>
-        <requirement type="package" version="3.2.0">frogs</requirement>
+        <!-- <requirement type="package" version="3.2.0">frogs</requirement> -->
         <requirement type="package" version="2.9.0">blast</requirement>
         <requirement type="package" version="6.6.0">emboss</requirement>
         <requirement type="package" version="2.0.2">rdptools</requirement>

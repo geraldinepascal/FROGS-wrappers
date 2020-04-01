@@ -18,7 +18,7 @@
 <tool id="FROGS_clustering" name="FROGS Clustering swarm" version="3.2">
 	<description>Single-linkage clustering on sequences</description>
         <requirements>
-                <requirement type="package" version="3.2.0">frogs</requirement>
+                <!-- <requirement type="package" version="3.2.0">frogs</requirement> -->
                 <requirement type="package" version="3.0.0">swarm</requirement>
         </requirements>
         <stdio>
