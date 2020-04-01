@@ -18,7 +18,7 @@
 <tool id="FROGS_OTU_filters" name="FROGS OTU Filters" version="3.2">
 	<description>Filters OTUs on several criteria.</description>
         <requirements>
-                <requirement type="package" version="3.2.0">frogs</requirement>
+                <requirement type="package" version="3.1.0">frogs</requirement>
                 <requirement type="package" version="2.9.0">blast</requirement>
         </requirements>
         <stdio> 
@@ -28,7 +28,7 @@
 
 	<command>
 
-		filters.py
+		otu-filters.py
 			--nb-cpus \${GALAXY_SLOTS:-1} 
 			--input-biom $input_biom  
 			--input-fasta $input_fasta
@@ -37,27 +37,33 @@
 			--excluded $output_excluded
 			--summary $output_summary
 
-			#if $contaminations_filter.contaminations_filter_isApplied == "yes"
-				#if $contaminations_filter.contaminantSource.which_contaminantSource == "history"
-					##build index on the fly
-					--contaminant "${contaminations_filter.contaminantSource.ownContaminantFile}"
-				#else
-					##use precomputed indexes
-					--contaminant "${contaminations_filter.contaminantSource.contaminants_db.fields.path}"
+			#if $min_sample_presence
+				--min-sample-presence $min_sample_presence
+			#end if
+
+			#if $choice_abundance_unit.abundance_unit_type == "count"
+				#if $choice_abundance_unit.min_abundance_count
+					--min-abundance $choice_abundance_unit.min_abundance_count
 				#end if
 			#end if
-    
+
+			#if $choice_abundance_unit.abundance_unit_type == "proportion"
+				#if $choice_abundance_unit.min_abundance_proportion
+					--min-abundance $choice_abundance_unit.min_abundance_proportion
+				#end if
+			#end if
+
+			#if $nb_biggest_otu
+				--nb-biggest-otu $nb_biggest_otu
+			#end if
+
 			
-			#if $abundance_filters.abundance_filters_areApplied == "yes"
-				#if $abundance_filters.min_sample_presence
-					--min-sample-presence $abundance_filters.min_sample_presence
-				#end if
-				#if $abundance_filters.min_abundance
-					--min-abundance $abundance_filters.min_abundance
-				#end if
-				#if $abundance_filters.nb_biggest_otu
-					--nb-biggest-otu $abundance_filters.nb_biggest_otu
-				#end if
+			#if $contaminantSource.which_contaminantSource == "history"
+				##build index on the fly
+				--contaminant "${contaminantSource.ownContaminantFile}"
+			#else if $contaminantSource.which_contaminantSource == "server"
+				##use precomputed indexes
+				--contaminant "${contaminantSource.contaminants_db.fields.path}"
 			#end if
 
 	</command>
@@ -66,41 +72,44 @@
 		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)." />
 		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)." />
 		
-		<conditional name="abundance_filters">
-			<param name="abundance_filters_areApplied" type="select" label=" *** THE FILTERS ON OTUS IN SAMPLES, OTUS SIZE and SEQUENCE PERCENTAGE" help="If you want to filter OTUs on their abundance and occurrence." >
-				<option value="no">No filters</option>
-				<option value="yes">Apply filters</option>
+		<param name="min_sample_presence" type="integer" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep OTU if it is present in at least this number of samples.">
+			<validator type="in_range" min="2" message="To be effective this threshold need to be higher than 1" />
+		</param>
+		
+		<conditional name="choice_abundance_unit">
+			<param name="abundance_unit_type" type="select" label="Minimum OTU abundancy as proportion or count. We recommend to use a proportion of 0.00005.">
+				<option value="proportion">as proportion</option>
+				<option value="count">as count</option>
 			</param>
-			<when value="no"></when>
-			<when value="yes">
-				<param name="min_sample_presence" type="integer" optional="true" label="Minimum number of samples" size="5" help="Fill the field only if you want this treatment. Keep OTU present in at least this number of samples." />
-				<param name="min_abundance" type="text" optional="true" label="Minimum proportion/number of sequences to keep OTU" size="5" help="Fill the field only if you want this treatment. Use decimal notation for proportion (example: 0.01 for keep OTU with at least 1% of all sequences) ; Use integer notation for number of sequence (example: 2 for keep OTU with at least 2 sequences, so remove single singleton)." />
-				<param name="nb_biggest_otu" type="integer" optional="true" label="N biggest OTU" size="5" help="Fill the fields only if you want this treatment. Keep the N biggest OTU." /> 
+			<when value="proportion">
+				<param name="min_abundance_proportion" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep OTU" size="5" help='Fill the field only if you want this treatment. Example: "0.00005", recommended by Bokulich et al 2013, to keep OTU with at least 0,005% of all sequences).'>
+					<validator type="in_range" min="0" exclude_min="true" max="1" exclude_max="true" message="Abundance proportion threshold need to be strictly greater than 0 and less than 1, otherwise you will not remove anything or remove everything." />
+				</param>
+			</when>
+			<when value="count">
+				<param name="min_abundance_count" type="integer" optional="true" label="Minimum number of sequences to keep OTU" size="5" help='Fill the field only if you want this treatment. Ex: "2" to keep OTU with at least 2 sequences, so remove single singleton.'>
+					<validator type="in_range" min="2" message='To be effective this threshold need to be higher than 1. "2" means that you will remove OTU with 1 and only 1 sequence over all samples'/>
+				</param>
 			</when>
 		</conditional>
+
+		<param name="nb_biggest_otu" type="integer" optional="true" label="N biggest OTUs" size="5" help="Fill the fields only if you want this treatment. Keep the N biggest OTU." /> 
 		
-		<conditional name="contaminations_filter">
-			<param name="contaminations_filter_isApplied" type="select" label="Contaminant databank" help="Do you want to filtered out cluster sequence that correspond to a specific contaminant">
-				<option value="no">No filters</option>
-				<option value="yes">Apply filters</option>
+		<conditional name="contaminantSource">
+			<param name="which_contaminantSource" type="select" label="Search for contaminant OTU." help="Either you use your own contaminant fasta file or you select one among available ones.">
+				<option value="no">No contaminant filter</option>
+				<option value="server">Use contaminant fasta file from the server</option>
+				<option value="history">Use contaminant fasta file from the history</option>
 			</param>
-			<when value="no"></when>
-			<when value="yes">
-				<conditional name="contaminantSource">
-					<param name="which_contaminantSource" type="select" label="Will you select a contaminant reference from your history or use one from the server?">
-						<option value="server">Use one from the server</option>
-						<option value="history">Use one from the history</option>
-					</param>
-					<when value="server">
-						<param name="contaminants_db" type="select" label="Contaminant databank" help="For example the phiX databank (the phiX is a control added in Illumina sequencing technologies).">
-							<options from_data_table="contaminant_db"></options>
-							<validator type="no_options" message="A built-in database is not available" />
-						</param>
-					</when>
-					<when value="history">
-						<param name="ownContaminantFile" type="data" format="fasta" label="Select a contaminante reference from history" />
-					</when>
-				</conditional>
+			<when value="no"/>
+			<when value="server">
+				<param name="contaminants_db" type="select" label="Contaminant databank" help="For example the phiX databank (the phiX is a control added in Illumina sequencing technologies).">
+					<options from_data_table="contaminant_db"></options>
+					<validator type="no_options" message="A built-in database is not available" />
+				</param>
+			</when>
+			<when value="history">
+				<param name="ownContaminantFile" type="data" format="fasta" label="Select a contaminante reference from history" />
 			</when>
 		</conditional>
 	</inputs>
@@ -115,12 +124,10 @@
 	        <param name="input_fasta" value="references/03-chimera.fasta" />
             <param name="input_biom" value="references/03-chimera.biom" />    
 		    <conditional name="abundance_filters">
-	     	  	<param name="abundance_filters_areApplied" value="yes" />
 				<param name="min_abundance" value="0.00005" />	
 				<param name="min_sample_presence" value="3" />
 		    </conditional>
 		    <conditional name="contaminations_filter">
-	            <param name="contaminations_filter_isApplied" value="yes" />
 	            <conditional name="contaminantSource">
 	            	<param name="which_contaminantSource" value="server"/>
 					<param name="contaminant_db" value="phiX_test" />
@@ -167,7 +174,7 @@ The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`
 
 The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
-** Contaminant fasta file** (optional):
+**Contaminant fasta file** (optional):
 
 A sequence fasta file containing the reference sequence of known contaminant
 
@@ -236,10 +243,11 @@ Examples for the filters on abundance and occurence of the OTUs :
 
 **Contact**
 
-Contacts: frogs@inra.fr
+Contacts: frogs-support@inrae.fr
 
-Repository: https://github.com/geraldinepascal/FROGS
-website: http://frogs.toulouse.inra.fr/
+Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
+
+Website: http://frogs.toulouse.inra.fr/
 
 Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
 
