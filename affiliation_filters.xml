@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<!--
+# Copyright (C) 2015 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<tool id="FROGS_affiliation_filters" name="FROGS Affiliation Filters" version="3.2">
+	<description>Filters OTUs on affiliation several criteria.</description>
+<!--         <requirements>
+                <requirement type="package" version="3.2.0">frogs</requirement>
+        </requirements> -->
+        <stdio> 
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+
+	<command>
+
+		affiliation_filters.py
+			--input-biom $input_biom  
+			--input-fasta $input_fasta
+			--output-fasta $output_fasta
+			--output-biom $output_biom
+			--impacted $output_excluded
+			--summary $output_summary
+
+			#if $mode == "mask"
+				--mask
+			#else
+				--delete
+			#end if
+
+			--taxonomic-ranks $rdp.taxonomic_ranks
+
+			#if $rdp.rdp_rank
+				--min-rdp-bootstrap $rdp.rdp_rank:$rdp.rdp_bootstrap
+			#end if
+		
+			#if $blast.min_blast_length
+				--min-blast-length $blast.min_blast_length
+			#end if
+			#if $blast.max_blast_evalue
+				--max-blast-evalue $blast.max_blast_evalue
+			#end if
+			#if $blast.min_blast_identity
+				--min-blast-identity $blast.min_blast_identity
+			#end if
+			#if $blast.min_blast_coverage
+				--min-blast-coverage $blast.min_blast_coverage
+			#end if
+
+			#set $sep = ' '
+            #if $blast.taxon_ignored
+            	--taxon-ignored 
+            	#for $current in $blast.taxon_ignored
+                	$sep"${current.name.strip()}"
+            	#end for
+            #end if
+
+	</command>
+	<inputs>
+		<!-- Files -->
+		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)." />
+		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)." />
+
+		<param name="mode" type="select" label="Filtering mode" multiple="false" help="Do you want to delete OTU or mask affiliations" optional="false" display="radio">
+			<option value="mask" selected="true">Masking mode</option>
+			<option value="delete">Deleting mode</option>
+		</param>
+
+		<section name="rdp" title="Filtering on RDP affiliations" expanded="true">
+			<param name="taxonomic_ranks" type="text" label="Taxonomic ranks" help="The ordered taxonomic ranks levels stored in BIOM. Each rank is separated by one space." optional="false" value="Domain Phylum Class Order Family Genus Species" size="80" />
+			<param name="rdp_rank" type="text" label="Taxonomical rank on which to apply bootstrap filter" optional="true"/>
+			<param name="rdp_bootstrap" type="float" min="0.0" max="1.0" label="Minimum bootstrap % (between 0 and 1)" size="5" optional="true" />
+		</section>
+
+		<section name="blast" title="Filtering on Blast affiliations" expanded="true" >
+			<param name="max_blast_evalue" type="float" min="0.0" max="1.0" optional="true" label="Maximum e-value (between 0 and 1)" size="5" help="Fill the field only if you want this treatment" /> 
+			<param name="min_blast_identity" type="float" min="0.0" max="1.0" optional="true" label="Minimum identity % (between 0 and 1)" size="5" help="Fill the field only if you want this treatment" />
+			<param name="min_blast_coverage" type="float" min="0.0" max="1.0" optional="true" label="Minimum coverage % (between 0 and 1)" size="5" help="Fill the field only if you want this treatment" />
+			<param name="min_blast_length" type="integer" optional="true" label="Minimum alignment length" size="5" help="Fill the field only if you want this treatment" />
+
+			<repeat name="taxon_ignored" title="remove blast taxonomies including these taxon/word">
+				<param name="name" type="text" label="Full or partial taxon name" help='ex: "unkown species" or "subsp."' optional="true"/>
+			</repeat>
+		</section>
+
+	</inputs>
+	<outputs>
+		<data format="fasta" name="output_fasta" label="${tool.name}: sequences.fasta" from_work_dir="sequences.fasta" />
+		<data format="biom1" name="output_biom" label="${tool.name}: abundance.biom" from_work_dir="abundance.biom" />
+		<data format="tabular" name="output_excluded" label="${tool.name}: impacted_OTU.tsv" from_work_dir="impacted.tsv" />
+		<data format="html" name="output_summary" label="${tool.name}: report.html" from_work_dir="report.html" />
+	</outputs>
+	<help>
+
+.. image:: static/images/FROGS_logo.png
+   :height: 144
+   :width: 110
+
+
+
+.. class:: infomark page-header h2
+
+What it does
+
+Filter the OTUs of an abundance table according :
+
+ -The abundance and the occurence of OTUs: presence in samples, OTU size and maximum number of OTUs.
+
+ -The taxonomic affiliation produced by RDP: rank and bootstrap.
+
+ -The taxonomic affiliation produced by Blast: e-value, percentage of identity, percentage of coverage and alignment length.
+ 
+ -Contamination: phiX a control added in Illumina sequencing technologies.
+
+
+
+.. class:: infomark page-header h2
+
+Inputs/outputs
+
+
+.. class:: h3
+
+Inputs
+
+**Sequence file**:
+
+The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
+
+**Abundance file**:
+
+The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
+
+
+.. class:: h3
+
+Outputs
+
+**Sequence file** (sequences.fasta):
+
+ The sequences after filtering (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
+
+**Abundance file** (abundance.biom):
+
+ The abundance after filtering (format `BIOM &lt;http://biom-format.org/&gt;`_).
+
+**Excluded file** (excluded.txt):
+
+ The list of the OTUs deleted by filters (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
+
+**Summary file** (report.html):
+
+ The filters and the number of removed sequences (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
+
+
+
+.. class:: infomark page-header h2
+
+How it works
+
+
+
+
+The OTUs kept are the ones that satisfy into the BIOM input file the thresholds specified by the user.
+
+The BIOM abundance table and the fasta file are written again according to the OTUs kept.
+
+The OTUs discarded are listed in the excluded file.
+
+.. csv-table:: 
+   :header: "Steps", "description"
+   :widths: 5, 150
+   :class: table table-striped
+
+   "1", "Except the filter to select the n most abundant OTUs, all the selected filters are run independently. For each filters an list of the OTUs to remove is generated."
+   "2", "All the OTUs tagged to remove by at least one filter are removed."
+   "3", "If the filter to select the N most abundant OTUs is filled it is applied."
+
+
+
+.. class:: infomark page-header h2
+
+Advices
+
+Please check that the input fasta file and the input BIOM file correspond to the same OTUs.
+
+Examples for the filters on abundance and occurence of the OTUs : 
+
+-To keep the filters that are present in 5 samples, fill the corresponding field with "5".
+
+-To display the 20 biggest OTU, fill the corresponding field with "20".
+
+-To filter on abundance, we advise you to specify 0.005%. It seems to be the optimal threshold (`Bokulich *et al*, 2013 &lt;http://www.nature.com/nmeth/journal/v10/n1/abs/nmeth.2276.html&gt;`_ ).
+
+If you use "FROGS Filters" before "FROGS Affiliation", the filters on RDP and Blast are useless.
+
+----
+
+**Contact**
+
+Contacts: frogs-support@inrae.fr
+
+Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
+
+Website: http://frogs.toulouse.inra.fr/
+
+Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
+
+	</help>
+	<citations>
+		<citation type="doi">10.1093/bioinformatics/btx791</citation>
+	</citations>
+</tool>
