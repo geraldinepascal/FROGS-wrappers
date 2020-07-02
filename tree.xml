@@ -16,55 +16,56 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGS_Tree" name="FROGS Tree" version="3.2">
-	<description>Reconstruction of phylogenetic tree </description>
- 	<requirements>
-                <!-- <requirement type="package" version="3.2.0">frogs</requirement> -->
-                <requirement type="package" version="7.455">mafft</requirement>
-                <requirement type="package" version="2.1.10">fasttree</requirement>
-                <requirement type="package" version="2.4.0">r-phangorn</requirement>
-        </requirements>
-        <stdio>
-                <exit_code range="1:" />
-                <exit_code range=":-1" />
-        </stdio>
-	<command>tree.py 
-                                            --input-otu $input_otu
-                                            --biomfile $biomfile
-                                            --nb-cpus \${GALAXY_SLOTS:-1}
-                                            --out-tree $out_tree
-                                            --html $html
-	</command>
+    <description>Reconstruction of phylogenetic tree </description>
+    <requirements>
+        <!-- <requirement type="package" version="3.2.0">frogs</requirement> -->
+        <requirement type="package" version="7.455">mafft</requirement>
+        <requirement type="package" version="2.1.10">fasttree</requirement>
+        <requirement type="package" version="2.4.0">r-phangorn</requirement>
+    </requirements>
+    <stdio>
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
+    <command interpreter="python3">
+        tree.py 
+            --input-otu $input_otu
+            --biomfile $biomfile
+            --nb-cpus \${GALAXY_SLOTS:-1}
+            --out-tree $out_tree
+            --html $html
+    </command>
     <inputs>
-	<!-- Files -->
-	<param format="fasta" name="input_otu" type="data" label="OTUs sequence file" help="OTUs sequence file (format: fasta). Warning: FROGS Tree does not work on more than 10000 sequences!" optional="false">
-        	<validator type="empty_field" message="This parameter is required." />
+    <!-- Files -->
+        <param format="fasta" name="input_otu" type="data" label="OTUs sequence file" help="OTUs sequence file (format: fasta). Warning: FROGS Tree does not work on more than 10000 sequences!" optional="false">
+            <validator type="empty_field" message="This parameter is required." />
         </param>
         <param format="biom1" name="biomfile" type="data" label="Biom file" help="The abundance table of OTUs (format: biom)." optional="false">
-        	<validator type="empty_field" message="This parameter is required." />
+            <validator type="empty_field" message="This parameter is required." />
         </param>
     </inputs>
-	<outputs>
-		<data format="nhx" name="out_tree" label="${tool.name}: tree.nwk" from_work_dir="tree.nwk"/>
-        	<data format="html" name="html" label="${tool.name}: summary.html" from_work_dir="summary.html"/>
-	</outputs>
-	<tests>
-		<test>
-			<param name="input_otu" value="references/04-filters.fasta"/>
-			<param name="biomfile" value="references/06-affiliation.biom"/>
-			<!--output name="out_tree" value="references/13-tree-mafft.nwk"/-->
-			<!--output name="html" value="references/13-tree-mafft.html"/-->
-			<output name="html">
- 		        	<assert_contents>
-                    		<has_text_matching expression="FROGS\sTree" />
-                    		<has_text_matching expression="abundance_removed.*:\s0" />
-                    		<has_text_matching expression="abundance_kept.*:\s45574" />
-                    		<has_text_matching expression="otu_removed.*:\s0" />
-                    		<has_text_matching expression="otu_kept.*:\s86" />
-                		</assert_contents>
-			</output>
-		</test>
-	</tests>
-	<help>
+    <outputs>
+        <data format="nhx" name="out_tree" label="${tool.name}: tree.nwk" from_work_dir="tree.nwk"/>
+        <data format="html" name="html" label="${tool.name}: summary.html" from_work_dir="summary.html"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="input_otu" value="references/04-filters.fasta"/>
+            <param name="biomfile" value="references/06-affiliation.biom"/>
+            <!--output name="out_tree" value="references/13-tree-mafft.nwk"/-->
+            <!--output name="html" value="references/13-tree-mafft.html"/-->
+            <output name="html">
+                 <assert_contents>
+                    <has_text_matching expression="FROGS\sTree" />
+                    <has_text_matching expression="abundance_removed.*:\s0" />
+                    <has_text_matching expression="abundance_kept.*:\s45574" />
+                    <has_text_matching expression="otu_removed.*:\s0" />
+                    <has_text_matching expression="otu_kept.*:\s86" />
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+    <help>
 .. image:: static/images/FROGS_logo.png 
    :height: 144
    :width: 110
@@ -118,13 +119,13 @@ Contacts: frogs-support@inrae.fr
 
 Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
 
-Website: http://frogs.toulouse.inra.fr/
+Website: http://frogs.toulouse.inrae.fr/
 
 Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
 
-	</help>
-	<citations>
-		<citation type="doi">10.1093/bioinformatics/btx791</citation>
-	</citations>
+    </help>
+    <citations>
+        <citation type="doi">10.1093/bioinformatics/btx791</citation>
+    </citations>
 
 </tool>

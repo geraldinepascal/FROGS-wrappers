@@ -24,7 +24,7 @@
         <requirement type="package" version="1.26.0"> bioconductor-deseq2</requirement>
         <requirement type="package" version="1.6.4"> r-optparse</requirement>
     </requirements>
-	<command interpreter="python2.7">deseq2_preprocess.py --data $data
+	<command interpreter="python3">deseq2_preprocess.py --data $data
                                                         #if $multiple.seconde=="false"
                                                           --var $var1
                                                         #end if

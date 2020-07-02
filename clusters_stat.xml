@@ -24,7 +24,7 @@
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
-	<command>
+	<command interpreter="python3">
 		clusters_stat.py 
 		                 --input-biom $biom
 		                 --output-file $summary_file
@@ -114,7 +114,7 @@ Contacts: frogs-support@inrae.fr
 
 Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
 
-Website: http://frogs.toulouse.inra.fr/
+Website: http://frogs.toulouse.inrae.fr/
 
 Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
 

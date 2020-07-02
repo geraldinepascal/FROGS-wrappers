@@ -27,7 +27,7 @@
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
 	</stdio>
-	<command>r_manova.py 
+	<command interpreter="python3">r_manova.py 
                                     --rdata $data
                                     --varExp "$varExp"
                                     --distance-matrix $method
@@ -107,7 +107,7 @@ Contacts: frogs-support@inrae.fr
 
 Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
 
-Website: http://frogs.toulouse.inra.fr/
+Website: http://frogs.toulouse.inrae.fr/
 
 Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
 
