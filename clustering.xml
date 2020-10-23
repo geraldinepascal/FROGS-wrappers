@@ -28,7 +28,6 @@
     <command interpreter="python3">
         clustering.py 
                         --nb-cpus \${GALAXY_SLOTS:-1}
-                        --distance $maximal_distance
                         --input-fasta $sequence_file
                         --input-count $count_file
                         --output-biom $abundance_biom
@@ -36,10 +35,12 @@
                         --output-compo $swarms_composition
                         
                         #if $FROGS_guidelines.guidelines_version == "3.2"
+                        	--distance $FROGS_guidelines.maximal_distance
                             $FROGS_guidelines.fastidious
                         #end if
 
                         #if $FROGS_guidelines.guidelines_version == "3.1"
+                        	--distance $FROGS_guidelines.maximal_distance
                         	$FROGS_guidelines.denoising
                         #end if
                         
@@ -49,17 +50,18 @@
         <param format="fasta" name="sequence_file" type="data" label="Sequences file" help="The sequences file (format: fasta)." optional="false" />
         <param format="tabular" name="count_file" type="data" label="Count file" help="It contains the count by sample for each sequence (format: TSV)." optional="false" />
         <!-- Parameters -->
-        <param name="maximal_distance" type="integer" label="Aggregation distance clustering" help="Maximum number of differences between sequences in each aggregation swarm step." value="1" min="1" max="15" optional="false" />
         <conditional name="FROGS_guidelines">
             <param name="guidelines_version" type="select" label="FROGS guidelines version" help="Select the recommendation you prefer as additionnal option">
                 <option value="3.2" selected="true">New guidelines from version 3.2</option>
                 <option value="3.1">First guidelines until 3.1</option>
             </param>
             <when value="3.2">
-                <param name="fastidious" type="boolean" checked="true" truevalue="--fastidious" falsevalue="" label="Refine OTU clustering" help="If checked, clustering will be perform with the swarm fastidious option, wich is recommended in association with a distance of 1"/>
+            	<param name="maximal_distance" type="integer" label="Aggregation distance clustering" help="Maximum number of differences between sequences in each aggregation swarm step." value="1" min="1" max="15" optional="false" />
+                <param name="fastidious" type="boolean" checked="true" truevalue="--fastidious" falsevalue="" label="Refine OTU clustering" help="If checked, clustering will be perform with the swarm fastidious option, which is recommended in association with a distance of 1"/>
             </when>
             <when value="3.1">
-                <param name="denoising" type="boolean" checked="true" truevalue="--denoising" falsevalue="" label="Efficient denoising ? (equals to a first clustering step with d=1)" help="If checked, clustering will be perform in two steps, first with distance = 1 and then with aggregation distance of next input parameter"/>
+            	<param name="maximal_distance" type="integer" label="Aggregation distance clustering" help="Maximum number of differences between sequences in each aggregation swarm step." value="3" min="1" max="15" optional="false" />
+                <param name="denoising" type="boolean" checked="true" truevalue="--denoising" falsevalue="" label="Efficient denoising ? (equals to a first clustering step with d=1)" help="If checked, clustering will be perform in two steps, first with distance = 1 and then with an aggregation distance of next input parameter"/>
             </when>
         </conditional>
     </inputs>
