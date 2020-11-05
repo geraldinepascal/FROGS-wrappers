@@ -104,7 +104,7 @@
 			<when value="no"/>
 			<when value="server">
 				<param name="contaminants_db" type="select" label="Contaminant databank" help="For example the phiX databank (the phiX is a control added in Illumina sequencing technologies).">
-					<options from_data_table="contaminant_db"></options>
+					<options from_data_table="frogs_contaminant_db"></options>
 					<validator type="no_options" message="A built-in database is not available" />
 				</param>
 			</when>
