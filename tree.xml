@@ -18,7 +18,7 @@
 <tool id="FROGS_Tree" name="FROGS Tree" version="3.2">
     <description>Reconstruction of phylogenetic tree </description>
     <requirements>
-        <!-- <requirement type="package" version="3.2.0">frogs</requirement> -->
+        <requirement type="package" version="3.2.0">frogs</requirement>
         <requirement type="package" version="7.455">mafft</requirement>
         <requirement type="package" version="2.1.10">fasttree</requirement>
         <requirement type="package" version="2.4.0">r-phangorn</requirement>

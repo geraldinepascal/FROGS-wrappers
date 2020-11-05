@@ -18,7 +18,7 @@
 <tool id="FROGS_affiliations_stat" name="FROGS Affiliations stat" version="3.2">
 	<description>Process some metrics on taxonomies.</description>
         <requirements>
-                <!-- <requirement type="package" version="3.2.0">frogs</requirement> -->
+                <requirement type="package" version="3.2.0">frogs</requirement>
         </requirements>
         <stdio> 
                 <exit_code range="1:" />

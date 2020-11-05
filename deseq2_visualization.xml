@@ -18,7 +18,7 @@
 <tool name="FROGSTAT Deseq2 Visualization" id="FROGSSTAT_DESeq2_Visualization" version="3.2">
 	<description>to extract and visualize differentially abundant OTUs</description>
     <requirements>
-        <!-- <requirement type="package" version="3.2.0">frogs</requirement> -->
+        <requirement type="package" version="3.2.0">frogs</requirement>
         <requirement type="package" version="3.6.1">r-base</requirement>
         <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
         <requirement type="package" version="1.26.0">bioconductor-deseq2</requirement>

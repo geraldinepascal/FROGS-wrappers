@@ -17,9 +17,9 @@
 -->
 <tool id="FROGS_affiliation_filters" name="FROGS Affiliation Filters" version="3.2">
 	<description>Filters OTUs on affiliation several criteria.</description>
-<!--         <requirements>
+        <requirements>
                 <requirement type="package" version="3.2.0">frogs</requirement>
-        </requirements> -->
+        </requirements>
         <stdio> 
                 <exit_code range="1:" />
                 <exit_code range=":-1" />

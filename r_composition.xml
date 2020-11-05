@@ -18,7 +18,7 @@
 <tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="3.2">
     <description>with bar plot and composition plot</description>
         <requirements>
-            <!-- <requirement type="package" version="3.2.0">frogs</requirement> -->
+            <requirement type="package" version="3.2.0">frogs</requirement>
             <requirement type="package" version="3.6.1">r-base</requirement>
             <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
             <requirement type="package" version="4.5.6">r-plotly</requirement>

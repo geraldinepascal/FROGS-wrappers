@@ -19,7 +19,7 @@
 	<description>Attribute reads to samples in function of inner barcode.</description>
         <requirements>
             <requirement type="binary">perl</requirement>
-            <!-- <requirement type="package" version="3.2.0">frogs</requirement> -->
+            <requirement type="package" version="3.2.0">frogs</requirement>
             <requirement type="package" version="1.10">perl-io-zlib</requirement>
             <requirement type="package" version="0.20">perl-io-gzip</requirement>
         </requirements>

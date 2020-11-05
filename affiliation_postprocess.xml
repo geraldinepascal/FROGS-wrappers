@@ -18,7 +18,7 @@
 <tool id="FROGS_affiliation_postprocess" name="FROGS Affiliation postprocess" version="3.2">
 	<description>Optionnal step to resolve inclusive amplicon ambiguities and to aggregate OTUs based on alignment metrics</description>
  	<requirements>
-    	<!-- <requirement type="package" version="3.2.0">frogs</requirement> -->
+    	<requirement type="package" version="3.2.0">frogs</requirement>
   	</requirements>
   	<stdio>
 	    <exit_code range="1:" />
