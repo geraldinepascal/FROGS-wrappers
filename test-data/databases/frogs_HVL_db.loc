@@ -31,4 +31,4 @@
 #
 #
 # EXAMPLE FOR TEST :
-Unite_extract_ITS1_test	Unite_extract_ITS1_test	${__HERE__}/HVL_db_data/Unite_extract_ITS1.fasta
+Unite_extract_ITS1_test	Unite_extract_ITS1_test	${__HERE__}/frogs_HVL_db_data/Unite_extract_ITS1.fasta

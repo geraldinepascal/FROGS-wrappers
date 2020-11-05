@@ -29,9 +29,9 @@
 #
 #
 # EXAMPLE FOR TEST :
-#phiX_test	phiX_test	${__HERE__}/phiX_db_data/phi.fa
+#phiX_test	phiX_test	${__HERE__}/contaminant_db/phi.fa
 #
-#and your /galaxy_databanks/phiX/ directory
+#and your /galaxy_databanks/contaminant_db/ directory
 #would contain index files:
 #
 #-rwxrwxr-x 1 gpascal FROGS 5535 16 sept.  2015 phi.fa
@@ -39,4 +39,5 @@
 #-rw-rwxr-- 1 gpascal FROGS   88 16 sept.  2015 phi.fa.nin
 #-rw-rwxr-- 1 gpascal FROGS 1348 16 sept.  2015 phi.fa.nsq
 #
-#phiX	phiX	tool-data/phiX/phi.fa
+#phiX	phiX	tool-data/contaminant_db/phi.fa
+#Arabido_TAIR10_Chl_Mito	Arabidopsis TAIR10 Chloroplast and mitochondrie	tool-data/contaminant_db/Araport11-TAIR10Col0_Chl_MT.fa

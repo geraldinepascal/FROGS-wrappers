@@ -29,7 +29,7 @@
 #
 #
 # EXAMPLE FOR TEST :
-phiX_test	phiX_test	${__HERE__}/contaminant_db_data/phi.fa
+phiX_test	phiX_test	${__HERE__}/frogs_contaminant_db_data/phi.fa
 #
 #and your /galaxy_databanks/phiX/ directory
 #would contain index files:
