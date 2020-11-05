@@ -64,7 +64,7 @@
             #if $blast.taxon_ignored
             	--taxon-ignored 
             	#for $current in $blast.taxon_ignored
-                	$sep"${current.name.strip()}"
+                	$sep"${current.name}"
             	#end for
             #end if
 
