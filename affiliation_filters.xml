@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGS_affiliation_filters" name="FROGS Affiliation Filters" version="3.2">
-	<description>Filters OTUs on affiliation several criteria.</description>
+	<description>Filters OTUs on several affiliation criteria.</description>
         <requirements>
                 <requirement type="package" version="3.2.0">frogs</requirement>
         </requirements>
@@ -29,16 +29,17 @@
 
 		affiliation_filters.py
 			--input-biom $input_biom  
-			--input-fasta $input_fasta
-			--output-fasta $output_fasta
 			--output-biom $output_biom
-			--impacted $output_excluded
+			--impacted $output_impacted
+			--impacted-multihit $output_multihit
 			--summary $output_summary
 
-			#if $mode == "mask"
-				--mask
-			#else
+			#if $conditionnal_mode.mode == "delete"
 				--delete
+				--input-fasta $conditionnal_mode.input_fasta
+				--output-fasta $output_fasta
+			#else
+				--mask
 			#end if
 
 			--taxonomic-ranks $taxonomic_ranks
@@ -50,7 +51,7 @@
 			#if $blast.min_blast_length
 				--min-blast-length $blast.min_blast_length
 			#end if
-			#if $blast.max_blast_evalue
+			#if $blast.max_blast_evalue >= 0.0
 				--max-blast-evalue $blast.max_blast_evalue
 			#end if
 			#if $blast.min_blast_identity
@@ -62,7 +63,7 @@
 
 			#set $sep = ' '
             #if $blast.taxon_ignored
-            	--taxon-ignored 
+            	--ignore-blast-taxa
             	#for $current in $blast.taxon_ignored
                 	$sep"${current.name}"
             	#end for
@@ -71,14 +72,19 @@
 	</command>
 	<inputs>
 		<!-- Files -->
-		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)." />
 		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)." />
 		<param name="taxonomic_ranks" type="text" label="Taxonomic ranks" help="The ordered taxonomic ranks levels stored in BIOM. Each rank is separated by one space." optional="false" value="Domain Phylum Class Order Family Genus Species" size="80" />
 
-		<param name="mode" type="select" label="Filtering mode" multiple="false" help="Do you want to delete OTU or mask affiliations" optional="false" display="radio">
-			<option value="mask" selected="true">Masking mode</option>
-			<option value="delete">Deleting mode</option>
-		</param>
+		<conditional name="conditionnal_mode">
+			<param name="mode" type="select" label="Filtering mode" multiple="false" help="Do you want to delete OTU or mask affiliations" optional="false" display="radio">
+				<option value="mask" selected="true">Masking mode</option>
+				<option value="delete">Deleting mode</option>
+			</param>
+			<when value="delete">
+				<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)." />
+			</when>
+		</conditional>
+
 
 		<section name="rdp" title="Filtering on RDP affiliations" expanded="true">
 			<param name="rdp_rank" type="text" label="Taxonomical rank on which to apply bootstrap filter" optional="true"/>
@@ -92,15 +98,18 @@
 			<param name="min_blast_length" type="integer" optional="true" label="Minimum alignment length" size="5" help="Fill the field only if you want this treatment" />
 
 			<repeat name="taxon_ignored" title="remove blast taxonomies including these taxon/word">
-				<param name="name" type="text" label="Full or partial taxon name" help='ex: "unkown species" or "subsp."' optional="true"/>
+				<param name="name" type="text" label="Full or partial taxon name" help='ex: "unknown species" or "subsp."' optional="true"/>
 			</repeat>
 		</section>
 
 	</inputs>
 	<outputs>
-		<data format="fasta" name="output_fasta" label="${tool.name}: sequences.fasta" from_work_dir="sequences.fasta" />
 		<data format="biom1" name="output_biom" label="${tool.name}: abundance.biom" from_work_dir="abundance.biom" />
-		<data format="tabular" name="output_excluded" label="${tool.name}: impacted_OTU.tsv" from_work_dir="impacted.tsv" />
+		<data format="fasta" name="output_fasta" label="${tool.name}: sequences.fasta" from_work_dir="sequences.fasta">
+			<filter> conditionnal_mode['mode'] == 'delete'</filter>
+		</data>
+		<data format="tabular" name="output_impacted" label="${tool.name}: impacted_OTU.tsv" from_work_dir="impacted.tsv" />
+		<data format="tabular" name="output_multihit" label="${tool.name}: impacted_OTU.multihit.tsv" from_work_dir="impacted.multihit.tsv" />
 		<data format="html" name="output_summary" label="${tool.name}: report.html" from_work_dir="report.html" />
 	</outputs>
 	<help>
@@ -115,17 +124,12 @@
 
 What it does
 
-Filter the OTUs of an abundance table according :
+Remove OTUs or mask taxonomical metadata according to (one or more criteria):
 
- -The abundance and the occurence of OTUs: presence in samples, OTU size and maximum number of OTUs.
+ - for RDP taxonomy : a minimal bootstrap threshold at a specific rank
 
- -The taxonomic affiliation produced by RDP: rank and bootstrap.
-
- -The taxonomic affiliation produced by Blast: e-value, percentage of identity, percentage of coverage and alignment length.
+ - for Blast taxonomy : a minimal identity rate, coverage rate, or alignment length, or a maximal evalue, or the absence of full or partial taxon name.
  
- -Contamination: phiX a control added in Illumina sequencing technologies.
-
-
 
 .. class:: infomark page-header h2
 
@@ -136,76 +140,110 @@ Inputs/outputs
 
 Inputs
 
-**Sequence file**:
-
-The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
-
 **Abundance file**:
 
 The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
+
+**Sequence file** (optional):
+
+The OTUs seed sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_). This parameter is mandatory in case of using deleting mode.
+
 
 
 .. class:: h3
 
 Outputs
 
-**Sequence file** (sequences.fasta):
-
- The sequences after filtering (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
 
 **Abundance file** (abundance.biom):
 
  The abundance after filtering (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
-**Excluded file** (excluded.txt):
+**Sequence file** (sequences.fasta):
 
- The list of the OTUs deleted by filters (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
+ The updated sequences after filtering (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_), in case of using deleting mode.
+
+**Imapcted abundance tabular file** (impacted.tsv):
+
+ The list of the OTUs deleted/masked or whith updated blast affiliation by filters (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
+
+**Imapcted multihit tabular file** (impacted.multihit.tsv):
+
+ The list of blast affiliations for multi-affiliated impacted OTU (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
+
 
 **Summary file** (report.html):
 
- The filters and the number of removed sequences (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
-
-
+ A summary report HTML of impacted OTUs, taxonomies lost and details by samples (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
 
 .. class:: infomark page-header h2
 
 How it works
 
+- Step1:
 
+Compare all affiliations (RDP and all Blast hits) to each filtering criteria.
 
+- Step2:
 
-The OTUs kept are the ones that satisfy into the BIOM input file the thresholds specified by the user.
+Update concensus Blast taxonomy if at least one blast criteria has an impact.
+When only part of the Blast affiliations are removed, the concensus Blast taxonomy is updated, and if it changes, the OTU is concidered as "Modified".
 
-The BIOM abundance table and the fasta file are written again according to the OTUs kept.
+- Step3:
+  
+In deleting mode, OTU is removed either if the RDP bootstrap criteria is not respected or if none of the blast affiliation respect all the criteria .
 
-The OTUs discarded are listed in the excluded file.
+In masking mode, RDP affiliation is masked (removed) if the RDP bootstrap criteria is not respected, and independantly, blast affiliations are removed if none of the blast affiliation respect all the criteria.
 
-.. csv-table:: 
-   :header: "Steps", "description"
-   :widths: 5, 150
-   :class: table table-striped
+ - Step 4 
 
-   "1", "Except the filter to select the n most abundant OTUs, all the selected filters are run independently. For each filters an list of the OTUs to remove is generated."
-   "2", "All the OTUs tagged to remove by at least one filter are removed."
-   "3", "If the filter to select the N most abundant OTUs is filled it is applied."
-
-
+Write valid OTU into the filtered.biom file with potential Blast affiliation updated and impacting criteria annotations.
+All impacted/modified OTU with their original metadata are reported in the impacted.tsv file with its associated impacted.multihit.tsv file.
+Impacting status (OTU_deleted / Affiliation_masked / Blast_taxonomy_changed) and the list of impacting criteria are also reported in the impacted.tsv file.
 
 .. class:: infomark page-header h2
 
 Advices
 
-Please check that the input fasta file and the input BIOM file correspond to the same OTUs.
+Imagine that you want to filter out affiliations with :
+- RDP bootstrap at the Species level less than 0.8
+- Blast %identity and %coverage less than 100
+- Blast taxonomies with "unknown species"
 
-Examples for the filters on abundance and occurence of the OTUs : 
+What will append in these different cases in deleting or maksing mode : 
 
--To keep the filters that are present in 5 samples, fill the corresponding field with "5".
+- Cluster 1:
 
--To display the 20 biggest OTU, fill the corresponding field with "20".
+.. image:: static/images/FROGS_affiliation_filter1.png
 
--To filter on abundance, we advise you to specify 0.005%. It seems to be the optimal threshold (`Bokulich *et al*, 2013 &lt;http://www.nature.com/nmeth/journal/v10/n1/abs/nmeth.2276.html&gt;`_ ).
+The RDP taxonomy does not respect the RDP boostrap threshold, but all blast affiliation criteria are respected
 
-If you use "FROGS Filters" before "FROGS Affiliation", the filters on RDP and Blast are useless.
+In deleting mode, Cluster_1 will be removed. 
+In the summary.html, it will be considered as "Removed", and if the RDP taxonomy is not kept thanks to an other OTU, the RDP taxonomy will be considered as lost.
+In masking mode, RDP taxonomy will be removed, blast taxonomy will remain unchanged and Cluster_1 will be kept.
+In the summary.html, it will be considered as "Masked", and if the RDP taxonomy is not kept thanks to an other OTU, the RDP taxonomy will be considered as lost.
+
+- Cluster 2:
+
+.. image:: static/images/FROGS_affiliation_filter2.png
+
+The RDP taxonomy respects the RDP boostrap threshold, but none of the blast affiliations respect all the blast criteria.
+
+In deleting mode, Cluster_1 will be removed. 
+In the summary.html, it will be considered as "Removed", and if the two taxonomies are not kept thanks to others OTUs, they will be considered as lost. In the same way, if there is no other OTU, affiliated to Sulfurimonas genus but with an ambiguous species, 1 Multi-affilaition will be considered as lost in the summary.html.
+In masking mode, RDP taxonomy will be remain unchanged, blast taxonomy will be removed and Cluster_2 will be kept.
+In the summary.html, it will be considered as "Masked", and if the two taxonomies are not kept thanks to others OTUs, they will be considered as lost. In the same way, if there is no other OTU, affiliated to Sulfurimonas genus but with an ambiguous species, 1 Multi-affilaition will be considered as lost in the summary.html.
+
+-Cluster 3:
+
+.. image:: static/images/FROGS_affiliation_filter3.png
+
+The RDP taxonomy respects the RDP boostrap threshold, and one of the two blast affiliations respect all the blast criteria.
+
+In both deleting and masking mode, Cluster_1 will be kept. 
+In the summary.html, it will be considered as "Modified", as the RDP taxonomy will remain unchanged and the blast taxonomy will be updated.
+If no other OTU is affiliated to the "unknown species" of the Fusobacterium genu, this species will be considered as lost. In the same way if no oter OTU 
+is affiliated to Fusobacterium genus but with an ambiguous species, 1 Multi-affilaition at the Species level will be considered as lost in the summary.html.
 
 ----
 
