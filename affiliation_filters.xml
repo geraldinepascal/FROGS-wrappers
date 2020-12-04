@@ -51,7 +51,7 @@
 			#if $blast.min_blast_length
 				--min-blast-length $blast.min_blast_length
 			#end if
-			#if $blast.max_blast_evalue >= 0.0
+			#if $blast.max_blast_evalue != None
 				--max-blast-evalue $blast.max_blast_evalue
 			#end if
 			#if $blast.min_blast_identity
