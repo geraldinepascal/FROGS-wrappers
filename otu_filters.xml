@@ -28,7 +28,7 @@
 
 	<command interpreter="python3">
 
-		otu-filters.py
+		otu_filters.py
 			--nb-cpus \${GALAXY_SLOTS:-1} 
 			--input-biom $input_biom  
 			--input-fasta $input_fasta
