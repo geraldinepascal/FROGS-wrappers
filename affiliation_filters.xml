@@ -75,15 +75,13 @@
 		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)." />
 		<param name="taxonomic_ranks" type="text" label="Taxonomic ranks" help="The ordered taxonomic ranks levels stored in BIOM. Each rank is separated by one space." optional="false" value="Domain Phylum Class Order Family Genus Species" size="80" />
 		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)." />
+
 		<conditional name="conditionnal_mode">
 			<param name="mode" type="select" label="Filtering mode" multiple="false" help="Do you want to delete OTU or mask affiliations" optional="false" display="radio">
 				<option value="mask" selected="true">Masking mode</option>
 				<option value="delete">Deleting mode</option>
 			</param>
-			<when value="delete">
-			</when>
 		</conditional>
-
 
 		<section name="rdp" title="Filtering on RDP affiliations" expanded="true">
 			<param name="rdp_rank" type="text" label="Taxonomical rank on which to apply bootstrap filter" optional="true"/>
@@ -113,20 +111,45 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="input_fasta" value="references/03-chimera.fasta" />
-            <param name="input_biom" value="references/03-chimera.biom" />    
-		    <conditional name="abundance_filters">
-				<param name="min_abundance" value="0.00005" />	
-				<param name="min_sample_presence" value="3" />
+			<param name="input_fasta" value="references/04-otu_filters.fasta" />
+            <param name="input_biom" value="references/06-affiliation.biom" />    
+		    <conditional name="conditionnal_mode">
+				<param name="mode" value="mask"/>
 		    </conditional>
-		    <conditional name="contaminations_filter">
-	            <conditional name="contaminantSource">
-	            	<param name="which_contaminantSource" value="server"/>
-					<param name="contaminant_db" value="phiX_test" />
-				</conditional>
+		    <param name="rdp_rank" value="Species"/>
+		    <param name="rdp_bootstrap" value="0.8"/>
+		    <param name="max_blast_evalue" value="0"/>
+		    <param name="min_blast_identity" value="1"/>
+		    <param name="min_blast_coverage" value="1"/>
+		    <repeat name="taxon_ignored">
+		    	<param name="name" value="g__Amanita"/>
+		    </repeat>
+			<repeat name="taxon_ignored">
+		    	<param name="name" value="s__Pholiota_highlandensis"/>
+		    </repeat>
+	 	    <output name="output_impacted" file="references/21-affi_filters_impacted_mask.tsv" />
+		    <output name="output_multihit" file="references/21-affi_filters_impacted_multihit_mask.tsv" />
+		</test>
+		<test>
+			<param name="input_fasta" value="references/04-otu_filters.fasta" />
+            <param name="input_biom" value="references/06-affiliation.biom" />    
+		    <conditional name="conditionnal_mode">
+				<param name="mode" value="delete"/>
 		    </conditional>
-	 	    <output name="output_fasta" file="references/04-otu_filters.fasta" />
-		    <output name="output_excluded" file="references/04-otu_filters.excluded" />
+		    <param name="rdp_rank" value="Species"/>
+		    <param name="rdp_bootstrap" value="0.8"/>
+		    <param name="max_blast_evalue" value="0"/>
+		    <param name="min_blast_identity" value="1"/>
+		    <param name="min_blast_coverage" value="1"/>
+		    <repeat name="taxon_ignored">
+		    	<param name="name" value="g__Amanita"/>
+		    </repeat>
+			<repeat name="taxon_ignored">
+		    	<param name="name" value="s__Pholiota_highlandensis"/>
+		    </repeat>
+	 	    <output name="output_fasta" file="references/21-affi_filters_delete.fasta" />
+	 	    <output name="output_impacted" file="references/21-affi_filters_impacted_delete.tsv" />
+		    <output name="output_multihit" file="references/21-affi_filters_impacted_multihit_delete.tsv" />
 		</test>
 	</tests>
 	<help>
