@@ -96,7 +96,7 @@
 			<param name="min_blast_coverage" type="float" min="0.0" max="1.0" optional="true" label="Minimum coverage % (between 0 and 1)" size="5" help="Fill the field only if you want this treatment" />
 			<param name="min_blast_length" type="integer" optional="true" label="Minimum alignment length" size="5" help="Fill the field only if you want this treatment" />
 
-			<repeat name="taxon_ignored" title="remove blast taxonomies including these taxon/word">
+			<repeat name="taxon_ignored" title="Remove blast taxonomies including these taxon/word">
 				<param name="name" type="text" label="Full or partial taxon name" help='ex: "unknown species" or "subsp."' optional="true"/>
 			</repeat>
 		</section>
@@ -204,12 +204,12 @@ Impacting status (OTU_deleted / Affiliation_masked / Blast_taxonomy_changed) and
 
 Advices
 
-Imagine that you want to filter out affiliations with :
+Imagine you want to filter out affiliations with:
 - RDP bootstrap at the Species level less than 0.8
 - Blast %identity and %coverage less than 100
 - Blast taxonomies with "unknown species"
 
-What will append in these different cases in deleting or maksing mode : 
+What will append in these different cases in deleting or maksing mode: 
 
 - Cluster 1:
 
