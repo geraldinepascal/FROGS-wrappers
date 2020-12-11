@@ -18,7 +18,7 @@
 <tool id="FROGS_affiliation_filters" name="FROGS Affiliation Filters" version="3.2">
 	<description>Filters OTUs on several affiliation criteria.</description>
         <requirements>
-                <requirement type="package" version="3.2.0">frogs</requirement>
+            <requirement type="package" version="3.2.0">frogs</requirement>
         </requirements>
         <stdio> 
                 <exit_code range="1:" />
@@ -29,6 +29,7 @@
 
 		affiliation_filters.py
 			--input-biom $input_biom  
+			--input-fasta $input_fasta
 			--output-biom $output_biom
 			--impacted $output_impacted
 			--impacted-multihit $output_multihit
@@ -36,7 +37,6 @@
 
 			#if $conditionnal_mode.mode == "delete"
 				--delete
-				--input-fasta $conditionnal_mode.input_fasta
 				--output-fasta $output_fasta
 			#else
 				--mask
@@ -74,14 +74,13 @@
 		<!-- Files -->
 		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)." />
 		<param name="taxonomic_ranks" type="text" label="Taxonomic ranks" help="The ordered taxonomic ranks levels stored in BIOM. Each rank is separated by one space." optional="false" value="Domain Phylum Class Order Family Genus Species" size="80" />
-
+		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)." />
 		<conditional name="conditionnal_mode">
 			<param name="mode" type="select" label="Filtering mode" multiple="false" help="Do you want to delete OTU or mask affiliations" optional="false" display="radio">
 				<option value="mask" selected="true">Masking mode</option>
 				<option value="delete">Deleting mode</option>
 			</param>
 			<when value="delete">
-				<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)." />
 			</when>
 		</conditional>
 
