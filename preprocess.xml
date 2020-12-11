@@ -107,14 +107,14 @@
 			<when value="illumina">
 				<!-- Samples -->
 				<conditional name="input_type">
-					<param name="input_type_selected" type="select" label="Input type" help="Samples files can be provided in single archive or with two files (R1 and R2) by sample.">
+					<param name="input_type_selected" type="select" label="Input type" help="Samples files can be provided in a single TAR archive or sample by sample (with one or two files each).">
 						<option value="files_by_samples" selected="true">Files by samples</option>
-						<option value="archive">Archive</option>
+						<option value="archive">TAR Archive</option>
 					</param>
 					<when value="archive">
-						<param name="archive_file" type="data" format="tar" label="Archive file" help="The tar file containing the sequences file(s) for each sample." optional="false" />
+						<param name="archive_file" type="data" format="tar" label="TAR archive file" help="The TAR file containing the sequences file(s) for each sample." optional="false" />
 						<conditional name="archive_type">
-							<param name="archive_type_selected" type="select" label="Reads already merged ?" help="The archive contains 1 file by sample : R1 and R2 are already merged by pair.">
+							<param name="archive_type_selected" type="select" label="Are reads already merged ?" help="The archive contains 1 file by sample : R1 and R2 pair are already merged in one sequence.">
 								<option value="paired" selected="true">No</option>
 								<option value="already_merged">Yes</option>
 							</param>
@@ -123,8 +123,7 @@
 								<!-- Reads size -->
 								<param name="R1_size" type="integer" label="Reads 1 size" help="The maximum read1 size." value="" optional="false" />
 								<param name="R2_size" type="integer" label="Reads 2 size" help="The maximum read2 size." value="" optional="false" />
-								<param name="mm_rate" type="float" label="mismatch rate." help="The maximum rate of mismatch in the overlap region" value="0.1" optional="false" />
-								
+								<param name="mm_rate" type="float" label="Mismatch rate." help="The maximum rate of mismatch in the overlap region" value="0.1" optional="false" />					
 								<conditional name="merge_software_type">
 									<param name="merge_software_selected" type="select" label="Merge software" help="Select the software to merge paired-end reads.">
 										<option value="vsearch" selected="true">Vsearch</option>
@@ -142,7 +141,7 @@
 					</when>
 					<when value="files_by_samples">
 						<conditional name="files_by_samples_type">
-							<param name="files_by_samples_type_selected" type="select" label="Reads already contiged ?" help="The inputs contain 1 file by sample : R1 and R2 are already merged by pair.">
+							<param name="files_by_samples_type_selected" type="select" label="Are reads already merged ?" help="The inputs contain 1 file by sample : R1 and R2 pair are already merged in one sequence.">
 								<option value="paired" selected="true">No</option>
 								<option value="already_merged">Yes</option>
 							</param>
@@ -153,12 +152,12 @@
 										<validator type="empty_field" message="This parameter is required." />
 									</param>
 									<param format="fastq" name="R1_file" type="data" label="Reads 1" help="R1 FASTQ file of paired-end reads." />
-									<param format="fastq" name="R2_file" type="data" label="reads 2" help="R2 FASTQ file of paired-end reads." />
+									<param format="fastq" name="R2_file" type="data" label="Reads 2" help="R2 FASTQ file of paired-end reads." />
 								</repeat>
 								<!-- Reads size -->
 								<param name="R1_size" type="integer" label="Reads 1 size" help="The maximum read1 size." value="" optional="false" />
 								<param name="R2_size" type="integer" label="Reads 2 size" help="The maximum read2 size." value="" optional="false" />
-								<param name="mm_rate" type="float" label="mismatch rate." help="The maximum rate of mismatches in the overlap region" value="0.1" optional="false" />
+								<param name="mm_rate" type="float" label="Mismatch rate." help="The maximum rate of mismatches in the overlap region" value="0.1" optional="false" />
 								<conditional name="merge_software_type">
 									<param name="merge_software_selected" type="select" label="Merge software" help="Select the software to merge paired-end reads.">
 										<option value="vsearch" selected="true">Vsearch</option>
@@ -192,10 +191,10 @@
 						<option value="without_primers">Custom protocol (Kozich et al. 2013)</option>
 					</param>
 					<when value="standard">
-						<param name="five_prim_primer" type="text" size="20" label="5' primer" help="The 5' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters'." optional="false">
+						<param name="five_prim_primer" type="text" size="20" label="5' primer" help="The 5' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters' help section." optional="false">
 							<validator type="empty_field" message="This parameter is required." />
 						</param>
-						<param name="three_prim_primer" type="text" size="20" label="3' primer" help="The 3' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters'." optional="false">
+						<param name="three_prim_primer" type="text" size="20" label="3' primer" help="The 3' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters' help section." optional="false">
 							<validator type="empty_field" message="This parameter is required." />
 						</param>
 					</when>
@@ -208,10 +207,10 @@
 				<conditional name="input_type">
 					<param name="input_type_selected" type="select" label="Input type" help="Samples files can be provided in single archive or with one file by sample.">
 						<option value="files_by_samples" selected="true">One file by sample</option>
-						<option value="archive">Archive</option>
+						<option value="archive">TAR Archive</option>
 					</param>
 					<when value="archive">
-						<param name="archive_file" type="data" format="tar" label="Archive file" help="The tar file containing the sequences file for each sample." optional="false" />
+						<param name="archive_file" type="data" format="tar" label="TAR archive file" help="The TAR file containing the sequences file for each sample." optional="false" />
 					</when>
 					<when value="files_by_samples">
 						<repeat name="samples" title="Samples" min="1">
@@ -224,10 +223,10 @@
 				<param name="min_amplicon_size" type="integer" label="Minimum amplicon size" help="The minimum size for the amplicons (with primers)." value="" optional="false" />
 				<param name="max_amplicon_size" type="integer" label="Maximum amplicon size" help="The maximum size for the amplicons (with primers)." value="" optional="false" />
 				<!-- Primers -->
-				<param name="five_prim_primer" type="text" size="20" label="5' primer" help="The 5' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters'." optional="false">
+				<param name="five_prim_primer" type="text" size="20" label="5' primer" help="The 5' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters' help section." optional="false">
 					<validator type="empty_field" message="This parameter is required." />
 				</param>
-				<param name="three_prim_primer" type="text" size="20" label="3' primer" help="The 3' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters'." optional="false">
+				<param name="three_prim_primer" type="text" size="20" label="3' primer" help="The 3' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters' help section." optional="false">
 					<validator type="empty_field" message="This parameter is required." />
 				</param>
 			</when>
@@ -238,79 +237,67 @@
 		<data format="tabular" name="count_file" label="${tool.name}: count.tsv" from_work_dir="count.tsv" />
 		<data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="report.html" />
 	</outputs>
-        <tests>
-            <test>
-                <conditional name="sequencer_type">
-			<param name="sequencer_selected" value="illumina"/>
-			<conditional name="input_type">
-				<param name="input_type_selected" value="archive"/>
-				<param name="archive_file" ftype="tar" value="input/test_dataset.tar.gz"/>
-				<conditional name="archive_type">
-					<param name="archive_type_selected" value="paired"/>
-					<param name="R1_size" value="267"/>
-					<param name="R2_size" value="266"/>
-					<param name="mm_rate" value="0.15"/>
-			 		<conditional name="merge_software_type">
-						<param name="merge_software_selected" value="flash" />
-						<param name="expected_amplicon_size" value="420"/>
+    <tests>
+    	<test>
+    		<conditional name="sequencer_type">
+				<param name="sequencer_selected" value="illumina"/>
+				<conditional name="input_type">
+					<param name="input_type_selected" value="archive"/>
+					<param name="archive_file" ftype="tar" value="input/test_dataset.tar.gz"/>
+					<conditional name="archive_type">
+						<param name="archive_type_selected" value="paired"/>
+						<param name="R1_size" value="267"/>
+						<param name="R2_size" value="266"/>
+						<param name="mm_rate" value="0.15"/>
+			 			<conditional name="merge_software_type">
+							<param name="merge_software_selected" value="flash" />
+							<param name="expected_amplicon_size" value="420"/>
+						</conditional>
+						<param name="keep_unmerged" value="true"/>
 					</conditional>
-					<param name="keep_unmerged" value="true"/>
+				</conditional>
+				<param name="min_amplicon_size" value="44"/>
+				<param name="max_amplicon_size" value="490"/>
+				<conditional name="sequencing_protocol">
+					<param name="sequencing_protocol_selected" value="standard"/>
+					<param name="five_prim_primer" value="GGCGVACGGGTGAGTAA"/>
+					<param name="three_prim_primer" value="GTGCCAGCNGCNGCGG"/>
 				</conditional>
 			</conditional>
-			<param name="min_amplicon_size" value="44"/>
-			<param name="max_amplicon_size" value="490"/>
-			<conditional name="sequencing_protocol">
-				<param name="sequencing_protocol_selected" value="standard"/>
-				<param name="five_prim_primer" value="GGCGVACGGGTGAGTAA"/>
-				<param name="three_prim_primer" value="GTGCCAGCNGCNGCGG"/>
-			</conditional>
-                </conditional>
-		<output name="dereplicated_file" file="references/01-prepro-flash.fasta"/>
-		<output name="count_file" file="references/01-prepro-flash.tsv"/>
-		<output name="summary_file" file="references/01-prepro-flash.html" compare="sim_size" delta="0"/>
-		<!--output name="summary_file">
-			<assert_contents>
-			<has_text_matching expression="FROGS\sPre-process" />
- 			<has_text_matching expression="splA_01" />
-                	</assert_contents>
-                </output-->
-            </test>
-            <test>
-                <conditional name="sequencer_type">
-			<param name="sequencer_selected" value="illumina"/>
-			<conditional name="input_type">
-				<param name="input_type_selected" value="archive"/>
-				<param name="archive_file" ftype="tar" value="input/test_dataset.tar.gz"/>
-				<conditional name="archive_type">
-					<param name="archive_type_selected" value="paired"/>
-					<param name="R1_size" value="267"/>
-					<param name="R2_size" value="266"/>
-					<param name="mm_rate" value="0.15"/>
-			 		<conditional name="merge_software_type">
-						<param name="merge_software_selected" value="vsearch" />
+			<output name="dereplicated_file" file="references/01-prepro-flash.fasta"/>
+			<output name="count_file" file="references/01-prepro-flash.tsv"/>
+			<output name="summary_file" file="references/01-prepro-flash.html" compare="sim_size" delta="0"/>
+        </test>
+        <test>
+            <conditional name="sequencer_type">
+				<param name="sequencer_selected" value="illumina"/>
+				<conditional name="input_type">
+					<param name="input_type_selected" value="archive"/>
+					<param name="archive_file" ftype="tar" value="input/test_dataset.tar.gz"/>
+					<conditional name="archive_type">
+						<param name="archive_type_selected" value="paired"/>
+						<param name="R1_size" value="267"/>
+						<param name="R2_size" value="266"/>
+						<param name="mm_rate" value="0.15"/>
+		 				<conditional name="merge_software_type">
+							<param name="merge_software_selected" value="vsearch" />
+						</conditional>
+						<param name="keep_unmerged" value="true"/>
 					</conditional>
-					<param name="keep_unmerged" value="true"/>
 				</conditional>
-			</conditional>
-			<param name="min_amplicon_size" value="44"/>
-			<param name="max_amplicon_size" value="490"/>
-			<conditional name="sequencing_protocol">
-				<param name="sequencing_protocol_selected" value="standard"/>
-				<param name="five_prim_primer" value="GGCGVACGGGTGAGTAA"/>
-				<param name="three_prim_primer" value="GTGCCAGCNGCNGCGG"/>
-			</conditional>
-                </conditional>
-		<output name="dereplicated_file" file="references/01-prepro-vsearch.fasta"/>
-		<output name="count_file" file="references/01-prepro-vsearch.tsv"/>
-		<output name="summary_file" file="references/01-prepro-vsearch.html" compare="sim_size" delta="0"/>
-		<!--output name="summary_file">
-			<assert_contents>
-			<has_text_matching expression="FROGS\sPre-process" />
- 			<has_text_matching expression="splA_01" />
-                	</assert_contents>
-                </output-->
-            </test>            
-        </tests>
+				<param name="min_amplicon_size" value="44"/>
+				<param name="max_amplicon_size" value="490"/>
+				<conditional name="sequencing_protocol">
+					<param name="sequencing_protocol_selected" value="standard"/>
+					<param name="five_prim_primer" value="GGCGVACGGGTGAGTAA"/>
+					<param name="three_prim_primer" value="GTGCCAGCNGCNGCGG"/>
+				</conditional>
+            </conditional>
+			<output name="dereplicated_file" file="references/01-prepro-vsearch.fasta"/>
+			<output name="count_file" file="references/01-prepro-vsearch.tsv"/>
+			<output name="summary_file" file="references/01-prepro-vsearch.html" compare="sim_size" delta="0"/>
+        </test>            
+    </tests>
 	<help>
 
 .. image:: static/images/FROGS_logo.png
@@ -332,7 +319,7 @@ Inputs/Outputs
 
 Inputs
 
-Sample files added one after another or provide in an archive file (tar.gz).
+Sample files added one after another or provide in an archive file (tar or tar.gz).
 
 .. container:: row
 
@@ -340,7 +327,7 @@ Sample files added one after another or provide in an archive file (tar.gz).
 
   **Illumina inputs**
 
-   :Usage: For samples sequenced in paired-end. The amplicon length must be inferior to the length of the R1 plus R2 length. R1 and R2 are merged by the common region.
+   :Usage: For samples sequenced in paired-end. In case of overlapping pair, the maximum amplicon length (including primers) must be inferior or equal to the length of the R1 plus R2 length minus 10. R1 and R2 are merged by the common region with a minimum length of 10.
    :Files: One R1 and R2 by sample (format `FASTQ &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_)
    :Example: splA_R1.fastq.gz,  splA_R2.fastq.gz,  splB_R1.fastq.gz,  splB_R2.fastq.gz
 
@@ -357,7 +344,7 @@ Sample files added one after another or provide in an archive file (tar.gz).
    :Files: One sequence file by sample (format `FASTQ &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_)
    :Example: splA.fastq.gz,  splB.fastq.gz
 
-Remark: In an archive if you use R1 and R2 files they names must end with *_R1* and *_R2*. 
+Remark: In an archive if you use R1 and R2 files their names must end with *_R1* and *_R2*. The part upstram from this tag (_R1 and _R2) will be consider as sample name.
 
 .. class:: h3
 
@@ -365,7 +352,7 @@ Outputs
 
 **Sequence file** (dereplicated.fasta):
 
- Only one file with all samples sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_). These sequences are dereplicated: strictly identical sequence are represented only once and the initial count is kept in count file.
+ Only one file with all samples sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_). These sequences are dereplicated: strictly identical sequence are represented only once, the initial count by sample is kept in count file (see bellowà) and the total count is added in the sequence header. A "FROGS_combined" suffix will be added to un-merged pair sequence if you want to keep them.
 
 **Count file** (count.tsv):
 
@@ -373,13 +360,13 @@ Outputs
 
 **Summary file** (report.html):
 
- This file reports the number of remaining sequences after each filter (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
+ This file reports the number of remaining sequences after each filter (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_). Depending of the tool configuration there will be more or less filtering steps so more or less bars in the barplot.
  
  .. image:: static/images/FROGS_preprocess_summary_v3.png 
      :height: 850
      :width: 831 
 
- It also presents the length distribution of the remaining full amplicon sequences.
+ It also presents the length distribution of the full amplicon sequences after merging step and after filtering steps.
  
  .. image:: static/images/FROGS_preprocess_lengthsSamples_v3.png 
      :height: 379
@@ -394,9 +381,9 @@ How it works
    :widths: 5, 150, 150
    :class: table table-striped
 
-   "1", "For un-merged data: merges R1 and R2 with a maximum of M% mismatch in the overlaped region(`VSEARCH &lt;https://github.com/torognes/vsearch/&gt;`_ or `FLASH &lt;https://ccb.jhu.edu/software/FLASH/&gt;`_ or optionnaly `PEAR &lt;https://sco.h-its.org/exelixis/web/software/pear/&gt;`_). Resulting un-merged reads may optionnaly be artificially combined by adding 100 N between the reads", "/"
-   "2", "If sequencing protocol is the illumina standard protocol : Removes sequences where the two primers are not present and then remove primers in the remaining sequence (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_). The primer search accepts 10% of differences", "Removes sequences where the two primers are not present, removes primers sequence and reverse complement the sequences on strand -  (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_). The primer search accepts 10% of differences"
-   "3", "Filters sequences with ambiguous nucleotides and for merged sequences filters on their length which must be range between 'Minimum amplicon size - primer length' and 'Maximum amplicon size - primer length'", "the tool removes sequences with at least one homopolymer with more than seven nucleotides and with a distance of less than or equal to 10 nucleo-tides between two poor quality positions, i.e. with a Phred quality score lesser than 10" 
+   "1", "For un-merged data: Merges R1 and R2 with a maximum of M% mismatch in the overlaped region(`VSEARCH &lt;https://github.com/torognes/vsearch/&gt;`_ or `FLASH &lt;https://ccb.jhu.edu/software/FLASH/&gt;`_ or optionnaly `PEAR &lt;https://sco.h-its.org/exelixis/web/software/pear/&gt;`_) with a minimum of 10 bp in the overlap region. Resulting un-merged reads may optionnaly be artificially combined by adding 100 N between the reads", "/"
+   "2", "If sequencing protocol is the illumina standard protocol : Removes sequences where the two primers are not present and removes primers in the remaining sequence (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_). The primer search accepts 10% of differences", "Removes sequences where the two primers are not present, removes primers sequence from amplicon sequence and reverse complement the sequences on strand -  (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_). The primer search accepts 10% of differences"
+   "3", "Filters sequences with ambiguous nucleotides and for merged sequences filters on their length which must be range between 'Minimum amplicon size - primer length' and 'Maximum amplicon size - primer length'", "Removes sequences with at least one homopolymer with more than seven nucleotides and with a distance of less than or equal to 10 nucleo-tides between two poor quality positions, i.e. with a Phred quality score lesser than 10" 
    "4", "Dereplicates sequences", "Dereplicates sequences"
 
 
@@ -406,7 +393,13 @@ Advices/details on parameters
 
 .. class:: h3
 
-What is the differency between overlapped sequences and combined sequences?
+Keeping or not un-merged paired reads
+
+This option is usefull when and only when, targeted amplicon is longer than the sequencing technology can provide (ITS amplicon for example). In other case, carefully, you will only keep noise in your analysis.
+
+.. class:: h3
+
+What is the difference between overlapped sequences and combined sequences?
 
 - **Case of a sequencing of overlapping sequences: case of 16S V3-V4 amplicon MiSeq sequencing**
 
@@ -426,22 +419,15 @@ What is the differency between overlapped sequences and combined sequences?
 
 Reads pair are not merged because:
 
-	- the real amplicon length is greater than de number of base sequences (500 bp for MiSeq 2x250bp)
+	- the real amplicon length is greater than de number of base sequences (490 bp for MiSeq 2x250bp, remember of the minimum 10 bp overlap)
 	- the overlapped region is smaller than 10 (fixed parameter in FROGS).
 
 Thus, “FROGS combined” sequences are artificial and present particular features especially on size.
-Imagine a MiSeq sequencing of 2x250pb with sequences that cannot overlap, the resulting “FROGS combined” sequences length will be 600 bp.
+Imagine a MiSeq sequencing of 2x250pb with sequences that cannot overlap, the resulting “FROGS combined” sequences length will be fixed to 600 bp.
 
 .. image:: static/images/FROGS_preprocess_combined_sequence2.png
      :height: 357
      :width: 798
-
-.. class:: h3
-
-Keeping or not un-merged paired reads
-
-This option is usefull when and only when, targeted amplicon is longer than the sequencing technology can provide (ITS amplicon for example). In other case, carefully, you will only keep noise in your analysis.
-
 
 .. class:: h3
 
@@ -465,6 +451,10 @@ Example:
 
 FLASH : Amplicons sizes parameters
 
+ .. class:: infomark
+
+ We now recommend to use PEAR if availbale (only for accademic user) or Vsearch.
+
  The two following images show two examples of perfect values fors sizes parameters.
 
  .. image:: static/images/FROGS_preprocess_ampliconSize_unimodal_v3.png
@@ -481,7 +471,7 @@ FLASH : Amplicons sizes parameters
 
 If the filter 'merged' reduce drasticaly the number of sequences:
 
- In un-merged Illumina data, the reduction of dataset by the merged filter is classicaly inferior than 20%. A loss of more than 20% in all samples can highlight a quality problem.
+ In un-merged Illumina data, and targeted amplicon size in the range of R1+R2-10, the reduction of dataset by the merged filter is classicaly inferior than 20%. A loss of more than 20% in all samples can highlight a quality problem.
  
  If the overlap between R1 and R2 is superior to 50 nucleotides and the quality of the end of the sequences is poor (see `FastQC &lt;http://www.bioinformatics.babraham.ac.uk/projects/fastqc/&gt;`_) you can try to cut the end of your sequences and relaunch the preprocess tool. You can either raise the mismatch percent in the overlapped region, but not too much!
 
@@ -498,8 +488,4 @@ Website: http://frogs.toulouse.inrae.fr/
 Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
 
 	</help>
-	<citations>
-		<citation type="doi">10.1093/bioinformatics/btx791</citation>
-	</citations>
-
 </tool>
