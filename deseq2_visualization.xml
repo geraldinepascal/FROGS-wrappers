@@ -150,9 +150,9 @@ Contacts: frogs-support@inrae.fr
 
 Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
 
-Please cite the FROGS Publication: *Escudie F., Auer L., Bernard M., Cauquil L., Vidal K., Maman S., Mariadassou M., Hernadez-Raquet G., Pascal G., 2015. FROGS: Find Rapidly OTU with Galaxy Solution. In: The environmental genomic Conference, Montpellier, France,* http://bioinfo.genotoul.fr/fileadmin/user_upload/FROGS_2015_GE_Montpellier_poster.pdf
+Website: http://frogs.toulouse.inrae.fr/
 
-Depending on the help provided you can cite us in acknowledgements, references or both.
+Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 	
 	</help>
 </tool>
