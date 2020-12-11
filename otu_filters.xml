@@ -133,8 +133,8 @@
 					<param name="contaminant_db" value="phiX_test" />
 				</conditional>
 		    </conditional>
-	 	    <output name="output_fasta" file="references/04-filters.fasta" />
-		    <output name="output_excluded" file="references/04-filters.excluded" />
+	 	    <output name="output_fasta" file="references/04-otu_filters.fasta" />
+		    <output name="output_excluded" file="references/04-otu_filters.excluded.tsv" />
 	    </test>
 	</tests>
 	<help>

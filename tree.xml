@@ -50,7 +50,7 @@
     </outputs>
     <tests>
         <test>
-            <param name="input_otu" value="references/04-filters.fasta"/>
+            <param name="input_otu" value="references/04-otu_filters.fasta"/>
             <param name="biomfile" value="references/06-affiliation.biom"/>
             <!--output name="out_tree" value="references/13-tree-mafft.nwk"/-->
             <!--output name="html" value="references/13-tree-mafft.html"/-->

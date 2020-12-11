@@ -45,7 +45,7 @@
 	</outputs>
         <tests>
             <test>
-                <param name="input_fasta" value="references/04-filters.fasta"/>
+                <param name="input_fasta" value="references/04-otu_filters.fasta"/>
     	        <param name="input_biom" value="references/06-affiliation.biom"/>
             	<param name="num_reads" value="100"/>
                 <output name="summary_file" file="references/normalisation_report.html" compare="sim_size" delta="0" />

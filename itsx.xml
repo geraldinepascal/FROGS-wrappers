@@ -56,8 +56,8 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="input_fasta" value="references/04-filters.fasta"/>
-			<param name="input_biom" value="references/04-filters.biom"/>
+			<param name="input_fasta" value="references/04-otu_filters.fasta"/>
+			<param name="input_biom" value="references/04-otu_filters.biom"/>
 			<param name="region" value="ITS1"/>
 			<param name="check_only" value="false"/>
 			<output name="summary_file" file="references/05-itsx.html"/>

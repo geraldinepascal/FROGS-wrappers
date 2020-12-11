@@ -61,8 +61,8 @@
         <tests>
             <test>
                 <param name="ref_file" value="ITS1_test"/>
-                <param name="fasta_sequences" value="references/04-filters.fasta"/>
-                <param name="biom_abundance" value="references/04-filters.biom"/>
+                <param name="fasta_sequences" value="references/04-otu_filters.fasta"/>
+                <param name="biom_abundance" value="references/04-otu_filters.biom"/>
                 <!-- <param name="fasta_sequences" value="swarm.fasta"/>
                 <param name="biom_abundance" value="swarm.biom"/> -->
                 <output name="biom_affiliation" file="references/06-affiliation.biom"/>

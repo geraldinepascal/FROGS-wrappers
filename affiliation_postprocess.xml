@@ -65,7 +65,7 @@
  	<tests>
 	    <test>
 			<param name="biom_in" value="references/06-affiliation.biom"/>
-			<param name="fasta_in" value="references/04-filters.fasta"/>
+			<param name="fasta_in" value="references/04-otu_filters.fasta"/>
 			<conditional name="is_HVL">
 				<param name="HVL_amplicon" value="true"/>
 				<param name="ref_file" value="Unite_extract_ITS1_test"/>

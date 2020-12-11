@@ -51,7 +51,7 @@
 	<tests>
 		<test>
 			<param name="biom_file" value="references/06-affiliation.biom"/>
-			<param name="sequence_file" value="references/04-filters.fasta"/>
+			<param name="sequence_file" value="references/04-otu_filters.fasta"/>
 			<param name="extract_multi_align" value="true"/>
 			<output name="tsv_file" value="references/10-biom2tsv.tsv"/>
 			<output name="multi_affi_file" value="references/10-biom2tsv-affiliation_multihit.tsv"/>
