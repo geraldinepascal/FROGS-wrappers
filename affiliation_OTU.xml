@@ -30,7 +30,7 @@
 	<command interpreter="python3">
 		#set $reference_filename = str( $ref_file.fields.path )
 		affiliation_OTU.py 
-		                       --reference "${reference_filename}"
+		                       --reference '${reference_filename}'
 		                       --input-biom $biom_abundance 
 		                       --input-fasta $fasta_sequences
 		                       --output-biom $biom_affiliation 

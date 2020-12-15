@@ -60,10 +60,10 @@
 			
 			#if $contaminantSource.which_contaminantSource == "history"
 				##build index on the fly
-				--contaminant "${contaminantSource.ownContaminantFile}"
+				--contaminant '${contaminantSource.ownContaminantFile}'
 			#else if $contaminantSource.which_contaminantSource == "server"
 				##use precomputed indexes
-				--contaminant "${contaminantSource.contaminants_db.fields.path}"
+				--contaminant '${contaminantSource.contaminants_db.fields.path}'
 			#end if
 
 	</command>

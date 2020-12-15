@@ -65,7 +65,7 @@
             #if $blast.taxon_ignored
             	--ignore-blast-taxa
             	#for $current in $blast.taxon_ignored
-                	$sep"${current.name}"
+                	$sep'${current.name}'
             	#end for
             #end if
 

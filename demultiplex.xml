@@ -30,10 +30,10 @@
 	<command interpreter="python3">
 		demultiplex.py
 		#if str( $fastq_input.fastq_input_selector ) == "paired":
-		    --input-R1 "${fastq_input.fastq_input1}"               
-		    --input-R2 "${fastq_input.fastq_input2}"
+		    --input-R1 '${fastq_input.fastq_input1}'            
+		    --input-R2 '${fastq_input.fastq_input2}'
 		#else:
-		    --input-R1 "${fastq_input.fastq_input1}"
+		    --input-R1 '${fastq_input.fastq_input1}'
 		#end if              
 		    --input-barcode $barcode_file
 		    --mismatches $mismatches
@@ -69,9 +69,9 @@
 		</param>
 	</inputs>
 	<outputs>
-		<data name="demultiplexed_archive" format="tar" label="${tool.name}: demultiplexed.tar.gz" from_work_dir="demultiplexed.tar.gz"/>
-		<data name="undemultiplexed_archive" format="tar" label="${tool.name}: undemultiplexed.tar.gz" from_work_dir="undemultiplexed.tar.gz"/>
-		<data name="summary" format="tabular" label="${tool.name}: report" from_work_dir="report.tsv"/>
+		<data name="demultiplexed_archive" format="tar" label='${tool.name}: demultiplexed.tar.gz" from_work_dir="demultiplexed.tar.gz"/>
+		<data name="undemultiplexed_archive" format="tar" label='${tool.name}: undemultiplexed.tar.gz" from_work_dir="undemultiplexed.tar.gz"/>
+		<data name="summary" format="tabular" label='${tool.name}: report" from_work_dir="report.tsv"/>
 	</outputs>
     <tests>
         <test>

@@ -63,7 +63,7 @@
 		    #if $sequencer_type.sequencer_selected == "illumina"
 	            --samples-names  
 	            #for $current in $sequencer_type.input_type.files_by_samples_type.samples 
-	                $sep"${current.name.strip()}"
+	                $sep'${current.name.strip()}'
 	            #end for
 		        --input-R1 
 		        #for $current in $sequencer_type.input_type.files_by_samples_type.samples 
@@ -93,7 +93,7 @@
 		        #end for
 		        --samples-names  
 		        #for $current in $sequencer_type.input_type.samples 
-		            $sep"${current.name.strip()}"
+		            $sep'${current.name.strip()}'
 		        #end for
 		    #end if
 		#end if
