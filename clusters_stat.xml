@@ -74,8 +74,6 @@ The FROGS's tools working on clusters and others metagenomic workflows produce f
 Output
 
 **Summary file** (summary.html):
-
- Clusters metrics (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_):
  
  *Clusters distribution* : describes the sizes distribution of all clusters thank to boxplot and tables
 
@@ -86,8 +84,6 @@ Output
  *Sequences distributions* : describes the sequences distribution among clusters
 
  .. image:: static/images/FROGS_cluster_stat_seq_dist.png
-    :height: 326
-    :width: 473
 
  *Samples distribution* : describes clusters distribution among sample and give an `hierarchical clustering &lt;http://en.wikipedia.org/wiki/Hierarchical_clustering&gt;`_ on samples abundance profile (distance method = `braycurtis &lt;http://fr.wikipedia.org/wiki/Distance_de_Bray-Curtis&gt;`_, linkage method = average)
 
