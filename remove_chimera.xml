@@ -119,11 +119,15 @@ OR
 
  The abundance of each sequence in each sample (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_). This type of file is produced by *FROGS pre-process*.
  
- Example::
+ Example:
 
-     #id	splA	splB
-     seq1	1289	2901
-     seq2	3415	0				
+.. csv-table:: 
+   :header: "#id", "splA","splB"
+   :widths: 10,10,10
+   :class: table table-striped
+
+    "seq1", "1289", "2901"
+    "seq2", "3415", "0"			
 
 .. class:: h3
 

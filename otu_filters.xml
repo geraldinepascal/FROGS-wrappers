@@ -82,13 +82,13 @@
 				<option value="count">as count</option>
 			</param>
 			<when value="proportion">
-				<param name="min_abundance_proportion" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep OTU" size="5" help='Fill the field only if you want this treatment. Example: "0.00005", recommended by Bokulich et al 2013, to keep OTU with at least 0,005% of all sequences).'>
+				<param name="min_abundance_proportion" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep OTU" size="5" help='Fill the field only if you want this treatment. Example: 0.00005, recommended by Bokulich et al 2013, to keep OTU with at least 0,005% of all sequences).'>
 					<validator type="in_range" min="0" exclude_min="true" max="1" exclude_max="true" message="Abundance proportion threshold need to be strictly greater than 0 and less than 1, otherwise you will not remove anything or remove everything." />
 				</param>
 			</when>
 			<when value="count">
-				<param name="min_abundance_count" type="integer" optional="true" label="Minimum number of sequences to keep OTU" size="5" help='Fill the field only if you want this treatment. Ex: "2" to keep OTU with at least 2 sequences, so remove single singleton.'>
-					<validator type="in_range" min="2" message='To be effective this threshold need to be higher than 1. "2" means that you will remove OTU with 1 and only 1 sequence over all samples'/>
+				<param name="min_abundance_count" type="integer" optional="true" label="Minimum number of sequences to keep OTU" size="5" help='Fill the field only if you want this treatment. Ex: 2 to keep OTU with at least 2 sequences, so remove single singleton.'>
+					<validator type="in_range" min="2" message='To be effective this threshold need to be higher than 1. 2 means that you will remove OTU with 1 and only 1 sequence over all samples'/>
 				</param>
 			</when>
 		</conditional>

@@ -133,13 +133,13 @@ How it works
 
    "1", "`RDPClassifier &lt;https://rdp.cme.msu.edu/tutorials/classifier/RDPtutorial_RDP_classifier.html&gt;`_ may be used with database to associate to each OTU a taxonomy and a bootstrap (example: *Bacteria;(1.0);Firmicutes;(1.0);Clostridia;(1.0);Clostridiales;(1.0);Clostridiaceae 1;(1.0);Clostridium sensu stricto;(1.0);*)."
    "2", "`blastn+ &lt;http://blast.ncbi.nlm.nih.gov/&gt;`_ or `needlall &lt;http://emboss.sourceforge.net/apps/release/6.6/emboss/apps/needleall.html&gt;`_ is used to find alignment between each OTU and the database. Only the bests hits with the same score are reported. blastn+ is used for merged read pair, and needall is used for artificially combined sequence. For each alignment returned, several metrics are computed: identity percentage, coverage percentage, and alignment length"
-   "3", "For each OTU with several blastn+/needlall alignment results a consensus is determined on each taxonomic level. If all the taxa in a taxonomic rank are identical the taxon name is reported otherwise *Multi-affiliation* is reported. By example, if you have an OTU with two corresponding sequences, the first is a *Bacteria;Proteobacteria;Gamma Proteobacteria;Enterobacteriales*, the second is a *Bacteria;Proteobacteria;Beta Proteobacteria;Methylophilales*, the consensus will be *Bacteria;Proteobacteria;Multi-affiliation;Multi-affiliation*."
+   "3", "For each OTU with several blastn+/needlall alignment results a consensus is determined on each taxonomic level. If all the taxa at a taxonomic rank are identical the taxon name is reported otherwise *Multi-affiliation* is reported. For example, if you have an OTU with two equivalent hits, associated to *Bacteria;Proteobacteria;Gamma Proteobacteria;Enterobacteriales*, and *Bacteria;Proteobacteria;Beta Proteobacteria;Methylophilales*, the consensus will be *Bacteria;Proteobacteria;Multi-affiliation;Multi-affiliation*."
 
 .. class:: infomark page-header h2
 
 Alignment metrics details on identity percentage calculation
 
-With classicala %id computation method, we will obtain for overlapped amplicon sequence and for artificially combined amplicon sequence :
+**- Problem with classical %id computation method**
 
 * **Case 1: a sequencing of overlapping sequences i.e. 16S V3-V4 amplicon MiSeq sequencing**
 
@@ -153,7 +153,7 @@ With classicala %id computation method, we will obtain for overlapped amplicon s
     :height: 310
     :width: 887
 
-* **Finally, how percentage identity is computed ?**
+**- Finally, how percentage identity is computed ?**
 
 With the classical method of %id calculation, filtering on %id will systematically removed “FROGS combined” OTUs. So, we proposed to replace the classical %id by a %id computed on the sequenced bases only.
 
@@ -176,7 +176,7 @@ This calculation allows to return 100% of identity on sequenced bases for “FRO
 
 Advices
 
-This tool can take large time. It is recommended to filter your abundance and your sequence file before this tool (see **FROGS Filters**).
+This tool can take large time. It is recommended to filter your OTU abundance and sequence files before this tool (see **FROGS OTU Filters**).
 
 As you can see the affiliation of each OTU is not human readable in outputed abundance file. We provide a tools to convert these BIOM file in tabulated file, see the **FROGS BIOM to TSV** tool.
 

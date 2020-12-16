@@ -49,11 +49,11 @@
             <validator type="empty_field" message="This parameter is required." />                
         </param>
         
-        <param format="nhx" name="treefile" type="data" label="Tree file" help="The file contains the tree informations (format: Newick - nhx or nwk)." optional="true" />
+        <param format="nhx" name="treefile" type="data" label="Tree file (optional)" help="The file contains the tree informations (format: Newick - nhx or nwk)." optional="true" />
         
         <!-- Parameters -->
         <param name="ranks" type="text" label="Names of taxonomics levels" help="The ordered taxonomic levels stored in BIOM. Each level is separated by one space."  value="Kingdom Phylum Class Order Family Genus Species" size="80" optional="false"/>
-        <param name="normalization" type="boolean" label="Do you want to normalise your data ?" help="To normalise data before analysis." optional="false" /> 
+        <param name="normalization" type="boolean" label="Do you want to normalise your data ?" help="To normalise data before statistical analysis (default : No)." optional="false" /> 
     </inputs>
     <outputs>
         <data format="rdata" name="data" label="${tool.name}: data.Rdata" from_work_dir="data.Rdata"/>

@@ -38,7 +38,7 @@
 	<inputs>
 		<!-- Files -->
 		<param format="biom1" name="biom_file" type="data" label="Abundance file" help="The BIOM file to convert (format: BIOM)." optional="false" />
-		<param format="fasta" name="sequence_file" type="data" label="Sequences file" help="The sequences file (format: fasta). If you use this option the sequences will be add in TSV." optional="true" />
+		<param format="fasta" name="sequence_file" type="data" label="Sequences file (optional)" help="The sequences file (format: fasta). If you use this option the sequences will be add in TSV." optional="true" />
 		<!-- Parameters -->
 		<param name="extract_multi_align" type="boolean" label="Extract multi-alignments" help="If you have used FROGS affiliation on your data, you can extract information about multiple alignements in a second TSV." checked="true"/>
 	</inputs>
@@ -101,7 +101,7 @@ Outputs
 
 How it works
 
-FROGS Biom to Tsv will search if any metadata are available, and the OTU sequence if fasta file is precised. Then it will extract the OTU name, sum the abundance, and extract the detailed abundance for each sample. Finally it will write all these fields separated by tabulation in the TSV file. 
+FROGS Biom to Tsv will search if any metadata are available, and the OTU sequence if fasta file is precised. Then it will extract the OTU name, sum the sample abundance, and extract the detailed abundance for each sample. Finally it will write all these fields separated by tabulation in the TSV file. 
 
 
 .. class:: infomark page-header h2

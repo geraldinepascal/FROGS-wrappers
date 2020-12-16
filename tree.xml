@@ -103,7 +103,7 @@ Outputs
 
 **Newick file** (tree.nwk):
 
-The phylogenetic tree in Newick format (format `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
+The phylogenetic tree in Newick format (format `nwk or nhx &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
 
  .. image:: static/images/FROGS_nwk_treefile.png
 
