@@ -28,7 +28,7 @@
             <exit_code range="1:" />
             <exit_code range=":-1" />
         </stdio>
-    <command interpreter="python3">r_composition.py 
+    <command interpreter="python3">phyloseq_composition.py 
                           --rdata $data 
                           --varExp $varExp 
                           --taxaRank1 $taxaRank1 

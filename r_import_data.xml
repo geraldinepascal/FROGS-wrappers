@@ -27,7 +27,7 @@
             <exit_code range="1:" />
             <exit_code range=":-1" />
         </stdio>
-    <command interpreter="python3">r_import_data.py   --biomfile $biomfile
+    <command interpreter="python3">phyloseq_import_data.py   --biomfile $biomfile
                                 --samplefile $samplefile 
                                 #if $treefile
                                   --treefile $treefile 

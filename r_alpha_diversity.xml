@@ -27,7 +27,7 @@
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
 	</stdio>
-	<command interpreter="python3">r_alpha_diversity.py
+	<command interpreter="python3">phyloseq_alpha_diversity.py
                                              --rdata $data 
                                              --varExp $varExp
                                              --alpha-measures $measures

@@ -27,7 +27,7 @@
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
 	</stdio>
-	<command interpreter="python3">r_clustering.py 
+	<command interpreter="python3">phyloseq_clustering.py 
                                                --html $html 
                                                --rdata $data 
                                                --varExp $varExp 

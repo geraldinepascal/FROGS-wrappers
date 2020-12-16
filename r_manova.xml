@@ -27,7 +27,7 @@
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
 	</stdio>
-	<command interpreter="python3">r_manova.py 
+	<command interpreter="python3">phyloseq_manova.py 
                                     --rdata $data
                                     --varExp "$varExp"
                                     --distance-matrix $method
