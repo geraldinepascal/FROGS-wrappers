@@ -51,7 +51,7 @@
         <param format="tabular" name="count_file" type="data" label="Count file" help="It contains the count by sample for each sequence (format: TSV)." optional="false" />
         <!-- Parameters -->
         <conditional name="FROGS_guidelines">
-            <param name="guidelines_version" type="select" label="FROGS guidelines version" help="Pre-clustering step prior to a d3 clustering is no more recommended since FROGS 3.2, but you can still choose it.">
+            <param name="guidelines_version" type="select" label="FROGS guidelines version" help="Denoising step prior to a d3 clustering is no more recommended since FROGS 3.2, but you can still choose it.">
                 <option value="3.2" selected="true">New guidelines from version 3.2</option>
                 <option value="3.1">First guidelines until 3.1</option>
             </param>
@@ -153,12 +153,12 @@ Outputs
 How it works
 
 .. csv-table:: 
-   :header: "Steps", "Without denoising", "With fastidious option (recommendations sincce FROGS 3.2)", "With pre-clustering step (recommendations until FROGS 3.1)"
+   :header: "Steps", "Without denoising", "With fastidious option (recommendations sincce FROGS 3.2)", "With denoising step (recommendations until FROGS 3.1)"
    :widths: 5, 150, 150, 150
    :class: table table-striped
 
    "1", "Sorting the reads by their abundance", "Sorting the reads by their abundance", "Sorting the reads by their abundance"
-   "2", "/", "/", "Clusters the reads (`Swarm &lt;https://github.com/torognes/swarm&gt;`_) with an agglomerating distance of 1"
+   "2", "/", "/", "Clusters the reads (`Swarm &lt;https://github.com/torognes/swarm&gt;`_) with an agglomeration distance of 1"
    "3", "/", "/", "Sorting the pre-clusters sequences by their abundance"
    "4", "Clusters the reads (`Swarm &lt;https://github.com/torognes/swarm&gt;`_) with the distance you specified", "Clusters the reads (`Swarm &lt;https://github.com/torognes/swarm&gt;`_) with the distance you specified and the (`--fastidious option of swarm &lt;https://github.com/torognes/swarm/blob/master/README.md#refine-swarm-otus&gt;`_)", "Clusters the pre-clusters sequences (`Swarm &lt;https://github.com/torognes/swarm&gt;`_) with the distance you specified"
 
@@ -189,9 +189,9 @@ The fastidious strategy is recommended since FROGS 3.2
 
 The fastidious option is recommended with an aggregating distance of 1. "It will reduce the number of small OTUs while maintaining a high clustering resolution, by postulating the existence of an intermediate amplicon sequences"
 
-The pre-clustering (or denoising) strategy was recommended until FROGS 3.1
+The denoising strategy was recommended until FROGS 3.1
 
-The pre-clustering step allows to build very fine clusters with minimal differences. In this case, the number of differences between sequences of each crowns is equal to 1. This first clustering is extremly quick. After the denoising, a second swarm is run with an aggregation distance >1 as you have configured, between seeds from this first clustering. We recommended a distance of 3.
+The denoising step allows to build very fine clusters with minimal differences. In this case, the number of differences between sequences of each crowns is equal to 1. This first clustering is extremly quick. After the denoising, a second swarm is run with an aggregation distance >1 as you have configured, between seeds from this first clustering. We recommended a distance of 3.
         
 To have some metrics on your clusters, you can use the tool **FROGS Clusters Stat**.
 
