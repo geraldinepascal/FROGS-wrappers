@@ -24,7 +24,7 @@
             <exit_code range="1:" />
             <exit_code range=":-1" />
         </stdio>
-	<command interpreter="python3">
+	<command>
 		tsv_to_biom.py 
 		                --input-tsv $tsv_file
 		                --output-biom $biom_file
@@ -50,11 +50,11 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="tsv_file" value="references/10-biom2tsv.tsv" />
-			<param name="multi_affi_file" value="references/10-biom2tsv-affiliation_multihit.tsv" />
+			<param name="tsv_file" value="references/12-biom2tsv.tsv" />
+			<param name="multi_affi_file" value="references/12-biom2tsv-affiliation_multihit.tsv" />
 			<param name="extract_fasta" value="true"/>
-			<output name="biom_file" file="references/12-tsv2biom.biom" compare="sim_size" delta="0"/>
-			<output name="sequence_file" file="references/12-tsv2biom.fasta" />
+			<output name="biom_file" file="references/14-tsv2biom.biom" compare="sim_size" delta="0"/>
+			<output name="sequence_file" file="references/14-tsv2biom.fasta" compare="diff" lines_diff="0"/>
 		</test>
 	</tests>
 	<help>

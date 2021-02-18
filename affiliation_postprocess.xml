@@ -24,7 +24,7 @@
 	    <exit_code range="1:" />
 	    <exit_code range=":-1" />
   	</stdio>
-	<command interpreter="python3">
+	<command>
 		affiliation_postprocess.py 
 		#if $is_HVL.HVL_amplicon
             --reference $is_HVL.ref_file.fields.path
@@ -64,13 +64,15 @@
 	</outputs>
  	<tests>
 	    <test>
-			<param name="biom_in" value="references/06-affiliation.biom"/>
-			<param name="fasta_in" value="references/04-otu_filters.fasta"/>
+			<param name="input_biom" value="references/06-affiliation.biom"/>
+			<param name="input_fasta" value="references/04-filters.fasta"/>
 			<conditional name="is_HVL">
 				<param name="HVL_amplicon" value="true"/>
 				<param name="ref_file" value="Unite_extract_ITS1_test"/>
 			</conditional>
-			<output name="compo_out" file="references/07-affiliation_postprocessed.compo.tsv"/>
+			<output name="compo_out" file="references/08-affiliation_postprocessed.compo.tsv" compare="diff" lines_diff="0" />
+			<output name="fasta_out" file="references/08-affiliation_postprocessed.fasta" compare="diff" lines_diff="0" />
+			<output name="biom_out" file="references/08-affiliation_postprocessed.biom" compare="sim_size" delta="0" />
 	    </test>
 	</tests>
 	<help>

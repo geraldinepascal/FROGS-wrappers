@@ -19,15 +19,15 @@
         <description>perform Multivariate Analysis of Variance (MANOVA)</description>
         <requirements>
             <requirement type="package" version="3.2.0">frogs</requirement>
-            <requirement type="package" version="3.6.1">r-base</requirement>
+            <requirement type="package" version="3.6.3">r-base</requirement>
+            <requirement type="package" version="3.6">r-essentials</requirement>
             <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
-            <requirement type="package" version="2.9.2">pandoc</requirement>
         </requirements>
 	<stdio>
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
 	</stdio>
-	<command interpreter="python3">phyloseq_manova.py 
+	<command>phyloseq_manova.py 
                                     --rdata $data
                                     --varExp "$varExp"
                                     --distance-matrix $method
@@ -51,14 +51,15 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="data" value="references/14-phylo_import.Rdata"/>
+			<param name="data" value="references/16-phylo_import.Rdata"/>
 			<param name="varExp" value="EnvType"/>
-			<param name="method" value="references/Unifrac.tsv"/>
-			<!--output name="html" file="references/20-phylo_structure.html" compare="sim_size" delta="0" /-->
+			<param name="method" value="references/unifrac.tsv"/>
+
             <output name="html">
                 <assert_contents>
-                    <has_text_matching expression="html\sxmlns=.*" />
-                    <has_text_matching expression="Phyloseq\s+\d+\.\d+\.\d+" />
+                    <has_text_matching expression="EnvType    7    7.6565 1.09379  13.699 0.63132  1e-04 \*\*\*" />
+                    <has_text_matching expression="Residuals 56    4.4713 0.07984         0.36868           " />
+                    <has_text_matching expression="Total     63   12.1278                 1.00000           " />
                 </assert_contents>
             </output>
 		</test>

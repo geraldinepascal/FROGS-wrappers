@@ -24,7 +24,7 @@
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
-	<command interpreter="python3">
+	<command>
 		biom_to_tsv.py 
 		                --input-biom $biom_file
 		              #if $sequence_file
@@ -50,11 +50,11 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="biom_file" value="references/06-affiliation.biom"/>
-			<param name="sequence_file" value="references/04-otu_filters.fasta"/>
+			<param name="biom_file" value="references/09-normalisation.biom"/>
+			<param name="sequence_file" value="references/09-normalisation.fasta"/>
 			<param name="extract_multi_align" value="true"/>
-			<output name="tsv_file" value="references/10-biom2tsv.tsv"/>
-			<output name="multi_affi_file" value="references/10-biom2tsv-affiliation_multihit.tsv"/>
+			<output name="tsv_file" value="references/12-biom2tsv.tsv" compare="diff" lines_diff="0"/>
+			<output name="multi_affi_file" value="references/12-biom2tsv-affiliation_multihit.tsv" compare="diff" lines_diff="0"/>
 		</test>
 	</tests>
 	<help>

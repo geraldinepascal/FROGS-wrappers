@@ -25,7 +25,7 @@
                 <exit_code range=":-1" />
         </stdio>
 
-	<command interpreter="python3">
+	<command>
 
 		affiliation_filters.py
 			--input-biom $input_biom  
@@ -35,7 +35,7 @@
 			--impacted-multihit $output_multihit
 			--summary $output_summary
 
-			#if $conditionnal_mode.mode == "delete"
+			#if $conditional_mode.mode == "delete"
 				--delete
 				--output-fasta $output_fasta
 			#else
@@ -52,7 +52,10 @@
 				--min-blast-length $blast.min_blast_length
 			#end if
 			#if $blast.max_blast_evalue != None
-				--max-blast-evalue $blast.max_blast_evalue
+				#set $eval = 'a' + str($blast.max_blast_evalue)
+				#if $eval != 'a'
+					--max-blast-evalue $blast.max_blast_evalue
+		 		#end if
 			#end if
 			#if $blast.min_blast_identity
 				--min-blast-identity $blast.min_blast_identity
@@ -75,13 +78,14 @@
 		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)." />
 		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)." />
 		<param name="taxonomic_ranks" type="text" label="Taxonomic ranks" help="The ordered taxonomic ranks levels stored in BIOM. Each rank is separated by one space." optional="false" value="Domain Phylum Class Order Family Genus Species" size="80" />
-
-
-		<conditional name="conditionnal_mode">
+		<!-- conditional is used for optional output fasta -->
+		<conditional name="conditional_mode">
 			<param name="mode" type="select" label="Filtering mode" multiple="false" help="Do you want to delete OTU or mask affiliations" optional="false" display="radio">
 				<option value="mask" selected="true">Masking mode</option>
 				<option value="delete">Deleting mode</option>
 			</param>
+			<when value="mask"/>
+			<when value="delete"/>
 		</conditional>
 
 		<section name="rdp" title="Filtering on RDP affiliations" expanded="true">
@@ -96,7 +100,7 @@
 			<param name="min_blast_length" type="integer" optional="true" label="Minimum alignment length" size="5" help="Fill the field only if you want this treatment" />
 
 			<repeat name="taxon_ignored" title="Remove blast taxonomies including these taxon / word">
-				<param name="name" type="text" label="Full or partial taxon name" help='ex: unknown species or subsp.' optional="true"/>
+				<param name="name" type="text" label="Full or partial taxon name" help='ex: "unknown species" or "subsp."' optional="true"/>
 			</repeat>
 		</section>
 
@@ -104,7 +108,7 @@
 	<outputs>
 		<data format="biom1" name="output_biom" label="${tool.name}: abundance.biom" from_work_dir="abundance.biom" />
 		<data format="fasta" name="output_fasta" label="${tool.name}: sequences.fasta" from_work_dir="sequences.fasta">
-			<filter> conditionnal_mode['mode'] == 'delete'</filter>
+			<filter> conditional_mode['mode'] == 'delete'</filter>
 		</data>
 		<data format="tabular" name="output_impacted" label="${tool.name}: impacted_OTU.tsv" from_work_dir="impacted.tsv" />
 		<data format="tabular" name="output_multihit" label="${tool.name}: impacted_OTU.multihit.tsv" from_work_dir="impacted.multihit.tsv" />
@@ -112,45 +116,51 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="input_fasta" value="references/04-otu_filters.fasta" />
+			<param name="input_fasta" value="references/04-filters.fasta" />
             <param name="input_biom" value="references/06-affiliation.biom" />    
-		    <conditional name="conditionnal_mode">
+		    <conditional name="conditional_mode">
 				<param name="mode" value="mask"/>
 		    </conditional>
 		    <param name="rdp_rank" value="Species"/>
 		    <param name="rdp_bootstrap" value="0.8"/>
-		    <param name="max_blast_evalue" value="0"/>
+		    <param name="min_blast_length" value="150"/>
+		    <param name="max_blast_evalue" value="1e-150"/>
 		    <param name="min_blast_identity" value="1"/>
 		    <param name="min_blast_coverage" value="1"/>
 		    <repeat name="taxon_ignored">
-		    	<param name="name" value="g__Amanita"/>
+		    	<param name="name" value="g__Sarcodon"/>
 		    </repeat>
 			<repeat name="taxon_ignored">
-		    	<param name="name" value="s__Pholiota_highlandensis"/>
+		    	<param name="name" value="s__Trichoderma"/>
 		    </repeat>
-	 	    <output name="output_impacted" file="references/21-affi_filters_impacted_mask.tsv" />
-		    <output name="output_multihit" file="references/21-affi_filters_impacted_multihit_mask.tsv" />
+	 	    <output name="output_impacted" file="references/07-impacted_OTU_masked.tsv" compare="diff" lines_diff="0"/>
+	 	    <output name="output_summary" file="references/07-affiliation_masked.html" compare="diff" lines_diff="0"/>
+		    <output name="output_multihit" file="references/07-impacted_OTU_masked_multihit.tsv" compare="diff" lines_diff="0"/>
+		    <output name="output_biom" file="references/07-affiliation_masked.biom" compare="sim_size" delta="0"/>
 		</test>
 		<test>
-			<param name="input_fasta" value="references/04-otu_filters.fasta" />
+			<param name="input_fasta" value="references/04-filters.fasta" />
             <param name="input_biom" value="references/06-affiliation.biom" />    
-		    <conditional name="conditionnal_mode">
+		    <conditional name="conditional_mode">
 				<param name="mode" value="delete"/>
 		    </conditional>
 		    <param name="rdp_rank" value="Species"/>
 		    <param name="rdp_bootstrap" value="0.8"/>
-		    <param name="max_blast_evalue" value="0"/>
+		    <param name="min_blast_length" value="150"/>
+		    <param name="max_blast_evalue" value="1e-150"/>
 		    <param name="min_blast_identity" value="1"/>
 		    <param name="min_blast_coverage" value="1"/>
 		    <repeat name="taxon_ignored">
-		    	<param name="name" value="g__Amanita"/>
+		    	<param name="name" value="g__Sarcodon"/>
 		    </repeat>
 			<repeat name="taxon_ignored">
-		    	<param name="name" value="s__Pholiota_highlandensis"/>
+		    	<param name="name" value="s__Trichoderma"/>
 		    </repeat>
-	 	    <output name="output_fasta" file="references/21-affi_filters_delete.fasta" />
-	 	    <output name="output_impacted" file="references/21-affi_filters_impacted_delete.tsv" />
-		    <output name="output_multihit" file="references/21-affi_filters_impacted_multihit_delete.tsv" />
+	 	    <output name="output_impacted" file="references/07-impacted_OTU_deleted.tsv" compare="diff" lines_diff="0"/>
+	 	    <output name="output_summary" file="references/07-affiliation_deleted.html" compare="diff" lines_diff="0"/>
+		    <output name="output_multihit" file="references/07-impacted_OTU_deleted_multihit.tsv" compare="diff" lines_diff="0"/>
+		    <output name="output_biom" file="references/07-affiliation_deleted.biom" compare="sim_size" delta="0"/>
+		    <output name="output_fasta" file="references/07-affiliation_deleted.fasta" compare="diff" lines_diff="0" />
 		</test>
 	</tests>
 	<help>

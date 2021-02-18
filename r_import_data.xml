@@ -19,15 +19,15 @@
     <description>from 3 files: biomfile, samplefile, treefile </description>
         <requirements>
             <requirement type="package" version="3.2.0">frogs</requirement>
-            <requirement type="package" version="3.6.1">r-base</requirement>
+            <requirement type="package" version="3.6.3">r-base</requirement>
+            <requirement type="package" version="3.6">r-essentials</requirement>
             <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
-            <requirement type="package" version="2.9.2">pandoc</requirement>
         </requirements>
         <stdio>
             <exit_code range="1:" />
             <exit_code range=":-1" />
         </stdio>
-    <command interpreter="python3">phyloseq_import_data.py   --biomfile $biomfile
+    <command>phyloseq_import_data.py   --biomfile $biomfile
                                 --samplefile $samplefile 
                                 #if $treefile
                                   --treefile $treefile 
@@ -41,7 +41,7 @@
     </command>
     <inputs>
         <!-- Files -->
-        <param format="biom1" name="biomfile" type="data" label="Standard biom file" help="The file contains the  OTU informations (format: biom1)." optional="false">
+        <param format="biom1" name="biomfile" type="data" label="Abundance biom file with taxonomical metadata" help="The file contains the  OTU informations (format: biom1)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
         
@@ -64,7 +64,7 @@
             <param name="biomfile" value="input/chaillou.biom"/>
             <param name="samplefile" value="input/sample_metadata.tsv"/>
             <param name="treefile" value="input/tree.nwk"/>
-            <output name="data" value="references/14-phylo_import.Rdata" compare="sim_size" delta="10"/>
+            <output name="data" value="references/16-phylo_import.Rdata" compare="sim_size" delta="10"/>
         </test>
     </tests>
     <help>

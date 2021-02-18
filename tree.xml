@@ -19,18 +19,19 @@
     <description>Reconstruction of phylogenetic tree </description>
     <requirements>
         <requirement type="package" version="3.2.0">frogs</requirement>
-        <requirement type="package" version="7.455">mafft</requirement>
-        <requirement type="package" version="2.1.10">fasttree</requirement>
-        <requirement type="package" version="2.4.0">r-phangorn</requirement>
+        <requirement type="package" version="7.407">mafft</requirement>
+        <requirement type="package" version="2.1.09">fasttree</requirement>
+        <requirement type="package" version="3.6.3">r-base</requirement>
+        <requirement type="package" version="2.5.5">r-phangorn</requirement>
     </requirements>
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />
     </stdio>
-    <command interpreter="python3">
+    <command>
         tree.py 
-            --input-otu $input_otu
-            --biomfile $biomfile
+            --input-sequences $input_otu
+            --biom-file $biomfile
             --nb-cpus \${GALAXY_SLOTS:-1}
             --out-tree $out_tree
             --html $html
@@ -50,17 +51,18 @@
     </outputs>
     <tests>
         <test>
-            <param name="input_otu" value="references/04-otu_filters.fasta"/>
-            <param name="biomfile" value="references/06-affiliation.biom"/>
-            <!--output name="out_tree" value="references/13-tree-mafft.nwk"/-->
-            <!--output name="html" value="references/13-tree-mafft.html"/-->
+            <param name="input_otu" value="references/09-normalisation.fasta"/>
+            <param name="biomfile" value="references/09-normalisation.biom"/>
+            <output name="out_tree" value="references/15-tree-mafft.nwk" compare="sim_size" delta="30"/>
+            <output name="html" value="references/15-tree-mafft.html" compare="diff" lines_diff="2"/>
+            <output name="html" value="references/15-tree-mafft.html" compare="sim_size" delta="30"/>
             <output name="html">
                  <assert_contents>
                     <has_text_matching expression="FROGS\sTree" />
                     <has_text_matching expression="abundance_removed.*:\s0" />
-                    <has_text_matching expression="abundance_kept.*:\s45574" />
+                    <has_text_matching expression="abundance_kept.*:\s300" />
                     <has_text_matching expression="otu_removed.*:\s0" />
-                    <has_text_matching expression="otu_kept.*:\s86" />
+                    <has_text_matching expression="otu_kept.*:\s50" />
                 </assert_contents>
             </output>
         </test>

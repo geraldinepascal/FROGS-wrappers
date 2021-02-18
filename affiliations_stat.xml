@@ -24,7 +24,7 @@
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
-	<command interpreter="python3">
+	<command>
 		affiliations_stat.py 
 		    --input-biom $biom
 		    --output-file $summary_file
@@ -76,7 +76,7 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="biom" value="references/06-affiliation.biom" />
+			<param name="biom" value="references/09-normalisation.biom" />
 			<param name="rarefaction_ranks" value="Family Genus Species" />
 			<conditional name="affiliation">
 				<param name="affiliation_type" value="FROGS_blast" />
@@ -84,10 +84,10 @@
 				<param name="taxonomy_tag" value="blast_taxonomy" />
 				<param name="identity_tag" value="perc_identity" />
 				<param name="coverage_tag" value="perc_query_coverage" />
-				<!-- pas de parametre dans le formulaire pour multiple-tag, uniquement une option dans la ligne de commande -->
 			</conditional>
-			<output name="summary_file" file="references/09-affiliationsStat.html" compare="sim_size" delta="0" />
-			<!-- log-file option presente dans la ligne de commande dans le test.sh n'apparait pas du tout ici -->
+			<!-- differences may exist due to random function to generat rarefaction curves -->
+			<output name="summary_file" file="references/11-affiliationsStat.html" compare="sim_size" delta="20" />
+			<output name="summary_file" file="references/11-affiliationsStat.html" compare="diff" lines_diff="2" />
 		</test>
 	</tests>
 	<help>

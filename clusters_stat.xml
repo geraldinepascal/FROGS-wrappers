@@ -24,7 +24,7 @@
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
-	<command interpreter="python3">
+	<command>
 		clusters_stat.py 
 		                 --input-biom $biom
 		                 --output-file $summary_file
@@ -37,8 +37,8 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="biom" value="references/06-affiliation.biom"/>
-			<output name="summary_file" value="references/08-clustersStat.html" compare="sim_size" delta="0"/>  
+			<param name="biom" value="references/09-normalisation.biom"/>
+			<output name="summary_file" value="references/10-clustersStat.html" compare="diff" lines_diff="0"/>  
 		</test>
 	</tests>
 	<help>

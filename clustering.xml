@@ -25,7 +25,7 @@
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
-    <command interpreter="python3">
+    <command>
         clustering.py 
                         --nb-cpus \${GALAXY_SLOTS:-1}
                         --input-fasta $sequence_file
@@ -74,16 +74,27 @@
         <test>
             <param name="sequence_file" value="references/01-prepro-vsearch.fasta"/>
             <param name="count_file" value="references/01-prepro-vsearch.tsv"/>
-            <param name="maximal_distance" value="3"/>
-            <param name="denoising" value="true"/>
-            <output name="seed_file" file="references/02-clustering.fasta" compare="sim_size" delta="0" />
-            <!-- output name="abundance_biom" file="references/02-clustering.biom"  -->
-            <!-- Voila deux autres facon de comparer: (Mais ca ne marche pas dans ce cas car les fichiers générés par planemo sont vraiments différents comparé à nos test manuels (cf. /tmp/frogs-test-result-olivier /tmp/frogs-test-result-olivier2) -->
-            <!-- cf. https://docs.galaxyproject.org/en/latest/dev/schema.html#tool-tests-test-output -->
-            <!--output name="abundance_biom" file="references/02-clustering.biom" compare="sim_size" delta="10"/-->                    
-            <!--output name="abundance_biom" file="references/02-clustering.biom" compare="diff" lines_diff="1"/-->
-            <output name="swarms_composition" file="references/02-clustering_compo.tsv" compare="sim_size" delta="0"  />
+            <conditional name="FROGS_guidelines">
+                <param name="guidelines_version" value="3.1"/>
+                <param name="maximal_distance" value="3"/>
+                <param name="denoising" value="true"/>
+            </conditional>
+            <output name="seed_file" file="references/02-clustering_denoising.fasta" compare="diff" lines_diff="0" />
+            <output name="swarms_composition" file="references/02-clustering_denoising_compo.tsv" compare="diff" lines_diff="0" />
+            <output name="abundance_biom" file="references/02-clustering_denoising.biom" compare="sim_size" delta="0"  />
         </test>    
+        <test>
+            <param name="sequence_file" value="references/01-prepro-vsearch.fasta"/>
+            <param name="count_file" value="references/01-prepro-vsearch.tsv"/>
+            <conditional name="FROGS_guidelines">
+                <param name="guidelines_version" value="3.2"/>
+                <param name="maximal_distance" value="1"/>
+                <param name="fastidious" value="true"/>
+            </conditional>
+            <output name="seed_file" file="references/02-clustering_fastidious.fasta" compare="diff" lines_diff="0" />
+            <output name="swarms_composition" file="references/02-clustering_fastidious_compo.tsv" compare="diff" lines_diff="0" />
+            <output name="abundance_biom" file="references/02-clustering_fastidious.biom" compare="sim_size" delta="0"  />
+        </test>  
     </tests>
     <help>
 

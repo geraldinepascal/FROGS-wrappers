@@ -19,16 +19,16 @@
     <description>with bar plot and composition plot</description>
         <requirements>
             <requirement type="package" version="3.2.0">frogs</requirement>
-            <requirement type="package" version="3.6.1">r-base</requirement>
+            <requirement type="package" version="3.6.3">r-base</requirement>
+            <requirement type="package" version="3.6">r-essentials</requirement>
             <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
-            <requirement type="package" version="4.5.6">r-plotly</requirement>
-            <requirement type="package" version="2.9.2">pandoc</requirement>
+            <requirement type="package" version="4.9.3">r-plotly</requirement>
         </requirements>
         <stdio> 
             <exit_code range="1:" />
             <exit_code range=":-1" />
         </stdio>
-    <command interpreter="python3">phyloseq_composition.py 
+    <command>phyloseq_composition.py 
                           --rdata $data 
                           --varExp $varExp 
                           --taxaRank1 $taxaRank1 
@@ -64,17 +64,24 @@
     </outputs>
     <tests>
         <test>
-            <param name="data" value="references/14-phylo_import.Rdata" />
+            <param name="data" value="references/16-phylo_import.Rdata" />
             <param name="varExp" value="EnvType" />
             <param name="taxaRank1" value="Kingdom" />
             <param name="taxaSet1" value="Bacteria" />
             <param name="taxaRank2" value="Phylum" />
             <param name="numberOfTaxa" value="9" />
-            <!--output name="html" file="references/15-phylo_composition.html" compare="sim_size" delta="0" /-->
             <output name="html">
                 <assert_contents>   
-                    <has_text_matching expression="html\sxmlns=.*" />
-                    <has_text_matching expression="application/json.*Sample: BHT0.LOT01" />
+                    <!-- "<br />" is replaced by ".*" -->
+                    <has_text_matching expression="Phylum: Actinobacteria.*Sample: BHT0.LOT07.*Abundance: 0.3806484555" />
+                    <has_text_matching expression="Phylum: Bacteroidetes.*Sample: BHT0.LOT07.*Abundance: 0.0026380734" />
+                    <has_text_matching expression="Phylum: Cyanobacteria.*Sample: BHT0.LOT07.*Abundance: 0.0000000000" />
+                    <has_text_matching expression="Phylum: Firmicutes.*Sample: BHT0.LOT07.*Abundance: 0.6024168156" />
+                    <has_text_matching expression="Phylum: Fusobacteria.*Sample: BHT0.LOT07.*Abundance: 0.0002552974" />
+                    <has_text_matching expression="Phylum: Proteobacteria.*Sample: BHT0.LOT07.*Abundance: 0.0137860608" />
+                    <has_text_matching expression="Phylum: Spirochaetes.*Sample: BHT0.LOT07.*Abundance: 0.0000000000" />
+                    <has_text_matching expression="Phylum: Tenericutes.*Sample: BHT0.LOT07.*Abundance: 0.0002552974" />
+                    <has_text_matching expression="Phylum: Other.*Sample: BHT0.LOT07.*Abundance: 0.0000000000" />
                 </assert_contents>
             </output>
         </test>

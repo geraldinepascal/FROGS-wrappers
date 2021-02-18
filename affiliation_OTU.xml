@@ -19,15 +19,11 @@
 	<description>Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
  	<requirements>
         <requirement type="package" version="3.2.0">frogs</requirement>
-        <requirement type="package" version="2.9.0">blast</requirement>
+        <requirement type="package" version="2.10">blast</requirement>
         <requirement type="package" version="6.6.0">emboss</requirement>
-        <requirement type="package" version="2.0.2">rdptools</requirement>
+        <requirement type="package" version="2.0.3">rdptools</requirement>
     </requirements>
- 	<stdio>
-        <exit_code range="1:" />
-        <exit_code range=":-1" />
-    </stdio>
-	<command interpreter="python3">
+	<command detect_errors="exit_code">
 		#set $reference_filename = str( $ref_file.fields.path )
 		affiliation_OTU.py 
 		                       --reference '${reference_filename}'
@@ -49,10 +45,10 @@
 	       		<options from_data_table="frogs_db"></options>
 			<validator type="no_options" message="A built-in database is not available" />
 		</param> 
-   		<param name="rdp" type="boolean" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allow you to perform it also with RDP classifier (default No)" />
-	        <!-- Files -->
-	        <param format="fasta" name="fasta_sequences" type="data" label="OTU seed sequence" help="OTU sequences (format: fasta)."/>
-	        <param format="biom1" name="biom_abundance" type="data" label="Abundance file" help="OTU abundances (format: BIOM)."/>
+   	<param name="rdp" type="boolean" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allow you to perform it also with RDP classifier (default No)" />
+    <!-- Files -->
+    <param format="fasta" name="fasta_sequences" type="data" label="OTU seed sequence" help="OTU sequences (format: fasta)."/>
+    <param format="biom1" name="biom_abundance" type="data" label="Abundance file" help="OTU abundances (format: BIOM)."/>
 	</inputs>
 	<outputs>
 		<data format="biom1" name="biom_affiliation" label="${tool.name}: affiliation.biom" from_work_dir="affiliation.biom" />
@@ -61,13 +57,20 @@
         <tests>
             <test>
                 <param name="ref_file" value="ITS1_test"/>
-                <param name="fasta_sequences" value="references/04-otu_filters.fasta"/>
-                <param name="biom_abundance" value="references/04-otu_filters.biom"/>
-                <!-- <param name="fasta_sequences" value="swarm.fasta"/>
-                <param name="biom_abundance" value="swarm.biom"/> -->
-                <output name="biom_affiliation" file="references/06-affiliation.biom"/>
-                <output name="summary" file="references/06-affiliation.html" compare="sim_size" delta="0" />
+                <param name="fasta_sequences" value="references/04-filters.fasta"/>
+                <param name="biom_abundance" value="references/04-filters.biom"/>
+                <output name="biom_affiliation" file="references/06-affiliation2.biom" compare="sim_size" delta="0" />
+                <output name="summary" file="references/06-affiliation2.html" compare="diff" lines_diff="0"/>
             </test>
+            <test>
+                <param name="ref_file" value="ITS1_test"/>
+                <param name="fasta_sequences" value="references/04-filters.fasta"/>
+                <param name="biom_abundance" value="references/04-filters.biom"/>
+                <param name="rdp" value="true"/>
+                <output name="biom_affiliation" file="references/06-affiliation.biom" compare="sim_size" delta="0" />
+                <output name="summary" file="references/06-affiliation.html" compare="diff" lines_diff="0"/>
+            </test>
+
         </tests>
 
   	<help>

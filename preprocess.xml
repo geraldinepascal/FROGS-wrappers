@@ -19,15 +19,15 @@
 	<description>merging, denoising and dereplication.</description>
         <requirements>
                 <requirement type="package" version="3.2.0">frogs</requirement>
-                <requirement type="package" version="2.13.1">vsearch</requirement>
+                <requirement type="package" version="2.15.1">vsearch</requirement>
                 <requirement type="package" version="1.2.11">flash</requirement>
-                <requirement type="package" version="2.8">cutadapt</requirement>
+                <requirement type="package" version="2.10">cutadapt</requirement>
         </requirements>
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
-	<command interpreter="python3">
+	<command>
 		preprocess.py $sequencer_type.sequencer_selected
 		--output-dereplicated $dereplicated_file --output-count $count_file --summary $summary_file 
 		--nb-cpus \${GALAXY_SLOTS:-1}

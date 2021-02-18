@@ -16,15 +16,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool name="FROGSSTAT DESeq2 Preprocess" id="FROGSSTAT_DESeq2_Preprocess" version="3.2">
-    <description>import a Pyloseq object and prepare it for DESeq2 differential abundance analysis </description>
-    <requirements>
-        <requirement type="package" version="3.2.0">frogs</requirement>
-        <requirement type="package" version="3.6.1">r-base</requirement>
-        <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
-        <requirement type="package" version="1.26.0"> bioconductor-deseq2</requirement>
-        <requirement type="package" version="1.6.4"> r-optparse</requirement>
-    </requirements>
-	<command interpreter="python3">deseq2_preprocess.py --data $data
+  <description>import a Pyloseq object and prepare it for DESeq2 differential abundance analysis </description>
+  <requirements>
+      <requirement type="package" version="3.2.0">frogs</requirement>
+      <requirement type="package" version="3.6.3">r-base</requirement>
+      <requirement type="package" version="3.6">r-essentials</requirement>
+      <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
+      <requirement type="package" version="1.26.0">bioconductor-deseq2</requirement>
+      <requirement type="package" version="1.6.6">r-optparse</requirement>
+  </requirements>
+  <stdio>
+      <exit_code range="1:" />
+      <exit_code range=":-1" />
+  </stdio>
+	<command>deseq2_preprocess.py --data $data
                                                         #if $multiple.seconde=="false"
                                                           --var $var1
                                                         #end if
@@ -57,6 +62,13 @@
     <outputs>
       <data format="rdata" name="dds" label="${tool.name}: dds.Rdata" from_work_dir="DESeq2_preprocess.Rdata"/>
     </outputs>
+    <tests>
+      <test>
+         <param name="data" value="references/16-phylo_import.Rdata" />
+         <param name="var1" value="EnvType"/>
+         <output name="dds" file="references/23-deseq2_preprocess.Rdata" compare="sim_size" delta="0"/>
+      </test>
+    </tests>
     <help>
 
 .. image:: static/images/FROGS_logo.png 

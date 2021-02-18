@@ -25,7 +25,7 @@
         <exit_code range="1:" />
         <exit_code range=":-1" />
     </stdio>
-	<command interpreter="python3">
+	<command>
 		itsx.py
 		                --nb-cpus \${GALAXY_SLOTS:-1}
 		                --region $region
@@ -56,11 +56,14 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="input_fasta" value="references/04-otu_filters.fasta"/>
-			<param name="input_biom" value="references/04-otu_filters.biom"/>
+			<param name="input_fasta" value="references/04-filters.fasta"/>
+			<param name="input_biom" value="references/04-filters.biom"/>
 			<param name="region" value="ITS1"/>
 			<param name="check_only" value="false"/>
-			<output name="summary_file" file="references/05-itsx.html"/>
+			<output name="out_abundance_biom" file="references/05-itsx.biom" compare="sim_size" delta="0" />
+			<output name="out_fasta" file="references/05-itsx.fasta" compare="diff" lines_diff="0" />
+			<output name="out_excluded" file="references/05-itsx-excluded.fasta" compare="diff" lines_diff="0" />
+			<output name="summary_file" file="references/05-itsx.html" compare="diff" lines_diff="0" />
 		</test>
 	</tests>
 	<help>

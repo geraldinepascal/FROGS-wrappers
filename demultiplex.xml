@@ -20,14 +20,12 @@
         <requirements>
             <requirement type="binary">perl</requirement>
             <requirement type="package" version="3.2.0">frogs</requirement>
-            <requirement type="package" version="1.10">perl-io-zlib</requirement>
-            <requirement type="package" version="0.20">perl-io-gzip</requirement>
         </requirements>
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
-	<command interpreter="python3">
+	<command>
 		demultiplex.py
 		#if str( $fastq_input.fastq_input_selector ) == "paired":
 		    --input-R1 '${fastq_input.fastq_input1}'            
@@ -79,11 +77,11 @@
 			<conditional name="fastq_input">
                 <param name="fastq_input_selector" value="paired"/>
             </conditional>
-            <param name="fastq_input1" value="input/demultiplex_test2_R1.fq"/>
-            <param name="fastq_input2" value="input/demultiplex_test2_R2.fq"/>
+            <param name="fastq_input1" value="input/demultiplex_test2_R1.fq.gz"/>
+            <param name="fastq_input2" value="input/demultiplex_test2_R2.fq.gz"/>
             <param name="mismatches" value="1"/>
             <param name="end" value="both"/>
-            <output name="summary" file="input/demultiplex_summary.txt" compare="sim_size" delta="0" />
+            <output name="summary" file="references/demultiplex_summary.txt" compare="sim_size" delta="0" />
         </test>
     </tests>
 	<help>

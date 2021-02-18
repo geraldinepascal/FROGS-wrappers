@@ -19,16 +19,16 @@
 	<description>with heatmap plot and ordination plot</description>
         <requirements>
             <requirement type="package" version="3.2.0">frogs</requirement>
-            <requirement type="package" version="3.6.1">r-base</requirement>
+            <requirement type="package" version="3.6.3">r-base</requirement>
+            <requirement type="package" version="3.6">r-essentials</requirement>
             <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
-            <requirement type="package" version="4.5.6">r-plotly</requirement>
-            <requirement type="package" version="2.9.2">pandoc</requirement>
+            <requirement type="package" version="4.9.3">r-plotly</requirement>
         </requirements>
 	<stdio>
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
 	</stdio>
-	<command interpreter="python3">phyloseq_structure.py 
+	<command>phyloseq_structure.py 
                                          --html $html
                                          --rdata $data
                                          --varExp $varExp
@@ -56,22 +56,21 @@
 	<outputs>
 		<data format="html" name="html" label="${tool.name}: structure.nb.html" from_work_dir="structure.nb.html"/>
 	</outputs>
-        <tests>
-                <test>
-                        <param name="data" value="references/14-phylo_import.Rdata" />
-                        <param name="varExp" value="EnvType" />
-                        <param name="method" value="MDS" />
-                        <param name="distance" value="references/Unifrac.tsv" />
-                        <!--output name="html" file="references/18-phylo_structure.html" compare="sim_size" delta="10" /-->
-	                <output name="html">
-                                <assert_contents>
-                                        <has_text_matching expression="html\sxmlns=.*" />
-                                        <has_text_matching expression="application/json.*DesLardons" />
-                                </assert_contents>
-                        </output>
+    <tests>
+        <test>
+            <param name="data" value="references/16-phylo_import.Rdata" />
+            <param name="varExp" value="EnvType" />
+            <param name="method" value="MDS" />
+            <param name="distance" value="references/unifrac.tsv" />
+            <output name="html">
+                <assert_contents>
+                    <has_text text='"title":{"text":"Axis.1   [22.1%]' />
+                    <has_text text='"title":{"text":"Axis.2   [12.8%]' />
+                </assert_contents>
+            </output>
 
-                </test>
-        </tests>
+        </test>
+    </tests>
 	<help>
 		
 .. image:: static/images/FROGS_logo.png 

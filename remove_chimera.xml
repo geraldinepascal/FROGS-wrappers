@@ -25,7 +25,7 @@
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
-	<command interpreter="python3">
+	<command>
 		remove_chimera.py 
 		                --nb-cpus \${GALAXY_SLOTS:-1}
 		                --input-fasta $sequence_file --non-chimera $non_chimera_fasta
@@ -66,12 +66,14 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="sequence_file" value="references/02-clustering.fasta"/>
+			<param name="sequence_file" value="references/02-clustering_fastidious.fasta"/>
 			<conditional name="abundance_type">
 				<param name="abundance_type_selected" value="biom"/>
-				<param name="abundance_biom" value="references/02-clustering.biom" />
+				<param name="abundance_biom" value="references/02-clustering_fastidious.biom" />
 			</conditional>
-			<output name="non_chimera_fasta" file="references/03-chimera.fasta"/>
+			<output name="non_chimera_fasta" file="references/03-chimera.fasta" compare="diff" lines_diff="0"/>
+			<output name="summary_file" file="references/03-chimera.html" compare="diff" lines_diff="0"/>
+			<output name="out_abundance_biom" file="references/03-chimera.biom" compare="sim_size" delta="0"/>
 		</test>	
 	</tests>
 	<help>

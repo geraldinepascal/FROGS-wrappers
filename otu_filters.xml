@@ -26,7 +26,7 @@
                 <exit_code range=":-1" />
         </stdio>
 
-	<command interpreter="python3">
+	<command>
 
 		otu_filters.py
 			--nb-cpus \${GALAXY_SLOTS:-1} 
@@ -123,18 +123,19 @@
 		<test>
 	        <param name="input_fasta" value="references/03-chimera.fasta" />
             <param name="input_biom" value="references/03-chimera.biom" />    
-		    <conditional name="abundance_filters">
-				<param name="min_abundance" value="0.00005" />	
-				<param name="min_sample_presence" value="3" />
+            <param name="min_sample_presence" value="3" />
+		    <conditional name="choice_abundance_unit">
+		    	<param name="abundance_unit_type" value="proportion" />
+				<param name="min_abundance_proportion" value="0.00005" />	
 		    </conditional>
-		    <conditional name="contaminations_filter">
-	            <conditional name="contaminantSource">
-	            	<param name="which_contaminantSource" value="server"/>
-					<param name="contaminant_db" value="phiX_test" />
-				</conditional>
-		    </conditional>
-	 	    <output name="output_fasta" file="references/04-otu_filters.fasta" />
-		    <output name="output_excluded" file="references/04-otu_filters.excluded.tsv" />
+            <conditional name="contaminantSource">
+            	<param name="which_contaminantSource" value="server"/>
+				<param name="contaminant_db" value="phiX_test" />
+			</conditional>
+	 	    <output name="output_fasta" file="references/04-filters.fasta" compare="diff" lines_diff="0" />
+	 	    <output name="output_biom" file="references/04-filters.biom" compare="sim_size" delta="0" />
+		    <output name="output_excluded" file="references/04-filters.excluded" compare="diff" lines_diff="0" />
+		    <output name="output_summary" file="references/04-filters.html" compare="diff" lines_diff="0" />
 	    </test>
 	</tests>
 	<help>

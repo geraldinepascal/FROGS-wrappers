@@ -19,16 +19,16 @@
 	<description>distance matrix</description>
         <requirements>
             <requirement type="package" version="3.2.0">frogs</requirement>
-            <requirement type="package" version="3.6.1">r-base</requirement>
+            <requirement type="package" version="3.6.3">r-base</requirement>
+            <requirement type="package" version="3.6">r-essentials</requirement>
             <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
             <requirement type="package" version="2.3">r-gridextra</requirement>
-            <requirement type="package" version="2.9.2">pandoc</requirement>
         </requirements>
 	<stdio>
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
 	</stdio>
-	<command interpreter="python3">phyloseq_beta_diversity.py 
+	<command>phyloseq_beta_diversity.py 
                                         --rdata $data
                                         --varExp $varExp
                                         #if $methods != "None"
@@ -67,20 +67,20 @@
             <discover_datasets pattern="__designation__" ext="tabular" directory="BetaMatrix" visible="true"/>
         </data>
 	</outputs>
-        <tests>
-                <test>
-                        <param name="data" value="references/14-phylo_import.Rdata" />
-                        <param name="varExp" value="EnvType" />
-                        <param name="methods" value="cc,unifrac" />
-                        <!--output name="html" file="references/17-phylo_beta_div.html" compare="sim_size" delta="0" /-->
-                        <output name="html">
-                                <assert_contents>
-                                        <has_text_matching expression="html\sxmlns=.*" />
-                                        <has_text_matching expression="Phyloseq\s+\d+\.\d+\.\d+" />
-                                </assert_contents>
-                        </output>
-                </test>
-        </tests>
+    <tests>
+        <test>
+            <param name="data" value="references/16-phylo_import.Rdata" />
+            <param name="varExp" value="EnvType" />
+            <param name="methods" value="cc,unifrac" />
+            <output name="html" file="references/19-phylo_beta_div.nb.html" compare="diff" lines_diff="0" />
+            <!-- <output name="html">
+                <assert_contents>
+                    <has_text_matching expression="html\sxmlns=.*" />
+                    <has_text_matching expression="Phyloseq\s+\d+\.\d+\.\d+" />
+                </assert_contents>
+            </output> -->
+        </test>
+    </tests>
 
 	<help>
 	

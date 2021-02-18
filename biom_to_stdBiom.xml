@@ -24,7 +24,7 @@
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
-	<command interpreter="python3">
+	<command>
 		biom_to_stdBiom.py 
 		                --input-biom $input_biom
 		                --output-biom $output_biom
@@ -40,9 +40,9 @@
 	</outputs>
 	<tests>
 		<test>
-			<param name="input_biom" value="references/06-affiliation.biom"/>
-			<output name="output_biom" value="references/11-affiliation_std.biom"/>
-			<output name="output_blast_details" value="references/11-affiliation_multihit.tsv"/>
+			<param name="input_biom" value="references/09-normalisation.biom"/>
+			<output name="output_biom" value="references/13-affiliation_std.biom" compare="sim_size" delta="0" />
+			<output name="output_blast_details" value="references/13-affiliation_multihit.tsv" compare="diff" lines_diff="0" />
 		</test>
 	</tests>
 	<help>
