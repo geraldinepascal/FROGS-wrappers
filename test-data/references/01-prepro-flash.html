@@ -186,8 +186,8 @@
         </style>
         <!-- JS -->
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-		<script type="text/javascript" src="https://code.highcharts.com/4.1.4/highcharts.js"></script>
-		<script type="text/javascript" src="https://code.highcharts.com/4.1.4/modules/exporting.js"></script>
+		<script type="text/javascript" src="https://code.highcharts.com/8.2.0/highcharts.js"></script>
+		<script type="text/javascript" src="https://code.highcharts.com/8.2.0/modules/exporting.js"></script>
 		<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 		<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
@@ -248,7 +248,8 @@
                 return new_val ;
             }
             Highcharts.setOptions({
-					 colors : ['#8EADAC', '#DE9F73','#7cb5ec','#434348','#90ed7d','#f7a35c','#8085e9','#f15c80','#e4d354','#2b908f','#f45b5b','#91e8e1'] 
+					 colors : ['#8EADAC', '#DE9F73','#7cb5ec','#434348','#90ed7d','#f7a35c','#8085e9','#f15c80','#e4d354','#2b908f','#f45b5b','#91e8e1'],
+					 lang: {thousandsSep: ','}
 					});
             /**
              * Returns hash use to init HightChart line. 
@@ -334,15 +335,17 @@
              * @param pCategories {Array} x scale labels.
              * @param pSeries {Array} The HightChart series.
              * @param unity {String} Unity used in tooltip.
+             * @param is_stacked {Bool} is this a stacked or simple histogram (merged and FROGS_combined or merged only )
              * @return {Hash} Parameters to use in Highchart's constructor.
              */
              // couleur des diapos : bleu #8EADAC, vert : #A2A32F, orange1 #C6792B , taupe #9A866C, orange pastel : #DE9F73
-            var histogram_param = function( pTitle, nb, pYTitle, pCategories, pSeries, unity ) {
+            var histogram_param = function( pTitle, nb, pYTitle, pCategories, pSeries, unity, is_stacked ) {
                 var param = {
                     chart: {
-                        type: 'column'
+                        type: 'column',
+                        zoomType: 'y'
                     },
-                    exporting:{buttons: {contextButton: { symbol: 'download' }}},
+                    exporting:{buttons: {contextButton: { x:-10, symbol: 'download' }}},
                     buttons: {contextButton: {menuItems: ['downloadPNG', 'downloadSVG']}},
                     navigation: {
 						buttonOptions: {
@@ -365,9 +368,6 @@
                     title: {
                         text: pTitle
                     },
-                    subtitle: {
-                        text: 'starting from : ' + nb + ' sequences'
-                    },
                     xAxis: [{
                         categories: pCategories,
                         crosshair: true,
@@ -377,20 +377,31 @@
                     }],
                     yAxis: {
                         min: 0,
+                        max: nb + 10,
                         title: {
                             text: pYTitle
                         },
                         stackLabels: {
-							enabled: true,
+							enabled: is_stacked,
 							style: {
-								fontWeight: 'bold',
-								color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+								color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray',
+								fontWeight: 'normal'
 							}
 						},
                         plotLines:[{
                             color: "#A2A32F",
                             width: 2,
-                            value: nb
+                            value: nb,
+                            label: {
+                				text: 'input sequences : <br>' + numberDisplay(nb) ,
+                				y: 110, 
+                				rotation: -90,
+                				align: 'left',
+                				style: {
+                					color: '#A2A32F',
+                					fontWeight : 'bold'
+                				}
+                			}
                         }]
                     },
                     tooltip: {
@@ -400,29 +411,42 @@
                             $.each(this.points, 
                                 function(i, point) {
                                 s += '<br/>'+ '<span style="color: ' + point.series.color + '"> ' + point.series.name +' : </span>'+
-                                point.y + " " + unity;
+                                numberDisplay(point.y) + " " + unity;
+                                if (! is_stacked){
+                                	s += ' ( ' +Number(Math.round(point.y*100/nb + "e+2")  + "e-2")+ '%)'
+                                }
                                 sum += point.y;
                                 }
                             );
-                            s += '<br/>total : '+ sum + ' (' + Number(Math.round(sum*100/nb + "e+2")  + "e-2")  + '%)'
+                            if(is_stacked){
+                            	s += '<br/>total : '+ numberDisplay(sum) + ' (' + Number(Math.round(sum*100/nb + "e+2")  + "e-2")  + '%)';
+                            }
                             return s;
                         },
                         shared: true,
                         useHTML: true
                     },
                     plotOptions: {
-                        column: {
-							stacking: 'normal',
-							dataLabels: {
-								enabled: true,
-								style: {
+				        column: {
+				            stacking: 'normal',
+				            dataLabels: {
+				                enabled: true,
+				                useHTML: true,
+				                style: {
 									textShadow: false,
-									color: (Highcharts.theme && Highcharts.theme.textColor) || 'white'
-								}
-							},
-                            pointPadding: 0.2,
+									textOutline: false,
+				                  	fontWeight : 'bold'
+				                },
+				                formatter() {
+				                	var pointWidth = this.point.shapeArgs.width + 10;
+				                	var margin_top = this.point.shapeArgs.height < 20 ? -12 : 0;
+				                	return '<div class="datalabelInside" style="text-shadow:none;color:'+this.color+';position: absolute;margin-top:'+ margin_top+'px ; margin-left:' + pointWidth / 2 + 'px">' + numberDisplay(this.y) + '</div>';
+				                }
+	
+				            },
+				            pointPadding: 0.2,
                             borderWidth: 0
-                        }
+				        }
                     },
                     credits: {
                         enabled: false
@@ -440,35 +464,37 @@
             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             var filters_categories = ["before process", "paired-end assembled", "with 5' primer", "with 3' primer", "with expected length", "without N"] ;
             /* Example:
-                ["before process", "assembled", "with 5' primer", "with 3' primer", "with expected length", "without N"]
+                ["before process", "paired-end assembled", "with 5' primer", "with 3' primer", "with expected length", "without N"] ;
             */
 
-            var filters_by_sample = {"artificial combined": {"02": {"with expected length": 12500, "with 3' primer": 12500, "with 5' primer": 12500, "without N": 12500, "paired-end assembled": 12500}, "03": {"with expected length": 12536, "with 3' primer": 12536, "with 5' primer": 12536, "without N": 12536, "paired-end assembled": 12536}, "01": {"with expected length": 12378, "with 3' primer": 12378, "with 5' primer": 12378, "without N": 12378, "paired-end assembled": 12378}}, "before process": {"02": 30000, "03": 30000, "01": 30000}, "merged": {"02": {"with expected length": 17500, "with 3' primer": 17500, "with 5' primer": 17500, "without N": 17500, "paired-end assembled": 17500}, "03": {"with expected length": 17464, "with 3' primer": 17464, "with 5' primer": 17464, "without N": 17464, "paired-end assembled": 17464}, "01": {"with expected length": 17622, "with 3' primer": 17622, "with 5' primer": 17622, "without N": 17622, "paired-end assembled": 17622}}} ;
+            var filters_by_sample = {"before process": {"01_subsample": 50000, "02_subsample": 50000, "03_subsample": 50000}, "merged": {"01_subsample": {"paired-end assembled": 29070, "with 5' primer": 29070, "with 3' primer": 29070, "with expected length": 29070, "without N": 29070}, "02_subsample": {"paired-end assembled": 29180, "with 5' primer": 29180, "with 3' primer": 29180, "with expected length": 29180, "without N": 29180}, "03_subsample": {"paired-end assembled": 29149, "with 5' primer": 29149, "with 3' primer": 29149, "with expected length": 29149, "without N": 29149}}, "artificial combined": {"01_subsample": {"with 5' primer": 20930, "with 3' primer": 20930, "with expected length": 20930, "without N": 20930, "paired-end assembled": 20930}, "02_subsample": {"with 5' primer": 20820, "with 3' primer": 20820, "with expected length": 20820, "without N": 20820, "paired-end assembled": 20820}, "03_subsample": {"with 5' primer": 20851, "with 3' primer": 20851, "with expected length": 20851, "without N": 20851, "paired-end assembled": 20851}}} ;
             /* Example:
             var filters_by_sample = {
-                "artificial combined": {
-                    "sampleA": {"with 3' primer": 100, "without N": 100, "with 5' primer": 200, "assembled": 300}, 
-                    "sampleB": {"with 3' primer": 0, "without N": 0, "with 5' primer": 0, "assembled": 0}}, 
-                "combined": {
-                    "sampleA": {"with expected length": 997, "with 3' primer": 997, "without N": 997, "with 5' primer": 997, "assembled": 1000}, 
-                    "sampleB": {"with expected length": 634, "with 3' primer": 727, "without N": 619, "with 5' primer": 800, "assembled": 834}}, 
-                "before process": {"sampleA": 1300, "sampleB": 834}
+            	"artificial combined": {
+            		"sampleA": {"with expected length": 1, "with 3' primer": 1, "with 5' primer": 2, "without N": 1, "paired-end assembled": 3}, 
+            		"sampleB": {"with expected length": 0, "with 3' primer": 0, "with 5' primer": 0, "without N": 0, "paired-end assembled": 0}
+            	}, 
+            	"before process": {"sampleA": 1003, "sampleB": 1000}, 
+            	"merged": {
+            		"sampleA": {"with expected length": 997, "with 3' primer": 997, "with 5' primer": 997, "without N": 997, "paired-end assembled": 1000},
+            		"sampleB": {"with expected length": 997, "with 3' primer": 997, "with 5' primer": 997, "without N": 997, "paired-end assembled": 1000}
+            	}
             } ;
             */
 
-            var before_lengths_by_sample = {"02": {"319": 291, "318": 607, "338": 1, "423": 297, "335": 316, "334": 2, "337": 302, "336": 345, "331": 286, "333": 315, "332": 3, "270": 101, "271": 146, "272": 457, "274": 296, "275": 615, "276": 588, "277": 319, "278": 326, "279": 6, "289": 2, "365": 1, "320": 607, "322": 1, "345": 298, "346": 314, "347": 2, "324": 1244, "369": 1, "281": 625, "280": 10, "364": 326, "422": 1, "285": 662, "349": 2, "287": 5, "309": 299, "303": 300, "298": 7, "300": 287, "301": 325, "302": 7, "325": 2, "304": 606, "305": 1, "306": 7, "307": 1, "299": 959, "363": 3, "267": 18, "358": 298, "269": 27, "268": 9, "321": 620, "282": 1222, "296": 881, "284": 300, "357": 2, "354": 2, "353": 306, "351": 1, "350": 330, "371": 2, "370": 315, "294": 311, "295": 5, "292": 2, "293": 2, "290": 1, "291": 322}, "03": {"319": 288, "318": 640, "338": 1, "423": 294, "335": 317, "334": 1, "337": 282, "336": 292, "331": 338, "330": 4, "333": 313, "270": 66, "271": 126, "272": 450, "274": 292, "275": 592, "276": 629, "277": 319, "278": 290, "279": 1, "289": 2, "345": 297, "320": 600, "322": 3, "323": 2, "346": 336, "321": 617, "324": 1162, "369": 2, "281": 617, "280": 8, "364": 323, "282": 1264, "285": 660, "284": 331, "287": 5, "309": 282, "358": 282, "300": 327, "301": 295, "302": 4, "303": 335, "304": 656, "306": 1, "307": 3, "299": 894, "267": 26, "370": 344, "269": 36, "268": 20, "283": 1, "317": 1, "365": 4, "349": 5, "357": 2, "354": 1, "353": 319, "352": 1, "298": 6, "350": 305, "296": 939, "297": 2, "294": 303, "295": 3, "290": 4, "291": 299}, "01": {"319": 285, "318": 592, "335": 322, "334": 2, "337": 292, "336": 292, "331": 301, "330": 6, "333": 294, "332": 1, "270": 75, "271": 137, "272": 489, "274": 293, "275": 625, "276": 608, "277": 268, "278": 340, "296": 974, "289": 3, "345": 323, "320": 660, "364": 309, "322": 1, "323": 3, "346": 291, "347": 1, "324": 1280, "369": 1, "281": 619, "280": 5, "423": 293, "282": 1299, "285": 606, "284": 309, "287": 7, "286": 1, "309": 315, "283": 2, "300": 331, "301": 297, "302": 5, "303": 303, "304": 592, "305": 3, "306": 5, "307": 2, "363": 1, "267": 22, "325": 2, "370": 337, "269": 28, "268": 13, "321": 600, "422": 1, "359": 2, "350": 324, "292": 1, "424": 1, "357": 1, "353": 329, "352": 2, "298": 4, "299": 951, "371": 2, "297": 1, "349": 2, "358": 308, "294": 301, "293": 1, "290": 7, "291": 319}} ;
+            var before_lengths_by_sample = {"01_subsample": {"346": 536, "275": 1020, "281": 986, "319": 525, "304": 1019, "336": 498, "299": 1553, "303": 546, "282": 2074, "272": 775, "300": 516, "277": 521, "423": 497, "296": 1514, "284": 514, "278": 526, "271": 246, "318": 984, "291": 526, "276": 1036, "309": 510, "320": 1032, "370": 526, "324": 2070, "353": 497, "294": 500, "364": 508, "274": 479, "285": 1021, "331": 473, "301": 525, "350": 537, "333": 508, "321": 1030, "358": 508, "337": 520, "352": 1, "335": 540, "269": 66, "345": 517, "270": 134, "344": 1, "305": 4, "267": 27, "302": 8, "306": 6, "307": 2, "298": 5, "279": 3, "349": 5, "330": 8, "268": 21, "286": 1, "359": 2, "280": 6, "323": 3, "422": 2, "322": 3, "351": 2, "295": 3, "290": 5, "365": 1, "287": 8, "369": 3, "325": 4, "357": 2, "347": 2, "317": 2, "334": 2, "289": 3, "292": 1, "424": 1, "363": 1, "354": 1, "293": 1, "297": 1, "332": 2, "310": 1, "283": 1, "371": 2}, "02_subsample": {"296": 1590, "270": 141, "276": 978, "350": 524, "331": 528, "304": 993, "370": 508, "291": 494, "285": 1047, "282": 2069, "337": 510, "321": 1006, "271": 240, "318": 1020, "324": 2094, "275": 993, "320": 1016, "272": 782, "301": 545, "423": 510, "281": 1032, "336": 540, "300": 528, "294": 489, "345": 517, "280": 16, "364": 528, "278": 521, "335": 533, "284": 501, "274": 485, "346": 525, "303": 533, "309": 473, "277": 531, "358": 513, "333": 544, "299": 1541, "353": 501, "319": 503, "268": 17, "334": 5, "269": 58, "293": 3, "332": 1, "354": 5, "267": 27, "330": 4, "290": 3, "302": 9, "349": 8, "287": 5, "298": 10, "279": 9, "283": 1, "352": 2, "424": 2, "305": 3, "306": 10, "363": 4, "323": 4, "371": 3, "347": 1, "357": 5, "365": 2, "325": 6, "422": 2, "369": 4, "295": 5, "289": 5, "317": 1, "292": 4, "351": 1, "359": 2, "297": 3, "307": 3, "338": 1}, "03_subsample": {"296": 1562, "300": 530, "321": 1071, "275": 1011, "285": 1029, "337": 483, "282": 2063, "364": 495, "278": 497, "335": 521, "324": 1976, "281": 1061, "304": 1032, "272": 780, "423": 520, "320": 1011, "291": 550, "301": 507, "319": 518, "277": 505, "333": 542, "346": 516, "276": 1024, "270": 121, "318": 1039, "299": 1511, "331": 522, "336": 542, "284": 542, "358": 500, "294": 477, "303": 543, "353": 513, "370": 543, "350": 513, "274": 484, "345": 494, "267": 26, "309": 519, "271": 257, "323": 3, "269": 55, "334": 3, "305": 2, "322": 3, "306": 2, "302": 5, "268": 26, "280": 12, "363": 1, "279": 9, "352": 1, "338": 2, "298": 9, "354": 1, "357": 2, "332": 8, "290": 4, "330": 7, "283": 2, "349": 7, "289": 4, "307": 5, "365": 3, "325": 4, "292": 2, "297": 2, "347": 2, "369": 2, "293": 1, "287": 4, "295": 3, "317": 2, "310": 1}} ;
             /* Example:
                 {
-                  "sampleA": {"395": 1, "381": 192, "382": 1790, "383": 2903, "384": 1078, "385": 10536, "386": 18182, "387": 8613, "388": 1097, "389": 7},
-                  "sampleB": {}
+                  sampleA": {"414": 446, "415": 54, "410": 99, "411": 4, "412": 46, "413": 347, "409": 4}, 
+                  "sampleB": {"414": 446, "415": 54, "410": 99, "411": 4, "412": 46, "413": 347, "409": 4}
                 }
             */
 
-            var after_lengths_by_sample = {"02": {"151": 1, "216": 1, "318": 1, "213": 5, "210": 1, "211": 2, "313": 314, "312": 298, "337": 315, "242": 611, "317": 330, "330": 3, "193": 1, "332": 1, "270": 300, "271": 606, "258": 322, "259": 2, "238": 142, "239": 456, "276": 299, "226": 2, "252": 661, "235": 9, "236": 27, "251": 299, "250": 1, "265": 3, "198": 7, "234": 9, "237": 101, "272": 1, "249": 1219, "248": 621, "289": 1, "288": 620, "320": 306, "321": 2, "268": 325, "331": 326, "324": 2, "325": 298, "233": 9, "285": 607, "287": 607, "286": 291, "243": 588, "202": 4, "300": 315, "301": 2, "302": 316, "303": 345, "304": 302, "305": 1, "316": 1, "263": 881, "244": 308, "261": 311, "260": 2, "241": 294, "266": 959, "229": 4, "228": 1, "389": 1, "225": 4, "219": 4, "223": 11, "222": 10, "221": 6, "220": 9, "245": 316, "338": 2, "218": 2, "262": 5, "314": 2, "247": 1, "336": 1, "390": 297, "215": 1, "298": 286, "299": 3, "267": 287, "292": 2, "194": 7, "291": 1244}, "03": {"216": 5, "151": 3, "319": 1, "215": 2, "198": 4, "210": 3, "211": 2, "313": 336, "312": 297, "337": 344, "242": 588, "331": 323, "316": 2, "193": 3, "332": 4, "270": 335, "271": 656, "258": 299, "390": 294, "238": 122, "239": 448, "276": 282, "252": 658, "235": 20, "236": 36, "251": 326, "257": 1, "233": 8, "213": 5, "234": 18, "237": 66, "249": 1264, "248": 611, "289": 3, "288": 617, "320": 319, "321": 1, "268": 295, "324": 2, "325": 282, "250": 1, "170": 3, "285": 640, "284": 1, "287": 600, "286": 288, "243": 629, "202": 3, "300": 313, "301": 1, "302": 317, "303": 292, "304": 282, "305": 1, "245": 278, "244": 310, "261": 303, "267": 327, "266": 894, "229": 4, "264": 2, "226": 1, "225": 4, "219": 6, "223": 9, "222": 12, "221": 1, "220": 8, "317": 305, "263": 939, "262": 3, "265": 3, "336": 2, "228": 2, "298": 338, "241": 291, "297": 1, "194": 1, "290": 2, "291": 1162}, "01": {"216": 3, "215": 3, "213": 7, "210": 5, "211": 3, "218": 1, "289": 1, "288": 600, "285": 592, "287": 660, "286": 285, "263": 974, "261": 301, "260": 1, "267": 331, "266": 951, "265": 1, "264": 1, "269": 1, "268": 297, "298": 301, "299": 1, "297": 2, "292": 2, "290": 3, "291": 1280, "319": 2, "198": 4, "313": 291, "312": 323, "317": 324, "316": 1, "193": 2, "314": 1, "270": 303, "271": 592, "272": 3, "390": 293, "276": 315, "300": 294, "301": 2, "302": 322, "303": 292, "304": 292, "245": 325, "244": 262, "247": 1, "241": 292, "243": 608, "242": 623, "389": 1, "249": 1298, "248": 618, "338": 2, "337": 337, "336": 1, "331": 309, "330": 1, "258": 319, "259": 1, "252": 603, "253": 1, "250": 2, "251": 306, "257": 2, "170": 4, "194": 5, "229": 1, "228": 2, "226": 1, "225": 2, "223": 6, "222": 15, "220": 5, "391": 1, "151": 1, "238": 136, "239": 487, "234": 15, "235": 13, "236": 28, "237": 75, "233": 7, "320": 329, "326": 2, "324": 1, "325": 308, "202": 3}} ;
+            var after_lengths_by_sample = {"01_subsample": {"313": 536, "242": 1016, "248": 985, "286": 525, "271": 1019, "303": 498, "266": 1553, "270": 546, "249": 2071, "239": 770, "267": 516, "223": 21, "390": 497, "263": 1514, "251": 510, "245": 499, "238": 246, "285": 984, "258": 526, "243": 1036, "276": 510, "287": 1032, "337": 526, "291": 2070, "320": 497, "261": 500, "331": 508, "241": 475, "252": 1014, "298": 473, "268": 525, "317": 537, "300": 508, "288": 1030, "325": 508, "244": 500, "304": 520, "319": 1, "302": 540, "215": 7, "236": 66, "312": 517, "237": 134, "311": 1, "272": 4, "234": 17, "222": 27, "233": 10, "225": 4, "198": 6, "194": 6, "193": 2, "265": 1, "226": 4, "221": 2, "151": 2, "218": 3, "216": 4, "297": 2, "235": 21, "253": 1, "326": 2, "220": 6, "290": 3, "202": 4, "389": 2, "170": 6, "289": 3, "318": 2, "262": 3, "210": 3, "332": 1, "213": 8, "246": 1, "336": 3, "292": 4, "228": 5, "324": 2, "314": 2, "284": 2, "301": 2, "211": 3, "259": 1, "316": 3, "391": 1, "257": 2, "330": 1, "321": 1, "260": 1, "264": 1, "299": 2, "277": 1, "219": 1, "269": 2, "250": 1, "338": 2}, "02_subsample": {"263": 1590, "237": 141, "243": 978, "317": 524, "298": 528, "271": 993, "337": 508, "258": 494, "252": 1046, "249": 2064, "304": 510, "288": 1006, "238": 236, "285": 1020, "291": 2094, "242": 985, "287": 1016, "239": 778, "268": 545, "390": 510, "248": 1025, "303": 540, "267": 528, "261": 489, "312": 517, "220": 15, "331": 528, "245": 502, "302": 533, "251": 498, "241": 484, "313": 525, "270": 533, "276": 473, "244": 513, "325": 513, "300": 544, "266": 1541, "320": 501, "286": 503, "235": 17, "222": 18, "301": 5, "236": 58, "260": 3, "299": 1, "321": 5, "234": 13, "170": 4, "210": 3, "198": 7, "151": 6, "213": 5, "223": 18, "265": 3, "221": 9, "250": 2, "319": 2, "229": 4, "391": 2, "202": 7, "272": 3, "194": 10, "330": 4, "219": 4, "290": 4, "225": 8, "216": 3, "338": 3, "314": 1, "324": 5, "233": 14, "332": 2, "228": 4, "292": 6, "389": 2, "336": 4, "262": 5, "247": 2, "211": 5, "284": 1, "215": 1, "259": 4, "218": 6, "318": 1, "326": 2, "269": 2, "264": 3, "226": 1, "193": 3, "246": 1, "305": 1, "316": 2}, "03_subsample": {"263": 1562, "267": 530, "288": 1071, "242": 1011, "252": 1027, "304": 483, "249": 2059, "331": 495, "245": 478, "302": 521, "291": 1976, "248": 1052, "271": 1032, "239": 775, "390": 520, "287": 1011, "258": 550, "268": 507, "286": 518, "244": 487, "300": 542, "313": 516, "243": 1023, "237": 121, "285": 1039, "266": 1511, "298": 522, "303": 542, "251": 534, "325": 500, "261": 477, "270": 543, "320": 513, "337": 543, "317": 513, "241": 481, "312": 494, "233": 10, "219": 9, "276": 519, "238": 254, "290": 3, "236": 55, "225": 2, "301": 3, "272": 2, "289": 3, "218": 4, "222": 19, "194": 2, "198": 5, "235": 26, "234": 16, "220": 10, "330": 1, "221": 9, "319": 1, "223": 18, "216": 8, "305": 2, "202": 6, "321": 1, "324": 2, "299": 8, "210": 3, "170": 7, "250": 2, "151": 4, "211": 4, "265": 3, "193": 5, "316": 3, "332": 3, "292": 4, "259": 2, "228": 5, "264": 2, "314": 2, "336": 2, "215": 2, "247": 2, "260": 1, "213": 4, "229": 3, "257": 1, "262": 3, "284": 2, "226": 2, "277": 1}} ;
             /* Example:
                 {
-                  "sampleA": {"395": 1, "381": 192, "382": 1790, "383": 2903, "384": 1078, "385": 10536, "386": 18182, "387": 8613, "388": 1097, "389": 7},
-                  "sampleB": {}
+                  "sampleA": {"381": 4, "382": 57, "383": 45, "384": 17, "385": 245, "386": 370, "387": 233, "388": 26}, 
+                  "sampleB": {"381": 4, "382": 57, "383": 45, "384": 17, "385": 245, "386": 370, "387": 233, "388": 26}
                 }
             */
             
@@ -544,6 +570,7 @@
                 var total_input = 0;
                 var extended_data = new Array();
                 var non_overlapped_data = new Array();
+                var enableStackedLabel = false;
 
                 for( var spl_name in filters_by_sample["merged"] ){
                     total_input += filters_by_sample["before process"][spl_name] ;
@@ -561,6 +588,7 @@
                         }
 
                         if ("artificial combined" in filters_by_sample) {
+                        	enableStackedLabel = true;
                             if ( cat in filters_by_sample["artificial combined"][spl_name] ){
                                 non_overlapped_data[cat_idx-1] += filters_by_sample["artificial combined"][spl_name][cat] ;
                             }else{
@@ -575,7 +603,7 @@
                 if ("artificial combined" in filters_by_sample) {
                     global_series.push({name: 'artificial combined', data: non_overlapped_data});
                 }
-                $('#filter-summary').highcharts( histogram_param('Summary', total_input, 'Nb sequences', filters_categories.slice(0-filters_categories.length+1), global_series, 'seq') );
+                $('#filter-summary').highcharts( histogram_param('Summary', total_input, 'Nb sequences', filters_categories.slice(0-filters_categories.length+1), global_series, 'seq', enableStackedLabel) );
             }
 
             /**
@@ -585,9 +613,9 @@
             var sampleDetailsLoad = function(key, checkBox, tableId, distrib_length){
                 // Table titles
                 if (checkBox){
-                    var titles = [ '<label class="container"><input id="filterBySample-check-all" type="checkbox" value="1"><span class="checkmark"></span></label>', "Samples"];
+                    var titles = [ '<label class="container"><input id="filterBySample-check-all" type="checkbox" value="1"><span class="checkmark"></span></label>', "Samples","before process"];
                 }else{
-                    var titles = ["Samples"];    
+                    var titles = ["Samples","before process"];    
                 }
                 
                 titles.push( '% kept' );
@@ -595,9 +623,9 @@
 
                 for( var sample_name in filters ){
                     if (checkBox) {
-                        var sample_data = ['<label class="container"><input id="filterBySample-chk-' + sample_name + '" type="checkbox" value="1"><span class="checkmark"></span></label>', sample_name];
+                        var sample_data = ['<label class="container"><input id="filterBySample-chk-' + sample_name + '" type="checkbox" value="1"><span class="checkmark"></span></label>', sample_name, numberDisplay(filters_by_sample["before process"][sample_name])];
                     }else{
-                        var sample_data = [sample_name];
+                        var sample_data = [sample_name, numberDisplay(filters_by_sample["before process"][sample_name])];
                     }
                     
                     var last_idx = 0; 
@@ -612,14 +640,14 @@
                         }
                     }
                     
-                    var prct_kept = filters[sample_name][filters_categories[last_idx]]*100/filters[sample_name][filters_categories[1]]
+                    var prct_kept = filters[sample_name][filters_categories[last_idx]]*100/filters_by_sample["before process"][sample_name]
                     if (isNaN(prct_kept)){
                         prct_kept = 0
                     }
                     if (checkBox) {
-                        sample_data.splice(2, 0, numberDisplay(prct_kept));
+                        sample_data.splice(3, 0, numberDisplay(prct_kept));
                     }else{
-                        sample_data.splice(1, 0, numberDisplay(prct_kept));
+                        sample_data.splice(2, 0, numberDisplay(prct_kept));
                     }
 
                     $('#'+tableId+' tbody').append( '<tr><td>' + sample_data.join("</td><td>") + '</td></tr>' );
@@ -664,6 +692,7 @@
 							"<'row'<'col-sm-12'tr>>" +
 							"<'row'<'col-sm-5'i><'col-sm-7'p>>",
                     'order': [[start_col_idx, 'asc']],
+                    'lengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
                     "pagingType": "simple",
                     'columnDefs': [{
                         'targets': [0],

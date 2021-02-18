@@ -72,8 +72,8 @@
 			
 		</style>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-		<script type="text/javascript" src="https://code.highcharts.com/4.1.4/highcharts.js"></script>
-		<script type="text/javascript" src="https://code.highcharts.com/4.1.4/modules/exporting.js"></script>
+		<script type="text/javascript" src="https://code.highcharts.com/8.2.0/highcharts.js"></script>
+		<script type="text/javascript" src="https://code.highcharts.com/8.2.0/modules/exporting.js"></script>
 		<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 		<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 		<script type="text/javascript">
@@ -238,7 +238,10 @@
 		                cursor: 'pointer',
 		                dataLabels: {
 		                    enabled: true,
-		                    format: '<b>{point.name}</b>: {point.y:,.0f}',
+		                    useHTML : true,
+		                    formatter: function () {
+        		                return this.point.name + ' : ' + numberDisplay(this.point.y);
+		                    },
 		                    style: {
 		                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
 		                    }
@@ -321,7 +324,7 @@
 			//
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			
-			var global_results = {"nb_seq_kept": 45574, "nb_clstr_kept": 86, "nb_clstr_ini": 86, "nb_seq_ini": 45574} ; 
+			var global_results = {"nb_clstr_kept": 57, "nb_clstr_ini": 57, "nb_seq_kept": 75190, "nb_seq_ini": 75190} ; 
 			/* Example: 
 				{
 					'nb_clstr_kept': 100,
@@ -330,7 +333,7 @@
 					'nb_seq_ini': 100000
 				}
 			*/
-			var by_samples_results = {"02": {"initial_ab": 15140, "filtered": {}, "initial": 86, "kept": 86, "kept_ab": 15140}, "03": {"initial_ab": 15167, "filtered": {}, "initial": 86, "kept": 86, "kept_ab": 15167}, "01": {"initial_ab": 15267, "filtered": {}, "initial": 86, "kept": 86, "kept_ab": 15267}} ;
+			var by_samples_results = {"01_subsample": {"initial": 57, "filtered": {}, "kept": 57, "initial_ab": 24955, "kept_ab": 24955}, "02_subsample": {"initial": 57, "filtered": {}, "kept": 57, "initial_ab": 25130, "kept_ab": 25130}, "03_subsample": {"initial": 57, "filtered": {}, "kept": 57, "initial_ab": 25105, "kept_ab": 25105}} ;
 			/* Example:
 				{
 					'sampleA':{
