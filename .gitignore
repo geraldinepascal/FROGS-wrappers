@@ -1,6 +1,0 @@
-.gitignore
-tool_test_output.html
-tool_test_output.json
-*.log
-conda_toolshed_frogs
-planemo*
