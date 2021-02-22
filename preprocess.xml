@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_preprocess" name="FROGS Pre-process" version="3.2">
+<tool id="FROGS_preprocess" name="FROGS Pre-process" version="3.2.1">
 	<description>merging, denoising and dereplication.</description>
         <requirements>
-                <requirement type="package" version="3.2.0">frogs</requirement>
+                <requirement type="package" version="3.2.1">frogs</requirement>
                 <requirement type="package" version="2.15.1">vsearch</requirement>
                 <requirement type="package" version="1.2.11">flash</requirement>
                 <requirement type="package" version="2.10">cutadapt</requirement>

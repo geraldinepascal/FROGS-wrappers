@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_Tree" name="FROGS Tree" version="3.2">
+<tool id="FROGS_Tree" name="FROGS Tree" version="3.2.1">
     <description>Reconstruction of phylogenetic tree </description>
     <requirements>
-        <requirement type="package" version="3.2.0">frogs</requirement>
+        <requirement type="package" version="3.2.1">frogs</requirement>
         <requirement type="package" version="7.407">mafft</requirement>
         <requirement type="package" version="2.1.09">fasttree</requirement>
         <requirement type="package" version="3.6.3">r-base</requirement>

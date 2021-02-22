@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="3.2">
+<tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="3.2.1">
     <description>with bar plot and composition plot</description>
         <requirements>
-            <requirement type="package" version="3.2.0">frogs</requirement>
+            <requirement type="package" version="3.2.1">frogs</requirement>
             <requirement type="package" version="3.6.3">r-base</requirement>
             <requirement type="package" version="3.6">r-essentials</requirement>
             <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
