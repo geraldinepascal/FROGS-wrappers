@@ -150,11 +150,11 @@
 
 What it does
 
-Filter the OTUs of an abundance table according :
+Filter the OTUs of an abundance table according to:
 
- -The abundance and the occurence of OTUs: presence in samples, OTU size and maximum number of OTUs.
+-The abundance and the occurence of OTUs: presence in samples, OTU size and maximum number of OTUs.
  
- -Contamination: from the list of proposition (ex : phiX, a control added in Illumina sequencing technologies) or from your history (ex : a fasta file containing a list of contaminant of your choice).
+-Contamination: from the list of proposition (ex : phiX, a control added in Illumina sequencing technologies) or from your history (ex : a fasta file containing a list of contaminant of your choice).
 
 
 

@@ -58,7 +58,7 @@
             <option value="unifrac" selected="False">Unifrac</option>
             <option value="wunifrac" selected="False">Weighted Unifrac</option>
             <option value="bray" selected="False">Bray-Curtis</option>
-            <option value="cc" selected="False">Jaccard</option>
+            <option value="cc" selected="False">Jaccard (as cc method in betadiver vegan funcion)</option>
         </param>
         <param type="text" name="other_method" label="Other method" help="The other methods of beta diversity that you want to use (comma separated value). c.f. details below." optional="false" value="" size="40"/>
     </inputs>
@@ -131,6 +131,16 @@ The distance matrix of beta diversity.
  .. image:: static/images/FROGS_Phyloseq_beta_diversity_matrix.png 
 
 .. class:: infomark page-header h2
+
+.. class:: h3
+
+Advices/Details
+
+Jaccard distance using 
+
+-the "cc" method correspond to the distance computed using presence/absence data 
+
+-the "jaccard" method correspond to the distance computed using absence data and deduced from the distance of Bray-Curtis. If you want to use this method, do not check the proposed Jaccard and write jaccard in the "Other method" parameter.
 
 **Contact**
 
