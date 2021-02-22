@@ -1,6 +1,6 @@
-# v3.2 [DEV]
+# v3.2.1 [DEV]
 
-This release corresponds to the FROGS 3.2.0 release.
+This release corresponds to the FROGS 3.2.1 release.
 
 ### Tools added:
   * DESeq2 preprocess : Compute differential abundancy analysis
