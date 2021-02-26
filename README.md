@@ -4,7 +4,7 @@
 
 Visit our web site : http://frogs.toulouse.inra.fr/
 
-[![Release](https://img.shields.io/badge/release-3.1.0-blue.svg)![Date](https://img.shields.io/badge/date-January%202018-red.svg)](https://github.com/geraldinepascal/FROGS-wrappers/releases)[<img src="https://www.podcastscience.fm/wp-content/uploads/2017/12/deezer.png" width="5%" style="display: block; margin: auto;"/>](https://www.deezer.com/fr/playlist/5233843102?utm_source=deezer&utm_content=playlist-5233843102&utm_term=18632989_1545296531&utm_medium=web)
+[![Release](https://img.shields.io/badge/release-3.2.1-blue.svg)![Date](https://img.shields.io/badge/date-February%202021-red.svg)](https://github.com/geraldinepascal/FROGS-wrappers/releases)[<img src="https://www.podcastscience.fm/wp-content/uploads/2017/12/deezer.png" width="5%" style="display: block; margin: auto;"/>](https://www.deezer.com/fr/playlist/5233843102?utm_source=deezer&utm_content=playlist-5233843102&utm_term=18632989_1545296531&utm_medium=web)
 
 
 
@@ -158,7 +158,7 @@ For that, you need to:
 
 * have PEAR in your PATH or in the FROGS libexec directory
 
-* add PEAR in the FROGS preprocess Galaxy wrapper (`<FROGS_DIR>/tools/preprocess/preprocess.xml`): 
+* add PEAR in the FROGS-wrappers preprocess Galaxy wrapper (`<FROGS_DIR>/tools/preprocess/preprocess.xml`): 
 
   :warning: there is two places where the list `merge_software` is defined, add pear in both of them!
 
@@ -186,11 +186,11 @@ Databanks are defined in `loc` files and `loc` files are defined in Galaxy datat
   You may choose to download all preformated database, or filter them on:
 
   * date : all availbale database since DATE
-* amplicon : ex: 16S
+  * amplicon : ex: 16S
   * base : ex SILVA
-* filters : this column is not always filled, but we propose SILVA database filtered on pintail score
+  * filters : this column is not always filled, but we propose SILVA database filtered on pintail score
   * version	: ex : 138.1
-
+  
 * Manual installation :
 
   * datatables : `<Galaxy_Dir>/config/tool_data_table_conf.xml` , example : `<Galaxy_Dir>/tools/FROGS/tool_data_table_conf.xml.sample`
@@ -239,7 +239,7 @@ FROGS python programs need to be available in the PATH, if not installing from t
 
 ## Install python packages inside virtual env
 
-Galaxy runs in a specific virtual env. To allow FROGS clusters stat to access to the python scipy library, you need to (re)install it inside the Galaxy virtual env
+Galaxy runs in a specific virtual env. To allow FROGS clusters stat to access to the python scipy library, you may need to (re)install it inside the Galaxy virtual env
 ```
 cd <Galaxy_Dir>
 source .venv/bin/activate
@@ -260,7 +260,6 @@ FROGSSTAT_Phyloseq_Import_Data
 FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance
 FROGSSTAT_Phyloseq_Sample_Clustering
 FROGSSTAT_Phyloseq_Structure_Visualisation
-FROGSSTAT_DESeq2_Preprocess
 FROGSSTAT_DESeq2_Visualization
 FROGS_Tree
 FROGS_affiliation_OTU

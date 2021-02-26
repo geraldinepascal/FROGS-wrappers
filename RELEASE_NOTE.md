@@ -1,4 +1,4 @@
-# v3.2.1 [DEV]
+# v3.2.1 [2021-03]
 
 This release corresponds to the FROGS 3.2.1 release.
 
