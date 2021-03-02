@@ -80,7 +80,7 @@
 		            --mismatch-rate $sequencer_type.input_type.files_by_samples_type.mm_rate
 		            --merge-software $sequencer_type.input_type.files_by_samples_type.merge_software_type.merge_software_selected
 		            #if $sequencer_type.input_type.files_by_samples_type.merge_software_type.merge_software_selected == "flash"
-						--expected-amplicon-size $sequencer_type.input_type.files_by_samples_type.expected_amplicon_size
+						--expected-amplicon-size $sequencer_type.input_type.files_by_samples_type.merge_software_type.expected_amplicon_size
 			    #end if
 		            #if $sequencer_type.input_type.files_by_samples_type.keep_unmerged
 	        			--keep-unmerged
@@ -300,7 +300,7 @@
     </tests>
 	<help>
 
-.. image:: static/images/FROGS_logo.png
+.. image:: static/images/FROGS_logo.png 
    :height: 144
    :width: 110
 
