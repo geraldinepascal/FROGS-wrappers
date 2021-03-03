@@ -14,7 +14,7 @@ FROGS is a workflow designed to produce an OTU count matrix from high depth sequ
 
 FROGS also provide statistical tools to explore OTU count table and taxonomical affiliations.
 
-FROGS-wrapper allow to add FROGS on a Galaxy instance.
+FROGS-wrappers allow to add FROGS on a Galaxy instance.
 
 # Table of content
 
@@ -92,7 +92,7 @@ We suppose that you installed FROGS in a specific section named `FROGS` (update 
 
 #### Prerequisites
 
-You should start by installing [FROGS](https://github.com/geraldinepascal/FROGS) (remember, FROGS is now installable via conda )
+You should start by installing [FROGS](https://github.com/geraldinepascal/FROGS) (remember, FROGS is now installable via conda ).
 
 #### FROGS-wrappers installation
 
@@ -111,43 +111,84 @@ You should start by installing [FROGS](https://github.com/geraldinepascal/FROGS)
    Add the tools in `<Galaxy_Dir>/config/tool_conf.xml`
 
    ```
-   <section id="FROGS_wrappers" name="FROGS">
-       <label id="FROGS_OTU" text="OTUs reconstruction" version="" />
-       <tool id="FROGS_demultiplex" />
-       <tool id="FROGS_preprocess" />
-       <tool id="FROGS_clustering" />
-       <tool id="FROGS_remove_chimera" />
-       <tool id="FROGS_OTU_filters" />
-       <tool id="FROGS_itsx" />
-       <tool id="FROGS_affiliation_OTU" />
-       <tool id="FROGS_affiliation_filters" />
-       <tool id="FROGS_affiliation_postprocess" />
-       <tool id="FROGS_normalisation" />
-       <tool id="FROGS_Tree" />
-       <tool id="FROGS_clusters_stat" />
-       <tool id="FROGS_affiliations_stat" />
-       <tool id="FROGS_biom_to_stdBiom" />
-       <tool id="FROGS_biom_to_tsv" />
-       <tool id="FROGS_tsv_to_biom" />
-       <label id="FROGSSTAT_Phyloseq" text="OTUs structure and composition analysis" version="" />
-       <tool id="FROGSSTAT_Phyloseq_Import_Data" />
-       <tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" />
-       <tool id="FROGSSTAT_Phyloseq_Alpha_Diversity" />
-       <tool id="FROGSSTAT_Phyloseq_Beta_Diversity" />
-       <tool id="FROGSSTAT_Phyloseq_Structure_Visualisation" />
-       <tool id="FROGSSTAT_Phyloseq_Sample_Clustering" />
-       <tool id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" />
-       <label id="FROGSSTAT_DESeq" text="Differential abundance analysis" version="" />
-       <tool id="FROGSSTAT_DESeq2_Preprocess" />
-       <tool id="FROGSSTAT_DESeq2_Visualization" />               
-   </section>     
+     <section id="frogs_local" name="FROGS local">
+       <label id="frogs_otu_construction" text="OTUs reconstruction" />
+       <tool file="FROGS/demultiplex.xml" />
+       <tool file="FROGS/preprocess.xml" />
+       <tool file="FROGS/clustering.xml" />
+       <tool file="FROGS/remove_chimera.xml" />
+       <tool file="FROGS/otu_filters.xml" />
+       <tool file="FROGS/itsx.xml" />
+       <tool file="FROGS/affiliation_OTU.xml" />
+       <tool file="FROGS/affiliation_filters.xml" />
+       <tool file="FROGS/affiliation_postprocess.xml" />
+       <tool file="FROGS/normalisation.xml" />
+       <tool file="FROGS/tree.xml" />
+       <tool file="FROGS/clusters_stat.xml" />
+       <tool file="FROGS/affiliations_stat.xml" />
+       <tool file="FROGS/biom_to_stdBiom.xml" />
+       <tool file="FROGS/biom_to_tsv.xml" />
+       <tool file="FROGS/tsv_to_biom.xml" />
+       <label id="frogsstat_phyloseq" text="OTUs structure and composition analysis" />
+       <tool file="FROGS/phyloseq_import_data.xml" />
+       <tool file="FROGS/phyloseq_composition.xml" />
+       <tool file="FROGS/phyloseq_alpha_diversity.xml" />
+       <tool file="FROGS/phyloseq_beta_diversity.xml" />
+       <tool file="FROGS/phyloseq_clustering.xml" />
+       <tool file="FROGS/phyloseq_structure.xml" />
+       <tool file="FROGS/phyloseq_manova.xml" />
+       <label id="frogsstat_deseq" text="Differential abundance analysis" />
+       <tool file="FROGS/deseq2_preprocess.xml" />
+       <tool file="FROGS/deseq2_visualization.xml" />
+     </section>     
    ```
    NB: If you used previous version of FROGS (<3.1), you must removed `app` direcotry name in the paths names. 
 
-3. <u>Add images</u>
+3. <u> Correct tools order</u>
+
+Tools order in the Galaxy interface will not follow the tool_conf.xml definition.
+
+Modify manually the `galaxy_dir/config/integrated_tool_panel.xml`:
+
+```
+    <section id="frogs_local" name="FROGS local" version="">
+        <label id="frogs_otu_construction" text="OTUs reconstruction" version="" />
+        <tool id="FROGS_demultiplex" />
+        <tool id="FROGS_preprocess" />
+        <tool id="FROGS_clustering" />
+        <tool id="FROGS_remove_chimera" />
+        <tool id="FROGS_OTU_filters" />
+        <tool id="FROGS_itsx" />
+        <tool id="FROGS_affiliation_OTU" />
+        <tool id="FROGS_affiliation_filters" />
+        <tool id="FROGS_affiliation_postprocess" />
+        <tool id="FROGS_normalisation" />
+        <tool id="FROGS_Tree" />
+        <tool id="FROGS_clusters_stat" />
+        <tool id="FROGS_affiliations_stat" />
+        <tool id="FROGS_biom_to_stdBiom" />
+        <tool id="FROGS_biom_to_tsv" />
+        <tool id="FROGS_tsv_to_biom" />
+        <label id="frogsstat_phyloseq" text="OTUs structure and composition analysis" version="" />
+        <tool id="FROGSSTAT_Phyloseq_Import_Data" />
+        <tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" />
+        <tool id="FROGSSTAT_Phyloseq_Alpha_Diversity" />
+        <tool id="FROGSSTAT_Phyloseq_Beta_Diversity" />
+        <tool id="FROGSSTAT_Phyloseq_Sample_Clustering" />
+        <tool id="FROGSSTAT_Phyloseq_Structure_Visualisation" />
+        <tool id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" />
+        <label id="frogsstat_deseq" text="Differential abundance analysis" version="" />
+        <tool id="FROGSSTAT_DESeq2_Preprocess" />
+        <tool id="FROGSSTAT_DESeq2_Visualization" />
+    </section>
+```
+
+
+
+1. <u>Add images</u>
 
    Add the FROGS-wrappers images in `<Galaxy_Dir>/static/images` directory
-   
+
    `cp <Galaxy_Dir>/tools/FROGS/static/images/* <Galaxy_Dir>/static/images/.`
 
 
@@ -235,7 +276,9 @@ We provide some databanks for each of these 3 data tables, you simply need to do
 
 ## setup Galaxy environment variables
 
-FROGS python programs need to be available in the PATH, if not installing from the toolshed, you need to add `<FROGS_PATH>/app` directory in the Galaxy PATH environment variable. (see [environment-setup-file parameter](https://docs.galaxyproject.org/en/latest/admin/config.html#environment-setup-file) )
+FROGS python programs (and all dependencies) need to be available in the PATH, if not installing from the toolshed, you need to add `<FROGS_PATH>/app` directory in the Galaxy PATH environment variable. (see [environment-setup-file parameter](https://docs.galaxyproject.org/en/latest/admin/config.html#environment-setup-file) ). 
+
+You can also activate `conda` as tool dependency resolver (https://docs.galaxyproject.org/en/latest/admin/conda_faq.html) by setting `conda_prefix` path and `conda_auto_install ` to `true` in the `<Galaxy_dir>/config/galaxy.yml` configuration file.
 
 ## Install python packages inside virtual env
 
@@ -251,7 +294,8 @@ deactivate
 
 By default Galaxy sanitizes HTML outputs to prevent XSS attacks.
 FROGS outputs, for almost all tools, report in HTML format. To allow their visualization inside Galaxy, we need to avoid the Galaxy sanitization.
-You need to uncomment `sanitize_whitelist_file` line in `<Galaxy_Dir>/config/galaxy.ini`, create the corresponding `<Galaxy_Dir>/config/sanitize_whitelist.txt` file if not already done, and add the following lines in it.
+You need to uncomment `sanitize_whitelist_file` line in `<Galaxy_Dir>/config/galaxy.ini`, create the corresponding `<Galaxy_Dir>/config/sanitize_whitelist.txt` file if not already done, and add the following lines in it. You may also manage it from the Admin interface of Galaxy in the `Manage Allowlist` section.
+
 ```
 FROGSSTAT_Phyloseq_Alpha_Diversity
 FROGSSTAT_Phyloseq_Beta_Diversity

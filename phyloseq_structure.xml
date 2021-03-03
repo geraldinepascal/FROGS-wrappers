@@ -17,13 +17,13 @@
 -->
 <tool name="FROGSSTAT Phyloseq Structure Visualisation" id="FROGSSTAT_Phyloseq_Structure_Visualisation" version="3.2.1">
 	<description>with heatmap plot and ordination plot</description>
-        <requirements>
-            <requirement type="package" version="3.2.1">frogs</requirement>
-            <requirement type="package" version="3.6.3">r-base</requirement>
-            <requirement type="package" version="3.6">r-essentials</requirement>
-            <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
-            <requirement type="package" version="4.9.3">r-plotly</requirement>
-        </requirements>
+    <requirements>
+        <requirement type="package" version="3.2.1">frogs</requirement>
+        <requirement type="package" version="3.6.3">r-base</requirement>
+        <requirement type="package" version="3.6">r-essentials</requirement>
+        <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
+        <requirement type="package" version="4.9.3">r-plotly</requirement>
+    </requirements>
 	<stdio>
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
