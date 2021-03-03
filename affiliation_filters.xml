@@ -88,12 +88,12 @@
 			<when value="delete"/>
 		</conditional>
 
-		<section name="rdp" title="Filter on RDP affiliations bootstrap" expanded="true">
+		<section name="rdp" title="Filter on RDP affiliations" expanded="true">
 			<param name="rdp_rank" type="text" label="Taxonomical rank on which to apply bootstrap filter" optional="true" help="One of the available taxonomical rank name. Ex: Species"/>
 			<param name="rdp_bootstrap" type="float" min="0.0" max="1.0" label="Minimum bootstrap % (between 0 and 1)" size="5" optional="true" help="Fill these two fields if you want this treatment."/>
 		</section>
 
-		<section name="blast" title="Filter on Blast affiliations metrics" expanded="true" >
+		<section name="blast" title="Filter on Blast affiliations" expanded="true" >
 			<param name="max_blast_evalue" type="float" min="0.0" max="1.0" optional="true" label="Maximum e-value (between 0 and 1)" size="5" help="Fill the field only if you want this treatment" /> 
 			<param name="min_blast_identity" type="float" min="0.0" max="1.0" optional="true" label="Minimum identity % (between 0 and 1)" size="5" help="Fill the field only if you want this treatment" />
 			<param name="min_blast_coverage" type="float" min="0.0" max="1.0" optional="true" label="Minimum coverage % (between 0 and 1)" size="5" help="Fill the field only if you want this treatment" />
