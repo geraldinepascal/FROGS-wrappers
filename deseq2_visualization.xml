@@ -81,17 +81,24 @@
             <param name="mod1" value="BoeufHache"/>
             <param name="mod2" value="SaumonFume"/>
             <param name="padj" value="0.05" />
-            <!-- <output name="html" file="references/24-deseq2_visualization.nb.html" compare="sim_size" delta="1500" />
-            <output name="html" file="references/24-deseq2_visualization.nb.html" compare="diff" lines_diff="10" /> -->
             <output name="html">
                 <assert_contents>
                     <has_text text="FROGSSTAT DESeq2: Visualization (version 3.2.1)" />
                     <has_text text="Phyloseq 1.30.0" />
                     <has_text text='["otu_01582",' />
-                    <has_text text='["<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #fffcfd\">52.445511' />
-                    <has_text text='["<span style=\"color: red\">21.662506' />
-                    <has_text text='["<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #c9e5ee\">2.2089268' />
-                    <has_text text='["<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #add8e6\">1.052520e-22' />
+                     <!-- HTML caracter not authorized, search for value only -->
+                    <!-- baseMean value of otu_01582,
+                    <has_text text='["\<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #fffcfd\">52.445511' /> -->
+                    <has_text text='52.445511' />
+                    <!-- Log2 FC of otu_01582
+                    <has_text text='["\<span style=\"color: red\">21.662506' /> -->
+                    <has_text text='21.662506' />
+                    <!-- lfcSE of otu_01582
+                    <has_text text='["\<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #c9e5ee\">2.2089268' /> -->
+                    <has_text text='2.2089268' />
+                    <!-- pvalue otu_01582
+                    <has_text text='["\<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #add8e6\">1.052520e-22' /> -->
+                    <has_text text='1.052520e-22' />
                 </assert_contents>
             </output>
         </test>
