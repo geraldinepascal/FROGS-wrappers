@@ -15,19 +15,5 @@
                 </column>
             </output>
         </data_table>
-        <data_table name="HVL_db">
-            <output>
-                <column name="value"/>
-                <column name="name" />
-                <column name="path" output_ref="output" >
-                    <move type="file">
-                        <!--source>${path}/${value}.tsv</source-->
-                        <target base="${GALAXY_DATA_MANAGER_DATA_PATH}">HVL_db/</target>
-                    </move>
-                    <value_translation>${GALAXY_DATA_MANAGER_DATA_PATH}/HVL_db/${value}.fasta</value_translation>
-                    <value_translation type="function">abspath</value_translation>
-                </column>
-            </output>
-        </data_table>
     </data_manager>
 </data_managers>
