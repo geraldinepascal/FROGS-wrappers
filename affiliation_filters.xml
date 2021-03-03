@@ -99,7 +99,7 @@
 			<param name="min_blast_coverage" type="float" min="0.0" max="1.0" optional="true" label="Minimum coverage % (between 0 and 1)" size="5" help="Fill the field only if you want this treatment" />
 			<param name="min_blast_length" type="integer" optional="true" label="Minimum alignment length" size="5" help="Fill the field only if you want this treatment" />
 
-			<repeat name="taxon_ignored" title="Filter blast taxonomies including these taxon / word">
+			<repeat name="taxon_ignored" title="Filter blast affiliations including these taxon / word">
 				<param name="name" type="text" label="Full or partial taxon name" help='ex: "unknown species" or "subsp."' optional="true"/>
 			</repeat>
 		</section>
