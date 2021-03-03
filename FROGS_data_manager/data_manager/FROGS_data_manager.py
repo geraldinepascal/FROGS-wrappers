@@ -117,25 +117,24 @@ def frogs_sources(data_manager_dict,target_directory):
             data_table_entry = dict(name = name, value = value, path=path)
             _add_data_table_entry(data_manager_dict, data_table_entry, "frogs_db")
 
-def HVL_sources(data_manager_dict,target_directory):
+# def HVL_sources(data_manager_dict,target_directory):
 
-    #get phiX files
-    os.chdir(target_directory)
-    for link in ["http://genoweb.toulouse.inra.fr/frogs_databanks/HVL/ITS/UNITE_s_7.1_20112016/Unite_s_7.1_20112016_ITS1.fasta","http://genoweb.toulouse.inra.fr/frogs_databanks/HVL/ITS/UNITE_s_7.1_20112016/Unite_s_7.1_20112016_ITS2.fasta"]:
-        file_name=link.split("/")[-1].replace('.fasta',"_"+time.strftime("%Y-%m-%d")+".fasta")
-        dl_file = urllib.URLopener()
-        dl_file.retrieve(link,file_name)
+#     os.chdir(target_directory)
+#     for link in ["http://genoweb.toulouse.inra.fr/frogs_databanks/HVL/ITS/UNITE_s_7.1_20112016/Unite_s_7.1_20112016_ITS1.fasta","http://genoweb.toulouse.inra.fr/frogs_databanks/HVL/ITS/UNITE_s_7.1_20112016/Unite_s_7.1_20112016_ITS2.fasta"]:
+#         file_name=link.split("/")[-1].replace('.fasta',"_"+time.strftime("%Y-%m-%d")+".fasta")
+#         dl_file = urllib.URLopener()
+#         dl_file.retrieve(link,file_name)
 
-        #get fasta file path
-        path = os.path.join(target_directory,file_name)
-        if link.endswith('ITS1.fasta'):
-            name = "UNITE 7.1 ITS1 " + time.strftime("%Y-%m-%d")
-        elif link.endswith('ITS2.fasta'):
-            name = "UNITE 7.1 ITS2 " + time.strftime("%Y-%m-%d")
-        value=file_name.replace('.fasta','')
+#         #get fasta file path
+#         path = os.path.join(target_directory,file_name)
+#         if link.endswith('ITS1.fasta'):
+#             name = "UNITE 7.1 ITS1 " + time.strftime("%Y-%m-%d")
+#         elif link.endswith('ITS2.fasta'):
+#             name = "UNITE 7.1 ITS2 " + time.strftime("%Y-%m-%d")
+#         value=file_name.replace('.fasta','')
 
-        data_table_entry = dict(name = name, value = value, path=path)
-        _add_data_table_entry(data_manager_dict, data_table_entry, "HVL_db")
+#         data_table_entry = dict(name = name, value = value, path=path)
+#         _add_data_table_entry(data_manager_dict, data_table_entry, "frogs_HVL_db")
 
 def main():
 
@@ -150,10 +149,10 @@ def main():
     target_directory = params[ 'output_data' ][0]['extra_files_path']
     os.mkdir(target_directory)
 
-    if args.database=="frogs_db_data":
-        frogs_sources(data_manager_dict,target_directory)
-    elif args.database=="HVL_db_data":
-        HVL_sources(data_manager_dict,target_directory)
+    # if args.database=="frogs_db_data":
+    frogs_sources(data_manager_dict,target_directory)
+    # elif args.database=="HVL_db_data":
+    #     HVL_sources(data_manager_dict,target_directory)
 
     #save info to json file
     open(filename, 'wb').write(to_json_string(data_manager_dict))

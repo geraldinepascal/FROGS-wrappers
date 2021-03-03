@@ -8,7 +8,7 @@ This release corresponds to the FROGS 3.2.1 release.
   * Filters has been splitted into to new tools : FROGS OTU Filters and FROGS Affiliations Filters. 
       * FROGS OTU Filters filters OTU on presence/absence, abundances and contamination as Filters did. For contamination research, user may now use a personnal multifasta contaminant reference.
       * FROGS Affiliation Filters delete OTU or mask affiliation that do not respect affiliation metrics criteria, or affiliated to undesirable (partial) taxon.
-  * FROGS datamanager is now available to manage affiliation reference database (frogs_db.loc for affiliation_OTU tool) and hyper variable in length amplicon reference (HVL_db.loc for affiliation_postprocess tool) thanks to @davidchristiany.
+  * FROGS datamanager is now available to manage affiliation reference database (frogs_db.loc for affiliation_OTU tool) thanks to @davidchristiany.
 
 ### Contaminant database added
   * add Arabidopsis thaliana chroloroplast sequence 

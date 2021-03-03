@@ -1,4 +1,4 @@
-<tool id="FROGS_data_manager" name="FROGS Data manager" version="2019.10.28.1" tool_type="manage_data">
+<tool id="FROGS_data_manager" name="FROGS Data manager" version="3.2.1" tool_type="manage_data">
     <requirements>
     </requirements>
     <stdio>
@@ -6,43 +6,34 @@
     </stdio>
     <command><![CDATA[
         python $__tool_directory__/FROGS_data_manager.py
-            --database="$database.database"
-            #if $database.database=="frogs_db_data"
-                --all_dbs="$database.db_type.db"
-                #if $database.db_type.db=="false"
-                    --date="$database.db_type.date"
-                    --amplicons="$database.db_type.amplicons"
-                    --bases="$database.db_type.bases"
-                    --filters="$database.db_type.filters"
-                #end if
-                --only_last_versions="$database.only_last_versions"
-            #end if 
+            --database="frogs_db_data"
+            
+            --all_dbs="$database.db_type.db"
+            #if $database.db_type.db=="false"
+                --date="$database.db_type.date"
+                --amplicons="$database.db_type.amplicons"
+                --bases="$database.db_type.bases"
+                --filters="$database.db_type.filters"
+            #end if
+            --only_last_versions="$database.only_last_versions"
+            
             --tool_data="$__tool_data_path__"
             --output "$output"
     ]]></command>
     <inputs>
-        <conditional name="database">
-            <param name="database" type="select" label="Please select a database to update">
-                <option value="frogs_db_data">FROGS database (FROGS Affiliation OTU)</option>
-                <option value="HVL_db_data">HVL database (FROGS Affiliation postprocess)</option>
-            </param>
-            <when value="frogs_db_data">
-                <conditional name="db_type">
-                    <param name="db" type="boolean" checked="true" truevalue="true" falsevalue="false" label="Download all databases"/>
-                    <when value="true"/>
-                    <when value="false">
-                        <param name="date" value="0" type="text"  label="Only more recent database than this date will be downloaded" help="Please enter a date at the following format: YYYYMMDD, leave 0 for no date">
-                            <validator type="regex" message="Please enter a date at the following format: YYYYMMDD, leave 0 for no date">0|[1-2]{1}[0-9]{3}[0-1]{1}[0-9]{1}([0-2]{1}[0-9]{1}|3[0-1]{1})</validator>
-                        </param>
-                        <param name="amplicons" type="text" label='Select database to download by amplicons, put an amplicons list separated by "," ' help='example: "COI,ITS,16S" or "23S"'/>
-                        <param name="bases" type="text" label='Select database to download by base, put a bases list separated by "," ' help='example: "SILVA,PR2,MIDAS" or "BOLD"'/>
-                        <param name="filters" type="text" label='Select database to download by filters, put a filters list separated by "," ' help='example: "Pintail100,Fungi"'/>
-                    </when>
-                </conditional>
-                <param name="only_last_versions" type="boolean" checked="true" label="Download only the last version of each database"/>
+        <conditional name="db_type">
+            <param name="db" type="boolean" checked="true" truevalue="true" falsevalue="false" label="Download all databases"/>
+            <when value="true"/>
+            <when value="false">
+                <param name="date" value="0" type="text"  label="Only more recent database than this date will be downloaded" help="Please enter a date at the following format: YYYYMMDD, leave 0 for no date">
+                    <validator type="regex" message="Please enter a date at the following format: YYYYMMDD, leave 0 for no date">0|[1-2]{1}[0-9]{3}[0-1]{1}[0-9]{1}([0-2]{1}[0-9]{1}|3[0-1]{1})</validator>
+                </param>
+                <param name="amplicons" type="text" label='Select database to download by amplicons, put an amplicons list separated by "," ' help='example: "COI,ITS,16S" or "23S"'/>
+                <param name="bases" type="text" label='Select database to download by base, put a bases list separated by "," ' help='example: "SILVA,PR2,MIDAS" or "BOLD"'/>
+                <param name="filters" type="text" label='Select database to download by filters, put a filters list separated by "," ' help='example: "Pintail100,Fungi"'/>
             </when>
-            <when value="HVL_db_data"/>
         </conditional>
+        <param name="only_last_versions" type="boolean" checked="true" label="Download only the last version of each database"/>
     </inputs>
     <outputs>
         <data name="output" format="data_manager_json"/>
