@@ -2,7 +2,7 @@
 <data_managers>
     <data_manager tool_file="data_manager/FROGS_data_manager.xml" id="frogs_data_manager">
         <data_table name="frogs_db">
-<output>
+            <output>
                 <column name="value" />
                 <column name="name" />
                 <column name="path" output_ref="output">
