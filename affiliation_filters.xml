@@ -88,18 +88,18 @@
 			<when value="delete"/>
 		</conditional>
 
-		<section name="rdp" title="Filtering on RDP affiliations" expanded="true">
+		<section name="rdp" title="Filter on RDP affiliations bootstrap" expanded="true">
 			<param name="rdp_rank" type="text" label="Taxonomical rank on which to apply bootstrap filter" optional="true" help="One of the available taxonomical rank name. Ex: Species"/>
 			<param name="rdp_bootstrap" type="float" min="0.0" max="1.0" label="Minimum bootstrap % (between 0 and 1)" size="5" optional="true" help="Fill these two fields if you want this treatment."/>
 		</section>
 
-		<section name="blast" title="Filtering on Blast affiliations" expanded="true" >
+		<section name="blast" title="Filter on Blast affiliations metrics" expanded="true" >
 			<param name="max_blast_evalue" type="float" min="0.0" max="1.0" optional="true" label="Maximum e-value (between 0 and 1)" size="5" help="Fill the field only if you want this treatment" /> 
 			<param name="min_blast_identity" type="float" min="0.0" max="1.0" optional="true" label="Minimum identity % (between 0 and 1)" size="5" help="Fill the field only if you want this treatment" />
 			<param name="min_blast_coverage" type="float" min="0.0" max="1.0" optional="true" label="Minimum coverage % (between 0 and 1)" size="5" help="Fill the field only if you want this treatment" />
 			<param name="min_blast_length" type="integer" optional="true" label="Minimum alignment length" size="5" help="Fill the field only if you want this treatment" />
 
-			<repeat name="taxon_ignored" title="Remove blast taxonomies including these taxon / word">
+			<repeat name="taxon_ignored" title="Filter blast taxonomies including these taxon / word">
 				<param name="name" type="text" label="Full or partial taxon name" help='ex: "unknown species" or "subsp."' optional="true"/>
 			</repeat>
 		</section>
@@ -234,7 +234,7 @@ How it works
    :class: table table-striped
 
    "1", "Compare all affiliations (RDP and all Blast hits) to each filtering criteria."
-   "2", "Update concensus Blast taxonomy if at least one blast criteria has an impact. When only part of the Blast affiliations are removed, the concensus Blast taxonomy is updated, and if it changes, the OTU is concidered as *Modified*."
+   "2", "Update concensus Blast taxonomy if at least one blast criteria has an impact. When only part of the Blast affiliations are removed, the concensus Blast taxonomy is updated, and if it changes, the OTU is considered as *Modified*."
    "3", "**In deleting mode**, OTU is removed either if the RDP bootstrap criteria is not respected or if none of the blast affiliation respect all the criteria . **In masking mode**, RDP affiliation is masked (removed) if the RDP bootstrap criteria is not respected, and independantly, blast affiliations are masked (removed) if none of the blast affiliation respect all the criteria."
    "4", "Write valid OTU into the filtered.biom file with potential Blast affiliation updated and impacting criteria annotations.All impacted/modified OTU with their original metadata are reported in the impacted.tsv file with its associated impacted.multihit.tsv file. Impacting status (OTU_deleted / Affiliation_masked / Blast_taxonomy_changed) and the list of impacting criteria are also reported in the impacted.tsv file."
 
