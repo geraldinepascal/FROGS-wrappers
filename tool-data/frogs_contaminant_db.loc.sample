@@ -14,8 +14,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-#This is a sample file that enables tools FROGS_filters to identify phix contaminant. You will #need to create or download Blast+ index.
+#This is a sample file that enables tools FROGS_otu_filters to identify contaminant. 
+#You will need to create or download Blast+ index.
+#
 #download link : http://genoweb.toulouse.inra.fr/frogs_databanks/contaminants
+#
 #Finally you will need to create phiX_db.loc file similar to this one in your galaxy
 #tool-data directory.The phiX_db.loc file has this format (longer white space characters are
 #TAB characters):

@@ -17,7 +17,9 @@
 #This is a sample file that enables tools FROGS_affiliations_OTU to use taxonomy database for
 #taxonomy affiliation. You will need to create or download Blast+ index and train your database
 #for RDP classifier these data files.
+#
 #download link : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation
+#
 #Finally you will need to create frogs_db.loc file similar to this one.
 #The frogs_db.loc file has this format (longer white space characters are
 #TAB characters):

@@ -17,7 +17,9 @@
 #This is a sample file that enables tools FROGS_affiliations_postprocess to solve
 #inclusive amplicon sequence by selecting the smallest reference among multihit
 #You will need to create or download exact amplicon sequence reference fasta file
+#
 #download link : http://genoweb.toulouse.inra.fr/frogs_databanks/HVL_reference
+#
 #Finally you will need to create HVL_db.loc file similar to this one in your galaxy
 #tool-data directory.The HVL_db.loc file has this format (longer white space characters are
 #TAB characters):
@@ -29,8 +31,7 @@
 #in /galaxy_databanks/ITS/UNITE_7.1/UNITE_ITS1.fasta 
 #then the HVL_db.loc entry would look like this:
 #
-#
 # EXAMPLE FOR TEST :
 #Unite_extract_ITS1_test	Unite_extract_ITS1_test	${__HERE__}/HVL_db_data/Unite_extract_ITS1.fasta
-UNITE_7.1_ITS1	UNITE 7.1 ITS1	tool-data/Unite_s_7.1_20112016_ITS1.fasta
-UNITE_7.1_ITS2	UNITE 7.1 ITS2	tool-data/Unite_s_7.1_20112016_ITS2.fasta
+#UNITE_7.1_ITS1	UNITE 7.1 ITS1	<PATH_TO>/Unite_s_7.1_20112016_ITS1.fasta
+#UNITE_7.1_ITS2	UNITE 7.1 ITS2	<PATH_TO>/Unite_s_7.1_20112016_ITS2.fasta
