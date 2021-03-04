@@ -19,7 +19,7 @@
 	<description>Remove PCR chimera in each sample.</description>
         <requirements>
             <requirement type="package" version="3.2.1">frogs</requirement>
-            <requirement type="package" version="2.13.1">vsearch</requirement>
+            <requirement type="package" version="2.15.1">vsearch</requirement>
         </requirements>
         <stdio>
                 <exit_code range="1:" />
