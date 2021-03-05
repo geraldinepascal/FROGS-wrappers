@@ -57,10 +57,10 @@
                 <option value="quant">quantitative</option>
             </param>
             <when value="qual">
-                <param type="text" name="mod1" label="Condition 1" help="One condition of the experimental variable (e.g. with)." optional="false" value="" size="20">
+                <param type="text" name="mod1" label="Condition 1 considered as reference" help="One condition of the experimental variable (e.g. with)." optional="false" value="" size="20">
                     <validator type="empty_field" message="This parameter is required." />
                 </param>
-                <param type="text" name="mod2" label="Condition 2" help="Another condition of the experimental variable (e.g. without)." optional="false" value="" size="20">
+                <param type="text" name="mod2" label="Condition 2 to be compared to the reference" help="Another condition of the experimental variable (e.g. without)." optional="false" value="" size="20">
                     <validator type="empty_field" message="This parameter is required." />
                 </param>
             </when>
