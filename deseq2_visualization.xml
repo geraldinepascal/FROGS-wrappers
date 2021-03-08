@@ -23,7 +23,6 @@
         <requirement type="package" version="3.6">r-essentials</requirement>
         <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
         <requirement type="package" version="1.26.0">bioconductor-deseq2</requirement>
-        <requirement type="package" version="0.2.1">r-formattable</requirement>
         <requirement type="package" version="0.17">r-dt</requirement>
     </requirements>
     <stdio>
