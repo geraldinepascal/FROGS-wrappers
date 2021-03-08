@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_biom_to_tsv" name="FROGS BIOM to TSV" version="3.2.2">
+<tool id="FROGS_biom_to_tsv_3_2_2" name="FROGS BIOM to TSV" version="3.2.2">
 	<description>Converts a BIOM file in TSV file.</description>
         <requirements>
             <requirement type="package" version="3.2.2">frogs</requirement>

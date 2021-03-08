@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSTAT Deseq2 Visualisation" id="FROGSSTAT_DESeq2_Visualisation" version="3.2.2">
+<tool name="FROGSTAT Deseq2 Visualisation" id="FROGSSTAT_DESeq2_Visualisation_3_2_2" version="3.2.2">
     <description>to extract and visualise differentially abundant OTUs</description>
     <requirements>
         <requirement type="package" version="3.2.2">frogs</requirement>

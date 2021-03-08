@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="3.2.2">
+<tool id="FROGS_clusters_stat_3_2_2" name="FROGS Clusters stat" version="3.2.2">
 	<description>Process some metrics on clusters.</description>
         <requirements>
                 <requirement type="package" version="3.2.2">frogs</requirement>

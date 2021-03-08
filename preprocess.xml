@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_preprocess" name="FROGS Pre-process" version="3.2.2">
+<tool id="FROGS_preprocess_3_2_2" name="FROGS Pre-process" version="3.2.2">
 	<description>merging, denoising and dereplication.</description>
         <requirements>
                 <requirement type="package" version="3.2.2">frogs</requirement>
