@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Import Data" id="FROGSSTAT_Phyloseq_Import_Data" version="3.2.1">
+<tool name="FROGSSTAT Phyloseq Import Data" id="FROGSSTAT_Phyloseq_Import_Data" version="3.2.2">
     <description>from 3 files: biomfile, samplefile, treefile </description>
         <requirements>
-            <requirement type="package" version="3.2.1">frogs</requirement>
+            <requirement type="package" version="3.2.2">frogs</requirement>
             <requirement type="package" version="3.6.3">r-base</requirement>
             <requirement type="package" version="3.6">r-essentials</requirement>
             <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
@@ -33,8 +33,8 @@
                                   --treefile $treefile 
                                 #end if
                                 --ranks "$ranks"
-                                #if $normalization
-                                    --normalization
+                                #if $normalisation
+                                    --normalisation
                                 #end if
                                 --html $html 
                                 --rdata $data
@@ -53,7 +53,7 @@
         
         <!-- Parameters -->
         <param name="ranks" type="text" label="Names of taxonomics levels" help="The ordered taxonomic levels stored in BIOM. Each level is separated by one space."  value="Kingdom Phylum Class Order Family Genus Species" size="80" optional="false"/>
-        <param name="normalization" type="boolean" label="Do you want to normalise your data ?" help="To normalise data before statistical analysis (default : No)." optional="false" /> 
+        <param name="normalisation" type="boolean" label="Do you want to normalise your data ?" help="To normalise data before statistical analysis (default : No)." optional="false" /> 
     </inputs>
     <outputs>
         <data format="rdata" name="data" label="${tool.name}: data.Rdata" from_work_dir="data.Rdata"/>

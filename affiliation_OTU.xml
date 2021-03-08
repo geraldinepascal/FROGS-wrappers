@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="3.2.1">
+<tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="3.2.2">
 	<description>Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
  	<requirements>
-        <requirement type="package" version="3.2.1">frogs</requirement>
+        <requirement type="package" version="3.2.2">frogs</requirement>
         <requirement type="package" version="2.10">blast</requirement>
         <requirement type="package" version="6.6.0">emboss</requirement>
         <requirement type="package" version="2.0.3">rdptools</requirement>

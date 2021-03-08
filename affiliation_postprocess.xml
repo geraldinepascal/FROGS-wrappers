@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_affiliation_postprocess" name="FROGS Affiliation postprocess" version="3.2.1">
+<tool id="FROGS_affiliation_postprocess" name="FROGS Affiliation postprocess" version="3.2.2">
 	<description>Optionnal step to resolve inclusive amplicon ambiguities and to aggregate OTUs based on alignment metrics</description>
  	<requirements>
-    	<requirement type="package" version="3.2.1">frogs</requirement>
+    	<requirement type="package" version="3.2.2">frogs</requirement>
   	</requirements>
   	<stdio>
 	    <exit_code range="1:" />

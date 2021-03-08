@@ -1,10 +1,8 @@
-# v3.2.1 [2021-03]
-
-This release corresponds to the FROGS 3.2.1 release.
+# v3.2.2 [2021-03]
 
 ### Tools added:
   * DESeq2 preprocess : Compute differential abundancy analysis
-  * DESeq2 visualization : Create table and plots to explore and illustrate the differential abundant OTUs
+  * DESeq2 visualisation : Create table and plots to explore and illustrate the differential abundant OTUs
   * Filters has been splitted into to new tools : FROGS OTU Filters and FROGS Affiliations Filters. 
       * FROGS OTU Filters filters OTU on presence/absence, abundances and contamination as Filters did. For contamination research, user may now use a personnal multifasta contaminant reference.
       * FROGS Affiliation Filters delete OTU or mask affiliation that do not respect affiliation metrics criteria, or affiliated to undesirable (partial) taxon.
@@ -14,7 +12,7 @@ This release corresponds to the FROGS 3.2.1 release.
   * add Arabidopsis thaliana chroloroplast sequence 
 
 ### Modifications:
-
+  * Use english typo for normalise (and co) and visualise (and co)
   * rename phix_db.loc in contaminant_db.loc
 
 # v3.1 [2018-01-08]

@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" version="3.2.1">
+<tool name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" version="3.2.2">
         <description>perform Multivariate Analysis of Variance (MANOVA)</description>
         <requirements>
-            <requirement type="package" version="3.2.1">frogs</requirement>
+            <requirement type="package" version="3.2.2">frogs</requirement>
             <requirement type="package" version="3.6.3">r-base</requirement>
             <requirement type="package" version="3.6">r-essentials</requirement>
             <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>

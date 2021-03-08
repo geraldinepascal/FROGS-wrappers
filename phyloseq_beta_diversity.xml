@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Beta Diversity" id="FROGSSTAT_Phyloseq_Beta_Diversity" version="3.2.1">
+<tool name="FROGSSTAT Phyloseq Beta Diversity" id="FROGSSTAT_Phyloseq_Beta_Diversity" version="3.2.2">
 	<description>distance matrix</description>
         <requirements>
-            <requirement type="package" version="3.2.1">frogs</requirement>
+            <requirement type="package" version="3.2.2">frogs</requirement>
             <requirement type="package" version="3.6.3">r-base</requirement>
             <requirement type="package" version="3.6">r-essentials</requirement>
             <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
@@ -75,7 +75,7 @@
             <!-- <output name="html" file="references/19-phylo_beta_div.nb.html" compare="diff" lines_diff="0" /> -->
             <output name="html">
                 <assert_contents>
-                    <has_text text='FROGS Phyloseq: Beta Diversity Visualization (version 3.2.1)' />
+                    <has_text text='FROGS Phyloseq: Beta Diversity Visualisation' />
                     <has_text text='Phyloseq 1.30.0' />
                 </assert_contents>
             </output>

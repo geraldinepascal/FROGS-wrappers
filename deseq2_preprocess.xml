@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT DESeq2 Preprocess" id="FROGSSTAT_DESeq2_Preprocess" version="3.2.1">
+<tool name="FROGSSTAT DESeq2 Preprocess" id="FROGSSTAT_DESeq2_Preprocess" version="3.2.2">
   <description>import a Phyloseq object and prepare it for DESeq2 differential abundance analysis </description>
   <requirements>
-      <requirement type="package" version="3.2.1">frogs</requirement>
+      <requirement type="package" version="3.2.2">frogs</requirement>
       <requirement type="package" version="3.6.3">r-base</requirement>
       <requirement type="package" version="3.6">r-essentials</requirement>
       <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
@@ -103,7 +103,7 @@ Ouput
 
 **dds object** (format rdata):
 A DESeq2 dataset (dds) stored in rdata file.
-This result will be one of the input of the FROGSSTAT DESeq Visualization tool.
+This result will be one of the input of the FROGSSTAT DESeq Visualisation tool.
 
 .. class:: infomark page-header h2
 

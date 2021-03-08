@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSTAT Deseq2 Visualisation" id="FROGSSTAT_DESeq2_Visualisation" version="3.2.1">
+<tool name="FROGSTAT Deseq2 Visualisation" id="FROGSSTAT_DESeq2_Visualisation" version="3.2.2">
     <description>to extract and visualise differentially abundant OTUs</description>
     <requirements>
-        <requirement type="package" version="3.2.1">frogs</requirement>
+        <requirement type="package" version="3.2.2">frogs</requirement>
         <requirement type="package" version="3.6.3">r-base</requirement>
         <requirement type="package" version="3.6">r-essentials</requirement>
         <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
@@ -29,7 +29,7 @@
         <exit_code range="1:" />
         <exit_code range=":-1" />
     </stdio>
-    <command>deseq2_visualization.py --phyloseqData $input_phyloseq
+    <command>deseq2_visualisation.py --phyloseqData $input_phyloseq
                                      --dds $input_DDS
                                      --var $var
                                      #if $varType.vartType_selected == "qual":
@@ -82,7 +82,7 @@
             <param name="padj" value="0.05" />
             <output name="html">
                 <assert_contents>
-                    <has_text text="FROGSSTAT DESeq2: Visualisation (version 3.2.1)" />
+                    <has_text text="FROGSSTAT DESeq2: Visualisation" />
                     <has_text text="Phyloseq 1.30.0" />
                     <has_text text='["otu_01582",' />
                      <!-- HTML caracter not authorized, search for value only -->
