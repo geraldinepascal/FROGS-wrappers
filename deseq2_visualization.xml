@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSTAT Deseq2 Visualization" id="FROGSSTAT_DESeq2_Visualization" version="3.2.1">
-    <description>to extract and visualize differentially abundant OTUs</description>
+<tool name="FROGSTAT Deseq2 Visualisation" id="FROGSSTAT_DESeq2_Visualisation" version="3.2.1">
+    <description>to extract and visualise differentially abundant OTUs</description>
     <requirements>
         <requirement type="package" version="3.2.1">frogs</requirement>
         <requirement type="package" version="3.6.3">r-base</requirement>
@@ -83,7 +83,7 @@
             <param name="padj" value="0.05" />
             <output name="html">
                 <assert_contents>
-                    <has_text text="FROGSSTAT DESeq2: Visualization (version 3.2.1)" />
+                    <has_text text="FROGSSTAT DESeq2: Visualisation (version 3.2.1)" />
                     <has_text text="Phyloseq 1.30.0" />
                     <has_text text='["otu_01582",' />
                      <!-- HTML caracter not authorized, search for value only -->
@@ -113,7 +113,7 @@
 
 What it does
 
-Launch one Rmarkdown Script to visualize the DESeq2 results. 
+Launch one Rmarkdown Script to visualise the DESeq2 results. 
 
 .. class:: infomark page-header h2
 
@@ -135,7 +135,7 @@ This file is the result of FROGSSTAT DESeq2 preprocess.
 
 Ouput
 
-**html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): visualization of "Differential Abundance".
+**html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): visualisation of "Differential Abundance".
 
 The html file contains Table, Pie Chart, MA plot, Volcano plot and Heatmap plot. If the experimental variable is qualitative, only samples corresponding to the 2 compared conditions are shown in the Heatmap. Otherwise, samples are sorted in increasing order of the experimental variable. 
 
@@ -169,7 +169,7 @@ Heatmap plot corresponding to the differentially abundant OTUs.
 
 How it works
 
-Based on the variable you precise to construct the model in FROGSSTAT DESeq2 Preprocess, this tool will construct table and graphs to visualize différentially abundant OTU between condition of the selected variables.
+Based on the variable you precise to construct the model in FROGSSTAT DESeq2 Preprocess, this tool will construct table and graphs to visualise différentially abundant OTU between condition of the selected variables.
 
 You may first precise the variable used to construct the model during the FROGSSTAT DESeq Preprocess step. If you precised variable with a confounding factor (a second variale), you may choose between one of the variables, but remember that you will see the result of this variable corrected by the confounding factor (and reversely) not just the selected variable itself.
 

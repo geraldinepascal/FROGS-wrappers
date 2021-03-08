@@ -39,7 +39,7 @@
 	</command>
     <inputs>
 		  <!-- Files -->
-      <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGSSTAT Phyloseq Import Data with normalize option set to NO (DESeq2 is more powerful on unnormalized counts)." optional="false">
+      <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGSSTAT Phyloseq Import Data with normalise option set to NO (DESeq2 is more powerful on unnormalised counts)." optional="false">
         <validator type="empty_field" message="This parameter is required." />
       </param>
       <!-- Parameters -->
@@ -95,7 +95,7 @@ This file is the result of FROGSSTAT Phyloseq Import Data.
 
 .. class:: warningmark
 
-We need unnormalized data to analyse the abundance differencies.
+We need unnormalised data to analyse the abundance differencies.
 
 .. class:: h3
 
@@ -120,7 +120,7 @@ The DESeq function performs a default analysis through the steps:
 
 You must precise at least on variable on which the differential abundances will be compared.
 
-You may precise a confounding factor, wy adding an other variable and precise the relation between the two variables:
+You may precise a confounding factor, by adding an other variable and precise the relation between the two variables:
 
 - + for independant variables
 - * for interacting variables

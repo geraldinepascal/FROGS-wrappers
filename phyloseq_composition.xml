@@ -133,7 +133,7 @@ Composition plot: plot the most abundant sub taxonomic level among a selection o
 
     - Taxonomic level used to agglomerate: Phylum
  
-- Number of the most abundant taxa to keep: 5 
+- Number of the most abundant taxa to keep: 9 
 
  .. image:: static/images/FROGS_Phyloseq_composition_plot.png 
      :height: 644
