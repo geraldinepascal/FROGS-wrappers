@@ -112,7 +112,7 @@
 						<option value="archive">TAR Archive</option>
 					</param>
 					<when value="archive">
-						<param name="archive_file" type="data" format="tar" label="TAR archive file" help="The TAR file containing the sequences file(s) for each sample." optional="false" />
+						<param name="archive_file" type="data" format="tar,tar.gz" label="TAR archive file" help="The TAR file containing the sequences file(s) for each sample." optional="false" />
 						<conditional name="archive_type">
 							<param name="archive_type_selected" type="select" label="Are reads already merged ?" help="The archive contains 1 file by sample : R1 and R2 pair are already merged in one sequence.">
 								<option value="paired" selected="true">No</option>
@@ -210,7 +210,7 @@
 						<option value="archive">TAR Archive</option>
 					</param>
 					<when value="archive">
-						<param name="archive_file" type="data" format="tar" label="TAR archive file" help="The TAR file containing the sequences file for each sample." optional="false" />
+						<param name="archive_file" type="data" format="tar,tar.gz" label="TAR archive file" help="The TAR file containing the sequences file for each sample." optional="false" />
 					</when>
 					<when value="files_by_samples">
 						<repeat name="samples" title="Samples" min="1">
