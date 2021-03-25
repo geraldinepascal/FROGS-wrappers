@@ -17,16 +17,16 @@
 -->
 <tool id="FROGS_itsx_3_2_2" name="FROGS ITSx" version="3.2.2">
 	<description>Extract the highly variable ITS1 and ITS2 subregions from ITS sequences.</description>
-    <!-- <requirements>
+    <requirements>
         <requirement type="package" version="3.2.2">frogs</requirement>
         <requirement type="package" version="1.1.2">itsx</requirement>
-    </requirements> -->
+    </requirements>
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />
     </stdio>
 	<command>
-		/home/maria/workspace/FROGS_dev/app/itsx.py
+					itsx.py
 		                --nb-cpus \${GALAXY_SLOTS:-1}
 		                --region $region
 		                --input-fasta $input_fasta
