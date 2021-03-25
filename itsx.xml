@@ -17,16 +17,16 @@
 -->
 <tool id="FROGS_itsx_3_2_2" name="FROGS ITSx" version="3.2.2">
 	<description>Extract the highly variable ITS1 and ITS2 subregions from ITS sequences.</description>
-    <requirements>
+    <!-- <requirements>
         <requirement type="package" version="3.2.2">frogs</requirement>
-        <requirement type="package" version="1.1b">itsx</requirement>
-    </requirements>
+        <requirement type="package" version="1.1.2">itsx</requirement>
+    </requirements> -->
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />
     </stdio>
 	<command>
-		itsx.py
+		/home/maria/workspace/FROGS_dev/app/itsx.py
 		                --nb-cpus \${GALAXY_SLOTS:-1}
 		                --region $region
 		                --input-fasta $input_fasta
@@ -35,7 +35,8 @@
 		                --out-abundance $out_abundance_biom
 		                --out-removed $out_excluded
 		                --summary $summary_file
-		                $check_only
+		                --organism-groups $domain
+		                $trim_sequence
 		                
 	</command>
 	<inputs>
@@ -46,7 +47,30 @@
 			<option value="ITS1">ITS1</option>
 			<option value="ITS2">ITS2</option>
 		</param>
-		<param name="check_only" type="boolean" checked="false" truevalue="--check-its-only" falsevalue="" label="Check only if sequences are detected as ITS ?" help="If Yes, sequences with ITS signature will be kept without trimming SSU, LSU or 5.8S regions. (default : No)"/>
+		<param name="trim_sequence" type="boolean" checked="false" truevalue="" falsevalue="--check-its-only" label="Trim conserved sequence (SSU, 5.8S, LSU) ?" help="If Yes, only part of the sequences with ITS signature will be kept, SSU, LSU or 5.8S regions will be trimmed. (default : No)"/>
+		<param name="domain" type="select" label="Choose pertinent organisms to scan?" help="Save a lot of time by checking pertinent organism group model to scan." optional="false" multiple="true" display="checkboxes">
+			<option value="F" selected="true" >Fungi</option>
+			<option value="A">Alveolata</option>
+			<option value="B">Bryophyta</option>
+			<option value="C">Bacillariophyta</option>
+			<option value="D">Amoebozoa</option>
+			<option value="E">Euglenozoa</option>
+			<option value="G">Chlorophyta</option>
+			<option value="H">Rhodophyta</option>
+			<option value="I">Phaeophyceae</option>
+			<option value="L">Marchantiophyta</option>
+			<option value="M">Metazoa</option>
+			<option value="O">Oomycota</option>
+			<option value="P">Haptophyceae</option>
+			<option value="Q">Raphidophyceae</option>
+			<option value="R">Rhizaria</option>
+			<option value="S">Synurophyceae</option>
+			<option value="T">Tracheophyta</option>
+			<option value="U">Eustigmatophyceae</option>
+			<!-- hmm not available in ITSx_db folder -->
+			<!-- <option value="X">Apusozoa</option>
+			<option value="Y">Parabasalia</option> -->
+		</param>
 	</inputs>
 	<outputs>
 		<data format="fasta" name="out_excluded" label="${tool.name}: out_removed.fasta" from_work_dir="out_removed.fasta"/>
@@ -77,20 +101,20 @@
 
 What it does
 
-Extract the highly variable ITS1 and ITS2 subregions from ITS sequences.
-
-.. class:: warningmark
-
-Its usage is restricted to fungal organisms only.
+Identify (and optionnaly extract) the highly variable ITS1 and ITS2 subregions from ITS sequences.
 
 .. class:: infomark page-header h2
 
 Context
 
-The ITSx software identifies and extracts only ITS regions. It then excludes the highly conserved neighbouring sequences SSU, 5S and ARNr LSU. These sequences can lead to misleading results if they are conserved.
-If the ITS1 or ITS2 region is not detected, the observation is discarded.
+The ITSx software identifies and extracts only ITS regions. It excludes the highly conserved neighbouring sequences SSU, 5.8S and LSU rRNA. These sequences can lead to misleading results if they are conserved.
+If the targeted ITS region (ITS1 or ITS2) is not detected, the observation is discarded.
 
 You can choose to only check if the sequence is detected as an ITS. The sequence is not trimmed, only sequences not detected as ITS are discarded (contaminants by example).
+
+.. class:: warningmark
+
+**ITSx is a time consuming tool. Please selecte pertinent organism groups for your study.**
 
 .. class:: infomark page-header h2
 
@@ -115,7 +139,7 @@ Outputs
 
 **Sequence file** (itsx.fasta):
 
- The sequence file with only ITS1 or ITS2 part, or with the original sequence if check-its-only is choosen (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
+ The original sequence file with identified highly variable ITS, or with only ITS1 or ITS2 part if you choose to remove conserved SSU, 5.8S and LSU parts (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
 
 **Abundance file** (itsx.biom):
 
@@ -141,6 +165,7 @@ How it works
    
    "1", "Predicts positions of the ribosomal genes in the sequences (`ITSx &lt;http://microbiology.se/software/itsx/&gt;`_)."
    "2", "Removes the sequences without prediction of the targeted ITS region (ITS1 or ITS2)."
+   "3", "(optional) trim conserved region."
 
 
 ----
