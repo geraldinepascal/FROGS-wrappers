@@ -51,7 +51,7 @@
     <param format="biom1" name="biom_abundance" type="data" label="Abundance file" help="OTU abundances (format: BIOM)."/>
 	</inputs>
 	<outputs>
-		<data format="biom1" name="biom_affiliation" label="${tool.name}: affiliation.biom" from_work_dir="affiliation.biom" />
+		<data format="biom1" name="biom_affiliation" label="${tool.name}: affiliation_abundance.biom" from_work_dir="affiliation.biom" />
 		<data format="html" name="summary" label="${tool.name}: report.html" from_work_dir="report.html"/>
 	</outputs>
         <tests>

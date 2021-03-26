@@ -111,7 +111,7 @@
 			<filter> conditional_mode['mode'] == 'delete'</filter>
 		</data>
 		<data format="tabular" name="output_impacted" label="${tool.name}: impacted_OTU.tsv" from_work_dir="impacted.tsv" />
-		<data format="tabular" name="output_multihit" label="${tool.name}: impacted_OTU.multihit.tsv" from_work_dir="impacted.multihit.tsv" />
+		<data format="tabular" name="output_multihit" label="${tool.name}: impacted_OTU.multi-affiliations.tsv" from_work_dir="impacted.multihit.tsv" />
 		<data format="html" name="output_summary" label="${tool.name}: report.html" from_work_dir="report.html" />
 	</outputs>
 	<tests>

@@ -33,7 +33,7 @@
 		<param format="biom1" name="biom" type="data" label="Abundance file" help="Clusters abundance (format: BIOM)." optional="false" />
 	</inputs>
 	<outputs>
-		<data format="html" name="summary_file" label="${tool.name}: summary.html" from_work_dir="summary.html"/>
+		<data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="summary.html"/>
 	</outputs>
 	<tests>
 		<test>
