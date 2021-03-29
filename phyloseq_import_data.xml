@@ -27,12 +27,13 @@
             <exit_code range="1:" />
             <exit_code range=":-1" />
         </stdio>
-    <command>phyloseq_import_data.py   --biomfile $biomfile
+    <command>
+                phyloseq_import_data.py   --biomfile $biomfile
                                 --samplefile $samplefile 
                                 #if $treefile
                                   --treefile $treefile 
                                 #end if
-                                --ranks "$ranks"
+                                --ranks $ranks
                                 #if $normalisation
                                     --normalisation
                                 #end if
