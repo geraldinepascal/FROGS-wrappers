@@ -1,4 +1,0 @@
-## Application
-Software :/home/maria/workspace/git/FROGS/FROGS_master/test/../app/biom_to_stdBiom.py (version : 3.1)
-Command : /home/maria/workspace/git/FROGS/FROGS_master/test/../app/biom_to_stdBiom.py --input-biom res/06-affiliation.biom --output-biom res/11-affiliation_std.biom --output-metadata res/11-affiliation_multihit.tsv --log-file res/11-biom2stdbiom.log
-

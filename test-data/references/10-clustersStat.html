@@ -19,7 +19,7 @@
 	<head>
 		<title>FROGS Cluster stat</title>
 		<meta charset="UTF-8">
-		<meta name="version" content="1.4.1">
+		<meta name="version" content="3.2.2">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></link>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></link>
@@ -251,7 +251,7 @@
 				// Compute the new tree layout.
 				var nodes = d3_tree.nodes(linkage_data).reverse();
 
-				// Normalize for fixed-depth.
+				// Normalise for fixed-depth.
 				nodes.forEach(function(d) { d.y = d.depth * 100; });
 
 				// Update the nodes.
@@ -647,7 +647,7 @@
 				}];
 				$('#' + container_id).append( '<div id="dispersion"></div>' );
 				$('#dispersion').append( '<h2 class="pb-2 mt-4 mb-2 border-bottom">Clusters size summary</h2>');
-				//$('#dispersion').append( '<h1 class="page-header">Clusters size summary<h1/>' );
+				$('#dispersion').append( '<p>The cluster size is the sum of the abundances of the sequences grouped in a cluster.</p>');
 				$('#dispersion').append('<div id="twofigs" class="row"></div>');
 				$('#twofigs').append( '<div class="col-12 col-md-8"" style="height:100%;">' );
 				$('#dispersion div').last().highcharts( boxplot_param("Clusters size distribution", null, "Cluster size", ["All"], boxplot_series) );
@@ -838,14 +838,14 @@
 			// Data
 			//
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			var clusters_sizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 13] ;
+			var clusters_sizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13] ;
 			var series = [{
 				'name': "All",
-				'data': [2, 1, 5, 9, 3, 7, 9, 6, 6, 1, 1]
+				'data': [1, 1, 5, 8, 4, 13, 6, 7, 1, 2, 1, 1]
 			}];
 			var sum_series = new Array() ;
-			var samples_distrib = {"01_subsample": {"shared_seq": 99, "shared_observations": 43, "own_seq": 1, "own_observations": 1}, "02_subsample": {"shared_seq": 100, "shared_observations": 44, "own_seq": 0, "own_observations": 0}, "03_subsample": {"shared_seq": 99, "shared_observations": 44, "own_seq": 1, "own_observations": 1}} ;
-			var newick = "((01_subsample,(02_subsample,03_subsample):0.360):0.400);" ;
+			var samples_distrib = {"01_subsample": {"shared_seq": 99, "shared_observations": 40, "own_seq": 1, "own_observations": 1}, "02_subsample": {"shared_seq": 100, "shared_observations": 42, "own_seq": 0, "own_observations": 0}, "03_subsample": {"shared_seq": 100, "shared_observations": 42, "own_seq": 0, "own_observations": 0}} ;
+			var newick = "((03_subsample,(01_subsample,02_subsample):0.400):0.425);" ;
 
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

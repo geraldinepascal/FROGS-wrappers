@@ -83,7 +83,7 @@
 			<param name="input_fasta" value="references/04-filters.fasta"/>
 			<param name="input_biom" value="references/04-filters.biom"/>
 			<param name="region" value="ITS1"/>
-			<param name="check_only" value="false"/>
+			<param name="trim_sequence" value="true"/>
 			<output name="out_abundance_biom" file="references/05-itsx.biom" compare="sim_size" delta="0" />
 			<output name="out_fasta" file="references/05-itsx.fasta" compare="diff" lines_diff="0" />
 			<output name="out_excluded" file="references/05-itsx-excluded.fasta" compare="diff" lines_diff="0" />

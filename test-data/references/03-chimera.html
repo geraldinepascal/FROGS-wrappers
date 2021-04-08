@@ -19,7 +19,7 @@
 	<head>
 		<title>FROGS Remove Chimera</title>
 		<meta charset="UTF-8">
-		<meta name="version" content="1.0.2">
+		<meta name="version" content="3.2.2">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></link>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></link>
@@ -275,9 +275,9 @@
 
 				
 			$(function() {
-				var detection_categories = ["Kept nb", "Kept abundance", "Removed nb", "Removed abundance", "Abundance of the most abundant removed", "Detected nb", "Detected abundance", "Abundance of the most abundant detected"] ;
-				var detection_series = [{"name": "01_subsample", "data": [25101, 50000, 0, 0, 0, 0, 0, 0]}, {"name": "02_subsample", "data": [24925, 49999, 1, 1, 1, 1, 1, 1]}, {"name": "03_subsample", "data": [24949, 49998, 2, 2, 1, 2, 2, 1]}] ;
-				var remove_info = {"nb_removed": 3, "nb_kept": 74857, "abundance_removed": 3, "abundance_kept": 149997, "nb_ambiguous": 0, "abundance_ambiguous": 0} ;
+				var detection_categories = ["Clusters kept", "Cluster abundance kept", "Chimeric clusters removed", "Chimeric abundance removed", "Abundance of the most abundant chimera removed", "Individual chimera detected", "Individual chimera abundance detected", "Abundance of the most abundant individual chimera detected"] ;
+				var detection_series = [{"name": "01_subsample", "data": [25127, 50000, 0, 0, 0, 0, 0, 0]}, {"name": "02_subsample", "data": [24947, 49999, 1, 1, 1, 1, 1, 1]}, {"name": "03_subsample", "data": [24960, 49999, 1, 1, 1, 1, 1, 1]}] ;
+				var remove_info = {"nb_removed": 2, "nb_kept": 74920, "abundance_removed": 2, "abundance_kept": 149998, "nb_ambiguous": 0, "abundance_ambiguous": 0} ;
 
 				// Remove alert
 				$('#js-alert').remove();
@@ -371,6 +371,7 @@
 			</div>
 			<div id="filter-log">
 				<h2 class="pb-2 mt-4 mb-2 border-bottom">Chimera detection by sample</h2>
+				<p>Chimera are first detected by sample, and finally only clusters always detected as chimera in all samples including thoses clusters are removed.</p>
 			</div>
 		</div>
 	</body>

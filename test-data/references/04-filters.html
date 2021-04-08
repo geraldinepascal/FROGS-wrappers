@@ -19,7 +19,7 @@
 	<head>
 		<title>FROGS OTU Filters</title>
 		<meta charset="UTF-8">
-		<meta name="version" content="2.0.1">
+		<meta name="version" content="3.2.2">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></link>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></link>
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -560,7 +560,7 @@
 			/* Example:
 				['filterA', 'filterB', 'filterC']
 			*/
-			var global_results = {"nb_clstr_kept": 57, "nb_clstr_ini": 74857, "nb_seq_kept": 75190, "nb_seq_ini": 149997} ; 
+			var global_results = {"nb_clstr_kept": 55, "nb_clstr_ini": 74920, "nb_seq_kept": 75128, "nb_seq_ini": 149998} ; 
 			/* Example: 
 				{
 					'nb_clstr_kept': 100,
@@ -569,7 +569,7 @@
 					'nb_seq_ini': 100000
 				}
 			*/
-			var by_samples_results = {"01_subsample": {"initial": 25101, "filtered": {"Present in less than 3 samples": 25043, "Abundance < 0.005% (i.e 8 sequences )": 25044}, "kept": 57}, "02_subsample": {"initial": 24925, "filtered": {"Present in less than 3 samples": 24867, "Abundance < 0.005% (i.e 8 sequences )": 24868}, "kept": 57}, "03_subsample": {"initial": 24949, "filtered": {"Present in less than 3 samples": 24891, "Abundance < 0.005% (i.e 8 sequences )": 24892}, "kept": 57}} ;
+			var by_samples_results = {"01_subsample": {"initial": 25127, "filtered": {"Present in less than 3 samples": 25071, "Abundance < 0.005% (i.e 8 sequences )": 25072}, "kept": 55}, "02_subsample": {"initial": 24947, "filtered": {"Present in less than 3 samples": 24891, "Abundance < 0.005% (i.e 8 sequences )": 24892}, "kept": 55}, "03_subsample": {"initial": 24960, "filtered": {"Present in less than 3 samples": 24904, "Abundance < 0.005% (i.e 8 sequences )": 24905}, "kept": 55}} ;
 			/* Example:
 				{
 					'sampleA':{
@@ -589,7 +589,7 @@
 					}
 				}
 			*/
-			var by_filters_results = [{"filters": ["Present in less than 3 samples", "Abundance < 0.005% (i.e 8 sequences )"], "count": 74799}, {"filters": ["Abundance < 0.005% (i.e 8 sequences )"], "count": 1}] ;
+			var by_filters_results = [{"filters": ["Present in less than 3 samples", "Abundance < 0.005% (i.e 8 sequences )"], "count": 74864}, {"filters": ["Abundance < 0.005% (i.e 8 sequences )"], "count": 1}] ;
 			/* Example:
 				[
 					{'filters':['filterA'], 'count': 10},

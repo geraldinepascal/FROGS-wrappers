@@ -19,7 +19,7 @@
 	<head>
 		<title>FROGS Affiliation Filters</title>
 		<meta charset="UTF-8">
-		<meta name="version" content="2.0.1">
+		<meta name="version" content="3.2.2">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></link>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></link>
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -453,7 +453,7 @@
 						if (global_taxon_lost[method][global_taxon_list[taxon_idx]].length  == 2){
 							s = numberDisplay(global_taxon_lost[method][global_taxon_list[taxon_idx]][0]);
 							if (global_taxon_lost[method][global_taxon_list[taxon_idx]][1] > 0){
-								s += ' ( ' + numberDisplay(global_taxon_lost[method][global_taxon_list[taxon_idx]][1]) +' multi-affiliation(s) )' ;
+								s += ' ( including  ' + numberDisplay(global_taxon_lost[method][global_taxon_list[taxon_idx]][1]) +' multi-affiliation(s) ) ' ;
 							}
 							method_data.push( s);
 						}else{
@@ -585,7 +585,7 @@
 			/*Example: Removed or Masked
 				"Removed"
 			*/
-			var global_results = {"cluster": {"Kept": 25, "Modified": 0, "Masked": 32}, "sequence": {"Kept": 37286, "Modified": 0, "Masked": 37904}} ; 
+			var global_results = {"cluster": {"Kept": 25, "Modified": 0, "Masked": 30}, "sequence": {"Kept": 38655, "Modified": 0, "Masked": 36473}} ; 
 			/* Example: 
 				{
 					"cluster": {
@@ -623,7 +623,7 @@
 			 	}
 			 } ;
 			 */
-			var by_samples_results = {"01_subsample": {"initial": 57, "filtered": {"Blast evalue > 1e-150": 28, "Blast taxonomies belong to undesired taxon: g__Sarcodon / s__Trichoderma": 6, "Blast identity < 1.0": 5}, "kept": 25}, "02_subsample": {"initial": 57, "filtered": {"Blast evalue > 1e-150": 28, "Blast taxonomies belong to undesired taxon: g__Sarcodon / s__Trichoderma": 6, "Blast identity < 1.0": 5}, "kept": 25}, "03_subsample": {"initial": 57, "filtered": {"Blast evalue > 1e-150": 28, "Blast taxonomies belong to undesired taxon: g__Sarcodon / s__Trichoderma": 6, "Blast identity < 1.0": 5}, "kept": 25}} ;
+			var by_samples_results = {"01_subsample": {"initial": 55, "filtered": {"Blast evalue > 1e-150": 30, "Blast taxonomies belong to undesired taxon: g__Sarcodon / s__Trichoderma": 6, "Blast identity < 1.0": 1}, "kept": 25}, "02_subsample": {"initial": 55, "filtered": {"Blast evalue > 1e-150": 30, "Blast taxonomies belong to undesired taxon: g__Sarcodon / s__Trichoderma": 6, "Blast identity < 1.0": 1}, "kept": 25}, "03_subsample": {"initial": 55, "filtered": {"Blast evalue > 1e-150": 30, "Blast taxonomies belong to undesired taxon: g__Sarcodon / s__Trichoderma": 6, "Blast identity < 1.0": 1}, "kept": 25}} ;
 			/* Example:
 				{
 					'sampleA':{
@@ -643,7 +643,7 @@
 					}
 				}
 			*/
-			var by_filters_results = [{"filters": ["Blast evalue > 1e-150"], "count": 21}, {"filters": ["Blast evalue > 1e-150", "Blast taxonomies belong to undesired taxon: g__Sarcodon / s__Trichoderma"], "count": 6}, {"filters": ["Blast evalue > 1e-150", "Blast identity < 1.0"], "count": 1}, {"filters": ["Blast identity < 1.0"], "count": 4}] ;
+			var by_filters_results = [{"filters": ["Blast evalue > 1e-150"], "count": 23}, {"filters": ["Blast evalue > 1e-150", "Blast taxonomies belong to undesired taxon: g__Sarcodon / s__Trichoderma"], "count": 6}, {"filters": ["Blast evalue > 1e-150", "Blast identity < 1.0"], "count": 1}] ;
 			/* Example:
 				[
 					{'filters':['filterA'], 'count': 10},
