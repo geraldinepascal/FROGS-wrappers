@@ -1,4 +1,4 @@
-# v3.2.2 [2021-03]
+# v3.2.2 [2021-04]
 
 ### Tools added:
   * DESeq2 preprocess : Compute differential abundancy analysis
@@ -12,8 +12,15 @@
   * add Arabidopsis thaliana chroloroplast sequence 
 
 ### Modifications:
-  * Use english typo for normalise (and co) and visualise (and co)
+  * ITSx : add organism model option scanning, change default behavior regarding the trimming of conserved regions
+
+  * Use english typo for normalise and visualise
+
   * rename phix_db.loc in contaminant_db.loc
+
+  * update tool dependencies version
+
+    
 
 # v3.1 [2018-01-08]
 
