@@ -73,9 +73,9 @@
 		</param>
 	</inputs>
 	<outputs>
+		<data format="fasta" name="out_excluded" label="${tool.name}: nonITS_sequence.fasta" from_work_dir="out_removed.fasta"/>
 		<data format="fasta" name="out_fasta" label="${tool.name}: ITS_sequence.fasta" from_work_dir="itsx.fasta"/>
 		<data format="biom1" name="out_abundance_biom" label="${tool.name}: itsx_abundance.biom" from_work_dir="itsx.biom"/>
-		<data format="fasta" name="out_excluded" label="${tool.name}: nonITS_sequence.fasta" from_work_dir="out_removed.fasta"/>
 		<data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="report.html"/>
 	</outputs>
 	<tests>
