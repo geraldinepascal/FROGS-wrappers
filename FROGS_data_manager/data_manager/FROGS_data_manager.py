@@ -1,6 +1,10 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from galaxy.util.json import from_json_string, to_json_string
 import os, sys, argparse, time, json, requests, urllib, tarfile
+
+# FROGS_data_manager.py --database=frogs_db_data --all_dbs=false --date=0 --amplicons=16S --bases=SILVA --filters=Pintail100 --only_last_versions=true \
+# --tool_data=/home/maria/galaxy/galaxy-20.09/tool-data --output /home/maria/galaxy/galaxy-20.09/database/objects/e/7/7/dataset_e7766c39-8f36-450c-adf5-3e4ee8d5c562.dat
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -14,19 +18,8 @@ def get_args():
     parser.add_argument("--tool_data")
     parser.add_argument("-o","--output")
     args = parser.parse_args()
-    return args
 
-#build database last version dictionary: key=base_id, value=last version
-def build_last_version_dict(db_index):
-    last_version_dict={}
-    for line in db_index :
-        date=int(line[0])
-        base_id=line[5]
-        if base_id in last_version_dict:
-            if date > last_version_dict[base_id] : last_version_dict[base_id]=date
-        else:
-            last_version_dict[base_id]=date
-    return(last_version_dict)
+    return args
 
 def _add_data_table_entry(data_manager_dict, data_table_entry,data_table):
     data_manager_dict['data_tables'] = data_manager_dict.get('data_tables', {})
@@ -35,18 +28,13 @@ def _add_data_table_entry(data_manager_dict, data_table_entry,data_table):
     return data_manager_dict
 
 def keep_only_last_version(db_index):
-    values=["_".join(line[5].split("_")[:-1]) for line in db_index]
-    to_filter = list(set([val for val in values if values.count(val) >1]))
-    out = [line for line in db_index if "_".join(line[5].split("_")[:-1]) not in to_filter] 
-    for bd in to_filter:
-        versions = [line[4] for line in db_index if "_".join(line[5].split("_")[:-1])==bd]
-        to_keep = bd+"_"+sorted(versions)[-1]
-        for line in db_index:
-            if line[5]==to_keep:
-                out.append(line)
-                print(line)
-                break
-    return(out)
+    db_dict = dict()
+    for line in db_index:
+        db_type = "_".join(line[1:4]) if line[3] != "" else "_".join(line[1:3])
+        if db_type not in db_dict:
+            db_dict[db_type] = line
+    return list(db_dict.values())
+
 
 def frogs_sources(data_manager_dict,target_directory):
 
@@ -66,12 +54,11 @@ def frogs_sources(data_manager_dict,target_directory):
     with requests.Session() as s:
         download = s.get(frogs_db_index_link)
         decoded_content = download.content.decode('utf-8')
-        db_index = download.content.splitlines()    
+        db_index = decoded_content.splitlines()
         db_index = [line.split("\t") for line in db_index[1:]]
         db_index = [[line[0],line[1].lower(),line[2].lower(),line[3].lower()]+line[4:] for line in db_index]
 
     #filter databases
-    last_version_dict=build_last_version_dict(db_index)
     if args.all_dbs=="false":
         if len(amplicons_list)!=0: db_index = [line for line in db_index if any([amplicon in amplicons_list for amplicon in line[1].split(',')])]   #filter by amplicons
         if len(bases_list)!=0: db_index = [line for line in db_index if line[2] in bases_list]                                                      #filter by base
@@ -87,14 +74,14 @@ def frogs_sources(data_manager_dict,target_directory):
     dbs=set([])
     for line in db_index:
         value=line[5]
-        name=value.replace("_"," ")
+        name=value.replace("_"," ") if not "_" in line[4] else value.replace(line[4],"").replace("_", " ") + line[4]
         link=line[6]
         name_dir="".join([line[6].replace(".tar.gz","").split("/")[-1]])
         file_path=tool_data_path+"/frogs_db/"+name_dir
         if not os.path.exists(file_path):   #if the file is not already in frogs_db directory
             
             #download frogs db
-            dl_file = urllib.URLopener()
+            dl_file =  urllib.request.URLopener()
             dl_file.retrieve(link, "tmp.tar.gz")
             
             #unzip frogs db
@@ -155,7 +142,7 @@ def main():
     #     HVL_sources(data_manager_dict,target_directory)
 
     #save info to json file
-    open(filename, 'wb').write(to_json_string(data_manager_dict))
+    open(filename, 'wt').write(to_json_string(data_manager_dict))
 
 if __name__ == "__main__":
     main()

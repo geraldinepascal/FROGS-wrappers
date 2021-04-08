@@ -5,17 +5,17 @@
         <exit_code range="1:" />
     </stdio>
     <command><![CDATA[
-        python $__tool_directory__/FROGS_data_manager.py
+        $__tool_directory__/FROGS_data_manager.py
             --database="frogs_db_data"
             
-            --all_dbs="$database.db_type.db"
-            #if $database.db_type.db=="false"
-                --date="$database.db_type.date"
-                --amplicons="$database.db_type.amplicons"
-                --bases="$database.db_type.bases"
-                --filters="$database.db_type.filters"
+            --all_dbs="$db_type.db"
+            #if $db_type.db=="false"
+                --date="$db_type.date"
+                --amplicons="$db_type.amplicons"
+                --bases="$db_type.bases"
+                --filters="$db_type.filters"
             #end if
-            --only_last_versions="$database.only_last_versions"
+            --only_last_versions="$only_last_versions"
             
             --tool_data="$__tool_data_path__"
             --output "$output"
@@ -38,7 +38,10 @@
     <outputs>
         <data name="output" format="data_manager_json"/>
     </outputs>
-    <help><![CDATA[
-        TODO: Fill in help.
-    ]]></help>
+    <help>
+        FROGS datamanager allows to download preformated databases for FROGS Affiliation OTU tool.
+
+        All databases are available at http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/.
+        
+        This tools is based on the `FROGS_databases.tsv.txt &lt;http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv.txt&gt;`_, that we update each time a new database is formatted.</help>
 </tool>

@@ -1,8 +1,8 @@
 categories:
 - Metagenomics
-description: Suite for metabarcoding
+description: Suite for metabarcoding analysis
 long_description: |
-  This is FROGS version 3.2.1 Galaxy Wrappers
+  This is FROGS version 3.2.2 Galaxy Wrappers
   FROGS: Find Rapidly OTUs through Galaxy Solution 
   FROGS is a workflow designed to produce an OTU count matrix from high depth sequencing amplicon data.
   Adviced : 
@@ -10,4 +10,4 @@ long_description: |
 name: frogs
 owner: oinizan #TestToolshed
 homepage_url: https://github.com/geraldinepascal/FROGS-wrappers
-remote_repository_url: https://github.com/geraldinepascal/FROGS-wrappers/tree/v3.2.1
+remote_repository_url: https://github.com/geraldinepascal/FROGS-wrappers/tree/v3.2.2
