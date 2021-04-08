@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_itsx_3_2_2" name="FROGS ITSx" version="3.2.2">
+<tool id="FROGS_itsx" name="FROGS ITSx" version="3.2.2">
 	<description>Extract the highly variable ITS1 and ITS2 subregions from ITS sequences.</description>
     <requirements>
         <requirement type="package" version="3.2.2">frogs</requirement>

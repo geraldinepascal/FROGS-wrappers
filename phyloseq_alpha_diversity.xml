@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Alpha Diversity" id="FROGSSTAT_Phyloseq_Alpha_Diversity_3_2_2" version="3.2.2">
+<tool name="FROGSSTAT Phyloseq Alpha Diversity" id="FROGSSTAT_Phyloseq_Alpha_Diversity" version="3.2.2">
 	<description>with richness plot</description>
         <requirements>
             <requirement type="package" version="3.2.">frogs</requirement>

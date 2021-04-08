@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_remove_chimera_3_2_2" name="FROGS Remove chimera" version="3.2.2">
+<tool id="FROGS_remove_chimera" name="FROGS Remove chimera" version="3.2.2">
 	<description>Remove PCR chimera in each sample.</description>
         <requirements>
             <requirement type="package" version="3.2.2">frogs</requirement>
