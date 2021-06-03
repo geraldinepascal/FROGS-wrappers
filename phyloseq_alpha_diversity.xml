@@ -48,9 +48,9 @@
         </param>        
 	    <param name="measures" type="select" label="The alpha diversity indices to compute" multiple="true" display="checkboxes">
              <option value="Observed" selected="True">Observed</option>
+             <option value="Chao1" selected="True">Chao1</option>
              <option value="Shannon" selected="True">Shannon</option>
              <option value="InvSimpson" selected="True">InvSimpson</option>
-             <option value="Chao1">Chao1</option>
              <option value="Simpson">Simpson</option>
              <option value="ACE">ACE</option>
              <option value="Fisher">Fisher</option>
