@@ -66,6 +66,7 @@
             <param name="samplefile" value="input/sample_metadata.tsv"/>
             <param name="treefile" value="input/tree.nwk"/>
             <output name="data" value="references/16-phylo_import.Rdata" compare="sim_size" delta="10"/>
+            <output name="html" value="references/16-phylo_import.nb.html" compare="diff" lines_diff="0"/>
         </test>
     </tests>
     <help>

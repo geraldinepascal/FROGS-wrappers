@@ -72,13 +72,7 @@
             <param name="data" value="references/16-phylo_import.Rdata" />
             <param name="varExp" value="EnvType" />
             <param name="methods" value="cc,unifrac" />
-            <!-- <output name="html" file="references/19-phylo_beta_div.nb.html" compare="diff" lines_diff="0" /> -->
-            <output name="html">
-                <assert_contents>
-                    <has_text text='FROGS Phyloseq: Beta Diversity Visualisation' />
-                    <has_text text='Phyloseq 1.30.0' />
-                </assert_contents>
-            </output>
+            <output name="html" file="references/19-phylo_beta_div.nb.html" compare="diff" lines_diff="0" /> 
         </test>
     </tests>
 

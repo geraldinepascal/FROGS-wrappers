@@ -83,21 +83,15 @@
             <output name="html">
                 <assert_contents>
                     <has_text text="FROGSSTAT DESeq2: Visualisation" />
-                    <has_text text="Phyloseq 1.30.0" />
                     <has_text text='["otu_01582",' />
-                     <!-- HTML caracter not authorized, search for value only -->
-                    <!-- baseMean value of otu_01582,
-                    <has_text text='["\<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #fffcfd\">52.445511' /> -->
+                    <!-- baseMean value of otu_01582 -->
                     <has_text text='52.445510949046' />
-                    <!-- Log2 FC of otu_01582
-                    <has_text text='["\<span style=\"color: red\">21.662506' /> -->
-                    <has_text text='21.6625060651457' />
-                    <!-- lfcSE of otu_01582
-                    <has_text text='["\<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #c9e5ee\">2.2089268' /> -->
-                    <has_text text='2.20892675663989' />
-                    <!-- pvalue otu_01582
-                    <has_text text='["\<span style=\"display: block; padding: 0 4px; border-radius: 4px; background-color: #add8e6\">1.052520e-22' /> -->
-                    <has_text text='1.0525195975273e-22' />
+                    <!-- Log2 FC of otu_01582 -->
+                    <has_text text='21.6622901050859' />
+                    <!-- lfcSE of otu_01582 -->
+                    <has_text text='2.20892675384734' />
+                    <!-- pvalue otu_01582 -->
+                    <has_text text='1.0535393782052e-22' />
                 </assert_contents>
             </output>
         </test>
@@ -138,31 +132,31 @@ Ouput
 
 The html file contains Table, Pie Chart, MA plot, Volcano plot and Heatmap plot. If the experimental variable is qualitative, only samples corresponding to the 2 compared conditions are shown in the Heatmap. Otherwise, samples are sorted in increasing order of the experimental variable. 
 
-Table containing the differentially abundant OTUs.
+* Table containing the differentially abundant OTUs.
 
  .. image:: static/images/FROGS_DESeq2_html_table.png 
-     :height: 354
-     :width: 1153
+    :height: 216
+    :width: 789
 
-Pie Chart, MA plot and Volcano plot
+* Pie Chart, MA plot and Volcano plot
 
  .. image:: static/images/FROGS_DESeq2_html_pieChart.png 
-     :height: 391
-     :width: 563
+    :height: 576
+    :width: 768
 
  .. image:: static/images/FROGS_DESeq2_html_MA_plot.png 
-     :height: 324
-     :width: 525
+    :height: 480
+    :width: 672
 
  .. image:: static/images/FROGS_DESeq2_html_Volcano_plot.png
-     :height: 576
-     :width: 720
+    :height: 506
+    :width: 633
 
-Heatmap plot corresponding to the differentially abundant OTUs.
+* Heatmap plot corresponding to the differentially abundant OTUs.
 
  .. image:: static/images/FROGS_DESeq2_html_heatmap_plot.png 
-     :height: 576
-     :width: 720
+    :height: 576
+    :width: 768
 
 .. class:: infomark page-header h2
 

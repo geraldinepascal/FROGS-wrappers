@@ -54,12 +54,7 @@
 			<param name="data" value="references/16-phylo_import.Rdata"/>
 			<param name="varExp" value="EnvType"/>
 			<param name="method" value="references/unifrac.tsv"/>
-      <output name="html">
-        <assert_contents>
-          <has_text text='FROGS Phyloseq: Sample clustering using different linkage method' />
-          <has_text text='Phyloseq 1.30.0' />
-        </assert_contents>
-      </output>
+      <output name="html" file="references/21-phylo_clustering.nb.html" compare="diff" lines_diff="0"/>
 		</test>
 	</tests>
 	<help>

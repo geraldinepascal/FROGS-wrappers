@@ -61,13 +61,6 @@
                 <param name="ref_file" value="ITS1_test"/>
                 <param name="fasta_sequences" value="references/04-filters.fasta"/>
                 <param name="biom_abundance" value="references/04-filters.biom"/>
-                <output name="biom_affiliation" file="references/06-affiliation2.biom" compare="sim_size" delta="0" />
-                <output name="summary" file="references/06-affiliation2.html" compare="diff" lines_diff="0"/>
-            </test>
-            <test>
-                <param name="ref_file" value="ITS1_test"/>
-                <param name="fasta_sequences" value="references/04-filters.fasta"/>
-                <param name="biom_abundance" value="references/04-filters.biom"/>
                 <param name="rdp" value="true"/>
                 <output name="biom_affiliation" file="references/06-affiliation.biom" compare="sim_size" delta="5" />
                 <output name="summary" file="references/06-affiliation.html" compare="diff" lines_diff="0"/>

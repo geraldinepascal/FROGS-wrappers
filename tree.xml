@@ -22,6 +22,7 @@
         <requirement type="package" version="7.407">mafft</requirement>
         <requirement type="package" version="2.1.09">fasttree</requirement>
         <requirement type="package" version="4.0.5">r-base</requirement>
+         <requirement type="package" version="4.0">r-essentials</requirement>
         <requirement type="package" version="2.7.0">r-phangorn</requirement>
     </requirements>
     <stdio>
@@ -62,7 +63,7 @@
                     <has_text_matching expression="abundance_removed.*:\s0" />
                     <has_text_matching expression="abundance_kept.*:\s300" />
                     <has_text_matching expression="otu_removed.*:\s0" />
-                    <has_text_matching expression="otu_kept.*:\s50" />
+                    <has_text_matching expression="otu_kept.*:\s52" />
                 </assert_contents>
             </output>
         </test>

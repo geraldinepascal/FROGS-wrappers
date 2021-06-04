@@ -66,6 +66,7 @@
             <param name="varExp" value="EnvType" />
             <param name="measures" value="Observed,Chao1,Shannon" />
             <output name="alphaD" file="references/18-phylo_alpha_div.tsv" compare="diff" lines_diff="0" />
+            <output name="html" value="references/18-phylo_alpha_div.nb.html" compare="diff" lines_diff="0"/>
         </test>
     </tests>
     <help>

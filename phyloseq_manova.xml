@@ -54,14 +54,7 @@
 			<param name="data" value="references/16-phylo_import.Rdata"/>
 			<param name="varExp" value="EnvType"/>
 			<param name="method" value="references/unifrac.tsv"/>
-
-            <output name="html">
-                <assert_contents>
-                    <has_text_matching expression="EnvType    7    7.6565 1.09379  13.699 0.63132  1e-04 \*\*\*" />
-                    <has_text_matching expression="Residuals 56    4.4713 0.07984         0.36868           " />
-                    <has_text_matching expression="Total     63   12.1278                 1.00000           " />
-                </assert_contents>
-            </output>
+			<output name="html" value="references/22-phylo_manova.nb.html" compare="diff" lines_diff="0"/>
 		</test>
 	</tests>
 	<help>
