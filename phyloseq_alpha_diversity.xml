@@ -15,13 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Alpha Diversity" id="FROGSSTAT_Phyloseq_Alpha_Diversity" version="3.2.2">
+<tool name="FROGSSTAT Phyloseq Alpha Diversity" id="FROGSSTAT_Phyloseq_Alpha_Diversity" version="3.2.3">
 	<description>with richness plot</description>
         <requirements>
             <requirement type="package" version="3.2.">frogs</requirement>
-            <requirement type="package" version="3.6.3">r-base</requirement>
-            <requirement type="package" version="3.6">r-essentials</requirement>
-            <requirement type="package" version="1.30.0">bioconductor-phyloseq</requirement>
+            <requirement type="package" version="4.0.5">r-base</requirement>
+            <requirement type="package" version="4.0">r-essentials</requirement>
+            <requirement type="package" version="1.34.0">bioconductor-phyloseq</requirement>
 
 <!--             <requirement type="package" version="1.1">r-markdown</requirement>
             <requirement type="package" version="2.11.4">pandoc</requirement> -->
@@ -66,6 +66,7 @@
             <param name="varExp" value="EnvType" />
             <param name="measures" value="Observed,Chao1,Shannon" />
             <output name="alphaD" file="references/18-phylo_alpha_div.tsv" compare="diff" lines_diff="0" />
+            <output name="html" value="references/18-phylo_alpha_div.nb.html" compare="diff" lines_diff="0"/>
         </test>
     </tests>
     <help>

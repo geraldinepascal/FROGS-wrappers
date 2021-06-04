@@ -15,53 +15,48 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="3.2.2">
-	<description>Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
- 	<requirements>
-        <requirement type="package" version="3.2.2">frogs</requirement>
+<tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="3.2.3">
+  <description>Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
+  <requirements>
+        <requirement type="package" version="3.2.3">frogs</requirement>
         <requirement type="package" version="2.10">blast</requirement>
         <requirement type="package" version="6.6.0">emboss</requirement>
         <requirement type="package" version="2.0.3">rdptools</requirement>
     </requirements>
-	<command detect_errors="exit_code">
-		#set $reference_filename = str( $ref_file.fields.path )
-		affiliation_OTU.py 
-		                       --reference '${reference_filename}'
-		                       --input-biom $biom_abundance 
-		                       --input-fasta $fasta_sequences
-		                       --output-biom $biom_affiliation 
-		                       --summary $summary 
-		                       --nb-cpus \${GALAXY_SLOTS:-1}
-		                       --java-mem $mem 
-		                       #if $rdp
-		                       		--rdp
-		                       	#end if
-	</command>
-	<inputs>
-		<!-- JOB Parameter -->
-		<param name="mem" type="hidden" label="Memory allocation" help="The number of Go to allocation for java" value="20"></param>
-		<!-- Database Choice -->
-		<param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
-	       		<options from_data_table="frogs_db"></options>
-			<validator type="no_options" message="A built-in database is not available" />
-		</param> 
-   	<param name="rdp" type="boolean" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allow you to perform it also with RDP classifier (default No)" />
+  <command detect_errors="exit_code">
+    #set $reference_filename = str( $ref_file.fields.path )
+    affiliation_OTU.py 
+                           --reference '${reference_filename}'
+                           --taxonomy-ranks $taxonomic_ranks
+                           --input-biom $biom_abundance 
+                           --input-fasta $fasta_sequences
+                           --output-biom $biom_affiliation 
+                           --summary $summary 
+                           --nb-cpus \${GALAXY_SLOTS:-1}
+                           --java-mem $mem 
+                           #if $rdp
+                              --rdp
+                            #end if
+  </command>
+  <inputs>
+    <!-- JOB Parameter -->
+    <param name="mem" type="hidden" label="Memory allocation" help="The number of Go to allocation for java" value="20"></param>
+    <!-- Database Choice -->
+    <param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
+            <options from_data_table="frogs_db"></options>
+      <validator type="no_options" message="A built-in database is not available" />
+    </param> 
+    <param name="rdp" type="boolean" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allow you to perform it also with RDP classifier (default No)" />
+    <param name="taxonomic_ranks" type="text" label="Taxonomic ranks" help="The ordered taxonomic ranks levels stored in the taxonomical reference. Each rank is separated by one space." optional="false" value="Domain Phylum Class Order Family Genus Species" size="80" />
     <!-- Files -->
     <param format="fasta" name="fasta_sequences" type="data" label="OTU seed sequence" help="OTU sequences (format: fasta)."/>
     <param format="biom1" name="biom_abundance" type="data" label="Abundance file" help="OTU abundances (format: BIOM)."/>
-	</inputs>
-	<outputs>
-		<data format="biom1" name="biom_affiliation" label="${tool.name}: affiliation_abundance.biom" from_work_dir="affiliation.biom" />
-		<data format="html" name="summary" label="${tool.name}: report.html" from_work_dir="report.html"/>
-	</outputs>
+  </inputs>
+  <outputs>
+    <data format="biom1" name="biom_affiliation" label="${tool.name}: affiliation_abundance.biom" from_work_dir="affiliation.biom" />
+    <data format="html" name="summary" label="${tool.name}: report.html" from_work_dir="report.html"/>
+  </outputs>
         <tests>
-            <test>
-                <param name="ref_file" value="ITS1_test"/>
-                <param name="fasta_sequences" value="references/04-filters.fasta"/>
-                <param name="biom_abundance" value="references/04-filters.biom"/>
-                <output name="biom_affiliation" file="references/06-affiliation2.biom" compare="sim_size" delta="0" />
-                <output name="summary" file="references/06-affiliation2.html" compare="diff" lines_diff="0"/>
-            </test>
             <test>
                 <param name="ref_file" value="ITS1_test"/>
                 <param name="fasta_sequences" value="references/04-filters.fasta"/>
@@ -73,7 +68,7 @@
 
         </tests>
 
-  	<help>
+    <help>
 
 .. image:: static/images/FROGS_logo.png 
    :height: 144
@@ -167,10 +162,10 @@ With the classical method of %id calculation, filtering on %id will systematical
 For the precedent use cases we will obtain:
 
 * Case 1: 16S V3V4 overlapped sequence
-	% sequenced bases identity = 400 matches / 400 bp = 100%
+  % sequenced bases identity = 400 matches / 400 bp = 100%
 
 * Case 2: very large ITS1 “FROGS combined” shorter than the real sequence
-	% sequenced bases identity = (250 + 250 ) / (600 - 100) = 100%
+  % sequenced bases identity = (250 + 250 ) / (600 - 100) = 100%
 
 This calculation allows to return 100% of identity on sequenced bases for “FROGS combined” shorter or longer than reality in case of perfect sequencing, and a smaller percentage of identity in the case of small overlap repeat kept in FROGS combined sequence. 
 
@@ -196,5 +191,5 @@ Website: http://frogs.toulouse.inrae.fr/
 
 Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
-	</help>
+  </help>
 </tool>

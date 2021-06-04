@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_affiliation_filters" name="FROGS Affiliation Filters" version="3.2.2">
+<tool id="FROGS_affiliation_filters" name="FROGS Affiliation Filters" version="3.2.3">
 	<description>Filters OTUs on several affiliation criteria.</description>
         <requirements>
-            <requirement type="package" version="3.2.2">frogs</requirement>
+            <requirement type="package" version="3.2.3">frogs</requirement>
         </requirements>
         <stdio> 
                 <exit_code range="1:" />
@@ -106,8 +106,8 @@
 
 	</inputs>
 	<outputs>
-		<data format="biom1" name="output_biom" label="${tool.name}: abundance.biom" from_work_dir="abundance.biom" />
-		<data format="fasta" name="output_fasta" label="${tool.name}: sequences.fasta" from_work_dir="sequences.fasta">
+		<data format="biom1" name="output_biom" label="${tool.name}: affiFilter_abundance.biom" from_work_dir="affiFilter_abundance.biom" />
+		<data format="fasta" name="output_fasta" label="${tool.name}: affiFilter_sequences.fasta" from_work_dir="affiFilter_sequences.fasta">
 			<filter> conditional_mode['mode'] == 'delete'</filter>
 		</data>
 		<data format="tabular" name="output_impacted" label="${tool.name}: impacted_OTU.tsv" from_work_dir="impacted.tsv" />

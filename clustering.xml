@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_clustering" name="FROGS Clustering swarm" version="3.2.2">
+<tool id="FROGS_clustering" name="FROGS Clustering swarm" version="3.2.3">
     <description>Single-linkage clustering on sequences</description>
         <requirements>
-                <requirement type="package" version="3.2.2">frogs</requirement>
+                <requirement type="package" version="3.2.3">frogs</requirement>
                 <requirement type="package" version="3.0.0">swarm</requirement>
         </requirements>
         <stdio>

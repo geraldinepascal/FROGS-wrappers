@@ -43,4 +43,4 @@
 #-rw-rwxr-- 1 gpascal FROGS 1348 16 sept.  2015 phi.fa.nsq
 #
 #phiX	phiX	tool-data/contaminant_db/phi.fa
-#Arabido_TAIR10_Chl_Mito	Arabidopsis TAIR10 Chloroplast and mitochondrie	tool-data/contaminant_db/Araport11-TAIR10Col0_Chl_MT.fa
+#Arabido_TAIR10_Chl_Mito	Arabidopsis TAIR10 Chloroplast and mitochondria	tool-data/contaminant_db/Araport11-TAIR10Col0_Chl_MT.fa
