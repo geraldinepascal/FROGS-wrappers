@@ -1,3 +1,13 @@
+# v3.2.3 [2021-06]
+
+## Modifications:
+
+* Affiliation_OTU : add a taxonomic rank parameter to correctly take into account taxonomy not defined on commonly used 7 ranks.
+* Update R and package dependencies to version 4.0.5 (because of trouble installing DESeq2 version 1.26).
+* Rename OTU FIlter and Affiliation Filter output files.
+
+
+
 # v3.2.2 [2021-04]
 
 ### Tools added:
