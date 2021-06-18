@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_biom_to_stdBiom" name="FROGS BIOM to std BIOM" version="3.2.3">
+<tool id="FROGS_biom_to_stdBiom" name="FROGS BIOM to std BIOM" version="3.2.3.1">
 	<description>Converts a FROGS BIOM in fully compatible BIOM.</description>
         <requirements>
             <requirement type="package" version="3.2.3">frogs</requirement>

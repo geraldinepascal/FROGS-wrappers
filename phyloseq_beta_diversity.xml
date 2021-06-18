@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Beta Diversity" id="FROGSSTAT_Phyloseq_Beta_Diversity" version="3.2.3">
+<tool name="FROGSSTAT Phyloseq Beta Diversity" id="FROGSSTAT_Phyloseq_Beta_Diversity" version="3.2.3.1">
 	<description>distance matrix</description>
         <requirements>
             <requirement type="package" version="3.2.3">frogs</requirement>

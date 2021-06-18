@@ -1,3 +1,13 @@
+# v3.2.3.1 [2021-06]
+
+This version still refers to FROGS_3.2.3 suit.
+
+## Modifications:
+
+* DESeq2 visualisation : correctly use the reference modality (in the tool conf pannel) as the expected modality2 in the deseq2_visualisation.py command line. Results were correct in the previous version but the reference condition was not the one precised by the user.
+
+  
+
 # v3.2.3 [2021-06]
 
 ## Modifications:

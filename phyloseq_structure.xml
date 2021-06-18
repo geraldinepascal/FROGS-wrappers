@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Structure Visualisation" id="FROGSSTAT_Phyloseq_Structure_Visualisation" version="3.2.3">
+<tool name="FROGSSTAT Phyloseq Structure Visualisation" id="FROGSSTAT_Phyloseq_Structure_Visualisation" version="3.2.3.1">
 	<description>with heatmap plot and ordination plot</description>
     <requirements>
         <requirement type="package" version="3.2.3">frogs</requirement>
