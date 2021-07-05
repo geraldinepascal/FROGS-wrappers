@@ -24,12 +24,17 @@ __status__ = 'dev'
     <command >
 	   FPStep2.py
 	   		--tree $input_tree
-	   		--category $category
-	   		--function $function
+	   		#if $traitsTable.category == "16S"
+	   			--in_trait $traitsTable.function
+	   		#end if
 	   		--hsp_method $hsp_method
 	   		--output_marker $out_marker
 	   		--output_function $out_function
 	   		--debug
+	   		#if $traitsTable.category != "16S"
+	   		--observed_marker_table ${traitsTable.marker_table.value}
+	   		--observed_trait_table ${traitsTable.traits_table.value}
+	   		#end if
 	</command> 
 
 
@@ -43,19 +48,39 @@ __status__ = 'dev'
         </param>
 
 	   			 <!-- Parameters-->
-        <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
-        	<option value="16S">16S</option>
-        	<option value="ITS">ITS</option>
-        	<option value="18S">18S</option>
-		</param>
-		<param name="function" type="select" label="Function table" help="Note that EC is required for FPStep4." multiple="true" display="checkboxes">
-			 <option value="EC" selected="true">EC</option>
-             <option value="KO">KO</option>
-             <option value="PFAM">PFAM</option>
-             <option value="COG">COG</option>
-             <option value="TIGRFAM">TIGRFAM</option>
-             <option value="PHENO">PHENO</option>
-		</param> 
+		<conditional name="traitsTable">
+	        <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
+	        	<option value="16S">16S</option>
+	        	<option value="other">Other</option>
+			</param>
+				<when value="16S">
+					<param name="function" type="select" label="Function table" help="Note that EC is required for FPStep4." multiple="true" display="checkboxes">
+					 <option value="EC" selected="true">EC</option>
+		             <option value="KO">KO</option>
+		             <option value="PFAM">PFAM</option>
+		             <option value="COG">COG</option>
+		             <option value="TIGRFAM">TIGRFAM</option>
+		             <option value="PHENO">PHENO</option>
+					</param>
+				</when>
+				<when value="other">
+				<param name="marker_table" type="select" label="Input marker table.">
+					<options from_data_table="picrust2_marker_table">
+						        <column name="name" index="2"/>
+        						<column name="value" index="2"/>
+						<validator type="no_options" message="A built-in database is not available" />
+					</options>
+				</param>
+				<param name="traits_table" type="select" label="Input traits table.">
+					<options from_data_table="picrust2_traits_table">
+						        <column name="name" index="2"/>
+        						<column name="value" index="2"/>
+						<validator type="no_options" message="A built-in database is not available" />
+					</options>
+				</param>
+				</when>
+		</conditional>
+
 		<param name="hsp_method" type="select" label="HSP method" help='HSP method to use."mp": predict discrete traits usingmax parsimony. "emp_prob": predict discrete traits based on empirical state probabilities across tips. "subtree_average": predict continuous traits using subtree averaging. "pic": predict continuous traits with phylogentic independent contrast. "scp": reconstruct continuous traits using squared-change parsimony (default: mp).' multiple="false" display="radio">
              <option value="mp">mp</option>
              <option value="emp_prob">emp_prob</option>

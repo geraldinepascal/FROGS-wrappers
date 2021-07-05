@@ -33,7 +33,6 @@
 	   	FPStep1.py
 	   		--input_fasta $input_fasta
 	   		--input_biom $input_biom
-	   		--category $category
 	   		--min_align $min_align
 	   		--placement_tool $placement_tool
 	   		--out_tree $out_tree 
@@ -43,7 +42,9 @@
 	   		--html $html
 	   		--debug
 
-
+	   		#if $picrustDir.category != "16S"
+	   		--ref_dir ${picrustDir.default_dir.value}
+	   		#end if
 	</command> 
 
 
@@ -54,10 +55,24 @@
 		<param format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance table of OTUs (format: biom)." optional="false">
         	<validator type="empty_field" message="This parameter is required." />
         </param>
-        <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
-        	<option value="16S">16S</option>
-        	<option value="ITS">ITS</option>
-		</param>
+
+
+		<conditional name="picrustDir">
+			<param name="category" type="select" label="Taxonomic marker." help="Taxonomic marker of interest." multiple="false" display="radio">
+				<option value="16S">16S</option>
+				<option value="other">Other</option>
+			</param>
+			<when value="other">
+			<param name="default_dir" type="select" label="Taxonomy marker input directories from picrust2 .">
+				<options from_data_table="picrust2_default_dir">
+     			   <column name="name" index="1"/>
+        			<column name="value" index="2"/>
+					<validator type="no_options" message="A built-in database is not available" />
+				</options>
+			</param>
+			</when>
+		</conditional>
+
         <param name="placement_tool" type="select" label="Placement tool" help="Placement tool to insert OTU (or ASV) into the reference tree." multiple="false" display="radio">
         	<option value="epa-ng">epa-ng</option>
         	<option value="sepp">sepp</option>
