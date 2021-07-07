@@ -99,7 +99,7 @@ __status__ = 'dev'
 
 
      <help>
-.. image:: ./static/images/frogs_images/FROGS_logo.png  
+.. image:: ./static/images/FROGS_logo.png
    :height: 144
    :width: 110
 
@@ -118,43 +118,45 @@ Inputs/Outputs
 
 .. class:: h3
 
-Input
+Inputs
 
 
 **OTUs tree**:
 
 **Newick file** (tree.nwk):
 
-The phylogenetic tree in Newick format (format `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
-
- .. image:: static/images/frogs_images/nwk_treefile.png
+The phylogenetic tree of insert sequences (FPStep 1 output, FPStep1.tree) (format `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
 
 **OTUs biom file**:
 
 The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
 This file can be obtained in particular with the FROGS pipeline.
 
-
 **Table of prediction **:
 
-Which default pre-calculated count table to use (one of '16S', 'COG', 'EC', 'KO', 'PFAM', 'TIGRFAM', 'PHENO')
+If the genetic marker studied is 16S RNA gene:
+Which default pre-calculated count table to use (one of 'COG', 'EC', 'KO', 'PFAM', 'TIGRFAM', 'PHENO')
 
+** Observed marker table **:
+
+If the genetic marker studied is not 16S RNA gene:
+Please specified input marker table describing directly observed traits.
+
+** Observed trait table **:
+
+If the genetic marker studied is not 16S RNA gene:
+Please specified input function table describing directly observed traits.
 .. class:: h3
 
 Outputs
 
-**Prediction result ** (out.tsv):
+** Output marker file **:
 
- 
-The table with abundances each cluster in each sample and NSTI for each cluster (format TSV).
+Output table of predicted marker gene copy numbers per study sequence in input tree. (FPStep2_marker_nsti_predicted.tsv)
 
-Authorised column names :  sequence_OTU, prediction_Count_OTU, NST
+** Output function file **:
 
-
-
-**Html file** (summary.html):
-   
-The summary file describing which OTUs are contained or not in the phylogenetic tree.
+Output table with predicted abundances per study sequence in input tree. (FPStep2_all_predicted.tsv)
 
 .. class:: infomark page-header h2
 

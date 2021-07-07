@@ -74,7 +74,7 @@ __status__ = 'dev'
     </outputs>
 
      <help>
-.. image:: ./static/images/frogs_images/FROGS_logo.png  
+.. image:: ./static/images/FROGS_logo.png
    :height: 144
    :width: 110
 
@@ -85,54 +85,41 @@ What it does
 Prediction of functional abundances based solely on the sequences of marker genes with 'PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. 
 The third step of Picrust2 Determine the abundance of gene families for each sample.
 
-
-.. class:: infomark page-header h2
-
 Inputs/Outputs
 
 .. class:: h3
 
-Input
-
-
-**OTUs tree**:
-
-**Prediction result ** (marke.tsv):
-
- 
-The table with abundances each cluster in each sample and NSTI for each cluster (format TSV).
-
-Authorised column names :  sequence_OTU, prediction_Count_OTU, NSTI
-
-**Prediction result ** (function_predict.tsv):
-
- 
-The table of gene prediction for each cluster (format TSV).
-
-Authorised column names :  sequence_OTU, function identifier, NSTI
+Inputs
 
 **OTUs biom file**:
 
-The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
-This file can be obtained in particular with the FROGS pipeline.
+The OTUs biom file used in FPStep1. (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
+**Prediction result ** (marke.tsv):
+
+** Output marker file **:
+
+The table of predicted marker gene copy numbers per study sequence in input tree. (FPStep2_marker_nsti_predicted.tsv)
+
+** Output function file **:
+
+The table with predicted abundances per study sequence in input tree. (FPStep2_all_predicted.tsv)
 
 
 .. class:: h3
 
 Outputs
 
-**Prediction result ** (out.tsv):
-
+**Function abundance file **:
  
-The table with abundances each cluster in each sample and NSTI for each cluster (format TSV).
+Output file for metagenome predictions abundance. (FPStep3_pred_metagenome_unstrat.tsv)
 
-Authorised column names :  .....
+** Seqtab normalized file **:
 
+Output file with abundance normalized. (FPStep3_seqtab_norm.tsv)
 
+** Weighted nsti file **:
 
-**Html file** (summary.html):
-   
-The summary file describing which OTUs are contained or not in the phylogenetic tree.
+Output file with nsti value per sample
 
 .. class:: infomark page-header h2
 

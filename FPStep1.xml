@@ -108,7 +108,7 @@
 
 
      <help>
-.. image:: ./static/images/frogs_images/FROGS_logo.png  
+.. image:: ./static/images/FROGS_logo.png
    :height: 144
    :width: 110
 
@@ -134,8 +134,6 @@ Input
 
 The OTUs sequence file (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
 
-.. image:: static/images/frogs_images/frogs_tree_otufile.png
-
 **OTUs biom file**:
 
 The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
@@ -145,13 +143,25 @@ This file can be obtained in particular with the FROGS pipeline.
 
 Outputs
 
-**Newick file** (tree.nwk):
+**Newick file** (FPStep1.tree):
 
-The phylogenetic tree in Newick format (format `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
+The phylogenetic tree output with insert sequences (format: newick). (format `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
 
- .. image:: ./static/images/frogs_images/nwk_treefile.png
+ .. image:: ./static/images/FROGS_nwk_treefile.png
 
-**Html file** (summary.html):
+**Excluded sequences file** (FPSTep1_excluded.txt):
+
+List of sequences not inserted in the tree.
+
+**FPStep1 fasta file**
+
+OTUs sequence file without non insert sequences. (FPStep1.fasta)
+
+**FPStep1 biom file**
+
+OTUs biom file without non insert sequences. (FPStep1.biom)
+
+**Html file** (FPStep1_summary.html):
    
 The summary file describing which OTUs are contained or not in the phylogenetic tree.
 

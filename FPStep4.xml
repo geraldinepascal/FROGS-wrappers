@@ -100,7 +100,7 @@ __status__ = 'dev'
 
 
      <help>
-.. image:: ./static/images/frogs_images/FROGS_logo.png  
+.. image:: ./static/images/FROGS_logo.png
    :height: 144
    :width: 110
 
@@ -120,13 +120,13 @@ Inputs/Outputs
 
 Input
 
-**Prediction result per sample ** (function_predict.tsv):
+**Prediction result per sample **:
 
- 
-The table of gene prediction for each cluster (format TSV).
+Input TSV table of gene family abundances (FPStep3_pred_metagenome_unstrat.tsv)
 
-Authorised column names :  sequence_OTU, function identifier, NSTI
+**Map file**:
 
+Mapping of pathways to reactions, necessary if marker studied is not 16S (metacyc_path2rxn_struc_filt_fungi.txt for ITS analysis.')
 
 .. class:: h3
 
@@ -134,16 +134,7 @@ Outputs
 
 **Pathway Prediction result per sample ** (pathway.tsv):
 
- 
-The table with abundances each cluster in each sample for each cluster (format TSV).
-
-Authorised column names :  .....
-
-
-
-**Html file** (summary.html):
-   
-The summary file describing which OTUs are contained or not in the phylogenetic tree.
+Pathway abundance for each samples file output. (FPStep4_path_abun_unstrat.tsv)
 
 .. class:: infomark page-header h2
 
