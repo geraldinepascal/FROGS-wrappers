@@ -64,7 +64,7 @@
 			</param>
 			<when value="other">
 			<param name="default_dir" type="select" label="Taxonomy marker input directories from picrust2 .">
-				<options from_data_table="picrust2_default_dir">
+				<options from_data_table="frogs_picrust2_default_dir">
      			   <column name="name" index="1"/>
         			<column name="value" index="2"/>
 					<validator type="no_options" message="A built-in database is not available" />

@@ -50,7 +50,7 @@ __status__ = 'dev'
             <validator type="empty_field" message="This parameter is required." />
         </param>
         <param name="description" type='select' label="Folder of descriptions functions files" help="In order to add a description columns to the function abundance table" optional="true">
-            <options from_data_table="picrust2_description_dir">
+            <options from_data_table="frogs_picrust2_description_dir">
                                 <column name="name" index="2"/>
                                 <column name="value" index="2"/>
                         <validator type="no_options" message="A built-in database is not available" />
