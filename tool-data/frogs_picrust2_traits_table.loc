@@ -1,2 +1,2 @@
-picrust2_traits_table_ITS	ITS	/usr/local/bioinfo/src/PICRUSt2/picrust2-2.0.3-b/default_files/fungi/ec_ITS_counts.txt.gz
-picrust2_traits_table_18S	18S	/usr/local/bioinfo/src/PICRUSt2/picrust2-2.0.3-b/default_files/fungi/ec_18S_counts.txt.gz
+picrust2_traits_table_ITS	ITS	/usr/local/bioinfo/src/PICRUSt2/picrust2-2.4.1/picrust2/default_files/fungi/ec_ITS_counts.txt.gz
+picrust2_traits_table_18S	18S	/usr/local/bioinfo/src/PICRUSt2/picrust2-2.4.1/picrust2/default_files/fungi/ec_18S_counts.txt.gz

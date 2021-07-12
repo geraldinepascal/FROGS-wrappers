@@ -1,2 +1,2 @@
-picrust2_default_dir_ITS	ITS	/usr/local/bioinfo/src/PICRUSt2/picrust2-2.0.3-b/default_files/description_mapfiles/fungi/fungi_16S/
-picrust2_default_dir_18S	18S	/usr/local/bioinfo/src/PICRUSt2/picrust2-2.0.3-b/default_files/description_mapfiles/fungi/fungi_18S/
+picrust2_default_dir_ITS	ITS	/usr/local/bioinfo/src/PICRUSt2/picrust2-2.4.1/picrust2/default_files/fungi/fungi_ITS/
+picrust2_default_dir_18S	18S	/usr/local/bioinfo/src/PICRUSt2/picrust2-2.4.1/picrust2/default_files/fungi/fungi_18S/
