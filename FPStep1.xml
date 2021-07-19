@@ -60,9 +60,9 @@
 		<conditional name="picrustDir">
 			<param name="category" type="select" label="Taxonomic marker." help="Taxonomic marker of interest." multiple="false" display="radio">
 				<option value="16S">16S</option>
-				<option value="ITS">ITS</option>
-				<option value="18S">18S</option>
+				<option value="other">Other</option>
 			</param>
+			<when value="other">
 			<param name="default_dir" type="select" label="Taxonomy marker input directories from picrust2 .">
 				<options from_data_table="frogs_picrust2_default_dir">
      			   <column name="name" index="1"/>
