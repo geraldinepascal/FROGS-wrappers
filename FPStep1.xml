@@ -42,7 +42,7 @@
 	   		--html $html
 	   		--debug
 
-	   		#if $picrustDir.category != "16S"
+	   		#if $default_dir.name != "16S"
 	   		--ref_dir ${picrustDir.default_dir.value}
 	   		#end if
 	</command> 
@@ -56,22 +56,13 @@
         	<validator type="empty_field" message="This parameter is required." />
         </param>
 
-
-		<conditional name="picrustDir">
-			<param name="category" type="select" label="Taxonomic marker." help="Taxonomic marker of interest." multiple="false" display="radio">
-				<option value="16S">16S</option>
-				<option value="other">Other</option>
-			</param>
-			<when value="other">
-			<param name="default_dir" type="select" label="Taxonomy marker input directories from picrust2 .">
-				<options from_data_table="frogs_picrust2_default_dir">
-     			   <column name="name" index="1"/>
-        			<column name="value" index="2"/>
+        <param name="default_dir" type="select" label="Taxonomy marker input directories from picrust2 .">
+			<options from_data_table="frogs_picrust2_default_dir">
+	     		<column name="name" index="1"/>
+	        	<column name="value" index="2"/>
 					<validator type="no_options" message="A built-in database is not available" />
-				</options>
-			</param>
-			</when>
-		</conditional>
+			</options>
+		</param>
 
         <param name="placement_tool" type="select" label="Placement tool" help="Placement tool to insert OTU (or ASV) into the reference tree." multiple="false" display="radio">
         	<option value="epa-ng">epa-ng</option>
