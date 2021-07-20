@@ -51,7 +51,8 @@ __status__ = 'dev'
 		<conditional name="traitsTable">
 	        <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
 	        	<option value="16S">16S</option>
-	        	<option value="other">Other</option>
+	        	<option value="ITS">ITS</option>
+	        	<option value="18S">18S</option>
 			</param>
 				<when value="16S">
 					<param name="function" type="select" label="Function table" help="Note that EC is required for FPStep4." multiple="true" display="checkboxes">
@@ -63,7 +64,7 @@ __status__ = 'dev'
 		             <option value="PHENO">PHENO</option>
 					</param>
 				</when>
-				<when value="other">
+				<when value="ITS">
 				<param name="marker_table" type="select" label="Input marker table.">
 					<options from_data_table="frogs_picrust2_marker_table">
 						        <column name="name" index="2"/>
