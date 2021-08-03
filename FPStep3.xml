@@ -100,7 +100,7 @@ The table of predicted marker gene copy numbers per study sequence in input tree
 
 ** Output function file **:
 
-The table with predicted abundances per study sequence in input tree. (FPStep2_all_predicted.tsv)
+The table with predicted abundances per study sequence in input tree.  (FPStep2_all_predicted.tsv)
 
 
 .. class:: h3
