@@ -42,11 +42,10 @@
   </section>
   <section id="frogs_local" name="FROGS local">
     <label id="fpsteps" text="FPSteps" />
-    <tool file="FPSteps/FPStep1.xml" />
-    <tool file="FPSteps/FPStep2.xml" />
-    <tool file="FPSteps/FPStep3.xml" />
-    <tool file="FPSteps/FPStep4.xml" />
-    <tool file="FPSteps/normalisation.xml" />
+    <tool file="FROGS-wrappers/FPStep1.xml" />
+    <tool file="FROGS-wrappers/FPStep2.xml" />
+    <tool file="FROGS-wrappers/FPStep3.xml" />
+    <tool file="FROGS-wrappers/FPStep4.xml" />
   </section>
   <section id="expression_tools" name="Expression Tools">
     <tool file="expression_tools/parse_values_from_file.xml"/>
