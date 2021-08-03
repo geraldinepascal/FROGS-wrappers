@@ -47,16 +47,13 @@ __status__ = 'dev'
         <param format="tabular" name="marker" type="data" label="Marker file" help="Table of predicted marker gene copy numbers (output of FPStep2 : marker_nsti_predicted.tsv by default)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-        <param name="description">
+        <param name="description" type='select' label="Folder of descriptions functions files" help="In order to add a description columns to the function abundance table" optional="true">
             <options from_data_table="frogs_picrust2_description_dir">
                                 <column name="name" index="2"/>
                                 <column name="value" index="2"/>
+                        <validator type="no_options" message="A built-in database is not available" />
             </options>
         </param>
-
-<param name="index" type="select">
-    <options from_data_table="bowtie_indexes" />
-  </param>
         <param name="max_nsti" type="float" label="NSTI cut-off" help="Sequences with NSTI values above this value will be excluded (default: 2)" value="2" min="0" max="4" optional="false" /> 
         <param name="min_reads" type="integer" optional="false" min="1" value="1" label="Minimum number of reads accross all samples" help='Minimum number of reads across all samples for each input ASV. ASVs below this cut-off will be counted as part of the "RARE" category in the stratified output (default: 1).' />
        <param name="min_samples" type="integer" optional="false" min="1" value="1" label="Minimum number of samples to be identified"  help='Minimum number of samples that an ASV needs to be identified within. ASVs below this cut-off will be counted as part of the "RARE" category in the stratified output (default: 1).' />
