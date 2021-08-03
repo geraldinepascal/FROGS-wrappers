@@ -34,6 +34,36 @@
     <tool file="${model_tools_path}/sort_collection_list.xml" />
     <tool file="${model_tools_path}/apply_rules.xml" />
   </section>
+  <section id="frogs_local" name="FROGS local">
+    <label id="frogs_otu_construction" text="OTUs reconstruction" />
+    <tool file="FROGS/demultiplex.xml" />
+    <tool file="FROGS/preprocess.xml" />
+    <tool file="FROGS/clustering.xml" />
+    <tool file="FROGS/remove_chimera.xml" />
+    <tool file="FROGS/otu_filters.xml" />
+    <tool file="FROGS/itsx.xml" />
+    <tool file="FROGS/affiliation_OTU.xml" />
+    <tool file="FROGS/affiliation_filters.xml" />
+    <tool file="FROGS/affiliation_postprocess.xml" />
+    <tool file="FROGS/normalisation.xml" />
+    <tool file="FROGS/tree.xml" />
+    <tool file="FROGS/clusters_stat.xml" />
+    <tool file="FROGS/affiliations_stat.xml" />
+    <tool file="FROGS/biom_to_stdBiom.xml" />
+    <tool file="FROGS/biom_to_tsv.xml" />
+    <tool file="FROGS/tsv_to_biom.xml" />
+    <label id="frogsstat_phyloseq" text="OTUs structure and composition analysis" />
+    <tool file="FROGS/phyloseq_import_data.xml" />
+    <tool file="FROGS/phyloseq_composition.xml" />
+    <tool file="FROGS/phyloseq_alpha_diversity.xml" />
+    <tool file="FROGS/phyloseq_beta_diversity.xml" />
+    <tool file="FROGS/phyloseq_clustering.xml" />
+    <tool file="FROGS/phyloseq_structure.xml" />
+    <tool file="FROGS/phyloseq_manova.xml" />
+    <label id="frogsstat_deseq" text="Differential abundance analysis" />
+    <tool file="FROGS/deseq2_preprocess.xml" />
+    <tool file="FROGS/deseq2_visualisation.xml" />
+  </section>     
   <section id="textutil" name="Text Manipulation">
     <tool file="filters/fixedValueColumn.xml" />
     <tool file="filters/catWrapper.xml" hidden="true" />
@@ -116,6 +146,9 @@
     <tool file="phenotype_association/beam.xml" />
     <tool file="phenotype_association/lps.xml" />
     <tool file="phenotype_association/master2pg.xml" />
+  </section>
+  <section id="picrust2" name="FPSteps">
+    <tool file="tools/picrust2/FPStep1.xml" />
   </section>
   <section id="cshl_library_information" name="NGS: QC and manipulation">
     <label id="illumina" text="Illumina data" />

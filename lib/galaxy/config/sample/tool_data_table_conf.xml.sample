@@ -75,6 +75,31 @@
         <columns>value, path</columns>
         <file path="twobit.loc" />
     </table>
+    <!-- Locations of picrust2 default directory -->
+   <table name="frogs_picrust2_default_dir" comment_char="#">
+        <columns>value, name, path</columns>
+        <file path="tool-data/frogs_picrust2_default_dir.loc" />
+    </table>
+    <!-- Locations of picrust2 description files directory -->
+   <table name="frogs_picrust2_description_dir" comment_char="#">
+        <columns>value, name, path</columns>
+        <file path="tool-data/frogs_picrust2_description_dir.loc" />
+    </table>
+        <!-- Locations of picrust2 marker table files -->
+   <table name="frogs_picrust2_marker_table" comment_char="#">
+        <columns>value, name, path</columns>
+        <file path="tool-data/frogs_picrust2_marker_table.loc" />
+    </table>
+        <!-- Locations of picrust2 traits table files -->
+   <table name="frogs_picrust2_traits_table" comment_char="#">
+        <columns>value, name, path</columns>
+        <file path="tool-data/frogs_picrust2_traits_table.loc" />
+    </table>
+    <!-- Locations of picrust2 pathway map files -->
+   <table name="frogs_picrust2_pathway_map" comment_char="#">
+        <columns>value, name, path</columns>
+        <file path="tool-data/frogs_picrust2_pathway_map.loc" />
+    </table>
     <!-- Available IGV builds, loaded from URL -->
     <table name="igv_broad_genomes" comment_char="#" allow_duplicate_entries="False">
         <columns>name, url, value</columns>
