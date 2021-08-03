@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!--
+# Copyright (C) 2017 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="3.2.3.1">
+    <description>with bar plot and composition plot</description>
+    <requirements>
+        <requirement type="package" version="3.2.3">frogs</requirement>
+        <requirement type="package" version="4.0.5">r-base</requirement>
+        <requirement type="package" version="4.0">r-essentials</requirement>
+        <requirement type="package" version="1.34.0">bioconductor-phyloseq</requirement>
+        <requirement type="package" version="4.9.3">r-plotly</requirement>
+    </requirements>
+    <stdio> 
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
+    <command>phyloseq_composition.py 
+                          --rdata $data 
+                          --varExp $varExp 
+                          --taxaRank1 $taxaRank1 
+                          --taxaSet1 $taxaSet1 
+                          --taxaRank2 $taxaRank2 
+                          --numberOfTaxa $numberOfTaxa
+                          --html $html 
+    </command>
+    <inputs>
+        <!-- Files -->
+        <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data tool." optional="false">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+        <!-- Parameters --> 
+        <param name="varExp" type="text" label="Grouping variable" help="Experimental variable used to group samples (Treatment, Host type, etc)." optional="false" value="" size="20">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+        <param name="taxaRank1" type="text" label="Taxonomic level to filter your data" help="ex: Kingdom, Phylum, Class, Order, Family, Genus, Species" value="Kingdom"  size="20">     
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+        <param name="taxaSet1" type="text" label="Taxa (at the above taxonomic level) to keep in the dataset" help="ex: Bacteria (when filtering at the Kingdom level), Firmicutes (when filtering at the Phylum level). Multiple taxa (separated by a space) can be specified, i.e. Firmicutes Proteobacteria" value="Bacteria" size="20">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+        <param name="taxaRank2" type="text" label="Taxonomic level used for aggregation" help="ex: Family (when filtering at the Phylum level). The aggregation level must be below the filtering level." value="Phylum" size="20">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+        <param name="numberOfTaxa" type="text" label="Number of most abundant taxa to keep" help="ex: 9, i.e. Tool keeps the 9 most abundant taxa and the remaining taxa are aggregated in a group 'Other'" value="9" size="20">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+    </inputs>
+    <outputs>
+        <data format="html" name="html" label="${tool.name}: composition.nb.html" from_work_dir="composition.nb.html"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="data" value="references/16-phylo_import.Rdata" />
+            <param name="varExp" value="EnvType" />
+            <param name="taxaRank1" value="Kingdom" />
+            <param name="taxaSet1" value="Bacteria" />
+            <param name="taxaRank2" value="Phylum" />
+            <param name="numberOfTaxa" value="9" />
+            <output name="html">
+                <assert_contents>   
+                    <!-- "<br />" is replaced by ".*" -->
+                    <has_text_matching expression="Phylum: Actinobacteria.*Sample: BHT0.LOT07.*Abundance: 0.3806484555" />
+                    <has_text_matching expression="Phylum: Bacteroidetes.*Sample: BHT0.LOT07.*Abundance: 0.0026380734" />
+                    <has_text_matching expression="Phylum: Cyanobacteria.*Sample: BHT0.LOT07.*Abundance: 0.0000000000" />
+                    <has_text_matching expression="Phylum: Firmicutes.*Sample: BHT0.LOT07.*Abundance: 0.6024168156" />
+                    <has_text_matching expression="Phylum: Fusobacteria.*Sample: BHT0.LOT07.*Abundance: 0.0002552974" />
+                    <has_text_matching expression="Phylum: Proteobacteria.*Sample: BHT0.LOT07.*Abundance: 0.0137860608" />
+                    <has_text_matching expression="Phylum: Spirochaetes.*Sample: BHT0.LOT07.*Abundance: 0.0000000000" />
+                    <has_text_matching expression="Phylum: Tenericutes.*Sample: BHT0.LOT07.*Abundance: 0.0002552974" />
+                    <has_text_matching expression="Phylum: Other.*Sample: BHT0.LOT07.*Abundance: 0.0000000000" />
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+    <help> 
+.. image:: static/images/FROGS_logo.png 
+   :height: 144
+   :width: 110
+
+.. class:: infomark page-header h2
+
+What it does
+
+Using `phyloseq &lt;https://joey711.github.io/phyloseq/&gt;`_ and custom R function, this tool constructs two plots to visualise the sample composition: one at the OTU level and another one at the specified aggregation level (*e.g.* Phylum) after keeping only a subset of taxa (*e.g.* Bacteria at the level Kingdom). It helps answer the question: "What is the composition at the Phylum level within Bacteria?". By default, the plot exhibits only the abundance of the 9 most abundant taxa (as specified). In general, the representation of more than 10 taxa is hard to read on plots. 
+
+
+.. class:: infomark page-header h2
+
+Inputs/Outputs
+
+.. class:: h3
+
+Input
+
+**data file** (format rdata):
+One phyloseq object containing the OTU abundance table, their taxonomies and optionnaly a phylogenetic tree, and the sample experiment metadata.
+this file is the result of FROGS Phyloseq Import Data tool.
+
+.. class:: h3
+
+Output
+
+**html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): data composition plots.
+
+Bar plot of OTUs is colored with aggregated taxonomic level *i.e* "Phylum" :
+
+ .. image:: static/images/FROGS_Phyloseq_bar_plot.png 
+     :height: 646
+     :width: 800 
+
+Composition plot: plot the most abundant sub taxonomic level among a selection of OTUs.
+
+- Selection of OTUs:
+
+    - Taxonomic level name to subset: Kingdom
+    - Taxon name: Bacteria
+ 
+- Aggregation of OTUs :
+
+    - Taxonomic level used to agglomerate: Phylum
+ 
+- Number of the most abundant taxa to keep: 9 
+
+ .. image:: static/images/FROGS_Phyloseq_composition_plot.png 
+     :height: 644
+     :width: 800 
+
+.. class:: infomark page-header h2
+
+**Contact**
+
+Contacts: frogs-support@inrae.fr
+
+Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
+
+Website: http://frogs.toulouse.inrae.fr/
+
+Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
+
+    </help>
+</tool>
