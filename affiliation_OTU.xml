@@ -33,10 +33,10 @@
     affiliation_OTU.py
                            --reference '${reference_filename}'
                            --taxonomy-ranks $taxonomic_ranks
-                           --input-biom $biom_abundance
-                           --input-fasta $fasta_sequences
-                           --output-biom $biom_affiliation
-                           --summary $summary
+                           --input-biom '$biom_abundance'
+                           --input-fasta '$fasta_sequences'
+                           --output-biom '$biom_affiliation'
+                           --summary '$summary'
                            --nb-cpus \${GALAXY_SLOTS:-1}
                            --java-mem $mem
                            #if $rdp

@@ -30,8 +30,8 @@
         </stdio>
 	<command>
 		affiliations_stat.py
-		    --input-biom $biom
-		    --output-file $summary_file
+		    --input-biom '$biom'
+		    --output-file '$summary_file'
 		    --taxonomic-ranks $taxonomic_ranks
 		    --rarefaction-ranks $rarefaction_ranks
 		    #if $affiliation.affiliation_type == "FROGS_blast"

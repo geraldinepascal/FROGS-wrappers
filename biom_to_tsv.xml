@@ -30,13 +30,13 @@
         </stdio>
 	<command>
 		biom_to_tsv.py
-		                --input-biom $biom_file
+		                --input-biom '$biom_file'
 		              #if $sequence_file
-		                --input-fasta $sequence_file
+		                --input-fasta '$sequence_file'
 		              #end if
-		                --output-tsv $tsv_file
+		                --output-tsv '$tsv_file'
 		              #if $extract_multi_align
-		                --output-multi-affi $multi_affi_file
+		                --output-multi-affi '$multi_affi_file'
 		              #end if
 	</command>
 	<inputs>

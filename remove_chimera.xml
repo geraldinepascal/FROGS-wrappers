@@ -33,14 +33,14 @@
 	<command>
 		remove_chimera.py
 		                --nb-cpus \${GALAXY_SLOTS:-1}
-		                --input-fasta $sequence_file --non-chimera $non_chimera_fasta
-		                --summary $summary_file
+		                --input-fasta '$sequence_file' --non-chimera '$non_chimera_fasta'
+		                --summary '$summary_file'
 		                #if $abundance_type.abundance_type_selected == "biom"
-		                --input-biom $abundance_biom
-		                --out-abundance $out_abundance_biom
+		                --input-biom '$abundance_biom'
+		                --out-abundance '$out_abundance_biom'
 		                #else
-		                --input-count $abundance_count
-		                --out-abundance $out_abundance_count
+		                --input-count '$abundance_count'
+		                --out-abundance '$out_abundance_count'
 		                #end if
 	</command>
 	<inputs>

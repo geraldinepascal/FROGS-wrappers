@@ -35,12 +35,12 @@
 
 		otu_filters.py
 			--nb-cpus \${GALAXY_SLOTS:-1}
-			--input-biom $input_biom
-			--input-fasta $input_fasta
-			--output-fasta $output_fasta
-			--output-biom $output_biom
-			--excluded $output_excluded
-			--summary $output_summary
+			--input-biom '$input_biom'
+			--input-fasta '$input_fasta'
+			--output-fasta '$output_fasta'
+			--output-biom '$output_biom'
+			--excluded '$output_excluded'
+			--summary '$output_summary'
 
 			#if $min_sample_presence
 				--min-sample-presence $min_sample_presence

@@ -35,11 +35,11 @@
     </stdio>
     <command>
         tree.py
-            --input-sequences $input_otu
-            --biom-file $biomfile
+            --input-sequences '$input_otu'
+            --biom-file '$biomfile'
             --nb-cpus \${GALAXY_SLOTS:-1}
-            --out-tree $out_tree
-            --html $html
+            --out-tree '$out_tree'
+            --html '$html'
     </command>
     <inputs>
     <!-- Files -->

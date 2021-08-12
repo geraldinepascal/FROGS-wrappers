@@ -34,7 +34,7 @@
         </stdio>
 	<command>
 		preprocess.py $sequencer_type.sequencer_selected
-		--output-dereplicated $dereplicated_file --output-count $count_file --summary $summary_file
+		--output-dereplicated '$dereplicated_file' --output-count '$count_file' --summary '$summary_file'
 		--nb-cpus \${GALAXY_SLOTS:-1}
 		--min-amplicon-size $sequencer_type.min_amplicon_size --max-amplicon-size $sequencer_type.max_amplicon_size
 
@@ -49,7 +49,7 @@
 		#end if
 
 		#if $sequencer_type.input_type.input_type_selected == "archive"
-		    --input-archive $sequencer_type.input_type.archive_file
+		    --input-archive '$sequencer_type.input_type.archive_file'
 		    #if $sequencer_type.sequencer_selected == "illumina" and $sequencer_type.input_type.archive_type.archive_type_selected == "already_merged"
 			    --already-contiged
 		    #elif $sequencer_type.sequencer_selected == "illumina"
@@ -72,14 +72,14 @@
 	            #end for
 		        --input-R1
 		        #for $current in $sequencer_type.input_type.files_by_samples_type.samples
-		            $sep${current.R1_file}
+		            $sep'${current.R1_file}'
 		        #end for
 		        #if $sequencer_type.input_type.files_by_samples_type.files_by_samples_type_selected == "already_merged"
 		            --already-contiged
 		        #else
 		            --input-R2
 		            #for $current in $sequencer_type.input_type.files_by_samples_type.samples
-		                $sep${current.R2_file}
+		                $sep'${current.R2_file}'
 		            #end for
 		            --R1-size $sequencer_type.input_type.files_by_samples_type.R1_size --R2-size $sequencer_type.input_type.files_by_samples_type.R2_size
 		            --mismatch-rate $sequencer_type.input_type.files_by_samples_type.mm_rate
@@ -94,7 +94,7 @@
 		    #else
 		        --input-R1
 		        #for $current in $sequencer_type.input_type.samples
-		            $sep${current.R1_file}
+		            $sep'${current.R1_file}'
 		        #end for
 		        --samples-names
 		        #for $current in $sequencer_type.input_type.samples

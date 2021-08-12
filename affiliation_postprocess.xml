@@ -35,11 +35,11 @@
         #end if
 		--identity $identity
 		--coverage $coverage
-                --input-biom $input_biom
-                --input-fasta $input_fasta
-                --output-biom $biom_out
-                --output-fasta $fasta_out
-                --output-compo $compo_out
+                --input-biom '$input_biom'
+                --input-fasta '$input_fasta'
+                --output-biom '$biom_out'
+                --output-fasta '$fasta_out'
+                --output-compo '$compo_out'
 	</command>
 	<inputs>
 		<!-- Files -->

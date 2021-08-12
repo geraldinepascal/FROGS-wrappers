@@ -30,9 +30,9 @@
         </stdio>
 	<command>
 		biom_to_stdBiom.py
-		                --input-biom $input_biom
-		                --output-biom $output_biom
-		                --output-metadata $output_blast_details
+		                --input-biom '$input_biom'
+		                --output-biom '$output_biom'
+		                --output-metadata '$output_blast_details'
 	</command>
 	<inputs>
 		<!-- Files -->

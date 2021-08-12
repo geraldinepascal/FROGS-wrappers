@@ -30,12 +30,12 @@
         </stdio>
 	<command>
 		normalisation.py
-		                       --input-biom $input_biom
-		                       --input-fasta $input_fasta
+		                       --input-biom '$input_biom'
+		                       --input-fasta '$input_fasta'
 		                       --num-reads $num_reads
-		                       --output-biom $output_biom
-		                       --output-fasta $output_fasta
-		                       --summary-file $summary_file
+		                       --output-biom '$output_biom'
+		                       --output-fasta '$output_fasta'
+		                       --summary-file '$summary_file'
 	</command>
 	<inputs>
 		<param format="fasta" name="input_fasta" type="data" label="Sequence file" help="Sequence file to normalise (format: fasta)." />

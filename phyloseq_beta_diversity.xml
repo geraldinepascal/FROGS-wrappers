@@ -31,7 +31,7 @@
 		<exit_code range=":-1" />
 	</stdio>
 	<command>phyloseq_beta_diversity.py
-                                        --rdata $data
+                                        --rdata '$data'
                                         --varExp $varExp
                                         #if $methods != "None"
                                             #if $other_method != ""
@@ -45,7 +45,7 @@
                                             #end if
                                         #end if
                                         --matrix-outdir BetaMatrix
-                                        --html $html
+                                        --html '$html'
 	</command>
     <inputs>
 		<!-- Files -->

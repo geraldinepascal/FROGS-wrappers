@@ -33,14 +33,14 @@
         <exit_code range="1:" />
         <exit_code range=":-1" />
     </stdio>
-    <command>deseq2_visualisation.py --phyloseqData $input_phyloseq
-                                     --dds $input_DDS
+    <command>deseq2_visualisation.py --phyloseqData '$input_phyloseq'
+                                     --dds '$input_DDS'
                                      --var $var
                                      #if $varType.vartType_selected == "qual":
                                          --mod1 $varType.mod1 --mod2 $varType.mod2
                                      #end if
                                      --padj $padj
-                                     --html $html
+                                     --html '$html'
     </command>
     <inputs>
         <!-- Files -->

@@ -34,12 +34,12 @@
 					itsx.py
 		                --nb-cpus \${GALAXY_SLOTS:-1}
 		                --region $region
-		                --input-fasta $input_fasta
-		                --input-biom $input_biom
-		                --out-fasta $out_fasta
-		                --out-abundance $out_abundance_biom
-		                --out-removed $out_excluded
-		                --summary $summary_file
+		                --input-fasta '$input_fasta'
+		                --input-biom '$input_biom'
+		                --out-fasta '$out_fasta'
+		                --out-abundance '$out_abundance_biom'
+		                --out-removed '$out_excluded'
+		                --summary '$summary_file'
 		                --organism-groups $domain
 		                $trim_sequence
 

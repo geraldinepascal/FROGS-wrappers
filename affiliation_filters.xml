@@ -32,16 +32,16 @@
 	<command>
 
 		affiliation_filters.py
-			--input-biom $input_biom
-			--input-fasta $input_fasta
-			--output-biom $output_biom
-			--impacted $output_impacted
-			--impacted-multihit $output_multihit
-			--summary $output_summary
+			--input-biom '$input_biom'
+			--input-fasta '$input_fasta'
+			--output-biom '$output_biom'
+			--impacted '$output_impacted'
+			--impacted-multihit '$output_multihit'
+			--summary '$output_summary'
 
 			#if $conditional_mode.mode == "delete"
 				--delete
-				--output-fasta $output_fasta
+				--output-fasta '$output_fasta'
 			#else
 				--mask
 			#end if

@@ -29,10 +29,10 @@
 		<exit_code range=":-1" />
 	</stdio>
 	<command>phyloseq_manova.py
-                                    --rdata $data
+                                    --rdata '$data'
                                     --varExp "$varExp"
-                                    --distance-matrix $method
-                                    --html $html
+                                    --distance-matrix '$method'
+                                    --html '$html'
 	</command>
     <inputs>
 		<!-- Files -->

@@ -31,11 +31,11 @@
 		<exit_code range=":-1" />
 	</stdio>
 	<command>phyloseq_structure.py
-                                         --html $html
-                                         --rdata $data
+                                         --html '$html'
+                                         --rdata '$data'
                                          --varExp $varExp
                                          --ordination-method $method
-                                         --distance-matrix $distance
+                                         --distance-matrix '$distance'
 	</command>
     <inputs>
 		<!-- Files -->

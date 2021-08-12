@@ -30,8 +30,8 @@
         </stdio>
 	<command>
 		clusters_stat.py
-		                 --input-biom $biom
-		                 --output-file $summary_file
+		                 --input-biom '$biom'
+		                 --output-file '$summary_file'
 	</command>
 	<inputs>
 		<param format="biom1" name="biom" type="data" label="Abundance file" help="Clusters abundance (format: BIOM)." optional="false" />

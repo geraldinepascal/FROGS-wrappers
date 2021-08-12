@@ -31,13 +31,13 @@
         <exit_code range=":-1" />
     </stdio>
     <command>phyloseq_composition.py
-                          --rdata $data
+                          --rdata '$data'
                           --varExp $varExp
                           --taxaRank1 $taxaRank1
                           --taxaSet1 $taxaSet1
                           --taxaRank2 $taxaRank2
                           --numberOfTaxa $numberOfTaxa
-                          --html $html
+                          --html '$html'
     </command>
     <inputs>
         <!-- Files -->

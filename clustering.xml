@@ -33,11 +33,11 @@
     <command>
         clustering.py
                         --nb-cpus \${GALAXY_SLOTS:-1}
-                        --input-fasta $sequence_file
-                        --input-count $count_file
-                        --output-biom $abundance_biom
-                        --output-fasta $seed_file
-                        --output-compo $swarms_composition
+                        --input-fasta '$sequence_file'
+                        --input-count '$count_file'
+                        --output-biom '$abundance_biom'
+                        --output-fasta '$seed_file'
+                        --output-compo '$swarms_composition'
 
                         #if $FROGS_guidelines.guidelines_version == "3.2"
                         	--distance $FROGS_guidelines.maximal_distance

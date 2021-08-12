@@ -29,10 +29,10 @@
 		<exit_code range=":-1" />
 	</stdio>
 	<command>phyloseq_clustering.py
-                                   --html $html
-                                   --rdata $data
+                                   --html '$html'
+                                   --rdata '$data'
                                    --varExp $varExp
-                                   --distance-matrix $method
+                                   --distance-matrix '$method'
 	</command>
     <inputs>
 		<!-- Files -->
