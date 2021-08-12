@@ -40,12 +40,12 @@
 
 		#if $sequencer_type.sequencer_selected == "illumina"
 		    #if $sequencer_type.sequencing_protocol.sequencing_protocol_selected == "standard"
-		        --five-prim-primer $sequencer_type.sequencing_protocol.five_prim_primer --three-prim-primer $sequencer_type.sequencing_protocol.three_prim_primer
+		        --five-prim-primer '$sequencer_type.sequencing_protocol.five_prim_primer' --three-prim-primer '$sequencer_type.sequencing_protocol.three_prim_primer'
 		    #else
 		        --without-primers
 		    #end if
 		#else
-		    --five-prim-primer $sequencer_type.five_prim_primer --three-prim-primer $sequencer_type.three_prim_primer
+		    --five-prim-primer '$sequencer_type.five_prim_primer' --three-prim-primer '$sequencer_type.three_prim_primer'
 		#end if
 
 		#if $sequencer_type.input_type.input_type_selected == "archive"

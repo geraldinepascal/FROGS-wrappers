@@ -34,7 +34,7 @@
                                 #if $treefile
                                   --treefile '$treefile'
                                 #end if
-                                --ranks $ranks
+                                --ranks '$ranks'
                                 #if $normalisation
                                     --normalisation
                                 #end if

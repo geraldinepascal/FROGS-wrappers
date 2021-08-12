@@ -33,7 +33,7 @@
 	</stdio>
 	<command>phyloseq_alpha_diversity.py
                                              --rdata '$data'
-                                             --varExp $varExp
+                                             --varExp '$varExp'
                                              --alpha-measures $measures
                                              --alpha-out '$alphaD'
                                              --html '$html'

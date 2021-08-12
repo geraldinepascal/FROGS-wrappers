@@ -32,8 +32,8 @@
 		affiliations_stat.py
 		    --input-biom '$biom'
 		    --output-file '$summary_file'
-		    --taxonomic-ranks $taxonomic_ranks
-		    --rarefaction-ranks $rarefaction_ranks
+		    --taxonomic-ranks '$taxonomic_ranks'
+		    --rarefaction-ranks '$rarefaction_ranks'
 		    #if $affiliation.affiliation_type == "FROGS_blast"
 		    	--multiple-tag "blast_affiliations"
 		        --tax-consensus-tag "blast_taxonomy"
@@ -43,13 +43,13 @@
 				--taxonomy-tag "rdp_taxonomy"
 				--bootstrap-tag "rdp_bootstrap"
 			#else
-				--taxonomy-tag "$affiliation.taxonomy_tag"
+				--taxonomy-tag '$affiliation.taxonomy_tag'
 				#if $affiliation.bootstrap_tag
-					--bootstrap-tag "$affiliation.bootstrap_tag"
+					--bootstrap-tag '$affiliation.bootstrap_tag'
 				#end if
 				#if $affiliation.identity_tag and $affiliation.coverage_tag
-					--identity-tag "$affiliation.identity_tag"
-					--coverage-tag "$affiliation.coverage_tag"
+					--identity-tag '$affiliation.identity_tag'
+					--coverage-tag '$affiliation.coverage_tag'
 				#end if
 			#end if
 	</command>

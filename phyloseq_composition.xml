@@ -32,10 +32,10 @@
     </stdio>
     <command>phyloseq_composition.py
                           --rdata '$data'
-                          --varExp $varExp
-                          --taxaRank1 $taxaRank1
-                          --taxaSet1 $taxaSet1
-                          --taxaRank2 $taxaRank2
+                          --varExp '$varExp'
+                          --taxaRank1 '$taxaRank1'
+                          --taxaSet1 '$taxaSet1'
+                          --taxaRank2 '$taxaRank2'
                           --numberOfTaxa $numberOfTaxa
                           --html '$html'
     </command>
@@ -57,7 +57,7 @@
         <param name="taxaRank2" type="text" label="Taxonomic level used for aggregation" help="ex: Family (when filtering at the Phylum level). The aggregation level must be below the filtering level." value="Phylum" size="20">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-        <param name="numberOfTaxa" type="text" label="Number of most abundant taxa to keep" help="ex: 9, i.e. Tool keeps the 9 most abundant taxa and the remaining taxa are aggregated in a group 'Other'" value="9" size="20">
+        <param name="numberOfTaxa" type="int" label="Number of most abundant taxa to keep" help="ex: 9, i.e. Tool keeps the 9 most abundant taxa and the remaining taxa are aggregated in a group 'Other'" value="9" >
             <validator type="empty_field" message="This parameter is required." />
         </param>
     </inputs>

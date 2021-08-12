@@ -33,7 +33,7 @@
 	<command>phyloseq_structure.py
                                          --html '$html'
                                          --rdata '$data'
-                                         --varExp $varExp
+                                         --varExp '$varExp'
                                          --ordination-method $method
                                          --distance-matrix '$distance'
 	</command>

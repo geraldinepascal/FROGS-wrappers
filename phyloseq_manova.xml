@@ -30,7 +30,7 @@
 	</stdio>
 	<command>phyloseq_manova.py
                                     --rdata '$data'
-                                    --varExp "$varExp"
+                                    --varExp '$varExp'
                                     --distance-matrix '$method'
                                     --html '$html'
 	</command>

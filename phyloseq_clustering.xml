@@ -31,7 +31,7 @@
 	<command>phyloseq_clustering.py
                                    --html '$html'
                                    --rdata '$data'
-                                   --varExp $varExp
+                                   --varExp '$varExp'
                                    --distance-matrix '$method'
 	</command>
     <inputs>

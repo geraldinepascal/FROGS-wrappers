@@ -32,7 +32,7 @@
 	</stdio>
 	<command>phyloseq_beta_diversity.py
                                         --rdata '$data'
-                                        --varExp $varExp
+                                        --varExp '$varExp'
                                         #if $methods != "None"
                                             #if $other_method != ""
                                                 --distance-methods $methods,$other_method
@@ -41,7 +41,7 @@
                                             #end if
                                         #else
                                             #if $other_method != ""
-                                                --distance-methods $other_method
+                                                --distance-methods '$other_method'
                                             #end if
                                         #end if
                                         --matrix-outdir BetaMatrix

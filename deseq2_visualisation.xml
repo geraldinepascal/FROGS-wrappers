@@ -35,11 +35,11 @@
     </stdio>
     <command>deseq2_visualisation.py --phyloseqData '$input_phyloseq'
                                      --dds '$input_DDS'
-                                     --var $var
+                                     --var '$var'
                                      #if $varType.vartType_selected == "qual":
-                                         --mod1 $varType.mod1 --mod2 $varType.mod2
+                                         --mod1 '$varType.mod1' --mod2 '$varType.mod2'
                                      #end if
-                                     --padj $padj
+                                     --padj '$padj'
                                      --html '$html'
     </command>
     <inputs>
@@ -69,7 +69,7 @@
             </when>
             <when value="quant"/>
         </conditional>
-        <param name="padj" type="text" label="Adjusted p-value threshold" help="Threshold used for statistical significance of the differentially abundant OTUs analysis." optional="false" value="0.05" size="20">
+        <param name="padj" type="float" label="Adjusted p-value threshold" help="Threshold used for statistical significance of the differentially abundant OTUs analysis." optional="false" value="0.05">
             <validator type="empty_field" message="This parameter is required." />
         </param>
     </inputs>

@@ -33,9 +33,9 @@
   </stdio>
 	<command>deseq2_preprocess.py --data '$data'
                                 #if $multiple.seconde
-                                  --var $var1${multiple.mod}${multiple.var2}
+                                  --var '$var1${multiple.mod}${multiple.var2}'
                                 #else
-                                  --var $var1
+                                  --var '$var1'
                                 #end if
                                 --out-Rdata '$dds'
 	</command>
