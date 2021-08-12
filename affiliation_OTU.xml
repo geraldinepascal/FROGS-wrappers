@@ -75,10 +75,7 @@
 
     <help>
 
-.. image:: static/images/FROGS_logo.png
-   :height: 144
-   :width: 110
-
+@HELP_LOGO@
 
 .. class:: infomark page-header h2
 
@@ -184,17 +181,8 @@ This tool can take large time. It is recommended to filter your OTU abundance an
 As you can see the affiliation of each OTU is not human readable in outputed abundance file. We provide a tools to convert these BIOM file in tabulated file, see the **FROGS BIOM to TSV** tool.
 
 
-----
+@HELP_CONTACT@
 
-**Contact**
-
-Contacts: frogs-support@inrae.fr
-
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
   </help>
 </tool>

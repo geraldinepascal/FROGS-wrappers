@@ -25,7 +25,7 @@
     <expand macro="requirements">
         <requirement type="binary">perl</requirement>
     </expand>
-    
+
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
@@ -186,17 +186,9 @@ If you have different barcode lengths, you must demultiplex your data in several
 If you have Roche 454 sequences in sff format, you must convert them with some programs like `sff2fastq &lt;https://github.com/indraniel/sff2fastq&gt;`_ or sff_to_fastq (installable in Galaxy)
 
 
-----
+@HELP_CONTACT@
 
-**Contact**
 
-Contacts: frogs-support@inrae.fr
-
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
 	</help>
 </tool>

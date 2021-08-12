@@ -26,7 +26,7 @@
         <requirement type="package" version="1.30.1">bioconductor-deseq2</requirement>
         <requirement type="package" version="1.6.6">r-optparse</requirement>
     </expand>
-    
+
   <stdio>
       <exit_code range="1:" />
       <exit_code range=":-1" />
@@ -72,9 +72,9 @@
     </tests>
     <help>
 
-.. image:: static/images/FROGS_logo.png
-   :height: 144
-   :width: 110
+@HELP_LOGO@
+
+
 
 
 .. class:: infomark page-header h2
@@ -127,15 +127,9 @@ You may precise a confounding factor, by adding an other variable and precise th
 - + for independant variables
 - * for interacting variables
 
-**Contact**
+@HELP_CONTACT@
 
-Contacts: frogs-support@inrae.fr
 
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
 	</help>
 </tool>

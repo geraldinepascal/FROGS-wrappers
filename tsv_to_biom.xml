@@ -62,9 +62,9 @@
 		</test>
 	</tests>
 	<help>
-.. image:: static/images/FROGS_logo.png
-   :height: 144
-   :width: 110
+@HELP_LOGO@
+
+
 
 
 .. class:: infomark page-header h2
@@ -127,17 +127,10 @@ If you modify your abundance TSV file
     * -if you delete lines of the multi_hit file, take care to not remove a complete cluster whithout removing all "multi tags" in you abundance TSV file.
     * -if you want to rename a taxon level (ex : genus "Ruminiclostridium 5;" to genus "Ruminiclostridium;"), do not forget to modify also your multi_hit TSV file.
 
-----
 
-**Contact**
 
-Contacts: frogs-support@inrae.fr
+@HELP_CONTACT@
 
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
 	</help>
 </tool>

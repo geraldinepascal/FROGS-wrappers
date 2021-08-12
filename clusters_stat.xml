@@ -47,9 +47,9 @@
 	</tests>
 	<help>
 
-.. image:: static/images/FROGS_logo.png
-   :height: 144
-   :width: 110
+@HELP_LOGO@
+
+
 
 
 .. class:: infomark page-header h2
@@ -106,17 +106,10 @@ Advices
 This is a very usefull tool to see the evolution of your OTU. Do not hesitate to run this tool after each FROGS step beginning at the clustering step.
 
 
-----
 
-**Contact**
+@HELP_CONTACT@
 
-Contacts: frogs-support@inrae.fr
 
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
 	</help>
 </tool>

@@ -102,9 +102,9 @@
     </tests>
     <help>
 
-.. image:: static/images/FROGS_logo.png
-   :height: 144
-   :width: 110
+@HELP_LOGO@
+
+
 
 .. class:: infomark page-header h2
 
@@ -172,15 +172,9 @@ You may first precise the variable used to construct the model during the FROGSS
 
 If the variable is qualitative (ex: variable Treatment is define by two conditions : treatment1, treatment2, control), you must specify 2 conditions to compare (e.g. treatment1 vs treatment2 or treatment1 vs control, ...).
 
-**Contact**
+@HELP_CONTACT@
 
-Contacts: frogs-support@inrae.fr
 
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
     </help>
 </tool>

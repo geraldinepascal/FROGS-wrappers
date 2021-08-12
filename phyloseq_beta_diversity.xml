@@ -80,9 +80,9 @@
 
 	<help>
 
-.. image:: static/images/FROGS_logo.png
-   :height: 144
-   :width: 110
+@HELP_LOGO@
+
+
 
 .. class:: infomark page-header h2
 
@@ -138,15 +138,9 @@ Jaccard distance using
 
 -the "jaccard" method correspond to the distance computed using absence data and deduced from the distance of Bray-Curtis. If you want to use this method, do not check the proposed Jaccard and write jaccard in the "Other method" parameter.
 
-**Contact**
+@HELP_CONTACT@
 
-Contacts: frogs-support@inrae.fr
 
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
 	</help>
 </tool>

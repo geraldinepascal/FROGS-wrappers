@@ -21,7 +21,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    
+
     <expand macro="requirements"/>
 
         <stdio>
@@ -63,9 +63,9 @@
 	</tests>
 	<help>
 
-.. image:: static/images/FROGS_logo.png
-   :height: 144
-   :width: 110
+@HELP_LOGO@
+
+
 
 
 .. class:: infomark page-header h2
@@ -115,17 +115,8 @@ Advices
 This output tsv file is easily readable in any spreadsheet software. Be aware that these software have a number of line limit (1 048 576 for Excel and LibreOffice calc ate least). If you have more OTU, use **FROGS Filters** to extract for example the most abundant OTU before converting your BIOM abundance table in TSV file.
 
 
-----
+@HELP_CONTACT@
 
-**Contact**
-
-Contacts: frogs-support@inrae.fr
-
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
 	</help>
 </tool>
