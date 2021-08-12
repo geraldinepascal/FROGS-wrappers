@@ -22,10 +22,10 @@
         <import>macros.xml</import>
     </macros>
 
-        <requirements>
-                <requirement type="package" version="3.2.3">frogs</requirement>
-                <requirement type="package" version="2.9.0">blast</requirement>
-        </requirements>
+    <expand macro="requirements">
+        <requirement type="package" version="2.9.0">blast</requirement>
+    </expand>
+
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />

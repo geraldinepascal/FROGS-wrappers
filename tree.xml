@@ -22,14 +22,13 @@
           <import>macros.xml</import>
       </macros>
 
-    <requirements>
-        <requirement type="package" version="3.2.3">frogs</requirement>
-        <requirement type="package" version="7.407">mafft</requirement>
-        <requirement type="package" version="2.1.09">fasttree</requirement>
-        <requirement type="package" version="4.0.5">r-base</requirement>
-         <requirement type="package" version="4.0">r-essentials</requirement>
-        <requirement type="package" version="2.7.0">r-phangorn</requirement>
-    </requirements>
+      <expand macro="requirements" >
+          <requirement type="package" version="7.407">mafft</requirement>
+          <requirement type="package" version="2.1.09">fasttree</requirement>
+          <requirement type="package" version="4.0">r-essentials</requirement>
+          <requirement type="package" version="2.7.0">r-phangorn</requirement>
+      </expand>
+
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />

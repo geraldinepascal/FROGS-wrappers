@@ -22,12 +22,12 @@
         <import>macros.xml</import>
     </macros>
 
-        <requirements>
-                <requirement type="package" version="3.2.3">frogs</requirement>
-                <requirement type="package" version="2.17.0">vsearch</requirement>
-                <requirement type="package" version="1.2.11">flash</requirement>
-                <requirement type="package" version="2.10">cutadapt</requirement>
-        </requirements>
+    <expand macro="requirements" >
+        <requirement type="package" version="2.17.0">vsearch</requirement>
+        <requirement type="package" version="1.2.11">flash</requirement>
+        <requirement type="package" version="2.10">cutadapt</requirement>
+    </expand>
+
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />

@@ -15,19 +15,19 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="@TOOL_VERSION@">
+<tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="@TOOL_VERSION@+galaxy2">
   <description>Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
 
     <macros>
         <import>macros.xml</import>
     </macros>
 
-        <requirements>
-        <requirement type="package" version="3.2.3">frogs</requirement>
+    <expand macro="requirements">
         <requirement type="package" version="2.10">blast</requirement>
         <requirement type="package" version="6.6.0">emboss</requirement>
         <requirement type="package" version="2.0.3">rdptools</requirement>
-    </requirements>
+    </expand>
+
   <command detect_errors="exit_code">
     #set $reference_filename = str( $ref_file.fields.path )
     affiliation_OTU.py

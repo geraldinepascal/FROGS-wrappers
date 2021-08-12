@@ -22,10 +22,10 @@
         <import>macros.xml</import>
     </macros>
 
-        <requirements>
-                <requirement type="package" version="3.2.3">frogs</requirement>
-                <requirement type="package" version="3.0.0">swarm</requirement>
-        </requirements>
+    <expand macro="requirements">
+        <requirement type="package" version="3.0.0">swarm</requirement>
+    </expand>
+
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />

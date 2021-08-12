@@ -22,10 +22,10 @@
         <import>macros.xml</import>
     </macros>
 
-    <requirements>
-        <requirement type="package" version="3.2.3">frogs</requirement>
+    <expand macro="requirements">
         <requirement type="package" version="1.1.2">itsx</requirement>
-    </requirements>
+    </expand>
+
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />

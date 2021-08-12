@@ -22,15 +22,11 @@
         <import>macros.xml</import>
     </macros>
 
-        <requirements>
-            <requirement type="package" version="3.2.">frogs</requirement>
-            <requirement type="package" version="4.0.5">r-base</requirement>
-            <requirement type="package" version="4.0">r-essentials</requirement>
-            <requirement type="package" version="1.34.0">bioconductor-phyloseq</requirement>
+    <expand macro="requirements_phyloseq" >
+        <!-- <requirement type="package" version="1.1">r-markdown</requirement>
+        <requirement type="package" version="2.11.4">pandoc</requirement> -->
+    </expand>
 
-<!--             <requirement type="package" version="1.1">r-markdown</requirement>
-            <requirement type="package" version="2.11.4">pandoc</requirement> -->
-        </requirements>
 	<stdio>
 		<exit_code range="1:" />
 		<exit_code range=":-1" />

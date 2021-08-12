@@ -22,12 +22,8 @@
         <import>macros.xml</import>
     </macros>
 
-        <requirements>
-            <requirement type="package" version="3.2.3">frogs</requirement>
-            <requirement type="package" version="4.0.5">r-base</requirement>
-            <requirement type="package" version="4.0">r-essentials</requirement>
-            <requirement type="package" version="1.34.0">bioconductor-phyloseq</requirement>
-        </requirements>
+    <expand macro="requirements_phyloseq" />
+    
 	<stdio>
 		<exit_code range="1:" />
 		<exit_code range=":-1" />

@@ -22,10 +22,10 @@
         <import>macros.xml</import>
     </macros>
 
-        <requirements>
-            <requirement type="binary">perl</requirement>
-            <requirement type="package" version="3.2.3">frogs</requirement>
-        </requirements>
+    <expand macro="requirements">
+        <requirement type="binary">perl</requirement>
+    </expand>
+    
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
