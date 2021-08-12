@@ -15,8 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_Tree" name="FROGS Tree" version="3.2.3.1">
+<tool id="FROGS_Tree" name="FROGS Tree" version="@TOOL_VERSION@+galaxy2">
     <description>Reconstruction of phylogenetic tree </description>
+
+      <macros>
+          <import>macros.xml</import>
+      </macros>
+
     <requirements>
         <requirement type="package" version="3.2.3">frogs</requirement>
         <requirement type="package" version="7.407">mafft</requirement>
@@ -30,7 +35,7 @@
         <exit_code range=":-1" />
     </stdio>
     <command>
-        tree.py 
+        tree.py
             --input-sequences $input_otu
             --biom-file $biomfile
             --nb-cpus \${GALAXY_SLOTS:-1}
@@ -69,7 +74,7 @@
         </test>
     </tests>
     <help>
-.. image:: static/images/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png
    :height: 144
    :width: 110
 
@@ -92,9 +97,9 @@ Input
 
 The OTUs sequence file (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
 Careful: FROGS Tree works only with less than 10 000 sequences!
- 
+
  .. image:: static/images/FROGS_tree_otufile.png
-     
+
 **OTUs biom file**:
 
 The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
@@ -111,11 +116,11 @@ The phylogenetic tree in Newick format (format `nwk or nhx &lt;https://en.wikipe
  .. image:: static/images/FROGS_nwk_treefile.png
 
 **Html file** (summary.html):
-   
+
 The summary file describing which OTUs are contained or not in the phylogenetic tree.
 
 .. class:: infomark page-header h2
-   
+
 **Contact**
 
 Contacts: frogs-support@inrae.fr

@@ -15,8 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_itsx" name="FROGS ITSx" version="3.2.3.1">
+<tool id="FROGS_itsx" name="FROGS ITSx" version="@TOOL_VERSION@+galaxy2">
 	<description>Extract the highly variable ITS1 and ITS2 subregions from ITS sequences.</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
     <requirements>
         <requirement type="package" version="3.2.3">frogs</requirement>
         <requirement type="package" version="1.1.2">itsx</requirement>
@@ -37,7 +42,7 @@
 		                --summary $summary_file
 		                --organism-groups $domain
 		                $trim_sequence
-		                
+
 	</command>
 	<inputs>
 		<!-- Files -->
@@ -92,7 +97,7 @@
 	</tests>
 	<help>
 
-.. image:: static/images/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png
    :height: 144
    :width: 110
 
@@ -129,10 +134,10 @@ Inputs
 The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
 
 **Abundance file**:
- 
+
  The abundance of each cluster in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
-	
+
 .. class:: h3
 
 Outputs
@@ -144,7 +149,7 @@ Outputs
 **Abundance file** (itsx.biom):
 
  The abundance file with only ITS sequences (format `BIOM &lt;http://biom-format.org/&gt;`_).
- 
+
 **Discarded file** (out_removed.fasta)
 
  The sequence file with discarded sequences.
@@ -158,11 +163,11 @@ Outputs
 
 How it works
 
-.. csv-table:: 
+.. csv-table::
    :header: "Steps", "Description"
    :widths: 10, 90
    :class: table table-striped
-   
+
    "1", "Predicts positions of the ribosomal genes in the sequences (`ITSx &lt;http://microbiology.se/software/itsx/&gt;`_)."
    "2", "Removes the sequences without prediction of the targeted ITS region (ITS1 or ITS2)."
    "3", "(optional) trim conserved region."

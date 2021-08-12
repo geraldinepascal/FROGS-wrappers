@@ -15,8 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_normalisation" name="FROGS Abundance normalisation" version="3.2.3.1">
+<tool id="FROGS_normalisation" name="FROGS Abundance normalisation" version="@TOOL_VERSION@+galaxy2">
         <description>Normalise OTUs abundance.</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
         <requirements>
                 <requirement type="package" version="3.2.3">frogs</requirement>
         </requirements>
@@ -25,13 +30,13 @@
                 <exit_code range=":-1" />
         </stdio>
 	<command>
-		normalisation.py 
+		normalisation.py
 		                       --input-biom $input_biom
 		                       --input-fasta $input_fasta
 		                       --num-reads $num_reads
 		                       --output-biom $output_biom
-		                       --output-fasta $output_fasta 
-		                       --summary-file $summary_file 
+		                       --output-fasta $output_fasta
+		                       --summary-file $summary_file
 	</command>
 	<inputs>
 		<param format="fasta" name="input_fasta" type="data" label="Sequence file" help="Sequence file to normalise (format: fasta)." />
@@ -55,7 +60,7 @@
     </tests>
 	<help>
 
-.. image:: static/images/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png
    :height: 144
    :width: 110
 
@@ -79,7 +84,7 @@ Inputs
 The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
 
 **Abundance file**:
- 
+
 The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
 .. class:: h3

@@ -15,8 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_affiliation_postprocess" name="FROGS Affiliation postprocess" version="3.2.3.1">
+<tool id="FROGS_affiliation_postprocess" name="FROGS Affiliation postprocess" version="@TOOL_VERSION@+galaxy2">
 	<description>Optionnal step to resolve inclusive amplicon ambiguities and to aggregate OTUs based on alignment metrics</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
  	<requirements>
     	<requirement type="package" version="3.2.3">frogs</requirement>
   	</requirements>
@@ -25,7 +30,7 @@
 	    <exit_code range=":-1" />
   	</stdio>
 	<command>
-		affiliation_postprocess.py 
+		affiliation_postprocess.py
 		#if $is_HVL.HVL_amplicon
             --reference $is_HVL.ref_file.fields.path
         #end if
@@ -49,7 +54,7 @@
 	        			<validator type="no_options" message="A built-in database is not available" />
     					<!--column name="name" index="0"/>
     					<column name="value" index="1"/-->
-				</param> 
+				</param>
       			</when>
       			<when value="false"/>
     		</conditional>
@@ -98,7 +103,7 @@ Inputs/outputs
 Inputs
 
 **Abundance file**:
- 
+
 The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_) with taxonomic affiliations metadata.
 
 **Sequence file**:
@@ -120,7 +125,7 @@ Outputs
 
 **Sequence file**:
 
-The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_) of each aggregated OTU seed. 
+The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_) of each aggregated OTU seed.
 
 **Composition file**:
 
@@ -138,7 +143,7 @@ We start with the most abundant OTU. If an OTU shares at least one affiliation w
 
 **Contact**
 
-Support: please contact first your galaxy support team. 
+Support: please contact first your galaxy support team.
 
 Contacts: frogs-support@inrae.fr
 

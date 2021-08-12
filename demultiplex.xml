@@ -15,8 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_demultiplex" name="FROGS Demultiplex reads" version="3.2.3.1">
+<tool id="FROGS_demultiplex" name="FROGS Demultiplex reads" version="@TOOL_VERSION@+galaxy2">
 	<description>Attribute reads to samples in function of inner barcode.</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
         <requirements>
             <requirement type="binary">perl</requirement>
             <requirement type="package" version="3.2.3">frogs</requirement>
@@ -28,11 +33,11 @@
 	<command>
 		demultiplex.py
 		#if str( $fastq_input.fastq_input_selector ) == "paired":
-		    --input-R1 '${fastq_input.fastq_input1}'            
+		    --input-R1 '${fastq_input.fastq_input1}'
 		    --input-R2 '${fastq_input.fastq_input2}'
 		#else:
 		    --input-R1 '${fastq_input.fastq_input1}'
-		#end if              
+		#end if
 		    --input-barcode $barcode_file
 		    --mismatches $mismatches
 		    --end $end
@@ -43,7 +48,7 @@
 	<inputs>
 		<!-- Input file -->
 		<param format="tabular" name="barcode_file" type="data" label="Barcode file" help="This file describes barcodes and samples (one line by sample tabulated separated from barcode sequence(s)). See Help section" optional="false" />
-		
+
 		<conditional name="fastq_input">
 	      	<param name="fastq_input_selector" type="select" label="Single or Paired-end reads" help="Select between paired and single-end data">
 	      		<option value="single">Single</option>
@@ -97,7 +102,7 @@ This tool classifies single or paired-end reads in function of barcode forward o
 
 **Inputs**
 
-.. csv-table:: 
+.. csv-table::
    :header: "Input name", "Meaning"
    :widths: 20, 80
    :class: table table-striped
@@ -118,7 +123,7 @@ This tool classifies single or paired-end reads in function of barcode forward o
 
 **Outputs**
 
-.. csv-table:: 
+.. csv-table::
    :header: "Output name", "Meaning"
    :widths: 20, 80
    :class: table table-striped
@@ -136,13 +141,13 @@ INPUT FILE :
 
 BARCODE_FILE :
  This file is expected to be tabulated
-		
+
  -first column corresponds to the sample name
- 
+
  -second column corresponds to the sequence barcode used
- 
+
  -third column (optional) corresponds to the reverse sequence barcode
- 
+
 .. class:: warningmark
 
  Take care to indicate sequence barcode in the strand of the read, so you may need to reverse complement the reverse barcode sequence
@@ -150,7 +155,7 @@ BARCODE_FILE :
 .. class:: warningmark
 
  All barcode sequences must have the same length
- 
+
 Example of barcode file: Here the sample is multiplexed by both fragment ends.
 
  .. image:: static/images/FROGS_demultiplex_barcode.png

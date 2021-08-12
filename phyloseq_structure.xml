@@ -15,8 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Structure Visualisation" id="FROGSSTAT_Phyloseq_Structure_Visualisation" version="3.2.3.1">
+<tool name="FROGSSTAT Phyloseq Structure Visualisation" id="FROGSSTAT_Phyloseq_Structure_Visualisation" version="@TOOL_VERSION@+galaxy2">
 	<description>with heatmap plot and ordination plot</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
     <requirements>
         <requirement type="package" version="3.2.3">frogs</requirement>
         <requirement type="package" version="4.0.5">r-base</requirement>
@@ -28,7 +33,7 @@
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
 	</stdio>
-	<command>phyloseq_structure.py 
+	<command>phyloseq_structure.py
                                          --html $html
                                          --rdata $data
                                          --varExp $varExp
@@ -43,7 +48,7 @@
         <param name="distance" format="tabular" type="data" label="The beta diversity distance matrix file" help="These file is the result of FROGS Phyloseq Beta Diversity tool." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-		<!-- Parameters -->	
+		<!-- Parameters -->
 		<param name="varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse." optional="false" value="" size="40">
             <validator type="empty_field" message="This parameter is required." />
         </param>
@@ -72,7 +77,7 @@
         </test>
     </tests>
 	<help>
-		
+
 .. image:: static/images/FROGS_logo.png
    :height: 144
    :width: 110
@@ -107,7 +112,7 @@ Output
 
 The review of data structure with an ordination plot and with an heatmap plot:
 
-.. image:: static/images/FROGS_Phyloseq_plot_sample_ellipse.png 
+.. image:: static/images/FROGS_Phyloseq_plot_sample_ellipse.png
      :height: 343
      :width: 450
 
@@ -117,7 +122,7 @@ The review of data structure with an ordination plot and with an heatmap plot:
 These percentages will be computed for MDS/PCoA and DPCoA ordination methods as a percentage of explained beta diversity variation.
 For NMDS there is not simple equivalent notion.
 
-.. image:: static/images/FROGS_Phyloseq_plot_heatmap_red.png 
+.. image:: static/images/FROGS_Phyloseq_plot_heatmap_red.png
      :height: 343
      :width: 450
 

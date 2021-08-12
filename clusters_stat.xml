@@ -15,8 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="3.2.3.1">
+<tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="@TOOL_VERSION@+galaxy2">
 	<description>Process some metrics on clusters.</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
         <requirements>
                 <requirement type="package" version="3.2.3">frogs</requirement>
         </requirements>
@@ -25,7 +30,7 @@
                 <exit_code range=":-1" />
         </stdio>
 	<command>
-		clusters_stat.py 
+		clusters_stat.py
 		                 --input-biom $biom
 		                 --output-file $summary_file
 	</command>
@@ -38,7 +43,7 @@
 	<tests>
 		<test>
 			<param name="biom" value="references/09-normalisation.biom"/>
-			<output name="summary_file" value="references/10-clustersStat.html" compare="diff" lines_diff="0"/>  
+			<output name="summary_file" value="references/10-clustersStat.html" compare="diff" lines_diff="0"/>
 		</test>
 	</tests>
 	<help>
@@ -64,7 +69,7 @@ Input/output
 Input
 
 **Abundance file**:
- 
+
 The abundance of each cluster in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
 The FROGS's tools working on clusters and others metagenomic workflows produce files in BIOM format.
@@ -74,7 +79,7 @@ The FROGS's tools working on clusters and others metagenomic workflows produce f
 Output
 
 **Summary file** (summary.html):
- 
+
  *Clusters distribution* : describes the sizes distribution of all clusters thank to boxplot and tables
 
  .. image:: static/images/FROGS_cluster_stat_clusterDistrib1.png

@@ -15,8 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_clustering" name="FROGS Clustering swarm" version="3.2.3.1">
+<tool id="FROGS_clustering" name="FROGS Clustering swarm" version="@TOOL_VERSION@+galaxy2">
     <description>Single-linkage clustering on sequences</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
         <requirements>
                 <requirement type="package" version="3.2.3">frogs</requirement>
                 <requirement type="package" version="3.0.0">swarm</requirement>
@@ -26,14 +31,14 @@
                 <exit_code range=":-1" />
         </stdio>
     <command>
-        clustering.py 
+        clustering.py
                         --nb-cpus \${GALAXY_SLOTS:-1}
                         --input-fasta $sequence_file
                         --input-count $count_file
                         --output-biom $abundance_biom
                         --output-fasta $seed_file
                         --output-compo $swarms_composition
-                        
+
                         #if $FROGS_guidelines.guidelines_version == "3.2"
                         	--distance $FROGS_guidelines.maximal_distance
                             $FROGS_guidelines.fastidious
@@ -43,7 +48,7 @@
                         	--distance $FROGS_guidelines.maximal_distance
                         	$FROGS_guidelines.denoising
                         #end if
-                        
+
     </command>
     <inputs>
         <!-- Files -->
@@ -82,7 +87,7 @@
             <output name="seed_file" file="references/02-clustering_denoising.fasta" compare="diff" lines_diff="0" />
             <output name="swarms_composition" file="references/02-clustering_denoising_compo.tsv" compare="diff" lines_diff="0" />
             <output name="abundance_biom" file="references/02-clustering_denoising.biom" compare="sim_size" delta="0"  />
-        </test>    
+        </test>
         <test>
             <param name="sequence_file" value="references/01-prepro-vsearch.fasta"/>
             <param name="count_file" value="references/01-prepro-vsearch.tsv"/>
@@ -94,11 +99,11 @@
             <output name="seed_file" file="references/02-clustering_fastidious.fasta" compare="diff" lines_diff="0" />
             <output name="swarms_composition" file="references/02-clustering_fastidious_compo.tsv" compare="diff" lines_diff="0" />
             <output name="abundance_biom" file="references/02-clustering_fastidious.biom" compare="sim_size" delta="0"  />
-        </test>  
+        </test>
     </tests>
     <help>
 
-.. image:: static/images/FROGS_logo.png 
+.. image:: static/images/FROGS_logo.png
    :height: 144
    :width: 110
 
@@ -132,7 +137,7 @@ This file contains the count of all uniq sequences in each sample (format `TSV &
 
 Example:
 
-.. csv-table:: 
+.. csv-table::
    :header: "#id", "splA","splB"
    :widths: 10,10,10
    :class: table table-striped
@@ -153,7 +158,7 @@ Outputs
 
  The clusters representative sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
 
-   
+
 **Clusters composition** (swarms_composition.tsv):
 
  A text file representing the read composition of each cluster (format txt). Each line represents one cluster and is composed of read identifier separated by space.
@@ -163,7 +168,7 @@ Outputs
 
 How it works
 
-.. csv-table:: 
+.. csv-table::
    :header: "Steps", "Without denoising", "With fastidious option (recommendations sincce FROGS 3.2)", "With denoising step (recommendations until FROGS 3.1)"
    :widths: 5, 150, 150, 150
    :class: table table-striped
@@ -176,10 +181,10 @@ How it works
 **Swarm focus**
 
 Swarm use an iterative growth process and the use of sequence abundance values to delineate OTUs.
-  
+
 .. image:: static/images/FROGS_cluster_swarm.png
    :height: 223
-   :width: 666    
+   :width: 666
 
 In each groth step the sequence of the previous step is used to find the others sequences with a number of differences inferior or equal to the "Aggregation distance".
 
@@ -190,7 +195,7 @@ On the other hand, the fastidious option of swarm allow to aggregate small and r
 .. image:: static/images/FROGS_cluster_fastidious.png
    :height: 319
    :width: 681
-    
+
 .. class:: infomark page-header h2
 
 
@@ -203,7 +208,7 @@ The fastidious option is recommended with an aggregating distance of 1. "It will
 The denoising strategy was recommended until FROGS 3.1
 
 The denoising step allows to build very fine clusters with minimal differences. In this case, the number of differences between sequences of each crowns is equal to 1. This first clustering is extremly quick. After the denoising, a second swarm is run with an aggregation distance >1 as you have configured, between seeds from this first clustering. We recommended a distance of 3.
-        
+
 To have some metrics on your clusters, you can use the tool **FROGS Clusters Stat**.
 
 ----

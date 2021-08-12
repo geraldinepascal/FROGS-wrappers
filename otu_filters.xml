@@ -15,13 +15,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_OTU_filters" name="FROGS OTU Filters" version="3.2.3.1">
+<tool id="FROGS_OTU_filters" name="FROGS OTU Filters" version="@TOOL_VERSION@+galaxy2">
 	<description>Filters OTUs on several criteria.</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
         <requirements>
                 <requirement type="package" version="3.2.3">frogs</requirement>
                 <requirement type="package" version="2.9.0">blast</requirement>
         </requirements>
-        <stdio> 
+        <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
@@ -29,8 +34,8 @@
 	<command>
 
 		otu_filters.py
-			--nb-cpus \${GALAXY_SLOTS:-1} 
-			--input-biom $input_biom  
+			--nb-cpus \${GALAXY_SLOTS:-1}
+			--input-biom $input_biom
 			--input-fasta $input_fasta
 			--output-fasta $output_fasta
 			--output-biom $output_biom
@@ -57,7 +62,7 @@
 				--nb-biggest-otu $nb_biggest_otu
 			#end if
 
-			
+
 			#if $contaminantSource.which_contaminantSource == "history"
 				##build index on the fly
 				--contaminant '${contaminantSource.ownContaminantFile}'
@@ -71,11 +76,11 @@
 		<!-- Files -->
 		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)." />
 		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)." />
-		
+
 		<param name="min_sample_presence" type="integer" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep OTU if it is present in at least this number of samples.">
 			<validator type="in_range" min="2" message="To be effective this threshold need to be higher than 1" />
 		</param>
-		
+
 		<conditional name="choice_abundance_unit">
 			<param name="abundance_unit_type" type="select" label="Minimum OTU abundancy as proportion or count. We recommend to use a proportion of 0.00005.">
 				<option value="proportion">as proportion</option>
@@ -93,8 +98,8 @@
 			</when>
 		</conditional>
 
-		<param name="nb_biggest_otu" type="integer" optional="true" label="N biggest OTUs" size="5" help="Fill the fields only if you want this treatment. Keep the N biggest OTU." /> 
-		
+		<param name="nb_biggest_otu" type="integer" optional="true" label="N biggest OTUs" size="5" help="Fill the fields only if you want this treatment. Keep the N biggest OTU." />
+
 		<conditional name="contaminantSource">
 			<param name="which_contaminantSource" type="select" label="Search for contaminant OTU." help="Either you use your own contaminant fasta file or you select one among available ones.">
 				<option value="no">No contaminant filter</option>
@@ -122,11 +127,11 @@
 	<tests>
 		<test>
 	        <param name="input_fasta" value="references/03-chimera.fasta" />
-            <param name="input_biom" value="references/03-chimera.biom" />    
+            <param name="input_biom" value="references/03-chimera.biom" />
             <param name="min_sample_presence" value="3" />
 		    <conditional name="choice_abundance_unit">
 		    	<param name="abundance_unit_type" value="proportion" />
-				<param name="min_abundance_proportion" value="0.00005" />	
+				<param name="min_abundance_proportion" value="0.00005" />
 		    </conditional>
             <conditional name="contaminantSource">
             	<param name="which_contaminantSource" value="server"/>
@@ -153,7 +158,7 @@ What it does
 Filter the OTUs of an abundance table according to:
 
 -The abundance and the occurence of OTUs: presence in samples, OTU size and maximum number of OTUs.
- 
+
 -Contamination: from the list of proposition (ex : phiX, a control added in Illumina sequencing technologies) or from your history (ex : a fasta file containing a list of contaminant of your choice).
 
 
@@ -214,7 +219,7 @@ The BIOM abundance table and the fasta file are written again according to the O
 
 The OTUs discarded are listed in the excluded file.
 
-.. csv-table:: 
+.. csv-table::
    :header: "Steps", "description"
    :widths: 5, 150
    :class: table table-striped
@@ -231,7 +236,7 @@ Advices
 
 Please check that the input fasta file and the input BIOM file correspond to the same OTUs.
 
-Examples for the filters on abundance and occurence of the OTUs : 
+Examples for the filters on abundance and occurence of the OTUs :
 
 -To keep the filters that are present in 5 samples, fill the corresponding field with "5".
 

@@ -15,8 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_biom_to_stdBiom" name="FROGS BIOM to std BIOM" version="3.2.3.1">
+<tool id="FROGS_biom_to_stdBiom" name="FROGS BIOM to std BIOM" version="@TOOL_VERSION@+galaxy2">
 	<description>Converts a FROGS BIOM in fully compatible BIOM.</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
         <requirements>
             <requirement type="package" version="3.2.3">frogs</requirement>
         </requirements>
@@ -25,7 +30,7 @@
                 <exit_code range=":-1" />
         </stdio>
 	<command>
-		biom_to_stdBiom.py 
+		biom_to_stdBiom.py
 		                --input-biom $input_biom
 		                --output-biom $output_biom
 		                --output-metadata $output_blast_details
@@ -65,7 +70,7 @@ The detailed blast affiliations can trigger problem with tools like Qiime. This 
 Inputs
 
 **Abundance file**:
- 
+
 The abundance of each cluster in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
 .. class:: h3
