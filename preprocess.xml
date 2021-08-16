@@ -15,40 +15,45 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_preprocess" name="FROGS Pre-process" version="3.2.3.1">
+<tool id="FROGS_preprocess" name="FROGS Pre-process" version="@TOOL_VERSION@+galaxy2">
 	<description>merging, denoising and dereplication.</description>
-        <requirements>
-                <requirement type="package" version="3.2.3">frogs</requirement>
-                <requirement type="package" version="2.17.0">vsearch</requirement>
-                <requirement type="package" version="1.2.11">flash</requirement>
-                <requirement type="package" version="2.10">cutadapt</requirement>
-        </requirements>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements" >
+        <requirement type="package" version="2.17.0">vsearch</requirement>
+        <requirement type="package" version="1.2.11">flash</requirement>
+        <requirement type="package" version="2.10">cutadapt</requirement>
+    </expand>
+
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
 	<command>
 		preprocess.py $sequencer_type.sequencer_selected
-		--output-dereplicated $dereplicated_file --output-count $count_file --summary $summary_file 
+		--output-dereplicated '$dereplicated_file' --output-count '$count_file' --summary '$summary_file'
 		--nb-cpus \${GALAXY_SLOTS:-1}
-		--min-amplicon-size $sequencer_type.min_amplicon_size --max-amplicon-size $sequencer_type.max_amplicon_size 
-		
+		--min-amplicon-size $sequencer_type.min_amplicon_size --max-amplicon-size $sequencer_type.max_amplicon_size
+
 		#if $sequencer_type.sequencer_selected == "illumina"
 		    #if $sequencer_type.sequencing_protocol.sequencing_protocol_selected == "standard"
-		        --five-prim-primer $sequencer_type.sequencing_protocol.five_prim_primer --three-prim-primer $sequencer_type.sequencing_protocol.three_prim_primer  
+		        --five-prim-primer '$sequencer_type.sequencing_protocol.five_prim_primer' --three-prim-primer '$sequencer_type.sequencing_protocol.three_prim_primer'
 		    #else
 		        --without-primers
 		    #end if
 		#else
-		    --five-prim-primer $sequencer_type.five_prim_primer --three-prim-primer $sequencer_type.three_prim_primer 
+		    --five-prim-primer '$sequencer_type.five_prim_primer' --three-prim-primer '$sequencer_type.three_prim_primer'
 		#end if
-		
-		#if $sequencer_type.input_type.input_type_selected == "archive" 
-		    --input-archive $sequencer_type.input_type.archive_file
+
+		#if $sequencer_type.input_type.input_type_selected == "archive"
+		    --input-archive '$sequencer_type.input_type.archive_file'
 		    #if $sequencer_type.sequencer_selected == "illumina" and $sequencer_type.input_type.archive_type.archive_type_selected == "already_merged"
 			    --already-contiged
 		    #elif $sequencer_type.sequencer_selected == "illumina"
-	            --R1-size $sequencer_type.input_type.archive_type.R1_size --R2-size $sequencer_type.input_type.archive_type.R2_size 
+	            --R1-size $sequencer_type.input_type.archive_type.R1_size --R2-size $sequencer_type.input_type.archive_type.R2_size
 	        	--mismatch-rate $sequencer_type.input_type.archive_type.mm_rate
 	        	--merge-software $sequencer_type.input_type.archive_type.merge_software_type.merge_software_selected
 	        	#if $sequencer_type.input_type.archive_type.merge_software_type.merge_software_selected == "flash"
@@ -61,22 +66,22 @@
 		#else
 		    #set $sep = ' '
 		    #if $sequencer_type.sequencer_selected == "illumina"
-	            --samples-names  
-	            #for $current in $sequencer_type.input_type.files_by_samples_type.samples 
+	            --samples-names
+	            #for $current in $sequencer_type.input_type.files_by_samples_type.samples
 	                $sep'${current.name.strip()}'
 	            #end for
-		        --input-R1 
-		        #for $current in $sequencer_type.input_type.files_by_samples_type.samples 
-		            $sep${current.R1_file}
+		        --input-R1
+		        #for $current in $sequencer_type.input_type.files_by_samples_type.samples
+		            $sep'${current.R1_file}'
 		        #end for
 		        #if $sequencer_type.input_type.files_by_samples_type.files_by_samples_type_selected == "already_merged"
 		            --already-contiged
 		        #else
 		            --input-R2
-		            #for $current in $sequencer_type.input_type.files_by_samples_type.samples 
-		                $sep${current.R2_file}
+		            #for $current in $sequencer_type.input_type.files_by_samples_type.samples
+		                $sep'${current.R2_file}'
 		            #end for
-		            --R1-size $sequencer_type.input_type.files_by_samples_type.R1_size --R2-size $sequencer_type.input_type.files_by_samples_type.R2_size 
+		            --R1-size $sequencer_type.input_type.files_by_samples_type.R1_size --R2-size $sequencer_type.input_type.files_by_samples_type.R2_size
 		            --mismatch-rate $sequencer_type.input_type.files_by_samples_type.mm_rate
 		            --merge-software $sequencer_type.input_type.files_by_samples_type.merge_software_type.merge_software_selected
 		            #if $sequencer_type.input_type.files_by_samples_type.merge_software_type.merge_software_selected == "flash"
@@ -87,12 +92,12 @@
 	        	    #end if
 		        #end if
 		    #else
-		        --input-R1 
-		        #for $current in $sequencer_type.input_type.samples 
-		            $sep${current.R1_file}
+		        --input-R1
+		        #for $current in $sequencer_type.input_type.samples
+		            $sep'${current.R1_file}'
 		        #end for
-		        --samples-names  
-		        #for $current in $sequencer_type.input_type.samples 
+		        --samples-names
+		        #for $current in $sequencer_type.input_type.samples
 		            $sep'${current.name.strip()}'
 		        #end for
 		    #end if
@@ -123,7 +128,7 @@
 								<!-- Reads size -->
 								<param name="R1_size" type="integer" label="Reads 1 size" help="The maximum read1 size." value="" optional="false" />
 								<param name="R2_size" type="integer" label="Reads 2 size" help="The maximum read2 size." value="" optional="false" />
-								<param name="mm_rate" type="float" label="Mismatch rate." help="The maximum rate of mismatch in the overlap region" value="0.1" optional="false" />					
+								<param name="mm_rate" type="float" label="Mismatch rate." help="The maximum rate of mismatch in the overlap region" value="0.1" optional="false" />
 								<conditional name="merge_software_type">
 									<param name="merge_software_selected" type="select" label="Merge software" help="Select the software to merge paired-end reads.">
 										<option value="vsearch" selected="true">Vsearch</option>
@@ -201,7 +206,7 @@
 					<when value="without_primers"></when>
 				</conditional>
 			</when>
-			
+
 			<when value="454">
 				<!-- Samples -->
 				<conditional name="input_type">
@@ -296,13 +301,13 @@
 			<output name="dereplicated_file" file="references/01-prepro-vsearch.fasta" compare="diff" lines_diff="0" />
 			<output name="count_file" file="references/01-prepro-vsearch.tsv" compare="diff" lines_diff="0" />
 			<output name="summary_file" file="references/01-prepro-vsearch.html" compare="sim_size" delta="0"/>
-        </test>            
+        </test>
     </tests>
 	<help>
 
-.. image:: static/images/FROGS_logo.png 
-   :height: 144
-   :width: 110
+@HELP_LOGO@
+
+
 
 
 .. class:: infomark page-header h2
@@ -361,14 +366,14 @@ Outputs
 **Summary file** (report.html):
 
  This file reports the number of remaining sequences after each filter (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_). Depending of the tool configuration there will be more or less filtering steps so more or less bars in the barplot.
- 
- .. image:: static/images/FROGS_preprocess_summary_v3.png 
+
+ .. image:: static/images/FROGS_preprocess_summary_v3.png
      :height: 850
-     :width: 831 
+     :width: 831
 
  It also presents the length distribution of the full amplicon sequences after merging step and after filtering steps.
- 
- .. image:: static/images/FROGS_preprocess_lengthsSamples_v3.png 
+
+ .. image:: static/images/FROGS_preprocess_lengthsSamples_v3.png
      :height: 379
      :width: 364
 
@@ -376,14 +381,14 @@ Outputs
 
 How it works
 
-.. csv-table:: 
+.. csv-table::
    :header: "Steps", "Illumina", "454"
    :widths: 5, 150, 150
    :class: table table-striped
 
    "1", "For un-merged data: Merges R1 and R2 with a maximum of M% mismatch in the overlaped region(`VSEARCH &lt;https://github.com/torognes/vsearch/&gt;`_ or `FLASH &lt;https://ccb.jhu.edu/software/FLASH/&gt;`_ or optionnaly `PEAR &lt;https://sco.h-its.org/exelixis/web/software/pear/&gt;`_) with a minimum of 10 bp in the overlap region. Resulting un-merged reads may optionnaly be artificially combined by adding 100 N between the reads", "/"
    "2", "If sequencing protocol is the illumina standard protocol : Removes sequences where the two primers are not present and removes primers in the remaining sequence (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_). The primer search accepts 10% of differences", "Removes sequences where the two primers are not present, removes primers sequence from amplicon sequence and reverse complement the sequences on strand -  (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_). The primer search accepts 10% of differences"
-   "3", "Filters sequences with ambiguous nucleotides and for merged sequences filters on their length which must be range between 'Minimum amplicon size - primer length' and 'Maximum amplicon size - primer length'", "Removes sequences with at least one homopolymer with more than seven nucleotides and with a distance of less than or equal to 10 nucleo-tides between two poor quality positions, i.e. with a Phred quality score lesser than 10" 
+   "3", "Filters sequences with ambiguous nucleotides and for merged sequences filters on their length which must be range between 'Minimum amplicon size - primer length' and 'Maximum amplicon size - primer length'", "Removes sequences with at least one homopolymer with more than seven nucleotides and with a distance of less than or equal to 10 nucleo-tides between two poor quality positions, i.e. with a Phred quality score lesser than 10"
    "4", "Dereplicates sequences", "Dereplicates sequences"
 
 
@@ -435,16 +440,16 @@ Primers parameters
 
 The (`Kozich et al. 2013 &lt;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3753973/&gt;`_ ) protocol uses custom sequencing primers which are also the PCR primers. In this case the reads do not contain the PCR primers.
 
-In case of Illumina standard protocol, the primers must be provided in 5' to 3' orientation. 
+In case of Illumina standard protocol, the primers must be provided in 5' to 3' orientation.
 
 .. role:: alert-info
 
 Example:
 
  5' :alert-info:`ATGCCC` GTCGTCGTAAAATGC :alert-info:`ATTTCAG` 3'
- 
+
  Value for parameter 5' primer: ATGCCC
- 
+
  Value for parameter 3' primer: ATTTCAG
 
 .. class:: h3
@@ -460,7 +465,7 @@ FLASH : Amplicons sizes parameters
  .. image:: static/images/FROGS_preprocess_ampliconSize_unimodal_v3.png
     :height: 415
     :width: 676
- 
+
  .. image:: static/images/FROGS_preprocess_ampliconSize_multimodal_v3.png
     :height: 415
     :width: 676
@@ -472,20 +477,14 @@ FLASH : Amplicons sizes parameters
 If the filter 'merged' reduce drasticaly the number of sequences:
 
  In un-merged Illumina data, and targeted amplicon size in the range of R1+R2-10, the reduction of dataset by the merged filter is classicaly inferior than 20%. A loss of more than 20% in all samples can highlight a quality problem.
- 
+
  If the overlap between R1 and R2 is superior to 50 nucleotides and the quality of the end of the sequences is poor (see `FastQC &lt;http://www.bioinformatics.babraham.ac.uk/projects/fastqc/&gt;`_) you can try to cut the end of your sequences and relaunch the preprocess tool. You can either raise the mismatch percent in the overlapped region, but not too much!
 
-----
 
-**Contact**
 
-Contacts: frogs-support@inrae.fr
+@HELP_CONTACT@
 
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
 
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
 	</help>
 </tool>

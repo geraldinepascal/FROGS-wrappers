@@ -15,8 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_remove_chimera" name="FROGS Remove chimera" version="3.2.3.1">
+<tool id="FROGS_remove_chimera" name="FROGS Remove chimera" version="@TOOL_VERSION@+galaxy2">
 	<description>Remove PCR chimera in each sample.</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
         <requirements>
             <requirement type="package" version="3.2.3">frogs</requirement>
             <requirement type="package" version="2.15.1">vsearch</requirement>
@@ -26,16 +31,16 @@
                 <exit_code range=":-1" />
         </stdio>
 	<command>
-		remove_chimera.py 
+		remove_chimera.py
 		                --nb-cpus \${GALAXY_SLOTS:-1}
-		                --input-fasta $sequence_file --non-chimera $non_chimera_fasta
-		                --summary $summary_file
+		                --input-fasta '$sequence_file' --non-chimera '$non_chimera_fasta'
+		                --summary '$summary_file'
 		                #if $abundance_type.abundance_type_selected == "biom"
-		                --input-biom $abundance_biom
-		                --out-abundance $out_abundance_biom
+		                --input-biom '$abundance_biom'
+		                --out-abundance '$out_abundance_biom'
 		                #else
-		                --input-count $abundance_count
-		                --out-abundance $out_abundance_count
+		                --input-count '$abundance_count'
+		                --out-abundance '$out_abundance_count'
 		                #end if
 	</command>
 	<inputs>
@@ -74,13 +79,13 @@
 			<output name="non_chimera_fasta" file="references/03-chimera.fasta" compare="diff" lines_diff="0"/>
 			<output name="summary_file" file="references/03-chimera.html" compare="diff" lines_diff="0"/>
 			<output name="out_abundance_biom" file="references/03-chimera.biom" compare="sim_size" delta="0"/>
-		</test>	
+		</test>
 	</tests>
 	<help>
 
-.. image:: static/images/FROGS_logo.png 
-   :height: 144
-   :width: 110
+@HELP_LOGO@
+
+
 
 
 .. class:: infomark page-header h2
@@ -97,7 +102,7 @@ Context
 Chimeras are sequences formed from two or more biological sequences joined together.
 
 The majority of these anomalous sequences are formed from an incomplete extension during a PCR cycle. During subsequent cycles, a partially extended strand can bind to a template derived from a different but similar sequence.
- 
+
 This phenomena is particularly common in amplicon sequencing where closely related sequences are amplified.
 
 
@@ -114,22 +119,22 @@ Inputs
 The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
 
 **Abundance file**:
- 
+
  The abundance of each cluster in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
 OR
 
  The abundance of each sequence in each sample (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_). This type of file is produced by *FROGS pre-process*.
- 
+
  Example:
 
-.. csv-table:: 
+.. csv-table::
    :header: "#id", "splA","splB"
    :widths: 10,10,10
    :class: table table-striped
 
     "seq1", "1289", "2901"
-    "seq2", "3415", "0"			
+    "seq2", "3415", "0"
 
 .. class:: h3
 
@@ -152,7 +157,7 @@ Outputs
 
 How it works
 
-.. csv-table:: 
+.. csv-table::
    :header: "Steps", "Description"
    :widths: 10, 90
    :class: table table-striped
@@ -162,17 +167,8 @@ How it works
    "3", "Remove the sequences identify as chimera in all samples where they are present."
 
 
-----
+@HELP_CONTACT@
 
-**Contact**
-
-Contacts: frogs-support@inrae.fr
-
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
 	</help>
 </tool>

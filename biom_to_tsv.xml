@@ -15,25 +15,29 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_biom_to_tsv" name="FROGS BIOM to TSV" version="3.2.3.1">
+<tool id="FROGS_biom_to_tsv" name="FROGS BIOM to TSV" version="@TOOL_VERSION@+galaxy2">
 	<description>Converts a BIOM file in TSV file.</description>
-        <requirements>
-            <requirement type="package" version="3.2.3">frogs</requirement>
-        </requirements>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements"/>
+
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
 	<command>
-		biom_to_tsv.py 
-		                --input-biom $biom_file
+		biom_to_tsv.py
+		                --input-biom '$biom_file'
 		              #if $sequence_file
-		                --input-fasta $sequence_file
+		                --input-fasta '$sequence_file'
 		              #end if
-		                --output-tsv $tsv_file
+		                --output-tsv '$tsv_file'
 		              #if $extract_multi_align
-		                --output-multi-affi $multi_affi_file
-		              #end if   
+		                --output-multi-affi '$multi_affi_file'
+		              #end if
 	</command>
 	<inputs>
 		<!-- Files -->
@@ -59,9 +63,9 @@
 	</tests>
 	<help>
 
-.. image:: static/images/FROGS_logo.png
-   :height: 144
-   :width: 110
+@HELP_LOGO@
+
+
 
 
 .. class:: infomark page-header h2
@@ -75,7 +79,7 @@ Converts a BIOM file in TSV file.
 Inputs
 
 **Abundance file**:
- 
+
 The abundance of each cluster in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
 **Sequence file [optional]**:
@@ -101,7 +105,7 @@ Outputs
 
 How it works
 
-FROGS Biom to Tsv will search if any metadata are available, and the OTU sequence if fasta file is precised. Then it will extract the OTU name, sum the sample abundance, and extract the detailed abundance for each sample. Finally it will write all these fields separated by tabulation in the TSV file. 
+FROGS Biom to Tsv will search if any metadata are available, and the OTU sequence if fasta file is precised. Then it will extract the OTU name, sum the sample abundance, and extract the detailed abundance for each sample. Finally it will write all these fields separated by tabulation in the TSV file.
 
 
 .. class:: infomark page-header h2
@@ -111,17 +115,8 @@ Advices
 This output tsv file is easily readable in any spreadsheet software. Be aware that these software have a number of line limit (1 048 576 for Excel and LibreOffice calc ate least). If you have more OTU, use **FROGS Filters** to extract for example the most abundant OTU before converting your BIOM abundance table in TSV file.
 
 
-----
+@HELP_CONTACT@
 
-**Contact**
-
-Contacts: frogs-support@inrae.fr
-
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
 	</help>
 </tool>

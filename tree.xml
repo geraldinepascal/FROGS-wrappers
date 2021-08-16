@@ -15,27 +15,31 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_Tree" name="FROGS Tree" version="3.2.3.1">
+<tool id="FROGS_Tree" name="FROGS Tree" version="@TOOL_VERSION@+galaxy2">
     <description>Reconstruction of phylogenetic tree </description>
-    <requirements>
-        <requirement type="package" version="3.2.3">frogs</requirement>
-        <requirement type="package" version="7.407">mafft</requirement>
-        <requirement type="package" version="2.1.09">fasttree</requirement>
-        <requirement type="package" version="4.0.5">r-base</requirement>
-         <requirement type="package" version="4.0">r-essentials</requirement>
-        <requirement type="package" version="2.7.0">r-phangorn</requirement>
-    </requirements>
+
+      <macros>
+          <import>macros.xml</import>
+      </macros>
+
+      <expand macro="requirements" >
+          <requirement type="package" version="7.407">mafft</requirement>
+          <requirement type="package" version="2.1.09">fasttree</requirement>
+          <requirement type="package" version="4.0">r-essentials</requirement>
+          <requirement type="package" version="2.7.0">r-phangorn</requirement>
+      </expand>
+
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />
     </stdio>
     <command>
-        tree.py 
-            --input-sequences $input_otu
-            --biom-file $biomfile
+        tree.py
+            --input-sequences '$input_otu'
+            --biom-file '$biomfile'
             --nb-cpus \${GALAXY_SLOTS:-1}
-            --out-tree $out_tree
-            --html $html
+            --out-tree '$out_tree'
+            --html '$html'
     </command>
     <inputs>
     <!-- Files -->
@@ -69,9 +73,9 @@
         </test>
     </tests>
     <help>
-.. image:: static/images/FROGS_logo.png 
-   :height: 144
-   :width: 110
+@HELP_LOGO@
+
+
 
 .. class:: infomark page-header h2
 
@@ -92,9 +96,9 @@ Input
 
 The OTUs sequence file (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
 Careful: FROGS Tree works only with less than 10 000 sequences!
- 
+
  .. image:: static/images/FROGS_tree_otufile.png
-     
+
 **OTUs biom file**:
 
 The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
@@ -111,20 +115,14 @@ The phylogenetic tree in Newick format (format `nwk or nhx &lt;https://en.wikipe
  .. image:: static/images/FROGS_nwk_treefile.png
 
 **Html file** (summary.html):
-   
+
 The summary file describing which OTUs are contained or not in the phylogenetic tree.
 
 .. class:: infomark page-header h2
-   
-**Contact**
 
-Contacts: frogs-support@inrae.fr
+@HELP_CONTACT@
 
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
 
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
     </help>
 </tool>

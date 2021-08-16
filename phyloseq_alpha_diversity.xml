@@ -15,37 +15,38 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Alpha Diversity" id="FROGSSTAT_Phyloseq_Alpha_Diversity" version="3.2.3.1">
+<tool name="FROGSSTAT Phyloseq Alpha Diversity" id="FROGSSTAT_Phyloseq_Alpha_Diversity" version="@TOOL_VERSION@+galaxy2">
 	<description>with richness plot</description>
-        <requirements>
-            <requirement type="package" version="3.2.">frogs</requirement>
-            <requirement type="package" version="4.0.5">r-base</requirement>
-            <requirement type="package" version="4.0">r-essentials</requirement>
-            <requirement type="package" version="1.34.0">bioconductor-phyloseq</requirement>
 
-<!--             <requirement type="package" version="1.1">r-markdown</requirement>
-            <requirement type="package" version="2.11.4">pandoc</requirement> -->
-        </requirements>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements_phyloseq" >
+        <!-- <requirement type="package" version="1.1">r-markdown</requirement>
+        <requirement type="package" version="2.11.4">pandoc</requirement> -->
+    </expand>
+
 	<stdio>
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
 	</stdio>
 	<command>phyloseq_alpha_diversity.py
-                                             --rdata $data 
-                                             --varExp $varExp
+                                             --rdata '$data'
+                                             --varExp '$varExp'
                                              --alpha-measures $measures
-                                             --alpha-out $alphaD 
-                                             --html $html
+                                             --alpha-out '$alphaD'
+                                             --html '$html'
 	</command>
     <inputs>
 		<!-- Files -->
 	    <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This file is the result of FROGS Phyloseq Import Data tool." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-		<!-- Parameters -->	
+		<!-- Parameters -->
 		<param name="varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse." optional="false" value="" size="40">
             <validator type="empty_field" message="This parameter is required." />
-        </param>        
+        </param>
 	    <param name="measures" type="select" label="The alpha diversity indices to compute" multiple="true" display="checkboxes">
              <option value="Observed" selected="True">Observed</option>
              <option value="Chao1" selected="True">Chao1</option>
@@ -70,10 +71,10 @@
         </test>
     </tests>
     <help>
-		
-.. image:: static/images/FROGS_logo.png 
-   :height: 144
-   :width: 110
+
+@HELP_LOGO@
+
+
 
 .. class:: infomark page-header h2
 
@@ -99,14 +100,14 @@ Output
 
 **Html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): the review of richness plots and rarefaction curves.
 
-.. image:: static/images/FROGS_Phyloseq_plot_richness.png 
+.. image:: static/images/FROGS_Phyloseq_plot_richness.png
      :height: 400
-     :width: 525 
+     :width: 525
 
 .. image:: static/images/FROGS_Phyloseq_plot_richness_box.png
      :height: 400
      :width: 499
-     
+
 .. image:: static/images/FROGS_Phyloseq_rarefaction_curves.png
      :height: 400
      :width: 498
@@ -118,15 +119,8 @@ The data file containing table of alpha diversity indices.
 
 .. class:: infomark page-header h2
 
-**Contact**
+@HELP_CONTACT@
 
-Contacts: frogs-support@inrae.fr
-
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
 	</help>
 </tool>

@@ -15,22 +15,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Beta Diversity" id="FROGSSTAT_Phyloseq_Beta_Diversity" version="3.2.3.1">
+<tool name="FROGSSTAT Phyloseq Beta Diversity" id="FROGSSTAT_Phyloseq_Beta_Diversity" version="@TOOL_VERSION@+galaxy2">
 	<description>distance matrix</description>
-        <requirements>
-            <requirement type="package" version="3.2.3">frogs</requirement>
-            <requirement type="package" version="4.0.5">r-base</requirement>
-            <requirement type="package" version="4.0">r-essentials</requirement>
-            <requirement type="package" version="1.34.0">bioconductor-phyloseq</requirement>
-            <requirement type="package" version="2.3">r-gridextra</requirement>
-        </requirements>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements_phyloseq" >
+        <requirement type="package" version="2.3">r-gridextra</requirement>
+    </expand>
+
 	<stdio>
 		<exit_code range="1:" />
 		<exit_code range=":-1" />
 	</stdio>
-	<command>phyloseq_beta_diversity.py 
-                                        --rdata $data
-                                        --varExp $varExp
+	<command>phyloseq_beta_diversity.py
+                                        --rdata '$data'
+                                        --varExp '$varExp'
                                         #if $methods != "None"
                                             #if $other_method != ""
                                                 --distance-methods $methods,$other_method
@@ -39,18 +41,18 @@
                                             #end if
                                         #else
                                             #if $other_method != ""
-                                                --distance-methods $other_method
+                                                --distance-methods '$other_method'
                                             #end if
                                         #end if
                                         --matrix-outdir BetaMatrix
-                                        --html $html
+                                        --html '$html'
 	</command>
     <inputs>
 		<!-- Files -->
 	    <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data tool." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-		<!-- Parameters -->	
+		<!-- Parameters -->
         <param name="varExp" type="text" label="Grouping variable" help="Experimental variable used to group samples (Treatment, Host type, etc)." optional="false" value="" size="20">
             <validator type="empty_field" message="This parameter is required." />
         </param>
@@ -72,15 +74,15 @@
             <param name="data" value="references/16-phylo_import.Rdata" />
             <param name="varExp" value="EnvType" />
             <param name="methods" value="cc,unifrac" />
-            <output name="html" file="references/19-phylo_beta_div.nb.html" compare="diff" lines_diff="0" /> 
+            <output name="html" file="references/19-phylo_beta_div.nb.html" compare="diff" lines_diff="0" />
         </test>
     </tests>
 
 	<help>
-	
-.. image:: static/images/FROGS_logo.png 
-   :height: 144
-   :width: 110
+
+@HELP_LOGO@
+
+
 
 .. class:: infomark page-header h2
 
@@ -114,15 +116,15 @@ Output
 
 The review of beta diversity with heatmap plots:
 
-.. image:: static/images/FROGS_Phyloseq_beta_diversity.png 
+.. image:: static/images/FROGS_Phyloseq_beta_diversity.png
      :height: 609
-     :width: 800 
+     :width: 800
 
 
 **beta diversity matrix** (format tabular):
 The distance matrix of beta diversity.
 
- .. image:: static/images/FROGS_Phyloseq_beta_diversity_matrix.png 
+ .. image:: static/images/FROGS_Phyloseq_beta_diversity_matrix.png
 
 .. class:: infomark page-header h2
 
@@ -130,21 +132,15 @@ The distance matrix of beta diversity.
 
 Advices/Details
 
-Jaccard distance using 
+Jaccard distance using
 
--the "cc" method correspond to the distance computed using presence/absence data 
+-the "cc" method correspond to the distance computed using presence/absence data
 
 -the "jaccard" method correspond to the distance computed using absence data and deduced from the distance of Bray-Curtis. If you want to use this method, do not check the proposed Jaccard and write jaccard in the "Other method" parameter.
 
-**Contact**
+@HELP_CONTACT@
 
-Contacts: frogs-support@inrae.fr
 
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
 	</help>
 </tool>

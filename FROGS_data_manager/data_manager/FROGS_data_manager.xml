@@ -39,8 +39,8 @@
         <data name="output" format="data_manager_json"/>
     </outputs>
     <help>
-       	.. image:: static/images/FROGS_logo.png
-   			:height: 144
+       	@HELP_LOGO@
+   			
    			:width: 110
 
         FROGS datamanager allows to download preformated databases for FROGS Affiliation OTU tool.

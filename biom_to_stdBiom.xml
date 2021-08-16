@@ -15,20 +15,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_biom_to_stdBiom" name="FROGS BIOM to std BIOM" version="3.2.3.1">
+<tool id="FROGS_biom_to_stdBiom" name="FROGS BIOM to std BIOM" version="@TOOL_VERSION@+galaxy2">
 	<description>Converts a FROGS BIOM in fully compatible BIOM.</description>
-        <requirements>
-            <requirement type="package" version="3.2.3">frogs</requirement>
-        </requirements>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements"/>
+
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
 	<command>
-		biom_to_stdBiom.py 
-		                --input-biom $input_biom
-		                --output-biom $output_biom
-		                --output-metadata $output_blast_details
+		biom_to_stdBiom.py
+		                --input-biom '$input_biom'
+		                --output-biom '$output_biom'
+		                --output-metadata '$output_blast_details'
 	</command>
 	<inputs>
 		<!-- Files -->
@@ -47,9 +51,9 @@
 	</tests>
 	<help>
 
-.. image:: static/images/FROGS_logo.png
-   :height: 144
-   :width: 110
+@HELP_LOGO@
+
+
 
 
 .. class:: infomark page-header h2
@@ -65,7 +69,7 @@ The detailed blast affiliations can trigger problem with tools like Qiime. This 
 Inputs
 
 **Abundance file**:
- 
+
 The abundance of each cluster in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
 .. class:: h3
@@ -89,17 +93,8 @@ FROGS BIOM to std BIOM extracts the blast alignment details in a second file, wr
 
 
 
-----
+@HELP_CONTACT@
 
-**Contact**
-
-Contacts: frogs-support@inrae.fr
-
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
 	</help>
 </tool>

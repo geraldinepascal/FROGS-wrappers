@@ -15,28 +15,32 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSTAT Deseq2 Visualisation" id="FROGSSTAT_DESeq2_Visualisation" version="3.2.3.1">
+<tool name="FROGSTAT Deseq2 Visualisation" id="FROGSSTAT_DESeq2_Visualisation" version="@TOOL_VERSION@+galaxy2">
     <description>to extract and visualise differentially abundant OTUs</description>
-    <requirements>
-        <requirement type="package" version="3.2.3">frogs</requirement>
-        <requirement type="package" version="4.0.5">r-base</requirement>
-        <requirement type="package" version="4.0">r-essentials</requirement>
-        <requirement type="package" version="1.34.0">bioconductor-phyloseq</requirement>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements_phyloseq">
         <requirement type="package" version="1.30.1">bioconductor-deseq2</requirement>
         <requirement type="package" version="0.18">r-dt</requirement>
+    </expand>
+
+    <requirements>
     </requirements>
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />
     </stdio>
-    <command>deseq2_visualisation.py --phyloseqData $input_phyloseq
-                                     --dds $input_DDS
-                                     --var $var
+    <command>deseq2_visualisation.py --phyloseqData '$input_phyloseq'
+                                     --dds '$input_DDS'
+                                     --var '$var'
                                      #if $varType.vartType_selected == "qual":
-                                         --mod1 $varType.mod1 --mod2 $varType.mod2
+                                         --mod1 '$varType.mod1' --mod2 '$varType.mod2'
                                      #end if
-                                     --padj $padj
-                                     --html $html
+                                     --padj '$padj'
+                                     --html '$html'
     </command>
     <inputs>
         <!-- Files -->
@@ -45,7 +49,7 @@
         </param>
         <param format="rdata" name="input_DDS" type="data" label="DESeq2 object (format rdata)" help="This is the result of FROGSSTAT DESeq2 Preprocess tool." optional="false">
             <validator type="empty_field" message="This parameter is required." />
-        </param>                    
+        </param>
         <!-- Parameters -->
         <param name="var" type="text" label="Experimental variable" help="The factor suspected to have an effect on OTUs' abundances (one of the variables used in FROGS DESeq2 Preprocess tool). Ex : Treatment" optional="false" value="" size="20">
             <validator type="empty_field" message="This parameter is required." />
@@ -65,9 +69,9 @@
             </when>
             <when value="quant"/>
         </conditional>
-        <param name="padj" type="text" label="Adjusted p-value threshold" help="Threshold used for statistical significance of the differentially abundant OTUs analysis." optional="false" value="0.05" size="20">
+        <param name="padj" type="float" label="Adjusted p-value threshold" help="Threshold used for statistical significance of the differentially abundant OTUs analysis." optional="false" value="0.05">
             <validator type="empty_field" message="This parameter is required." />
-        </param>        
+        </param>
     </inputs>
     <outputs>
         <data format="html" name="html" label="${tool.name}: report.nb.html" from_work_dir="report.nb.html"/>
@@ -98,15 +102,15 @@
     </tests>
     <help>
 
-.. image:: static/images/FROGS_logo.png 
-   :height: 144
-   :width: 110
+@HELP_LOGO@
+
+
 
 .. class:: infomark page-header h2
 
 What it does
 
-Launch one Rmarkdown Script to visualise the DESeq2 results. 
+Launch one Rmarkdown Script to visualise the DESeq2 results.
 
 .. class:: infomark page-header h2
 
@@ -130,21 +134,21 @@ Ouput
 
 **html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): visualisation of "Differential Abundance".
 
-The html file contains Table, Pie Chart, MA plot, Volcano plot and Heatmap plot. If the experimental variable is qualitative, only samples corresponding to the 2 compared conditions are shown in the Heatmap. Otherwise, samples are sorted in increasing order of the experimental variable. 
+The html file contains Table, Pie Chart, MA plot, Volcano plot and Heatmap plot. If the experimental variable is qualitative, only samples corresponding to the 2 compared conditions are shown in the Heatmap. Otherwise, samples are sorted in increasing order of the experimental variable.
 
 * Table containing the differentially abundant OTUs.
 
- .. image:: static/images/FROGS_DESeq2_html_table.png 
+ .. image:: static/images/FROGS_DESeq2_html_table.png
     :height: 216
     :width: 789
 
 * Pie Chart, MA plot and Volcano plot
 
- .. image:: static/images/FROGS_DESeq2_html_pieChart.png 
+ .. image:: static/images/FROGS_DESeq2_html_pieChart.png
     :height: 576
     :width: 768
 
- .. image:: static/images/FROGS_DESeq2_html_MA_plot.png 
+ .. image:: static/images/FROGS_DESeq2_html_MA_plot.png
     :height: 480
     :width: 672
 
@@ -154,7 +158,7 @@ The html file contains Table, Pie Chart, MA plot, Volcano plot and Heatmap plot.
 
 * Heatmap plot corresponding to the differentially abundant OTUs.
 
- .. image:: static/images/FROGS_DESeq2_html_heatmap_plot.png 
+ .. image:: static/images/FROGS_DESeq2_html_heatmap_plot.png
     :height: 576
     :width: 768
 
@@ -166,17 +170,11 @@ Based on the variable you precise to construct the model in FROGSSTAT DESeq2 Pre
 
 You may first precise the variable used to construct the model during the FROGSSTAT DESeq Preprocess step. If you precised variable with a confounding factor (a second variale), you may choose between one of the variables, but remember that you will see the result of this variable corrected by the confounding factor (and reversely) not just the selected variable itself.
 
-If the variable is qualitative (ex: variable Treatment is define by two conditions : treatment1, treatment2, control), you must specify 2 conditions to compare (e.g. treatment1 vs treatment2 or treatment1 vs control, ...). 
+If the variable is qualitative (ex: variable Treatment is define by two conditions : treatment1, treatment2, control), you must specify 2 conditions to compare (e.g. treatment1 vs treatment2 or treatment1 vs control, ...).
 
-**Contact**
+@HELP_CONTACT@
 
-Contacts: frogs-support@inrae.fr
 
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
 
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
-    
     </help>
 </tool>

@@ -15,19 +15,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="3.2.3.1">
+<tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="@TOOL_VERSION@+galaxy2">
 	<description>Process some metrics on clusters.</description>
-        <requirements>
-                <requirement type="package" version="3.2.3">frogs</requirement>
-        </requirements>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements"/>
+
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
 	<command>
-		clusters_stat.py 
-		                 --input-biom $biom
-		                 --output-file $summary_file
+		clusters_stat.py
+		                 --input-biom '$biom'
+		                 --output-file '$summary_file'
 	</command>
 	<inputs>
 		<param format="biom1" name="biom" type="data" label="Abundance file" help="Clusters abundance (format: BIOM)." optional="false" />
@@ -38,14 +42,14 @@
 	<tests>
 		<test>
 			<param name="biom" value="references/09-normalisation.biom"/>
-			<output name="summary_file" value="references/10-clustersStat.html" compare="diff" lines_diff="0"/>  
+			<output name="summary_file" value="references/10-clustersStat.html" compare="diff" lines_diff="0"/>
 		</test>
 	</tests>
 	<help>
 
-.. image:: static/images/FROGS_logo.png
-   :height: 144
-   :width: 110
+@HELP_LOGO@
+
+
 
 
 .. class:: infomark page-header h2
@@ -64,7 +68,7 @@ Input/output
 Input
 
 **Abundance file**:
- 
+
 The abundance of each cluster in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
 The FROGS's tools working on clusters and others metagenomic workflows produce files in BIOM format.
@@ -74,7 +78,7 @@ The FROGS's tools working on clusters and others metagenomic workflows produce f
 Output
 
 **Summary file** (summary.html):
- 
+
  *Clusters distribution* : describes the sizes distribution of all clusters thank to boxplot and tables
 
  .. image:: static/images/FROGS_cluster_stat_clusterDistrib1.png
@@ -102,17 +106,10 @@ Advices
 This is a very usefull tool to see the evolution of your OTU. Do not hesitate to run this tool after each FROGS step beginning at the clustering step.
 
 
-----
 
-**Contact**
+@HELP_CONTACT@
 
-Contacts: frogs-support@inrae.fr
 
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
 	</help>
 </tool>

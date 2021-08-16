@@ -15,21 +15,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_affiliations_stat" name="FROGS Affiliations stat" version="3.2.3.1">
+<tool id="FROGS_affiliations_stat" name="FROGS Affiliations stat" version="@TOOL_VERSION@+galaxy2">
 	<description>Process some metrics on taxonomies.</description>
-        <requirements>
-                <requirement type="package" version="3.2.3">frogs</requirement>
-        </requirements>
-        <stdio> 
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements"/>
+
+        <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
 	<command>
-		affiliations_stat.py 
-		    --input-biom $biom
-		    --output-file $summary_file
-		    --taxonomic-ranks $taxonomic_ranks
-		    --rarefaction-ranks $rarefaction_ranks
+		affiliations_stat.py
+		    --input-biom '$biom'
+		    --output-file '$summary_file'
+		    --taxonomic-ranks '$taxonomic_ranks'
+		    --rarefaction-ranks '$rarefaction_ranks'
 		    #if $affiliation.affiliation_type == "FROGS_blast"
 		    	--multiple-tag "blast_affiliations"
 		        --tax-consensus-tag "blast_taxonomy"
@@ -39,13 +43,13 @@
 				--taxonomy-tag "rdp_taxonomy"
 				--bootstrap-tag "rdp_bootstrap"
 			#else
-				--taxonomy-tag "$affiliation.taxonomy_tag"
+				--taxonomy-tag '$affiliation.taxonomy_tag'
 				#if $affiliation.bootstrap_tag
-					--bootstrap-tag "$affiliation.bootstrap_tag"
+					--bootstrap-tag '$affiliation.bootstrap_tag'
 				#end if
 				#if $affiliation.identity_tag and $affiliation.coverage_tag
-					--identity-tag "$affiliation.identity_tag"
-					--coverage-tag "$affiliation.coverage_tag"
+					--identity-tag '$affiliation.identity_tag'
+					--coverage-tag '$affiliation.coverage_tag'
 				#end if
 			#end if
 	</command>
@@ -92,10 +96,7 @@
 	</tests>
 	<help>
 
-.. image:: static/images/FROGS_logo.png
-   :height: 144
-   :width: 110
-
+@HELP_LOGO@
 
 .. class:: infomark page-header h2
 
@@ -113,7 +114,7 @@ Input/output
 Input
 
 **Abundance file**:
- 
+
 The abundance and affiliation of each OTUs (format `BIOM &lt;http://biom-format.org/&gt;`_). This file can be produced by FROGS Affiliation OTU.
 
 The FROGS's tools working on clusters and others metagenomic workflows produce files in BIOM format.
@@ -125,12 +126,12 @@ Output
 **Summary file** (summary.html):
 
  OTUs taxonomies and affiliations metrics (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_):
- 
+
   *-Taxonomy distribution*: display the distribution of each taxon and the rarefaction for each taxonomic rank and for each sample
-  
+
   .. image:: static/images/FROGS_affiliation_stat_taxonomies.png
     :height: 380
-    :width: 891  
+    :width: 891
 
   .. image:: static/images/FROGS_affiliation_stat_rarefaction.png
     :height: 380
@@ -139,7 +140,7 @@ Output
   .. image:: static/images/FROGS_affiliation_stat_sunburst.png
     :height: 380
     :width: 440
-  
+
   -Bootstrap distribution: display for affiliation methods with bootstrap the bootstrap on each taxonomic rank
 
   .. image:: static/images/FROGS_affiliation_stat_bootstrap.png
@@ -153,18 +154,8 @@ Output
     :width: 859
 
 
+@HELP_CONTACT@
 
-----
-
-**Contact**
-
-Contacts: frogs-support@inrae.fr
-
-Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
-
-Website: http://frogs.toulouse.inrae.fr/
-
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
 
 	</help>
 </tool>
