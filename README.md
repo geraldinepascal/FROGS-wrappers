@@ -224,7 +224,7 @@ For that, you need to:
 
 Databanks are defined in `loc` files and `loc` files are defined in Galaxy datatable.
 
-* FROGS provides a data_manager. It concerns only taxonomical assignation databank which are listed here : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv.txt.
+* FROGS provides a data_manager. It concerns only taxonomical assignation databank which are listed here : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv.
 
   You may choose to download all preformated database, or filter them on:
 
