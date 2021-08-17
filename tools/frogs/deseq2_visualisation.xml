@@ -27,8 +27,6 @@
         <requirement type="package" version="0.18">r-dt</requirement>
     </expand>
 
-    <requirements>
-    </requirements>
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />
