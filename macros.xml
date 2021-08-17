@@ -2,6 +2,7 @@
 <macros>
 
     <token name="@TOOL_VERSION@">3.2.3</token>
+
     <xml name="requirements">
         <requirements>
             <requirement type="package" version="@TOOL_VERSION@">frogs</requirement>
@@ -9,9 +10,9 @@
         </requirements>
     </xml>
 
-
     <xml name="requirements_phyloseq">
         <expand macro="requirements">
+            <!-- <requirement type="package" version="2.11.4">pandoc</requirement> -->
             <requirement type="package" version="4.0">r-essentials</requirement>
             <requirement type="package" version="1.34.0">bioconductor-phyloseq</requirement>
             <yield />

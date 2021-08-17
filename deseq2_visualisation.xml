@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSTAT Deseq2 Visualisation" id="FROGSSTAT_DESeq2_Visualisation" version="@TOOL_VERSION@+galaxy2">
+<tool id="FROGSSTAT_DESeq2_Visualisation" name="FROGSTAT Deseq2 Visualisation" version="@TOOL_VERSION@+galaxy2">
     <description>to extract and visualise differentially abundant OTUs</description>
 
     <macros>
@@ -39,7 +39,7 @@
                                      #if $varType.vartType_selected == "qual":
                                          --mod1 '$varType.mod1' --mod2 '$varType.mod2'
                                      #end if
-                                     --padj '$padj'
+                                     --padj $padj
                                      --html '$html'
     </command>
     <inputs>
@@ -103,8 +103,6 @@
     <help>
 
 @HELP_LOGO@
-
-
 
 .. class:: infomark page-header h2
 

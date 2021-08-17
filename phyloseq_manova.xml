@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" version="@TOOL_VERSION@+galaxy2">
+<tool id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" version="@TOOL_VERSION@+galaxy2">
         <description>perform Multivariate Analysis of Variance (MANOVA)</description>
 
     <macros>
@@ -61,8 +61,6 @@
 	<help>
 
 @HELP_LOGO@
-
-
 
 .. class:: infomark page-header h2
 

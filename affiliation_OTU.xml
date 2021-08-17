@@ -25,14 +25,14 @@
     <expand macro="requirements">
         <requirement type="package" version="2.10">blast</requirement>
         <requirement type="package" version="6.6.0">emboss</requirement>
-        <requirement type="package" version="2.0.3">rdptools</requirement>
+        <!-- <requirement type="package" version="2.0.3">rdptools</requirement> -->
     </expand>
 
   <command detect_errors="exit_code">
     #set $reference_filename = str( $ref_file.fields.path )
     affiliation_OTU.py
                            --reference '${reference_filename}'
-                           --taxonomy-ranks '$taxonomic_ranks'
+                           --taxonomy-ranks $taxonomic_ranks
                            --input-biom '$biom_abundance'
                            --input-fasta '$fasta_sequences'
                            --output-biom '$biom_affiliation'

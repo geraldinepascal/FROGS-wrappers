@@ -33,7 +33,7 @@
                 <exit_code range=":-1" />
         </stdio>
 	<command>
-		preprocess.py $sequencer_type.sequencer_selected
+		preprocess.py '$sequencer_type.sequencer_selected'
 		--output-dereplicated '$dereplicated_file' --output-count '$count_file' --summary '$summary_file'
 		--nb-cpus \${GALAXY_SLOTS:-1}
 		--min-amplicon-size $sequencer_type.min_amplicon_size --max-amplicon-size $sequencer_type.max_amplicon_size
@@ -55,7 +55,7 @@
 		    #elif $sequencer_type.sequencer_selected == "illumina"
 	            --R1-size $sequencer_type.input_type.archive_type.R1_size --R2-size $sequencer_type.input_type.archive_type.R2_size
 	        	--mismatch-rate $sequencer_type.input_type.archive_type.mm_rate
-	        	--merge-software $sequencer_type.input_type.archive_type.merge_software_type.merge_software_selected
+	        	--merge-software '$sequencer_type.input_type.archive_type.merge_software_type.merge_software_selected'
 	        	#if $sequencer_type.input_type.archive_type.merge_software_type.merge_software_selected == "flash"
 					--expected-amplicon-size $sequencer_type.input_type.archive_type.merge_software_type.expected_amplicon_size
 			#end if
@@ -306,9 +306,6 @@
 	<help>
 
 @HELP_LOGO@
-
-
-
 
 .. class:: infomark page-header h2
 

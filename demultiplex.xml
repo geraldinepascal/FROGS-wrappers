@@ -22,9 +22,7 @@
         <import>macros.xml</import>
     </macros>
 
-    <expand macro="requirements">
-        <requirement type="binary">perl</requirement>
-    </expand>
+    <expand macro="requirements" />
 
         <stdio>
                 <exit_code range="1:" />
@@ -40,7 +38,7 @@
 		#end if
 		    --input-barcode '$barcode_file'
 		    --mismatches $mismatches
-		    --end $end
+		    --end '$end'
 		    --summary '$summary'
 		    --output-demultiplexed '$demultiplexed_archive'
 		    --output-excluded '$undemultiplexed_archive'

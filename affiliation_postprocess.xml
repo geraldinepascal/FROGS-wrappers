@@ -31,7 +31,7 @@
 	<command>
 		affiliation_postprocess.py
 		#if $is_HVL.HVL_amplicon
-            --reference $is_HVL.ref_file.fields.path
+            --reference '$is_HVL.ref_file.fields.path'
         #end if
 		--identity $identity
 		--coverage $coverage

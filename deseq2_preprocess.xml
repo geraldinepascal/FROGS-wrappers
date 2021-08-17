@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT DESeq2 Preprocess" id="FROGSSTAT_DESeq2_Preprocess" version="@TOOL_VERSION@+galaxy2">
+<tool id="FROGSSTAT_DESeq2_Preprocess" name="FROGSSTAT DESeq2 Preprocess" version="@TOOL_VERSION@+galaxy2">
   <description>import a Phyloseq object and prepare it for DESeq2 differential abundance analysis </description>
 
     <macros>
@@ -73,9 +73,6 @@
     <help>
 
 @HELP_LOGO@
-
-
-
 
 .. class:: infomark page-header h2
 

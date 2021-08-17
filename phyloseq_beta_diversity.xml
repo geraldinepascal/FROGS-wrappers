@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Beta Diversity" id="FROGSSTAT_Phyloseq_Beta_Diversity" version="@TOOL_VERSION@+galaxy2">
+<tool id="FROGSSTAT_Phyloseq_Beta_Diversity" name="FROGSSTAT Phyloseq Beta Diversity" version="@TOOL_VERSION@+galaxy2">
 	<description>distance matrix</description>
 
     <macros>
@@ -35,9 +35,9 @@
                                         --varExp '$varExp'
                                         #if $methods != "None"
                                             #if $other_method != ""
-                                                --distance-methods $methods,$other_method
+                                                --distance-methods '$methods,$other_method'
                                             #else
-                                                --distance-methods $methods
+                                                --distance-methods '$methods'
                                             #end if
                                         #else
                                             #if $other_method != ""
@@ -81,8 +81,6 @@
 	<help>
 
 @HELP_LOGO@
-
-
 
 .. class:: infomark page-header h2
 

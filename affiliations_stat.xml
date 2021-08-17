@@ -32,16 +32,16 @@
 		affiliations_stat.py
 		    --input-biom '$biom'
 		    --output-file '$summary_file'
-		    --taxonomic-ranks '$taxonomic_ranks'
-		    --rarefaction-ranks '$rarefaction_ranks'
+		    --taxonomic-ranks $taxonomic_ranks
+		    --rarefaction-ranks $rarefaction_ranks
 		    #if $affiliation.affiliation_type == "FROGS_blast"
-		    	--multiple-tag "blast_affiliations"
-		        --tax-consensus-tag "blast_taxonomy"
-		        --identity-tag "perc_identity"
-		        --coverage-tag "perc_query_coverage"
+		    	--multiple-tag 'blast_affiliations'
+		        --tax-consensus-tag 'blast_taxonomy'
+		        --identity-tag 'perc_identity'
+		        --coverage-tag 'perc_query_coverage'
 			#else if $affiliation.affiliation_type == "FROGS_rdp"
-				--taxonomy-tag "rdp_taxonomy"
-				--bootstrap-tag "rdp_bootstrap"
+				--taxonomy-tag 'rdp_taxonomy'
+				--bootstrap-tag 'rdp_bootstrap'
 			#else
 				--taxonomy-tag '$affiliation.taxonomy_tag'
 				#if $affiliation.bootstrap_tag

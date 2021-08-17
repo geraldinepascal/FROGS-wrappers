@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool name="FROGSSTAT Phyloseq Structure Visualisation" id="FROGSSTAT_Phyloseq_Structure_Visualisation" version="@TOOL_VERSION@+galaxy2">
+<tool id="FROGSSTAT_Phyloseq_Structure_Visualisation" name="FROGSSTAT Phyloseq Structure Visualisation" version="@TOOL_VERSION@+galaxy2">
 	<description>with heatmap plot and ordination plot</description>
 
     <macros>
@@ -34,7 +34,7 @@
                                          --html '$html'
                                          --rdata '$data'
                                          --varExp '$varExp'
-                                         --ordination-method $method
+                                         --ordination-method '$method'
                                          --distance-matrix '$distance'
 	</command>
     <inputs>
@@ -76,8 +76,6 @@
 	<help>
 
 @HELP_LOGO@
-
-
 
 .. class:: infomark page-header h2
 
