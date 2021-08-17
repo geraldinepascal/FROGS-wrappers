@@ -198,7 +198,7 @@ jobs:
     - name: Flake8
       run: |
         if [ -s ../workflow_artifacts/repository_list.txt ]; then
-            flake8 $(cat ../workflow_artifacts/repository_list.txt)
+            flake8 --ignore=E501 $(cat ../workflow_artifacts/repository_list.txt)
         fi
 
   lintr:

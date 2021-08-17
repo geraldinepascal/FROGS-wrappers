@@ -2,16 +2,16 @@
 # -*- coding: utf-8 -*-
 
 # import json
-import os
 import argparse
+import os
 # import sys
 import tarfile
-import urllib
 import time
-
-import requests
+import urllib
 
 from galaxy.util.json import from_json_string, to_json_string
+
+import requests
 
 # GALAXY_database=~/galaxy/galaxy-20.09/database
 # FROGS_data_manager.py --database=frogs_db_data --all_dbs=false \
@@ -95,7 +95,7 @@ def frogs_sources(data_manager_dict, target_directory):
 
     # get frogs dbs
     os.chdir(target_directory)
-    dir_name = "frogs_db_"+time.strftime("%Y%m%d")
+    dir_name = "frogs_db_" + time.strftime("%Y%m%d")
     os.mkdir(dir_name)
     dbs = set([])
     for line in db_index:
@@ -103,7 +103,7 @@ def frogs_sources(data_manager_dict, target_directory):
         name = value.replace("_", " ") if "_" not in line[4] else value.replace(line[4], "").replace("_", " ") + line[4]
         link = line[6]
         name_dir = "".join([line[6].replace(".tar.gz", "").split("/")[-1]])
-        file_path = tool_data_path+"/frogs_db/"+name_dir
+        file_path = tool_data_path + "/frogs_db/" + name_dir
         if not os.path.exists(file_path):   # if the file is not already in frogs_db directory
 
             # download frogs db
@@ -118,10 +118,10 @@ def frogs_sources(data_manager_dict, target_directory):
 
             # get fasta file path
             tmp = set(os.listdir(dir_name))
-            new_db = dir_name+"/"+"".join(tmp.difference(dbs))
+            new_db = dir_name + "/" + "".join(tmp.difference(dbs))
             files = os.listdir(new_db)
             fasta = "".join([file for file in files if file.endswith('.fasta')])
-            path = new_db+'/'+fasta
+            path = new_db + '/' + fasta
             dbs = os.listdir(dir_name)
             # release = value + "_" + time.strftime("%Y-%m-%d")
             # date = time.strftime("%Y%m%d")
