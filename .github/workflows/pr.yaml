@@ -1,5 +1,11 @@
 name: Galaxy Tool Linting and Tests for push and PR
 on: [push, pull_request]
+  # push:
+  #   branches:
+  #     - master
+  # pull_request:
+  #   branches:
+  #     - master
 env:
   GALAXY_REPO: https://github.com/galaxyproject/galaxy
   GALAXY_RELEASE: release_21.05
@@ -392,45 +398,45 @@ jobs:
         fi
 
   # deploy the tools to the toolsheds (first TTS for testing)
-  deploy:
-    name: Deploy
-    needs: [setup, lint, flake8, lintr, combine_outputs]
-    strategy:
-      matrix:
-        python-version: [3.7]
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master' && github.repository_owner == 'frogs'
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 1
-    - uses: actions/setup-python@v1
-      with:
-        python-version: ${{ matrix.python-version }}
-    - uses: actions/download-artifact@v2
-      with:
-        name: Workflow artifacts
-        path: ../workflow_artifacts/
-    - name: Cache .cache/pip
-      uses: actions/cache@v2
-      id: cache-pip
-      with:
-        path: ~/.cache/pip
-        key: pip_cache_py_${{ matrix.python-version }}_gxy_${{ needs.setup.outputs.galaxy_head_sha }}
-    - name: Install Planemo
-      run: pip install planemo
-    - name: Deploy on testtoolshed
-      env:
-        SHED_KEY: ${{ secrets.TTS_API_KEY }}
-      run: |
-        while read -r DIR; do
-            planemo shed_update --shed_target testtoolshed --shed_key "${{ env.SHED_KEY }}" --force_repository_creation "$DIR" || exit 1;
-        done < ../workflow_artifacts/repository_list.txt
-      continue-on-error: true
-    - name: Deploy on toolshed
-      env:
-        SHED_KEY: ${{ secrets.TS_API_KEY }}
-      run: |
-        while read -r DIR; do
-            planemo shed_update --shed_target toolshed --shed_key "${{ env.SHED_KEY }}" --force_repository_creation "$DIR" || exit 1;
-        done < ../workflow_artifacts/repository_list.txt
+  # deploy:
+  #   name: Deploy
+  #   needs: [setup, lint, flake8, lintr, combine_outputs]
+  #   strategy:
+  #     matrix:
+  #       python-version: [3.7]
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/master' && github.repository_owner == 'frogs'
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #     with:
+  #       fetch-depth: 1
+  #   - uses: actions/setup-python@v1
+  #     with:
+  #       python-version: ${{ matrix.python-version }}
+  #   - uses: actions/download-artifact@v2
+  #     with:
+  #       name: Workflow artifacts
+  #       path: ../workflow_artifacts/
+  #   - name: Cache .cache/pip
+  #     uses: actions/cache@v2
+  #     id: cache-pip
+  #     with:
+  #       path: ~/.cache/pip
+  #       key: pip_cache_py_${{ matrix.python-version }}_gxy_${{ needs.setup.outputs.galaxy_head_sha }}
+  #   - name: Install Planemo
+  #     run: pip install planemo
+  #   - name: Deploy on testtoolshed
+  #     env:
+  #       SHED_KEY: ${{ secrets.TTS_API_KEY }}
+  #     run: |
+  #       while read -r DIR; do
+  #           planemo shed_update --shed_target testtoolshed --shed_key "${{ env.SHED_KEY }}" --force_repository_creation "$DIR" || exit 1;
+  #       done < ../workflow_artifacts/repository_list.txt
+  #     continue-on-error: true
+  #   - name: Deploy on toolshed
+  #     env:
+  #       SHED_KEY: ${{ secrets.TS_API_KEY }}
+  #     run: |
+  #       while read -r DIR; do
+  #           planemo shed_update --shed_target toolshed --shed_key "${{ env.SHED_KEY }}" --force_repository_creation "$DIR" || exit 1;
+  #       done < ../workflow_artifacts/repository_list.txt
