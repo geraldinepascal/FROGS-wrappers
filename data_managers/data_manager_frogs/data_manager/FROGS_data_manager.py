@@ -1,22 +1,25 @@
 #!/usr/bin/env python3
-
 # -*- coding: utf-8 -*-
+
+# import json
 import os
-import sys
 import argparse
-import time
-import json
-import requests
-import urllib
+# import sys
 import tarfile
+import urllib
+import time
+
+import requests
 
 from galaxy.util.json import from_json_string, to_json_string
 
+# GALAXY_database=~/galaxy/galaxy-20.09/database
 # FROGS_data_manager.py --database=frogs_db_data --all_dbs=false \
-#       --date=0 --amplicons=16S --bases=SILVA --filters=Pintail100 \
-#       --only_last_versions=true \
-#       --tool_data=/home/maria/galaxy/galaxy-20.09/tool-data \
-#       --output /home/maria/galaxy/galaxy-20.09/database/objects/e/7/7/dataset_e7766c39-8f36-450c-adf5-3e4ee8d5c562.dat
+# --date=0 --amplicons=16S --bases=SILVA --filters=Pintail100 \
+# --only_last_versions=true \
+# --tool_data=/home/maria/galaxy/galaxy-20.09/tool-data \
+# --output $GALAXY_database/objects/e/7/7/dataset_e7766c39-8f36-450c-adf5-3e4ee8d5c562.dat
+
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -56,7 +59,7 @@ def frogs_sources(data_manager_dict, target_directory):
     amplicons_list = []
     bases_list = []
     filters_list = []
-    if  args.all_dbs == "false":
+    if args.all_dbs == "false":
         amplicons_list = [amplicon.lower().strip() for amplicon in args.amplicons.split(",") if amplicon != ""]
         bases_list = [base.lower().strip() for base in args.bases.split(",") if base != ""]
         filters_list = [filter.lower().strip() for filter in args.filters.split(",") if filter != ""]
@@ -65,7 +68,7 @@ def frogs_sources(data_manager_dict, target_directory):
 
     # get frogs database index
     frogs_db_index_link = "http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv"
-    with requests.Session() as s :
+    with requests.Session() as s:
         download = s.get(frogs_db_index_link)
         decoded_content = download.content.decode('utf-8')
         db_index = decoded_content.splitlines()
@@ -75,18 +78,18 @@ def frogs_sources(data_manager_dict, target_directory):
     # filter databases
     if args.all_dbs == "false":
         # filter by amplicons
-        if len(amplicons_list) != 0 : 
+        if len(amplicons_list) != 0:
             db_index = [line for line in db_index if any([amplicon in amplicons_list for amplicon in line[1].split(',')])]
         # filter by base
-        if len(bases_list) != 0 : 
+        if len(bases_list) != 0:
             db_index = [line for line in db_index if line[2] in bases_list]
         # filter by filters
-        if len(filters_list) != 0 : 
+        if len(filters_list) != 0:
             db_index = [line for line in db_index if line[3] in filters_list]
         # filter by date
-        if bottom_date != 0 : 
-            db_index = [line for line in db_index if int(line[0])>=bottom_date]
-    if args.only_last_versions=="true":
+        if bottom_date != 0:
+            db_index = [line for line in db_index if int(line[0]) >= bottom_date]
+    if args.only_last_versions == "true":
         # keep only last version
         db_index = keep_only_last_version(db_index)
 
@@ -97,7 +100,7 @@ def frogs_sources(data_manager_dict, target_directory):
     dbs = set([])
     for line in db_index:
         value = line[5]
-        name = value.replace("_", " ") if not "_" in line[4] else value.replace(line[4], "").replace("_", " ") + line[4]
+        name = value.replace("_", " ") if "_" not in line[4] else value.replace(line[4], "").replace("_", " ") + line[4]
         link = line[6]
         name_dir = "".join([line[6].replace(".tar.gz", "").split("/")[-1]])
         file_path = tool_data_path+"/frogs_db/"+name_dir
