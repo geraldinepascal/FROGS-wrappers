@@ -46,7 +46,7 @@
 				--mask
 			#end if
 
-			--taxonomic-ranks '$taxonomic_ranks'
+			--taxonomic-ranks $taxonomic_ranks
 
 			#if '$rdp.rdp_rank'
 				--min-rdp-bootstrap '$rdp.rdp_rank:$rdp.rdp_bootstrap'
