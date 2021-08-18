@@ -1,4 +1,4 @@
-<tool id="FROGS_data_manager" name="FROGS Data manager" version="3.2.2" tool_type="manage_data">
+<tool id="FROGS_data_manager" name="FROGS Data manager" version="3.2.3" tool_type="manage_data">
     <requirements>
     </requirements>
     <stdio>
@@ -46,7 +46,7 @@
 
         All databases are available at http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/.
         
-        This tools is based on the `FROGS_databases.tsv.txt &lt;http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv.txt&gt;`_, that we update each time a new database is formatted.
+        This tools is based on the `FROGS_databases.tsv.txt &lt;http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv&gt;`_, that we update each time a new database is formatted.
 
 		.. image:: static/images/FROGS_db.png
    			:height: 157
