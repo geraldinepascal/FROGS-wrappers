@@ -1,3 +1,21 @@
+# v3.2.3+galaxy2 [2021-06]
+
+This version still refers to FROGS_3.2.3 suit.
+
+## Modifications:
+
+with help of @lecorguille
+
+* clean up xml code by using single quote, or python code following pep8 recommandations
+
+* init macros for version, requirement, logo and help
+
+* setup github actions for automatic galaxy testing 
+
+* precise XML test sections
+
+  
+
 # v3.2.3.1 [2021-06]
 
 This version still refers to FROGS_3.2.3 suit.

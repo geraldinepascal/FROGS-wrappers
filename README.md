@@ -1,12 +1,12 @@
 <p align="center">
  <a href="http://frogs.toulouse.inra.fr/">
-  <img src="static/images/FROGS_logo.png" align="center" width="20%" style="display: block; margin: auto;"/>
+  <img src="tools/frogs/static/images/FROGS_logo.png" align="center" width="20%" style="display: block; margin: auto;"/>
  </a>
 </p>
 
 Visit our web site : http://frogs.toulouse.inrae.fr/
 
-[![Release](https://img.shields.io/badge/release-3.2.3+galaxy2-blue.svg)![Date](https://img.shields.io/badge/date-Jun%202021-red.svg)](https://github.com/geraldinepascal/FROGS-wrappers/releases)[<img src="https://www.podcastscience.fm/wp-content/uploads/2017/12/deezer.png" width="5%" style="display: block; margin: auto;"/>](https://www.deezer.com/fr/playlist/5233843102?utm_source=deezer&utm_content=playlist-5233843102&utm_term=18632989_1545296531&utm_medium=web)
+[![Release](https://img.shields.io/badge/release-3.2.3+galaxy2-blue.svg)![Date](https://img.shields.io/badge/date-Jun%202021-red.svg)](https://github.com/geraldinepascal/FROGS-wrappers/releases)[![Galaxy Tool Linting and Tests for push and PR](https://github.com/geraldinepascal/FROGS-wrappers/actions/workflows/pr.yaml/badge.svg?branch=master)](https://github.com/geraldinepascal/FROGS-wrappers/actions/workflows/pr.yaml)[<img src="https://www.podcastscience.fm/wp-content/uploads/2017/12/deezer.png" width="5%" style="display: block; margin: auto;"/>](https://www.deezer.com/fr/playlist/5233843102?utm_source=deezer&utm_content=playlist-5233843102&utm_term=18632989_1545296531&utm_medium=web)
 
 
 
@@ -153,35 +153,35 @@ Tools order in the Galaxy interface will not follow the tool_conf.xml definition
 Modify manually the `galaxy_dir/config/integrated_tool_panel.xml`:
 
 ```
-    <section id="frogs_local_3_2_3" name="FROGS local" version="3_2_3">
-        <label id="frogs_otu_construction_3_2_3" text="OTUs reconstruction" version="3_2_3" />
-        <tool id="FROGS_demultiplex_3_2_3" />
-        <tool id="FROGS_preprocess_3_2_3" />
-        <tool id="FROGS_clustering_3_2_3" />
-        <tool id="FROGS_remove_chimera_3_2_3" />
-        <tool id="FROGS_OTU_filters_3_2_3" />
-        <tool id="FROGS_itsx_3_2_3" />
-        <tool id="FROGS_affiliation_OTU_3_2_3" />
-        <tool id="FROGS_affiliation_filters_3_2_3" />
-        <tool id="FROGS_affiliation_postprocess_3_2_3" />
-        <tool id="FROGS_normalisation_3_2_3" />
-        <tool id="FROGS_Tree_3_2_3" />
-        <tool id="FROGS_clusters_stat_3_2_3" />
-        <tool id="FROGS_affiliations_stat_3_2_3" />
-        <tool id="FROGS_biom_to_stdBiom_3_2_3" />
-        <tool id="FROGS_biom_to_tsv_3_2_3" />
-        <tool id="FROGS_tsv_to_biom_3_2_3" />
-        <label id="frogsstat_phyloseq_3_2_3" text="OTUs structure and composition analysis" version="3_2_3" />
-        <tool id="FROGSSTAT_Phyloseq_Import_Data_3_2_3" />
-        <tool id="FROGSSTAT_Phyloseq_Composition_Visualisation_3_2_3" />
-        <tool id="FROGSSTAT_Phyloseq_Alpha_Diversity_3_2_3" />
-        <tool id="FROGSSTAT_Phyloseq_Beta_Diversity_3_2_3" />
-        <tool id="FROGSSTAT_Phyloseq_Sample_Clustering_3_2_3" />
-        <tool id="FROGSSTAT_Phyloseq_Structure_Visualisation_3_2_3" />
-        <tool id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance_3_2_3" />
-        <label id="frogsstat_deseq_3_2_3" text="Differential abundance analysis" version="_3_2_3" />
-        <tool id="FROGSSTAT_DESeq2_Preprocess_3_2_3" />
-        <tool id="FROGSSTAT_DESeq2_Visualisation_3_2_3" />
+    <section id="frogs_local" name="FROGS local" version="3_2_3">
+        <label id="frogs_otu_construction" text="OTUs reconstruction" version="3_2_3" />
+        <tool id="FROGS_demultiplex" />
+        <tool id="FROGS_preprocess" />
+        <tool id="FROGS_clustering" />
+        <tool id="FROGS_remove_chimera" />
+        <tool id="FROGS_OTU_filters" />
+        <tool id="FROGS_itsx" />
+        <tool id="FROGS_affiliation_OTU" />
+        <tool id="FROGS_affiliation_filters" />
+        <tool id="FROGS_affiliation_postprocess" />
+        <tool id="FROGS_normalisation" />
+        <tool id="FROGS_Tree" />
+        <tool id="FROGS_clusters_stat" />
+        <tool id="FROGS_affiliations_stat" />
+        <tool id="FROGS_biom_to_stdBiom" />
+        <tool id="FROGS_biom_to_tsv" />
+        <tool id="FROGS_tsv_to_biom" />
+        <label id="frogsstat_phyloseq" text="OTUs structure and composition analysis" version="3_2_3" />
+        <tool id="FROGSSTAT_Phyloseq_Import_Data" />
+        <tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" />
+        <tool id="FROGSSTAT_Phyloseq_Alpha_Diversity" />
+        <tool id="FROGSSTAT_Phyloseq_Beta_Diversity" />
+        <tool id="FROGSSTAT_Phyloseq_Sample_Clustering" />
+        <tool id="FROGSSTAT_Phyloseq_Structure_Visualisation" />
+        <tool id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" />
+        <label id="frogsstat_deseq" text="Differential abundance analysis" version="3_2_3" />
+        <tool id="FROGSSTAT_DESeq2_Preprocess" />
+        <tool id="FROGSSTAT_DESeq2_Visualisation" />
     </section>
 ```
 
@@ -191,7 +191,7 @@ Modify manually the `galaxy_dir/config/integrated_tool_panel.xml`:
 
    Add the FROGS-wrappers images in `<Galaxy_Dir>/static/images` directory
 
-   `cp <Galaxy_Dir>/tools/FROGS/static/images/* <Galaxy_Dir>/static/images/.`
+   `cp <Galaxy_Dir>/tools/FROGS/tools/frogs/static/images/* <Galaxy_Dir>/static/images/.`
 
 
 # Use PEAR as reads merge software in preprocess
@@ -236,11 +236,11 @@ Databanks are defined in `loc` files and `loc` files are defined in Galaxy datat
 
 * Manual installation :
 
-  * datatables : `<Galaxy_Dir>/config/tool_data_table_conf.xml` , example : `<Galaxy_Dir>/tools/FROGS/tool_data_table_conf.xml.sample`
+  * datatables : `<Galaxy_Dir>/config/tool_data_table_conf.xml` , example : `<Galaxy_Dir>/tools/FROGS/tools/frogs/tool_data_table_conf.xml.sample`
 
-    Add FROGS-wrappers datatables in the Galaxy datatables, but replace `{__HERE__}` by `tools/FROGS`.
+    Add FROGS-wrappers datatables in the Galaxy datatables, but replace `{__HERE__}` by `tools/FROGS/tools/frogs `.
 
-  * loc files example : `<Galaxy_Dir>/tools/FROGS/tool-data/`
+  * loc files example : `<Galaxy_Dir>/tools/FROGS/tools/frogs/tool-data/`
 
     Copy and rename them as indicated in the tool_data_table.
 
