@@ -1,15 +1,15 @@
 name: Galaxy Tool Linting and Tests for push and PR
-on: [push, pull_request]
-  # push:
-  #   branches:
-  #     - master
-  # pull_request:
-  #   branches:
-  #     - master
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 env:
   GALAXY_REPO: https://github.com/galaxyproject/galaxy
   GALAXY_RELEASE: release_21.05
-  MAX_CHUNKS: 4
+  MAX_CHUNKS: 8
 jobs:
   # the setup job does two things:
   # 1. cache the pip cache and .planemo
