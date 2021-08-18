@@ -55,7 +55,8 @@
 			<param name="data" value="references/16-phylo_import.Rdata"/>
 			<param name="varExp" value="EnvType"/>
 			<param name="method" value="references/unifrac.tsv"/>
-      <output name="html" file="references/21-phylo_clustering.nb.html" compare="diff" lines_diff="0"/>
+      		<!-- <output name="html" file="references/21-phylo_clustering.nb.html" compare="diff" lines_diff="0"/> -->
+      		<output name="html" file="references/21-phylo_clustering.nb.html" compare="sim_size" delta="0"/>
 		</test>
 	</tests>
 	<help>

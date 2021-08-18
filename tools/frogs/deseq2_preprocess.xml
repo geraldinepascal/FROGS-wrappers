@@ -67,7 +67,7 @@
       <test>
          <param name="data" value="references/16-phylo_import.Rdata" />
          <param name="var1" value="EnvType"/>
-         <output name="dds" file="references/23-deseq2_preprocess.Rdata" compare="sim_size" delta="0"/>
+         <output name="dds" file="references/23-deseq2_preprocess.Rdata" compare="sim_size" delta="50"/>
       </test>
     </tests>
     <help>
