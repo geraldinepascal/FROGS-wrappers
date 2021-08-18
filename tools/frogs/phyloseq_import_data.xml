@@ -68,7 +68,24 @@
             <param name="treefile" value="input/tree.nwk"/>
             <output name="data" value="references/16-phylo_import.Rdata" compare="sim_size" delta="10"/>
             <!-- <output name="html" value="references/16-phylo_import.nb.html" compare="diff" lines_diff="0"/> -->
-            <output name="html" value="references/16-phylo_import.nb.html" compare="sim_size" delta="0"/>
+            <output name="html">
+                <assert_contents>
+                    <!-- check phyloseq object summary-->
+                    <has_text text='otu_table()   OTU Table:         [ 508 taxa and 64 samples ]'/>
+                    <has_text text='sample_data() Sample Data:       [ 64 samples by 4 sample variables ]' />
+                    <has_text text='tax_table()   Taxonomy Table:    [ 508 taxa by 7 taxonomic ranks ]' />
+                    <has_text text='phy_tree()    Phylogenetic Tree: [ 508 tips and 507 internal nodes ]' />
+                    <!-- check phyloseq object rank names-->
+                    <has_text text='Rank names :  Kingdom, Phylum, Class, Order, Family, Genus, Species'/>
+                    <!-- check phyloseq object Sample variables-->
+                    <has_text text='Sample variables:  EnvType, Description, FoodType, SampleID'/>
+                    <!-- check phyloseq object Variables details-->
+                    <has_text text='EnvType :  BoeufHache, VeauHache, DesLardons, MerguezVolaille, SaumonFume, FiletSaumon, FiletCabillaud, Crevette'/>
+                    <has_text text='Description :  LOT1, LOT3, LOT4, LOT5, LOT6, LOT7, LOT8, LOT10, LOT2, LOT9'/>
+                    <has_text text='FoodType :  Meat, Seafood'/>
+                    <has_text text='SampleID :  BHT0.LOT01, BHT0.LOT03, BHT0.LOT04, BHT0.LOT05, BHT0.LOT06, BHT0.LOT07, BHT0.LOT08, BHT0.LOT10, VHT0.LOT01, VHT0.LOT02, VHT0.LOT03, VHT0.LOT04, VHT0.LOT06, VHT0.LOT07, VHT0.LOT08, VHT0.LOT10, DLT0.LOT01, DLT0.LOT03, DLT0.LOT04, DLT0.LOT05, DLT0.LOT06, DLT0.LOT07, DLT0.LOT08, DLT0.LOT10, MVT0.LOT01, MVT0.LOT03, MVT0.LOT05, MVT0.LOT06, MVT0.LOT07, MVT0.LOT08, MVT0.LOT09, MVT0.LOT10, SFT0.LOT01, SFT0.LOT02, SFT0.LOT03, SFT0.LOT04, SFT0.LOT05, SFT0.LOT06, SFT0.LOT07, SFT0.LOT08, FST0.LOT01, FST0.LOT02, FST0.LOT03, FST0.LOT05, FST0.LOT06, FST0.LOT07, FST0.LOT08, FST0.LOT10, FCT0.LOT01, FCT0.LOT02, FCT0.LOT03, FCT0.LOT05, FCT0.LOT06, FCT0.LOT07, FCT0.LOT08, FCT0.LOT10, CDT0.LOT02, CDT0.LOT04, CDT0.LOT05, CDT0.LOT06, CDT0.LOT07, CDT0.LOT08, CDT0.LOT09, CDT0.LOT10'/>
+                </assert_contents>
+            </output>
         </test>
     </tests>
     <help>

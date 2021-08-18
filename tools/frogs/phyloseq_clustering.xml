@@ -56,7 +56,16 @@
 			<param name="varExp" value="EnvType"/>
 			<param name="method" value="references/unifrac.tsv"/>
       		<!-- <output name="html" file="references/21-phylo_clustering.nb.html" compare="diff" lines_diff="0"/> -->
-      		<output name="html" file="references/21-phylo_clustering.nb.html" compare="sim_size" delta="0"/>
+      		<output name="html">
+      			<assert_contents>
+                    <has_text text='FROGS Phyloseq: Sample clustering using different linkage method (version 3.2.3)' />
+                    <has_text text='Phyloseq 1.34.0' />
+                    <has_text text='Ward D2' />
+                    <has_text text='Complete' />
+                    <has_text text='Single' />
+                    <has_text text='img src=' />
+                </assert_contents>
+            </output>
 		</test>
 	</tests>
 	<help>
