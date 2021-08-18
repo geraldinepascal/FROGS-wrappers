@@ -243,7 +243,10 @@ Examples for the filters on abundance and occurence of the OTUs :
 
 @HELP_CONTACT@
 
-
-
 	</help>
+
+	<citations>
+		<expand macro="citations" />
+	</citations>
+
 </tool>

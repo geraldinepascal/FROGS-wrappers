@@ -212,7 +212,10 @@ To have some metrics on your clusters, you can use the tool **FROGS Clusters Sta
 
 @HELP_CONTACT@
 
-
-
     </help>
+
+    <citations>
+        <expand macro="citations" />
+    </citations>
+    
 </tool>

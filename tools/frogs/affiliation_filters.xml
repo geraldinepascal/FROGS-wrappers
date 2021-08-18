@@ -288,4 +288,9 @@ If no other OTU is affiliated to the "unknown species" of the Fusobacterium genu
 @HELP_CONTACT@
 
 	</help>
+
+	<citations>
+		<expand macro="citations" />
+	</citations>
+	
 </tool>

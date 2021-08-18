@@ -186,7 +186,10 @@ If you have Roche 454 sequences in sff format, you must convert them with some p
 
 @HELP_CONTACT@
 
-
-
 	</help>
+
+	<citations>
+		<expand macro="citations" />
+	</citations>
+	
 </tool>

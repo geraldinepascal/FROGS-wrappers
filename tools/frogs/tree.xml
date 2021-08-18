@@ -123,4 +123,9 @@ The summary file describing which OTUs are contained or not in the phylogenetic 
 
 
     </help>
+
+    <citations>
+        <expand macro="citations" />
+    </citations>
+    
 </tool>

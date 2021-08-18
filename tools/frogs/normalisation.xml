@@ -109,7 +109,10 @@ The number specified in "Number of reads" must be smaller than each total number
 
 @HELP_CONTACT@
 
-
-
 	</help>
+
+	<citations>
+		<expand macro="citations" />
+	</citations>
+	
 </tool>

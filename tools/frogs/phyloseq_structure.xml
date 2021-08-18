@@ -125,6 +125,10 @@ For NMDS there is not simple equivalent notion.
 
 @HELP_CONTACT@
 
-
 	</help>
+
+    <citations>
+        <expand macro="citations" />
+    </citations>
+    
 </tool>

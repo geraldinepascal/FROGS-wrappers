@@ -478,10 +478,12 @@ If the filter 'merged' reduce drasticaly the number of sequences:
  If the overlap between R1 and R2 is superior to 50 nucleotides and the quality of the end of the sequences is poor (see `FastQC &lt;http://www.bioinformatics.babraham.ac.uk/projects/fastqc/&gt;`_) you can try to cut the end of your sequences and relaunch the preprocess tool. You can either raise the mismatch percent in the overlapped region, but not too much!
 
 
-
 @HELP_CONTACT@
 
-
-
 	</help>
+
+	<citations>
+		<expand macro="citations" />
+	</citations>
+
 </tool>

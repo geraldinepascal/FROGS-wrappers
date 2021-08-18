@@ -39,8 +39,29 @@ Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geral
 
 Website: http://frogs.toulouse.inrae.fr/
 
-Please cite the **FROGS article**: `Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution. &lt;https://doi.org/10.1093/bioinformatics/btx791&gt;`_
+Depending on which kind of amplicon you are working on, please cite one of the two FROGS publications:
 
     </token>
+
+    <xml name="citations">
+        <citation type="bibtex">
+            @article{10.1093/bioinformatics/btx791,
+                author = {Escudié, Frédéric and Auer, Lucas and Bernard, Maria and Mariadassou, Mahendra and Cauquil, Laurent and Vidal, Katia and Maman, Sarah and Hernandez-Raquet, Guillermina and Combes, Sylvie and Pascal, Géraldine},
+                title = "{FROGS: Find, Rapidly, OTUs with Galaxy Solution}",
+                journal = {Bioinformatics},
+                volume = {34},
+                number = {8},
+                pages = {1287-1294},
+                year = {2018},
+                month = {04},
+                abstract = "{Metagenomics leads to major advances in microbial ecology and biologists need user friendly tools to analyze their data on their own.This Galaxy-supported pipeline, called FROGS, is designed to analyze large sets of amplicon sequences and produce abundance tables of Operational Taxonomic Units (OTUs) and their taxonomic affiliation. The clustering uses Swarm. The chimera removal uses VSEARCH, combined with original cross-sample validation. The taxonomic affiliation returns an innovative multi-affiliation output to highlight databases conflicts and uncertainties. Statistical results and numerous graphical illustrations are produced along the way to monitor the pipeline. FROGS was tested for the detection and quantification of OTUs on real and in silico datasets and proved to be rapid, robust and highly sensitive. It compares favorably with the widespread mothur, UPARSE and QIIME.Source code and instructions for installation: https://github.com/geraldinepascal/FROGS.git. A companion website: http://frogs.toulouse.inra.fr.Supplementary data are available at Bioinformatics online.}",
+                issn = {1367-4803},
+                doi = {10.1093/bioinformatics/btx791},
+                url = {https://doi.org/10.1093/bioinformatics/btx791},
+                eprint = {https://academic.oup.com/bioinformatics/article-pdf/34/8/1287/25120140/btx791\_supplementary\_file.pdf},
+            }
+        </citation>
+    </xml>
+
 
 </macros>

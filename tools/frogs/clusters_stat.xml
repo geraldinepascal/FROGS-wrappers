@@ -106,7 +106,10 @@ This is a very usefull tool to see the evolution of your OTU. Do not hesitate to
 
 @HELP_CONTACT@
 
-
-
 	</help>
+
+	<citations>
+		<expand macro="citations" />
+	</citations>
+	
 </tool>

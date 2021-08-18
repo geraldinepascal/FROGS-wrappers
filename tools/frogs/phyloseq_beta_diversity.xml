@@ -143,7 +143,10 @@ Jaccard distance using
 
 @HELP_CONTACT@
 
-
-
 	</help>
+
+    <citations>
+        <expand macro="citations" />
+    </citations>
+    
 </tool>

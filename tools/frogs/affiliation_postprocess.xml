@@ -139,6 +139,10 @@ We start with the most abundant OTU. If an OTU shares at least one affiliation w
 
 @HELP_CONTACT@
 
-
 	</help>
+
+	<citations>
+		<expand macro="citations" />
+	</citations>
+	
 </tool>

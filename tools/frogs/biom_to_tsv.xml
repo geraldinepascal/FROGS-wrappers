@@ -114,6 +114,10 @@ This output tsv file is easily readable in any spreadsheet software. Be aware th
 
 @HELP_CONTACT@
 
-
 	</help>
+
+	<citations>
+		<expand macro="citations" />
+	</citations>
+	
 </tool>

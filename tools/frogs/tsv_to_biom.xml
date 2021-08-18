@@ -130,4 +130,9 @@ If you modify your abundance TSV file
 
 
 	</help>
+
+	<citations>
+		<expand macro="citations" />
+	</citations>
+
 </tool>

@@ -168,4 +168,9 @@ How it works
 
 
 	</help>
+
+	<citations>
+		<expand macro="citations" />
+	</citations>
+	
 </tool>

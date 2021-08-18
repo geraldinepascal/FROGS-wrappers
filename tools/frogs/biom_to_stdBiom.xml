@@ -92,6 +92,10 @@ FROGS BIOM to std BIOM extracts the blast alignment details in a second file, wr
 
 @HELP_CONTACT@
 
-
 	</help>
+
+	<citations>
+		<expand macro="citations" />
+	</citations>
+	
 </tool>

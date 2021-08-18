@@ -170,7 +170,10 @@ If the variable is qualitative (ex: variable Treatment is define by two conditio
 
 @HELP_CONTACT@
 
-
-
     </help>
+
+    <citations>
+        <expand macro="citations" />
+    </citations>
+    
 </tool>

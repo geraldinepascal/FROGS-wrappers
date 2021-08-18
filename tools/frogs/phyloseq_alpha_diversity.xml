@@ -126,6 +126,10 @@ The data file containing table of alpha diversity indices.
 
 @HELP_CONTACT@
 
-
 	</help>
+
+    <citations>
+        <expand macro="citations" />
+    </citations>
+    
 </tool>

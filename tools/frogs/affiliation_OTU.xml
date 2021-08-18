@@ -183,6 +183,10 @@ As you can see the affiliation of each OTU is not human readable in outputed abu
 
 @HELP_CONTACT@
 
+    </help>
 
-  </help>
+    <citations>
+        <expand macro="citations" />
+    </citations>
+
 </tool>

@@ -144,6 +144,10 @@ Composition plot: plot the most abundant sub taxonomic level among a selection o
 
 @HELP_CONTACT@
 
-
     </help>
+
+    <citations>
+        <expand macro="citations" />
+    </citations>
+    
 </tool>
