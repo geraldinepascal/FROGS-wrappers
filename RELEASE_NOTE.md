@@ -14,6 +14,9 @@ with help of @lecorguille
 
 * precise XML test sections
 
+* FROGS datamanager have been uploaded independently on the toolshed : https://toolshed.g2.bx.psu.edu/view/frogs/data_manager_frogs
+See [README](https://github.com/geraldinepascal/FROGS-wrappers/blob/master/README.md#upload-and-configure-the-databanks) to remove previous installation of the datamanager without loosing previous reference databases downloaded.
+
   
 
 # v3.2.3.1 [2021-06]

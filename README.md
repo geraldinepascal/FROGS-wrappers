@@ -6,7 +6,8 @@
 
 Visit our web site : http://frogs.toulouse.inrae.fr/
 
-[![Release](https://img.shields.io/badge/release-3.2.3+galaxy2-blue.svg)![Date](https://img.shields.io/badge/date-Jun%202021-red.svg)](https://github.com/geraldinepascal/FROGS-wrappers/releases)[![Galaxy Tool Linting and Tests for push and PR](https://github.com/geraldinepascal/FROGS-wrappers/actions/workflows/pr.yaml/badge.svg?branch=master)](https://github.com/geraldinepascal/FROGS-wrappers/actions/workflows/pr.yaml)[<img src="https://www.podcastscience.fm/wp-content/uploads/2017/12/deezer.png" width="5%" style="display: block; margin: auto;"/>](https://www.deezer.com/fr/playlist/5233843102?utm_source=deezer&utm_content=playlist-5233843102&utm_term=18632989_1545296531&utm_medium=web)
+[![Release](https://img.shields.io/badge/release-3.2.3+galaxy2-blue.svg)](https://github.com/geraldinepascal/FROGS-wrappers/releases)   ![Date](https://img.shields.io/badge/date-Jun%202021-red.svg)   [![Galaxy Tool Linting and Tests for push and PR](https://github.com/geraldinepascal/FROGS-wrappers/actions/workflows/pr.yaml/badge.svg?branch=master)](https://github.com/geraldinepascal/FROGS-wrappers/actions/workflows/pr.yaml)   [<img src="https://www.podcastscience.fm/wp-content/uploads/2017/12/deezer.png" width="5%" style="display: block; margin: auto;"/>](https://www.deezer.com/fr/playlist/5233843102?utm_source=deezer&utm_content=playlist-5233843102&utm_term=18632989_1545296531&utm_medium=web)
+
 
 
 
@@ -41,7 +42,7 @@ FROGS-wrappers allow to add FROGS on a Galaxy instance.
 
 ## Simplest way
 
-FROGS is available on the Toolshed.
+FROGS and is data manager  are available on the Toolshed (owner : frogs).
 
 It will install FROGS thanks to [conda](https://anaconda.org/bioconda/frogs), download all these XML tools and well configure them in your Galaxy.
 
@@ -224,35 +225,6 @@ For that, you need to:
 
 Databanks are defined in `loc` files and `loc` files are defined in Galaxy datatable.
 
-* FROGS provides a data_manager. It concerns only taxonomical assignation databank which are listed here : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv.
-
-  You may choose to download all preformated database, or filter them on:
-
-  * date : all availbale database since DATE
-  * amplicon : ex: 16S
-  * base : ex SILVA
-  * filters : this column is not always filled, but we propose SILVA database filtered on pintail score
-  * version	: ex : 138.1
-
-* Manual installation :
-
-  * datatables : `<Galaxy_Dir>/config/tool_data_table_conf.xml` , example : `<Galaxy_Dir>/tools/FROGS/tools/frogs/tool_data_table_conf.xml.sample`
-
-    Add FROGS-wrappers datatables in the Galaxy datatables, but replace `{__HERE__}` by `tools/FROGS/tools/frogs `.
-
-  * loc files example : `<Galaxy_Dir>/tools/FROGS/tools/frogs/tool-data/`
-
-    Copy and rename them as indicated in the tool_data_table.
-
-    Then add entry as indicated in each loc files.
-
-* Toolshed installation :
-
-  * datatables : `<Galaxy_Dir>/config/shed_tool_data_table_conf.xml` (nothing to modify, FROGS datatables should automatically be added)
-  * loc files to filled in : `tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/<RANDOM>/`
-
-
-
 We provide some databanks for each of these 3 data tables, you simply need to download them and add them in the corresponding `loc` files.
 
 - Assignation databank for affiliation_OTU tool
@@ -272,6 +244,48 @@ We provide some databanks for each of these 3 data tables, you simply need to do
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/HVL
 
   loc file : `frogs_HVL.loc`
+
+
+
+* **FROGS** provides a **data_manager** (installable via the toolshed). It concerns only taxonomical assignation databank which are listed here : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv.
+
+  You may choose to download all formatted databases, or filter them on:
+
+  * date : all available database since DATE
+  * amplicon : ex: 16S
+  * base : ex: SILVA
+  * filters : this column is not always filled, but for example, we propose SILVA 16S database filtered on pintail score
+  * version	: ex : 138.1
+
+Datatables will be added in `<Galaxy_Dir>/config/shed_tool_data_table_conf.xml` 
+
+Loc files will be in : `tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/<RANDOM>/`
+
+
+
+You may modify the directory where you want to store reference files by changing  the `galaxy_data_manager_data_path` in the `galaxy.yml` files. All FROGS databases will be placed in a `frogs_db` directory.
+
+Since FROGS-wrappers 3.2.3+galaxy2, FROGS datamanager have been published in it's own toolshed repository : https://testtoolshed.g2.bx.psu.edu/view/oinizan/data_manager_frogs/
+
+To remove previous installed datamanager, simply remove `<data_manager> ... </data_manager>` sections in your `shed_data_manager_conf.xml` galaxy config file.
+Previously `frogs_db.loc` are in `tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/*/frogs_db.loc` and will still be available in all FROGS affiliation tools you have installed, do not remove it until you are sure that defined reference databases are useless.
+
+
+
+* **Manual installation** :
+
+  * datatables : `<Galaxy_Dir>/config/tool_data_table_conf.xml` , example : `<Galaxy_Dir>/tools/FROGS/tools/frogs/tool_data_table_conf.xml.sample`
+
+    Add FROGS-wrappers datatables in the Galaxy datatables, but replace `{__HERE__}` by `tools/FROGS/tools/frogs `.
+
+  * loc files example : `<Galaxy_Dir>/tools/FROGS/tools/frogs/tool-data/`
+
+    Copy and rename them as indicated in the tool_data_table.
+
+    Then add entry as indicated in each loc files.
+
+
+
 
 
 # Galaxy configuration
