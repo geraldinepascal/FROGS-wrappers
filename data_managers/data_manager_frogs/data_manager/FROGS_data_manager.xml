@@ -41,26 +41,35 @@
     <help>
         
         .. image:: static/images/FROGS_logo.png
-            :height: 144
-            :width: 110
+           :height: 144
+           :width: 110
 
         FROGS datamanager allows to download preformated databases for FROGS Affiliation OTU tool.
 
         All databases are available at http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/.
         
-        This tools is based on the `FROGS_databases.tsv &lt;http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv&gt;`_, that we update each time a new database is formatted.
+        This tools is based on the `FROGS_databases.tsv.txt &lt;http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv&gt;`_, that we update each time a new database is formatted.
 
-		.. image:: static/images/FROGS_db.png
-   			:height: 157
-   			:width: 961
+        .. image:: static/images/FROGS_db.png
+            :height: 157
+            :width: 961
 
-   		You may download all databases, but you may (should) filter whished database on different criteria:
+        You may download all databases, but you may (should) filter whished database on different criteria:
 
-   		- on a date, to download only last formated databases
-   		- on an amplicon type
-   		- on a base name
-   		- eventually on a filtered name, this may be the case for example, for 16S SILVA database, for which we provide reference sequence with pintail score above a threshold
+        - on a date, to download only last formated databases
+        - on an amplicon type
+        - on a base name
+        - eventually on a filtered name, this may be the case for example, for 16S SILVA database, for which we provide reference sequence with pintail score above a threshold
 
-   		Last option allow you to download only last version of previously selected databases, indeed we provide reference database since 2016 with for example, around 1 version of SILVA per year.
+        Last option allow you to download only last version of previously selected databases, indeed we provide reference database since 2016 with for example, around 1 version of SILVA per year.
+
+        **Contact**
+
+        Contacts: frogs-support@inrae.fr
+
+        Repositories: https://github.com/geraldinepascal/FROGS, https://github.com/geraldinepascal/FROGS-wrappers
+
+        Website: http://frogs.toulouse.inrae.fr/
+
     </help>
 </tool>
