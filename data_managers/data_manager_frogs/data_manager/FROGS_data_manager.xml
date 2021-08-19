@@ -40,13 +40,15 @@
     </outputs>
     <help>
         
-       	@HELP_LOGO@
+       	.. image:: static/images/FROGS_logo.png
+       :height: 144
+       :width: 110
 
         FROGS datamanager allows to download preformated databases for FROGS Affiliation OTU tool.
 
         All databases are available at http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/.
         
-        This tools is based on the `FROGS_databases.tsv.txt &lt;http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv&gt;`_, that we update each time a new database is formatted.
+        This tools is based on the `FROGS_databases.tsv &lt;http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv&gt;`_, that we update each time a new database is formatted.
 
 		.. image:: static/images/FROGS_db.png
    			:height: 157
