@@ -8,11 +8,4 @@ FROGS is a workflow designed to produce an OTU count matrix from high depth sequ
 Its data manager allow to upload new reference files for taxonomic affiliations that we distribute here : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/
 '
 name: data_manager_frogs
-owner: oinizan
-include: 
-  - data_manager/FROGS_data_manager.py
-  - data_manager/FROGS_data_manager.xml
-  - tool-data/frogs_db.loc.sample
-  - data_manager_conf.xml
-  - tool_data_table_conf.xml.sample
-  - tool_dependencies.xml
+owner: frogs
