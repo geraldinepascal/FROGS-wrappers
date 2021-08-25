@@ -40,8 +40,7 @@ __status__ = 'dev'
         <param format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance table of OTUs used in FPStep1(format: biom)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-        <param format="tabular" name="function" type="data" label="Function file" help="Table of predicted gene family copy numbers (output of
-                        FPStep2 : all_predicted.tsv by default)" optional="false">
+        <param format="tabular" name="function" type="data" label="Function file" help="Copy number table of gene families/functions present in the predicted genome for each amplicon sequence variant (output of FPStep2 : FPStep2_predicted_functions.tsv by default)" optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
         <param format="tabular" name="marker" type="data" label="Marker file" help="Table of predicted marker gene copy numbers (output of FPStep2 : marker_nsti_predicted.tsv by default)." optional="false">
@@ -57,7 +56,7 @@ __status__ = 'dev'
         <param name="max_nsti" type="float" label="NSTI cut-off" help="Sequences with NSTI values above this value will be excluded (default: 2)" value="2" min="0" max="4" optional="false" /> 
         <param name="min_reads" type="integer" optional="false" min="1" value="1" label="Minimum number of reads accross all samples" help='Minimum number of reads across all samples for each input ASV. ASVs below this cut-off will be counted as part of the "RARE" category in the stratified output (default: 1).' />
        <param name="min_samples" type="integer" optional="false" min="1" value="1" label="Minimum number of samples to be identified"  help='Minimum number of samples that an ASV needs to be identified within. ASVs below this cut-off will be counted as part of the "RARE" category in the stratified output (default: 1).' />
-        <param name="strat" type="boolean" label="Also produce table stratified by sequences ?" help='Output table stratified by sequences as well.' />
+        <param name="strat" type="boolean" label="Do you want also a table stratified per sequences ?" help='Output table stratified by sequences as well.' />
     </inputs>
 
 

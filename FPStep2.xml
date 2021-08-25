@@ -32,8 +32,8 @@ __status__ = 'dev'
 	   		--output_function $out_function
 	   		--debug
 	   		#if $traitsTable.category != "16S"
-	   		--observed_marker_table ${traitsTable.marker_table.value}
-	   		--observed_trait_table ${traitsTable.traits_table.value}
+	   		--observed_marker_table ${traitsTable.marker_table.fields.path}
+	   		--observed_trait_table ${traitsTable.marker_table.fields.traits}
 	   		#end if
 	</command> 
 
@@ -65,17 +65,9 @@ __status__ = 'dev'
 					</param>
 				</when>
 				<when value="ITS">
-				<param name="marker_table" type="select" label="Input marker table.">
+				<param name="marker_table" type="select" label="Function table." multiple="true" display="checkboxes">
 					<options from_data_table="frogs_picrust2_marker_table">
-						        <column name="name" index="2"/>
-        						<column name="value" index="2"/>
-						<validator type="no_options" message="A built-in database is not available" />
-					</options>
-				</param>
-				<param name="traits_table" type="select" label="Input traits table.">
-					<options from_data_table="frogs_picrust2_traits_table">
-						        <column name="name" index="2"/>
-        						<column name="value" index="2"/>
+
 						<validator type="no_options" message="A built-in database is not available" />
 					</options>
 				</param>
