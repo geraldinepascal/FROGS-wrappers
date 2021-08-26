@@ -65,9 +65,16 @@ __status__ = 'dev'
 					</param>
 				</when>
 				<when value="ITS">
-				<param name="marker_table" type="select" label="Function table." multiple="true" display="checkboxes">
+				<param name="marker_table" type="select" label="Function table" multiple="true" display="checkboxes">
 					<options from_data_table="frogs_picrust2_marker_table">
-
+						<filter type="remove_value" value="picrust2_marker_table_18S" />
+					</options>
+				</param>
+				</when>
+				<when value="18S">
+				<param name="marker_table" type="select" label="Function table" multiple="true" display="checkboxes">
+					<options from_data_table="frogs_picrust2_marker_table">
+						<filter type="remove_value" value="picrust2_marker_table_ITS" />
 						<validator type="no_options" message="A built-in database is not available" />
 					</options>
 				</param>
