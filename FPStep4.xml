@@ -48,10 +48,11 @@ __status__ = 'dev'
 		<conditional name="pathwayMap">
 	        <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
 	        	<option value="16S">16S</option>
-	        	<option value="other">Other</option>
+	        	<option value="ITS">ITS</option>
+            <option value="18S">18S</option>
 			</param>
-			<when value="other">
-        		<param name="map_file" type='select' label="Pathway map file for studied marker if not 16S " help="For exemple metacyc_path2rxn_struc_filt_fungi.txt for ITS and 18S marker." optional="true">
+			<when value="ITS">
+        		<param name="map_file" type='select' label="Pathway map file for studied marker if not 16S " help="metacyc_path2rxn_struc_filt_fungi.txt if the function selected in FPStep2 is 'EC'. KEGG_modules_to_KO.tsv if the function selected in FPStep2 is 'KO'." optional="false">
             		<options from_data_table="frogs_picrust2_pathway_map">
                 		<column name="name" index="2"/>
                  		<column name="value" index="2"/>
@@ -59,16 +60,25 @@ __status__ = 'dev'
             		</options>
        			</param>
        		</when>
+      <when value="18S">
+            <param name="map_file" type='select' label="Pathway map file for studied marker if not 16S " help="metacyc_path2rxn_struc_filt_fungi.txt if the function selected in FPStep2 is 'EC'. KEGG_modules_to_KO.tsv if the function selected in FPStep2 is 'KO'." optional="false">
+                <options from_data_table="frogs_picrust2_pathway_map">
+                    <column name="name" index="2"/>
+                    <column name="value" index="2"/>
+                          <validator type="no_options" message="A built-in database is not available" />
+                </options>
+            </param>
+          </when>
        	</conditional>
-        <param name="description" type='select' label="Folder of descriptions functions files" help="In order to add a description columns to the function abundance table" optional="true">
+        <param name="description" type='select' label="Folder of descriptions functions files" help="In order to add a description columns to the function abundance table (perform automatically)" optional="false" checked="true">
             <options from_data_table="frogs_picrust2_description_dir">
-            	<column name="name" index="2"/>
-            	<column name="value" index="2"/>
+                                <column name="name" index="2"/>
+                                <column name="value" index="2"/>
                         <validator type="no_options" message="A built-in database is not available" />
             </options>
         </param>
        <conditional name="is_per_sequence_contrib">
-       <param name="per_sequence_contrib" type="select" label="Also produce table stratified by sequences ?" help='Also product the predicted pathway abundance contributed by each individual sequence. This is in contrast to the default stratified output, which is the contribution to the community-wide pathway abundances. Note this will greatly increase the runtime.' >
+       <param name="per_sequence_contrib" type="select" label="Do you want also a table stratified per sequences ?" help='Also product the predicted pathway abundance contributed by each individual sequence. This is in contrast to the default stratified output, which is the contribution to the community-wide pathway abundances. Note this will greatly increase the runtime.' >
 			<option value="no" selected="true">No</option>
 			<option value="yes">Yes</option>
 		</param>

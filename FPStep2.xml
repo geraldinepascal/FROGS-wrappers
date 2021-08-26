@@ -92,7 +92,7 @@ __status__ = 'dev'
 
 
 	<outputs>
-		<data format="tabular" name="out_function" label="${tool.name}: FPStep2_all_predicted.tsv" from_work_dir="FPStep2_all_predicted.tsv"/>
+		<data format="tabular" name="out_function" label="${tool.name}: FPStep2_predicted_functions.tsv" from_work_dir="FPStep2_all_predicted.tsv"/>
 		<data format="tabular" name="out_marker" label="${tool.name}: marker_nsti_predicted.tsv" from_work_dir="${category}_nsti_predicted.tsv"/> 
 	</outputs>
 
