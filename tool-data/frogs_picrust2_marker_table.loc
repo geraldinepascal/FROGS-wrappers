@@ -1,3 +1,2 @@
-picrust_marker_table_16S	16S	NA
-picrust2_marker_table_ITS	ITS	/usr/local/bioinfo/src/PICRUSt2/picrust2-2.4.1/picrust2/default_files/fungi/ITS_counts.txt.gz
-picrust2_marker_table_18S	18S	/usr/local/bioinfo/src/PICRUSt2/picrust2-2.4.1/picrust2/default_files/fungi/18S_counts.txt.gz
+picrust2_marker_table_ITS	EC	/home/vdarbot/Desktop/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/2ed857799fd5/picrust_default_files/fungi/ITS_counts.txt.gz	/home/vdarbot/Desktop/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/2ed857799fd5/picrust_default_files/fungi/ec_ITS_counts.txt.gz
+picrust2_marker_table_18S	EC	/home/vdarbot/Desktop/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/2ed857799fd5/picrust_default_files/fungi/18S_counts.txt.gz	/home/vdarbot/Desktop/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/2ed857799fd5/picrust_default_files/fungi/ec_18S_counts.txt.gz

@@ -30,14 +30,12 @@ __status__ = 'dev'
                 --per_sequence_abun $per_sequence_abun
                 --per_sequence_function $per_sequence_function 
             #end if
-            #if $description
-                --description_dir ${description.value}
+            --description_dir ${description.value}
             #end if
-			#if $pathwayMap.category != "16S"
-				--map ${pathwayMap.map_file.value}
-			#end if
-	   		--html $html
-	   		--debug
+				    --map ${pathwayMap.map_file.fields.path}
+            --no_regroup
+	   		    --html $html
+	   		    --debug
 	</command> 
 
 	<inputs>
@@ -48,30 +46,45 @@ __status__ = 'dev'
 		<conditional name="pathwayMap">
 	        <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
 	        	<option value="16S">16S</option>
-	        	<option value="other">Other</option>
+	        	<option value="ITS">ITS</option>
+            <option value="18S">18S</option>
 			</param>
-			<when value="other">
-        		<param name="map_file" type='select' label="Pathway map file for studied marker if not 16S " help="For exemple metacyc_path2rxn_struc_filt_fungi.txt for ITS and 18S marker." optional="true">
+      <when value="16S">
+            <param name="map_file" type='select' label="Pathway map file for studied marker if not 16S " help="metacyc_prokaryote if the function selected in FPStep2 is 'EC'. kegg_prokaryote if the function selected in FPStep2 is 'KO'." optional="false">
+                <options from_data_table="frogs_picrust2_pathway_map">
+                    <filter type="remove_value" value="fungi_metacyc_pathway" />
+                          <validator type="no_options" message="A built-in database is not available" />
+                </options>
+            </param>
+          </when>
+			<when value="ITS">
+        		<param name="map_file" type='select' label="Pathway map file for studied marker if not 16S " help="" optional="false">
             		<options from_data_table="frogs_picrust2_pathway_map">
-                		<column name="name" index="2"/>
-                 		<column name="value" index="2"/>
+                    <filter type="remove_value" value="pro_metacyc_pathway" />
+                    <filter type="remove_value" value="kegg_modules_pathway" />
                         	<validator type="no_options" message="A built-in database is not available" />
             		</options>
        			</param>
        		</when>
+      <when value="18S">
+            <param name="map_file" type='select' label="Pathway map file for studied marker if not 16S " help="" optional="false">
+                <options from_data_table="frogs_picrust2_pathway_map">
+                    <filter type="remove_value" value="pro_metacyc_pathway" />
+                    <filter type="remove_value" value="kegg_modules_pathway" />
+                          <validator type="no_options" message="A built-in database is not available" />
+                </options>
+            </param>
+          </when>
        	</conditional>
-        <param name="description" type='select' label="Folder of descriptions functions files" help="In order to add a description columns to the function abundance table" optional="true">
+        <param name="description" type='select' label="Folder of descriptions functions files" help="In order to add a description columns to the function abundance table (perform automatically)" optional="false" checked="true">
             <options from_data_table="frogs_picrust2_description_dir">
-            	<column name="name" index="2"/>
-            	<column name="value" index="2"/>
+                                <column name="name" index="2"/>
+                                <column name="value" index="2"/>
                         <validator type="no_options" message="A built-in database is not available" />
             </options>
         </param>
        <conditional name="is_per_sequence_contrib">
-       <param name="per_sequence_contrib" type="select" label="Also produce table stratified by sequences ?" help='Also product the predicted pathway abundance contributed by each individual sequence. This is in contrast to the default stratified output, which is the contribution to the community-wide pathway abundances. Note this will greatly increase the runtime.' >
-			<option value="no" selected="true">No</option>
-			<option value="yes">Yes</option>
-		</param>
+       <param name="per_sequence_contrib" label="Do you want also a table stratified per sequences ?" help='Also product the predicted pathway abundance contributed by each individual sequence. This is in contrast to the default stratified output, which is the contribution to the community-wide pathway abundances. Note this will greatly increase the runtime.' type="boolean" />
        	<when value="yes">
        		<param name="per_sequence_abun" type="data" label="FPStep3 abundance per sequence file" help="Path to table of sequence abundances across samples normalized by marker copy number (FPStep3 output: seqtab_norm.tsv by default). This input is required when the --per_sequence_contrib option is set." optional="false">
             <validator type="empty_field" message="This parameter is required." />
