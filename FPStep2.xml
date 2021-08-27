@@ -30,11 +30,11 @@ __status__ = 'dev'
 	   		--hsp_method $hsp_method
 	   		--output_marker $out_marker
 	   		--output_function $out_function
-	   		--debug
 	   		#if $traitsTable.category != "16S"
 	   		--observed_marker_table ${traitsTable.marker_table.fields.path}
 	   		--observed_trait_table ${traitsTable.marker_table.fields.traits}
 	   		#end if
+	   		--debug
 	</command> 
 
 
@@ -42,20 +42,20 @@ __status__ = 'dev'
 	         	 <!-- Files -->
 	    <!-- <param format="Fasta" name="fasta_file" type="data" label="Fasta file" help="The sequence file to filter (format: fasta)." /> -->
 
-	    <param format="nhx" name="input_tree" type="data" label="Tree file" help="The full reference tree in newick format containing both study sequences (i.e. ASVs or OTUs) and reference sequences (FPStep1 output)."
+	    <param format="nhx" name="input_tree" type="data" label="Tree file" help="The full reference tree in newick format containing both study sequences (i.e. ASVs or OTUs) and reference sequences (FPStep1 output tree)."
 	    	optional="false">
         	<validator type="empty_field" message="This parameter is required." />
         </param>
 
 	   			 <!-- Parameters-->
 		<conditional name="traitsTable">
-	        <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
+	        <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker studied." multiple="false" display="radio">
 	        	<option value="16S">16S</option>
 	        	<option value="ITS">ITS</option>
 	        	<option value="18S">18S</option>
 			</param>
 				<when value="16S">
-					<param name="function" type="select" label="Function table" help="Note that EC is required for FPStep4." multiple="true" display="checkboxes">
+					<param name="function" type="select" label="Function table" help="Note that EC (Metacyc pathways, by default in picrust2) or KO (KEGG pathways) is required for FPStep4." multiple="true" display="checkboxes">
 					 <option value="EC" selected="true">EC</option>
 		             <option value="KO">KO</option>
 		             <option value="PFAM">PFAM</option>

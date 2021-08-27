@@ -41,10 +41,10 @@ __status__ = 'dev'
         <param format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance table of OTUs used in FPStep1 (format: biom)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-        <param format="tabular" name="function" type="data" label="Function file" help="Copy number table of gene families/functions present in the predicted genome for each amplicon sequence variant (output of FPStep2 : FPStep2_predicted_functions.tsv by default)" optional="false">
+        <param format="tabular" name="function" type="data" label="Function file" help="Copy number table of gene families/functions present in the predicted genome for each amplicon sequence variant (output of FPStep2 : FPStep2_predicted_functions.tsv)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-        <param format="tabular" name="marker" type="data" label="Marker file" help="Table of predicted marker copy number (output of FPStep2 : marker_nsti_predicted.tsv by default)." optional="false">
+        <param format="tabular" name="marker" type="data" label="Marker file" help="Table of predicted marker copy number (output of FPStep2 : marker_nsti_predicted.tsv)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
         <param name="description" type='select' label="Folder of descriptions functions files" help="In order to add a description columns to the function abundance table (perform automatically)" optional="false" checked="true">
