@@ -30,8 +30,8 @@ __status__ = 'dev'
                 --per_sequence_abun $per_sequence_abun
                 --per_sequence_function $per_sequence_function 
             #end if
+            
             --description_dir ${description.value}
-            #end if
 				    --map ${pathwayMap.map_file.fields.path}
             --no_regroup
 	   		    --html $html
