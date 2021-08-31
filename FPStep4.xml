@@ -56,7 +56,7 @@ __status__ = 'dev'
                 </options>
 			     </param>
 
-            <param name="map_file" type='select' label="Pathway map file." help="For 16S marker, chose metacyc_prokaryote if the function selected in FPStep2 is 'EC'. kegg_prokaryote if the function selected in FPStep2 is 'KO'." optional="false">
+            <param name="map_file" type='select' label="Pathway map file." help="For 16S marker, chose Metacyc if the function selected in FPStep2 is 'EC' and Kegg if the function selected in FPStep2 is 'KO'. For ITS or 18S marker, only Metacyc is available and 'EC' must be chose at  FPStep2." optional="false">
                 <options from_data_table="frogs_picrust2_pathway_map">
                   <column name='name' index='1'/>
                   <column name='value' index='3'/>
