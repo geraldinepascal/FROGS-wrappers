@@ -24,7 +24,7 @@ __status__ = 'dev'
     <command >
 	   FPStep2.py
 	   		--tree $input_tree
-	   		#if $category == "16S"
+	   		#if $category.value == "16S"
 	   			--in_trait $function.fields.name
 	   		#end if
 	   		--hsp_method $hsp_method
@@ -32,7 +32,7 @@ __status__ = 'dev'
 	   		--output_function $out_function
 	   		#if $category.value != "16S"
 	   		--observed_marker_table $function.fields.value
-	   		--observed_trait_table $function.fields.name
+	   		--observed_trait_table $function.fields.traits
 	   		#end if
 	   		--debug
 	</command> 
@@ -60,6 +60,9 @@ __status__ = 'dev'
 
 				<param name="function" type="select" label="Function table" multiple="true" display="checkboxes" optional="false" >
 					<options from_data_table="frogs_picrust2_marker_table">
+						    <column name='name' index='1' />
+						    <column name='value' index='2' />
+						    <column name='traits' index='3' />
                   			<filter type="param_value" ref="category" column="0" />               
                          <validator type="no_options" message="A built-in database is not available" />
                		</options>
