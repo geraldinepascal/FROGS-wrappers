@@ -30,9 +30,13 @@ __status__ = 'dev'
                 --per_sequence_abun $per_sequence_abun
                 --per_sequence_function $per_sequence_function 
             #end if
-            
             --description_dir ${description.value}
 				    --map ${pathwayMap.map_file.fields.path}
+            #if $pathwayMap.category == "16S"
+                #if $pathwayMap.map_file.fields.value == "kegg_modules_pathway"
+                    --no_regroup
+                #end if
+            #end if
             --no_regroup
 	   		    --html $html
 	   		    --debug
