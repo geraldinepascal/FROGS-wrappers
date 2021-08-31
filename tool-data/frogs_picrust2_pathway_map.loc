@@ -1,3 +1,3 @@
-pro_metacyc_pathway	metacyc_prokaryote	/home/vdarbot/Desktop/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/2ed857799fd5/picrust_default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt
-fungi_metacyc_pathway	metacyc_fungi	/home/vdarbot/Desktop/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/2ed857799fd5/picrust_default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_fungi.txt
-kegg_modules_pathway	kegg_prokaryote	/home/vdarbot/Desktop/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/2ed857799fd5/picrust_default_files/pathway_mapfiles/KEGG_pathways_to_KO.tsv
+pro_metacyc_pathway	Metacyc	16S	/home/vdarbot/Desktop/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/2ed857799fd5/picrust_default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt
+fungi_metacyc_pathway	Metacyc	ITS or 18S	/home/vdarbot/Desktop/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/2ed857799fd5/picrust_default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_fungi.txt
+kegg_modules_pathway	Kegg	16S	/home/vdarbot/Desktop/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/2ed857799fd5/picrust_default_files/pathway_mapfiles/KEGG_pathways_to_KO.tsv

@@ -31,13 +31,12 @@ __status__ = 'dev'
                 --per_sequence_function $per_sequence_function 
             #end if
             --description_dir ${description.value}
-				    --map ${pathwayMap.map_file.fields.path}
-            #if $pathwayMap.category == "16S"
-                #if $pathwayMap.map_file.fields.value == "kegg_modules_pathway"
+				    --map $map_file.value
+            #if $category == "16S"
+                #if $map_file.name == "Kegg"
                     --no_regroup
                 #end if
             #end if
-            --no_regroup
 	   		    --html $html
 	   		    --debug
 	</command> 
@@ -47,39 +46,25 @@ __status__ = 'dev'
         <param format="tabular" name="input_file" type="data" label="FPStep3 prediction abundance file" help="Input TSV table of gene family abundances (either the unstratified or stratified output of FPStep3, by default pred_metagenome_unstrat.tsv)" optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-		<conditional name="pathwayMap">
+
 	        <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
-	        	<option value="16S">16S</option>
-	        	<option value="ITS">ITS</option>
-            <option value="18S">18S</option>
-			</param>
-      <when value="16S">
-            <param name="map_file" type='select' label="Pathway map file for studied marker if not 16S " help="metacyc_prokaryote if the function selected in FPStep2 is 'EC'. kegg_prokaryote if the function selected in FPStep2 is 'KO'." optional="false">
                 <options from_data_table="frogs_picrust2_pathway_map">
-                    <filter type="remove_value" value="fungi_metacyc_pathway" />
+                  <column name='name' index='2' />
+                  <column name='value' index='2' />
+                  <filter type="unique_value" column='2'/>
+                          <validator type="no_options" message="A built-in database is not available" />
+                </options>
+			     </param>
+
+            <param name="map_file" type='select' label="Pathway map file." help="For 16S marker, chose metacyc_prokaryote if the function selected in FPStep2 is 'EC'. kegg_prokaryote if the function selected in FPStep2 is 'KO'." optional="false">
+                <options from_data_table="frogs_picrust2_pathway_map">
+                  <column name='name' index='1'/>
+                  <column name='value' index='3'/>
+                  <filter type="param_value" ref="category" column="2" />               
                           <validator type="no_options" message="A built-in database is not available" />
                 </options>
             </param>
-          </when>
-			<when value="ITS">
-        		<param name="map_file" type='select' label="Pathway map file for studied marker if not 16S " help="" optional="false">
-            		<options from_data_table="frogs_picrust2_pathway_map">
-                    <filter type="remove_value" value="pro_metacyc_pathway" />
-                    <filter type="remove_value" value="kegg_modules_pathway" />
-                        	<validator type="no_options" message="A built-in database is not available" />
-            		</options>
-       			</param>
-       		</when>
-      <when value="18S">
-            <param name="map_file" type='select' label="Pathway map file for studied marker if not 16S " help="" optional="false">
-                <options from_data_table="frogs_picrust2_pathway_map">
-                    <filter type="remove_value" value="pro_metacyc_pathway" />
-                    <filter type="remove_value" value="kegg_modules_pathway" />
-                          <validator type="no_options" message="A built-in database is not available" />
-                </options>
-            </param>
-          </when>
-       	</conditional>
+       
         <param name="description" type='select' label="Folder of descriptions functions files" help="In order to add a description columns to the function abundance table (perform automatically)" optional="false" checked="true">
             <options from_data_table="frogs_picrust2_description_dir">
                                 <column name="name" index="2"/>
