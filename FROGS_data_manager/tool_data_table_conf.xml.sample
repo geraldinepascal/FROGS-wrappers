@@ -35,7 +35,7 @@
     </table>
     <!-- Locations of picrust2 pathway map files -->
    <table name="frogs_picrust2_pathway_map" comment_char="#">
-        <columns>value, name, path</columns>
+        <columns>marker, path, value, name </columns>
         <file path="tool-data/frogs_picrust2_pathway_map.loc" />
     </table>
 </tables>

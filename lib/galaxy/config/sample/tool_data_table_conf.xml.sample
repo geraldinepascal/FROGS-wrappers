@@ -87,7 +87,7 @@
     </table>
         <!-- Locations of picrust2 marker table files -->
    <table name="frogs_picrust2_marker_table" comment_char="#">
-        <columns>value, name, path</columns>
+        <columns>value, name, path, traits</columns>
         <file path="tool-data/frogs_picrust2_marker_table.loc" />
     </table>
         <!-- Locations of picrust2 traits table files -->
