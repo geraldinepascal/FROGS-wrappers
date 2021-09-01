@@ -32,7 +32,7 @@ __status__ = 'dev'
             #end if
             --description_dir ${description.value}
 				    --map $map_file.value
-            #if $category == "16S"
+            #if $category.value == "16S"
                 #if $map_file.name == "Kegg"
                     --no_regroup
                 #end if
