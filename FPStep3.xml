@@ -82,8 +82,10 @@
 
 What it does
 
-Prediction of functional abundances based solely on the sequences of marker genes with 'PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. 
-The third step of Picrust2 Determine the abundance of gene families for each sample.
+Prediction of functional abundances based solely on the sequences of marker genes with PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;. 
+
+
+The third step of Picrust2 determine the gene families abundances for each sample.
 
 Inputs/Outputs
 
@@ -91,35 +93,39 @@ Inputs/Outputs
 
 Inputs
 
-**OTUs biom file**:
+**Biom file**:
 
 The OTUs biom file used in FPStep1. (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
-**Prediction result ** (marke.tsv):
 
-** Output marker file **:
 
-The table of predicted marker gene copy numbers per study sequence in input tree. (FPStep2_marker_nsti_predicted.tsv)
+**Function file**:
 
-** Output function file **:
+The table of predicted marker gene copy numbers per study sequence in input tree. (FPStep2_predicted_functions.tsv)
 
-The table with predicted abundances per study sequence in input tree. (FPStep2_all_predicted.tsv)
+**Marker file**:
+
+The table with predicted abundances per study sequence in input tree. (FPStep2: marker_nsti_predicted.tsv)
 
 
 .. class:: h3
 
 Outputs
 
-**Function abundance file **:
+**Function abundance file**:
  
-Output file for metagenome predictions abundance. (FPStep3_pred_metagenome_unstrat.tsv)
+Output file for metagenome abundances predictions of gene families. (FPStep3_pred_metagenome_unstrat.tsv)
 
-** Seqtab normalized file **:
+If stratified option is activate, the abundances predictions are done for each OTU, in order to see the contribution of each OTU within each sample. ( Warning, the file produced may be heavy. ) 
+
+(FPStep3_pred_metagenome_contrib.tsv)
+
+**Seqtab normalized file**:
 
 Output file with abundance normalized. (FPStep3_seqtab_norm.tsv)
 
-** Weighted nsti file **:
+**Weighted nsti file**:
 
-Output file with nsti value per sample
+Output file with average nsti calculated per sample.
 
 .. class:: infomark page-header h2
 
