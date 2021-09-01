@@ -96,9 +96,11 @@
 
 What it does
 
-Prediction of functional abundances based solely on the sequences of marker genes with 'PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. 
+Prediction of functional abundances based solely on the sequences of marker genes with PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;. 
+
+
 The first step of Picrust2 consists in placing the nucleotide sequences of the OTUs constructed elsewhere in a reference phylogenetic tree. 
-The phylogenetic placement is done with `HMMER &lt;http://hmmer.org&gt;`_ to place study sequences into a reference multiple-sequence alignment  `EPA_NG &lt;https://github.com/Pbdas/epa-ng#build-instructions&gt;`_ to places these sequences into the reference phylogeny and product finaly tree with `GAPPA &lt;https://github.com/lczech/gappa&gt;`_.
+The phylogenetic placement is done with `HMMER &lt;http://hmmer.org&gt;`_ to place study sequences into a reference multiple-sequence alignment  (`EPA_NG &lt;https://github.com/Pbdas/epa-ng#build-instructions&gt;`_ or `SEPP &lt;https://github.com/smirarab/sepp&gt;`_) to places these sequences into the reference phylogeny and product finaly tree with `GAPPA &lt;https://github.com/lczech/gappa&gt;`_.
 
 
 .. class:: infomark page-header h2
@@ -110,11 +112,11 @@ Inputs/Outputs
 Input
 
 
-**OTUs fasta file**:
+**Sequence file**:
 
-The OTUs sequence file (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
+The OTUs fasta sequence file (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
 
-**OTUs biom file**:
+**Biom file**:
 
 The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
 This file can be obtained in particular with the FROGS pipeline.
@@ -123,13 +125,13 @@ This file can be obtained in particular with the FROGS pipeline.
 
 Outputs
 
-**Newick file** (FPStep1.tree):
+**Newick file** (FPStep1_tree.nwk):
 
-The phylogenetic tree output with insert sequences (format: newick). (format `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
+The phylogenetic tree output with insert sequences into the reference tree (format: newick). (format `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
 
  .. image:: ./static/images/FROGS_nwk_treefile.png
 
-**Excluded sequences file** (FPSTep1_excluded.txt):
+**Excluded sequences file** (FPStep1_excluded.tsv):
 
 List of sequences not inserted in the tree.
 
