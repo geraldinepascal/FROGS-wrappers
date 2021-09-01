@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-__author__ = ' Moussa Samb & Maria Bernard  & Geraldine Pascal INRAE - SIGENAE '
-__copyright__ = 'Copyright (C) 2020 INRAE'
-__license__ = 'GNU General Public License'
-__version__ = '1.0'
-__email__ = 'frogs@inrae.fr'
-__status__ = 'dev'
+# Copyright (C) 2015 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGS_PICRUSt2_metagenome" name="FPStep3" version= "beta">
     <description>Per-sample metagenome functional profiles based on the predicted functions for each study sequence.</description>
-
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />
     </stdio>
-    
-
     <command >
        FPStep3.py
             --input_biom $input_biom
@@ -35,9 +40,8 @@ __status__ = 'dev'
             --html $html
             --debug
     </command> 
-
-
     <inputs>
+        <!-- Input files -->
         <param format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance table of OTUs used in FPStep1 (format: biom)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
@@ -49,18 +53,17 @@ __status__ = 'dev'
         </param>
         <param name="description" type='select' label="Folder of descriptions functions files" help="In order to add a description columns to the function abundance table (perform automatically)" optional="false" checked="true">
             <options from_data_table="frogs_picrust2_description_dir">
-                                <column name="name" index="2"/>
-                                <column name="value" index="2"/>
-                        <validator type="no_options" message="A built-in database is not available" />
+                <column name="name" index="2"/>
+                <column name="value" index="2"/>
+                <validator type="no_options" message="A built-in database is not available" />
             </options>
         </param>
+        <!-- Parameters-->
         <param name="max_nsti" type="float" label="NSTI cut-off" help="Sequences with NSTI values above this value will be excluded (default: 2)" value="2" min="0" optional="false" /> 
         <param name="min_reads" type="integer" optional="false" min="1" value="1" label="Minimum number of reads accross all samples" help='Minimum number of reads across all samples for each input OTU. OTUs below this cut-off will be counted as part of the "RARE" category in the stratified output (default: 1).' />
        <param name="min_samples" type="integer" optional="false" min="1" value="1" label="Minimum number of samples to keep an OTU."  help='Minimum number of samples that an OTU needs to be identified within. OTUs below this cut-off will be counted as part of the "RARE" category in the stratified output (default: 1).' />
         <param name="strat" type="boolean" label="Do you want also a table stratified per sequences ?" help='Output table stratified by sequences as well.' />
     </inputs>
-
-
     <outputs>
         <data format="html" name="html" label="${tool.name}: FPStep3_summary.html" from_work_dir="FPStep3_summary.html"/>
         <data format="tabular" name="function_abund" label="${tool.name}: FPStep3_pred_metagenome_unstrat.tsv" from_work_dir="FPStep3_pred_metagenome_unstrat.tsv"/> 
@@ -70,7 +73,6 @@ __status__ = 'dev'
             <filter>strat</filter>
         </data>
     </outputs>
-
      <help>
 .. image:: ./static/images/FROGS_logo.png
    :height: 144

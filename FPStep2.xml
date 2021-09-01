@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-__author__ = ' Moussa Samb & Maria Bernard  & Geraldine Pascal INRAE - SIGENAE '
-__copyright__ = 'Copyright (C) 2020 INRAE'
-__license__ = 'GNU General Public License'
-__version__ = '1.0'
-__email__ = 'frogs@inrae.fr'
-__status__ = 'dev'
+# Copyright (C) 2015 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGS_PICRUSt2_hsp" name="FPStep2" version= "beta">
 	<description>Predict the copy number of gene families present in the predicted genome for each amplicon sequence variant</description>
-
 	<requirements>
-               
-        
     </requirements>
-
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />
     </stdio>
-	
-
     <command >
 	   FPStep2.py
 	   		--tree $input_tree
@@ -36,55 +38,42 @@ __status__ = 'dev'
 	   		#end if
 	   		--debug
 	</command> 
-
-
 	<inputs>
-	         	 <!-- Files -->
-	    <!-- <param format="Fasta" name="fasta_file" type="data" label="Fasta file" help="The sequence file to filter (format: fasta)." /> -->
-
+	    <!-- Input files -->
 	    <param format="nhx" name="input_tree" type="data" label="Tree file" help="The full reference tree in newick format containing both study sequences (i.e. ASVs or OTUs) and reference sequences (FPStep1 output tree)."
 	    	optional="false">
         	<validator type="empty_field" message="This parameter is required." />
         </param>
-
-	   			 <!-- Parameters-->
-
-	        <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
-                <options from_data_table="frogs_picrust2_marker_table">
-                  <column name='name' index='0' />
-                  <column name='value' index='0' />
-                  <filter type="unique_value" column='0'/>
-                          <validator type="no_options" message="A built-in database is not available" />
-                </options>
-			     </param>
-
-				<param name="function" type="select" label="Function table" multiple="true" display="checkboxes" optional="false" >
-					<options from_data_table="frogs_picrust2_marker_table">
-						    <column name='name' index='1' />
-						    <column name='value' index='2' />
-						    <column name='traits' index='3' />
-                  			<filter type="param_value" ref="category" column="0" />               
-                         <validator type="no_options" message="A built-in database is not available" />
-               		</options>
-            	</param>
-
+	   	<!-- Parameters-->
+	    <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
+            <options from_data_table="frogs_picrust2_marker_table">
+                <column name='name' index='0' />
+                <column name='value' index='0' />
+                <filter type="unique_value" column='0'/>
+                    <validator type="no_options" message="A built-in database is not available" />
+            </options>
+		</param>
+		<param name="function" type="select" label="Function table" multiple="true" display="checkboxes" optional="false" >
+			<options from_data_table="frogs_picrust2_marker_table">
+				<column name='name' index='1' />
+				<column name='value' index='2' />
+				<column name='traits' index='3' />
+                <filter type="param_value" ref="category" column="0" />               
+                    <validator type="no_options" message="A built-in database is not available" />
+            </options>
+        </param>
 		<param name="hsp_method" type="select" label="HSP method" help='HSP method to use."mp": predict discrete traits usingmax parsimony. "emp_prob": predict discrete traits based on empirical state probabilities across tips. "subtree_average": predict continuous traits using subtree averaging. "pic": predict continuous traits with phylogentic independent contrast. "scp": reconstruct continuous traits using squared-change parsimony (default: mp).' multiple="false" display="radio">
-             <option value="mp">mp</option>
-             <option value="emp_prob">emp_prob</option>
-             <option value="pic">pic</option>
-             <option value="scp">scp</option>
-             <option value="subtree_average">subtree_average</option>
+            <option value="mp">mp</option>
+            <option value="emp_prob">emp_prob</option>
+            <option value="pic">pic</option>
+            <option value="scp">scp</option>
+            <option value="subtree_average">subtree_average</option>
 		</param> 
 	</inputs>
-
-
 	<outputs>
 		<data format="tabular" name="out_function" label="${tool.name}: FPStep2_predicted_functions.tsv" from_work_dir="FPStep2_all_predicted.tsv"/>
 		<data format="tabular" name="out_marker" label="${tool.name}: marker_nsti_predicted.tsv" from_work_dir="${category}_nsti_predicted.tsv"/> 
 	</outputs>
-
-
-
      <help>
 .. image:: ./static/images/FROGS_logo.png
    :height: 144
