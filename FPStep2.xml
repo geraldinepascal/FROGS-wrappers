@@ -54,13 +54,12 @@
             </options>
 		</param>
 
-		<param name="function" type="select" label="Function table" multiple="true" display="checkboxes" optional="false" help="'EC' should be chosen for Metacyc pathway analysis and 'KO' should be chosen for Kegg pathway analysis." >
+		<param name="function" type="select" label="Function table" multiple="true" display="checkboxes" optional="false" help=" 16S : 'EC' or/and 'KO' should be at least chosen (Metacyc pathway analysis or/and Kegg pathway analysis. Others values are optionnal. ITS and 18S : 'EC' only available." >
 			<options from_data_table="frogs_picrust2_marker_table">
-				<column name='name' index='1' />
+				<column name='name' index='1' checked='true'/>
 				<column name='value' index='2' />
 				<column name='traits' index='3' />
                 <filter type="param_value" ref="category" column="0" />               
-					<validator type="expression" message="'EC' or/and 'KO' must be at least chosen.">'EC' in value or 'KO' in value</validator>
             </options>
         </param>
 		<param name="hsp_method" type="select" label="HSP method" help='HSP method to use."mp": predict discrete traits usingmax parsimony. "emp_prob": predict discrete traits based on empirical state probabilities across tips. "subtree_average": predict continuous traits using subtree averaging. "pic": predict continuous traits with phylogentic independent contrast. "scp": reconstruct continuous traits using squared-change parsimony (default: mp).' multiple="false" display="radio">
