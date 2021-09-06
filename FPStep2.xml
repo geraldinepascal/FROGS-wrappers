@@ -53,13 +53,14 @@
                     <validator type="no_options" message="A built-in database is not available" />
             </options>
 		</param>
+
 		<param name="function" type="select" label="Function table" multiple="true" display="checkboxes" optional="false" help="'EC' should be chosen for Metacyc pathway analysis and 'KO' should be chosen for Kegg pathway analysis." >
 			<options from_data_table="frogs_picrust2_marker_table">
 				<column name='name' index='1' />
 				<column name='value' index='2' />
 				<column name='traits' index='3' />
                 <filter type="param_value" ref="category" column="0" />               
-                    <validator type="no_options" message="A built-in database is not available" />
+					<validator type="expression" message="'EC' or/and 'KO' must be at least chosen.">'EC' in value or 'KO' in value</validator>
             </options>
         </param>
 		<param name="hsp_method" type="select" label="HSP method" help='HSP method to use."mp": predict discrete traits usingmax parsimony. "emp_prob": predict discrete traits based on empirical state probabilities across tips. "subtree_average": predict continuous traits using subtree averaging. "pic": predict continuous traits with phylogentic independent contrast. "scp": reconstruct continuous traits using squared-change parsimony (default: mp).' multiple="false" display="radio">
