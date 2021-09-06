@@ -49,7 +49,7 @@
         	<validator type="empty_field" message="This parameter is required." />
         </param>
     	<!-- Parameters -->
-        <param name="marker" type="select" label="Taxonomy marker studied." display="radio">
+        <param name="marker" type="select" label="Taxonomy marker" display="radio">
 			<options from_data_table="frogs_picrust2_default_dir">
 	     		<column name="name" index="1"/>
 	        	<column name="value" index="2"/>
@@ -118,8 +118,10 @@ The OTUs fasta sequence file (format `FASTA &lt;https://en.wikipedia.org/wiki/FA
 
 **Biom file**:
 
+
 The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
-This file can be obtained in particular with the FROGS pipeline.
+
+ This file can be obtained in particular with the FROGS pipeline.
 
 .. class:: h3
 
