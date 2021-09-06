@@ -55,7 +55,7 @@
               <validator type="no_options" message="A built-in database is not available" />
           </options>
 			  </param>
-        <param name="map_file" type='select' label="Pathway map file." help="For 16S marker, chose Metacyc if the function selected in FPStep2 is 'EC'. Kegg if the function selected in FPStep2 is 'KO'. For ITS or 18S marker, Metacyc is the only databse available." optional="false">
+        <param name="map_file" type='select' label="Pathway map file." help="For 16S marker, chose Metacyc if the function selected in FPStep2 is 'EC'. Kegg if the function selected in FPStep2 is 'KO'. For ITS or 18S marker, Metacyc is the only databse available." optional="false" multiple='false' display='radio'>
           <options from_data_table="frogs_picrust2_pathway_map">
             <column name='name' index='1'/>
             <column name='value' index='3'/>
@@ -123,7 +123,7 @@ Input TSV table of gene families abundances (FPStep3_pred_metagenome_unstrat.tsv
 
 **Map file**:
 
-Mapping of pathways to reactions. If marker studied is 16S, Kegg and Metacyc databases available. Else, only Metacyc available. 
+ Mapping of pathways to reactions. If marker studied is 16S, Kegg and Metacyc databases available. Else, only Metacyc available. 
 
 .. class:: h3
 
@@ -133,8 +133,8 @@ Outputs
 
 Pathways abundances for each samples. (FPStep4_path_abun_unstrat.tsv)
 
-If stratified option is activate, the abundances predictions are done for each OTU, in order to see the contribution of each OTU within each sample. ( Warning, the file produced may be heavy. ) 
-
+ If stratified option is activate, the abundances predictions are done for each OTU, in order to see the contribution of each OTU within each sample. ( Warning, the file produced may be heavy. ) 
+ FPStep4_path_abun_contrib.tsv
 .. class:: infomark page-header h2
 
 **Contact**

@@ -100,15 +100,15 @@ Inputs
 
 **Tree file** (format newick `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_):
 
- The phylogenetic tree of insert sequences (FPStep 1 output : FPStep1_tree.nwk) 
+The phylogenetic tree of insert sequences (FPStep 1 output : FPStep1_tree.nwk) 
 
 
 **OTUs biom file**:
 
- The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
+The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
 
 
-This file can be obtained in particular with the FROGS pipeline.
+ This file can be obtained in particular with the FROGS pipeline.
 
 **Function table**:
 
