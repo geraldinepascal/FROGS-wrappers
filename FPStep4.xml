@@ -55,7 +55,7 @@
               <validator type="no_options" message="A built-in database is not available" />
           </options>
 			  </param>
-        <param name="map_file" type='select' label="Pathway map file." help="For 16S marker, chose Metacyc if the function selected in FPStep2 is 'EC'. Kegg if the function selected in FPStep2 is 'KO'. For ITS or 18S marker, Metacyc is the only databse available." optional="false">
+        <param name="map_file" type='select' label="Pathway map file." help="For 16S marker, chose Metacyc if the function selected in FPStep2 is 'EC'. Kegg if the function selected in FPStep2 is 'KO'. For ITS or 18S marker, Metacyc is the only databse available." optional="false" multiple='false' display='radio'>
           <options from_data_table="frogs_picrust2_pathway_map">
             <column name='name' index='1'/>
             <column name='value' index='3'/>
