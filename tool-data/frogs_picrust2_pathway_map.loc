@@ -1,3 +1,9 @@
+<<<<<<< HEAD
 pro_metacyc_pathway	Metacyc	16S	/save/frogs/bin/PICRUST/picrust2-2.4.1/picrust2/default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt
 fungi_metacyc_pathway	Metacyc	ITS or 18S	/save/frogs/bin/PICRUST/picrust2-2.4.1/picrust2/default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_fungi.txt
 kegg_modules_pathway	Kegg	16S	/save/frogs/bin/PICRUST/picrust2-2.4.1/picrust2/default_files/pathway_mapfiles/KEGG_pathways_to_KO.tsv
+=======
+pro_metacyc_pathway	Metacyc	16S	/home/vdarbot/Desktop/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/2ed857799fd5/picrust_default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt
+fungi_metacyc_pathway	Metacyc	ITS or 18S	/home/vdarbot/Desktop/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/2ed857799fd5/picrust_default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_fungi.txt
+kegg_modules_pathway	Kegg	16S	/home/vdarbot/Desktop/galaxy/tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/2ed857799fd5/picrust_default_files/pathway_mapfiles/KEGG_pathways_to_KO.tsv
+>>>>>>> 70884c8509d94f8ab2564f9909727f1b034fe9fd

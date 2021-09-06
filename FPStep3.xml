@@ -45,7 +45,7 @@
         <param format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance table of OTUs used in FPStep1 (format: biom)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-        <param format="tabular" name="function" type="data" label="Function file" help="Copy number table of gene families/functions present in the predicted genome for each amplicon sequence variant (output of FPStep2 : FPStep2_predicted_functions.tsv)." optional="false">
+        <param format="tabular" name="function" type="data" label="Function file" help="Copy number table of gene families/functions present in the predicted genome for each OTU (output of FPStep2 : FPStep2_predicted_functions.tsv)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
         <param format="tabular" name="marker" type="data" label="Marker file" help="Table of predicted marker copy number (output of FPStep2 : marker_nsti_predicted.tsv)." optional="false">
@@ -107,6 +107,11 @@ The table of predicted marker gene copy numbers per study sequence in input tree
 The table with predicted abundances per study sequence in input tree. (FPStep2: marker_nsti_predicted.tsv)
 
 
+**NSTI cut-off**:
+
+Nearest Sequenced Taxon Index (NSTI) is the sum of phylogenetic distances for each organism in the OTU table to its nearest sequenced reference genome, measured in terms of substitutions per site in the 16S rRNA gene and weighted by the frequency of that organism in the OTU table.
+
+
 .. class:: h3
 
 Outputs
@@ -115,9 +120,8 @@ Outputs
  
 Output file for metagenome abundances predictions of gene families. (FPStep3_pred_metagenome_unstrat.tsv)
 
-If stratified option is activate, the abundances predictions are done for each OTU, in order to see the contribution of each OTU within each sample. ( Warning, the file produced may be heavy. ) 
-
-(FPStep3_pred_metagenome_contrib.tsv)
+ If stratified option is activate, the abundances predictions are done for each OTU, in order to see the contribution of each OTU within each sample. ( Warning, the file produced may be heavy. ) 
+ (FPStep3_pred_metagenome_contrib.tsv)
 
 **Seqtab normalized file**:
 
