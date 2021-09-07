@@ -96,8 +96,11 @@
 
 What it does
 
-Prediction of functional abundances based solely on the sequences of marker genes with PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;. 
+Prediction of functional abundances based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. 
 
+.. class:: infomark page-header h2
+
+Context
 
 The first step of Picrust2 consists in placing the nucleotide sequences of the OTUs constructed elsewhere in a reference phylogenetic tree. 
 The phylogenetic placement is done with `HMMER &lt;http://hmmer.org&gt;`_ to place study sequences into a reference multiple-sequence alignment  (`EPA_NG &lt;https://github.com/Pbdas/epa-ng#build-instructions&gt;`_ or `SEPP &lt;https://github.com/smirarab/sepp&gt;`_) to places these sequences into the reference phylogeny and product finaly tree with `GAPPA &lt;https://github.com/lczech/gappa&gt;`_.
@@ -112,16 +115,19 @@ Inputs/Outputs
 Input
 
 
-**Sequence file**:
+**Sequence file** (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_):
 
-The OTUs fasta sequence file (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
+ The OTUs fasta sequence file.
 
-**Biom file**:
+**Biom file** (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_):
 
 
-The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
+ The OTUs biom file. Taxonomic affiliations must be done before (FROGS Affiliation OTU step).
 
- This file can be obtained in particular with the FROGS pipeline.
+
+**Placement tool** 
+ 
+ EPA-NG or SEPP. SEPP is a low-memory alternative to EPA-ng for placing sequences.
 
 .. class:: h3
 
@@ -129,25 +135,47 @@ Outputs
 
 **Newick file** (FPStep1_tree.nwk):
 
-The phylogenetic tree output with insert sequences into the reference tree (format: newick). (format `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
+ The phylogenetic tree output with insert sequences into the reference tree (format: newick). (format `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
 
  .. image:: ./static/images/FROGS_nwk_treefile.png
 
 **Excluded sequences file** (FPStep1_excluded.tsv):
 
-List of sequences not inserted in the tree.
+ List of sequences not inserted in the tree.
 
 **FPStep1 fasta file**
 
-OTUs sequence file without non insert sequences. (FPStep1.fasta)
+ OTUs sequence file without non insert sequences. (FPStep1.fasta)
 
 **FPStep1 biom file**
 
-OTUs biom file without non insert sequences. (FPStep1.biom)
+ OTUs biom file without non insert sequences. (FPStep1.biom)
 
-**Html file** (FPStep1_summary.html):
+**Summary file** (FPStep1_summary.html):
    
-The summary file describing which OTUs are contained or not in the phylogenetic tree.
+ The summary file describing which OTUs are contained or not in the phylogenetic tree.
+
+.. image:: ./static/images/FROGS_FPStep1_summary_1.png
+
+* **FROGS Taxonomy** : Taxonomic affiliation made with FROGS (FROGS Affiliation OTU).
+
+* **Picrust2 Closest ID** : Identifiant (JGI) of the closest reference sequence from the OTU inserted in the reference tree.
+ 
+
+
+
+* **Picrust2 Closest reference name** : Genome Name / Sample Name
+
+.. image:: ./static/images/FROGS_FPStep1_summary_2.png
+
+* **Picrust2 closest taxonomy** : Taxonomy (JGI) of the closest reference sequence from the OTU inserted in the reference tree under the following format: Bacteria;Phylum;Class;Order;Family;Genus;Species
+
+* **Picrust2 closest distance from cluster** : Phylogenetic distance between the OTU and the closest reference sequence.
+
+* **Comment** : " identical taxonomy " if the FROGS and Picrus2 taxonomic affiliations are identical. " identical sequence " if the OTU sequence is the same as the reference sequence.
+
+
+
 
 .. class:: infomark page-header h2
 

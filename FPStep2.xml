@@ -83,11 +83,14 @@
 
 What it does
 
-Prediction of functional abundances based solely on the sequences of marker genes with PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;. 
+Prediction of functional abundances based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. 
 
+.. class:: infomark page-header h2
 
-The second step of Picrust2 consists to predict the family genes of each OTUs constructed elsewhere in a reference phylogenetic tree. 
-Give a NSTI for each OTU with `castor-R &lt;https://cran.r-project.org/web/packages/castor/index.html&gt;`_.
+Context
+
+The second step of Picrust2 consists to run hidden-state prediction (hsp) to predict gene family abundances with `castor-R &lt;https://cran.r-project.org/web/packages/castor/index.html&gt;`_ of each OTUs constructed elsewhere in a reference phylogenetic tree (FPStep1). 
+
 
 
 .. class:: infomark page-header h2
@@ -115,6 +118,8 @@ The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/forma
  If the genetic marker studied is 16S RNA gene: 
  Which default pre-calculated count table to use (one of 'COG', 'EC', 'KO', 'PFAM', 'TIGRFAM', 'PHENO').
  For ITS and 18S, EC only available.
+
+ The 4th step uses the Metacyc and Kegg databases to calculate the abundance of metabolic pathways. You must therefore select at least 'EC' or 'KO'.
 
 .. class:: h3
 

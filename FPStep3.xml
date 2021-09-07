@@ -82,16 +82,24 @@
 
 What it does
 
-Prediction of functional abundances based solely on the sequences of marker genes with PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;. 
+Prediction of functional abundances based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. 
+
+.. class:: infomark page-header h2
+
+Context
+
+Firstly, the input sequence abundance table (function file output of FPStep2) is normalized by the predicted number of marker genes (marker file). It will then determine the predicted functional profiles per sample. The normalized sequence abundance table and the weighted nearest-sequenced taxon index values per-sample will also be output.
 
 
-The third step of Picrust2 determine the gene families abundances for each sample.
+.. class:: infomark page-header h2
 
 Inputs/Outputs
+
 
 .. class:: h3
 
 Inputs
+
 
 **Biom file**:
 
@@ -110,7 +118,7 @@ The table with predicted abundances per study sequence in input tree. (FPStep2: 
 **NSTI cut-off**:
 
 Nearest Sequenced Taxon Index (NSTI) is the sum of phylogenetic distances for each organism in the OTU table to its nearest sequenced reference genome, measured in terms of substitutions per site in the 16S rRNA gene and weighted by the frequency of that organism in the OTU table.
-
+This metric can be used to identify study sequences that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). By default the maximum NSTI cut-off for subsequent commands is 2. Any study sequences with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 
 .. class:: h3
 
