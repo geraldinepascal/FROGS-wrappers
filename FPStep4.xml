@@ -103,6 +103,9 @@ What it does
 
 Prediction of functional abundances based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. 
 
+.. class:: infomark page-header h2
+
+Context
 
 The fourth step of Picrust2 aggregates the gene families abundances into metabolic pathways abundances for each sample.
 

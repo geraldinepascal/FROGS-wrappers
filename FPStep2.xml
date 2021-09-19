@@ -129,6 +129,11 @@ Outputs
 
 Output table of predicted marker gene copy numbers per study sequence in input tree. (FPStep2_marker_nsti_predicted.tsv)
 
+Marker gene copies number prediction is used to normalize the counting matrices of the gene families. For example, if the OTUs have 2
+16S copies, the gene families in the function file for this otu will be divided by 2.
+
+This file 
+
 **Output function file**:
 
 Output table with predicted abundances per study sequence in input tree. (FPStep2_predicted_functions.tsv)
