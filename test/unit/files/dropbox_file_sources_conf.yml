@@ -1,4 +1,0 @@
-- type: dropbox
-  id: test1
-  doc: Test WebDAV server.
-  accessToken: ${user.preferences['dropbox|access_token']}
