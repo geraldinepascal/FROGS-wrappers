@@ -59,7 +59,8 @@
 				<column name='name' index='1' checked='true'/>
 				<column name='value' index='2' />
 				<column name='traits' index='3' />
-                <filter type="param_value" ref="category" column="0" />               
+                <filter type="param_value" ref="category" column="0" />   
+ 		<validator type="expression" message="'EC' or 'KO' must be at least selected. Other tables are optionnal">"EC" in value or "KO" in value</validator>               
             </options>
         </param>
 		<param name="hsp_method" type="select" label="HSP method" help='HSP method to use."mp": predict discrete traits usingmax parsimony. "emp_prob": predict discrete traits based on empirical state probabilities across tips. "subtree_average": predict continuous traits using subtree averaging. "pic": predict continuous traits with phylogentic independent contrast. "scp": reconstruct continuous traits using squared-change parsimony (default: mp).' multiple="false" display="radio">
@@ -132,7 +133,6 @@ Output table of predicted marker gene copy numbers per study sequence in input t
 Marker gene copies number prediction is used to normalize the counting matrices of the gene families. For example, if the OTUs have 2
 16S copies, the gene families in the function file for this otu will be divided by 2.
 
-This file 
 
 **Output function file**:
 
