@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+# Copyright (C) 2015 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<tool id="FROGS_PICRUSt2_hsp" name="FPStep2" version= "beta">
+	<description>Predict the copy number of gene families present in the predicted genome for each study sequence.</description>
+	<requirements>
+    </requirements>
+    <stdio>
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
+    <command >
+	   FPStep2.py
+	   		--tree $input_tree
+	   		#if $category.value == "16S"
+	   			--in_trait $function.fields.name
+	   		#end if
+	   		--hsp_method $hsp_method
+	   		--output_marker $out_marker
+	   		--output_function $out_function
+	   		#if $category.value != "16S"
+	   		--observed_marker_table $function.fields.value
+	   		--observed_trait_table $function.fields.traits
+	   		#end if
+	   		--debug
+	</command> 
+	<inputs>
+	    <!-- Input files -->
+	    <param format="nhx" name="input_tree" type="data" label="Tree file" help="The full reference tree in newick format containing both study sequences (i.e. ASVs or OTUs) and reference sequences (FPStep1 output tree)."
+	    	optional="false">
+        	<validator type="empty_field" message="This parameter is required." />
+        </param>
+	   	<!-- Parameters-->
+	    <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
+            <options from_data_table="frogs_picrust2_marker_table">
+                <column name='name' index='0' />
+                <column name='value' index='0' />
+                <filter type="unique_value" column='0'/>
+                    <validator type="no_options" message="A built-in database is not available" />
+            </options>
+		</param>
+
+		<param name="function" type="select" label="Function table" multiple="true" display="checkboxes" optional="false" help=" 16S : 'EC' or/and 'KO' should be at least chosen (Metacyc pathway analysis or/and Kegg pathway analysis. Others values are optionnal. ITS and 18S : 'EC' only available." >
+			<options from_data_table="frogs_picrust2_marker_table">
+				<column name='name' index='1' checked='true'/>
+				<column name='value' index='2' />
+				<column name='traits' index='3' />
+                <filter type="param_value" ref="category" column="0" />   
+ 		<validator type="expression" message="'EC' or 'KO' must be at least selected. Other tables are optionnal">"EC" in value or "KO" in value</validator>               
+            </options>
+        </param>
+		<param name="hsp_method" type="select" label="HSP method" help='HSP method to use."mp": predict discrete traits usingmax parsimony. "emp_prob": predict discrete traits based on empirical state probabilities across tips. "subtree_average": predict continuous traits using subtree averaging. "pic": predict continuous traits with phylogentic independent contrast. "scp": reconstruct continuous traits using squared-change parsimony (default: mp).' multiple="false" display="radio">
+            <option value="mp">mp</option>
+            <option value="emp_prob">emp_prob</option>
+            <option value="pic">pic</option>
+            <option value="scp">scp</option>
+            <option value="subtree_average">subtree_average</option>
+		</param> 
+	</inputs>
+	<outputs>
+		<data format="tabular" name="out_function" label="${tool.name}: FPStep2_predicted_functions.tsv" from_work_dir="FPStep2_all_predicted.tsv"/>
+		<data format="tabular" name="out_marker" label="${tool.name}: marker_nsti_predicted.tsv" from_work_dir="${category}_nsti_predicted.tsv"/> 
+	</outputs>
+     <help>
+.. image:: ./static/images/FROGS_logo.png
+   :height: 144
+   :width: 110
+
+.. class:: infomark page-header h2
+
+What it does
+
+Prediction of functional abundances based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. 
+
+.. class:: infomark page-header h2
+
+Context
+
+The second step of Picrust2 consists to run hidden-state prediction (hsp) to predict gene family abundances with `castor-R &lt;https://cran.r-project.org/web/packages/castor/index.html&gt;`_ of each OTUs constructed elsewhere in a reference phylogenetic tree (FPStep1). 
+
+
+
+.. class:: infomark page-header h2
+
+Inputs/Outputs
+
+.. class:: h3
+
+Inputs
+
+**Tree file** (format newick `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_):
+
+The phylogenetic tree of insert sequences (FPStep 1 output : FPStep1_tree.nwk) 
+
+
+**OTUs biom file**:
+
+The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
+
+
+ This file can be obtained in particular with the FROGS pipeline.
+
+**Function table**:
+
+ If the genetic marker studied is 16S RNA gene: 
+ Which default pre-calculated count table to use (one of 'COG', 'EC', 'KO', 'PFAM', 'TIGRFAM', 'PHENO').
+ For ITS and 18S, EC only available.
+
+ The 4th step uses the Metacyc and Kegg databases to calculate the abundance of metabolic pathways. You must therefore select at least 'EC' or 'KO'.
+
+.. class:: h3
+
+Outputs
+
+**Output marker file**:
+
+Output table of predicted marker gene copy numbers per study sequence in input tree. (FPStep2_marker_nsti_predicted.tsv)
+
+Marker gene copies number prediction is used to normalize the counting matrices of the gene families. For example, if the OTUs have 2
+16S copies, the gene families in the function file for this otu will be divided by 2.
+
+
+**Output function file**:
+
+Output table with predicted abundances per study sequence in input tree. (FPStep2_predicted_functions.tsv)
+
+.. class:: infomark page-header h2
+
+**Contact**
+
+Contacts: frogs@inra.fr
+
+website: http://frogs.toulouse.inra.fr/
+
+Repository: https://github.com/geraldinepascal/FROGS
+website: http://frogs.toulouse.inra.fr/
+
+Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
+
+Please cite the	**PICRUSt2 article**: * Gavin M. Douglas1, Vincent J. Maffei2, Jesse Zaneveld3, Svetlana N. Yurgel4, James R. Brown5, Christopher M. Taylor2, Curtis Huttenhower6, Morgan G. I. Langille1,7,*	
+
+     </help>
+
+    <citation>
+    	<citation type="doi">10.1101/672295</citation>
+ 	</citation>
+ </tool>
