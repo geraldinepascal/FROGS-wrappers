@@ -141,7 +141,11 @@ Outputs
 
 **Excluded sequences file** (FPStep1_excluded.tsv):
 
+<<<<<<< HEAD
  List of sequences not inserted in the picrust2 reference tree. These sequences are excluded for the next steps.
+=======
+ List of sequences not inserted in the tree.
+>>>>>>> 12bb65546d92365bc3a14493362a849c99008fa6
 
 **FPStep1 fasta file**
 
@@ -153,9 +157,13 @@ Outputs
 
 **Summary file** (FPStep1_summary.html):
    
+<<<<<<< HEAD
  The summary file describing which OTUs are contained or not in the phylogenetic tree. Note that picrust2 uses its own reference tree to affiliate OTUs from reference sequences. The summary file indicates for each OTU which is the closest picrust2 reference sequence, and compares it to the FROGS taxonomy. By clicking on the sequence ID, you can have more information on it (JGI database).
 
  
+=======
+ The summary file describing which OTUs are contained or not in the phylogenetic tree.
+>>>>>>> 12bb65546d92365bc3a14493362a849c99008fa6
 
 .. image:: ./static/images/FROGS_FPStep1_summary_1.png
 
