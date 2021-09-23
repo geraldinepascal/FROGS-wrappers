@@ -1,0 +1,11 @@
+categories: [Data Managers]
+description: FROGS data manager
+homepage_url: http://frogs.toulouse.inrae.fr/
+remote_repository_url: https://github.com/geraldinepascal/FROGS-wrappers/
+long_description: 'This is FROGS Data manager
+FROGS: Find Rapidly OTUs through Galaxy Solution
+FROGS is a workflow designed to produce an OTU count matrix from high depth sequencing amplicon data.
+Its data manager allow to upload new reference files for taxonomic affiliations that we distribute here : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/
+'
+name: data_manager_frogs
+owner: frogs

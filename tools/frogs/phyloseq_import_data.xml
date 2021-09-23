@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<!--
+# Copyright (C) 2017 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<tool id="FROGSSTAT_Phyloseq_Import_Data" name="FROGSSTAT Phyloseq Import Data" version="@TOOL_VERSION@+galaxy2">
+    <description>from 3 files: biomfile, samplefile, treefile </description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements_phyloseq" />
+
+        <stdio>
+            <exit_code range="1:" />
+            <exit_code range=":-1" />
+        </stdio>
+    <command>
+                phyloseq_import_data.py   --biomfile '$biomfile'
+                                --samplefile '$samplefile'
+                                #if $treefile
+                                  --treefile '$treefile'
+                                #end if
+                                --ranks $ranks
+                                #if $normalisation
+                                    --normalisation
+                                #end if
+                                --html '$html'
+                                --rdata '$data'
+    </command>
+    <inputs>
+        <!-- Files -->
+        <param format="biom1" name="biomfile" type="data" label="Abundance biom file with taxonomical metadata" help="The file contains the  OTU informations (format: biom1)." optional="false">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+
+        <param format="tabular" name="samplefile" type="data" label="Sample tsv file" help="The file contains the samples informations (format: tabular)." optional="false">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+
+        <param format="nhx" name="treefile" type="data" label="Tree file (optional)" help="The file contains the tree informations (format: Newick - nhx or nwk)." optional="true" />
+
+        <!-- Parameters -->
+        <param name="ranks" type="text" label="Names of taxonomics levels" help="The ordered taxonomic levels stored in BIOM. Each level is separated by one space."  value="Kingdom Phylum Class Order Family Genus Species" size="80" optional="false"/>
+        <param name="normalisation" type="boolean" label="Do you want to normalise your data ?" help="To normalise data before statistical analysis (default : No)." optional="false" />
+    </inputs>
+    <outputs>
+        <data format="rdata" name="data" label="${tool.name}: data.Rdata" from_work_dir="data.Rdata"/>
+        <data format="html" name="html" label="${tool.name}: summary.nb.html" from_work_dir="summary.nb.html"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="biomfile" value="input/chaillou.biom"/>
+            <param name="samplefile" value="input/sample_metadata.tsv"/>
+            <param name="treefile" value="input/tree.nwk"/>
+            <output name="data" value="references/16-phylo_import.Rdata" compare="sim_size" delta="10"/>
+            <!-- <output name="html" value="references/16-phylo_import.nb.html" compare="diff" lines_diff="0"/> -->
+            <output name="html">
+                <assert_contents>
+                    <!-- check phyloseq object summary-->
+                    <has_text text='otu_table()   OTU Table:         [ 508 taxa and 64 samples ]'/>
+                    <has_text text='sample_data() Sample Data:       [ 64 samples by 4 sample variables ]' />
+                    <has_text text='tax_table()   Taxonomy Table:    [ 508 taxa by 7 taxonomic ranks ]' />
+                    <has_text text='phy_tree()    Phylogenetic Tree: [ 508 tips and 507 internal nodes ]' />
+                    <!-- check phyloseq object rank names-->
+                    <has_text text='Rank names :  Kingdom, Phylum, Class, Order, Family, Genus, Species'/>
+                    <!-- check phyloseq object Sample variables-->
+                    <has_text text='Sample variables:  EnvType, Description, FoodType, SampleID'/>
+                    <!-- check phyloseq object Variables details-->
+                    <has_text text='EnvType :  BoeufHache, VeauHache, DesLardons, MerguezVolaille, SaumonFume, FiletSaumon, FiletCabillaud, Crevette'/>
+                    <has_text text='Description :  LOT1, LOT3, LOT4, LOT5, LOT6, LOT7, LOT8, LOT10, LOT2, LOT9'/>
+                    <has_text text='FoodType :  Meat, Seafood'/>
+                    <has_text text='SampleID :  BHT0.LOT01, BHT0.LOT03, BHT0.LOT04, BHT0.LOT05, BHT0.LOT06, BHT0.LOT07, BHT0.LOT08, BHT0.LOT10, VHT0.LOT01, VHT0.LOT02, VHT0.LOT03, VHT0.LOT04, VHT0.LOT06, VHT0.LOT07, VHT0.LOT08, VHT0.LOT10, DLT0.LOT01, DLT0.LOT03, DLT0.LOT04, DLT0.LOT05, DLT0.LOT06, DLT0.LOT07, DLT0.LOT08, DLT0.LOT10, MVT0.LOT01, MVT0.LOT03, MVT0.LOT05, MVT0.LOT06, MVT0.LOT07, MVT0.LOT08, MVT0.LOT09, MVT0.LOT10, SFT0.LOT01, SFT0.LOT02, SFT0.LOT03, SFT0.LOT04, SFT0.LOT05, SFT0.LOT06, SFT0.LOT07, SFT0.LOT08, FST0.LOT01, FST0.LOT02, FST0.LOT03, FST0.LOT05, FST0.LOT06, FST0.LOT07, FST0.LOT08, FST0.LOT10, FCT0.LOT01, FCT0.LOT02, FCT0.LOT03, FCT0.LOT05, FCT0.LOT06, FCT0.LOT07, FCT0.LOT08, FCT0.LOT10, CDT0.LOT02, CDT0.LOT04, CDT0.LOT05, CDT0.LOT06, CDT0.LOT07, CDT0.LOT08, CDT0.LOT09, CDT0.LOT10'/>
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+    <help>
+
+@HELP_LOGO@
+
+.. class:: infomark page-header h2
+
+What it does
+
+Launch Rmarkdown script to import data from 3 files: biomfile, samplefile, treefile into a `phyloseq &lt;https://joey711.github.io/phyloseq/&gt;`_ object.
+
+.. class:: infomark page-header h2
+
+Inputs/Outputs
+
+.. class:: h3
+
+Input
+
+**OTU biom file**:
+
+The OTU biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
+The example of biom file:
+
+  .. image:: static/images/FROGS_Phyloseq_biomfile.png
+     :height: 30
+     :width: 733
+
+**Newick file** (tree.nwk):
+
+Newick file (format `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_) is the result of FROGS Tree:
+
+  .. image:: static/images/FROGS_nwk_treefile.png
+
+**Sample file**:
+The file contains the conditions of experiment with sample ID in the first column:
+
+  .. image:: static/images/FROGS_Phyloseq_samplefile.png
+     :height: 115
+     :width: 369
+
+.. class:: h3
+
+Output
+
+**Html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): The summary of phyloseq object.
+
+  .. image:: static/images/FROGS_Phyloseq_import_data_html.png
+
+**Data file** (format rdata): The informations of data in one phyloseq object.
+
+
+.. class:: infomark page-header h2
+
+@HELP_CONTACT@
+
+    </help>
+
+    <citations>
+        <expand macro="citations" />
+    </citations>
+    
+</tool>

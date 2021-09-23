@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<!--
+# Copyright (C) 2017 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<tool id="FROGSSTAT_Phyloseq_Structure_Visualisation" name="FROGSSTAT Phyloseq Structure Visualisation" version="@TOOL_VERSION@+galaxy2">
+	<description>with heatmap plot and ordination plot</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements_phyloseq" >
+        <requirement type="package" version="4.9.3">r-plotly</requirement>
+    </expand>
+
+	<stdio>
+		<exit_code range="1:" />
+		<exit_code range=":-1" />
+	</stdio>
+	<command>phyloseq_structure.py
+                                         --html '$html'
+                                         --rdata '$data'
+                                         --varExp '$varExp'
+                                         --ordination-method '$method'
+                                         --distance-matrix '$distance'
+	</command>
+    <inputs>
+		<!-- Files -->
+	    <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data Tool." optional="false">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+        <param name="distance" format="tabular" type="data" label="The beta diversity distance matrix file" help="These file is the result of FROGS Phyloseq Beta Diversity tool." optional="false">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+		<!-- Parameters -->
+		<param name="varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse." optional="false" value="" size="40">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+		<param name="method" type="select" label="Ordination method">
+			<option value="MDS" >MDS/PCoA</option>
+			<option value="NMDS" >NMDS</option>
+            <option value="DPCoA" >DPCoA</option>
+        </param>
+	</inputs>
+	<outputs>
+		<data format="html" name="html" label="${tool.name}: structure.nb.html" from_work_dir="structure.nb.html"/>
+	</outputs>
+    <tests>
+        <test>
+            <param name="data" value="references/16-phylo_import.Rdata" />
+            <param name="varExp" value="EnvType" />
+            <param name="method" value="MDS" />
+            <param name="distance" value="references/unifrac.tsv" />
+            <output name="html">
+                <assert_contents>
+                    <has_text text='"title":{"text":"Axis.1   [22.1%]' />
+                    <has_text text='"title":{"text":"Axis.2   [12.8%]' />
+                </assert_contents>
+            </output>
+
+        </test>
+    </tests>
+	<help>
+
+@HELP_LOGO@
+
+.. class:: infomark page-header h2
+
+What it does
+
+Using `phyloseq &lt;https://joey711.github.io/phyloseq/&gt;`_ and customized R function, this tool constructs heatmap plot and ordination plot with the `ordination methods &lt;https://www.bioconductor.org/packages/release/bioc/vignettes/phyloseq/inst/doc/phyloseq-analysis.html#ordination-methods&gt;`_ to visualise data structure.
+
+.. class:: infomark page-header h2
+
+Inputs/Outputs
+
+.. class:: h3
+
+Input
+
+**data file** (format rdata):
+The informations of data in one phyloseq object.
+This file is the result of "FROGS Phyloseq Import Data tool".
+
+**distance file** (format tabular):
+The data file containing beta diversity distance matrix.
+This file is the result of "FROGS Phyloseq Beta Diversity tool".
+
+.. class:: h3
+
+Output
+
+**html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_):
+
+The review of data structure with an ordination plot and with an heatmap plot:
+
+.. image:: static/images/FROGS_Phyloseq_plot_sample_ellipse.png
+     :height: 343
+     :width: 450
+
+.. class:: warningmark
+
+**Percentages on axis may be interpreted similarly as the percentages on a PCA, but are not percentage of explained variance.**
+These percentages will be computed for MDS/PCoA and DPCoA ordination methods as a percentage of explained beta diversity variation.
+For NMDS there is not simple equivalent notion.
+
+.. image:: static/images/FROGS_Phyloseq_plot_heatmap_red.png
+     :height: 343
+     :width: 450
+
+.. class:: infomark page-header h2
+
+@HELP_CONTACT@
+
+	</help>
+
+    <citations>
+        <expand macro="citations" />
+    </citations>
+    
+</tool>
