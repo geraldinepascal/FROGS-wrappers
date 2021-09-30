@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+<!--
+# Copyright (C) 2015 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="@TOOL_VERSION@+galaxy2">
+  <description>Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements">
+        <requirement type="package" version="2.10">blast</requirement>
+        <requirement type="package" version="6.6.0">emboss</requirement>
+        <!-- <requirement type="package" version="2.0.3">rdptools</requirement> -->
+    </expand>
+
+  <command detect_errors="exit_code">
+    #set $reference_filename = str( $ref_file.fields.path )
+    affiliation_OTU.py
+                           --reference '${reference_filename}'
+                           --taxonomy-ranks $taxonomic_ranks
+                           --input-biom '$biom_abundance'
+                           --input-fasta '$fasta_sequences'
+                           --output-biom '$biom_affiliation'
+                           --summary '$summary'
+                           --nb-cpus \${GALAXY_SLOTS:-1}
+                           --java-mem $mem
+                           #if $rdp
+                              --rdp
+                            #end if
+  </command>
+  <inputs>
+    <!-- JOB Parameter -->
+    <param name="mem" type="hidden" label="Memory allocation" help="The number of Go to allocation for java" value="20"></param>
+    <!-- Database Choice -->
+    <param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
+            <options from_data_table="frogs_db"></options>
+      <validator type="no_options" message="A built-in database is not available" />
+    </param>
+    <param name="rdp" type="boolean" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allow you to perform it also with RDP classifier (default No)" />
+    <param name="taxonomic_ranks" type="text" label="Taxonomic ranks" help="The ordered taxonomic ranks levels stored in the taxonomical reference. Each rank is separated by one space." optional="false" value="Domain Phylum Class Order Family Genus Species" size="80" />
+    <!-- Files -->
+    <param format="fasta" name="fasta_sequences" type="data" label="OTU seed sequence" help="OTU sequences (format: fasta)."/>
+    <param format="biom1" name="biom_abundance" type="data" label="Abundance file" help="OTU abundances (format: BIOM)."/>
+  </inputs>
+  <outputs>
+    <data format="biom1" name="biom_affiliation" label="${tool.name}: affiliation_abundance.biom" from_work_dir="affiliation.biom" />
+    <data format="html" name="summary" label="${tool.name}: report.html" from_work_dir="report.html"/>
+  </outputs>
+        <tests>
+            <test>
+                <param name="ref_file" value="ITS1_test"/>
+                <param name="fasta_sequences" value="references/04-filters.fasta"/>
+                <param name="biom_abundance" value="references/04-filters.biom"/>
+                <param name="rdp" value="true"/>
+                <output name="biom_affiliation" file="references/06-affiliation.biom" compare="sim_size" delta="5" />
+                <output name="summary" file="references/06-affiliation.html" compare="diff" lines_diff="0"/>
+            </test>
+
+        </tests>
+
+    <help>
+
+@HELP_LOGO@
+
+.. class:: infomark page-header h2
+
+What it does
+
+Add taxonomic affiliation in abundance file.
+
+
+.. class:: infomark page-header h2
+
+Inputs/outputs
+
+.. class:: h3
+
+Inputs
+
+**Sequence file**:
+
+The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
+
+**Abundance file**:
+
+The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
+
+.. class:: h3
+
+Outputs
+
+**Abundance file** (tax_affiliation.biom):
+
+ The abundance file with affiliation (format `BIOM &lt;http://biom-format.org/&gt;`_).
+
+**Summary file** (report.html):
+
+ This file presents the number of sequences affiliated by blast, and the number of multi-affiliation (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
+
+ .. image:: static/images/FROGS_affiliation_summary.png
+   :height: 975
+   :width: 867
+
+.. class:: infomark page-header h2
+
+Reference database
+
+All the databases we format (on demand) for RDPClassifier and NCBI Blast+ are inventoried here: http://genoweb.toulouse.inrae.fr/frogs_databanks/assignation/readme.txt
+
+.. class:: infomark page-header h2
+
+How it works
+
+.. csv-table::
+   :header: "Steps", "Description"
+   :widths: 5, 150
+   :class: table table-striped
+
+   "1", "`RDPClassifier &lt;http://rdp.cme.msu.edu/classifier/classifier.jsp&gt;`_ may be used with database to associate to each OTU a taxonomy and a bootstrap (example: *Bacteria;(1.0);Firmicutes;(1.0);Clostridia;(1.0);Clostridiales;(1.0);Clostridiaceae 1;(1.0);Clostridium sensu stricto;(1.0);*)."
+   "2", "`blastn+ &lt;https://blast.ncbi.nlm.nih.gov/Blast.cgi&gt;`_ or `needlall &lt;http://emboss.sourceforge.net/apps/release/6.6/emboss/apps/needleall.html&gt;`_ is used to find alignment between each OTU and the database. Only the bests hits with the same score are reported. blastn+ is used for merged read pair, and needall is used for artificially combined sequence. For each alignment returned, several metrics are computed: identity percentage, coverage percentage, and alignment length"
+   "3", "For each OTU with several blastn+/needlall alignment results a consensus is determined on each taxonomic level. If all the taxa at a taxonomic rank are identical the taxon name is reported otherwise *Multi-affiliation* is reported. For example, if you have an OTU with two equivalent hits, associated to *Bacteria;Proteobacteria;Gamma Proteobacteria;Enterobacteriales*, and *Bacteria;Proteobacteria;Beta Proteobacteria;Methylophilales*, the consensus will be *Bacteria;Proteobacteria;Multi-affiliation;Multi-affiliation*."
+
+.. class:: infomark page-header h2
+
+Alignment metrics details on identity percentage calculation
+
+**- Problem with classical %id computation method**
+
+* **Case 1: a sequencing of overlapping sequences i.e. 16S V3-V4 amplicon MiSeq sequencing**
+
+.. image:: static/images/FROGS_affiliation_overlapped_percent_id.png
+    :height: 325
+    :width: 807
+
+* **Case 2 : a sequencing of non-overlapping sequences: case of ITS1 amplicon MiSeq sequencing**
+
+.. image:: static/images/FROGS_affiliation_combined_percent_id.png
+    :height: 310
+    :width: 887
+
+**- Finally, how percentage identity is computed ?**
+
+With the classical method of %id calculation, filtering on %id will systematically removed “FROGS combined” OTUs. So, we proposed to replace the classical %id by a %id computed on the sequenced bases only.
+
+.. image:: static/images/FROGS_affiliation_percent_id_formula.png
+    :height: 36
+    :width: 637
+
+For the precedent use cases we will obtain:
+
+* Case 1: 16S V3V4 overlapped sequence
+  % sequenced bases identity = 400 matches / 400 bp = 100%
+
+* Case 2: very large ITS1 “FROGS combined” shorter than the real sequence
+  % sequenced bases identity = (250 + 250 ) / (600 - 100) = 100%
+
+This calculation allows to return 100% of identity on sequenced bases for “FROGS combined” shorter or longer than reality in case of perfect sequencing, and a smaller percentage of identity in the case of small overlap repeat kept in FROGS combined sequence.
+
+.. class:: infomark page-header h2
+
+
+Advices
+
+This tool can take large time. It is recommended to filter your OTU abundance and sequence files before this tool (see **FROGS OTU Filters**).
+
+As you can see the affiliation of each OTU is not human readable in outputed abundance file. We provide a tools to convert these BIOM file in tabulated file, see the **FROGS BIOM to TSV** tool.
+
+
+@HELP_CONTACT@
+
+    </help>
+
+    <citations>
+        <expand macro="citations" />
+    </citations>
+
+</tool>

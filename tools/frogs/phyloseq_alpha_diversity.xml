@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+# Copyright (C) 2017 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<tool id="FROGSSTAT_Phyloseq_Alpha_Diversity" name="FROGSSTAT Phyloseq Alpha Diversity" version="@TOOL_VERSION@+galaxy2">
+	<description>with richness plot</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements_phyloseq" />
+
+	<stdio>
+		<exit_code range="1:" />
+		<exit_code range=":-1" />
+	</stdio>
+	<command>phyloseq_alpha_diversity.py
+                                             --rdata '$data'
+                                             --varExp '$varExp'
+                                             --alpha-measures '$measures'
+                                             --alpha-out '$alphaD'
+                                             --html '$html'
+	</command>
+    <inputs>
+		<!-- Files -->
+	    <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This file is the result of FROGS Phyloseq Import Data tool." optional="false">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+		<!-- Parameters -->
+		<param name="varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse." optional="false" value="" size="40">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+	    <param name="measures" type="select" label="The alpha diversity indices to compute" multiple="true" display="checkboxes">
+             <option value="Observed" selected="True">Observed</option>
+             <option value="Chao1" selected="True">Chao1</option>
+             <option value="Shannon" selected="True">Shannon</option>
+             <option value="InvSimpson" selected="True">InvSimpson</option>
+             <option value="Simpson">Simpson</option>
+             <option value="ACE">ACE</option>
+             <option value="Fisher">Fisher</option>
+        </param>
+	</inputs>
+	<outputs>
+		<data format="tabular" name="alphaD" label="${tool.name}: alpha_diversity.tsv" from_work_dir="alpha_diversity.tsv"/>
+		<data format="html" name="html" label="${tool.name}: alpha_diversity.nb.html" from_work_dir="alpha_diversity.nb.html"/>
+	</outputs>
+    <tests>
+        <test>
+            <param name="data" value="references/16-phylo_import.Rdata" />
+            <param name="varExp" value="EnvType" />
+            <param name="measures" value="Observed,Chao1,Shannon" />
+            <output name="alphaD" file="references/18-phylo_alpha_div.tsv" compare="diff" lines_diff="0" />
+            <!-- <output name="html" value="references/18-phylo_alpha_div.nb.html" compare="diff" lines_diff="0"/> -->
+            <output name="html">
+                <assert_contents>
+                    <!-- check anova on Observed alpha metrics -->
+                    <has_text text='EnvType      7  18148    2593   5.383 9.78e-05' />
+                    <!-- check anova on Chao1 alpha metrics -->
+                    <has_text text='EnvType      7  13764    1966   2.492   0.0269' />
+                    <!-- check anova on Chao1 alpha metrics -->
+                    <has_text text='EnvType      7 11.333   1.619   3.553 0.003209' />
+                </assert_contents>
+            </output>
+        </test>
+    </tests>
+    <help>
+
+@HELP_LOGO@
+
+.. class:: infomark page-header h2
+
+What it does
+
+Using `phyloseq &lt;https://joey711.github.io/phyloseq/&gt;`_ and customized R function, this tool constructs richness plots to visualise sample alpha diversity.
+
+.. class:: infomark page-header h2
+
+Inputs/Outputs
+
+.. class:: h3
+
+Input
+
+**Data file** (format RData):
+One phyloseq object containing OTU abundance table, their taxonomies (and optionnaly a phylogenetics tree, and the sample experiment metadata.
+This file is the result of "FROGS Phyloseq Import Data tool".
+
+.. class:: h3
+
+Output
+
+**Html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): the review of richness plots and rarefaction curves.
+
+.. image:: static/images/FROGS_Phyloseq_plot_richness.png
+     :height: 400
+     :width: 525
+
+.. image:: static/images/FROGS_Phyloseq_plot_richness_box.png
+     :height: 400
+     :width: 499
+
+.. image:: static/images/FROGS_Phyloseq_rarefaction_curves.png
+     :height: 400
+     :width: 498
+
+**Alpha diversity table** (alpha_diversity.tsv):
+The data file containing table of alpha diversity indices.
+
+.. image:: static/images/FROGS_Phyloseq_alpha_diversity_table.png
+
+.. class:: infomark page-header h2
+
+@HELP_CONTACT@
+
+	</help>
+
+    <citations>
+        <expand macro="citations" />
+    </citations>
+    
+</tool>

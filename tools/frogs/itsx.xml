@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<!--
+# Copyright (C) 2015 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<tool id="FROGS_itsx" name="FROGS ITSx" version="@TOOL_VERSION@+galaxy2">
+	<description>Extract the highly variable ITS1 and ITS2 subregions from ITS sequences.</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements">
+        <requirement type="package" version="1.1.2">itsx</requirement>
+    </expand>
+
+    <stdio>
+        <exit_code range="1:" />
+        <exit_code range=":-1" />
+    </stdio>
+	<command>
+					itsx.py
+		                --nb-cpus \${GALAXY_SLOTS:-1}
+		                --region '$region'
+		                --input-fasta '$input_fasta'
+		                --input-biom '$input_biom'
+		                --out-fasta '$out_fasta'
+		                --out-abundance '$out_abundance_biom'
+		                --out-removed '$out_excluded'
+		                --summary '$summary_file'
+		                --organism-groups '$domain'
+		                $trim_sequence
+
+	</command>
+	<inputs>
+		<!-- Files -->
+		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)." />
+		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)." />
+		<param name="region" type="select" label="ITS region" help="Which fungal ITS region is targeted: either ITS1 or ITS2" >
+			<option value="ITS1">ITS1</option>
+			<option value="ITS2">ITS2</option>
+		</param>
+		<param name="trim_sequence" type="boolean" checked="false" truevalue="" falsevalue="--check-its-only" label="Trim conserved sequence (SSU, 5.8S, LSU) ?" help="If Yes, only part of the sequences with ITS signature will be kept, SSU, LSU or 5.8S regions will be trimmed. (default : No)"/>
+		<param name="domain" type="select" label="Choose pertinent organisms to scan?" help="Save a lot of time by checking pertinent organism group model to scan." optional="false" multiple="true" display="checkboxes">
+			<option value="F" selected="true" >Fungi</option>
+			<option value="A">Alveolata</option>
+			<option value="B">Bryophyta</option>
+			<option value="C">Bacillariophyta</option>
+			<option value="D">Amoebozoa</option>
+			<option value="E">Euglenozoa</option>
+			<option value="G">Chlorophyta</option>
+			<option value="H">Rhodophyta</option>
+			<option value="I">Phaeophyceae</option>
+			<option value="L">Marchantiophyta</option>
+			<option value="M">Metazoa</option>
+			<option value="O">Oomycota</option>
+			<option value="P">Haptophyceae</option>
+			<option value="Q">Raphidophyceae</option>
+			<option value="R">Rhizaria</option>
+			<option value="S">Synurophyceae</option>
+			<option value="T">Tracheophyta</option>
+			<option value="U">Eustigmatophyceae</option>
+			<!-- hmm not available in ITSx_db folder -->
+			<!-- <option value="X">Apusozoa</option>
+			<option value="Y">Parabasalia</option> -->
+		</param>
+	</inputs>
+	<outputs>
+		<data format="fasta" name="out_excluded" label="${tool.name}: nonITS_sequence.fasta" from_work_dir="out_removed.fasta"/>
+		<data format="fasta" name="out_fasta" label="${tool.name}: ITS_sequence.fasta" from_work_dir="itsx.fasta"/>
+		<data format="biom1" name="out_abundance_biom" label="${tool.name}: itsx_abundance.biom" from_work_dir="itsx.biom"/>
+		<data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="report.html"/>
+	</outputs>
+	<tests>
+		<test>
+			<param name="input_fasta" value="references/04-filters.fasta"/>
+			<param name="input_biom" value="references/04-filters.biom"/>
+			<param name="region" value="ITS1"/>
+			<param name="trim_sequence" value="true"/>
+			<output name="out_abundance_biom" file="references/05-itsx.biom" compare="sim_size" delta="0" />
+			<output name="out_fasta" file="references/05-itsx.fasta" compare="diff" lines_diff="0" />
+			<output name="out_excluded" file="references/05-itsx-excluded.fasta" compare="diff" lines_diff="0" />
+			<output name="summary_file" file="references/05-itsx.html" compare="diff" lines_diff="0" />
+		</test>
+	</tests>
+	<help>
+
+@HELP_LOGO@
+
+.. class:: infomark page-header h2
+
+What it does
+
+Identify (and optionnaly extract) the highly variable ITS1 and ITS2 subregions from ITS sequences.
+
+.. class:: infomark page-header h2
+
+Context
+
+The ITSx software identifies and extracts only ITS regions. It excludes the highly conserved neighbouring sequences SSU, 5.8S and LSU rRNA. These sequences can lead to misleading results if they are conserved.
+If the targeted ITS region (ITS1 or ITS2) is not detected, the observation is discarded.
+
+You can choose to only check if the sequence is detected as an ITS. The sequence is not trimmed, only sequences not detected as ITS are discarded (contaminants by example).
+
+.. class:: warningmark
+
+**ITSx is a time consuming tool. Please selecte pertinent organism groups for your study.**
+
+.. class:: infomark page-header h2
+
+Inputs/Outputs
+
+.. class:: h3
+
+Inputs
+
+**Sequence file**:
+
+The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
+
+**Abundance file**:
+
+ The abundance of each cluster in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
+
+
+.. class:: h3
+
+Outputs
+
+**Sequence file** (itsx.fasta):
+
+ The original sequence file with identified highly variable ITS, or with only ITS1 or ITS2 part if you choose to remove conserved SSU, 5.8S and LSU parts (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
+
+**Abundance file** (itsx.biom):
+
+ The abundance file with only ITS sequences (format `BIOM &lt;http://biom-format.org/&gt;`_).
+
+**Discarded file** (out_removed.fasta)
+
+ The sequence file with discarded sequences.
+
+**Summary file** (report.html):
+
+ This file presents the summary of process (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
+
+
+.. class:: infomark page-header h2
+
+How it works
+
+.. csv-table::
+   :header: "Steps", "Description"
+   :widths: 10, 90
+   :class: table table-striped
+
+   "1", "Predicts positions of the ribosomal genes in the sequences (`ITSx &lt;http://microbiology.se/software/itsx/&gt;`_)."
+   "2", "Removes the sequences without prediction of the targeted ITS region (ITS1 or ITS2)."
+   "3", "(optional) trim conserved region."
+
+
+
+
+@HELP_CONTACT@
+
+	</help>
+
+	<citations>
+		<expand macro="citations" />
+	</citations>
+	
+</tool>

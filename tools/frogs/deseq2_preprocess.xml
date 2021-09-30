@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<!--
+# Copyright (C) 2017 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<tool id="FROGSSTAT_DESeq2_Preprocess" name="FROGSSTAT DESeq2 Preprocess" version="@TOOL_VERSION@+galaxy2">
+  <description>import a Phyloseq object and prepare it for DESeq2 differential abundance analysis </description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+
+    <expand macro="requirements_phyloseq">
+        <requirement type="package" version="1.30.1">bioconductor-deseq2</requirement>
+        <requirement type="package" version="1.6.6">r-optparse</requirement>
+    </expand>
+
+  <stdio>
+      <exit_code range="1:" />
+      <exit_code range=":-1" />
+  </stdio>
+	<command>deseq2_preprocess.py --data '$data'
+                                #if $multiple.seconde
+                                  --var '$var1${multiple.mod}${multiple.var2}'
+                                #else
+                                  --var '$var1'
+                                #end if
+                                --out-Rdata '$dds'
+	</command>
+    <inputs>
+		  <!-- Files -->
+      <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGSSTAT Phyloseq Import Data with normalise option set to NO (DESeq2 is more powerful on unnormalised counts)." optional="false">
+        <validator type="empty_field" message="This parameter is required." />
+      </param>
+      <!-- Parameters -->
+		  <param name="var1" type="text" label="Experimental variable" help="The factor suspected to have an effect on OTUs' abundances. Ex: Treatment, etc." optional="false" value="" size="20">
+        <validator type="empty_field" message="This parameter is required." />
+      </param>
+		  <conditional name="multiple">
+        <param name="seconde" type="boolean" label="Do you want to correct for a confounding factor?" help="If yes, specifiy counfouding factor." optional="false" />
+		    <when value="false"></when>
+		    <when value="true">
+          <param name="var2" type="text" label="Variable 2" help="Confounding factor. Ex: Gender, etc." optional="false" value="" size="20"/>
+          <param name="mod" type="select" multiple="false" help="Choose an additive model (+) if the effects of Treatment and Gender are independent. Choose a model with interaction (*) if the effect of Treatment is expected to depend on Gender." label="Type of model">
+            <option value="+" selected="true">Linear (+)</option>
+            <option value="*">Interaction (*)</option>
+          </param>
+        </when>
+      </conditional>
+    </inputs>
+    <outputs>
+      <data format="rdata" name="dds" label="${tool.name}: dds.Rdata" from_work_dir="DESeq2_preprocess.Rdata"/>
+    </outputs>
+    <tests>
+      <test>
+         <param name="data" value="references/16-phylo_import.Rdata" />
+         <param name="var1" value="EnvType"/>
+         <output name="dds" file="references/23-deseq2_preprocess.Rdata" compare="sim_size" delta="50"/>
+      </test>
+    </tests>
+    <help>
+
+@HELP_LOGO@
+
+.. class:: infomark page-header h2
+
+What it does
+
+Launch Rscript to compute differential abundance analysis using `DESeq2 &lt;https://bioconductor.org/packages/release/bioc/html/DESeq2.html&gt;`_ on a `Phyloseq &lt;https://joey711.github.io/phyloseq/&gt;`_ object.
+
+.. class:: infomark page-header h2
+
+Inputs/Outputs
+
+.. class:: h3
+
+Input
+
+**phyloseq object** (format rdata):
+A phyloseq object stored in a rdata file.
+This file is the result of FROGSSTAT Phyloseq Import Data.
+
+.. class:: warningmark
+
+We need unnormalised data to analyse the abundance differencies.
+
+.. class:: h3
+
+Ouput
+
+**dds object** (format rdata):
+A DESeq2 dataset (dds) stored in rdata file.
+This result will be one of the input of the FROGSSTAT DESeq Visualisation tool.
+
+.. class:: infomark page-header h2
+
+How it works
+
+The DESeq function performs a default analysis through the steps:
+
+       1. estimation of size factors: ‘estimateSizeFactors’
+
+       2. estimation of dispersion: ‘estimateDispersions’
+
+       3. Negative Binomial GLM fitting and Wald statistics:
+          ‘nbinomWaldTest’
+
+You must precise at least on variable on which the differential abundances will be compared.
+
+You may precise a confounding factor, by adding an other variable and precise the relation between the two variables:
+
+- + for independant variables
+- * for interacting variables
+
+@HELP_CONTACT@
+
+  </help>
+
+  <citations>
+    <expand macro="citations" />
+  </citations>
+  
+</tool>
