@@ -17,6 +17,11 @@
 -->
 <tool id="FROGS_PICRUSt2_metagenome" name="FPStep3" version= "beta">
     <description>Per-sample metagenome functional profiles based on the predicted functions for each study sequence.</description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />
@@ -67,9 +72,8 @@
         </data>
     </outputs>
      <help>
-.. image:: ./static/images/FROGS_logo.png
-   :height: 144
-   :width: 110
+
+@HELP_LOGO@
 
 .. class:: infomark page-header h2
 
@@ -133,24 +137,12 @@ Output file with abundance normalized. (FPStep3_seqtab_norm.tsv)
 
 Output file with average nsti calculated per sample.
 
-.. class:: infomark page-header h2
+@HELP_CONTACT@
 
-**Contact**
+    </help>
 
-Contacts: frogs@inra.fr
-
-website: http://frogs.toulouse.inra.fr/
-
-Repository: https://github.com/geraldinepascal/FROGS
-website: http://frogs.toulouse.inra.fr/
-
-Please cite the **FROGS article**: *Escudie F., et al. Bioinformatics, 2018. FROGS: Find, Rapidly, OTUs with Galaxy Solution.*
-
-Please cite the **PICRUSt2 article**: * Gavin M. Douglas1, Vincent J. Maffei2, Jesse Zaneveld3, Svetlana N. Yurgel4, James R. Brown5, Christopher M. Taylor2, Curtis Huttenhower6, Morgan G. I. Langille1,7,*   
-
-     </help>
-
-    <citation>
-        <citation type="doi">10.1101/672295</citation>
-    </citation>
- </tool>
+    <citations>
+        <expand macro="citations" />
+    </citations>
+    
+</tool>
