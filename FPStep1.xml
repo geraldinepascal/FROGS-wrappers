@@ -17,8 +17,7 @@
 -->
 <tool id="FROGS_PICRUSt2_place_seqs" name="FPStep1" version= "beta">
 	<description>Place studies sequences (i.e. OTUs) into a reference tree.</description>
-	<requirements>
-    </requirements>
+	<requirements type="package" version="3.1.2">ete3</requirements>
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />

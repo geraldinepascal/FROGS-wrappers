@@ -36,7 +36,7 @@
                 --strat_out
                 --contrib $contrib
             #end if
-            --description_dir ${description.value}
+            --add_description
             --html $html
             --debug
     </command> 
@@ -50,13 +50,6 @@
         </param>
         <param format="tabular" name="marker" type="data" label="Marker file" help="Table of predicted marker copy number (output of FPStep2 : marker_nsti_predicted.tsv)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
-        </param>
-        <param name="description" type='select' label="Folder of descriptions functions files" help="In order to add a description columns to the function abundance table (perform automatically)" optional="false" checked="true" hidden='true'>
-            <options from_data_table="frogs_picrust2_description_dir">
-                <column name="name" index="2"/>
-                <column name="value" index="2"/>
-                <validator type="no_options" message="A built-in database is not available" />
-            </options>
         </param>
         <!-- Parameters-->
         <param name="max_nsti" type="float" label="NSTI cut-off" help="Sequences with NSTI values above this value will be excluded (default: 2)" value="2" min="0" optional="false" /> 

@@ -32,7 +32,7 @@
             --per_sequence_abun $per_sequence_abun
             --per_sequence_function $per_sequence_function 
           #end if
-          --description_dir ${description.value}
+          --add_description
 				  --map $map_file.value
           #if $category.value == "16S"
             #if $map_file.fields.name == "Kegg"
@@ -60,13 +60,6 @@
             <column name='name' index='1'/>
             <column name='value' index='3'/>
             <filter type="param_value" ref="category" column="2" />               
-              <validator type="no_options" message="A built-in database is not available" />
-          </options>
-        </param>
-        <param name="description" type='select' label="Folder of descriptions functions files" help="In order to add a description columns to the function abundance table (perform automatically)" optional="false" checked="true" hidden='true'>
-          <options from_data_table="frogs_picrust2_description_dir">
-            <column name="name" index="2"/>
-            <column name="value" index="2"/>
               <validator type="no_options" message="A built-in database is not available" />
           </options>
         </param>
