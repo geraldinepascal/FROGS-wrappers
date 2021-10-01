@@ -44,7 +44,7 @@
               --no_regroup
             #end if
           #end if
-	   		  --html $html
+	   		  --html $summary_file
 	   		  --debug
 	</command> 
 	<inputs>
@@ -70,7 +70,7 @@
         </param>
         <conditional name="is_per_sequence_contrib">
           <param name="per_sequence_contrib" label="Do you want also a table stratified per sequences ?" help='Also product the predicted pathway abundance contributed by each individual sequence. This is in contrast to the default stratified output, which is the contribution to the community-wide pathway abundances. Note this will greatly increase the runtime.' type="boolean" />
-       	  <when value="yes">
+       	  <when value="true">
        		  <param name="per_sequence_abun" type="data" label="FPStep3 abundance per sequence file" help="Path to table of sequence abundances across samples normalized by marker copy number (FPStep3 output: seqtab_norm.tsv by default). This input is required when the --per_sequence_contrib option is set." optional="false">
               <validator type="empty_field" message="This parameter is required." />
             </param>
@@ -81,7 +81,7 @@
         </conditional>
 	</inputs>
 	<outputs>
-		<data format="html" name="html" label="${tool.name}: FPStep4_summary.html" from_work_dir="FPStep4_summary.html"/>
+		<data format="html" name="summary_file" label="${tool.name}: FPStep4_summary.html" from_work_dir="FPStep4_summary.html"/>
 		 <data format="tabular" name="abund" label="${tool.name}: FPStep4_path_abun_unstrat.tsv" from_work_dir="FPStep4_path_abun_unstrat.tsv"/> 
          <data format="tabular" name="contrib" label="${tool.name}: FPStep4_path_abun_contrib.tsv" from_work_dir="FPStep4_path_abun_contrib.tsv"> 
             <filter>is_per_sequence_contrib['per_sequence_contrib'] == "yes"</filter>
@@ -90,6 +90,21 @@
             <filter>is_per_sequence_contrib['per_sequence_contrib'] == "yes"</filter>
          </data>
 	</outputs>
+
+  <tests>
+    <test>
+      <param name="input_file" value="references/27-FPStep3_pred_metagenome_unstrat.tsv" />
+      <param name="category" value="16S" />
+      <param name="map_file" value="pro_metacyc_pathway"/>
+        <conditional name="is_per_sequence_contrib">
+        <param name="per_sequence_contrib" value="false"/>
+        </conditional>
+
+      <output name="abund" file="references/28-FPStep4_path_abun_unstrat.tsv" compare="diff" lines_diff="0" />
+      <output name="summary_file" file="references/28-FPStep4_summary.html" compare="diff" lines_diff="0" />
+    </test>
+  </tests>
+
   <help>
 
 @HELP_LOGO@

@@ -77,9 +77,22 @@
 		</param> 
 	</inputs>
 	<outputs>
-		<data format="tabular" name="out_function" label="${tool.name}: FPStep2_predicted_functions.tsv" from_work_dir="FPStep2_all_predicted.tsv"/>
-		<data format="tabular" name="out_marker" label="${tool.name}: marker_nsti_predicted.tsv" from_work_dir="${category}_nsti_predicted.tsv"/> 
+		<data format="tabular" name="out_function" label="${tool.name}: FPStep2_predicted_functions.tsv" from_work_dir="FPStep2_predicted_functions.tsv"/>
+		<data format="tabular" name="out_marker" label="${tool.name}: FPStep2_marker_copy_number.tsv" from_work_dir="${category}_marker_copy_number.tsv"/> 
 	</outputs>
+
+	<tests>
+		<test>
+			<param name="input_tree" value="references/25-FPStep1.fasta" />
+            <param name="category" value="16S" />
+            <param name="function" value="EC"/>
+			<param name="hsp_method" value="mp" />
+
+			<output name="out_function" file="references/26-FPStep2_predicted_functions.tsv" compare="diff" lines_diff="0" />
+			<output name="out_marker" file="references/26-FPStep2_marker_copy_number.tsv" compare="diff" lines_diff="0" />
+		</test>
+	</tests>
+
      <help>
 
 @HELP_LOGO@

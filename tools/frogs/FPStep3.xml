@@ -42,7 +42,7 @@
                 --contrib $contrib
             #end if
             --add_description
-            --html $html
+            --html $summary_file
             --debug
     </command> 
     <inputs>
@@ -63,7 +63,7 @@
         <param name="strat" type="boolean" label="Do you want also a table stratified per sequences ?" help='Output table stratified by sequences as well.' />
     </inputs>
     <outputs>
-        <data format="html" name="html" label="${tool.name}: FPStep3_summary.html" from_work_dir="FPStep3_summary.html"/>
+        <data format="html" name="summary_file" label="${tool.name}: FPStep3_summary.html" from_work_dir="FPStep3_summary.html"/>
         <data format="tabular" name="function_abund" label="${tool.name}: FPStep3_pred_metagenome_unstrat.tsv" from_work_dir="FPStep3_pred_metagenome_unstrat.tsv"/> 
         <data format="tabular" name="seqtab" label="${tool.name}: FPStep3_seqtab_norm.tsv" from_work_dir="FPStep3_seqtab_norm.tsv"/> 
         <data format="tabular" name="weighted" label="${tool.name}: FPStep3_weighted_nsti.tsv" from_work_dir="FPStep3_weighted_nsti.tsv"/> 
@@ -71,6 +71,26 @@
             <filter>strat</filter>
         </data>
     </outputs>
+
+
+    <tests>
+        <test>
+            <param name="input_biom" value="input/FPSteps.biom" />
+            <param name="function" value="references/26-FPStep2_predicted_functions.tsv" />
+            <param name="marker" value="references/26-FPStep2_marker_copy_number.tsv"/>
+            <param name="max_nsti" value="2" />
+            <param name="min_reads" value="1" />
+            <param name="min_samples" value="1" />
+            <param name="strat" value="false" />
+            <param name="add_description" value="true" />
+
+            <output name="function_abund" file="references/27-FPStep3_pred_metagenome_unstrat.tsv" compare="diff" lines_diff="0" />
+            <output name="seqtab" file="references/27-FPStep3_seqtab_norm.tsv" compare="diff" lines_diff="0" />
+            <output name="weighted" file="references/27-FPStep3_weighted_nsti.tsv" compare="diff" lines_diff="0" />
+            <output name="summary_file" file="references/27-FPStep3_summary.html" compare="diff" lines_diff="0" />
+        </test>
+    </tests>
+
      <help>
 
 @HELP_LOGO@
