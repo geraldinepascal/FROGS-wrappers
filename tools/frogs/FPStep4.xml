@@ -32,7 +32,7 @@
        FPStep4.py
           --input_file $input_file
           --debug
-          #if $is_per_sequence_contrib.per_sequence_contrib == "yes"
+          #if $is_per_sequence_contrib.per_sequence_contrib 
             --per_sequence_contrib
             --per_sequence_abun $per_sequence_abun
             --per_sequence_function $per_sequence_function 
@@ -84,10 +84,10 @@
 		<data format="html" name="summary_file" label="${tool.name}: FPStep4_summary.html" from_work_dir="FPStep4_summary.html"/>
 		 <data format="tabular" name="abund" label="${tool.name}: FPStep4_path_abun_unstrat.tsv" from_work_dir="FPStep4_path_abun_unstrat.tsv"/> 
          <data format="tabular" name="contrib" label="${tool.name}: FPStep4_path_abun_contrib.tsv" from_work_dir="FPStep4_path_abun_contrib.tsv"> 
-            <filter>is_per_sequence_contrib['per_sequence_contrib'] == "yes"</filter>
+            <filter>is_per_sequence_contrib['per_sequence_contrib']</filter>
          </data>
-         <data format="tabular" name="predictions" label="${tool.name}: FPSTep4_path_abun_predictions.tsv" from_work_dir="FPSTep4_path_abun_predictions.tsv">
-            <filter>is_per_sequence_contrib['per_sequence_contrib'] == "yes"</filter>
+         <data format="tabular" name="predictions" label="${tool.name}: FPStep4_path_abun_predictions.tsv" from_work_dir="FPSTep4_path_abun_predictions.tsv">
+            <filter>is_per_sequence_contrib['per_sequence_contrib']</filter>
          </data>
 	</outputs>
 
@@ -102,6 +102,20 @@
 
       <output name="abund" file="references/28-FPStep4_path_abun_unstrat.tsv" compare="diff" lines_diff="0" />
       <output name="summary_file" file="references/28-FPStep4_summary.html" compare="diff" lines_diff="0" />
+    </test>
+    <test>
+      <param name="input_file" value="references/27-FPStep3_pred_metagenome_unstrat.tsv" />
+      <param name="category" value="16S" />
+      <param name="map_file" value="pro_metacyc_pathway"/>
+        <conditional name="is_per_sequence_contrib">
+        <param name="per_sequence_contrib" value="true"/>
+        </conditional>
+    <param name="per_sequence_abun" value="references/27-FPStep3_seqtab_norm.tsv" />
+    <param name="per_sequence_function" value="references/26-FPStep2_predicted_functions.tsv" />
+
+      <output name="abund" file="references/28-FPStep4_path_abun_unstrat.tsv" compare="diff" lines_diff="0" />
+      <output name="abund" file="references/28-FPStep4_path_abun_contrib.tsv" compare="diff" lines_diff="0" />
+      <output name="abund" file="references/28-FPStep4_path_abun_predictions.tsv" compare="diff" lines_diff="0" />
     </test>
   </tests>
 
