@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <!--
 # Copyright (C) 2015 INRA
 #
@@ -22,9 +22,9 @@
         <import>macros.xml</import>
     </macros>
 
-    <expand macro="requirements">
+<!--      <expand macro="requirements_frogsfunc">
         <requirement type="package" version="3.1.2">ete3</requirement>
-    </expand>
+    </expand>-->
 
     <stdio>
         <exit_code range="1:" />
@@ -83,7 +83,7 @@
 			<param name="input_fasta" value="input/FPSteps.fasta" />
             <param name="input_biom" value="input/FPSteps.biom" />
             <param name="placement_tool" value="sepp"/>
-			<param name="marker" value="picrust2_default_dir_16S" />
+			<param name="marker" value="16S" />
 			<param name="min_align" value="0.8" />
 			
 			<output name="insert_fasta" file="references/25-FPStep1.fasta" compare="diff" lines_diff="0" />

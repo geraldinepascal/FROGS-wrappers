@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <!--
 # Copyright (C) 2015 INRA
 #
@@ -22,8 +22,8 @@
         <import>macros.xml</import>
     </macros>
     
-	<requirements>
-    </requirements>
+ <!--    <expand macro="requirements_frogsfunc" /> -->
+    
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />
@@ -61,7 +61,7 @@
 
 		<param name="function" type="select" label="Function table" multiple="true" display="checkboxes" optional="false" help=" 16S : 'EC' or/and 'KO' should be at least chosen (Metacyc pathway analysis or/and Kegg pathway analysis. Others values are optionnal. ITS and 18S : 'EC' only available." >
 			<options from_data_table="frogs_picrust2_marker_table">
-				<column name='name' index='1' checked='true'/>
+				<column name='name' index='1' />
 				<column name='value' index='2' />
 				<column name='traits' index='3' />
                 <filter type="param_value" ref="category" column="0" />   

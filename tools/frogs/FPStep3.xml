@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <!--
 # Copyright (C) 2015 INRA
 #
@@ -21,7 +21,8 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    
+
+
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />
