@@ -83,7 +83,7 @@
 
 	<tests>
 		<test>
-			<param name="input_tree" value="references/25-FPStep1.fasta" />
+			<param name="input_tree" value="references/25-FPStep1.tree" />
             <param name="category" value="16S" />
             <param name="function" value="EC"/>
 			<param name="hsp_method" value="mp" />

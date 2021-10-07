@@ -86,7 +86,7 @@
          <data format="tabular" name="contrib" label="${tool.name}: FPStep4_path_abun_contrib.tsv" from_work_dir="FPStep4_path_abun_contrib.tsv"> 
             <filter>is_per_sequence_contrib['per_sequence_contrib']</filter>
          </data>
-         <data format="tabular" name="predictions" label="${tool.name}: FPStep4_path_abun_predictions.tsv" from_work_dir="FPSTep4_path_abun_predictions.tsv">
+         <data format="tabular" name="predictions" label="${tool.name}: FPStep4_path_abun_predictions.tsv" from_work_dir="FPStep4_path_abun_predictions.tsv">
             <filter>is_per_sequence_contrib['per_sequence_contrib']</filter>
          </data>
 	</outputs>
@@ -95,7 +95,7 @@
     <test>
       <param name="input_file" value="references/27-FPStep3_pred_metagenome_unstrat.tsv" />
       <param name="category" value="16S" />
-      <param name="map_file" value="pro_metacyc_pathway"/>
+      <param name="map_file" value="/home/vdarbot/miniconda3/envs/frogs_test/lib/python3.6/site-packages/picrust2/default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt"/>
         <conditional name="is_per_sequence_contrib">
         <param name="per_sequence_contrib" value="false"/>
         </conditional>
@@ -106,7 +106,7 @@
     <test>
       <param name="input_file" value="references/27-FPStep3_pred_metagenome_unstrat.tsv" />
       <param name="category" value="16S" />
-      <param name="map_file" value="pro_metacyc_pathway"/>
+      <param name="map_file" value="/home/vdarbot/miniconda3/envs/frogs_test/lib/python3.6/site-packages/picrust2/default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt"/>
         <conditional name="is_per_sequence_contrib">
         <param name="per_sequence_contrib" value="true"/>
         </conditional>
@@ -114,8 +114,8 @@
     <param name="per_sequence_function" value="references/26-FPStep2_predicted_functions.tsv" />
 
       <output name="abund" file="references/28-FPStep4_path_abun_unstrat.tsv" compare="diff" lines_diff="0" />
-      <output name="abund" file="references/28-FPStep4_path_abun_contrib.tsv" compare="diff" lines_diff="0" />
-      <output name="abund" file="references/28-FPStep4_path_abun_predictions.tsv" compare="diff" lines_diff="0" />
+      <output name="contrib" file="references/28-FPStep4_path_abun_contrib.tsv" compare="diff" lines_diff="0" />
+      <output name="predictions" file="references/28-FPStep4_path_abun_predictions.tsv" compare="diff" lines_diff="0" />
     </test>
   </tests>
 
