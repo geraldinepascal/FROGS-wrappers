@@ -38,7 +38,7 @@
 	   		--output_marker $out_marker
 	   		--output_function $out_function
 	   		#if $category.value != "16S"
-	   		--observed_marker_table $function.fields.value
+	   		--observed_marker_table $function.fields.path
 	   		--observed_trait_table $function.fields.traits
 	   		#end if
 	   		--debug
@@ -62,7 +62,8 @@
 		<param name="function" type="select" label="Function table" multiple="true" display="checkboxes" optional="false" help=" 16S : 'EC' or/and 'KO' should be at least chosen (Metacyc pathway analysis or/and Kegg pathway analysis. Others values are optionnal. ITS and 18S : 'EC' only available." >
 			<options from_data_table="frogs_picrust2_marker_table">
 				<column name='name' index='1' />
-				<column name='value' index='2' />
+				<column name='value' index='1' />
+				<column name='path' index='2' />
 				<column name='traits' index='3' />
                 <filter type="param_value" ref="category" column="0" />   
  		<validator type="expression" message="'EC' or 'KO' must be at least selected. Other tables are optionnal">"EC" in value or "KO" in value</validator>               
