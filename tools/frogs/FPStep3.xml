@@ -22,7 +22,8 @@
         <import>macros.xml</import>
     </macros>
 
-
+ <!--    <expand macro="requirements_frogsfunc" /> -->
+    
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />
@@ -54,7 +55,7 @@
         <param format="tabular" name="function" type="data" label="Function file" help="Copy number table of gene families/functions present in the predicted genome for each OTU (output of FPStep2 : FPStep2_predicted_functions.tsv)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-        <param format="tabular" name="marker" type="data" label="Marker file" help="Table of predicted marker copy number (output of FPStep2 : marker_nsti_predicted.tsv)." optional="false">
+        <param format="tabular" name="marker" type="data" label="Marker file" help="Table of predicted marker copy number (output of FPStep2 : FPStep2_marker_copy_number.tsv)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
         <!-- Parameters-->

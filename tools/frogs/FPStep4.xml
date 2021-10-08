@@ -49,7 +49,7 @@
 	</command> 
 	<inputs>
         <!-- Input files -->       
-        <param format="tabular" name="input_file" type="data" label="FPStep3 prediction abundance file" help="Input TSV table of gene family abundances (either the unstratified or stratified output of FPStep3, by default pred_metagenome_unstrat.tsv)" optional="false">
+        <param format="tabular" name="input_file" type="data" label="FPStep3 prediction abundance file" help="Input TSV table of gene family abundances (either the unstratified or stratified output of FPStep3: FPStep3_pred_metagenome_unstrat.tsv" optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
 	      <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
@@ -71,10 +71,10 @@
         <conditional name="is_per_sequence_contrib">
           <param name="per_sequence_contrib" label="Do you want also a table stratified per sequences ?" help='Also product the predicted pathway abundance contributed by each individual sequence. This is in contrast to the default stratified output, which is the contribution to the community-wide pathway abundances. Note this will greatly increase the runtime.' type="boolean" />
        	  <when value="true">
-       		  <param name="per_sequence_abun" type="data" label="FPStep3 abundance per sequence file" help="Path to table of sequence abundances across samples normalized by marker copy number (FPStep3 output: seqtab_norm.tsv by default). This input is required when the --per_sequence_contrib option is set." optional="false">
+       		  <param name="per_sequence_abun" type="data" label="FPStep3 abundance per sequence file" help="Path to table of sequence abundances across samples normalized by marker copy number (FPStep3 output: FPStep3_seqtab_norm.tsv). This input is required when the --per_sequence_contrib option is set." optional="false">
               <validator type="empty_field" message="This parameter is required." />
             </param>
-       		<param name="per_sequence_function" type="data" label="FPStep2 abundance function file" help="Path to table of function abundances per sequence, which was outputted at the FPStep2 (all_predicted.tsv by default). This input is required when the --per_sequence_contrib option is set." optional="false">
+       		<param name="per_sequence_function" type="data" label="FPStep2 abundance function file" help="Path to table of function abundances per sequence, which was outputted at the FPStep2 (FPStep2_predicted_functions.tsv). This input is required when the --per_sequence_contrib option is set." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         	</param>
        	  </when>
