@@ -62,7 +62,7 @@
         <param name="max_nsti" type="float" label="NSTI cut-off" help="Sequences with NSTI values above this value will be excluded (default: 2)" value="2" min="0" optional="false" /> 
         <param name="min_reads" type="integer" optional="false" min="1" value="1" label="Minimum number of reads accross all samples" help='Minimum number of reads across all samples for each input OTU. OTUs below this cut-off will be counted as part of the "RARE" category in the stratified output (default: 1).' />
        <param name="min_samples" type="integer" optional="false" min="1" value="1" label="Minimum number of samples to keep an OTU."  help='Minimum number of samples that an OTU needs to be identified within. OTUs below this cut-off will be counted as part of the "RARE" category in the stratified output (default: 1).' />
-        <param name="strat" type="boolean" label="Do you want also a table stratified per sequences ?" help='Output table stratified by sequences as well.' />
+        <param name="strat" type="boolean" label="Do you want also a table stratified per sequences ?" help='Also product the predicted genes abundances contributed by each individual sequence. This is in contrast to the default stratified output, which is the contribution to the community-wide gene abundances. Note this will greatly increase the runtime..' />
     </inputs>
     <outputs>
         <data format="html" name="summary_file" label="${tool.name}: FPStep3_summary.html" from_work_dir="FPStep3_summary.html"/>
