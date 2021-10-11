@@ -56,7 +56,7 @@
         	<validator type="empty_field" message="This parameter is required." />
         </param>
     	<!-- Parameters -->
-        <param name="marker" type="select" label="Taxonomy marker" display="radio">
+        <param name="marker" type="select" label="Taxonomy marker" display="radio" help="Taxonomic marker of interest.">
 			<options from_data_table="frogs_picrust2_default_dir">
 	     		<column name="name" index="1"/>
 	        	<column name="value" index="2"/>
