@@ -52,7 +52,7 @@
 		<param format="fasta" name="input_fasta" type="data" label="Sequence file" help="Fasta file of unaligned studies sequences (format: fasta)." optional="false">
        		<validator type="empty_field" message="This parameter is required." />
     	</param>
-		<param format="biom1" name="input_biom" type="data" label="Biom file" help="Abundance table of OTUs (format: biom)." optional="false">
+		<param format="biom1" name="input_biom" type="data" label="Biom file" help="Abundance table of OTUs (format: biom). Taxonomic affiliations must be done before (FROGS Affiliation OTU step)" optional="false">
         	<validator type="empty_field" message="This parameter is required." />
         </param>
     	<!-- Parameters -->
