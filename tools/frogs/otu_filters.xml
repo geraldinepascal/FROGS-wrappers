@@ -15,16 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_OTU_filters" name="FROGS OTU Filters" version="@TOOL_VERSION@+galaxy2">
+<tool id="FROGS_OTU_filters" name="FROGS OTU Filters" version="beta">
 	<description>Filters OTUs on several criteria.</description>
 
-    <macros>
+<!--     <macros>
         <import>macros.xml</import>
     </macros>
 
     <expand macro="requirements">
         <requirement type="package" version="2.9.0">blast</requirement>
-    </expand>
+    </expand> -->
 
         <stdio>
                 <exit_code range="1:" />
@@ -46,9 +46,9 @@
 				#if $choice_prevalence_method.min_sample_presence
 					--min-sample-presence $choice_prevalence_method.min_sample_presence
 				#end if
-			#else if choice_prevalence_method.prevalence_method == "replicate"
+			#else if $choice_prevalence_method.prevalence_method == "replicate"
 				#if $choice_prevalence_method.min_replicate_presence
-					--min-sample-presence $choice_prevalence_method.min_replicate_presence
+					--min-replicate-presence $choice_prevalence_method.min_replicate_presence
 					--replicate_file $choice_prevalence_method.replicate_file
 				#end if
 			#end if
