@@ -49,7 +49,7 @@
     </command> 
     <inputs>
         <!-- Input files -->
-        <param format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance table of OTUs used in FPStep1 (format: biom)." optional="false">
+        <param format="biom1" name="input_biom" type="data" label="Biom file" help="FPStep1 sequence abundances output file (FPStep1.biom)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
         <param format="tabular" name="function" type="data" label="Function file" help="Copy number table of gene families/functions present in the predicted genome for each OTU (output of FPStep2 : FPStep2_predicted_functions.tsv)." optional="false">
