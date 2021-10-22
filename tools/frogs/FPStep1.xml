@@ -40,6 +40,7 @@
 	   		--excluded $excluded
 	   		--insert_biom $insert_biom
 	   		--insert_fasta $insert_fasta
+	   		--closests_ref $closests_ref
 	   		--html $summary_file
 	   		--debug
 
@@ -74,7 +75,8 @@
 		<data format="html" name="summary_file" label="${tool.name}: FPStep1_summary.html" from_work_dir="FPStep1_summary.html"/>
 		<data format="nhx" name="out_tree" label="${tool.name}: FPStep1_tree.nwk" from_work_dir="FPStep1_tree.nwk"/>
 		<data format="tabular" name="excluded" label="${tool.name}: FPStep1_excluded.tsv" from_work_dir="FPStep1_excluded.tsv"/> 
-		<data format="fasta" name="insert_fasta" label="${tool.name}: FPStep1.fasta" from_work_dir="FPSTep1.fasta"/> 
+		<data format="fasta" name="insert_fasta" label="${tool.name}: FPStep1.fasta" from_work_dir="FPSTep1.fasta"/>
+		<data format="tabular" name="closests_ref" label="${tool.name}: FPStep1_closests_ref_sequences.txt" from_work_dir="FPStep1_closests_ref_sequences.txt"/> 
 		<data format="biom1" name="insert_biom" label="${tool.name}: FPStep1.biom" from_work_dir="FPSTep1.biom"/> 
 	</outputs>
 
@@ -90,6 +92,7 @@
 			<output name="insert_biom" file="references/25-FPStep1.biom" compare="diff" lines_diff="0"/>
 			<output name="excluded" file="references/25-FPStep1_excluded.txt" compare="diff" lines_diff="0" />
 			<output name="out_tree" file="references/25-FPStep1.tree" compare="diff" lines_diff="0" />
+			<output name="closests_ref" file="references/25-FPStep1_closests_ref_sequences.txt" compare="diff" lines_diff="0" />
 			<output name="summary_file" file="references/25-FPStep1_summary.html" compare="diff" lines_diff="0" />
 		</test>
 	</tests>
