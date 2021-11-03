@@ -79,8 +79,8 @@
             <validator type="empty_field" message="This parameter is required." />
         	</param>
        	  </when>
-          <param name="hierarchy_ranks" type="text" help="The ordered pathways ranks levels stored in BIOM. Each rank is separated by one space." value="Level1 Level2 Level3 Pathway" size="80" type="hidden"/>
         </conditional>
+        <param name="hierarchy_ranks" help="The ordered pathways ranks levels stored in BIOM. Each rank is separated by one space." value="Level1 Level2 Level3 Pathway" size="80" type="hidden"/>
 	</inputs>
 	<outputs>
 		<data format="html" name="summary_file" label="${tool.name}: FPStep4_summary.html" from_work_dir="FPStep4_summary.html"/>
