@@ -37,7 +37,6 @@
             --per_sequence_abun $per_sequence_abun
             --per_sequence_function $per_sequence_function 
           #end if
-          --add_description
 				  --map $map_file.value
           --hierarchy_ranks $hierarchy_ranks
           #if $category.value == "16S"

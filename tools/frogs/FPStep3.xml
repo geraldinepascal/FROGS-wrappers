@@ -44,7 +44,6 @@
                 --strat_out
                 --contrib $contrib
             #end if
-            --add_description
             --html $summary_file
             --debug
     </command> 
