@@ -18,17 +18,19 @@
 <tool id="FROGS_normalisation" name="FROGS Abundance normalisation" version="beta">
         <description>Normalise OTUs abundance.</description>
 
-<!--     <macros>
+    <macros>
         <import>macros.xml</import>
     </macros>
 
     <expand macro="requirements"/>
- -->
+
         <stdio>
                 <exit_code range="1:" />
                 <exit_code range=":-1" />
         </stdio>
 	<command>
+		which normalisation.py;
+
 		normalisation.py 
 		                       --input-biom '$input_biom'
 		                       --input-fasta '$input_fasta'

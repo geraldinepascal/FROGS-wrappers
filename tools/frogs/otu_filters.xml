@@ -18,13 +18,13 @@
 <tool id="FROGS_OTU_filters" name="FROGS OTU Filters" version="beta">
 	<description>Filters OTUs on several criteria.</description>
 
-<!--     <macros>
+    <macros>
         <import>macros.xml</import>
     </macros>
 
     <expand macro="requirements">
         <requirement type="package" version="2.9.0">blast</requirement>
-    </expand> -->
+    </expand>
 
         <stdio>
                 <exit_code range="1:" />
@@ -33,7 +33,7 @@
 
 	<command>
 
-		otu_filters.py
+			otu_filters.py
 			--nb-cpus \${GALAXY_SLOTS:-1}
 			--input-biom '$input_biom'
 			--input-fasta '$input_fasta'

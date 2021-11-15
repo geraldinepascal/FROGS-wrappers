@@ -5,7 +5,7 @@
 
     <xml name="requirements">
         <requirements>
-            <requirement type="package" version="@TOOL_VERSION@">frogs</requirement>
+<!--             <requirement type="package" version="@TOOL_VERSION@">frogs</requirement> -->
             <yield />
         </requirements>
     </xml>

@@ -17,10 +17,10 @@
 -->
 <tool id="FROGS_PICRUSt2_pathway" name="FPStep4" version= "beta">
 	<description>Infer the presence and abundances of pathways based on gene family abundances in a sample. </description>
-
+<!-- 
   <macros>
         <import>macros.xml</import>
-  </macros>
+  </macros> -->
 
  <!--    <expand macro="requirements_frogsfunc" /> -->
     
@@ -31,7 +31,9 @@
 	<command >   
        FPStep4.py
           --input_file $input_file
-          --debug
+          #if $normalisation
+            --normalisation
+          #end if
           #if $is_per_sequence_contrib.per_sequence_contrib 
             --per_sequence_contrib
             --per_sequence_abun $per_sequence_abun
@@ -68,6 +70,7 @@
               <validator type="no_options" message="A built-in database is not available" />
           </options>
         </param>
+        <param name="normalisation" label="Do you want to normalise the final output table ?" help='Values are divided by sum of columns , then multiplied by 10^6 (CPM values).' type="boolean" />
         <conditional name="is_per_sequence_contrib">
           <param name="per_sequence_contrib" label="Do you want also a table stratified per sequences ?" help='Also product the predicted pathway abundance contributed by each individual sequence. This is in contrast to the default stratified output, which is the contribution to the community-wide pathway abundances. Note this will greatly increase the runtime.' type="boolean" />
        	  <when value="true">
