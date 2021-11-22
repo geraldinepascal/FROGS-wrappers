@@ -166,7 +166,13 @@ Outputs
 
 Pathways abundances for each samples. (FPStep4_path_abun_unstrat.tsv)
 
- If stratified option is activate, the abundances predictions are done for each OTU, in order to see the contribution of each OTU within each sample. ( Warning, the file produced may be heavy. ) 
+ If stratified option is activate, the abundances predictions are done for each OTU, in order to see the contribution of each OTU within each sample. ( Warning, the file produced may be heavy. )
+
+**Summary file**:
+
+.. image:: static/images/FROGS_FPStep4_sunburst.png
+
+ Pathways (in KEGG and Metacyc) are classified according to 3 hierarchy levels, the graph shows the proportion of each level according to the samples selected.
 
 @HELP_CONTACT@
 

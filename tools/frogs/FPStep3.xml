@@ -162,6 +162,16 @@ Output file with abundance normalized. (FPStep3_seqtab_norm.tsv)
 
 Output file with average nsti calculated per sample.
 
+**Summary file**:
+
+.. image:: static/images/FROGS_FPStep3_piecharts.png
+
+ OTUs are excluded if the NSTI associated is above the threshold selected.
+
+.. image:: static/images/FROGS_FPStep3_sunburst.png
+
+ Gene families (in KEGG and Metacyc) are classified according to 3 hierarchy levels, the graph shows the proportion of each level according to the samples selected.
+
 @HELP_CONTACT@
 
     </help>

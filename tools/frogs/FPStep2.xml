@@ -162,7 +162,14 @@ Marker gene copies number prediction is used to normalize the counting matrices 
 
 **Output function file**:
 
-Output table with predicted abundances per study sequence in input tree. (FPStep2_predicted_functions.tsv)
+ Output table with predicted abundances per study sequence in input tree. (FPStep2_predicted_functions.tsv)
+
+**Summary file**:
+
+.. image:: static/images/FROGS_FPStep2_NSTI.png
+
+ The graph shows the number of deleted OTUs and sequences according to the NSTI threshold. It's a decision support tool to help choosing the NSTI threshold during FPStep3.
+
 
 @HELP_CONTACT@
 

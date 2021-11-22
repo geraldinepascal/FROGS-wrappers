@@ -164,23 +164,27 @@ Outputs
    
  The summary file describing which OTUs are contained or not in the phylogenetic tree. Note that picrust2 uses its own reference tree to affiliate OTUs from reference sequences. The summary file indicates for each OTU which is the closest picrust2 reference sequence, and compares it to the FROGS taxonomy. By clicking on the sequence ID, you can have more information on it (JGI database).
 
- 
-.. image:: static/images/FROGS_FPStep1_summary_1.png
+ .. image:: static/images/FROGS_FPStep1_piecharts.png
+
+  OTUs are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold.
+
+.. image:: static/images/FROGS_FPStep1_table_1.png
+
+* **Cluster** : Cluster name.
 
 * **FROGS Taxonomy** : Taxonomic affiliation made with FROGS (FROGS Affiliation OTU).
 
 * **Picrust2 Closest ID** : Identifiant (JGI) of the closest reference sequence from the OTU inserted in the reference tree.
  
+* **Picrust2 closest reference name** : Genome Name / Sample Name.
 
+.. image:: static/images/FROGS_FPStep1_table_2.png
 
+* **Picrust2 closest taxonomy** : Taxonomy (JGI) of the closest reference sequence from the OTU inserted in the reference tree under the following format: Kingdom;Phylum;Class;Order;Family;Genus;Species
 
-* **Picrust2 Closest reference name** : Genome Name / Sample Name
+* **Picrust2 closest distance from cluster (NSTI)** : Phylogenetic distance between the OTU and the closest reference sequence.
 
-.. image:: static/images/FROGS_FPStep1_summary_2.png
-
-* **Picrust2 closest taxonomy** : Taxonomy (JGI) of the closest reference sequence from the OTU inserted in the reference tree under the following format: Bacteria;Phylum;Class;Order;Family;Genus;Species
-
-* **Picrust2 closest distance from cluster** : Phylogenetic distance between the OTU and the closest reference sequence.
+* **Lowest same taxonomic rank between FROGS and Picrust2** : Comparison between FROGS and Picrust2 taxonomic affiliations.
 
 * **Comment** : " identical taxonomy " if the FROGS and Picrus2 taxonomic affiliations are identical. " identical sequence " if the OTU sequence is the same as the reference sequence.
 
