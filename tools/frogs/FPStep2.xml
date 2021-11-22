@@ -30,17 +30,17 @@
     </stdio>
     <command >
 	   FPStep2.py
-            --input_biom $input_biom
+            --input-biom $input_biom
 	   		--tree $input_tree
 	   		#if $category.value == "16S"
-	   			--in_trait $function.fields.name
+	   			--in-trait $function.fields.name
 	   		#end if
-	   		--hsp_method $hsp_method
-	   		--output_marker $out_marker
-	   		--output_function $out_function
+	   		--hsp-method $hsp_method
+	   		--output-marker $out_marker
+	   		--output-function $out_function
 	   		#if $category.value != "16S"
-	   		--observed_marker_table $function.fields.path
-	   		--observed_trait_table $function.fields.traits
+	   		--observed-marker-table $function.fields.path
+	   		--observed-trait-table $function.fields.traits
 	   		#end if
             --html $summary_file
 	   		--debug

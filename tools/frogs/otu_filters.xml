@@ -18,9 +18,9 @@
 <tool id="FROGS_OTU_filters" name="FROGS OTU Filters" version="beta">
 	<description>Filters OTUs on several criteria.</description>
 
-    <macros>
+<!--     <macros>
         <import>macros.xml</import>
-    </macros>
+    </macros> -->
 
     <expand macro="requirements">
         <requirement type="package" version="2.9.0">blast</requirement>

@@ -30,20 +30,20 @@
   </stdio>
 	<command >   
        FPStep4.py
-          --input_file $input_file
+          --input-file $input_file
           #if $normalisation
             --normalisation
           #end if
           #if $is_per_sequence_contrib.per_sequence_contrib 
-            --per_sequence_contrib
-            --per_sequence_abun $per_sequence_abun
-            --per_sequence_function $per_sequence_function 
+            --per-sequence-contrib
+            --per-sequence-abun $per_sequence_abun
+            --per-sequence-function $per_sequence_function 
           #end if
 				  --map $map_file.value
-          --hierarchy_ranks $hierarchy_ranks
+          --hierarchy-ranks $hierarchy_ranks
           #if $category.value == "16S"
             #if $map_file.fields.name == "Kegg"
-              --no_regroup
+              --no-regroup
             #end if
           #end if
 	   		  --html $summary_file

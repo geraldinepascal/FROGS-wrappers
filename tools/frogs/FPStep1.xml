@@ -32,20 +32,20 @@
     </stdio>
     <command >
 	   	FPStep1.py
-	   		--input_fasta $input_fasta
-	   		--input_biom $input_biom
-	   		--min_align $min_align
-	   		--placement_tool $placement_tool
-	   		--out_tree $out_tree 
+	   		--input-fasta $input_fasta
+	   		--input-biom $input_biom
+	   		--min-align $min_align
+	   		--placement-tool $placement_tool
+	   		--out-tree $out_tree 
 	   		--excluded $excluded
-	   		--insert_biom $insert_biom
-	   		--insert_fasta $insert_fasta
-	   		--closests_ref $closests_ref
+	   		--insert-biom $insert_biom
+	   		--insert-fasta $insert_fasta
+	   		--closests-ref $closests_ref
 	   		--html $summary_file
 	   		--debug
 
 	   		#if $marker.name != "16S"
-	   		--ref_dir ${marker.value}
+	   		--ref-dir ${marker.value}
 	   		#end if
 	</command> 
 	<inputs>
@@ -53,7 +53,7 @@
 		<param format="fasta" name="input_fasta" type="data" label="Sequence file" help="Fasta file of unaligned studies sequences (format: fasta)." optional="false">
        		<validator type="empty_field" message="This parameter is required." />
     	</param>
-		<param format="biom1" name="input_biom" type="data" label="Biom file" help="Abundance table of OTUs (format: biom). Taxonomic affiliations must be done before (FROGS Affiliation OTU step)" optional="false">
+		<param format="biom1" name="input_biom" type="data" label="Biom file" help="Abundance table of OTUs (format: biom). Taxonomic affiliations must be done before (FROGS Affiliation OTU step)." optional="false">
         	<validator type="empty_field" message="This parameter is required." />
         </param>
     	<!-- Parameters -->

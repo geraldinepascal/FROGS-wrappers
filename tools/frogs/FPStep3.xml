@@ -30,18 +30,18 @@
     </stdio>
     <command >
        FPStep3.py
-            --input_biom $input_biom
+            --input-biom $input_biom
             --function $function
             --marker $marker
-            --max_nsti $max_nsti
-            --min_reads $min_reads 
-            --min_samples $min_samples
-            --function_abund $function_abund
+            --max-nsti $max_nsti
+            --min-reads $min_reads 
+            --min-samples $min_samples
+            --function-abund $function_abund
             --seqtab $seqtab
             --weighted $weighted
             --excluded $excluded
             #if $strat
-                --strat_out
+                --strat-out
                 --contrib $contrib
             #end if
             --html $summary_file
