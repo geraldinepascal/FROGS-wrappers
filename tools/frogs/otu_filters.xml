@@ -201,6 +201,21 @@ The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.or
 
 A sequence fasta file containing the reference sequence of known contaminant
 
+**Replication file** (optional):
+
+If you chose " replicate identification " for minimum prevalence method, this file is required to identify which group the samples belong to :
+
+.. csv-table::
+   :widths: 10, 100
+   :class: table table-striped
+
+   "simple-PCR-1", "PCR"
+   "simple-PCR-2", "PCR"
+   "simple-PCR-3", "PCR"
+   "simple-ADN-1", "ADN"
+   "simple-ADN-2", "ADN"
+   "simple-ADN-3", "ADN"
+
 .. class:: h3
 
 Outputs

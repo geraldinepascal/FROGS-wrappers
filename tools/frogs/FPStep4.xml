@@ -148,14 +148,14 @@ Inputs/Outputs
 
 Input
 
-**FPStep3 prediction abundance file**:
+** Gene families prediction abundance file**:
 
 
 Input TSV table of gene families abundances. (FPStep3_pred_metagenome_unstrat.tsv)
 
 **Map file**:
 
- Mapping of pathways to reactions. For 16S analysis, please choose Kegg if 'KO' selected in FPStep2 or Metacyc if 'EC' selected in FPStep2. For other marker genes, only Metacyc available. 
+ Mapping of pathways to reactions. For 16S analysis, please chose Kegg if 'KO' selected in FPStep2 or Metacyc if 'EC' selected in FPStep2. For other marker genes, only Metacyc available. 
 
 **Do you want to normalise the final output table ?**:
  
