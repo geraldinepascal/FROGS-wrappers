@@ -146,9 +146,12 @@ Outputs
 
  The phylogenetic tree output with insert sequences into the reference tree (format: newick). (format `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
 
- .. image:: static/images/FROGS_nwk_treefile.png
 
 **Excluded sequences file** (FPStep1_excluded.tsv):
+
+ List of sequences not inserted in the picrust2 reference tree. These sequences are excluded for the next steps.
+
+**Closests reference sequences file** (FPStep1_closests_ref_sequences.txt):
 
  List of sequences not inserted in the picrust2 reference tree. These sequences are excluded for the next steps.
 
@@ -162,13 +165,19 @@ Outputs
 
 **Summary file** (FPStep1_summary.html):
    
- The summary file describing which OTUs are contained or not in the phylogenetic tree. Note that picrust2 uses its own reference tree to affiliate OTUs from reference sequences. The summary file indicates for each OTU which is the closest picrust2 reference sequence, and compares it to the FROGS taxonomy. By clicking on the sequence ID, you can have more information on it (JGI database).
+ The summary file describing which OTUs are contained or not in the phylogenetic tree. Note that picrust2 uses its own reference tree to affiliate OTUs from reference sequences. The summary file indicates for each OTU which is the closest picrust2 reference sequence, and compares it to the FROGS taxonomy. Clicking on the sequence ID give you more information about it (JGI database).
 
- .. image:: static/images/FROGS_FPStep1_piecharts.png
+.. image:: static/images/FROGS_FPStep1_piechart.png
 
-  OTUs are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold.
+
+OTUs are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold.
+
+.. class:: h3
+
+Results table
 
 .. image:: static/images/FROGS_FPStep1_table_1.png
+
 
 * **Cluster** : Cluster name.
 

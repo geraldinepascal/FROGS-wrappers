@@ -135,7 +135,7 @@ The phylogenetic tree of insert sequences (FPStep 1 output : FPStep1_tree.nwk)
 
 **OTUs biom file**:
 
-The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
+The OTUs biom file from FPStep1 (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (FPStep1.biom)
 
 
  This file can be obtained in particular with the FROGS pipeline.
@@ -143,10 +143,23 @@ The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/forma
 **Function table**:
 
  If the genetic marker studied is 16S RNA gene: 
- Which default pre-calculated count table to use (one of 'COG', 'EC', 'KO', 'PFAM', 'TIGRFAM', 'PHENO').
- For ITS and 18S, EC only available.
+ Which default pre-calculated count table to use (one of 'EC', 'KO', 'COG', 'PFAM', 'TIGRFAM', 'PHENO').
 
  The 4th step uses the Metacyc and Kegg databases to calculate the abundance of metabolic pathways. You must therefore select at least 'EC' or 'KO'.
+
+ For ITS and 18S, EC only available.
+
+ For more informations about the different databases:
+
+ - EC : https://enzyme.expasy.org/
+
+ - COG : https://www.ncbi.nlm.nih.gov/research/cog-project/
+
+ - KO : https://www.genome.jp/kegg/ko.html
+
+ - PFAM : http://pfam.xfam.org/
+
+ - TIGRFAM : https://tigrfams.jcvi.org/cgi-bin/index.cgi
 
 .. class:: h3
 
@@ -166,9 +179,11 @@ Marker gene copies number prediction is used to normalize the counting matrices 
 
 **Summary file**:
 
-.. image:: static/images/FROGS_FPStep2_NSTI.png
+.. image:: static/images/FROGS_FPStep2_nsti.png
 
- The graph shows the number of deleted OTUs and sequences according to the NSTI threshold. It's a decision support tool to help choosing the NSTI threshold during FPStep3.
+Nearest Sequenced Taxon Index (NSTI) is the sum of phylogenetic distances for each organism in the OTU table to its nearest sequenced reference genome, measured in terms of substitutions per site in the 16S rRNA gene and weighted by the frequency of that organism in the OTU table. This metric can be used to identify study sequences that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any study sequences with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
+ 
+The graph shows the number of deleted OTUs and sequences according to the NSTI threshold. It's a decision support tool to help choosing the NSTI threshold during FPStep3.
 
 
 @HELP_CONTACT@

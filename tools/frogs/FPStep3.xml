@@ -125,7 +125,7 @@ Inputs
 
 **Biom file**:
 
-The OTUs biom file used in FPStep1. (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
+The OTUs biom file used in FPStep1 (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (FPStep1.biom)
 
 
 **Function file**:
@@ -160,17 +160,24 @@ Output file with abundance normalized. (FPStep3_seqtab_norm.tsv)
 
 **Weighted nsti file**:
 
-Output file with average nsti calculated per sample.
+Output file with average nsti calculated per sample. (FPStep3_weighted_nsti.tsv)
+
+**Contrib per sequences file**:
+
+If stratified option in actived, table output of contribution of each sequences within each gene families (FPStep3_pred_metagenome_contrib.tsv).
 
 **Summary file**:
 
-.. image:: static/images/FROGS_FPStep3_piecharts.png
+.. image:: static/images/FROGS_FPStep3_piechart.png
 
- OTUs are excluded if the NSTI associated is above the threshold selected.
+
+OTUs are excluded if the NSTI associated is above the threshold selected.
+
 
 .. image:: static/images/FROGS_FPStep3_sunburst.png
 
- Gene families (in KEGG and Metacyc) are classified according to 3 hierarchy levels, the graph shows the proportion of each level according to the samples selected.
+
+Gene families (in KEGG and Metacyc) are classified according to 3 hierarchy levels, the graph shows the proportion of each level within the samples selected.
 
 @HELP_CONTACT@
 
