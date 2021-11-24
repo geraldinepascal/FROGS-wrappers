@@ -139,8 +139,17 @@ The table with predicted abundances per study sequence in input tree. (FPStep2: 
 
 **NSTI cut-off**:
 
-Nearest Sequenced Taxon Index (NSTI) is the sum of phylogenetic distances for each organism in the OTU table to its nearest sequenced reference genome, measured in terms of substitutions per site in the 16S rRNA gene and weighted by the frequency of that organism in the OTU table.
+Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance for each organism in the OTU table to its nearest sequenced reference genome.
 This metric can be used to identify study sequences that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). By default the maximum NSTI cut-off for subsequent commands is 2. Any study sequences with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
+
+**Do you want to normalise the final output table ?**:
+
+If stratified option is activate, the abundances predictions are done for each OTU, in order to see the contribution of each OTU within each sample. 
+
+.. image:: static/images/icon_warning_sml.gif 
+
+Warning, the file produced may be heavy.
+
 
 .. class:: h3
 
@@ -148,11 +157,7 @@ Outputs
 
 **Function abundance file**:
  
-
 Output file for metagenome abundances predictions of gene families per samples. (FPStep3_pred_metagenome_unstrat.tsv)
-
- If stratified option is activate, the abundances predictions are done for each OTU, in order to see the contribution of each OTU within each sample. ( Warning, the file produced may be heavy. ) 
- (FPStep3_pred_metagenome_contrib.tsv)
 
 **Seqtab normalized file**:
 
@@ -162,7 +167,7 @@ Output file with abundance normalized. (FPStep3_seqtab_norm.tsv)
 
 Output file with average nsti calculated per sample. (FPStep3_weighted_nsti.tsv)
 
-**Contrib per sequences file**:
+**Contrib per sequences file** (optionnal):
 
 If stratified option in actived, table output of contribution of each sequences within each gene families (FPStep3_pred_metagenome_contrib.tsv).
 
@@ -173,11 +178,12 @@ If stratified option in actived, table output of contribution of each sequences 
 
 OTUs are excluded if the NSTI associated is above the threshold selected.
 
+.. image:: static/images/FROGS_FPStep3_table.png
 
 .. image:: static/images/FROGS_FPStep3_sunburst.png
 
 
-Gene families (in KEGG and Metacyc) are classified according to 3 hierarchy levels, the graph shows the proportion of each level within the samples selected.
+Gene families (KEGG or Metacyc databases) are classified according to 3 hierarchy levels, the graph shows the proportion of each level within the samples selected.
 
 @HELP_CONTACT@
 

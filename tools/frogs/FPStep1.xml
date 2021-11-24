@@ -136,7 +136,7 @@ Input
 
 **Placement tool** 
  
- EPA-NG or SEPP. SEPP is a low-memory alternative to EPA-ng for placing sequences.
+ EPA-NG or SEPP. SEPP is a low-memory alternative to EPA-ng for placing sequences. More specifically, if you run the tool on a local galaxy instance and the tool crashes with EPA-ng, try SEPP.
 
 .. class:: h3
 
@@ -144,16 +144,16 @@ Outputs
 
 **Newick file** (FPStep1_tree.nwk):
 
- The phylogenetic tree output with insert sequences into the reference tree (format: newick). (format `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
+ The phylogenetic tree output with insert sequences into the reference tree (format: newick). (format `nhx &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
 
 
 **Excluded sequences file** (FPStep1_excluded.tsv):
 
- List of sequences not inserted in the picrust2 reference tree. These sequences are excluded for the next steps.
+ List of sequences not inserted in the picrust2 reference tree. Sequences are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold (0.8 per default). These sequences are excluded for the next steps.
 
 **Closests reference sequences file** (FPStep1_closests_ref_sequences.txt):
 
- List of sequences not inserted in the picrust2 reference tree. These sequences are excluded for the next steps.
+ Informations about closests reference sequences from studies sequences (i.e OTUs).
 
 **FPStep1 fasta file**
 
@@ -169,12 +169,12 @@ Outputs
 
 .. image:: static/images/FROGS_FPStep1_piechart.png
 
-
+The pie charts describe the proportion of number of OTUs excluded and the proportion of total sequences excluded for the following steps.
 OTUs are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold.
 
 .. class:: h3
 
-Results table
+Result table
 
 .. image:: static/images/FROGS_FPStep1_table_1.png
 
@@ -183,7 +183,7 @@ Results table
 
 * **FROGS Taxonomy** : Taxonomic affiliation made with FROGS (FROGS Affiliation OTU).
 
-* **Picrust2 Closest ID** : Identifiant (JGI) of the closest reference sequence from the OTU inserted in the reference tree.
+* **Picrust2 Closest ID** : Identifiant (JGI) of the closest reference sequence from the OTU inserted in the reference tree (see the explanatory illustration at the bottom of the help page).
  
 * **Picrust2 closest reference name** : Genome Name / Sample Name.
 
@@ -196,6 +196,10 @@ Results table
 * **Lowest same taxonomic rank between FROGS and Picrust2** : Comparison between FROGS and Picrust2 taxonomic affiliations.
 
 * **Comment** : " identical taxonomy " if the FROGS and Picrus2 taxonomic affiliations are identical. " identical sequence " if the OTU sequence is the same as the reference sequence.
+
+.. image:: static/images/FROGS_FPStep1_closest_explained.png
+
+Closest reference sequence (from JGI database) from one cluster sequence.
 
 @HELP_CONTACT@
 

@@ -110,7 +110,7 @@
 
 What it does
 
-Prediction of functional abundances based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. 
+Prediction of functional abundances based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. The available marker genes are 16S, ITs and 18S.
 
 .. class:: infomark page-header h2
 
@@ -138,14 +138,12 @@ The phylogenetic tree of insert sequences (FPStep 1 output : FPStep1_tree.nwk)
 The OTUs biom file from FPStep1 (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (FPStep1.biom)
 
 
- This file can be obtained in particular with the FROGS pipeline.
-
 **Function table**:
 
  If the genetic marker studied is 16S RNA gene: 
- Which default pre-calculated count table to use (one of 'EC', 'KO', 'COG', 'PFAM', 'TIGRFAM', 'PHENO').
+ Which default pre-calculated count table to use. For 16S rRNA gene you can choose between: 'EC', 'KO', 'COG', 'PFAM', 'TIGRFAM', and/or 'PHENO'.
 
- The 4th step uses the Metacyc and Kegg databases to calculate the abundance of metabolic pathways. You must therefore select at least 'EC' or 'KO'.
+ For further processing by other FROGS Picrust2 tools that requiring Metacyc and Kegg databases, you must select at least 'EC' or 'KO'.
 
  For ITS and 18S, EC only available.
 
@@ -169,8 +167,8 @@ Outputs
 
 Output table of predicted marker gene copy numbers per study sequence in input tree. (FPStep2_marker_nsti_predicted.tsv)
 
-Marker gene copies number prediction is used to normalize the counting matrices of the gene families. For example, if the OTUs have 2
-16S copies, the gene families in the function file for this otu will be divided by 2.
+Marker gene copies number prediction is used to normalize the counting matrices of the gene families. For example, if the OTU have 2
+16S copies, the number of gene families in the function file for this OTU will be divided by 2.
 
 
 **Output function file**:
@@ -181,10 +179,9 @@ Marker gene copies number prediction is used to normalize the counting matrices 
 
 .. image:: static/images/FROGS_FPStep2_nsti.png
 
-Nearest Sequenced Taxon Index (NSTI) is the sum of phylogenetic distances for each organism in the OTU table to its nearest sequenced reference genome, measured in terms of substitutions per site in the 16S rRNA gene and weighted by the frequency of that organism in the OTU table. This metric can be used to identify study sequences that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any study sequences with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
+Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance for each organism in the OTU table to its nearest sequenced reference genome. This metric can be used to identify study sequences that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any study sequences with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
  
-The graph shows the number of deleted OTUs and sequences according to the NSTI threshold. It's a decision support tool to help choosing the NSTI threshold during FPStep3.
-
+The graph shows the number of deleted OTUs and sequences according to the NSTI threshold. It's a decision support tool to help choosing the NSTI threshold during FPStep3. A good practice is to choose a threshold that keeps a good number of sequences while ensuring that the taxonomies between FROGS and Picrust2 of these sequences do not diverge too much.
 
 @HELP_CONTACT@
 
