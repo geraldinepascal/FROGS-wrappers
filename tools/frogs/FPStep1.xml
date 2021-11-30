@@ -105,7 +105,7 @@
 
 What it does
 
-Prediction of functional abundances based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. 
+Prediction of functional abundances based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. The available marker genes are 16S, ITS and 18S.
 
 .. class:: infomark page-header h2
 
@@ -136,7 +136,11 @@ Input
 
 **Placement tool** 
  
- EPA-NG or SEPP. SEPP is a low-memory alternative to EPA-ng for placing sequences. More specifically, if you run the tool on a local galaxy instance and the tool crashes with EPA-ng, try SEPP.
+ EPA-NG or SEPP. SEPP is a low-memory alternative to EPA-ng for placing sequences. 
+
+.. image:: static/images/icon_warning_sml.gif 
+
+So, if the tool crashes with EPA-ng, try SEPP.
 
 .. class:: h3
 
@@ -153,7 +157,7 @@ Outputs
 
 **Closests reference sequences file** (FPStep1_closests_ref_sequences.txt):
 
- Informations about closests reference sequences from studies sequences (i.e OTUs).
+ Informations about closests reference sequences from studies sequences (i.e. OTUs).
 
 **FPStep1 fasta file**
 
@@ -165,9 +169,12 @@ Outputs
 
 **Summary file** (FPStep1_summary.html):
    
- The summary file describing which OTUs are contained or not in the phylogenetic tree. Note that picrust2 uses its own reference tree to affiliate OTUs from reference sequences. The summary file indicates for each OTU which is the closest picrust2 reference sequence, and compares it to the FROGS taxonomy. Clicking on the sequence ID give you more information about it (JGI database).
+ The summary file describing which OTUs are contained or not in the phylogenetic tree. Note that picrust2 uses its own reference tree to affiliate OTUs from reference sequences. The summary file indicates for each OTU which is the closest picrust2 reference sequence, and compares it to the FROGS taxonomy. Clicking on the sequence ID give you more information about it (`JGI database &lt;https://img.jgi.doe.gov/&gt;`_).
 
-.. image:: static/images/FROGS_FPStep1_piechart.png
+.. image:: static/images/FROGS_FPStep1_piecharts.png
+	:height: 290
+	:width: 676
+
 
 The pie charts describe the proportion of number of OTUs excluded and the proportion of total sequences excluded for the following steps.
 OTUs are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold.
@@ -176,7 +183,7 @@ OTUs are excluded if the total length of the input sequence aligned against refe
 
 Result table
 
-.. image:: static/images/FROGS_FPStep1_table_1.png
+.. image:: static/images/FROGS_FPStep1_table.png
 
 
 * **Cluster** : Cluster name.
@@ -187,11 +194,9 @@ Result table
  
 * **Picrust2 closest reference name** : Genome Name / Sample Name.
 
-.. image:: static/images/FROGS_FPStep1_table_2.png
-
 * **Picrust2 closest taxonomy** : Taxonomy (JGI) of the closest reference sequence from the OTU inserted in the reference tree under the following format: Kingdom;Phylum;Class;Order;Family;Genus;Species
 
-* **Picrust2 closest distance from cluster (NSTI)** : Phylogenetic distance between the OTU and the closest reference sequence.
+* **Picrust2 closest distance from cluster (NSTI)** : Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 
 * **Lowest same taxonomic rank between FROGS and Picrust2** : Comparison between FROGS and Picrust2 taxonomic affiliations.
 

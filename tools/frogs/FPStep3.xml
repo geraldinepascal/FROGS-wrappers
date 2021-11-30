@@ -62,7 +62,7 @@
         <param name="max_nsti" type="float" label="NSTI cut-off" help="Sequences with NSTI values above this value will be excluded (default: 2)" value="2" min="0" optional="false" /> 
         <param name="min_reads" type="integer" optional="false" min="1" value="1" label="Minimum number of reads accross all samples" help='Minimum number of reads across all samples for each input OTU. OTUs below this cut-off will be counted as part of the "RARE" category in the stratified output but not removed from the analysis (default: 1).' />
        <param name="min_samples" type="integer" optional="false" min="1" value="1" label="Minimum number of samples to keep an OTU."  help='Minimum number of samples that an OTU needs to be identified within. OTUs below this cut-off will be counted as part of the "RARE" category in the stratified output but not removed from the analysis (default: 1).' />
-        <param name="strat" type="boolean" label="Do you want also a table stratified per sequences ?" help='Also product the predicted genes abundances contributed by each individual sequence. This is in contrast to the default stratified output, which is the contribution to the community-wide gene abundances. Note this will greatly increase the runtime.' />
+        <param name="strat" type="boolean" label="Do you want a stratified table per sequence ?" help='Product another table of the predicted gene abundance contributed by each OTU. Note this will greatly increase the runtime.' />
         <param name="hierarchy_ranks" type="hidden" help="The ordered genes ranks levels stored in BIOM. Each rank is separated by one space." value="Level1 Level2 Level3 Gene" size="80" />
     </inputs>
     <outputs>
@@ -104,7 +104,7 @@
 
 What it does
 
-Prediction of functional abundances based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. 
+Prediction of functional abundances based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. The available marker genes are 16S, ITS and 18S.
 
 .. class:: infomark page-header h2
 
@@ -139,12 +139,11 @@ The table with predicted abundances per study sequence in input tree. (FPStep2: 
 
 **NSTI cut-off**:
 
-Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance for each organism in the OTU table to its nearest sequenced reference genome.
-This metric can be used to identify study sequences that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). By default the maximum NSTI cut-off for subsequent commands is 2. Any study sequences with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
+Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 
 **Do you want to normalise the final output table ?**:
 
-If stratified option is activate, the abundances predictions are done for each OTU, in order to see the contribution of each OTU within each sample. 
+If stratified option is activate, the abundance predictions are done for each OTU, in order to see the contribution of each OTU within each sample. 
 
 .. image:: static/images/icon_warning_sml.gif 
 
@@ -169,7 +168,7 @@ Output file with average nsti calculated per sample. (FPStep3_weighted_nsti.tsv)
 
 **Contrib per sequences file** (optionnal):
 
-If stratified option in actived, table output of contribution of each sequences within each gene families (FPStep3_pred_metagenome_contrib.tsv).
+If stratified option is activated, a new table is built, representing the contribution of each OTU within each gene families (FPStep3_pred_metagenome_contrib.tsv).
 
 **Summary file**:
 
@@ -183,7 +182,7 @@ OTUs are excluded if the NSTI associated is above the threshold selected.
 .. image:: static/images/FROGS_FPStep3_sunburst.png
 
 
-Gene families (KEGG or Metacyc databases) are classified according to 3 hierarchy levels, the graph shows the proportion of each level within the samples selected.
+Gene families (KEGG or Metacyc databases) are classified according to 3 hierarchy levels, the graph shows the proportion of each level within the selected samples.
 
 @HELP_CONTACT@
 
