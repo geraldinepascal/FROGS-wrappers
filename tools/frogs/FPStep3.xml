@@ -125,25 +125,25 @@ Inputs
 
 **Biom file**:
 
-The OTUs biom file used in FPStep1 (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (FPStep1.biom)
+ The OTUs biom file used in FPStep1 (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (FPStep1.biom)
 
 
 **Function file**:
 
-The table of predicted marker gene copy numbers per study sequence in input tree. (FPStep2_predicted_functions.tsv)
+ The table of predicted marker gene copy numbers per study sequence in input tree. (FPStep2_predicted_functions.tsv)
 
 **Marker file**:
 
-The table with predicted abundances per study sequence in input tree. (FPStep2: marker_nsti_predicted.tsv)
+ The table with predicted abundances per study sequence in input tree. (FPStep2: marker_nsti_predicted.tsv)
 
 
 **NSTI cut-off**:
 
-Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
+ Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 
 **Do you want to normalise the final output table ?**:
 
-If stratified option is activate, the abundance predictions are done for each OTU, in order to see the contribution of each OTU within each sample. 
+ If stratified option is activate, the abundance predictions are done for each OTU, in order to see the contribution of each OTU within each sample. 
 
 .. image:: static/images/icon_warning_sml.gif 
 
@@ -156,19 +156,19 @@ Outputs
 
 **Function abundance file**:
  
-Output file for metagenome abundances predictions of gene families per samples. (FPStep3_pred_metagenome_unstrat.tsv)
+ Output file for metagenome abundances predictions of gene families per samples. (FPStep3_pred_metagenome_unstrat.tsv)
 
 **Seqtab normalized file**:
 
-Output file with abundance normalized. (FPStep3_seqtab_norm.tsv)
+ Output file with abundance normalized. (FPStep3_seqtab_norm.tsv)
 
 **Weighted nsti file**:
 
-Output file with average nsti calculated per sample. (FPStep3_weighted_nsti.tsv)
+ Output file with average nsti calculated per sample. (FPStep3_weighted_nsti.tsv)
 
 **Contrib per sequences file** (optionnal):
 
-If stratified option is activated, a new table is built, representing the contribution of each OTU within each gene families (FPStep3_pred_metagenome_contrib.tsv).
+ If stratified option is activated, a new table is built, representing the contribution of each OTU within each gene families (FPStep3_pred_metagenome_contrib.tsv).
 
 **Summary file**:
 

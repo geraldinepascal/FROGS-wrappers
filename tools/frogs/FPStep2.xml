@@ -130,24 +130,24 @@ Inputs
 
 **Tree file** (format newick `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_):
 
-The phylogenetic tree of insert sequences (FPStep 1 output : FPStep1_tree.nwk) 
+ The phylogenetic tree of insert sequences (FPStep 1 output : FPStep1_tree.nwk) 
 
 
 **OTUs biom file**:
 
-The OTUs biom file from FPStep1 (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (FPStep1.biom)
+ The OTUs biom file from FPStep1 (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (FPStep1.biom)
 
 
 **Function table**:
 
- If the genetic marker studied is 16S RNA gene: 
- Which default pre-calculated count table to use. For 16S rRNA gene you can choose between: 'EC', 'KO', 'COG', 'PFAM', 'TIGRFAM', and/or 'PHENO'.
+If the genetic marker studied is 16S RNA gene: 
+Which default pre-calculated count table to use. For 16S rRNA gene you can choose between: 'EC', 'KO', 'COG', 'PFAM', 'TIGRFAM', and/or 'PHENO'.
 
- For further processes by other FROGS Picrust2 tools that requiring Metacyc and Kegg databases, you must select at least 'EC' or 'KO'.
+For further processes by other FROGS Picrust2 tools that requiring Metacyc and Kegg databases, you must select at least 'EC' or 'KO'.
 
- For ITS and 18S markers, 'EC' is only available.
+For ITS and 18S markers, 'EC' is only available.
 
- For more informations about the different databases:
+For more informations about the different databases:
 
  - EC : https://enzyme.expasy.org/
 
