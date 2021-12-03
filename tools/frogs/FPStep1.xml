@@ -183,8 +183,9 @@ OTUs are excluded if the total length of the input sequence aligned against refe
 
 Result table
 
-.. image:: static/images/FROGS_FPStep1_table.png
-
+.. image:: static/images/FROGS_FPStep1_table_JGI.png
+	:height: 580
+	:width: 1220
 
 * **Cluster** : Cluster name.
 
