@@ -1,4 +1,4 @@
-<tool id="FROGSSTAT_Phyloseq_Beta_Diversity" name="FROGSSTAT Phyloseq Beta Diversity" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
+<tool id="FROGSSTAT_Phyloseq_Beta_Diversity" name="FROGSSTAT Phyloseq Beta Diversity" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
     <description>distance matrix</description>
     <macros>
         <import>macros.xml</import>

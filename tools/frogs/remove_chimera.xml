@@ -1,4 +1,4 @@
-<tool id="FROGS_remove_chimera" name="FROGS Remove chimera" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
+<tool id="FROGS_remove_chimera" name="FROGS Remove chimera" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
     <description>Remove PCR chimera in each sample</description>
     <macros>
         <import>macros.xml</import>

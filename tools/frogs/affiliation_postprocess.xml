@@ -1,4 +1,4 @@
-<tool id="FROGS_affiliation_postprocess" name="FROGS Affiliation postprocess" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
+<tool id="FROGS_affiliation_postprocess" name="FROGS Affiliation postprocess" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
     <description>Optionnal step to resolve inclusive amplicon ambiguities and to aggregate OTUs based on alignment metrics</description>
     <macros>
         <import>macros.xml</import>

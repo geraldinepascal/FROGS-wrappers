@@ -1,4 +1,4 @@
-<tool id="FROGSSTAT_DESeq2_Visualisation" name="FROGSTAT Deseq2 Visualisation" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
+<tool id="FROGSSTAT_DESeq2_Visualisation" name="FROGSTAT Deseq2 Visualisation" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
     <description>to extract and visualise differentially abundant OTUs</description>
     <macros>
         <import>macros.xml</import>

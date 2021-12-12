@@ -1,4 +1,4 @@
-<tool id="FROGS_biom_to_stdBiom" name="FROGS BIOM to std BIOM" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
+<tool id="FROGS_biom_to_stdBiom" name="FROGS BIOM to std BIOM" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
 	<description>Converts a FROGS BIOM in fully compatible BIOM</description>
     <macros>
         <import>macros.xml</import>

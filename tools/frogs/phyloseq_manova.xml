@@ -1,4 +1,4 @@
-<tool id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
+<tool id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
     <description>perform Multivariate Analysis of Variance (MANOVA)</description>
     <macros>
         <import>macros.xml</import>

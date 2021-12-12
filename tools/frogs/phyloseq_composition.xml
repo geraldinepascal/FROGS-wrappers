@@ -1,4 +1,4 @@
-<tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
+<tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
     <description>with bar plot and composition plot</description>
     <macros>
         <import>macros.xml</import>

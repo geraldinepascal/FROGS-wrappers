@@ -1,4 +1,4 @@
-<tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
+<tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
 	<description>Process some metrics on clusters.</description>
     <macros>
         <import>macros.xml</import>

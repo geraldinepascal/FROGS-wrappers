@@ -1,4 +1,4 @@
-<tool id="FROGSSTAT_Phyloseq_Import_Data" name="FROGSSTAT Phyloseq Import Data" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
+<tool id="FROGSSTAT_Phyloseq_Import_Data" name="FROGSSTAT Phyloseq Import Data" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
     <description>from 3 files: biomfile, samplefile, treefile</description>
     <macros>
         <import>macros.xml</import>

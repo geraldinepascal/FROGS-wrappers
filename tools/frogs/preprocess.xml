@@ -1,4 +1,4 @@
-<tool id="FROGS_preprocess" name="FROGS Pre-process" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
+<tool id="FROGS_preprocess" name="FROGS Pre-process" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
     <description>merging, denoising and dereplication</description>
     <macros>
         <import>macros.xml</import>
