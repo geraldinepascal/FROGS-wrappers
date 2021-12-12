@@ -17,35 +17,35 @@
         --out-Rdata '$dds'
 	</command>
     <inputs>
-		  <!-- Files -->
-      <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGSSTAT Phyloseq Import Data with normalise option set to NO (DESeq2 is more powerful on unnormalised counts)." optional="false">
-        <validator type="empty_field" message="This parameter is required." />
-      </param>
-      <!-- Parameters -->
-		  <param name="var1" type="text" label="Experimental variable" help="The factor suspected to have an effect on OTUs' abundances. Ex: Treatment, etc." optional="false" value="" size="20">
-        <validator type="empty_field" message="This parameter is required." />
-      </param>
-		  <conditional name="multiple">
-        <param name="seconde" type="boolean" label="Do you want to correct for a confounding factor?" help="If yes, specifiy counfouding factor." optional="false" />
+		<!-- Files -->
+        <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGSSTAT Phyloseq Import Data with normalise option set to NO (DESeq2 is more powerful on unnormalised counts)." optional="false">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+        <!-- Parameters -->
+	    <param name="var1" type="text" label="Experimental variable" help="The factor suspected to have an effect on OTUs' abundances. Ex: Treatment, etc." optional="false" value="" size="20">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+		<conditional name="multiple">
+            <param name="seconde" type="boolean" label="Do you want to correct for a confounding factor?" help="If yes, specifiy counfouding factor." optional="false" />
 		    <when value="false"></when>
 		    <when value="true">
-          <param name="var2" type="text" label="Variable 2" help="Confounding factor. Ex: Gender, etc." optional="false" value="" size="20"/>
-          <param name="mod" type="select" multiple="false" help="Choose an additive model (+) if the effects of Treatment and Gender are independent. Choose a model with interaction (*) if the effect of Treatment is expected to depend on Gender." label="Type of model">
-            <option value="+" selected="true">Linear (+)</option>
-            <option value="*">Interaction (*)</option>
-          </param>
-        </when>
-      </conditional>
+                <param name="var2" type="text" label="Variable 2" help="Confounding factor. Ex: Gender, etc." optional="false" value="" size="20"/>
+                <param name="mod" type="select" multiple="false" help="Choose an additive model (+) if the effects of Treatment and Gender are independent. Choose a model with interaction (*) if the effect of Treatment is expected to depend on Gender." label="Type of model">
+                    <option value="+" selected="true">Linear (+)</option>
+                    <option value="*">Interaction (*)</option>
+                </param>
+            </when>
+        </conditional>
     </inputs>
     <outputs>
-      <data format="rdata" name="dds" label="${tool.name}: dds.Rdata" from_work_dir="DESeq2_preprocess.Rdata"/>
+        <data format="rdata" name="dds" label="${tool.name}: dds.Rdata" from_work_dir="DESeq2_preprocess.Rdata"/>
     </outputs>
     <tests>
-      <test>
-         <param name="data" value="references/16-phylo_import.Rdata" />
-         <param name="var1" value="EnvType"/>
-         <output name="dds" file="references/23-deseq2_preprocess.Rdata" compare="sim_size" delta="50"/>
-      </test>
+        <test>
+            <param name="data" value="references/16-phylo_import.Rdata" />
+            <param name="var1" value="EnvType"/>
+            <output name="dds" file="references/23-deseq2_preprocess.Rdata" compare="sim_size" delta="50"/>
+        </test>
     </tests>
     <help>
 

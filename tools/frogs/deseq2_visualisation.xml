@@ -8,27 +8,22 @@
         <requirement type="package" version="0.18">r-dt</requirement>
     </expand>
     <command detect_errors="exit_code">
-    deseq2_visualisation.py --phyloseqData '$input_phyloseq'
-                                     --dds '$input_DDS'
-                                     --var '$var'
-                                     #if $varType.vartType_selected == "qual":
-                                         --mod1 '$varType.mod1' --mod2 '$varType.mod2'
-                                     #end if
-                                     --padj $padj
-                                     --html '$html'
+    deseq2_visualisation.py
+        --phyloseqData '$input_phyloseq'
+        --dds '$input_DDS'
+        --var '$var'
+        #if $varType.vartType_selected == "qual":
+            --mod1 '$varType.mod1' --mod2 '$varType.mod2'
+        #end if
+        --padj $padj
+        --html '$html'
     </command>
     <inputs>
         <!-- Files -->
-        <param format="rdata" name="input_phyloseq" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data, used in FROGSSTAT DESeq2 Preprocess tool" optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
-        <param format="rdata" name="input_DDS" type="data" label="DESeq2 object (format rdata)" help="This is the result of FROGSSTAT DESeq2 Preprocess tool." optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
+        <param format="rdata" name="input_phyloseq" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data, used in FROGSSTAT DESeq2 Preprocess tool" />
+        <param format="rdata" name="input_DDS" type="data" label="DESeq2 object (format rdata)" help="This is the result of FROGSSTAT DESeq2 Preprocess tool."/>
         <!-- Parameters -->
-        <param name="var" type="text" label="Experimental variable" help="The factor suspected to have an effect on OTUs' abundances (one of the variables used in FROGS DESeq2 Preprocess tool). Ex : Treatment" optional="false" value="" size="20">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
+        <param name="var" type="text" value="" label="Experimental variable" help="The factor suspected to have an effect on OTUs' abundances (one of the variables used in FROGS DESeq2 Preprocess tool). Ex : Treatment"/>
         <conditional name="varType">
             <param type="select" name="vartType_selected" label="Is your Variable quantitative or qualitative?" help="If qualitative, choose 2 conditions to compare." optional="false">
                 <option value="qual">qualitative</option>
