@@ -17,14 +17,12 @@
         --output-biom '$biom_affiliation'
        --summary '$summary'
        --nb-cpus \${GALAXY_SLOTS:-1}
-       --java-mem $mem
+       --java-mem \$GALAXY_MEMORY_MB
        #if $rdp
           --rdp
         #end if
   </command>
     <inputs>
-        <!-- JOB Parameter -->
-        <param name="mem" type="hidden" label="Memory allocation" help="The number of Go to allocation for java" value="20"/>
         <!-- Database Choice -->
         <param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
             <options from_data_table="frogs_db"/>
