@@ -1,36 +1,14 @@
-<?xml version="1.0"?>
-<!--
-# Copyright (C) 2015 INRA
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
-<tool id="FROGS_affiliation_filters" name="FROGS Affiliation Filters" version="@TOOL_VERSION@+galaxy2">
-	<description>Filters OTUs on several affiliation criteria.</description>
-
+<tool id="FROGS_affiliation_filters" name="FROGS Affiliation Filters" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
+    <description>Filters OTUs on several affiliation criteria</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements"/>
-
-        <stdio>
-                <exit_code range="1:" />
-                <exit_code range=":-1" />
-        </stdio>
-
-	<command>
-
+    <stdio>
+        <exit_code range="1:"/>
+        <exit_code range=":-1"/>
+    </stdio>
+    <command detect_errors="exit_code">
 		affiliation_filters.py
 			--input-biom '$input_biom'
 			--input-fasta '$input_fasta'
@@ -77,97 +55,93 @@
             #end if
 
 	</command>
-	<inputs>
-		<!-- Files -->
-		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)." />
-		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)." />
-		<param name="taxonomic_ranks" type="text" label="Taxonomic ranks" help="The ordered taxonomic ranks levels stored in BIOM. Each rank is separated by one space." optional="false" value="Domain Phylum Class Order Family Genus Species" size="80" />
-		<!-- conditional is used for optional output fasta -->
-		<conditional name="conditional_mode">
-			<param name="mode" type="select" label="Filtering mode" multiple="false" help="Do you want to delete OTU or hide affiliations" optional="false" display="radio">
-				<option value="hide" selected="true">Hidding mode</option>
-				<option value="delete">Deleting mode</option>
-			</param>
-			<when value="hide"/>
-			<when value="delete"/>
-		</conditional>
-
-		<section name="blast" title="Filter on Blast affiliations" expanded="true" >
-			<param name="max_blast_evalue" type="float" min="0.0" max="1.0" optional="true" label="Maximum e-value (between 0 and 1)" size="5" help="Fill the field only if you want this treatment" />
-			<param name="min_blast_identity" type="float" min="0.0" max="1.0" optional="true" label="Minimum identity % (between 0 and 1)" size="5" help="Fill the field only if you want this treatment" />
-			<param name="min_blast_coverage" type="float" min="0.0" max="1.0" optional="true" label="Minimum coverage % (between 0 and 1)" size="5" help="Fill the field only if you want this treatment" />
-			<param name="min_blast_length" type="integer" optional="true" label="Minimum alignment length" size="5" help="Fill the field only if you want this treatment" />
-
-			<repeat name="taxon_ignored" title="Filter blast affiliations including these taxon / word">
-				<param name="name" type="text" label="Full or partial taxon name" help='ex: "unknown species" or "subsp."' optional="true"/>
-			</repeat>
-		</section>
-
-		<section name="rdp" title="Filter on RDP affiliations" expanded="false">
-			<param name="rdp_rank" type="text" label="Taxonomical rank on which to apply bootstrap filter" optional="true" help="One of the available taxonomical rank name. Ex: Species"/>
-			<param name="rdp_bootstrap" type="float" min="0.0" max="1.0" label="Minimum bootstrap % (between 0 and 1)" size="5" optional="true" help="Fill these two fields if you want this treatment."/>
-		</section>
-
-	</inputs>
-	<outputs>
-		<data format="biom1" name="output_biom" label="${tool.name}: affiFilter_abundance.biom" from_work_dir="affiFilter_abundance.biom" />
-		<data format="fasta" name="output_fasta" label="${tool.name}: affiFilter_sequences.fasta" from_work_dir="affiFilter_sequences.fasta">
-			<filter> conditional_mode['mode'] == 'delete'</filter>
-		</data>
-		<data format="tabular" name="output_impacted" label="${tool.name}: impacted_OTU.tsv" from_work_dir="impacted.tsv" />
-		<data format="tabular" name="output_multihit" label="${tool.name}: impacted_OTU.multi-affiliations.tsv" from_work_dir="impacted.multihit.tsv" />
-		<data format="html" name="output_summary" label="${tool.name}: report.html" from_work_dir="report.html" />
-	</outputs>
-	<tests>
-		<test>
-			<param name="input_fasta" value="references/04-filters.fasta" />
-            <param name="input_biom" value="references/06-affiliation.biom" />
-		    <conditional name="conditional_mode">
-				<param name="mode" value="hide"/>
-		    </conditional>
-		    <param name="rdp_rank" value="Species"/>
-		    <param name="rdp_bootstrap" value="0.8"/>
-		    <param name="min_blast_length" value="150"/>
-		    <param name="max_blast_evalue" value="1e-150"/>
-		    <param name="min_blast_identity" value="1"/>
-		    <param name="min_blast_coverage" value="1"/>
-		    <repeat name="taxon_ignored">
-		    	<param name="name" value="g__Sarcodon"/>
-		    </repeat>
-			<repeat name="taxon_ignored">
-		    	<param name="name" value="s__Trichoderma"/>
-		    </repeat>
-	 	    <output name="output_impacted" file="references/07-impacted_OTU_masked.tsv" compare="diff" lines_diff="0"/>
-	 	    <output name="output_summary" file="references/07-affiliation_masked.html" compare="diff" lines_diff="0"/>
-		    <output name="output_multihit" file="references/07-impacted_OTU_masked_multihit.tsv" compare="diff" lines_diff="0"/>
-		    <output name="output_biom" file="references/07-affiliation_masked.biom" compare="sim_size" delta="0"/>
-		</test>
-		<test>
-			<param name="input_fasta" value="references/04-filters.fasta" />
-            <param name="input_biom" value="references/06-affiliation.biom" />
-		    <conditional name="conditional_mode">
-				<param name="mode" value="delete"/>
-		    </conditional>
-		    <param name="rdp_rank" value="Species"/>
-		    <param name="rdp_bootstrap" value="0.8"/>
-		    <param name="min_blast_length" value="150"/>
-		    <param name="max_blast_evalue" value="1e-150"/>
-		    <param name="min_blast_identity" value="1"/>
-		    <param name="min_blast_coverage" value="1"/>
-		    <repeat name="taxon_ignored">
-		    	<param name="name" value="g__Sarcodon"/>
-		    </repeat>
-			<repeat name="taxon_ignored">
-		    	<param name="name" value="s__Trichoderma"/>
-		    </repeat>
-	 	    <output name="output_impacted" file="references/07-impacted_OTU_deleted.tsv" compare="diff" lines_diff="0"/>
-	 	    <output name="output_summary" file="references/07-affiliation_deleted.html" compare="diff" lines_diff="0"/>
-		    <output name="output_multihit" file="references/07-impacted_OTU_deleted_multihit.tsv" compare="diff" lines_diff="0"/>
-		    <output name="output_biom" file="references/07-affiliation_deleted.biom" compare="sim_size" delta="0"/>
-		    <output name="output_fasta" file="references/07-affiliation_deleted.fasta" compare="diff" lines_diff="0" />
-		</test>
-	</tests>
-	<help>
+    <inputs>
+        <!-- Files -->
+        <param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)."/>
+        <param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)."/>
+        <param name="taxonomic_ranks" type="text" label="Taxonomic ranks" help="The ordered taxonomic ranks levels stored in BIOM. Each rank is separated by one space." optional="false" value="Domain Phylum Class Order Family Genus Species" size="80"/>
+        <!-- conditional is used for optional output fasta -->
+        <conditional name="conditional_mode">
+            <param name="mode" type="select" label="Filtering mode" multiple="false" help="Do you want to delete OTU or hide affiliations" optional="false" display="radio">
+                <option value="hide" selected="true">Hidding mode</option>
+                <option value="delete">Deleting mode</option>
+            </param>
+            <when value="hide"/>
+            <when value="delete"/>
+        </conditional>
+        <section name="blast" title="Filter on Blast affiliations" expanded="true">
+            <param name="max_blast_evalue" type="float" min="0.0" max="1.0" optional="true" label="Maximum e-value (between 0 and 1)" size="5" help="Fill the field only if you want this treatment"/>
+            <param name="min_blast_identity" type="float" min="0.0" max="1.0" optional="true" label="Minimum identity % (between 0 and 1)" size="5" help="Fill the field only if you want this treatment"/>
+            <param name="min_blast_coverage" type="float" min="0.0" max="1.0" optional="true" label="Minimum coverage % (between 0 and 1)" size="5" help="Fill the field only if you want this treatment"/>
+            <param name="min_blast_length" type="integer" optional="true" label="Minimum alignment length" size="5" help="Fill the field only if you want this treatment"/>
+            <repeat name="taxon_ignored" title="Filter blast affiliations including these taxon / word">
+                <param name="name" type="text" label="Full or partial taxon name" help="ex: &quot;unknown species&quot; or &quot;subsp.&quot;" optional="true"/>
+            </repeat>
+        </section>
+        <section name="rdp" title="Filter on RDP affiliations" expanded="false">
+            <param name="rdp_rank" type="text" label="Taxonomical rank on which to apply bootstrap filter" optional="true" help="One of the available taxonomical rank name. Ex: Species"/>
+            <param name="rdp_bootstrap" type="float" min="0.0" max="1.0" label="Minimum bootstrap % (between 0 and 1)" size="5" optional="true" help="Fill these two fields if you want this treatment."/>
+        </section>
+    </inputs>
+    <outputs>
+        <data format="biom1" name="output_biom" label="${tool.name}: affiFilter_abundance.biom" from_work_dir="affiFilter_abundance.biom"/>
+        <data format="fasta" name="output_fasta" label="${tool.name}: affiFilter_sequences.fasta" from_work_dir="affiFilter_sequences.fasta">
+            <filter> conditional_mode['mode'] == 'delete'</filter>
+        </data>
+        <data format="tabular" name="output_impacted" label="${tool.name}: impacted_OTU.tsv" from_work_dir="impacted.tsv"/>
+        <data format="tabular" name="output_multihit" label="${tool.name}: impacted_OTU.multi-affiliations.tsv" from_work_dir="impacted.multihit.tsv"/>
+        <data format="html" name="output_summary" label="${tool.name}: report.html" from_work_dir="report.html"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="input_fasta" value="references/04-filters.fasta"/>
+            <param name="input_biom" value="references/06-affiliation.biom"/>
+            <conditional name="conditional_mode">
+                <param name="mode" value="hide"/>
+            </conditional>
+            <param name="rdp_rank" value="Species"/>
+            <param name="rdp_bootstrap" value="0.8"/>
+            <param name="min_blast_length" value="150"/>
+            <param name="max_blast_evalue" value="1e-150"/>
+            <param name="min_blast_identity" value="1"/>
+            <param name="min_blast_coverage" value="1"/>
+            <repeat name="taxon_ignored">
+                <param name="name" value="g__Sarcodon"/>
+            </repeat>
+            <repeat name="taxon_ignored">
+                <param name="name" value="s__Trichoderma"/>
+            </repeat>
+            <output name="output_impacted" file="references/07-impacted_OTU_masked.tsv" compare="diff" lines_diff="0"/>
+            <output name="output_summary" file="references/07-affiliation_masked.html" compare="diff" lines_diff="0"/>
+            <output name="output_multihit" file="references/07-impacted_OTU_masked_multihit.tsv" compare="diff" lines_diff="0"/>
+            <output name="output_biom" file="references/07-affiliation_masked.biom" compare="sim_size" delta="0"/>
+        </test>
+        <test>
+            <param name="input_fasta" value="references/04-filters.fasta"/>
+            <param name="input_biom" value="references/06-affiliation.biom"/>
+            <conditional name="conditional_mode">
+                <param name="mode" value="delete"/>
+            </conditional>
+            <param name="rdp_rank" value="Species"/>
+            <param name="rdp_bootstrap" value="0.8"/>
+            <param name="min_blast_length" value="150"/>
+            <param name="max_blast_evalue" value="1e-150"/>
+            <param name="min_blast_identity" value="1"/>
+            <param name="min_blast_coverage" value="1"/>
+            <repeat name="taxon_ignored">
+                <param name="name" value="g__Sarcodon"/>
+            </repeat>
+            <repeat name="taxon_ignored">
+                <param name="name" value="s__Trichoderma"/>
+            </repeat>
+            <output name="output_impacted" file="references/07-impacted_OTU_deleted.tsv" compare="diff" lines_diff="0"/>
+            <output name="output_summary" file="references/07-affiliation_deleted.html" compare="diff" lines_diff="0"/>
+            <output name="output_multihit" file="references/07-impacted_OTU_deleted_multihit.tsv" compare="diff" lines_diff="0"/>
+            <output name="output_biom" file="references/07-affiliation_deleted.biom" compare="sim_size" delta="0"/>
+            <output name="output_fasta" file="references/07-affiliation_deleted.fasta" compare="diff" lines_diff="0"/>
+        </test>
+    </tests>
+    <help>
 
 @HELP_LOGO@
 
@@ -288,9 +262,7 @@ If no other OTU is affiliated to the "unknown species" of the Fusobacterium genu
 @HELP_CONTACT@
 
 	</help>
-
-	<citations>
-		<expand macro="citations" />
-	</citations>
-	
+    <citations>
+        <expand macro="citations"/>
+    </citations>
 </tool>

@@ -1,28 +1,11 @@
-<?xml version="1.0"?>
-<!--
-# Copyright (C) 2017 INRA
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
-<tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="@TOOL_VERSION@+galaxy2">
+<tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
     <description>with bar plot and composition plot</description>
 
     <macros>
         <import>macros.xml</import>
     </macros>
 
-    <expand macro="requirements_phyloseq" >
+    <expand macro="requirements_phyloseq">
         <requirement type="package" version="4.9.3">r-plotly</requirement>
     </expand>
 
@@ -48,7 +31,7 @@
         <param name="varExp" type="text" label="Grouping variable" help="Experimental variable used to group samples (Treatment, Host type, etc)." optional="false" value="" size="20">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-        <param name="taxaRank1" type="text" label="Taxonomic level to filter your data" help="ex: Kingdom, Phylum, Class, Order, Family, Genus, Species" value="Kingdom"  size="20">
+        <param name="taxaRank1" type="text" label="Taxonomic level to filter your data" help="ex: Kingdom, Phylum, Class, Order, Family, Genus, Species" value="Kingdom" size="20">
             <validator type="empty_field" message="This parameter is required." />
         </param>
         <param name="taxaSet1" type="text" label="Taxa (at the above taxonomic level) to keep in the dataset" help="ex: Bacteria (when filtering at the Kingdom level), Firmicutes (when filtering at the Phylum level). Multiple taxa (separated by a space) can be specified, i.e. Firmicutes Proteobacteria" value="Bacteria" size="20">
@@ -57,12 +40,12 @@
         <param name="taxaRank2" type="text" label="Taxonomic level used for aggregation" help="ex: Family (when filtering at the Phylum level). The aggregation level must be below the filtering level." value="Phylum" size="20">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-        <param name="numberOfTaxa" type="integer" label="Number of most abundant taxa to keep" help="ex: 9, i.e. Tool keeps the 9 most abundant taxa and the remaining taxa are aggregated in a group 'Other'" value="9" >
+        <param name="numberOfTaxa" type="integer" label="Number of most abundant taxa to keep" help="ex: 9, i.e. Tool keeps the 9 most abundant taxa and the remaining taxa are aggregated in a group 'Other'" value="9">
             <validator type="empty_field" message="This parameter is required." />
         </param>
     </inputs>
     <outputs>
-        <data format="html" name="html" label="${tool.name}: composition.nb.html" from_work_dir="composition.nb.html"/>
+        <data format="html" name="html" label="${tool.name}: composition.nb.html" from_work_dir="composition.nb.html" />
     </outputs>
     <tests>
         <test>
@@ -149,5 +132,5 @@ Composition plot: plot the most abundant sub taxonomic level among a selection o
     <citations>
         <expand macro="citations" />
     </citations>
-    
+
 </tool>

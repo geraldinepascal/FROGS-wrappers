@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_tsv_to_biom" name="FROGS TSV_to_BIOM" version="@TOOL_VERSION@+galaxy2">
+<tool id="FROGS_tsv_to_biom" name="FROGS TSV_to_BIOM" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
 	<description>Converts a TSV file in a BIOM file.</description>
 
     <macros>
