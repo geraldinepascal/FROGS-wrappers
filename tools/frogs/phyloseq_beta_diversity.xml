@@ -30,7 +30,7 @@
             <validator type="empty_field" message="This parameter is required."/>
         </param>
         <!-- Parameters -->
-        <param name="varExp" type="text" label="Grouping variable" help="Experimental variable used to group samples (Treatment, Host type, etc)." optional="false" value="" size="20">
+        <param name="varExp" type="text" label="Grouping variable" help="Experimental variable used to group samples (Treatment, Host type, etc)." optional="false" value="" >
             <validator type="empty_field" message="This parameter is required."/>
         </param>
         <param name="methods" type="select" label="The methods of beta diversity" help="N.B. if the tree is not available in your RData, you cannot choose Unifrac or Weighted Unifrac" multiple="true" display="checkboxes">
@@ -39,7 +39,7 @@
             <option value="bray" selected="False">Bray-Curtis</option>
             <option value="cc" selected="False">Jaccard (as cc method in betadiver vegan funcion)</option>
         </param>
-        <param type="text" name="other_method" label="Other method" help="The other methods of beta diversity that you want to use (comma separated value). c.f. details below." optional="false" value="" size="40"/>
+        <param type="text" name="other_method" label="Other method" help="The other methods of beta diversity that you want to use (comma separated value). c.f. details below." optional="false" value="" />
     </inputs>
     <outputs>
         <data format="html" name="html" label="${tool.name}: beta_diversity.nb.html" from_work_dir="beta_diversity.nb.html">

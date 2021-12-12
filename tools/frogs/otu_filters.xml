@@ -51,9 +51,7 @@
 		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)." />
 		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)." />
 
-		<param name="min_sample_presence" type="integer" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep OTU if it is present in at least this number of samples.">
-			<validator type="in_range" min="2" message="To be effective this threshold need to be higher than 1" />
-		</param>
+		<param name="min_sample_presence" type="integer" min="2" optional="true" label="Minimum prevalence" help="Fill the field only if you want this treatment. Keep OTU if it is present in at least this number of samples."/>
 
 		<conditional name="choice_abundance_unit">
 			<param name="abundance_unit_type" type="select" label="Minimum OTU abundancy as proportion or count. We recommend to use a proportion of 0.00005.">
@@ -61,18 +59,18 @@
 				<option value="count">as count</option>
 			</param>
 			<when value="proportion">
-				<param name="min_abundance_proportion" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep OTU" size="5" help='Fill the field only if you want this treatment. Example: 0.00005, recommended by Bokulich et al 2013, to keep OTU with at least 0.005% of all sequences).'>
+				<param name="min_abundance_proportion" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep OTU" help='Fill the field only if you want this treatment. Example: 0.00005, recommended by Bokulich et al 2013, to keep OTU with at least 0.005% of all sequences).'>
 					<validator type="in_range" min="0" exclude_min="true" max="1" exclude_max="true" message="Abundance proportion threshold need to be strictly greater than 0 and less than 1, otherwise you will not remove anything or remove everything." />
 				</param>
 			</when>
 			<when value="count">
-				<param name="min_abundance_count" type="integer" optional="true" label="Minimum number of sequences to keep OTU" size="5" help='Fill the field only if you want this treatment. Ex: 2 to keep OTU with at least 2 sequences, so remove single singleton.'>
+				<param name="min_abundance_count" type="integer" optional="true" label="Minimum number of sequences to keep OTU" help='Fill the field only if you want this treatment. Ex: 2 to keep OTU with at least 2 sequences, so remove single singleton.'>
 					<validator type="in_range" min="2" message='To be effective this threshold need to be higher than 1. 2 means that you will remove OTU with 1 and only 1 sequence over all samples'/>
 				</param>
 			</when>
 		</conditional>
 
-		<param name="nb_biggest_otu" type="integer" optional="true" label="N biggest OTUs" size="5" help="Fill the fields only if you want this treatment. Keep the N biggest OTU." />
+		<param name="nb_biggest_otu" type="integer" optional="true" label="N biggest OTUs" help="Fill the fields only if you want this treatment. Keep the N biggest OTU." />
 
 		<conditional name="contaminantSource">
 			<param name="which_contaminantSource" type="select" label="Search for contaminant OTU." help="Either you use your own contaminant fasta file or you select one among available ones.">

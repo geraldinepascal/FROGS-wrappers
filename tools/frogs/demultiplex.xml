@@ -12,12 +12,12 @@
 		#else:
 		    --input-R1 '${fastq_input.fastq_input1}'
 		#end if
-		    --input-barcode '$barcode_file'
-		    --mismatches $mismatches
-		    --end '$end'
-		    --summary '$summary'
-		    --output-demultiplexed '$demultiplexed_archive'
-		    --output-excluded '$undemultiplexed_archive'
+		--input-barcode '$barcode_file'
+	    --mismatches $mismatches
+	    --end '$end'
+	    --summary '$summary'
+	    --output-demultiplexed '$demultiplexed_archive'
+	    --output-excluded '$undemultiplexed_archive'
 	</command>
 	<inputs>
 		<!-- Input file -->
@@ -35,8 +35,7 @@
 	        <when value="single">
 	        	<param name="fastq_input1" type="data" format="fastq" label="Select fastq dataset" help="Specify dataset of your single end reads"/>
 	      	</when>
-	      	</conditional>
-
+	    </conditional>
 		<!-- Option -->
 		<param name="mismatches" type="integer" label="Barcode mismatches" help="Number of mismatches allowed in barcode" value="0" optional="false" />
 		<param name="end" type="select" label="Barcode on which end ?" help="The barcode is placed either at the beginning of the forward end or of the reverse end or both?">

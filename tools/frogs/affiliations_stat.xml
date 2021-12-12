@@ -33,8 +33,8 @@
 		<!-- Files -->
 		<param format="biom1" name="biom" type="data" label="Abundance file" help="OTUs abundances and affiliations (format: BIOM)." optional="false" />
 		<!-- Parameters -->
-		<param name="taxonomic_ranks" type="text" label="Taxonomic ranks" help="The ordered taxonomic ranks levels stored in BIOM. Each rank is separated by one space." optional="false" value="Domain Phylum Class Order Family Genus Species" size="80" />
-		<param name="rarefaction_ranks" type="text" label="Rarefaction ranks" help="The ranks that will be evaluated in rarefaction. Each rank is separated by one space." optional="false" value="Class Order Family Genus Species" size="80" />
+		<param name="taxonomic_ranks" type="text" label="Taxonomic ranks" help="The ordered taxonomic ranks levels stored in BIOM. Each rank is separated by one space." optional="false" value="Domain Phylum Class Order Family Genus Species" />
+		<param name="rarefaction_ranks" type="text" label="Rarefaction ranks" help="The ranks that will be evaluated in rarefaction. Each rank is separated by one space." optional="false" value="Class Order Family Genus Species" />
 		<conditional name="affiliation">
 			<param name="affiliation_type" type="select" label="Affiliation processed" help="Select the type of affiliation processed. If your affiliation has been processed with an external tool: use 'Custom'.">
 				<option value="FROGS_blast" selected="true">FROGS blast</option>
@@ -44,10 +44,10 @@
 			<when value="FROGS_blast"></when>
 			<when value="FROGS_rdp"></when>
 			<when value="custom">
-				<param name="taxonomy_tag" type="text" label="Taxonomy tag" help="The metadata title in BIOM for the taxonomy." optional="false" value="taxonomy" size="20" />
-				<param name="bootstrap_tag" type="text" label="Bootstrap tag" help="The metadata title in BIOM for the taxonomy bootstrap." value="" size="20" />
-				<param name="identity_tag" type="text" label="Identity tag" help="The metadata tag used in BIOM file to store the alignment identity." value="" size="20" />
-				<param name="coverage_tag" type="text" label="Coverage tag" help="The metadata tag used in BIOM file to store the alignment OTUs coverage." value="" size="20" />
+				<param name="taxonomy_tag" type="text" label="Taxonomy tag" help="The metadata title in BIOM for the taxonomy." optional="false" value="taxonomy" />
+				<param name="bootstrap_tag" type="text" label="Bootstrap tag" help="The metadata title in BIOM for the taxonomy bootstrap." value="" />
+				<param name="identity_tag" type="text" label="Identity tag" help="The metadata tag used in BIOM file to store the alignment identity." value="" />
+				<param name="coverage_tag" type="text" label="Coverage tag" help="The metadata tag used in BIOM file to store the alignment OTUs coverage." value="" />
 			</when>
 		</conditional>
 	</inputs>

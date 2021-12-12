@@ -20,7 +20,7 @@
             <validator type="empty_field" message="This parameter is required." />
         </param>
 		<!-- Parameters -->
-		<param name="varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse." optional="false" value="" size="40">
+		<param name="varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse." optional="false" value="" >
             <validator type="empty_field" message="This parameter is required." />
         </param>
 	</inputs>
