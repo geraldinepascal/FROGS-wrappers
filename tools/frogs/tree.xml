@@ -1,22 +1,15 @@
 <tool id="FROGS_Tree" name="FROGS Tree" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
     <description>Reconstruction of phylogenetic tree </description>
-
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements">
         <requirement type="package" version="7.407">mafft</requirement>
         <requirement type="package" version="2.1.9">fasttree</requirement>
         <requirement type="package" version="4.0">r-essentials</requirement>
         <requirement type="package" version="2.7.0">r-phangorn</requirement>
     </expand>
-
-    <stdio>
-        <exit_code range="1:" />
-        <exit_code range=":-1" />
-    </stdio>
-    <command>
+    <command detect_errors="exit_code">
         tree.py
             --input-sequences '$input_otu'
             --biom-file '$biomfile'

@@ -1,24 +1,18 @@
 <tool id="FROGSSTAT_Phyloseq_Structure_Visualisation" name="FROGSSTAT Phyloseq Structure Visualisation" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
 	<description>with heatmap plot and ordination plot</description>
-
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements_phyloseq" >
         <requirement type="package" version="4.9.3">r-plotly</requirement>
     </expand>
-
-	<stdio>
-		<exit_code range="1:" />
-		<exit_code range=":-1" />
-	</stdio>
-	<command>phyloseq_structure.py
-                                         --html '$html'
-                                         --rdata '$data'
-                                         --varExp '$varExp'
-                                         --ordination-method '$method'
-                                         --distance-matrix '$distance'
+    <command detect_errors="exit_code">
+    phyloseq_structure.py
+        --html '$html'
+        --rdata '$data'
+        --varExp '$varExp'
+        --ordination-method '$method'
+        --distance-matrix '$distance'
 	</command>
     <inputs>
 		<!-- Files -->

@@ -1,21 +1,14 @@
 <tool id="FROGS_preprocess" name="FROGS Pre-process" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
-    <description>merging, denoising and dereplication.</description>
-
+    <description>merging, denoising and dereplication</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements">
         <requirement type="package" version="2.17.0">vsearch</requirement>
         <requirement type="package" version="1.2.11">flash</requirement>
         <requirement type="package" version="2.10">cutadapt</requirement>
     </expand>
-
-    <stdio>
-        <exit_code range="1:" />
-        <exit_code range=":-1" />
-    </stdio>
-    <command>
+    <command detect_errors="exit_code">
 		preprocess.py '$sequencer_type.sequencer_selected'
 		--output-dereplicated '$dereplicated_file' --output-count '$count_file' --summary '$summary_file'
 		--nb-cpus \${GALAXY_SLOTS:-1}

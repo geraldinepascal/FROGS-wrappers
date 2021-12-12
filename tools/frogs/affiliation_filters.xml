@@ -4,10 +4,6 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="requirements"/>
-    <stdio>
-        <exit_code range="1:"/>
-        <exit_code range=":-1"/>
-    </stdio>
     <command detect_errors="exit_code">
 		affiliation_filters.py
 			--input-biom '$input_biom'

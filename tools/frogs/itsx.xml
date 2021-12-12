@@ -1,19 +1,12 @@
 <tool id="FROGS_itsx" name="FROGS ITSx" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
-    <description>Extract the highly variable ITS1 and ITS2 subregions from ITS sequences.</description>
-
+    <description>Extract the highly variable ITS1 and ITS2 subregions from ITS sequences</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements">
         <requirement type="package" version="1.1.2">itsx</requirement>
     </expand>
-
-    <stdio>
-        <exit_code range="1:" />
-        <exit_code range=":-1" />
-    </stdio>
-    <command>
+    <command detect_errors="exit_code">
 	itsx.py
 	    --nb-cpus \${GALAXY_SLOTS:-1}
 	    --region '$region'

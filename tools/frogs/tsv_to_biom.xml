@@ -16,52 +16,45 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGS_tsv_to_biom" name="FROGS TSV_to_BIOM" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
-	<description>Converts a TSV file in a BIOM file.</description>
-
+    <description>Converts a TSV file in a BIOM file</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-
-    <expand macro="requirements"/>
-
-        <stdio>
-            <exit_code range="1:" />
-            <exit_code range=":-1" />
-        </stdio>
-	<command>
-		tsv_to_biom.py
-		                --input-tsv '$tsv_file'
-		                --output-biom '$biom_file'
-		              #if $multi_affi_file
-		                --input-multi-affi '$multi_affi_file'
-		              #end if
-		              #if $extract_fasta
-		                --output-fasta '$sequence_file'
-		              #end if
-	</command>
-	<inputs>
-		<!-- Files -->
-		<param format="tabular" name="tsv_file" type="data" label="Abundance TSV File" help="Your FROGS abundance TSV file. Take care to keep original column names." optional="false"/>
-		<param format="tabular" name="multi_affi_file" type="data" label="Multi_hits TSV File" help="TSV file describing multi_hit blast results." optional="true" />
-		<!-- Parameters -->
-		<param name="extract_fasta" type="boolean" label="Extract seeds in FASTA file" help="If there is a 'seed_sequence' column in your TSV table, you can extract seed sequences in a separated FASTA file." />
-	</inputs>
-	<outputs>
-		<data format="biom1" name="biom_file" label="${tool.name}: abundance.biom" from_work_dir="abundance.biom" />
-		<data format="fasta" name="sequence_file" label="${tool.name}: sequences.fasta" from_work_dir="seed.fasta" >
-			<filter>extract_fasta</filter>
-		</data>
-	</outputs>
-	<tests>
-		<test>
-			<param name="tsv_file" value="references/12-biom2tsv.tsv" />
-			<param name="multi_affi_file" value="references/12-biom2tsv-affiliation_multihit.tsv" />
-			<param name="extract_fasta" value="true"/>
-			<output name="biom_file" file="references/14-tsv2biom.biom" compare="sim_size" delta="0"/>
-			<output name="sequence_file" file="references/14-tsv2biom.fasta" compare="diff" lines_diff="0"/>
-		</test>
-	</tests>
-	<help>
+    <expand macro="requirements" />
+    <command detect_errors="exit_code">
+	tsv_to_biom.py
+		--input-tsv '$tsv_file'
+	    --output-biom '$biom_file'
+	    #if $multi_affi_file
+	        --input-multi-affi '$multi_affi_file'
+	    #end if
+	    #if $extract_fasta
+	        --output-fasta '$sequence_file'
+	    #end if
+    </command>
+    <inputs>
+        <!-- Files -->
+        <param format="tabular" name="tsv_file" type="data" label="Abundance TSV File" help="Your FROGS abundance TSV file. Take care to keep original column names." optional="false" />
+        <param format="tabular" name="multi_affi_file" type="data" label="Multi_hits TSV File" help="TSV file describing multi_hit blast results." optional="true" />
+        <!-- Parameters -->
+        <param name="extract_fasta" type="boolean" label="Extract seeds in FASTA file" help="If there is a 'seed_sequence' column in your TSV table, you can extract seed sequences in a separated FASTA file." />
+    </inputs>
+    <outputs>
+        <data format="biom1" name="biom_file" label="${tool.name}: abundance.biom" from_work_dir="abundance.biom" />
+        <data format="fasta" name="sequence_file" label="${tool.name}: sequences.fasta" from_work_dir="seed.fasta">
+            <filter>extract_fasta</filter>
+        </data>
+    </outputs>
+    <tests>
+        <test>
+            <param name="tsv_file" value="references/12-biom2tsv.tsv" />
+            <param name="multi_affi_file" value="references/12-biom2tsv-affiliation_multihit.tsv" />
+            <param name="extract_fasta" value="true" />
+            <output name="biom_file" file="references/14-tsv2biom.biom" compare="sim_size" delta="0" />
+            <output name="sequence_file" file="references/14-tsv2biom.fasta" compare="diff" lines_diff="0" />
+        </test>
+    </tests>
+    <help>
 @HELP_LOGO@
 
 .. class:: infomark page-header h2
@@ -129,10 +122,10 @@ If you modify your abundance TSV file
 @HELP_CONTACT@
 
 
-	</help>
+    </help>
 
-	<citations>
-		<expand macro="citations" />
-	</citations>
+    <citations>
+        <expand macro="citations" />
+    </citations>
 
 </tool>

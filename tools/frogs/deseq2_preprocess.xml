@@ -1,26 +1,20 @@
 <tool id="FROGSSTAT_DESeq2_Preprocess" name="FROGSSTAT DESeq2 Preprocess" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
-  <description>import a Phyloseq object and prepare it for DESeq2 differential abundance analysis </description>
-
+    <description>import a Phyloseq object and prepare it for DESeq2 differential abundance analysis</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements_phyloseq">
         <requirement type="package" version="1.30.1">bioconductor-deseq2</requirement>
         <requirement type="package" version="1.6.6">r-optparse</requirement>
     </expand>
-
-  <stdio>
-      <exit_code range="1:" />
-      <exit_code range=":-1" />
-  </stdio>
-	<command>deseq2_preprocess.py --data '$data'
-                                #if $multiple.seconde
-                                  --var '$var1${multiple.mod}${multiple.var2}'
-                                #else
-                                  --var '$var1'
-                                #end if
-                                --out-Rdata '$dds'
+    <command detect_errors="exit_code">
+    deseq2_preprocess.py --data '$data'
+        #if $multiple.seconde
+            --var '$var1${multiple.mod}${multiple.var2}'
+        #else
+            --var '$var1'
+        #end if
+        --out-Rdata '$dds'
 	</command>
     <inputs>
 		  <!-- Files -->

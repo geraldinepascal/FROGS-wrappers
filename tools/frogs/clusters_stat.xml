@@ -1,37 +1,13 @@
-<?xml version="1.0"?>
-<!--
-# Copyright (C) 2015 INRA
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
 <tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
 	<description>Process some metrics on clusters.</description>
-
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements"/>
-
-        <stdio>
-                <exit_code range="1:" />
-                <exit_code range=":-1" />
-        </stdio>
-	<command>
-		clusters_stat.py
-		                 --input-biom '$biom'
-		                 --output-file '$summary_file'
+    <command detect_errors="exit_code">
+	clusters_stat.py
+		--input-biom '$biom'
+		--output-file '$summary_file'
 	</command>
 	<inputs>
 		<param format="biom1" name="biom" type="data" label="Abundance file" help="Clusters abundance (format: BIOM)." optional="false" />

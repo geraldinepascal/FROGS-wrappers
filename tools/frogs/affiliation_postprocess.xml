@@ -4,12 +4,8 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="requirements"/>
-    <stdio>
-        <exit_code range="1:"/>
-        <exit_code range=":-1"/>
-    </stdio>
-    <command>
-	affiliation_postprocess.py
+    <command detect_errors="exit_code">
+        affiliation_postprocess.py
 		#if $is_HVL.HVL_amplicon
             --reference '$is_HVL.ref_file.fields.path'
         #end if

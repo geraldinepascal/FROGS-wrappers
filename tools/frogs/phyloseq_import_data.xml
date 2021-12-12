@@ -1,28 +1,22 @@
 <tool id="FROGSSTAT_Phyloseq_Import_Data" name="FROGSSTAT Phyloseq Import Data" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
-    <description>from 3 files: biomfile, samplefile, treefile </description>
-
+    <description>from 3 files: biomfile, samplefile, treefile</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements_phyloseq" />
-
-        <stdio>
-            <exit_code range="1:" />
-            <exit_code range=":-1" />
-        </stdio>
-    <command>
-                phyloseq_import_data.py   --biomfile '$biomfile'
-                                --samplefile '$samplefile'
-                                #if $treefile
-                                  --treefile '$treefile'
-                                #end if
-                                --ranks $ranks
-                                #if $normalisation
-                                    --normalisation
-                                #end if
-                                --html '$html'
-                                --rdata '$data'
+    <command detect_errors="exit_code">
+        phyloseq_import_data.py
+            --biomfile '$biomfile'
+            --samplefile '$samplefile'
+            #if $treefile
+                --treefile '$treefile'
+            #end if
+            --ranks $ranks
+            #if $normalisation
+                --normalisation
+            #end if
+            --html '$html'
+            --rdata '$data'
     </command>
     <inputs>
         <!-- Files -->

@@ -1,26 +1,20 @@
 <tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only">
     <description>with bar plot and composition plot</description>
-
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements_phyloseq">
         <requirement type="package" version="4.9.3">r-plotly</requirement>
     </expand>
-
-    <stdio>
-        <exit_code range="1:" />
-        <exit_code range=":-1" />
-    </stdio>
-    <command>phyloseq_composition.py
-                          --rdata '$data'
-                          --varExp '$varExp'
-                          --taxaRank1 '$taxaRank1'
-                          --taxaSet1 '$taxaSet1'
-                          --taxaRank2 '$taxaRank2'
-                          --numberOfTaxa $numberOfTaxa
-                          --html '$html'
+    <command detect_errors="exit_code">
+        phyloseq_composition.py
+            --rdata '$data'
+            --varExp '$varExp'
+            --taxaRank1 '$taxaRank1'
+            --taxaSet1 '$taxaSet1'
+            --taxaRank2 '$taxaRank2'
+            --numberOfTaxa $numberOfTaxa
+            --html '$html'
     </command>
     <inputs>
         <!-- Files -->
