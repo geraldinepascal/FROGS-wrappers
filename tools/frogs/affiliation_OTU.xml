@@ -9,7 +9,7 @@
     </expand>
     <command detect_errors="exit_code"><![CDATA[
     #set $reference_filename = str( $ref_file.fields.path )
-    export GALAXY_MEMORY_GB=\$((\${GALAXY_MEMORY_MB:-8192}/1024)) &&
+    export GALAXY_MEMORY_GB=\$((\${GALAXY_MEMORY_MB:-2048}/1024)) &&
     affiliation_OTU.py
         --reference '${reference_filename}'
         --taxonomy-ranks $taxonomic_ranks
