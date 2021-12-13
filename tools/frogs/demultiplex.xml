@@ -1,5 +1,5 @@
-<tool id="FROGS_demultiplex" name="FROGS Demultiplex reads" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
-	<description>Attribute reads to samples in function of inner barcode.</description>
+<tool id="FROGS_demultiplex" name="FROGS Demultiplex reads" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+	<description>Attribute reads to samples in function of inner barcode</description>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -12,7 +12,7 @@
 		#else:
 		    --input-R1 '${fastq_input.fastq_input1}'
 		#end if
-		--input-barcode '$barcode_file'
+		--input-barcode '$input_barcode'
 	    --mismatches $mismatches
 	    --end '$end'
 	    --summary '$summary'
@@ -21,7 +21,7 @@
 	</command>
 	<inputs>
 		<!-- Input file -->
-		<param format="tabular" name="barcode_file" type="data" label="Barcode file" help="This file describes barcodes and samples (one line by sample tabulated separated from barcode sequence(s)). See Help section" optional="false" />
+		<param format="tabular" argument="--input_barcode" type="data" label="Barcode file" help="This file describes barcodes and samples (one line by sample tabulated separated from barcode sequence(s)). See Help section" />
 
 		<conditional name="fastq_input">
 	      	<param name="fastq_input_selector" type="select" label="Single or Paired-end reads" help="Select between paired and single-end data">
@@ -37,11 +37,11 @@
 	      	</when>
 	    </conditional>
 		<!-- Option -->
-		<param name="mismatches" type="integer" label="Barcode mismatches" help="Number of mismatches allowed in barcode" value="0" optional="false" />
-		<param name="end" type="select" label="Barcode on which end ?" help="The barcode is placed either at the beginning of the forward end or of the reverse end or both?">
-			<option value="bol" selected="true">Forward</option>
-			<option value="eol">Reverse</option>
-			<option value="both">Both ends</option>
+		<param argument="--mismatches" type="integer"  value="0" label="Barcode mismatches" help="Number of mismatches allowed in barcode"/>
+		<param argument="--end" type="select" label="Barcode on which end ?" help="The barcode is placed either at the beginning of the forward end or of the reverse end or both?">
+			<option value="bol" selected="true">Forward (bol)</option>
+			<option value="eol">Reverse (eol)</option>
+			<option value="both">Both ends (both)</option>
 		</param>
 	</inputs>
 	<outputs>
@@ -51,7 +51,7 @@
 	</outputs>
     <tests>
         <test>
-            <param name="barcode_file" value="input/demultiplex_barcode.txt"/>
+            <param name="input_barcode" value="input/demultiplex_barcode.txt"/>
 			<conditional name="fastq_input">
                 <param name="fastq_input_selector" value="paired"/>
             </conditional>
@@ -162,9 +162,5 @@ If you have Roche 454 sequences in sff format, you must convert them with some p
 @HELP_CONTACT@
 
 	</help>
-
-	<citations>
-		<expand macro="citations" />
-	</citations>
-	
+	<expand macro="citations" />
 </tool>

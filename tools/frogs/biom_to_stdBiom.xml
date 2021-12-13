@@ -1,4 +1,4 @@
-<tool id="FROGS_biom_to_stdBiom" name="FROGS BIOM to std BIOM" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGS_biom_to_stdBiom" name="FROGS BIOM to std BIOM" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
 	<description>Converts a FROGS BIOM in fully compatible BIOM</description>
     <macros>
         <import>macros.xml</import>
@@ -12,7 +12,7 @@
 	</command>
 	<inputs>
 		<!-- Files -->
-		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The FROGS BIOM file to convert (format: BIOM)." optional="false" />
+		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The FROGS BIOM file to convert (format: BIOM)" optional="false" />
 	</inputs>
 	<outputs>
 		<data format="biom1" name="output_biom" label="${tool.name}: abundance.standard.biom" from_work_dir="abundance.biom"/>
@@ -69,9 +69,5 @@ FROGS BIOM to std BIOM extracts the blast alignment details in a second file, wr
 @HELP_CONTACT@
 
 	</help>
-
-	<citations>
-		<expand macro="citations" />
-	</citations>
-	
+	<expand macro="citations" />
 </tool>

@@ -1,4 +1,4 @@
-<tool id="FROGS_itsx" name="FROGS ITSx" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGS_itsx" name="FROGS ITSx" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
     <description>Extract the highly variable ITS1 and ITS2 subregions from ITS sequences</description>
     <macros>
         <import>macros.xml</import>
@@ -8,7 +8,7 @@
     </expand>
     <command detect_errors="exit_code">
 	itsx.py
-	    --nb-cpus \${GALAXY_SLOTS:-1}
+	    @CPUS@
 	    --region '$region'
 	    --input-fasta '$input_fasta'
 	    --input-biom '$input_biom'
@@ -16,19 +16,19 @@
 	    --out-abundance '$out_abundance_biom'
 	    --out-removed '$out_excluded'
 	    --summary '$summary_file'
-	    --organism-groups '$domain'
+	    --organism-groups '$organism_groups'
 	    $trim_sequence
     </command>
     <inputs>
         <!-- Files -->
-        <param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)." />
-        <param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)." />
-        <param name="region" type="select" label="ITS region" help="Which fungal ITS region is targeted: either ITS1 or ITS2">
+        <param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: FASTA)." />
+        <param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)" />
+        <param argument="--region" type="select" label="ITS region" help="Which fungal ITS region is targeted: either ITS1 or ITS2">
             <option value="ITS1">ITS1</option>
             <option value="ITS2">ITS2</option>
         </param>
-        <param name="trim_sequence" type="boolean" checked="false" truevalue="" falsevalue="--check-its-only" label="Trim conserved sequence (SSU, 5.8S, LSU) ?" help="If Yes, only part of the sequences with ITS signature will be kept, SSU, LSU or 5.8S regions will be trimmed. (default : No)" />
-        <param name="domain" type="select" label="Choose pertinent organisms to scan?" help="Save a lot of time by checking pertinent organism group model to scan." optional="false" multiple="true" display="checkboxes">
+        <param argument="--check-its-only" name="trim_sequence" type="boolean" checked="false" truevalue="" falsevalue="--check-its-only" label="Trim conserved sequence (SSU, 5.8S, LSU) ?" help="If Yes, only part of the sequences with ITS signature will be kept, SSU, LSU or 5.8S regions will be trimmed (default : No)" />
+        <param argument="--organism-groups" type="select" multiple="true" display="checkboxes" label="Choose pertinent organisms to scan?" help="Save a lot of time by checking pertinent organism group model to scan">
             <option value="F" selected="true">Fungi</option>
             <option value="A">Alveolata</option>
             <option value="B">Bryophyta</option>
@@ -150,9 +150,5 @@ How it works
 @HELP_CONTACT@
 
     </help>
-
-    <citations>
-        <expand macro="citations" />
-    </citations>
-
+    <expand macro="citations" />
 </tool>

@@ -1,4 +1,4 @@
-<tool id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
     <description>perform Multivariate Analysis of Variance (MANOVA)</description>
     <macros>
         <import>macros.xml</import>
@@ -8,20 +8,16 @@
     phyloseq_manova.py
         --rdata '$data'
         --varExp '$varExp'
-        --distance-matrix '$method'
+        --distance-matrix '$distance_matrix'
         --html '$html'
 	</command>
     <inputs>
 		<!-- Files -->
-	    <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data tool." optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
-        <param name="method" format="tabular" type="data" label="The beta diversity distance matrix file" help="This file is the result of FROGS Phyloseq Beta Diversity tool." optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
+	    <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data tool."/>
+        <param argument="--distance-matrix" format="tabular" type="data" label="The beta diversity distance matrix file" help="This file is the result of FROGS Phyloseq Beta Diversity tool"/>
 		<!-- Parameters -->
-		<param name="varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse." optional="false" value="" >
-            <validator type="empty_field" message="This parameter is required." />
+		<param argument="--varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse">
+            <expand macro="sanitizer_validator"/>
         </param>
     </inputs>
 	<outputs>
@@ -31,7 +27,7 @@
 		<test>
 			<param name="data" value="references/16-phylo_import.Rdata"/>
 			<param name="varExp" value="EnvType"/>
-			<param name="method" value="references/unifrac.tsv"/>
+			<param name="distance_matrix" value="references/unifrac.tsv"/>
 			<output name="html" value="references/22-phylo_manova.nb.html" compare="diff" lines_diff="0"/>
 		</test>
 	</tests>
@@ -74,9 +70,5 @@ Output
 @HELP_CONTACT@
 
 	</help>
-
-	<citations>
-		<expand macro="citations" />
-	</citations>
-	
+	<expand macro="citations" />
 </tool>

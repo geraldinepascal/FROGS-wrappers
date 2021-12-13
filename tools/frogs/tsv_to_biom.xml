@@ -1,4 +1,4 @@
-<tool id="FROGS_tsv_to_biom" name="FROGS TSV_to_BIOM" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGS_tsv_to_biom" name="FROGS TSV_to_BIOM" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
     <description>Converts a TSV file in a BIOM file</description>
     <macros>
         <import>macros.xml</import>
@@ -17,7 +17,7 @@
     </command>
     <inputs>
         <!-- Files -->
-        <param format="tabular" name="tsv_file" type="data" label="Abundance TSV File" help="Your FROGS abundance TSV file. Take care to keep original column names." optional="false" />
+        <param format="tabular" name="tsv_file" type="data" label="Abundance TSV File" help="Your FROGS abundance TSV file. Take care to keep original column names." />
         <param format="tabular" name="multi_affi_file" type="data" label="Multi_hits TSV File" help="TSV file describing multi_hit blast results." optional="true" />
         <!-- Parameters -->
         <param name="extract_fasta" type="boolean" label="Extract seeds in FASTA file" help="If there is a 'seed_sequence' column in your TSV table, you can extract seed sequences in a separated FASTA file." />
@@ -106,9 +106,5 @@ If you modify your abundance TSV file
 
 
     </help>
-
-    <citations>
-        <expand macro="citations" />
-    </citations>
-
+    <expand macro="citations" />
 </tool>

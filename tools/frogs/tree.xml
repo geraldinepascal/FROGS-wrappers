@@ -1,4 +1,4 @@
-<tool id="FROGS_Tree" name="FROGS Tree" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGS_Tree" name="FROGS Tree" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
     <description>Reconstruction of phylogenetic tree </description>
     <macros>
         <import>macros.xml</import>
@@ -13,18 +13,14 @@
         tree.py
             --input-sequences '$input_otu'
             --biom-file '$biomfile'
-            --nb-cpus \${GALAXY_SLOTS:-1}
+            @CPUS@
             --out-tree '$out_tree'
             --html '$html'
     </command>
     <inputs>
         <!-- Files -->
-        <param format="fasta" name="input_otu" type="data" label="OTUs sequence file" help="OTUs sequence file (format: fasta). Warning: FROGS Tree does not work on more than 10000 sequences!" optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
-        <param format="biom1" name="biomfile" type="data" label="Biom file" help="The abundance table of OTUs (format: biom)." optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
+        <param format="fasta" name="input_otu" type="data" label="OTUs sequence file" help="OTUs sequence file (format: FASTA). Warning: FROGS Tree does not work on more than 10000 sequences!"/>
+        <param format="biom1" name="biomfile" type="data" label="Biom file" help="The abundance table of OTUs (format: BIOM)"/>
     </inputs>
     <outputs>
         <data format="nhx" name="out_tree" label="${tool.name}: tree.nwk" from_work_dir="tree.nwk" />
@@ -99,9 +95,5 @@ The summary file describing which OTUs are contained or not in the phylogenetic 
 
 
     </help>
-
-    <citations>
-        <expand macro="citations" />
-    </citations>
-
+    <expand macro="citations" />
 </tool>

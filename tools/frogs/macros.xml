@@ -1,13 +1,14 @@
 <?xml version="1.0"?>
 <macros>
     <token name="@TOOL_VERSION@">3.2.3</token>
+    <token name="@VERSION_SUFFIX@">2</token>
     <xml name="requirements">
         <requirements>
             <requirement type="package" version="@TOOL_VERSION@">frogs</requirement>
             <yield />
         </requirements>
     </xml>
-
+    <token name="@CPUS@">--nb-cpus \${GALAXY_SLOTS:-1}</token>
     <xml name="requirements_phyloseq">
         <expand macro="requirements">
             <requirement type="package" version="2.11.4">pandoc</requirement>
@@ -16,7 +17,31 @@
             <yield />
         </expand>
     </xml>
-
+    <xml name="taxonomic_ranks">
+        <param argument="--taxonomic-ranks" type="text" optional="false" value="Domain Phylum Class Order Family Genus Species" 
+            label="Taxonomic ranks" help="The ordered taxonomic ranks levels stored in BIOM. Each rank is separated by one space">
+            <sanitizer invalid_char="">
+                <valid initial="string.letters">
+                    <add value=" " />
+                </valid>
+            </sanitizer>
+            <validator type="regex">[A-Za-z ]+</validator>
+        </param>
+    </xml>
+    <xml name="sanitizer_validator">
+        <sanitizer invalid_char="">
+            <valid initial="string.letters,string.digits">
+                <add value="+" />
+                <add value="-" />
+                <add value="=" />
+                <add value=" " />
+                <add value="_" />
+                <add value="," />
+                <add value="." />
+            </valid>
+        </sanitizer>
+        <validator type="regex">[A-Za-z0-9 =-_+,.]+</validator>
+    </xml>
     <token name="@HELP_LOGO@">
 .. image:: static/images/FROGS_logo.png
    :height: 144
@@ -39,7 +64,9 @@ Depending on which kind of amplicon you are working on, please cite one of the t
 
     </token>
     <xml name="citations">
-        <citation type="doi">10.1093/bioinformatics/btx791</citation>
-        <citation type="doi">10.1093/bib/bbab318</citation>
+        <citations>
+            <citation type="doi">10.1093/bioinformatics/btx791</citation>
+            <citation type="doi">10.1093/bib/bbab318</citation>
+        </citations>
     </xml>
 </macros>

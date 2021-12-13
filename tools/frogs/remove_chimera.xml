@@ -1,4 +1,4 @@
-<tool id="FROGS_remove_chimera" name="FROGS Remove chimera" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGS_remove_chimera" name="FROGS Remove chimera" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
     <description>Remove PCR chimera in each sample</description>
     <macros>
         <import>macros.xml</import>
@@ -8,7 +8,7 @@
     </expand>
     <command detect_errors="exit_code">
 		remove_chimera.py
-		    --nb-cpus \${GALAXY_SLOTS:-1}
+		    @CPUS@
 		    --input-fasta '$sequence_file' --non-chimera '$non_chimera_fasta'
 		    --summary '$summary_file'
 		    #if $abundance_type.abundance_type_selected == "biom"
@@ -21,17 +21,17 @@
     </command>
     <inputs>
         <!-- Files -->
-        <param format="fasta" name="sequence_file" type="data" label="Sequences file" help="The sequences file (format: fasta)." optional="false" />
+        <param format="fasta" name="sequence_file" type="data" label="Sequences file (format: FASTA)" help="The sequences file"/>
         <conditional name="abundance_type">
             <param name="abundance_type_selected" type="select" label="Abundance type" help="Select the type of file where the abundance of each sequence by sample is stored.">
                 <option value="biom" selected="true">BIOM file</option>
                 <option value="count">TSV file</option>
             </param>
             <when value="biom">
-                <param format="biom1" name="abundance_biom" type="data" label="Abundance file" help="It contains the count by sample for each sequence." optional="false" />
+                <param format="biom1" name="abundance_biom" type="data" label="Abundance file (format: BIOM)" help="It contains the count by sample for each sequence."  />
             </when>
             <when value="count">
-                <param format="tabular" name="abundance_count" type="data" label="Count file" help="It contains the count by sample for each sequence (see below)." optional="false" />
+                <param format="tabular" name="abundance_count" type="data" label="Count file (format: TSV)" help="It contains the count by sample for each sequence (see below)."  />
             </when>
         </conditional>
     </inputs>
@@ -144,9 +144,5 @@ How it works
 
 
     </help>
-
-    <citations>
-        <expand macro="citations" />
-    </citations>
-
+    <expand macro="citations" />
 </tool>
