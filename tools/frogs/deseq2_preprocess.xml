@@ -1,4 +1,4 @@
-<tool id="FROGSSTAT_DESeq2_Preprocess" name="FROGSSTAT DESeq2 Preprocess" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGSSTAT_DESeq2_Preprocess" name="FROGSSTAT DESeq2 Preprocess" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
     <description>import a Phyloseq object and prepare it for DESeq2 differential abundance analysis</description>
     <macros>
         <import>macros.xml</import>
@@ -9,7 +9,7 @@
     </expand>
     <command detect_errors="exit_code">
     deseq2_preprocess.py --data '$data'
-        #if $multiple.seconde
+        #if $multiple.seconde == 'true'
             --var '$var1${multiple.mod}${multiple.var2}'
         #else
             --var '$var1'
@@ -18,19 +18,22 @@
 	</command>
     <inputs>
 		<!-- Files -->
-        <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGSSTAT Phyloseq Import Data with normalise option set to NO (DESeq2 is more powerful on unnormalised counts)." optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
+        <param format="rdata" name="data" type="data" label="Phyloseq object " help="This is the result of FROGSSTAT Phyloseq Import Data with normalise option set to NO (DESeq2 is more powerful on unnormalised counts) (format RData)"/>
         <!-- Parameters -->
-	    <param name="var1" type="text" label="Experimental variable" help="The factor suspected to have an effect on OTUs' abundances. Ex: Treatment, etc." optional="false" value="" >
-            <validator type="empty_field" message="This parameter is required." />
+	    <param name="var1" type="text" label="Experimental variable" help="The factor suspected to have an effect on OTUs' abundances. Ex: Treatment, etc.">
+            <expand macro="sanitizer_validator"/>
         </param>
 		<conditional name="multiple">
-            <param name="seconde" type="boolean" label="Do you want to correct for a confounding factor?" help="If yes, specifiy counfouding factor." optional="false" />
-		    <when value="false"></when>
-		    <when value="true">
-                <param name="var2" type="text" label="Variable 2" help="Confounding factor. Ex: Gender, etc." optional="false" value="" />
-                <param name="mod" type="select" multiple="false" help="Choose an additive model (+) if the effects of Treatment and Gender are independent. Choose a model with interaction (*) if the effect of Treatment is expected to depend on Gender." label="Type of model">
+            <param name="seconde" type="select" label="Do you want to correct for a confounding factor?" help="If yes, specifiy counfouding factor">
+                <option value="true">True</option>
+                <option value="false" selected="true">False</option>
+            </param>
+		    <when value="false"/>
+            <when value="true">
+                <param name="var2" type="text" label="Variable 2" help="Confounding factor. Ex: Gender, etc.">
+                    <expand macro="sanitizer_validator"/>
+                </param>
+                <param name="mod" type="select" multiple="false" label="Type of model" help="Choose an additive model (+) if the effects of Treatment and Gender are independent. Choose a model with interaction (*) if the effect of Treatment is expected to depend on Gender.">
                     <option value="+" selected="true">Linear (+)</option>
                     <option value="*">Interaction (*)</option>
                 </param>
@@ -103,10 +106,6 @@ You may precise a confounding factor, by adding an other variable and precise th
 
 @HELP_CONTACT@
 
-  </help>
-
-  <citations>
+    </help>   
     <expand macro="citations" />
-  </citations>
-  
 </tool>

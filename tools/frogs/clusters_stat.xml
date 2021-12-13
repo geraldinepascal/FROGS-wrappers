@@ -1,5 +1,5 @@
-<tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
-	<description>Process some metrics on clusters.</description>
+<tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+	<description>Process some metrics on clusters</description>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -10,7 +10,7 @@
 		--output-file '$summary_file'
 	</command>
 	<inputs>
-		<param format="biom1" name="biom" type="data" label="Abundance file" help="Clusters abundance (format: BIOM)." optional="false" />
+		<param format="biom1" name="biom" type="data" label="Abundance file" help="Clusters abundance (format: BIOM)"/>
 	</inputs>
 	<outputs>
 		<data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="summary.html"/>
@@ -83,9 +83,5 @@ This is a very usefull tool to see the evolution of your OTU. Do not hesitate to
 @HELP_CONTACT@
 
 	</help>
-
-	<citations>
-		<expand macro="citations" />
-	</citations>
-	
+	<expand macro="citations" />
 </tool>

@@ -1,4 +1,4 @@
-<tool id="FROGSSTAT_DESeq2_Visualisation" name="FROGSTAT Deseq2 Visualisation" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGSSTAT_DESeq2_Visualisation" name="FROGSTAT Deseq2 Visualisation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
     <description>to extract and visualise differentially abundant OTUs</description>
     <macros>
         <import>macros.xml</import>
@@ -9,8 +9,8 @@
     </expand>
     <command detect_errors="exit_code">
     deseq2_visualisation.py
-        --phyloseqData '$input_phyloseq'
-        --dds '$input_DDS'
+        --phyloseqData '$phyloseqData'
+        --dds '$dds'
         --var '$var'
         #if $varType.vartType_selected == "qual":
             --mod1 '$varType.mod1' --mod2 '$varType.mod2'
@@ -20,36 +20,34 @@
     </command>
     <inputs>
         <!-- Files -->
-        <param format="rdata" name="input_phyloseq" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data, used in FROGSSTAT DESeq2 Preprocess tool" />
-        <param format="rdata" name="input_DDS" type="data" label="DESeq2 object (format rdata)" help="This is the result of FROGSSTAT DESeq2 Preprocess tool."/>
+        <param format="rdata" argument="--phyloseqData" type="data" label="Phyloseq object (format: RData)" help="This is the result of FROGS Phyloseq Import Data, used in FROGSSTAT DESeq2 Preprocess tool" />
+        <param format="rdata" argument="--dds" type="data" label="DESeq2 object (format: RData)" help="This is the result of FROGSSTAT DESeq2 Preprocess tool"/>
         <!-- Parameters -->
-        <param name="var" type="text" value="" label="Experimental variable" help="The factor suspected to have an effect on OTUs' abundances (one of the variables used in FROGS DESeq2 Preprocess tool). Ex : Treatment"/>
+        <param argument="var" type="text" value="" label="Experimental variable" help="The factor suspected to have an effect on OTUs' abundances (one of the variables used in FROGS DESeq2 Preprocess tool). Ex : Treatment"/>
         <conditional name="varType">
-            <param type="select" name="vartType_selected" label="Is your Variable quantitative or qualitative?" help="If qualitative, choose 2 conditions to compare." optional="false">
-                <option value="qual">qualitative</option>
-                <option value="quant">quantitative</option>
+            <param type="select" name="vartType_selected" label="Is your Variable quantitative or qualitative?" help="If qualitative, choose 2 conditions to compare">
+                <option value="qual">Qualitative</option>
+                <option value="quant">Quantitative</option>
             </param>
             <when value="qual">
-                <param type="text" name="mod2" label="Condition 1 considered as reference" help="One condition of the experimental variable (e.g. with)." optional="false" value="" >
-                    <validator type="empty_field" message="This parameter is required." />
+                <param type="text" argument="--mod2" label="Condition 1 considered as reference" help="One condition of the experimental variable (e.g. with)">
+                   <expand macro="sanitizer_validator"/>
                 </param>
-                <param type="text" name="mod1" label="Condition 2 to be compared to the reference" help="Another condition of the experimental variable (e.g. without)." optional="false" value="" >
-                    <validator type="empty_field" message="This parameter is required." />
+                <param type="text" argument="--mod1" label="Condition 2 to be compared to the reference" help="Another condition of the experimental variable (e.g. without)">
+                   <expand macro="sanitizer_validator"/>
                 </param>
             </when>
             <when value="quant"/>
         </conditional>
-        <param name="padj" type="float" label="Adjusted p-value threshold" help="Threshold used for statistical significance of the differentially abundant OTUs analysis." optional="false" value="0.05">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
+        <param argument="--padj" type="float" value="0.05" label="Adjusted p-value threshold" help="Threshold used for statistical significance of the differentially abundant OTUs analysis"/>
     </inputs>
     <outputs>
         <data format="html" name="html" label="${tool.name}: report.nb.html" from_work_dir="report.nb.html"/>
     </outputs>
     <tests>
         <test>
-            <param name="input_phyloseq" value="references/16-phylo_import.Rdata"/>
-            <param name="input_DDS" value="references/23-deseq2_preprocess.Rdata"/>
+            <param name="phyloseqData" value="references/16-phylo_import.Rdata"/>
+            <param name="dds" value="references/23-deseq2_preprocess.Rdata"/>
             <param name="var" value="EnvType" />
             <param name="mod1" value="BoeufHache"/>
             <param name="mod2" value="SaumonFume"/>
@@ -143,9 +141,5 @@ If the variable is qualitative (ex: variable Treatment is define by two conditio
 @HELP_CONTACT@
 
     </help>
-
-    <citations>
-        <expand macro="citations" />
-    </citations>
-    
+    <expand macro="citations" />
 </tool>

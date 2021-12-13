@@ -1,4 +1,4 @@
-<tool id="FROGS_OTU_filters" name="FROGS OTU Filters" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGS_OTU_filters" name="FROGS OTU Filters" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
 	<description>Filters OTUs on several criteria</description>
     <macros>
         <import>macros.xml</import>
@@ -8,7 +8,7 @@
     </expand>
     <command detect_errors="exit_code">
 		otu_filters.py
-			--nb-cpus \${GALAXY_SLOTS:-1}
+			@CPUS@
 			--input-biom '$input_biom'
 			--input-fasta '$input_fasta'
 			--output-fasta '$output_fasta'
@@ -48,35 +48,35 @@
 	</command>
 	<inputs>
 		<!-- Files -->
-		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: fasta)." />
-		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)." />
+		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: FASTA)" />
+		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)" />
 
-		<param name="min_sample_presence" type="integer" min="2" optional="true" label="Minimum prevalence" help="Fill the field only if you want this treatment. Keep OTU if it is present in at least this number of samples."/>
+		<param argument="--min_sample_presence" type="integer" min="2" optional="true" label="Minimum prevalence" help="Fill the field only if you want this treatment. Keep OTU if it is present in at least this number of samples."/>
 
 		<conditional name="choice_abundance_unit">
-			<param name="abundance_unit_type" type="select" label="Minimum OTU abundancy as proportion or count. We recommend to use a proportion of 0.00005.">
+			<param name="abundance_unit_type" type="select" label="Minimum OTU abundancy as proportion or count">
 				<option value="proportion">as proportion</option>
 				<option value="count">as count</option>
 			</param>
 			<when value="proportion">
-				<param name="min_abundance_proportion" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep OTU" help='Fill the field only if you want this treatment. Example: 0.00005, recommended by Bokulich et al 2013, to keep OTU with at least 0.005% of all sequences).'>
+				<param name="min_abundance_proportion" argument="--min_abundance" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep OTU" help='Fill the field only if you want this treatment. Example: 0.00005, recommended by Bokulich et al 2013, to keep OTU with at least 0.005% of all sequences)'>
 					<validator type="in_range" min="0" exclude_min="true" max="1" exclude_max="true" message="Abundance proportion threshold need to be strictly greater than 0 and less than 1, otherwise you will not remove anything or remove everything." />
 				</param>
 			</when>
 			<when value="count">
-				<param name="min_abundance_count" type="integer" optional="true" label="Minimum number of sequences to keep OTU" help='Fill the field only if you want this treatment. Ex: 2 to keep OTU with at least 2 sequences, so remove single singleton.'>
+				<param name="min_abundance_count" argument="--min_abundance" type="integer" optional="true" label="Minimum number of sequences to keep OTU" help='Fill the field only if you want this treatment. Ex: 2 to keep OTU with at least 2 sequences, so remove single singleton'>
 					<validator type="in_range" min="2" message='To be effective this threshold need to be higher than 1. 2 means that you will remove OTU with 1 and only 1 sequence over all samples'/>
 				</param>
 			</when>
 		</conditional>
 
-		<param name="nb_biggest_otu" type="integer" optional="true" label="N biggest OTUs" help="Fill the fields only if you want this treatment. Keep the N biggest OTU." />
+		<param argument="--nb-biggest-otu" type="integer" optional="true" label="N biggest OTUs" help="Fill the fields only if you want this treatment. Keep the N biggest OTU" />
 
 		<conditional name="contaminantSource">
-			<param name="which_contaminantSource" type="select" label="Search for contaminant OTU." help="Either you use your own contaminant fasta file or you select one among available ones.">
+			<param name="which_contaminantSource" argument="--contaminant" type="select" label="Search for contaminant OTU." help="Either you use your own contaminant fasta file or you select one among available ones.">
 				<option value="no">No contaminant filter</option>
-				<option value="server">Use contaminant fasta file from the server</option>
-				<option value="history">Use contaminant fasta file from the history</option>
+				<option value="server">Use contaminant FASTA file from the server</option>
+				<option value="history">Use contaminant FASTA file from the history</option>
 			</param>
 			<when value="no"/>
 			<when value="server">
@@ -216,9 +216,5 @@ Examples for the filters on abundance and occurence of the OTUs :
 @HELP_CONTACT@
 
 	</help>
-
-	<citations>
-		<expand macro="citations" />
-	</citations>
-
+	<expand macro="citations" />
 </tool>

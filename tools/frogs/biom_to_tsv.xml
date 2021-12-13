@@ -1,4 +1,4 @@
-<tool id="FROGS_biom_to_tsv" name="FROGS BIOM to TSV" version="@TOOL_VERSION@+galaxy2" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGS_biom_to_tsv" name="FROGS BIOM to TSV" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
 	<description>Converts a BIOM file in TSV file</description>
     <macros>
         <import>macros.xml</import>
@@ -92,8 +92,6 @@ This output tsv file is easily readable in any spreadsheet software. Be aware th
 
 	</help>
 
-	<citations>
-		<expand macro="citations" />
-	</citations>
+	<expand macro="citations" />
 	
 </tool>
