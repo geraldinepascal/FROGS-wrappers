@@ -28,7 +28,7 @@
 			<param name="data" value="references/16-phylo_import.Rdata"/>
 			<param name="varExp" value="EnvType"/>
 			<param name="distance_matrix" value="references/unifrac.tsv"/>
-			<output name="html" value="references/22-phylo_manova.nb.html" compare="diff" lines_diff="0"/>
+			<output name="html" value="references/22-phylo_manova.nb.html" compare="diff" lines_diff="1"/>
 		</test>
 	</tests>
 	<help>
