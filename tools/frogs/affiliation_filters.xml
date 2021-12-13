@@ -22,7 +22,7 @@
 
 			--taxonomic-ranks $taxonomic_ranks
 
-			#if $rdp.rdp_rank != ''
+			#if $rdp.rdp_rank
 				--min-rdp-bootstrap '$rdp.rdp_rank:$rdp.min_rdp_bootstrap'
 			#end if
 
