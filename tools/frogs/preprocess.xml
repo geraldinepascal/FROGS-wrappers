@@ -66,7 +66,7 @@
 					--merge-software $sequencer_type.input_type.files_by_samples_type.merge_software_type.merge_software
 					#if $sequencer_type.input_type.files_by_samples_type.merge_software_type.merge_software == "flash"
 						--expected-amplicon-size $sequencer_type.input_type.files_by_samples_type.merge_software_type.expected_amplicon_size
-				#end if
+					#end if
 					#if $sequencer_type.input_type.files_by_samples_type.keep_unmerged
 						--keep-unmerged
 					#end if
