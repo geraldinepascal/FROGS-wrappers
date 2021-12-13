@@ -22,8 +22,8 @@
 
 			--taxonomic-ranks $taxonomic_ranks
 
-			#if '$rdp.rdp_rank'
-				--min-rdp-bootstrap '$rdp.rdp_rank:$rdp.rdp_bootstrap'
+			#if $rdp.rdp_rank != ''
+				--min-rdp-bootstrap '$rdp.rdp_rank:$rdp.min_rdp_bootstrap'
 			#end if
 
 			#if $blast.min_blast_length
@@ -83,7 +83,7 @@
             </repeat>
         </section>
         <section name="rdp" title="Filter on RDP affiliations" expanded="false">
-            <param name="rdp_rank" type="text" optional="true" label="Taxonomical rank on which to apply bootstrap filter" help="One of the available taxonomical rank name. Ex: Species">
+            <param name="rdp_rank" type="text" optional="true" value="" label="Taxonomical rank on which to apply bootstrap filter" help="One of the available taxonomical rank name. Ex: Species">
                 <sanitizer invalid_char="">
                 <valid initial="string.letters">
                     <add value=" " />

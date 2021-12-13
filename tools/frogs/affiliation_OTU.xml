@@ -7,8 +7,9 @@
         <requirement type="package" version="2.10">blast</requirement>
         <requirement type="package" version="6.6.0">emboss</requirement>
     </expand>
-    <command detect_errors="exit_code">
+    <command detect_errors="exit_code"><![CDATA[
     #set $reference_filename = str( $ref_file.fields.path )
+    export GALAXY_MEMORY_GB=\$((\${GALAXY_MEMORY_MB:-8192}/1024)) &&
     affiliation_OTU.py
         --reference '${reference_filename}'
         --taxonomy-ranks $taxonomic_ranks
@@ -17,11 +18,11 @@
         --output-biom '$biom_affiliation'
         --summary '$summary'
         @CPUS@
-        --java-mem \$GALAXY_MEMORY_MB
+        --java-mem \$GALAXY_MEMORY_GB
         #if $rdp
           --rdp
         #end if
-  </command>
+    ]]></command>
     <inputs>
         <!-- Database Choice -->
         <param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">

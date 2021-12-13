@@ -24,7 +24,7 @@
         <conditional name="is_HVL">
             <param name="HVL_amplicon" type="boolean" label="Is this an amplicon hyper variable in length?" help="Multi-affiliation tag may be resolved by selecting the shortest amplicon reference. For this you need the reference fasta file of your targetted amplicon."/>
             <when value="true">
-                <param argument="--refeference" type="select" label="Using reference database" help="Select reference from the list">
+                <param argument="--reference" type="select" label="Using reference database" help="Select reference from the list">
                     <options from_data_table="frogs_HVL_db"/>
                     <validator type="no_options" message="A built-in database is not available"/>
                     <!--column name="name" index="0"/>
