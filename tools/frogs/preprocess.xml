@@ -12,9 +12,8 @@
 		preprocess.py '$sequencer_type.sequencer_selected'
 		--output-dereplicated '$dereplicated_file' --output-count '$count_file' --summary '$summary_file'
 		@CPUS@
-		--min-amplicon-size $sequencer_type.min_amplicon_size 
+		--min-amplicon-size $sequencer_type.min_amplicon_size
         --max-amplicon-size $sequencer_type.max_amplicon_size
-
 		#if $sequencer_type.sequencer_selected == "illumina"
 		    #if $sequencer_type.sequencing_protocol.sequencing_protocol_selected == "standard"
 		        --five-prim-primer '$sequencer_type.sequencing_protocol.five_prim_primer'
@@ -36,7 +35,7 @@
 	        	--mismatch-rate $sequencer_type.input_type.archive_type.mismatch_rate
 	        	--merge-software $sequencer_type.input_type.archive_type.merge_software_type.merge_software
 	        	#if $sequencer_type.input_type.archive_type.merge_software_type.merge_software == "flash"
-					--expected-amplicon-size $sequencer_type.input_type.archive_type.merge_software_type.expected_amplicon_size
+                    --expected-amplicon-size $sequencer_type.input_type.archive_type.merge_software_type.expected_amplicon_size
 			#end if
 	        	#if $sequencer_type.input_type.archive_type.keep_unmerged
 	        		--keep-unmerged
