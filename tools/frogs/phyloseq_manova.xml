@@ -13,7 +13,7 @@
 	</command>
     <inputs>
 		<!-- Files -->
-	    <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data tool."/>
+	    <param format="rdata" name="data" type="data" label="Phyloseq object (format: RData)" help="This is the result of FROGS Phyloseq Import Data tool."/>
         <param argument="--distance-matrix" format="tabular" type="data" label="The beta diversity distance matrix file" help="This file is the result of FROGS Phyloseq Beta Diversity tool"/>
 		<!-- Parameters -->
 		<param argument="--varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse">
@@ -28,7 +28,7 @@
 			<param name="data" value="references/16-phylo_import.Rdata"/>
 			<param name="varExp" value="EnvType"/>
 			<param name="distance_matrix" value="references/unifrac.tsv"/>
-			<output name="html" value="references/22-phylo_manova.nb.html" compare="diff" lines_diff="0"/>
+			<output name="html" value="references/22-phylo_manova.nb.html" compare="diff" lines_diff="1"/>
 		</test>
 	</tests>
 	<help>
