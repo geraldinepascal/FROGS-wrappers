@@ -54,7 +54,7 @@
 		<param argument="--min_sample_presence" type="integer" min="2" optional="true" label="Minimum prevalence" help="Fill the field only if you want this treatment. Keep OTU if it is present in at least this number of samples."/>
 
 		<conditional name="choice_abundance_unit">
-			<param name="abundance_unit_type" type="select" label="Minimum OTU abundancy as proportion or count">
+			<param name="abundance_unit_type" type="select" label="Minimum OTU abundancy as proportion or count. We recommend to use a proportion of 0.00005.">
 				<option value="proportion">as proportion</option>
 				<option value="count">as count</option>
 			</param>
