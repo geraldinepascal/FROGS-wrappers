@@ -31,7 +31,7 @@
                 <option value="quant">Quantitative</option>
             </param>
             <when value="qual">
-                <param type="text" argument="--mod1" label="Condition 1 considered as reference" help="One condition of the experimental variable (e.g. with)">
+                <param type="text" argument="--mod2" label="Condition 1 considered as reference" help="One condition of the experimental variable (e.g. with)">
                    <expand macro="sanitizer_validator"/>
                 </param>
                 <param type="text" argument="--mod1" label="Condition 2 to be compared to the reference" help="Another condition of the experimental variable (e.g. without)">
