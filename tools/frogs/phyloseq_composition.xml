@@ -18,9 +18,7 @@
     </command>
     <inputs>
         <!-- Files -->
-        <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data tool.">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
+        <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data tool."/>
         <!-- Parameters -->
         <param argument="--varExp" type="text" label="Grouping variable" help="Experimental variable used to group samples (Treatment, Host type, etc).">
             <expand macro="sanitizer_validator"/>
