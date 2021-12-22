@@ -51,7 +51,7 @@
             <param name="dds" value="references/23-deseq2_preprocess.Rdata"/>
             <param name="var" value="EnvType" />
             <conditional name="varType">
-                <param name="vartType_selected" value="Qualitative"/>
+                <param name="vartType_selected" value="qual"/>
                 <param name="mod1" value="BoeufHache"/>
                 <param name="mod2" value="SaumonFume"/>
             </conditional>
