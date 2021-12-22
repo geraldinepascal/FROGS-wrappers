@@ -61,13 +61,13 @@
                     <has_text text="FROGSSTAT DESeq2: Visualisation" />
                     <has_text text='["otu_01582",' />
                     <!-- baseMean value of otu_01582 -->
-                    <has_text text='52.445510949046' />
+                    <has_text text='[52.445' />
                     <!-- Log2 FC of otu_01582 -->
-                    <has_text text='21.6622901050859' />
+                    <has_text text='[21.662' />
                     <!-- lfcSE of otu_01582 -->
-                    <has_text text='2.20892675384734' />
+                    <has_text text='[2.208' />
                     <!-- pvalue otu_01582 -->
-                    <has_text text='1.0535393782052e-22' />
+                    <has_text text='[1.052' />
                 </assert_contents>
             </output>
         </test>

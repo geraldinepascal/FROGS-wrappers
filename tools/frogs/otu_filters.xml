@@ -4,7 +4,7 @@
         <import>macros.xml</import>
     </macros>
     <expand macro="requirements">
-        <requirement type="package" version="2.10.0">blast</requirement>
+        <requirement type="package" version="2.10">blast</requirement>
     </expand>
     <command detect_errors="exit_code">
 		otu_filters.py
