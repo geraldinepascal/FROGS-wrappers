@@ -51,7 +51,7 @@
 	</command> 
 	<inputs>
         <!-- Input files -->       
-        <param format="tabular" name="input_file" type="data" label="FPStep3 prediction abundance file" help="Input TSV table of gene family abundances (either the unstratified or stratified output of FPStep3: FPStep3_pred_metagenome_unstrat.tsv" optional="false">
+        <param argument="--input-file" format="tabular" name="input_file" type="data" label="FPStep3 prediction abundance file" help="Input TSV table of gene family abundances (either the unstratified or stratified output of FPStep3: FPStep3_pred_metagenome_unstrat.tsv" optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
 	      <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
@@ -70,7 +70,7 @@
               <validator type="no_options" message="A built-in database is not available" />
           </options>
         </param>
-        <param name="normalisation" label="Do you want to normalise the final output table ?" help='Values are divided by sum of columns , then multiplied by 10^6 (CPM values).' type="boolean" />
+        <param argument="--normalisation" label="Do you want to normalise the final output table ?" help='Values are divided by sum of columns , then multiplied by 10^6 (CPM values).' type="boolean" />
         <conditional name="is_per_sequence_contrib">
           <param name="per_sequence_contrib" label="Do you want a stratified table per sequence ?" help='Product another table of the predicted pathway abundance contributed by each OTU. Note this will greatly increase the runtime.' type="boolean" />
        	  <when value="true">

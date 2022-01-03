@@ -49,19 +49,19 @@
     </command> 
     <inputs>
         <!-- Input files -->
-        <param format="biom1" name="input_biom" type="data" label="Biom file" help="FPStep1 sequence abundances output file (FPStep1.biom)." optional="false">
+        <param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="FPStep1 sequence abundances output file (FPStep1.biom)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-        <param format="tabular" name="function" type="data" label="Function file" help="Copy number table of gene families/functions present in the predicted genome for each OTU (output of FPStep2 : FPStep2_predicted_functions.tsv)." optional="false">
+        <param argument='--function' format="tabular" type="data" label="Function file" help="Copy number table of gene families/functions present in the predicted genome for each OTU (output of FPStep2 : FPStep2_predicted_functions.tsv)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-        <param format="tabular" name="marker" type="data" label="Marker file" help="Table of predicted marker copy number (output of FPStep2 : FPStep2_marker_copy_number.tsv)." optional="false">
+        <param argument='--marker' format="tabular" type="data" label="Marker file" help="Table of predicted marker copy number (output of FPStep2 : FPStep2_marker_copy_number.tsv)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
         <!-- Parameters-->
-        <param name="max_nsti" type="float" label="NSTI cut-off" help="Sequences with NSTI values above this value will be excluded (default: 2)" value="2" min="0" optional="false" /> 
-        <param name="min_reads" type="integer" optional="false" min="1" value="1" label="Minimum number of reads accross all samples" help='Minimum number of reads across all samples for each input OTU. OTUs below this cut-off will be counted as part of the "RARE" category in the stratified output but not removed from the analysis (default: 1).' />
-       <param name="min_samples" type="integer" optional="false" min="1" value="1" label="Minimum number of samples to keep an OTU."  help='Minimum number of samples that an OTU needs to be identified within. OTUs below this cut-off will be counted as part of the "RARE" category in the stratified output but not removed from the analysis (default: 1).' />
+        <param argument="--max-nsti" name="max_nsti" type="float" label="NSTI cut-off" help="Sequences with NSTI values above this value will be excluded (default: 2)" value="2" min="0" optional="false" /> 
+        <param argument="--min-reads" name="min_reads" type="integer" optional="false" min="1" value="1" label="Minimum number of reads accross all samples" help='Minimum number of reads across all samples for each input OTU. OTUs below this cut-off will be counted as part of the "RARE" category in the stratified output but not removed from the analysis (default: 1).' />
+       <param  argument="--min-samples" name="min_samples" type="integer" optional="false" min="1" value="1" label="Minimum number of samples to keep an OTU."  help='Minimum number of samples that an OTU needs to be identified within. OTUs below this cut-off will be counted as part of the "RARE" category in the stratified output but not removed from the analysis (default: 1).' />
         <param name="strat" type="boolean" label="Do you want a stratified table per sequence ?" help='Product another table of the predicted gene abundance contributed by each OTU. Note this will greatly increase the runtime.' />
         <param name="hierarchy_ranks" type="hidden" help="The ordered genes ranks levels stored in BIOM. Each rank is separated by one space." value="Level1 Level2 Level3 Gene" size="80" />
     </inputs>

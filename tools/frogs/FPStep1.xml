@@ -50,25 +50,25 @@
 	</command> 
 	<inputs>
     	<!-- Input files -->
-		<param format="fasta" name="input_fasta" type="data" label="Sequence file" help="Fasta file of unaligned studies sequences (format: fasta)." optional="false">
+		<param argument="--input-fasta" format="fasta" name="input_fasta" type="data" label="Sequence file" help="Fasta file of unaligned studies sequences (format: fasta)." optional="false">
        		<validator type="empty_field" message="This parameter is required." />
     	</param>
-		<param format="biom1" name="input_biom" type="data" label="Biom file" help="Abundance table of OTUs (format: biom). Taxonomic affiliations must be done before (FROGS Affiliation OTU step)." optional="false">
+		<param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="Abundance table of OTUs (format: biom). Taxonomic affiliations must be done before (FROGS Affiliation OTU step)." optional="false">
         	<validator type="empty_field" message="This parameter is required." />
         </param>
     	<!-- Parameters -->
-        <param name="marker" type="select" label="Taxonomy marker" display="radio" help="Taxonomic marker of interest.">
+        <param argument="--ref-dir" name="marker" type="select" label="Taxonomy marker" display="radio" help="Taxonomic marker of interest.">
 			<options from_data_table="frogs_picrust2_default_dir">
 	     		<column name="name" index="1"/>
 	        	<column name="value" index="2"/>
 					<validator type="no_options" message="A built-in database is not available" />
 			</options>
 		</param>
-        <param name="placement_tool" type="select" label="Placement tool" help="Placement tool for insertion of OTUs (or ASVs) into the reference tree. SEPP is a low-memory alternative to EPA-ng for placing sequences." multiple="false" display="radio">
+        <param argument="--placement-tool" name="placement_tool" type="select" label="Placement tool" help="Placement tool for insertion of OTUs (or ASVs) into the reference tree. SEPP is a low-memory alternative to EPA-ng for placing sequences." multiple="false" display="radio">
         	<option value="epa-ng">epa-ng</option>
         	<option value="sepp">sepp</option>
 		</param>
-		<param name="min_align" type="float" label="Minimum alignment length" help="Proportion of the total length of an input query sequence that must align with reference sequences. Any sequences with lengths below this value after making an alignment with reference sequences will be excluded from the placement and all subsequent steps. (default: 0.80)" value="0.8" min="0" max="1" optional="false" /> 
+		<param argument="--min-align" name="min_align" type="float" label="Minimum alignment length" help="Proportion of the total length of an input query sequence that must align with reference sequences. Any sequences with lengths below this value after making an alignment with reference sequences will be excluded from the placement and all subsequent steps. (default: 0.80)" value="0.8" min="0" max="1" optional="false" /> 
 	</inputs>
 
 	<outputs>
@@ -76,7 +76,7 @@
 		<data format="nhx" name="out_tree" label="${tool.name}: FPStep1_tree.nwk" from_work_dir="FPStep1_tree.nwk"/>
 		<data format="tabular" name="excluded" label="${tool.name}: FPStep1_excluded.tsv" from_work_dir="FPStep1_excluded.tsv"/> 
 		<data format="fasta" name="insert_fasta" label="${tool.name}: FPStep1.fasta" from_work_dir="FPSTep1.fasta"/>
-		<data format="tabular" name="closests_ref" label="${tool.name}: FPStep1_closests_ref_sequences.txt" from_work_dir="FPStep1_closests_ref_sequences.txt"/> 
+		<data format="tabular" name="closests_ref" label="${tool.name}: FPStep1_closests_ref_sequences.txt" from_work_dir="FPStep1_closests_ref_sequences.txt"/>
 		<data format="biom1" name="insert_biom" label="${tool.name}: FPStep1.biom" from_work_dir="FPSTep1.biom"/> 
 	</outputs>
 
