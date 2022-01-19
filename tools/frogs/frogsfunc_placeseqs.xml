@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_PICRUSt2_place_seqs" name="FPStep1" version= "beta">
+<tool id="FROGS_PICRUSt2_place_seqs" name="frogsfunc_placeseqs" version= "beta">
 	<description>Place studies sequences (i.e. OTUs) into a reference tree.</description>
 
     <macros>
@@ -31,7 +31,7 @@
         <exit_code range=":-1" />
     </stdio>
     <command >
-	   	FPStep1.py
+	   	frogsfunc_placeseqs.py
 	   		--input-fasta $input_fasta
 	   		--input-biom $input_biom
 	   		--min-align $min_align
@@ -72,28 +72,28 @@
 	</inputs>
 
 	<outputs>
-		<data format="html" name="summary_file" label="${tool.name}: FPStep1_summary.html" from_work_dir="FPStep1_summary.html"/>
-		<data format="nhx" name="out_tree" label="${tool.name}: FPStep1_tree.nwk" from_work_dir="FPStep1_tree.nwk"/>
-		<data format="tabular" name="excluded" label="${tool.name}: FPStep1_excluded.tsv" from_work_dir="FPStep1_excluded.tsv"/> 
-		<data format="fasta" name="insert_fasta" label="${tool.name}: FPStep1.fasta" from_work_dir="FPSTep1.fasta"/>
-		<data format="tabular" name="closests_ref" label="${tool.name}: FPStep1_closests_ref_sequences.txt" from_work_dir="FPStep1_closests_ref_sequences.txt"/>
-		<data format="biom1" name="insert_biom" label="${tool.name}: FPStep1.biom" from_work_dir="FPSTep1.biom"/> 
+		<data format="html" name="summary_file" label="${tool.name}: frogsfunc_placeseqs_summary.html" from_work_dir="frogsfunc_placeseqs_summary.html"/>
+		<data format="nhx" name="out_tree" label="${tool.name}: frogsfunc_placeseqs_tree.nwk" from_work_dir="frogsfunc_placeseqs_tree.nwk"/>
+		<data format="tabular" name="excluded" label="${tool.name}: frogsfunc_placeseqs_excluded.tsv" from_work_dir="frogsfunc_placeseqs_excluded.tsv"/> 
+		<data format="fasta" name="insert_fasta" label="${tool.name}: frogsfunc_placeseqs.fasta" from_work_dir="frogsfunc_placeseqs.fasta"/>
+		<data format="tabular" name="closests_ref" label="${tool.name}: frogsfunc_placeseqs_closests_ref_sequences.txt" from_work_dir="frogsfunc_placeseqs_closests_ref_sequences.txt"/>
+		<data format="biom1" name="insert_biom" label="${tool.name}: frogsfunc_placeseqs.biom" from_work_dir="frogsfunc_placeseqs.biom"/> 
 	</outputs>
 
 	<tests>
 		<test>
-			<param name="input_fasta" value="input/FPSteps.fasta" />
-            <param name="input_biom" value="input/FPSteps.biom" />
+			<param name="input_fasta" value="input/frogsfunc_placeseqss.fasta" />
+            <param name="input_biom" value="input/frogsfunc_placeseqss.biom" />
             <param name="placement_tool" value="sepp"/>
 			<param name="marker" value="16S" />
 			<param name="min_align" value="0.8" />
 			
-			<output name="insert_fasta" file="references/25-FPStep1.fasta" compare="diff" lines_diff="0" />
-			<output name="insert_biom" file="references/25-FPStep1.biom" compare="diff" lines_diff="0"/>
-			<output name="excluded" file="references/25-FPStep1_excluded.txt" compare="diff" lines_diff="0" />
-			<output name="out_tree" file="references/25-FPStep1.tree" compare="diff" lines_diff="0" />
-			<output name="closests_ref" file="references/25-FPStep1_closests_ref_sequences.txt" compare="diff" lines_diff="0" />
-			<output name="summary_file" file="references/25-FPStep1_summary.html" compare="diff" lines_diff="0" />
+			<output name="insert_fasta" file="references/25-frogsfunc_placeseqs.fasta" compare="diff" lines_diff="0" />
+			<output name="insert_biom" file="references/25-frogsfunc_placeseqs.biom" compare="diff" lines_diff="0"/>
+			<output name="excluded" file="references/25-frogsfunc_placeseqs_excluded.txt" compare="diff" lines_diff="0" />
+			<output name="out_tree" file="references/25-frogsfunc_placeseqs.tree" compare="diff" lines_diff="0" />
+			<output name="closests_ref" file="references/25-frogsfunc_placeseqs_closests_ref_sequences.txt" compare="diff" lines_diff="0" />
+			<output name="summary_file" file="references/25-frogsfunc_placeseqs_summary.html" compare="diff" lines_diff="0" />
 		</test>
 	</tests>
 
@@ -146,32 +146,32 @@ So, if the tool crashes with EPA-ng, try SEPP.
 
 Outputs
 
-**Newick file** (FPStep1_tree.nwk):
+**Newick file** (frogsfunc_placeseqs_tree.nwk):
 
  The phylogenetic tree output with insert sequences into the reference tree (format: newick). (format `nhx &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
 
 
-**Excluded sequences file** (FPStep1_excluded.tsv):
+**Excluded sequences file** (frogsfunc_placeseqs_excluded.tsv):
 
  List of sequences not inserted in the picrust2 reference tree. Sequences are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold (0.8 per default). These sequences are excluded for the next steps.
 
-**Closests reference sequences file** (FPStep1_closests_ref_sequences.txt):
+**Closests reference sequences file** (frogsfunc_placeseqs_closests_ref_sequences.txt):
 
  Informations about closests reference sequences from studies sequences (i.e. OTUs).
 
-**FPStep1 fasta file**
+**frogsfunc_placeseqs fasta file**
 
- OTUs sequence file without non insert sequences. (FPStep1.fasta)
+ OTUs sequence file without non insert sequences. (frogsfunc_placeseqs.fasta)
 
-**FPStep1 biom file**
+**frogsfunc_placeseqs biom file**
 
- OTUs biom file without non insert sequences. (FPStep1.biom)
+ OTUs biom file without non insert sequences. (frogsfunc_placeseqs.biom)
 
-**Summary file** (FPStep1_summary.html):
+**Summary file** (frogsfunc_placeseqs_summary.html):
    
  The summary file describing which OTUs are contained or not in the phylogenetic tree. Note that picrust2 uses its own reference tree to affiliate OTUs from reference sequences. The summary file indicates for each OTU which is the closest picrust2 reference sequence, and compares it to the FROGS taxonomy. Clicking on the sequence ID give you more information about it (`JGI database &lt;https://img.jgi.doe.gov/&gt;`_).
 
-.. image:: static/images/FROGS_FPStep1_piecharts.png
+.. image:: static/images/FROGS_frogsfunc_placeseqs_piecharts.png
 	:height: 290
 	:width: 676
 
@@ -183,7 +183,7 @@ OTUs are excluded if the total length of the input sequence aligned against refe
 
 Result table
 
-.. image:: static/images/FROGS_FPStep1_table_JGI.png
+.. image:: static/images/FROGS_frogsfunc_placeseqs_table_JGI.png
 	:height: 580
 	:width: 1220
 
@@ -203,7 +203,7 @@ Result table
 
 * **Comment** : " identical taxonomy " if the FROGS and Picrus2 taxonomic affiliations are identical. " identical sequence " if the OTU sequence is the same as the reference sequence.
 
-.. image:: static/images/FROGS_FPStep1_closest_explained.png
+.. image:: static/images/FROGS_frogsfunc_placeseqs_closest_explained.png
 
 Closest reference sequence (from JGI database) from one cluster sequence.
 

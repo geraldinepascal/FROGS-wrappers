@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_PICRUSt2_hsp" name="FPStep2" version= "beta">
+<tool id="FROGS_PICRUSt2_hsp" name="frogsfunc_copynumbers" version= "beta">
 	<description>Predict the copy number of gene families present in the predicted genome for each study sequence.</description>
 
 	<macros>
@@ -29,7 +29,7 @@
         <exit_code range=":-1" />
     </stdio>
     <command >
-	   FPStep2.py
+	   frogsfunc_copynumbers.py
             --input-biom $input_biom
 	   		--tree $input_tree
 	   		#if $category.value == "16S"
@@ -47,10 +47,10 @@
 	</command> 
 	<inputs>
 	    <!-- Input files -->
-        <param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="FPStep1 sequence abundances output file (FPStep1.biom)." optional="false">
+        <param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="frogsfunc_placeseqs sequence abundances output file (frogsfunc_placeseqs.biom)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-	    <param argument="--tree" format="nhx" name="input_tree" type="data" label="Tree file" help="The full reference tree in newick format containing both study sequences (i.e. ASVs or OTUs) and reference sequences (FPStep1 output tree)."
+	    <param argument="--tree" format="nhx" name="input_tree" type="data" label="Tree file" help="The full reference tree in newick format containing both study sequences (i.e. ASVs or OTUs) and reference sequences (frogsfunc_placeseqs output tree)."
 	    	optional="false">
         	<validator type="empty_field" message="This parameter is required." />
         </param>
@@ -83,22 +83,22 @@
 		</param> 
 	</inputs>
 	<outputs>
-        <data format="html" name="summary_file" label="${tool.name}: FPStep2_summary.html" from_work_dir="FPStep2_summary.html"/>
-		<data format="tabular" name="out_function" label="${tool.name}: FPStep2_predicted_functions.tsv" from_work_dir="FPStep2_predicted_functions.tsv"/>
-		<data format="tabular" name="out_marker" label="${tool.name}: FPStep2_marker_copy_number.tsv" from_work_dir="${category}_marker_copy_number.tsv"/> 
+        <data format="html" name="summary_file" label="${tool.name}: frogsfunc_copynumbers_summary.html" from_work_dir="frogsfunc_copynumbers_summary.html"/>
+		<data format="tabular" name="out_function" label="${tool.name}: frogsfunc_copynumbers_predicted_functions.tsv" from_work_dir="frogsfunc_copynumbers_predicted_functions.tsv"/>
+		<data format="tabular" name="out_marker" label="${tool.name}: frogsfunc_copynumbers_marker_copy_number.tsv" from_work_dir="${category}_marker_copy_number.tsv"/> 
 	</outputs>
 
 	<tests>
 		<test>
             <param name="input_biom" value="input/FPSteps.biom" />
-			<param name="input_tree" value="references/25-FPStep1.tree" />
+			<param name="input_tree" value="references/25-frogsfunc_placeseqs.tree" />
             <param name="category" value="16S" />
             <param name="function" value="EC"/>
 			<param name="hsp_method" value="mp" />
 
-			<output name="out_function" file="references/26-FPStep2_predicted_functions.tsv" compare="diff" lines_diff="0" />
-			<output name="out_marker" file="references/26-FPStep2_marker_copy_number.tsv" compare="diff" lines_diff="0" />
-            <output name="summary_file" file="references/26-FPStep2_summary.html" compare="diff" lines_diff="0" />
+			<output name="out_function" file="references/26-frogsfunc_copynumbers_predicted_functions.tsv" compare="diff" lines_diff="0" />
+			<output name="out_marker" file="references/26-frogsfunc_copynumbers_marker_copy_number.tsv" compare="diff" lines_diff="0" />
+            <output name="summary_file" file="references/26-frogsfunc_copynumbers_summary.html" compare="diff" lines_diff="0" />
 		</test>
 	</tests>
 
@@ -116,7 +116,7 @@ Prediction of functional abundances based solely on the sequences of marker gene
 
 Context
 
-The second step of Picrust2 consists to run hidden-state prediction (hsp) to predict gene family abundances with `castor-R &lt;https://cran.r-project.org/web/packages/castor/index.html&gt;`_ of each OTUs constructed elsewhere in a reference phylogenetic tree (FPStep1). 
+The second step of Picrust2 consists to run hidden-state prediction (hsp) to predict gene family abundances with `castor-R &lt;https://cran.r-project.org/web/packages/castor/index.html&gt;`_ of each OTUs constructed elsewhere in a reference phylogenetic tree (frogsfunc_placeseqs). 
 
 
 
@@ -130,12 +130,12 @@ Inputs
 
 **Tree file** (format newick `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_):
 
- The phylogenetic tree of insert sequences (FPStep 1 output : FPStep1_tree.nwk) 
+ The phylogenetic tree of insert sequences (frogsfunc_placeseqs output : frogsfunc_placeseqs_tree.nwk) 
 
 
 **OTUs biom file**:
 
- The OTUs biom file from FPStep1 (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (FPStep1.biom)
+ The OTUs biom file from frogsfunc_placeseqs (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (frogsfunc_placeseqs.biom)
 
 
 **Function table**:
@@ -165,9 +165,9 @@ Outputs
 
 **Output marker file**:
 
-.. image:: static/images/FROGS_FPStep2_marker.png
+.. image:: static/images/FROGS_frogsfunc_copynumbers_marker.png
 
-Output table of predicted marker gene copy numbers per study sequence in input tree. (FPStep2_marker_nsti_predicted.tsv)
+Output table of predicted marker gene copy numbers per study sequence in input tree. (frogsfunc_copynumbers_marker_nsti_predicted.tsv)
 
 Marker gene copies number prediction is used to normalize the counting matrices of the gene families. For example, if the OTU have 2
 16S copies, the number of gene families in the function file for this OTU will be divided by 2.
@@ -175,17 +175,17 @@ Marker gene copies number prediction is used to normalize the counting matrices 
 
 **Output function file**:
 
-.. image:: static/images/FROGS_FPStep2_function.png
+.. image:: static/images/FROGS_frogsfunc_copynumbers_function.png
 
-Output table with predicted abundances per study sequence in input tree. (FPStep2_predicted_functions.tsv)
+Output table with predicted abundances per study sequence in input tree. (frogsfunc_copynumbers_predicted_functions.tsv)
 
 **Summary file**:
 
-.. image:: static/images/FROGS_FPStep2_nsti.png
+.. image:: static/images/FROGS_frogsfunc_copynumbers_nsti.png
 
 Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
  
-The graph shows the number of deleted OTUs and sequences according to the NSTI threshold. It's a decision support tool to help choosing the NSTI threshold during FPStep3. A good practice is to choose a threshold that keeps a good number of sequences while ensuring that the taxonomies between FROGS and Picrust2 of these sequences do not diverge too much.
+The graph shows the number of deleted OTUs and sequences according to the NSTI threshold. It's a decision support tool to help choosing the NSTI threshold during frogsfunc_genefamilies. A good practice is to choose a threshold that keeps a good number of sequences while ensuring that the taxonomies between FROGS and Picrust2 of these sequences do not diverge too much.
 
 @HELP_CONTACT@
 
