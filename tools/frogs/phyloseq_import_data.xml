@@ -21,7 +21,7 @@
     <inputs>
         <!-- Files -->
         <param format="biom1" argument="--biomfile" type="data" label="Abundance biom file with taxonomical metadata (format: BIOM)" help="The file contains the  OTU informations "/>
-        <param format="tabular" argument="--samplefile" type="data" label="Sample file (format: TSV)" help="The file contains the samples informations."/>
+        <param format="tabular,tsv" argument="--samplefile" type="data" label="Sample file (format: TSV)" help="The file contains the samples informations."/>
         <param format="nhx" argument="--treefile" type="data" optional="true" label="Tree file (format: Newick)" help="The file contains the tree informations (optional)"/>
         <!-- Parameters -->
         <param argument="--ranks" type="text" value="Kingdom Phylum Class Order Family Genus Species" 
