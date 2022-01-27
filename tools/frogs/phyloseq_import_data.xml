@@ -1,61 +1,34 @@
-<?xml version="1.0"?>
-<!--
-# Copyright (C) 2017 INRA
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
-<tool id="FROGSSTAT_Phyloseq_Import_Data" name="FROGSSTAT Phyloseq Import Data" version="@TOOL_VERSION@+galaxy2">
-    <description>from 3 files: biomfile, samplefile, treefile </description>
-
+<tool id="FROGSSTAT_Phyloseq_Import_Data" name="FROGSSTAT Phyloseq Import Data" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+    <description>from 3 files: biomfile, samplefile, treefile</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements_phyloseq" />
-
-        <stdio>
-            <exit_code range="1:" />
-            <exit_code range=":-1" />
-        </stdio>
-    <command>
-                phyloseq_import_data.py   --biomfile '$biomfile'
-                                --samplefile '$samplefile'
-                                #if $treefile
-                                  --treefile '$treefile'
-                                #end if
-                                --ranks $ranks
-                                #if $normalisation
-                                    --normalisation
-                                #end if
-                                --html '$html'
-                                --rdata '$data'
+    <command detect_errors="exit_code">
+        phyloseq_import_data.py
+            --biomfile '$biomfile'
+            --samplefile '$samplefile'
+            #if $treefile
+                --treefile '$treefile'
+            #end if
+            --ranks $ranks
+            #if $normalisation
+                --normalisation
+            #end if
+            --html '$html'
+            --rdata '$data'
     </command>
     <inputs>
         <!-- Files -->
-        <param format="biom1" name="biomfile" type="data" label="Abundance biom file with taxonomical metadata" help="The file contains the  OTU informations (format: biom1)." optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
-
-        <param format="tabular" name="samplefile" type="data" label="Sample tsv file" help="The file contains the samples informations (format: tabular)." optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
-
-        <param format="nhx" name="treefile" type="data" label="Tree file (optional)" help="The file contains the tree informations (format: Newick - nhx or nwk)." optional="true" />
-
+        <param format="biom1" argument="--biomfile" type="data" label="Abundance biom file with taxonomical metadata (format: BIOM)" help="The file contains the  OTU informations "/>
+        <param format="tabular" argument="--samplefile" type="data" label="Sample file (format: TSV)" help="The file contains the samples informations."/>
+        <param format="nhx" argument="--treefile" type="data" optional="true" label="Tree file (format: Newick)" help="The file contains the tree informations (optional)"/>
         <!-- Parameters -->
-        <param name="ranks" type="text" label="Names of taxonomics levels" help="The ordered taxonomic levels stored in BIOM. Each level is separated by one space."  value="Kingdom Phylum Class Order Family Genus Species" size="80" optional="false"/>
-        <param name="normalisation" type="boolean" label="Do you want to normalise your data ?" help="To normalise data before statistical analysis (default : No)." optional="false" />
+        <param argument="--ranks" type="text" value="Kingdom Phylum Class Order Family Genus Species" 
+            label="Names of taxonomics levels" help="The ordered taxonomic levels stored in BIOM. Each level is separated by one space">
+            <expand macro="sanitizer_validator"/>
+        </param>
+        <param argument="--normalisation" type="boolean" label="Do you want to normalise your data ?" help="To normalise data before statistical analysis (default : No)"/>
     </inputs>
     <outputs>
         <data format="rdata" name="data" label="${tool.name}: data.Rdata" from_work_dir="data.Rdata"/>
@@ -144,9 +117,5 @@ Output
 @HELP_CONTACT@
 
     </help>
-
-    <citations>
-        <expand macro="citations" />
-    </citations>
-    
+    <expand macro="citations" />
 </tool>
