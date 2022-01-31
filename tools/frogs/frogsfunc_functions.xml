@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_PICRUSt2_metagenome" name="frogsfunc_genefamilies" version= "beta">
+<tool id="FROGS_PICRUSt2_metagenome" name="frogsfunc_functions" version= "beta">
     <description>Per-sample metagenome functional profiles based on the predicted functions for each study sequence.</description>
 
     <macros>
@@ -29,7 +29,7 @@
         <exit_code range=":-1" />
     </stdio>
     <command >
-       frogsfunc_genefamilies.py
+       frogsfunc_functions.py
             --input-biom $input_biom
             --function $function
             --marker $marker
