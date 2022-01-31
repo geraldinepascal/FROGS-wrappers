@@ -50,10 +50,10 @@
 	</command> 
 	<inputs>
     	<!-- Input files -->
-		<param argument="--input-fasta" format="fasta" name="input_fasta" type="data" label="Sequence file" help="Fasta file of unaligned studies sequences (format: fasta)." optional="false">
+		<param argument="--input-fasta" format="fasta" name="input_fasta" type="data" label="Sequence file" help="The sequence file to analyse (format: fasta)." optional="false">
        		<validator type="empty_field" message="This parameter is required." />
     	</param>
-		<param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="Abundance table of OTUs (format: biom). Taxonomic affiliations must be done before (FROGS Affiliation OTU step)." optional="false">
+		<param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance file to analyse (format: biom). Taxonomic affiliations must be inside (FROGS Affiliation OTU step)." optional="false">
         	<validator type="empty_field" message="This parameter is required." />
         </param>
     	<!-- Parameters -->
@@ -64,11 +64,11 @@
 					<validator type="no_options" message="A built-in database is not available" />
 			</options>
 		</param>
-        <param argument="--placement-tool" name="placement_tool" type="select" label="Placement tool" help="Placement tool for insertion of OTUs (or ASVs) into the reference tree. SEPP is a low-memory alternative to EPA-ng for placing sequences." multiple="false" display="radio">
+        <param argument="--placement-tool" name="placement_tool" type="select" label="Placement tool" help="Placement tool for insertion of sequences into the reference tree. SEPP is a low-memory alternative to EPA-ng for placing sequences." multiple="false" display="radio">
         	<option value="epa-ng">epa-ng</option>
         	<option value="sepp">sepp</option>
 		</param>
-		<param argument="--min-align" name="min_align" type="float" label="Minimum alignment length" help="Proportion of the total length of an input query sequence that must align with reference sequences. Any sequences with lengths below this value after making an alignment with reference sequences will be excluded from the placement and all subsequent steps. (default: 0.80)" value="0.8" min="0" max="1" optional="false" /> 
+		<param argument="--min-align" name="min_align" type="float" label="Minimum alignment length" help="Proportion of the total length of an input sequence that must align with reference sequences. All other will be out. (default: 0.80)" value="0.8" min="0" max="1" optional="false" /> 
 	</inputs>
 
 	<outputs>
@@ -105,15 +105,13 @@
 
 What it does
 
-Prediction of functional abundances based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. The available marker genes are 16S, ITS and 18S.
+FROGSFUNC_placeseqs is the first step of PICRUSt2. It inserts your study sequences into a reference tree (`details&lt;https://github.com/picrust/picrust2/wiki/Sequence-placement&gt;`_). By default, this reference tree is based on 20,000 16S sequences from genomes in the Integrated Microbial Genomes database. The script performs this step, which specifically:
 
-.. class:: infomark page-header h2
+    - Aligns your study sequences with a multiple-sequence alignment of reference 16S, ITS or 18S sequences with `HMMER &lt;http://hmmer.org&gt;`_.
 
-Context
+    - Find the most likely placements of your study sequences in the reference tree with `EPA_NG &lt;https://github.com/Pbdas/epa-ng#build-instructions&gt;`_ or `SEPP &lt;https://github.com/smirarab/sepp&gt;`_.
 
-The first step of Picrust2 consists in placing the nucleotide sequences of the OTUs constructed elsewhere in a reference phylogenetic tree. 
-The phylogenetic placement is done with `HMMER &lt;http://hmmer.org&gt;`_ to place study sequences into a reference multiple-sequence alignment  (`EPA_NG &lt;https://github.com/Pbdas/epa-ng#build-instructions&gt;`_ or `SEPP &lt;https://github.com/smirarab/sepp&gt;`_) to places these sequences into the reference phylogeny and product finaly tree with `GAPPA &lt;https://github.com/lczech/gappa&gt;`_.
-
+    - Output a treefile with the most likely placement for each sequence as the new tips with `GAPPA &lt;https://github.com/lczech/gappa&gt;`_.
 
 .. class:: infomark page-header h2
 
@@ -140,7 +138,8 @@ Input
 
 .. image:: static/images/icon_warning_sml.gif 
 
-So, if the tool crashes with EPA-ng, try SEPP.
+So, if the tool crashes with EPA-ng, try again with SEPP.
+
 
 .. class:: h3
 
@@ -150,26 +149,25 @@ Outputs
 
  The phylogenetic tree output with insert sequences into the reference tree (format: newick). (format `nhx &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
 
+**Excluded sequence file** (frogsfunc_placeseqs_excluded.tsv):
 
-**Excluded sequences file** (frogsfunc_placeseqs_excluded.tsv):
-
- List of sequences not inserted in the picrust2 reference tree. Sequences are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold (0.8 per default). These sequences are excluded for the next steps.
+ List of sequences not inserted in the PICRUSt2 reference tree. Sequences are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold (0.8 per default). These sequences are excluded for the next steps.
 
 **Closests reference sequences file** (frogsfunc_placeseqs_closests_ref_sequences.txt):
 
- Informations about closests reference sequences from studies sequences (i.e. OTUs).
+ Information on the sequences from the PICRUST2 reference tree that are the closest neighbours of your studied sequences. 
 
 **frogsfunc_placeseqs fasta file**
 
- OTUs sequence file without non insert sequences. (frogsfunc_placeseqs.fasta)
+ sequence file of inserted sequences into reference tree (frogsfunc_placeseqs.fasta)
 
 **frogsfunc_placeseqs biom file**
 
- OTUs biom file without non insert sequences. (frogsfunc_placeseqs.biom)
+ OTUs biom file of inserted sequences into reference trees. (frogsfunc_placeseqs.biom)
 
 **Summary file** (frogsfunc_placeseqs_summary.html):
    
- The summary file describing which OTUs are contained or not in the phylogenetic tree. Note that picrust2 uses its own reference tree to affiliate OTUs from reference sequences. The summary file indicates for each OTU which is the closest picrust2 reference sequence, and compares it to the FROGS taxonomy. Clicking on the sequence ID give you more information about it (`JGI database &lt;https://img.jgi.doe.gov/&gt;`_).
+ The summary file describing which OTUs are contained or not in the phylogenetic tree. Note that PICRUSt2 uses its own reference tree to affiliate OTUs from reference sequences. The summary file indicates for each OTU which is the closest PICRUSt2 reference sequence, and compares it to the FROGS taxonomy. Clicking on the sequence ID gives you more information about it (`JGI database &lt;https://img.jgi.doe.gov/&gt;`_).
 
 .. image:: static/images/FROGS_frogsfunc_placeseqs_piecharts.png
 	:height: 290
@@ -187,21 +185,21 @@ Result table
 	:height: 580
 	:width: 1220
 
-* **Cluster** : Cluster name.
+* **Cluster** : OTU name.
 
-* **FROGS Taxonomy** : Taxonomic affiliation made with FROGS (FROGS Affiliation OTU).
+* **FROGS Taxonomy** : Taxonomic affiliation made by FROGS (FROGS Affiliation OTU).
 
-* **Picrust2 Closest ID** : Identifiant (JGI) of the closest reference sequence from the OTU inserted in the reference tree (see the explanatory illustration at the bottom of the help page).
+* **PICRUSt2 Closest ID** : Identifiant (JGI) of the closest reference sequence from the OTU inserted in the reference tree (see the explanatory illustration at the bottom of this page).
  
-* **Picrust2 closest reference name** : Genome Name / Sample Name.
+* **PICRUSt2 closest reference name** : Genome Name / Sample Name.
 
-* **Picrust2 closest taxonomy** : Taxonomy (JGI) of the closest reference sequence from the OTU inserted in the reference tree under the following format: Kingdom;Phylum;Class;Order;Family;Genus;Species
+* **PICRUSt2 closest taxonomy** : Taxonomy (JGI) of the closest reference sequence from the OTU inserted in the reference tree under the following format: Kingdom;Phylum;Class;Order;Family;Genus;Species
 
-* **Picrust2 closest distance from cluster (NSTI)** : Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
+* **PICRUSt2 closest distance from cluster (NSTI)** : Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 
-* **Lowest same taxonomic rank between FROGS and Picrust2** : Comparison between FROGS and Picrust2 taxonomic affiliations.
+* **Lowest same taxonomic rank between FROGS and PICRUSt2** : Comparison between FROGS and PICRUSt2 taxonomic affiliations.
 
-* **Comment** : " identical taxonomy " if the FROGS and Picrus2 taxonomic affiliations are identical. " identical sequence " if the OTU sequence is the same as the reference sequence.
+* **Comment** : " identical taxonomy " if the FROGS and PICRUSt2 taxonomic affiliations are identical. " identical sequence " if the OTU sequence is strictly the same as the reference sequence.
 
 .. image:: static/images/FROGS_frogsfunc_placeseqs_closest_explained.png
 
