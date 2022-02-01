@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-# Copyright (C) 2015 INRA
+# Copyright (C) 2022 INRAE
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGS_PICRUSt2_hsp" name="frogsfunc_copynumbers" version= "beta">
-	<description>Predict the copy number of gene families present in the predicted genome for each study sequence.</description>
+	<description>Hidden-state prediction of gene families. This script predicts the missing genome for each OTU sequence, i.e. it predicts the copy number of gene families (and 16S/ITS/18S copy number) for each OTU sequence. </description>
 
 	<macros>
         <import>macros.xml</import>
@@ -47,10 +47,10 @@
 	</command> 
 	<inputs>
 	    <!-- Input files -->
-        <param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="frogsfunc_placeseqs sequence abundances output file (frogsfunc_placeseqs.biom)." optional="false">
+        <param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance file to analyse i.e. FROGSFUNC_step1_placeseqs tool output file (frogsfunc_placeseqs.biom)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-	    <param argument="--tree" format="nhx" name="input_tree" type="data" label="Tree file" help="The full reference tree in newick format containing both study sequences (i.e. ASVs or OTUs) and reference sequences (frogsfunc_placeseqs output tree)."
+	    <param argument="--tree" format="nhx" name="input_tree" type="data" label="Tree file" help="The file contains the tree informations from FROGSFUNC_step1_placeseqs tool (format: Newick - nwk)."
 	    	optional="false">
         	<validator type="empty_field" message="This parameter is required." />
         </param>
@@ -71,10 +71,10 @@
 				<column name='path' index='2' />
 				<column name='traits' index='3' />
                 <filter type="param_value" ref="category" column="0" />   
- 		<validator type="expression" message="'EC' is the default database used by Picrust2. 'EC' or 'KO' must be at least selected. Other tables are optionnal">"EC" in value or "KO" in value</validator>               
+ 		<validator type="expression" message="'EC' is the default database used by PICRUSt2. 'EC' or 'KO' must be at least selected. Other tables are optionnal">"EC" in value or "KO" in value</validator>               
             </options>
         </param>
-		<param argument="--hsp-method" name="hsp_method" type="select" label="HSP method" help='HSP method to use."mp": predict discrete traits usingmax parsimony. "emp_prob": predict discrete traits based on empirical state probabilities across tips. "subtree_average": predict continuous traits using subtree averaging. "pic": predict continuous traits with phylogentic independent contrast. "scp": reconstruct continuous traits using squared-change parsimony (default: mp).' multiple="false" display="radio">
+		<param argument="--hsp-method" name="hsp_method" type="select" label="HSP method" help='Hidden-state prediction method to use: maximum parsimony (mp), empirical probabilities (emp_prob), continuous traits prediction using subtree averaging (subtree_average), continuous traits prediction with phylogentic independent contrast (pic), continuous traits reconstruction using squared-change parsimony (scp) (default: mp).' multiple="false" display="radio">
             <option value="mp">mp</option>
             <option value="emp_prob">emp_prob</option>
             <option value="pic">pic</option>
@@ -110,14 +110,13 @@
 
 What it does
 
-Prediction of functional abundances based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. The available marker genes are 16S, ITS and 18S.
+Prediction of functional abundances (and marker copy number) based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. The available marker genes are 16S, ITS and 18S.
 
 .. class:: infomark page-header h2
 
 Context
 
-The second step of Picrust2 consists to run hidden-state prediction (hsp) to predict gene family abundances with `castor-R &lt;https://cran.r-project.org/web/packages/castor/index.html&gt;`_ of each OTUs constructed elsewhere in a reference phylogenetic tree (frogsfunc_placeseqs). 
-
+FROGSFUNC_step2_copynumber is the second step of PICRUSt2. It runs hidden-state prediction (hsp) to predict gene family abundances with `castor-R &lt;https://cran.r-project.org/web/packages/castor/index.html&gt;`_ of each OTUs placed in the PICRUSt2 reference phylogenetic tree (FROGSFUNC_step1_placeseqs outputs). 
 
 
 .. class:: infomark page-header h2
@@ -128,37 +127,33 @@ Inputs/Outputs
 
 Inputs
 
-**Tree file** (format newick `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_):
+**Tree file** (format newick `nwk &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_):
 
- The phylogenetic tree of insert sequences (frogsfunc_placeseqs output : frogsfunc_placeseqs_tree.nwk) 
+  The file contains the tree informations from FROGSFUNC_step1_placeseqs (FROGSFUNC_step1_placeseqs output : frogsfunc_placeseqs_tree.nwk) 
 
 
 **OTUs biom file**:
 
- The OTUs biom file from frogsfunc_placeseqs (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (frogsfunc_placeseqs.biom)
+ The abundance file to analyse i.e. FROGSFUNC_step1_placeseqs tool output file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (frogsfunc_placeseqs.biom)
 
 
 **Function table**:
 
-If the genetic marker studied is 16S RNA gene: 
-Which default pre-calculated count table to use. For 16S rRNA gene you can choose between: 'EC', 'KO', 'COG', 'PFAM', 'TIGRFAM', and/or 'PHENO'.
+If the genetic marker studied is 16S rRNA gene: 
+Which default pre-calculated count table to use ?
+	For 16S rRNA gene you can choose between: 'EC', 'KO', 'PFAM', 'COG', 'TIGRFAM', and/or 'PHENO'. You must select at least 'EC' or 'KO' because for next FROGSFUNC tools, the information from Metacyc (EC) or KEGG (KO) are requiered.
 
-For further processes by other FROGS Picrust2 tools that requiring Metacyc and Kegg databases, you must select at least 'EC' or 'KO'.
-
-For ITS and 18S markers, 'EC' is only available.
+	For ITS and 18S markers, 'EC' is only available.
 
 For more informations about the different databases:
 
  - EC : https://enzyme.expasy.org/
-
- - COG : https://www.ncbi.nlm.nih.gov/research/cog-project/
-
  - KO : https://www.genome.jp/kegg/ko.html
-
  - PFAM : http://pfam.xfam.org/
-
+ - COG : https://www.ncbi.nlm.nih.gov/research/cog-project/
  - TIGRFAM : https://tigrfams.jcvi.org/cgi-bin/index.cgi
-
+ - PHENO : https://phenodb.org/
+	     
 .. class:: h3
 
 Outputs
@@ -167,25 +162,24 @@ Outputs
 
 .. image:: static/images/FROGS_frogsfunc_copynumbers_marker.png
 
-Output table of predicted marker gene copy numbers per study sequence in input tree. (frogsfunc_copynumbers_marker_nsti_predicted.tsv)
+Output table of predicted marker gene copy numbers per sequence. (frogsfunc_copynumbers_marker_nsti_predicted.tsv)
 
-Marker gene copies number prediction is used to normalize the counting matrices of the gene families. For example, if the OTU have 2
-16S copies, the number of gene families in the function file for this OTU will be divided by 2.
+Marker gene copies number prediction is used to normalize the counting matrices of metabolic functions. For example, if the OTU has two 16S copies, the abundance of metabolic function for this OTU will be divided by 2.
 
 
 **Output function file**:
 
 .. image:: static/images/FROGS_frogsfunc_copynumbers_function.png
 
-Output table with predicted abundances per study sequence in input tree. (frogsfunc_copynumbers_predicted_functions.tsv)
+Output table with predicted function abundances per sequence. (frogsfunc_copynumbers_predicted_functions.tsv)
 
 **Summary file**:
 
 .. image:: static/images/FROGS_frogsfunc_copynumbers_nsti.png
 
-Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
- 
-The graph shows the number of deleted OTUs and sequences according to the NSTI threshold. It's a decision support tool to help choosing the NSTI threshold during frogsfunc_genefamilies. A good practice is to choose a threshold that keeps a good number of sequences while ensuring that the taxonomies between FROGS and Picrust2 of these sequences do not diverge too much.
+Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences. 
+
+The graph shows the number of deleted OTUs and sequences according to the NSTI threshold. It is a decision support graphic to help choosing the NSTI threshold. This NSTI threshold will be asked to set in the next tool FROGSFUNC_step3_functions. A good practice is to choose a threshold that retains a good number of sequences while ensuring that the taxonomies derived from FROGS and PICRUSt2 do not diverge too much.
 
 @HELP_CONTACT@
 
