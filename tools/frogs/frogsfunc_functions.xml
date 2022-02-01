@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <!--
-# Copyright (C) 2015 INRA
+# Copyright (C) 2022 INRAE
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGS_PICRUSt2_metagenome" name="frogsfunc_functions" version= "beta">
-    <description>Per-sample metagenome functional profiles based on the predicted functions for each study sequence.</description>
+    <description>Predicting of functions weighted by the relative abundance of OTUs in the community. Inferring the metagenomes of the communities.</description>
 
     <macros>
         <import>macros.xml</import>
@@ -49,19 +49,19 @@
     </command> 
     <inputs>
         <!-- Input files -->
-        <param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="frogsfunc_placeseqs sequence abundances output file (frogsfunc_placeseqs.biom)." optional="false">
+        <param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance file i.e. FROGSFUNC_step1_placeseqs tool output file (frogsfunc_placeseqs.biom)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-        <param argument='--function' format="tabular" type="data" label="Function file" help="Copy number table of gene families/functions present in the predicted genome for each OTU (output of frogsfunc_copynumbers : frogsfunc_copynumbers_predicted_functions.tsv)." optional="false">
+        <param argument='--function' format="tabular" type="data" label="Function file" help="Copy number table of functions present in the predicted genome for each OTU i.e. FROGSFUNC_step2_copynumbers tool output file (frogsfunc_copynumbers_predicted_functions.tsv)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-        <param argument='--marker' format="tabular" type="data" label="Marker file" help="Table of predicted marker copy number (output of frogsfunc_copynumbers : frogsfunc_copynumbers_marker_copy_number.tsv)." optional="false">
+        <param argument='--marker' format="tabular" type="data" label="Marker file" help="Table of predicted marker copy number i.e. FROGSFUNC_step2_copynumbers output (frogsfunc_copynumbers_marker_copy_number.tsv)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
         <!-- Parameters-->
-        <param argument="--max-nsti" name="max_nsti" type="float" label="NSTI cut-off" help="Sequences with NSTI values above this value will be excluded (default: 2)" value="2" min="0" optional="false" /> 
-        <param argument="--min-reads" name="min_reads" type="integer" optional="false" min="1" value="1" label="Minimum number of reads accross all samples" help='Minimum number of reads across all samples for each input OTU. OTUs below this cut-off will be counted as part of the "RARE" category in the stratified output but not removed from the analysis (default: 1).' />
-       <param  argument="--min-samples" name="min_samples" type="integer" optional="false" min="1" value="1" label="Minimum number of samples to keep an OTU."  help='Minimum number of samples that an OTU needs to be identified within. OTUs below this cut-off will be counted as part of the "RARE" category in the stratified output but not removed from the analysis (default: 1).' />
+        <param argument="--max-nsti" name="max_nsti" type="float" label="NSTI cut-off" help="Any sequence with an NSTI above this threshold will be out. (default: 2)" value="2" min="0" optional="false" /> 
+        <param argument="--min-reads" name="min_reads" type="integer" optional="false" min="1" value="1" label="Minimum abundance to keep an OTU" help='All OTUs containing less than this minimum threshold of sequences will all be grouped in the "RARE" category. (default: 1).' />
+       <param  argument="--min-samples" name="min_samples" type="integer" optional="false" min="1" value="1" label="Minimum number of samples to keep an OTU."  help='All OTUs present in less than this minimum sample threshold will be grouped in the RARE category. (default: 1).' />
         <param name="strat" type="boolean" label="Do you want a stratified table per sequence ?" help='Product another table of the predicted gene abundance contributed by each OTU. Note this will greatly increase the runtime.' />
         <param name="hierarchy_ranks" type="hidden" help="The ordered genes ranks levels stored in BIOM. Each rank is separated by one space." value="Level1 Level2 Level3 Gene" size="80" />
     </inputs>
@@ -104,13 +104,12 @@
 
 What it does
 
-Prediction of functional abundances based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. The available marker genes are 16S, ITS and 18S.
-
-.. class:: infomark page-header h2
-
-Context
-
-Firstly, the input sequence abundance table (function file output of frogsfunc_copynumbers) is normalized by the predicted number of marker genes (marker file). It will then determine the predicted functional profiles per sample. The normalized sequence abundance table and the weighted nearest-sequenced taxon index values per-sample will also be output.
+Predicting of functions weighted by the relative abundance of OTUs in the community. Inferring the metagenomes of the communities with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_.
+There are two steps performed at this stage:
+    (i) The read depth per OTU is divided by the predicted marker (16S/ITS/18S) copy numbers. This is performed to help control for variation in marker copy numbers across organisms, which can result in interpretation issues.
+        For instance, imagine an organism with five identical copies of the 16S gene that is at the same absolute abundance as an organism with one 16S gene. The OTU corresponding to the first organism would erroneously be inferred to be at higher relative abundance simply because this organism had more copies of the 16S gene.
+         
+    (ii) The OTU read depths per sample (after normalizing by marker (16S/ITS/18S) copy number) are multiplied by the predicted gene family copy numbers per OTU.         
 
 
 .. class:: infomark page-header h2
@@ -125,22 +124,23 @@ Inputs
 
 **Biom file**:
 
- The OTUs biom file used in frogsfunc_placeseqs (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (frogsfunc_placeseqs.biom)
+ The OTUs biom file from FROGSFUNC_step1_placeseqs tool (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (frogsfunc_placeseqs.biom)
 
 
 **Function file**:
 
- The table of predicted marker gene copy numbers per study sequence in input tree. (frogsfunc_copynumbers_predicted_functions.tsv)
+ The table of predicted marker gene copy numbers from FROGSFUNC_step2_copynumbers tool. (frogsfunc_copynumbers_predicted_functions.tsv)
 
 **Marker file**:
 
- The table with predicted abundances per study sequence in input tree. (frogsfunc_copynumbers: marker_nsti_predicted.tsv)
+ Output table of predicted marker gene copy numbers per sequence from FROGSFUNC_step2_copynumbers tool. (frogsfunc_copynumbers_marker_nsti_predicted.tsv)
 
 
 **NSTI cut-off**:
 
- Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
+ Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences. 
 
+         
 **Do you want to normalise the final output table ?**:
 
  If stratified option is activate, the abundance predictions are done for each OTU, in order to see the contribution of each OTU within each sample. 
@@ -156,7 +156,7 @@ Outputs
 
 **Function abundance file**:
  
- Output file for metagenome abundances predictions of gene families per samples. (frogsfunc_functions_pred_metagenome_unstrat.tsv)
+ function abundance predictions of metagenome, per sample. (frogsfunc_functions_pred_metagenome_unstrat.tsv)
 
 **Seqtab normalized file**:
 
@@ -168,21 +168,21 @@ Outputs
 
 **Contrib per sequences file** (optionnal):
 
- If stratified option is activated, a new table is built, representing the contribution of each OTU within each gene families (frogsfunc_functions_pred_metagenome_contrib.tsv).
+ If stratified option is activated, a new table is built. It represents the contribution of each OTU within each functions (frogsfunc_functions_pred_metagenome_contrib.tsv).
 
 **Summary file**:
 
 .. image:: static/images/FROGS_frogsfunc_functions_piechart.png
 
 
-OTUs are excluded if the NSTI associated is above the threshold selected.
+OTUs are out if the NSTI associated is above the threshold.
 
 .. image:: static/images/FROGS_frogsfunc_functions_table.png
 
 .. image:: static/images/FROGS_frogsfunc_functions_sunburst.png
 
 
-Gene families (KEGG or Metacyc databases) are classified according to 3 hierarchy levels, the graph shows the proportion of each level within the selected samples.
+Gene families/function from KEGG or Metacyc databases are classified according to 3 hierarchy levels. The graph shows the proportion of each level within the selected samples.
 
 @HELP_CONTACT@
 
