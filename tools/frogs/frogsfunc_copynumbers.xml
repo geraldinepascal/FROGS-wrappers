@@ -162,7 +162,7 @@ Outputs
 
 .. image:: static/images/FROGS_frogsfunc_copynumbers_marker.png
 
-Output table of predicted marker gene copy numbers per sequence. (frogsfunc_copynumbers_marker_nsti_predicted.tsv)
+Output table of predicted marker gene copy numbers per sequence. (frogsfunc_copynumbers_marker.tsv)
 
 Marker gene copies number prediction is used to normalize the counting matrices of metabolic functions. For example, if the OTU has two 16S copies, the abundance of metabolic function for this OTU will be divided by 2.
 
