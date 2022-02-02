@@ -60,10 +60,13 @@
         </param>
         <!-- Parameters-->
         <param argument="--max-nsti" name="max_nsti" type="float" label="NSTI cut-off" help="Any sequence with an NSTI above this threshold will be out. (default: 2)" value="2" min="0" optional="false" /> 
-        <param argument="--min-reads" name="min_reads" type="integer" optional="false" min="1" value="1" label="Minimum abundance to keep an OTU" help='All OTUs containing less than this minimum threshold of sequences will all be grouped in the "RARE" category. (default: 1).' />
-       <param  argument="--min-samples" name="min_samples" type="integer" optional="false" min="1" value="1" label="Minimum number of samples to keep an OTU."  help='All OTUs present in less than this minimum sample threshold will be grouped in the RARE category. (default: 1).' />
-        <param name="strat" type="boolean" label="Do you want a stratified table per sequence ?" help='Product another table of the predicted gene abundance contributed by each OTU. Note this will greatly increase the runtime.' />
-        <param name="hierarchy_ranks" type="hidden" help="The ordered genes ranks levels stored in BIOM. Each rank is separated by one space." value="Level1 Level2 Level3 Gene" size="80" />
+        <conditional name="is_strat">
+            <param name="strat" type="boolean" label="Do you want a stratified table per sequence ?" help='Product another table of the predicted gene abundance contributed by each OTU. Note this will greatly increase the runtime.' />
+            <when value="true">
+                <param argument="--min-reads" name="min_reads" type="integer" optional="false" min="1" value="1" label="Minimum abundance to keep an OTU" help='All OTUs containing less than this minimum threshold of sequences will all be grouped in the "RARE" category. (default: 1).' />
+                <param  argument="--min-samples" name="min_samples" type="integer" optional="false" min="1" value="1" label="Minimum number of samples to keep an OTU."  help='All OTUs present in less than this minimum sample threshold will be grouped in the RARE category. (default: 1).' />
+            </when>
+        </conditional>
     </inputs>
     <outputs>
         <data format="html" name="summary_file" label="${tool.name}: frogsfunc_functions_summary.html" from_work_dir="frogsfunc_functions_summary.html"/>
