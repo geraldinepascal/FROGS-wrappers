@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_PICRUSt2_place_seqs" name="frogsfunc_placeseqs" version= "beta">
+<tool id="FROGS_PICRUSt2_place_seqs" name="FROGSFUNC_step1_placeseqs" version= "beta">
 	<description>Place studies sequences (i.e. OTUs) into a reference tree.</description>
 
     <macros>
@@ -105,7 +105,7 @@
 
 What it does
 
-FROGSFUNC_placeseqs is the first step of PICRUSt2. It inserts your study sequences into a reference tree (`details&lt;https://github.com/picrust/picrust2/wiki/Sequence-placement&gt;`_). By default, this reference tree is based on 20,000 16S sequences from genomes in the Integrated Microbial Genomes database. The script performs this step, which specifically:
+FROGSFUNC_step1_placeseqs is the first step of PICRUSt2. It inserts your study sequences into a reference tree (`details&lt;https://github.com/picrust/picrust2/wiki/Sequence-placement&gt;`_). By default, this reference tree is based on 20,000 16S sequences from genomes in the Integrated Microbial Genomes database. The script performs this step, which specifically:
 
     - Aligns your study sequences with a multiple-sequence alignment of reference 16S, ITS or 18S sequences with `HMMER &lt;http://hmmer.org&gt;`_.
 
