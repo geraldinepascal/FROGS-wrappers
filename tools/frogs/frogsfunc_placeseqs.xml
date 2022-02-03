@@ -82,8 +82,8 @@
 
 	<tests>
 		<test>
-			<param name="input_fasta" value="input/frogsfunc_placeseqss.fasta" />
-            <param name="input_biom" value="input/frogsfunc_placeseqss.biom" />
+			<param name="input_fasta" value="input/frogsfunc_placeseqs.fasta" />
+            <param name="input_biom" value="input/frogsfunc_placeseqs.biom" />
             <param name="placement_tool" value="sepp"/>
 			<param name="marker" value="16S" />
 			<param name="min_align" value="0.8" />
@@ -105,13 +105,13 @@
 
 What it does
 
-FROGSFUNC_step1_placeseqs is the first step of PICRUSt2. It inserts your study sequences into a reference tree (`details&lt;https://github.com/picrust/picrust2/wiki/Sequence-placement&gt;`_). By default, this reference tree is based on 20,000 16S sequences from genomes in the Integrated Microbial Genomes database. The script performs this step, which specifically:
+FROGSFUNC_step1_placeseqs is the first step of PICRUSt2. It inserts your study sequences into a reference tree (`details&lt;https://github.com/picrust/picrust2/wiki/Sequence-placement&gt;`_). By default, this reference tree is based on 20,000 16S sequences from genomes in the `Integrated Microbial Genomes database&lt;https://img.jgi.doe.gov/&gt;`_. The script performs this step, which specifically:
 
     - Aligns your study sequences with a multiple-sequence alignment of reference 16S, ITS or 18S sequences with `HMMER &lt;http://hmmer.org&gt;`_.
 
-    - Find the most likely placements of your study sequences in the reference tree with `EPA_NG &lt;https://github.com/Pbdas/epa-ng#build-instructions&gt;`_ or `SEPP &lt;https://github.com/smirarab/sepp&gt;`_.
+    - Finds the most likely placements of your study sequences in the reference tree with `EPA_NG &lt;https://github.com/Pbdas/epa-ng#build-instructions&gt;`_ or `SEPP &lt;https://github.com/smirarab/sepp&gt;`_.
 
-    - Output a treefile with the most likely placement for each sequence as the new tips with `GAPPA &lt;https://github.com/lczech/gappa&gt;`_.
+    - Produces a treefile with the most likely placement for each sequence as the new tips with `GAPPA &lt;https://github.com/lczech/gappa&gt;`_.
 
 .. class:: infomark page-header h2
 
@@ -128,8 +128,7 @@ Input
 
 **Biom file** (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_):
 
-
- The OTUs biom file. Taxonomic affiliations must be done before (FROGS Affiliation OTU step).
+ The OTUs biom file. Taxonomic affiliations must be done before (bion file form FROGS Affiliation OTU tool).
 
 
 **Placement tool** 
@@ -157,17 +156,17 @@ Outputs
 
  Information on the sequences from the PICRUST2 reference tree that are the closest neighbours of your studied sequences. 
 
-**frogsfunc_placeseqs fasta file**
+**File of sequences placed in the phylogenetic tree** (frogsfunc_placeseqs.fasta)
 
- sequence file of inserted sequences into reference tree (frogsfunc_placeseqs.fasta)
+ Sequence file of inserted sequences into PICRUST2 reference tree.
 
-**frogsfunc_placeseqs biom file**
+**Abundance table** (frogsfunc_placeseqs.biom)
 
- OTUs biom file of inserted sequences into reference trees. (frogsfunc_placeseqs.biom)
+ OTU abundance biom file of inserted sequences into reference tree. 
 
 **Summary file** (frogsfunc_placeseqs_summary.html):
    
- The summary file describing which OTUs are contained or not in the phylogenetic tree. Note that PICRUSt2 uses its own reference tree to affiliate OTUs from reference sequences. The summary file indicates for each OTU which is the closest PICRUSt2 reference sequence, and compares it to the FROGS taxonomy. Clicking on the sequence ID gives you more information about it (`JGI database &lt;https://img.jgi.doe.gov/&gt;`_).
+ The summary file describing which OTUs are contained or not in the phylogenetic tree. Note that PICRUSt2 uses its own reference tree to affiliate OTUs from reference sequences. The summary file indicates for each OTU which is the closest PICRUSt2 reference sequence, and compares it to the original FROGS taxonomy. Clicking on the sequence ID gives you more information about it (`JGI database &lt;https://img.jgi.doe.gov/&gt;`_).
 
 .. image:: static/images/FROGS_frogsfunc_placeseqs_piecharts.png
 	:height: 290
