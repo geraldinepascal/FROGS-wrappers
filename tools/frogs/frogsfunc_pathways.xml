@@ -51,7 +51,7 @@
 	</command> 
 	<inputs>
         <!-- Input files -->       
-        <param argument="--input-file" format="tabular" name="input_file" type="data" label="Function abundance file" help="TSV table from FROGSFUNC_step3_function tool, either frogsfunc_functions_unstrat.tsv (unstratified table) or frogsfunc_functions_strat.tsv (stratified table)" optional="false">
+        <param argument="--input-file" format="tabular" name="input_file" type="data" label="Function abundance file" help="TSV function abundances table from FROGSFUNC_step3_function tool, frogsfunc_functions_unstrat.tsv (unstratified table)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
 	      <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
@@ -146,7 +146,7 @@ Input
 
 **Function prediction abundance file**:
 
- TSV table from FROGSFUNC_step3_function tool, either frogsfunc_functions_unstrat.tsv (unstratified table) or frogsfunc_functions_strat.tsv (stratified table).
+ TSV function abundances table from FROGSFUNC_step3_function tool, frogsfunc_functions_unstrat.tsv (unstratified table).
 
 **Map file**:
 
