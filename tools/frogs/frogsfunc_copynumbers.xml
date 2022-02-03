@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_PICRUSt2_hsp" name="frogsfunc_copynumbers" version= "beta">
-	<description>Hidden-state prediction of gene families. This script predicts the missing genome for each OTU sequence, i.e. it predicts the copy number of gene families (and 16S/ITS/18S copy number) for each OTU sequence. </description>
+<tool id="FROGS_PICRUSt2_hsp" name="FROGSFUNC_step2_copynumbers" version= "beta">
+	<description>Hidden-state prediction of gene families/functions. This script predicts the missing genome for each OTU sequence, i.e. it predicts the copy number of gene families/functions (and 16S/ITS/18S copy number) for each OTU sequence. </description>
 
 	<macros>
         <import>macros.xml</import>
@@ -50,8 +50,7 @@
         <param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance file to analyse i.e. FROGSFUNC_step1_placeseqs tool output file (frogsfunc_placeseqs.biom)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         </param>
-	    <param argument="--tree" format="nhx" name="input_tree" type="data" label="Tree file" help="The file contains the tree informations from FROGSFUNC_step1_placeseqs tool (format: Newick - nwk)."
-	    	optional="false">
+	    <param argument="--tree" format="nhx" name="input_tree" type="data" label="Tree file" help="The file contains the tree informations from FROGSFUNC_step1_placeseqs tool (frogsfunc_placeseqs_tree.nwk)." optional="false">
         	<validator type="empty_field" message="This parameter is required." />
         </param>
 	   	<!-- Parameters-->
@@ -85,19 +84,19 @@
 	<outputs>
         <data format="html" name="summary_file" label="${tool.name}: frogsfunc_copynumbers_summary.html" from_work_dir="frogsfunc_copynumbers_summary.html"/>
 		<data format="tabular" name="out_function" label="${tool.name}: frogsfunc_copynumbers_predicted_functions.tsv" from_work_dir="frogsfunc_copynumbers_predicted_functions.tsv"/>
-		<data format="tabular" name="out_marker" label="${tool.name}: frogsfunc_copynumbers_marker_copy_number.tsv" from_work_dir="${category}_marker_copy_number.tsv"/> 
+		<data format="tabular" name="out_marker" label="${tool.name}: frogsfunc_copynumbers_marker.tsv" from_work_dir="${category}_marker.tsv"/> 
 	</outputs>
 
 	<tests>
 		<test>
             <param name="input_biom" value="input/FPSteps.biom" />
-			<param name="input_tree" value="references/25-frogsfunc_placeseqs.tree" />
+			<param name="input_tree" value="references/25-frogsfunc_placeseqs_tree.nwk" />
             <param name="category" value="16S" />
             <param name="function" value="EC"/>
 			<param name="hsp_method" value="mp" />
 
 			<output name="out_function" file="references/26-frogsfunc_copynumbers_predicted_functions.tsv" compare="diff" lines_diff="0" />
-			<output name="out_marker" file="references/26-frogsfunc_copynumbers_marker_copy_number.tsv" compare="diff" lines_diff="0" />
+			<output name="out_marker" file="references/26-frogsfunc_copynumbers_marker.tsv" compare="diff" lines_diff="0" />
             <output name="summary_file" file="references/26-frogsfunc_copynumbers_summary.html" compare="diff" lines_diff="0" />
 		</test>
 	</tests>
@@ -112,11 +111,7 @@ What it does
 
 Prediction of functional abundances (and marker copy number) based solely on the sequences of marker genes with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. The available marker genes are 16S, ITS and 18S.
 
-.. class:: infomark page-header h2
-
-Context
-
-FROGSFUNC_step2_copynumber is the second step of PICRUSt2. It runs hidden-state prediction (hsp) to predict gene family abundances with `castor-R &lt;https://cran.r-project.org/web/packages/castor/index.html&gt;`_ of each OTUs placed in the PICRUSt2 reference phylogenetic tree (FROGSFUNC_step1_placeseqs outputs). 
+FROGSFUNC_step2_copynumber is the second step of PICRUSt2. It runs hidden-state prediction (hsp) to predict function abundances with `castor-R &lt;https://cran.r-project.org/web/packages/castor/index.html&gt;`_ of each OTUs placed in the PICRUSt2 reference phylogenetic tree (FROGSFUNC_step1_placeseqs outputs). 
 
 
 .. class:: infomark page-header h2
@@ -139,11 +134,10 @@ Inputs
 
 **Function table**:
 
-If the genetic marker studied is 16S rRNA gene: 
 Which default pre-calculated count table to use ?
-	For 16S rRNA gene you can choose between: 'EC', 'KO', 'PFAM', 'COG', 'TIGRFAM', and/or 'PHENO'. You must select at least 'EC' or 'KO' because for next FROGSFUNC tools, the information from Metacyc (EC) or KEGG (KO) are requiered.
+ - For 16S rRNA gene you can choose between: 'EC', 'KO', 'PFAM', 'COG', 'TIGRFAM', and/or 'PHENO'. You must select at least 'EC' or 'KO' because for next FROGSFUNC tools, the information from Metacyc (EC) or KEGG (KO) are requiered.
 
-	For ITS and 18S markers, 'EC' is only available.
+ - For ITS and 18S markers, 'EC' is only available.
 
 For more informations about the different databases:
 
@@ -162,7 +156,7 @@ Outputs
 
 .. image:: static/images/FROGS_frogsfunc_copynumbers_marker.png
 
-Output table of predicted marker gene copy numbers per sequence. (frogsfunc_copynumbers_marker_nsti_predicted.tsv)
+Output table of predicted marker gene copy numbers per sequence. (frogsfunc_copynumbers_marker.tsv)
 
 Marker gene copies number prediction is used to normalize the counting matrices of metabolic functions. For example, if the OTU has two 16S copies, the abundance of metabolic function for this OTU will be divided by 2.
 
@@ -172,6 +166,7 @@ Marker gene copies number prediction is used to normalize the counting matrices 
 .. image:: static/images/FROGS_frogsfunc_copynumbers_function.png
 
 Output table with predicted function abundances per sequence. (frogsfunc_copynumbers_predicted_functions.tsv)
+
 
 **Summary file**:
 
