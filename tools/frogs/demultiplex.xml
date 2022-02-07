@@ -1,34 +1,10 @@
-<?xml version="1.0"?>
-<!--
-# Copyright (C) 2015 INRA
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
-<tool id="FROGS_demultiplex" name="FROGS Demultiplex reads" version="@TOOL_VERSION@+galaxy2">
-	<description>Attribute reads to samples in function of inner barcode.</description>
-
+<tool id="FROGS_demultiplex" name="FROGS Demultiplex reads" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+	<description>Attribute reads to samples in function of inner barcode</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements" />
-
-        <stdio>
-                <exit_code range="1:" />
-                <exit_code range=":-1" />
-        </stdio>
-	<command>
+    <command detect_errors="exit_code">
 		demultiplex.py
 		#if str( $fastq_input.fastq_input_selector ) == "paired":
 		    --input-R1 '${fastq_input.fastq_input1}'
@@ -36,16 +12,16 @@
 		#else:
 		    --input-R1 '${fastq_input.fastq_input1}'
 		#end if
-		    --input-barcode '$barcode_file'
-		    --mismatches $mismatches
-		    --end '$end'
-		    --summary '$summary'
-		    --output-demultiplexed '$demultiplexed_archive'
-		    --output-excluded '$undemultiplexed_archive'
+		--input-barcode '$input_barcode'
+	    --mismatches $mismatches
+	    --end '$end'
+	    --summary '$summary'
+	    --output-demultiplexed '$demultiplexed_archive'
+	    --output-excluded '$undemultiplexed_archive'
 	</command>
 	<inputs>
 		<!-- Input file -->
-		<param format="tabular" name="barcode_file" type="data" label="Barcode file" help="This file describes barcodes and samples (one line by sample tabulated separated from barcode sequence(s)). See Help section" optional="false" />
+		<param format="tabular" argument="--input_barcode" type="data" label="Barcode file" help="This file describes barcodes and samples (one line by sample tabulated separated from barcode sequence(s)). See Help section" />
 
 		<conditional name="fastq_input">
 	      	<param name="fastq_input_selector" type="select" label="Single or Paired-end reads" help="Select between paired and single-end data">
@@ -59,14 +35,13 @@
 	        <when value="single">
 	        	<param name="fastq_input1" type="data" format="fastq" label="Select fastq dataset" help="Specify dataset of your single end reads"/>
 	      	</when>
-	      	</conditional>
-
+	    </conditional>
 		<!-- Option -->
-		<param name="mismatches" type="integer" label="Barcode mismatches" help="Number of mismatches allowed in barcode" value="0" optional="false" />
-		<param name="end" type="select" label="Barcode on which end ?" help="The barcode is placed either at the beginning of the forward end or of the reverse end or both?">
-			<option value="bol" selected="true">Forward</option>
-			<option value="eol">Reverse</option>
-			<option value="both">Both ends</option>
+		<param argument="--mismatches" type="integer"  value="0" label="Barcode mismatches" help="Number of mismatches allowed in barcode"/>
+		<param argument="--end" type="select" label="Barcode on which end ?" help="The barcode is placed either at the beginning of the forward end or of the reverse end or both?">
+			<option value="bol" selected="true">Forward (bol)</option>
+			<option value="eol">Reverse (eol)</option>
+			<option value="both">Both ends (both)</option>
 		</param>
 	</inputs>
 	<outputs>
@@ -76,7 +51,7 @@
 	</outputs>
     <tests>
         <test>
-            <param name="barcode_file" value="input/demultiplex_barcode.txt"/>
+            <param name="input_barcode" value="input/demultiplex_barcode.txt"/>
 			<conditional name="fastq_input">
                 <param name="fastq_input_selector" value="paired"/>
             </conditional>
@@ -187,9 +162,5 @@ If you have Roche 454 sequences in sff format, you must convert them with some p
 @HELP_CONTACT@
 
 	</help>
-
-	<citations>
-		<expand macro="citations" />
-	</citations>
-	
+	<expand macro="citations" />
 </tool>

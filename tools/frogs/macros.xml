@@ -1,32 +1,55 @@
 <?xml version="1.0"?>
 <macros>
-
     <token name="@TOOL_VERSION@">3.2.3</token>
-
+    <token name="@VERSION_SUFFIX@">3</token>
+    
     <xml name="requirements">
         <requirements>
             <requirement type="package" version="@TOOL_VERSION@">frogs</requirement>
             <yield />
         </requirements>
     </xml>
-
+    <token name="@CPUS@">--nb-cpus \${GALAXY_SLOTS:-1}</token>
     <xml name="requirements_phyloseq">
         <expand macro="requirements">
-            <requirement type="package" version="2.11.4">pandoc</requirement>
-            <requirement type="package" version="4.0">r-essentials</requirement>
-            <requirement type="package" version="1.34.0">bioconductor-phyloseq</requirement>
+            <requirement type="package" version="4.1.2">r-base</requirement>
+            <!-- <requirement type="package" version="2.11.4">pandoc</requirement> -->
+            <requirement type="package" version="4.1">r-essentials</requirement>
+            <requirement type="package" version="1.38.0">bioconductor-phyloseq</requirement>
             <yield />
         </expand>
     </xml>
-
-
+    <xml name="taxonomic_ranks">
+        <param argument="--taxonomic-ranks" type="text" optional="false" value="Domain Phylum Class Order Family Genus Species" 
+            label="Taxonomic ranks" help="The ordered taxonomic ranks levels stored in BIOM. Each rank is separated by one space">
+            <sanitizer invalid_char="">
+                <valid initial="string.letters">
+                    <add value=" " />
+                </valid>
+            </sanitizer>
+            <validator type="regex">[A-Za-z ]+</validator>
+        </param>
+    </xml>
+    <xml name="sanitizer_validator">
+        <sanitizer invalid_char="">
+            <valid initial="string.letters,string.digits">
+                <add value="+" />
+                <add value="-" />
+                <add value="=" />
+                <add value=" " />
+                <add value="_" />
+                <add value="," />
+                <add value="." />
+            </valid>
+        </sanitizer>
+        <validator type="regex">[A-Za-z0-9 =-_+,.]+</validator>
+    </xml>
     <token name="@HELP_LOGO@">
 .. image:: static/images/FROGS_logo.png
    :height: 144
    :width: 110
 
     </token>
-
     <token name="@HELP_CONTACT@">
 
 ----
@@ -42,8 +65,8 @@ Website: http://frogs.toulouse.inrae.fr/
 Depending on which kind of amplicon you are working on, please cite one of the two FROGS publications:
 
     </token>
-
     <xml name="citations">
+        <citations>
         <citation type="bibtex">
             @article{10.1093/bioinformatics/btx791,
                 author = {Escudié, Frédéric and Auer, Lucas and Bernard, Maria and Mariadassou, Mahendra and Cauquil, Laurent and Vidal, Katia and Maman, Sarah and Hernandez-Raquet, Guillermina and Combes, Sylvie and Pascal, Géraldine},
@@ -76,7 +99,6 @@ Depending on which kind of amplicon you are working on, please cite one of the t
                 eprint = {https://academic.oup.com/bib/advance-article-pdf/doi/10.1093/bib/bbab318/39805849/bbab318.pdf},
             }
         </citation>
+        </citations>
     </xml>
-
-
 </macros>

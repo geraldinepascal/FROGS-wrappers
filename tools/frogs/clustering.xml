@@ -1,59 +1,32 @@
-<?xml version="1.0"?>
-<!--
-# Copyright (C) 2015 INRA
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
-<tool id="FROGS_clustering" name="FROGS Clustering swarm" version="@TOOL_VERSION@+galaxy2">
+<tool id="FROGS_clustering" name="FROGS Clustering swarm" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
     <description>Single-linkage clustering on sequences</description>
-
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements">
         <requirement type="package" version="3.0.0">swarm</requirement>
     </expand>
-
-        <stdio>
-                <exit_code range="1:" />
-                <exit_code range=":-1" />
-        </stdio>
-    <command>
-        clustering.py
-                        --nb-cpus \${GALAXY_SLOTS:-1}
-                        --input-fasta '$sequence_file'
-                        --input-count '$count_file'
-                        --output-biom '$abundance_biom'
-                        --output-fasta '$seed_file'
-                        --output-compo '$swarms_composition'
-
-                        #if $FROGS_guidelines.guidelines_version == "3.2"
-                        	--distance $FROGS_guidelines.maximal_distance
-                            $FROGS_guidelines.fastidious
-                        #end if
-
-                        #if $FROGS_guidelines.guidelines_version == "3.1"
-                        	--distance $FROGS_guidelines.maximal_distance
-                        	$FROGS_guidelines.denoising
-                        #end if
-
+    <command detect_errors="exit_code">
+    clustering.py
+        @CPUS@
+        --input-fasta '$sequence_file'
+        --input-count '$count_file'
+        --output-biom '$abundance_biom'
+        --output-fasta '$seed_file'
+        --output-compo '$swarms_composition'
+        #if $FROGS_guidelines.guidelines_version == "3.2"
+            --distance $FROGS_guidelines.distance
+            $FROGS_guidelines.fastidious
+        #end if
+        #if $FROGS_guidelines.guidelines_version == "3.1"
+            --distance $FROGS_guidelines.distance
+            $FROGS_guidelines.denoising
+        #end if
     </command>
     <inputs>
         <!-- Files -->
-        <param format="fasta" name="sequence_file" type="data" label="Sequences file" help="The dereplicated sequences file (format: fasta)." optional="false" />
-        <param format="tabular" name="count_file" type="data" label="Count file" help="It contains the count by sample for each sequence (format: TSV)." optional="false" />
+        <param format="fasta" name="sequence_file" type="data" label="Sequences file" help="The dereplicated sequences file (format: FASTA)" />
+        <param format="tabular" name="count_file" type="data" label="Count file" help="It contains the count by sample for each sequence (format: TSV)"/>
         <!-- Parameters -->
         <conditional name="FROGS_guidelines">
             <param name="guidelines_version" type="select" label="FROGS guidelines version" help="Denoising step prior to a d3 clustering is no more recommended since FROGS 3.2, but you can still choose it.">
@@ -61,44 +34,44 @@
                 <option value="3.1">First guidelines until 3.1</option>
             </param>
             <when value="3.2">
-            	<param name="maximal_distance" type="integer" label="Aggregation distance clustering" help="Maximum number of differences between sequences in each aggregation swarm step. (recommended d=1)" value="1" min="1" max="15" optional="false" />
-                <param name="fastidious" type="boolean" checked="true" truevalue="--fastidious" falsevalue="" label="Refine OTU clustering" help="Clustering will be performed with the swarm --fastidious option, which is recommended and only usable in association with a distance of 1 (default and recommended: Yes)"/>
+                <param argument="--distance" type="integer" label="Aggregation distance clustering" help="Maximum number of differences between sequences in each aggregation swarm step. (recommended d=1)" value="1" min="1" max="15" optional="false" />
+                <param argument="--fastidious" type="boolean" checked="true" truevalue="--fastidious" falsevalue="" label="Refine OTU clustering" help="Clustering will be performed with the swarm --fastidious option, which is recommended and only usable in association with a distance of 1 (default and recommended: Yes)" />
             </when>
             <when value="3.1">
-            	<param name="maximal_distance" type="integer" label="Aggregation distance clustering" help="Maximum number of differences between sequences in each aggregation swarm step." value="3" min="1" max="15" optional="false" />
-                <param name="denoising" type="boolean" checked="true" truevalue="--denoising" falsevalue="" label="Efficient denoising ? (equals to a first clustering step with d=1)" help="Clustering will be perform in two steps, first with distance = 1 and then with an aggregation distance of next input parameter (default : Yes)"/>
+                <param argument="--distance" type="integer" value="3" min="1" max="15" optional="false" label="Aggregation distance clustering" help="Maximum number of differences between sequences in each aggregation swarm step" />
+                <param argument="--denoising" type="boolean" checked="true" truevalue="--denoising" falsevalue="" label="Efficient denoising ? (equals to a first clustering step with d=1)" help="Clustering will be perform in two steps, first with distance = 1 and then with an aggregation distance of next input parameter (default : Yes)" />
             </when>
         </conditional>
     </inputs>
     <outputs>
-        <data format="fasta" name="seed_file" label="${tool.name}: seed_sequences.fasta" from_work_dir="seeds.fasta"/>
+        <data format="fasta" name="seed_file" label="${tool.name}: seed_sequences.fasta" from_work_dir="seeds.fasta" />
         <data format="biom1" name="abundance_biom" label="${tool.name}: clustering_abundance.biom" from_work_dir="abundance.biom" />
-        <data format="tabular" name="swarms_composition" label="${tool.name}: swarms_composition.tsv" from_work_dir="swarms.tsv"/>
+        <data format="tabular" name="swarms_composition" label="${tool.name}: swarms_composition.tsv" from_work_dir="swarms.tsv" />
     </outputs>
     <tests>
         <test>
-            <param name="sequence_file" value="references/01-prepro-vsearch.fasta"/>
-            <param name="count_file" value="references/01-prepro-vsearch.tsv"/>
+            <param name="sequence_file" value="references/01-prepro-vsearch.fasta" />
+            <param name="count_file" value="references/01-prepro-vsearch.tsv" />
             <conditional name="FROGS_guidelines">
-                <param name="guidelines_version" value="3.1"/>
-                <param name="maximal_distance" value="3"/>
-                <param name="denoising" value="true"/>
+                <param name="guidelines_version" value="3.1" />
+                <param name="distance" value="3" />
+                <param name="denoising" value="true" />
             </conditional>
             <output name="seed_file" file="references/02-clustering_denoising.fasta" compare="diff" lines_diff="0" />
             <output name="swarms_composition" file="references/02-clustering_denoising_compo.tsv" compare="diff" lines_diff="0" />
-            <output name="abundance_biom" file="references/02-clustering_denoising.biom" compare="sim_size" delta="0"  />
+            <output name="abundance_biom" file="references/02-clustering_denoising.biom" compare="sim_size" delta="0" />
         </test>
         <test>
-            <param name="sequence_file" value="references/01-prepro-vsearch.fasta"/>
-            <param name="count_file" value="references/01-prepro-vsearch.tsv"/>
+            <param name="sequence_file" value="references/01-prepro-vsearch.fasta" />
+            <param name="count_file" value="references/01-prepro-vsearch.tsv" />
             <conditional name="FROGS_guidelines">
-                <param name="guidelines_version" value="3.2"/>
-                <param name="maximal_distance" value="1"/>
-                <param name="fastidious" value="true"/>
+                <param name="guidelines_version" value="3.2" />
+                <param name="distance" value="1" />
+                <param name="fastidious" value="true" />
             </conditional>
             <output name="seed_file" file="references/02-clustering_fastidious.fasta" compare="diff" lines_diff="0" />
             <output name="swarms_composition" file="references/02-clustering_fastidious_compo.tsv" compare="diff" lines_diff="0" />
-            <output name="abundance_biom" file="references/02-clustering_fastidious.biom" compare="sim_size" delta="0"  />
+            <output name="abundance_biom" file="references/02-clustering_fastidious.biom" compare="sim_size" delta="0" />
         </test>
     </tests>
     <help>
@@ -208,14 +181,8 @@ The denoising step allows to build very fine clusters with minimal differences. 
 
 To have some metrics on your clusters, you can use the tool **FROGS Clusters Stat**.
 
-
-
 @HELP_CONTACT@
 
     </help>
-
-    <citations>
-        <expand macro="citations" />
-    </citations>
-    
+    <expand macro="citations" />
 </tool>

@@ -1,50 +1,25 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-# Copyright (C) 2017 INRA
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
-<tool id="FROGSSTAT_Phyloseq_Alpha_Diversity" name="FROGSSTAT Phyloseq Alpha Diversity" version="@TOOL_VERSION@+galaxy2">
+<tool id="FROGSSTAT_Phyloseq_Alpha_Diversity" name="FROGSSTAT Phyloseq Alpha Diversity" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
 	<description>with richness plot</description>
-
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements_phyloseq" />
-
-	<stdio>
-		<exit_code range="1:" />
-		<exit_code range=":-1" />
-	</stdio>
-	<command>phyloseq_alpha_diversity.py
-                                             --rdata '$data'
-                                             --varExp '$varExp'
-                                             --alpha-measures '$measures'
-                                             --alpha-out '$alphaD'
-                                             --html '$html'
+    <command detect_errors="exit_code">
+    phyloseq_alpha_diversity.py
+        --rdata '$data'
+        --varExp '$varExp'
+        --alpha-measures '$alpha_measures'
+        --alpha-out '$alphaD'
+        --html '$html'
 	</command>
     <inputs>
 		<!-- Files -->
-	    <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This file is the result of FROGS Phyloseq Import Data tool." optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
+	    <param format="rdata" name="data" type="data" label="Phyloseq object (format: RData)" help="This file is the result of FROGS Phyloseq Import Data tool"/>
 		<!-- Parameters -->
-		<param name="varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse." optional="false" value="" size="40">
-            <validator type="empty_field" message="This parameter is required." />
+		<param argument="--varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse.">
+            <expand macro="sanitizer_validator"/>
         </param>
-	    <param name="measures" type="select" label="The alpha diversity indices to compute" multiple="true" display="checkboxes">
+	    <param argument="--alpha-measures" type="select" multiple="true" display="checkboxes" label="The alpha diversity indices to compute">
              <option value="Observed" selected="True">Observed</option>
              <option value="Chao1" selected="True">Chao1</option>
              <option value="Shannon" selected="True">Shannon</option>
@@ -62,7 +37,7 @@
         <test>
             <param name="data" value="references/16-phylo_import.Rdata" />
             <param name="varExp" value="EnvType" />
-            <param name="measures" value="Observed,Chao1,Shannon" />
+            <param name="alpha_measures" value="Observed,Chao1,Shannon" />
             <output name="alphaD" file="references/18-phylo_alpha_div.tsv" compare="diff" lines_diff="0" />
             <!-- <output name="html" value="references/18-phylo_alpha_div.nb.html" compare="diff" lines_diff="0"/> -->
             <output name="html">
@@ -127,9 +102,5 @@ The data file containing table of alpha diversity indices.
 @HELP_CONTACT@
 
 	</help>
-
-    <citations>
-        <expand macro="citations" />
-    </citations>
-    
+    <expand macro="citations" />
 </tool>

@@ -1,55 +1,28 @@
-<?xml version="1.0"?>
-<!--
-# Copyright (C) 2017 INRA
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
-<tool id="FROGSSTAT_Phyloseq_Structure_Visualisation" name="FROGSSTAT Phyloseq Structure Visualisation" version="@TOOL_VERSION@+galaxy2">
+<tool id="FROGSSTAT_Phyloseq_Structure_Visualisation" name="FROGSSTAT Phyloseq Structure Visualisation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
 	<description>with heatmap plot and ordination plot</description>
-
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements_phyloseq" >
         <requirement type="package" version="4.9.3">r-plotly</requirement>
     </expand>
-
-	<stdio>
-		<exit_code range="1:" />
-		<exit_code range=":-1" />
-	</stdio>
-	<command>phyloseq_structure.py
-                                         --html '$html'
-                                         --rdata '$data'
-                                         --varExp '$varExp'
-                                         --ordination-method '$method'
-                                         --distance-matrix '$distance'
+    <command detect_errors="exit_code">
+    phyloseq_structure.py
+        --html '$html'
+        --rdata '$data'
+        --varExp '$varExp'
+        --ordination-method '$ordination_method'
+        --distance-matrix '$distance_matrix'
 	</command>
     <inputs>
 		<!-- Files -->
-	    <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data Tool." optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
-        <param name="distance" format="tabular" type="data" label="The beta diversity distance matrix file" help="These file is the result of FROGS Phyloseq Beta Diversity tool." optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
+	    <param format="rdata" name="data" type="data" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data Tool."/>
+        <param argument="--distance-matrix" format="tabular" type="data" label="The beta diversity distance matrix file" help="These file is the result of FROGS Phyloseq Beta Diversity tool"/>
 		<!-- Parameters -->
-		<param name="varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse." optional="false" value="" size="40">
-            <validator type="empty_field" message="This parameter is required." />
+		<param argument="--varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse." optional="false" value="" >
+            <expand macro="sanitizer_validator"/>
         </param>
-		<param name="method" type="select" label="Ordination method">
+		<param argument="--ordination-method" type="select" label="Ordination method">
 			<option value="MDS" >MDS/PCoA</option>
 			<option value="NMDS" >NMDS</option>
             <option value="DPCoA" >DPCoA</option>
@@ -62,8 +35,8 @@
         <test>
             <param name="data" value="references/16-phylo_import.Rdata" />
             <param name="varExp" value="EnvType" />
-            <param name="method" value="MDS" />
-            <param name="distance" value="references/unifrac.tsv" />
+            <param name="ordination_method" value="MDS" />
+            <param name="distance_matrix" value="references/unifrac.tsv" />
             <output name="html">
                 <assert_contents>
                     <has_text text='"title":{"text":"Axis.1   [22.1%]' />
@@ -126,9 +99,5 @@ For NMDS there is not simple equivalent notion.
 @HELP_CONTACT@
 
 	</help>
-
-    <citations>
-        <expand macro="citations" />
-    </citations>
-    
+    <expand macro="citations" />
 </tool>
