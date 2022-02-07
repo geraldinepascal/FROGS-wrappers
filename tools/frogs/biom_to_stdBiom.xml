@@ -1,42 +1,18 @@
-<?xml version="1.0"?>
-<!--
-# Copyright (C) 2015 INRA
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
--->
-<tool id="FROGS_biom_to_stdBiom" name="FROGS BIOM to std BIOM" version="@TOOL_VERSION@+galaxy2">
-	<description>Converts a FROGS BIOM in fully compatible BIOM.</description>
-
+<tool id="FROGS_biom_to_stdBiom" name="FROGS BIOM to std BIOM" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+	<description>Converts a FROGS BIOM in fully compatible BIOM</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements"/>
-
-        <stdio>
-                <exit_code range="1:" />
-                <exit_code range=":-1" />
-        </stdio>
-	<command>
-		biom_to_stdBiom.py
-		                --input-biom '$input_biom'
-		                --output-biom '$output_biom'
-		                --output-metadata '$output_blast_details'
+    <command detect_errors="exit_code">
+	biom_to_stdBiom.py
+		--input-biom '$input_biom'
+		--output-biom '$output_biom'
+		--output-metadata '$output_blast_details'
 	</command>
 	<inputs>
 		<!-- Files -->
-		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The FROGS BIOM file to convert (format: BIOM)." optional="false" />
+		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The FROGS BIOM file to convert (format: BIOM)" optional="false" />
 	</inputs>
 	<outputs>
 		<data format="biom1" name="output_biom" label="${tool.name}: abundance.standard.biom" from_work_dir="abundance.biom"/>
@@ -93,9 +69,5 @@ FROGS BIOM to std BIOM extracts the blast alignment details in a second file, wr
 @HELP_CONTACT@
 
 	</help>
-
-	<citations>
-		<expand macro="citations" />
-	</citations>
-	
+	<expand macro="citations" />
 </tool>

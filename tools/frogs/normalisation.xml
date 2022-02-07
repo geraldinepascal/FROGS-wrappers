@@ -21,7 +21,6 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-
     <expand macro="requirements"/>
 
         <stdio>
@@ -130,9 +129,5 @@ If the sampling method selected is " number of reads " and " remove samples " is
 @HELP_CONTACT@
 
 	</help>
-
-	<citations>
-		<expand macro="citations" />
-	</citations>
-	
+	<expand macro="citations" />
 </tool>
