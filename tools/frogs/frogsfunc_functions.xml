@@ -176,11 +176,15 @@ Outputs
 **Summary file**: (frogsfunc_functions_summary.html)
 
 .. image:: static/images/FROGS_frogsfunc_functions_piechart.png
-
+    :height: 500
+    :width: 1352
 
 OTUs are out if the NSTI associated is above the threshold.
 
 .. image:: static/images/FROGS_frogsfunc_functions_table.png
+    :height: 580
+    :width: 1352
+ 
 
 .. image:: static/images/FROGS_frogsfunc_functions_sunburst.png
 
