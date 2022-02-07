@@ -9,6 +9,16 @@
             <yield />
         </requirements>
     </xml>
+
+
+    <xml name="requirements_frogsfunc">
+        <expand macro="requirements">
+            <requirement type="package" version="2.4.1">picrust2</requirement>
+            <yield />
+        </expand>
+    </xml>
+
+
     <token name="@CPUS@">--nb-cpus \${GALAXY_SLOTS:-1}</token>
     <xml name="requirements_phyloseq">
         <expand macro="requirements">
