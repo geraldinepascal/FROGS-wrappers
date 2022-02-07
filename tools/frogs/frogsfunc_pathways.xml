@@ -62,7 +62,7 @@
               <validator type="no_options" message="A built-in database is not available" />
           </options>
 			  </param>
-        <param name="map_file" type='select' label="Pathway map file." help="For 16S marker, choose Metacyc or KEGG in accordance with your choice in the FROGSFUNC_step2_copynumbers tool. For ITS or 18S marker, Metacyc is the only valid option." optional="false" multiple='false' display='radio'>
+        <param name="map_file" type='select' label="Pathway reference" help="For 16S marker, choose Metacyc or KEGG in accordance with your choice in the FROGSFUNC_step2_copynumbers tool. For ITS or 18S marker, Metacyc is the only valid option." optional="false" multiple='false' display='radio'>
           <options from_data_table="frogs_picrust2_pathway_map">
             <column name='name' index='1'/>
             <column name='value' index='3'/>
@@ -74,10 +74,10 @@
         <conditional name="is_per_sequence_contrib">
           <param name="per_sequence_contrib" label="Do you want a stratified table ?" help='Produces a new table containing the abundances of each pathway of each OTU in each sample. Note this will greatly increase the runtime.' type="boolean" />
        	  <when value="true">
-       		  <param name="per_sequence_abun" type="data" label="abundance table normalized by the number of copies of marker" help="normalized abundance table from FROGSFUNC_step3_function tool (frogsfunc_abundance_marker_norm.tsv)." optional="false">
+       		  <param name="per_sequence_abun" type="data" label="Abundance table normalized by the number of copies of marker" help="normalized abundance table from FROGSFUNC_step3_function tool (frogsfunc_function_marker_norm.tsv)." optional="false">
               <validator type="empty_field" message="This parameter is required." />
             </param>
-       		<param name="per_sequence_function" type="data" label="frogsfunc_copynumbers abundance function file" help="table contains predicted function abundances per sequence from FROGSFUNC_step2_copynumbers tool (frogsfunc_copynumbers_predicted_functions.tsv)." optional="false">
+       		<param name="per_sequence_function" type="data" label="Abundance function file" help="table contains predicted function abundances per sequence from FROGSFUNC_step2_copynumbers tool (frogsfunc_copynumbers_predicted_functions.tsv)." optional="false">
             <validator type="empty_field" message="This parameter is required." />
         	</param>
        	  </when>
@@ -85,40 +85,40 @@
         </inputs>
 	<outputs>
 		<data format="html" name="summary_file" label="${tool.name}: frogsfunc_pathways_summary.html" from_work_dir="frogsfunc_pathways_summary.html"/>
-		 <data format="tabular" name="abund" label="${tool.name}: frogsfunc_pathways_path_abun_unstrat.tsv" from_work_dir="frogsfunc_pathways_path_abun_unstrat.tsv"/> 
-         <data format="tabular" name="contrib" label="${tool.name}: frogsfunc_pathways_path_abun_contrib.tsv" from_work_dir="frogsfunc_pathways_path_abun_contrib.tsv"> 
+		 <data format="tabular" name="abund" label="${tool.name}: frogsfunc_pathways_unstrat.tsv" from_work_dir="frogsfunc_pathways_unstrat.tsv"/> 
+         <data format="tabular" name="contrib" label="${tool.name}: frogsfunc_pathways_strat.tsv" from_work_dir="frogsfunc_pathways_strat.tsv"> 
             <filter>is_per_sequence_contrib['per_sequence_contrib']</filter>
          </data>
-         <data format="tabular" name="predictions" label="${tool.name}: frogsfunc_pathways_path_abun_predictions.tsv" from_work_dir="frogsfunc_pathways_path_abun_predictions.tsv">
+         <data format="tabular" name="predictions" label="${tool.name}: frogsfunc_pathways_predictions.tsv" from_work_dir="frogsfunc_pathways_predictions.tsv">
             <filter>is_per_sequence_contrib['per_sequence_contrib']</filter>
          </data>
 	</outputs>
 
   <tests>
     <test>
-      <param name="input_file" value="references/27-frogsfunc_genefamilies_pred_metagenome_unstrat.tsv" />
+      <param name="input_file" value="references/27-frogsfunc_functions_unstrat.tsv" />
       <param name="category" value="16S" />
       <param name="map_file" value="/save/frogs/bin/PICRUST/picrust2-2.4.1/picrust2/frogsfunc_suppdata/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt"/>
         <conditional name="is_per_sequence_contrib">
         <param name="per_sequence_contrib" value="false"/>
         </conditional>
 
-      <output name="abund" file="references/28-frogsfunc_pathways_path_abun_unstrat.tsv" compare="diff" lines_diff="0" />
+      <output name="abund" file="references/28-frogsfunc_pathways_unstrat.tsv" compare="diff" lines_diff="0" />
       <output name="summary_file" file="references/28-frogsfunc_pathways_summary.html" compare="diff" lines_diff="0" />
     </test>
     <test>
-      <param name="input_file" value="references/27-frogsfunc_genefamilies_pred_metagenome_unstrat.tsv" />
+      <param name="input_file" value="references/27-frogsfunc_functions_unstrat.tsv" />
       <param name="category" value="16S" />
       <param name="map_file" value="/save/frogs/bin/PICRUST/picrust2-2.4.1/picrust2/frogsfunc_suppdata/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt"/>
         <conditional name="is_per_sequence_contrib">
         <param name="per_sequence_contrib" value="true"/>
         </conditional>
-    <param name="per_sequence_abun" value="references/27-frogsfunc_genefamilies_seqtab_norm.tsv" />
+    <param name="per_sequence_abun" value="references/27-frogsfunc_functions_marker_norm.tsv" />
     <param name="per_sequence_function" value="references/26-frogsfunc_copynumbers_predicted_functions.tsv" />
 
-      <output name="abund" file="references/28-frogsfunc_pathways_path_abun_unstrat.tsv" compare="diff" lines_diff="0" />
-      <output name="contrib" file="references/28-frogsfunc_pathways_path_abun_contrib.tsv" compare="diff" lines_diff="0" />
-      <output name="predictions" file="references/28-frogsfunc_pathways_path_abun_predictions.tsv" compare="diff" lines_diff="0" />
+      <output name="abund" file="references/28-frogsfunc_pathways_unstrat.tsv" compare="diff" lines_diff="0" />
+      <output name="contrib" file="references/28-frogsfunc_pathways_strat.tsv" compare="diff" lines_diff="0" />
+      <output name="predictions" file="references/28-frogsfunc_pathways_predictions.tsv" compare="diff" lines_diff="0" />
     </test>
   </tests>
 
@@ -148,7 +148,7 @@ Input
 
  TSV function abundances table from FROGSFUNC_step3_function tool, frogsfunc_functions_unstrat.tsv (unstratified table).
 
-**Map file**:
+**Pathway reference**:
 
  Mapping of pathways to reactions. For 16S marker, choose Metacyc or KEGG in accordance with your choice in the FROGSFUNC_step2_copynumbers tool. For ITS or 18S marker, Metacyc is the only valid option.	     
 
