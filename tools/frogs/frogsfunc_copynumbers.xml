@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_PICRUSt2_hsp" name="FROGSFUNC_step2_copynumbers" version= "beta">
+<tool id="FROGSFUNC_step2_copynumbers" name="FROGSFUNC_step2_copynumbers" version= "beta">
 	<description>Hidden-state prediction of gene families/functions. This script predicts the missing genome for each OTU sequence, i.e. it predicts the copy number of functions (and 16S/ITS/18S copy number) for each OTU sequence. </description>
 
 	<macros>
@@ -90,7 +90,7 @@
 
 	<tests>
 		<test>
-            <param name="input_biom" value="input/FPSteps.biom" />
+            <param name="input_biom" value="references/25-frogsfunc_placeseqs.biom" />
 			<param name="input_tree" value="references/25-frogsfunc_placeseqs_tree.nwk" />
             <param name="category" value="16S" />
             <param name="function" value="EC"/>

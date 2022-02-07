@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_PICRUSt2_metagenome" name="FROGSFUNC_step3_functions" version= "beta">
+<tool id="FROGSFUNC_step3_functions" name="FROGSFUNC_step3_functions" version= "beta">
     <description>Predicting of functions weighted by the relative abundance of OTUs in the community. Inferring the metagenomes of the communities.</description>
 
     <macros>
@@ -71,7 +71,7 @@
     <outputs>
         <data format="html" name="summary_file" label="${tool.name}: frogsfunc_functions_summary.html" from_work_dir="frogsfunc_functions_summary.html"/>
         <data format="tabular" name="function_abund" label="${tool.name}:   frogsfunc_functions_unstrat.tsv" from_work_dir=" frogsfunc_functions_unstrat.tsv"/> 
-        <data format="tabular" name="seqtab" label="${tool.name}: frogsfunc_functions_marker_norm.tsv" from_work_dir="frogsfunc_functions_seqtab_norm.tsv"/> 
+        <data format="tabular" name="seqtab" label="${tool.name}: frogsfunc_functions_marker_norm.tsv" from_work_dir="frogsfunc_functions_marker_norm.tsv.tsv"/> 
         <data format="tabular" name="weighted" label="${tool.name}: frogsfunc_functions_weighted_nsti.tsv" from_work_dir="frogsfunc_functions_weighted_nsti.tsv"/> 
         <data format="tabular" name="excluded" label="${tool.name}: frogsfunc_functions_excluded.tsv" from_work_dir="frogsfunc_functions_excluded.tsv"/> 
         <data format="tabular" name="contrib" label="${tool.name}:  frogsfunc_functions_strat.tsv" from_work_dir=" frogsfunc_functions_strat.tsv">
@@ -82,14 +82,13 @@
 
     <tests>
         <test>
-            <param name="input_biom" value="input/FPSteps.biom" />
+            <param name="input_biom" value="references/25-frogsfunc_placeseqs.biom" />
             <param name="function" value="references/26-frogsfunc_copynumbers_predicted_functions.tsv" />
             <param name="marker" value="references/26-frogsfunc_copynumbers_marker.tsv"/>
             <param name="max_nsti" value="2" />
             <param name="min_reads" value="1" />
             <param name="min_samples" value="1" />
             <param name="strat" value="false" />
-            <param name="add_description" value="true" />
 
             <output name="function_abund" file="references/27-frogsfunc_functions_unstrat.tsv" compare="diff" lines_diff="0" />
             <output name="seqtab" file="references/27-frogsfunc_functions_marker_norm.tsv" compare="diff" lines_diff="0" />
@@ -109,6 +108,7 @@ What it does
 
 Predicting of functions weighted by the relative abundance of OTUs in the community. Inferring the metagenomes of the communities with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_.
 There are two steps performed at this stage:
+
     (i) The read depth per OTU is divided by the predicted marker (16S/ITS/18S) copy numbers. This is performed to help control for variation in marker copy numbers across organisms, which can result in interpretation issues.
         For instance, imagine an organism with five identical copies of the 16S gene that is at the same absolute abundance as an organism with one 16S gene. The OTU corresponding to the first organism would erroneously be inferred to be at higher relative abundance simply because this organism had more copies of the 16S gene.
          
