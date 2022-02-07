@@ -196,6 +196,8 @@ Result table
 
 * **PICRUSt2 closest distance from cluster (NSTI)** : Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 
+* **NSTI Confidence** 
+
 * **Lowest same taxonomic rank between FROGS and PICRUSt2** : Comparison between FROGS and PICRUSt2 taxonomic affiliations.
 
 * **Comment** : " identical taxonomy " if the FROGS and PICRUSt2 taxonomic affiliations are identical. " identical sequence " if the OTU sequence is strictly the same as the reference sequence.
