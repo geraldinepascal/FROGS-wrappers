@@ -196,7 +196,7 @@ Result table
 
 * **PICRUSt2 closest taxonomy** : Taxonomy (JGI) of the closest reference sequence from the OTU inserted in the reference tree under the following format: Kingdom;Phylum;Class;Order;Family;Genus;Species
 
-* **PICRUSt2 closest distance from cluster (NSTI)** : Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
+* **NSTI** : Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 
 * **NSTI confidence** 
 
