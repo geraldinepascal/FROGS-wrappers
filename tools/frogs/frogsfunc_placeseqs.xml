@@ -186,6 +186,8 @@ Result table
 
 * **Cluster** : OTU name.
 
+* **Nb sequences** : OTU sequence abundances.
+
 * **FROGS Taxonomy** : Taxonomic affiliation made by FROGS (FROGS Affiliation OTU).
 
 * **PICRUSt2 Closest ID** : Identifiant (JGI) of the closest reference sequence from the OTU inserted in the reference tree (see the explanatory illustration at the bottom of this page).
