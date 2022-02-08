@@ -188,21 +188,21 @@ Result table
 
 * **Nb sequences** : OTU sequence abundances.
 
-* **FROGS Taxonomy** : Taxonomic affiliation made by FROGS (FROGS Affiliation OTU).
+* **FROGS taxonomy** : Taxonomic affiliation made by FROGS (FROGS Affiliation OTU).
 
 * **PICRUSt2 closest ID** : Identifiant (JGI) of the closest reference sequence from the OTU inserted in the reference tree (see the explanatory illustration at the bottom of this page).
  
-* **PICRUSt2 closest reference name** : Genome Name / Sample Name.
+* **PICRUSt2 closest reference name** :  : Genome Name / Sample Name from reference tree of PICRUSt2.
 
-* **PICRUSt2 closest taxonomy** : Taxonomy (JGI) of the closest reference sequence from the OTU inserted in the reference tree under the following format: Kingdom;Phylum;Class;Order;Family;Genus;Species
+* **PICRUSt2 closest taxonomy** : Taxonomy (JGI) of the closest reference sequence from the OTU/ASV inserted in the reference tree under the following format: Kingdom;Phylum;Class;Order;Family;Genus;Species
 
-* **PICRUSt2 closest distance from cluster (NSTI)** : Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
+* **PICRUSt2 closest distance from cluster (NSTI)** : Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs/ASVs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 
-* **NSTI confidence** 
+* **NSTI confidence** : According to the NSTI score, we guide you in the confidence you can bring to the issuse affiliation of PICRUSt2. Four level are given: 0 < Good < 0.5 ; 0.5 <= Medium < 1 ; 1 <= Bad < 2; To exclude >= 2
 
-* **Lowest same taxonomic rank between FROGS and PICRUSt2** : Comparison between FROGS and PICRUSt2 taxonomic affiliations.
+* **Lowest same taxonomic rank between FROGS and PICRUSt2** : Highest common taxonomic rank between FROGS and PICRUSt2 affiliations.
 
-* **Comment** : " identical taxonomy " if the FROGS and PICRUSt2 taxonomic affiliations are identical. " identical sequence " if the OTU sequence is strictly the same as the reference sequence.
+* **Comment** : " identical taxonomy " if the FROGS and PICRUSt2 taxonomic affiliations are identical. " identical sequence " if the OTU/ASV sequence is strictly the same as the reference sequence.
 
 .. image:: static/images/FROGS_frogsfunc_placeseqs_closest_explained.png
 
