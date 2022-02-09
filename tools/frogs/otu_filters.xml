@@ -280,14 +280,6 @@ Examples for the filters on abundance and occurence of the OTUs :
 @HELP_CONTACT@
 
 	</help>
-<<<<<<< HEAD
-
-	<citations>
-		<expand macro="citations" />
-	</citations>
-
-</tool>
-=======
 	<expand macro="citations" />
 </tool>
->>>>>>> origin
+
