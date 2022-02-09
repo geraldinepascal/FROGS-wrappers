@@ -102,6 +102,17 @@ The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`
 
 The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
+**Sampling method**:
+
+Method of normalisation of sequences :
+
+ - **Sampling by the number of sequences of the smallest sample** : Automatically detects the number of reads of the smallest sample, and selects this number for all other samples.
+ - **Select a number of reads** : Manually select a number of reads.
+
+.. image:: static/images/icon_warning_sml.gif 
+
+If **remove samples** option is activate, the samples with a total number of sequences lower than the number specified will be removed. if the option is not activate, samples will be kept in the analysis but with a number of sequences less than the number specified (the total number of the sample).
+
 .. class:: h3
 
 Outputs
@@ -120,10 +131,6 @@ Outputs
 
 
 .. class:: infomark page-header h2
-
-Advices
-
-If the sampling method selected is " number of reads " and " remove samples " is activate, the samples with a total number of sequences lower than the number specified will be removed. if the option is not activate, samples will be kept in the analysis but with a number of sequences less than the number specified (the total number of the sample).
 
 
 @HELP_CONTACT@
