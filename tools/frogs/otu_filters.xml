@@ -22,9 +22,9 @@
         <import>macros.xml</import>
     </macros> -->
 
-    <expand macro="requirements">
+<!--     <expand macro="requirements">
         <requirement type="package" version="2.10">blast</requirement>
-    </expand>
+    </expand> -->
 
         <stdio>
                 <exit_code range="1:" />
@@ -270,7 +270,9 @@ Please check that the input fasta file and the input BIOM file correspond to the
 
 Examples for the filters on abundance and occurence of the OTUs :
 
--To keep the filters that are present in 5 samples, fill the corresponding field with "5".
+-To keep the filters that are present in 5 samples, fill the **Minimum prevalence method** field with **all samples** option, with "5".
+
+-To keep the filters that are present in half of the replicates, fill the **Minimum prevalence method** field with **replicate identification** option, with a minimum prevalence of "0.5".
 
 -To display the 20 biggest OTU, fill the corresponding field with "20".
 
@@ -280,6 +282,6 @@ Examples for the filters on abundance and occurence of the OTUs :
 @HELP_CONTACT@
 
 	</help>
-	<expand macro="citations" />
+<!-- 	<expand macro="citations" /> -->
 </tool>
 
