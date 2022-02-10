@@ -22,9 +22,9 @@
         <import>macros.xml</import>
     </macros>
 
-<!--      <expand macro="requirements_frogsfunc">
+      <expand macro="requirements_frogsfunc">
         <requirement type="package" version="3.1.2">ete3</requirement>
-    </expand>-->
+    </expand>
 
     <stdio>
         <exit_code range="1:" />
@@ -135,7 +135,7 @@ Input
  
  EPA-NG or SEPP. SEPP is a low-memory alternative to EPA-ng for placing sequences. 
 
-.. image:: static/images/icon_warning_sml.gif 
+.. image:: icon_warning_sml.gif 
 
 So, if the tool crashes with EPA-ng, try again with SEPP.
 
@@ -168,7 +168,7 @@ Outputs
    
  The summary file describes which OTUs are contained or not in the phylogenetic tree. Note that PICRUSt2 uses its own reference tree to affiliate OTUs/ASVs from reference sequences. The summary file indicates for each OTU/ASV which is the closest PICRUSt2 reference sequence, and compares it to the original FROGS taxonomy. Clicking on the sequence ID gives you more information about it (`JGI database &lt;https://img.jgi.doe.gov/&gt;`_).
 
-.. image:: static/images/FROGS_frogsfunc_placeseqs_piecharts.png
+.. image:: FROGS_frogsfunc_placeseqs_piecharts.png
 	:height: 290
 	:width: 676
 
@@ -180,7 +180,7 @@ OTUs are excluded if the total length of the input sequence aligned against refe
 
 Result table
 
-.. image:: static/images/FROGS_frogsfunc_placeseqs_table_JGI.png
+.. image:: FROGS_frogsfunc_placeseqs_table_JGI.png
 	:height: 580
 	:width: 1220
 
@@ -204,16 +204,12 @@ Result table
 
 * **Comment** : " identical taxonomy " if the FROGS and PICRUSt2 taxonomic affiliations are identical. " identical sequence " if the OTU sequence is strictly the same as the reference sequence.
 
-.. image:: static/images/FROGS_frogsfunc_placeseqs_closest_explained.png
+.. image:: FROGS_frogsfunc_placeseqs_closest_explained.png
 
 Closest reference sequence (from JGI database) from one cluster sequence.
 
 @HELP_CONTACT@
 
-	</help>
-
-	<citations>
-		<expand macro="citations" />
-	</citations>
-	
+    </help>
+    <expand macro="citations" />
 </tool>

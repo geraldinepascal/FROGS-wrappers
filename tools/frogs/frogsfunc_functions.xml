@@ -22,7 +22,7 @@
         <import>macros.xml</import>
     </macros>
 
- <!--    <expand macro="requirements_frogsfunc" /> -->
+    <expand macro="requirements_frogsfunc" />
     
     <stdio>
         <exit_code range="1:" />
@@ -148,7 +148,7 @@ Inputs
  If you choose 1, none OTU will be grouped in "RARE" category.
          
  
-.. image:: static/images/icon_warning_sml.gif 
+.. image:: icon_warning_sml.gif 
 
 Warning, the file produced may be heavy and time-consuming.
 
@@ -175,18 +175,18 @@ Outputs
 
 **Summary file**: (frogsfunc_functions_summary.html)
 
-.. image:: static/images/FROGS_frogsfunc_functions_piechart.png
+.. image:: FROGS_frogsfunc_functions_piechart.png
     :height: 500
     :width: 1352
 
 OTUs are out if the NSTI associated is above the threshold.
 
-.. image:: static/images/FROGS_frogsfunc_functions_table.png
+.. image:: FROGS_frogsfunc_functions_table.png
     :height: 580
     :width: 1352
  
 
-.. image:: static/images/FROGS_frogsfunc_functions_sunburst.png
+.. image:: FROGS_frogsfunc_functions_sunburst.png
 
 
 Gene families/function from KEGG or Metacyc databases are classified according to 3 hierarchy levels. The graph shows the proportion of each level within the selected samples.

@@ -22,7 +22,7 @@
         <import>macros.xml</import>
     </macros>
     
- <!--    <expand macro="requirements_frogsfunc" /> -->
+    <expand macro="requirements_frogsfunc" />
     
     <stdio>
         <exit_code range="1:" />
@@ -154,7 +154,7 @@ Outputs
 
 **Output marker file**:
 
-.. image:: static/images/FROGS_frogsfunc_copynumbers_marker.png
+.. image:: FROGS_frogsfunc_copynumbers_marker.png
 
 Output table of predicted marker gene copy numbers per sequence. (frogsfunc_copynumbers_marker.tsv)
 
@@ -163,13 +163,13 @@ Marker gene copies number prediction is used to normalize the counting matrices 
 
 **Output function file**:
 
-.. image:: static/images/FROGS_frogsfunc_copynumbers_function.png
+.. image:: FROGS_frogsfunc_copynumbers_function.png
 
 Output table with predicted function abundances per sequence. (frogsfunc_copynumbers_predicted_functions.tsv)
 
 **Summary file**:
 
-.. image:: static/images/FROGS_frogsfunc_copynumbers_nsti.png
+.. image:: FROGS_frogsfunc_copynumbers_nsti.png
 
 Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences. 
 

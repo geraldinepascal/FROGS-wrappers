@@ -17,10 +17,10 @@
 -->
 <tool id="FROGSFUNC_step4_pathways" name="FROGSFUNC_step4_pathways" version= "beta">
 	<description>Inference of pathway-level abundances. </description>
-<!-- 
+
   <macros>
         <import>macros.xml</import>
-  </macros> -->
+  </macros>
 
  <!--    <expand macro="requirements_frogsfunc" /> -->
     
@@ -156,7 +156,7 @@ Input
  
  If this option is set, the pathway abundances file (frogsfunc_functions_unstrat.tsv) is normalized: values are divided by sum of columns, then multiplied by 10^6 (Count Per Million values).
 
-.. image:: static/images/icon_warning_sml.gif 
+.. image:: icon_warning_sml.gif 
 
 This normalization allows to compare the samples between them. But to perform more precise statistical analysis, some tools as DESeq2 need the non-normalized abundance table to perform the normalization by themselves. So be careful which table to use for further analysis.
 
@@ -175,13 +175,13 @@ Outputs
 
  If stratified option is activated, a new table is built. It contains the abundances of each pathway of each OTU in each sample. (frogsfunc_pathways_strat.tsv).
 
-.. image:: static/images/icon_warning_sml.gif 
+.. image:: icon_warning_sml.gif 
 
 Warning, the file produced may be heavy and it is time-consuming !
 
 **Summary file**:
 
-.. image:: static/images/FROGS_frogsfunc_pathways_sunburst.png
+.. image:: FROGS_frogsfunc_pathways_sunburst.png
 
 
 Pathways (in KEGG and Metacyc) are classified according to 3 hierarchy levels. The diagram shows the proportion of each level within the samples selected.
