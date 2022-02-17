@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGSFUNC_step2_copynumbers" name="FROGSFUNC_step2_copynumbers" version= "beta">
+<tool id="FROGSFUNC_step2_copynumbers" name="FROGSFUNC_step2_copynumbers" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
 	<description>Hidden-state prediction of gene families/functions. This script predicts the missing genome for each OTU sequence, i.e. it predicts the copy number of functions (and 16S/ITS/18S copy number) for each OTU sequence. </description>
 
 	<macros>
