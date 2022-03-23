@@ -17,12 +17,12 @@
 -->
 <tool id="FROGSFUNC_step3_functions" name="FROGSFUNC_step3_functions" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
     <description>Predicting of functions weighted by the relative abundance of OTUs in the community. Inferring the metagenomes of the communities.</description>
-<!-- 
+
     <macros>
         <import>macros.xml</import>
     </macros>
 
-    <expand macro="requirements_frogsfunc" /> -->
+    <expand macro="requirements_frogsfunc" />
     
     <stdio>
         <exit_code range="1:" />
