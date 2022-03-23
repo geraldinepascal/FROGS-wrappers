@@ -15,16 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGSFUNC_step1_placeseqs" name="FROGSFUNC_step1_placeseqs" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+<tool id="FROGSFUNC_step1_placeseqs" name="FROGSFUNC_step1_placeseqs" version= "beta">
 	<description>Place studies sequences (i.e. OTUs) into a reference tree.</description>
 
     <macros>
         <import>macros.xml</import>
     </macros>
 
-      <expand macro="requirements_frogsfunc">
+<!--       <expand macro="requirements_frogsfunc">
         <requirement type="package" version="3.1.2">ete3</requirement>
-    </expand>
+    </expand> -->
 
     <stdio>
         <exit_code range="1:" />

@@ -18,11 +18,11 @@
 <tool id="FROGSFUNC_step4_pathways" name="FROGSFUNC_step4_pathways" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
 	<description>Inference of pathway-level abundances. </description>
 
-  <macros>
+<!--   <macros>
         <import>macros.xml</import>
   </macros>
 
-    <expand macro="requirements_frogsfunc" />
+    <expand macro="requirements_frogsfunc" /> -->
     
   <stdio>
     <exit_code range="1:" />
