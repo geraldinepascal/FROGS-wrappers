@@ -172,6 +172,7 @@ Outputs
 
  OTU abundance biom file of inserted sequences into reference tree. 
 
+
 **Report file** (report.html):
    
  The report file describes which OTUs are contained or not in the phylogenetic tree. Note that PICRUSt2 uses its own reference tree to affiliate OTUs/ASVs from reference sequences. The report file indicates for each OTU/ASV which is the closest PICRUSt2 reference sequence, and compares it to the original FROGS taxonomy. Clicking on the sequence ID gives you more information about it (`JGI database &lt;https://img.jgi.doe.gov/&gt;`_).
