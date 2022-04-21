@@ -104,14 +104,15 @@ The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.or
 
 **Sampling method**:
 
-Method of normalisation of sequences :
+Sequence normalisation method :
 
  - **Sampling by the number of sequences of the smallest sample** : Automatically detects the number of reads of the smallest sample, and selects this number for all other samples.
- - **Select a number of reads** : Manually select a number of reads.
+ - **Select number of reads** : Manually select a number of reads.
 
 .. image:: static/images/icon_warning_sml.gif 
 
-If **remove samples** option is activate, the samples with a total number of sequences lower than the number specified will be removed. if the option is not activate, samples will be kept in the analysis but with a number of sequences less than the number specified (the total number of the sample).
+If the **remove samples** option is enabled, samples whose total number of sequences is lower than the specified number will be removed inside the abundance table. 
+If the option is disabled, the samples will be kept in the analysis but with a number of sequences lower than the specified number (the total number of the sample).
 
 .. class:: h3
 
@@ -123,9 +124,9 @@ Outputs
 
 **Abundance file** (normalised_abundance.biom):
 
- The normalised abundance file (format `BIOM &lt;http://biom-format.org/&gt;`_).
+ The normalised abundance file. If option **remove samples** has been chosen, then the abundance table will no longer contain information about the removed samples. (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
-**Summary file** (report.html):
+**Report file** (report.html):
 
  Information about discarded data (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
 

@@ -95,8 +95,7 @@
 				</param>
 			</when>
 			<when value="replicate">
-				<param name="replicate_file" type="data" format="txt" optional="True" label="Replicate file" help="Replicate file to link each sample to its group. First column of the file must indicate the sample name, and the second column the group name of this replicate.
-					Exemple: TEM1_L0001_R   Temoin." />
+				<param name="replicate_file" type="data" format="txt" optional="True" label="File of replicated sample names" help="Replicate file to link each sample to its group (cf. Help section)." />
 				<param name="min_replicate_presence" type="float" min="0" max="1" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep OTU present in at least this proportion of replicates in at least one group (must be a proportion between 0 and 1).">
 				</param>
 			</when>
@@ -201,9 +200,14 @@ The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.or
 
 A sequence fasta file containing the reference sequence of known contaminant
 
-**Replication file** (optional):
+**File of replicated sample names** (optional):
 
-If you chose " replicate identification " for minimum prevalence method, this file is required to identify which group the samples belong to :
+If you selected " replicate identification " for the minimum prevalence method, this file is needed to identify the group to which the samples belong.
+
+If not all samples are present in the "File of replicated sample names", they will not be affected by this filter step and will be kept in the abundance table.
+
+The file must consist of only 2 columns, separated by a tab or a space. The first column contains the exact names of the samples (exactly those contained in the biom file) and the second column contains the name of the group to which they belong.
+Please note that group names must not contain accents, spaces or special characters.
 
 .. csv-table::
    :widths: 10, 100
@@ -232,7 +236,7 @@ Outputs
 
  The list of the OTUs deleted by filters (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
 
-**Summary file** (report.html):
+**Report file** (report.html):
 
  The filters and the number of removed sequences (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
 
