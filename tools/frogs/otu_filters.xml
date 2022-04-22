@@ -209,19 +209,6 @@ If not all samples are present in the "File of replicated sample names", they wi
 The file must consist of only 2 columns, separated by a tab or a space. The first column contains the exact names of the samples (exactly those contained in the biom file) and the second column contains the name of the group to which they belong.
 Please note that group names must not contain accents, spaces or special characters.
 
-.. csv-table::
-   :widths: 10, 100
-   :class: table table-striped
-
-   "simple-PCR-1", "PCR"
-   "simple-PCR-2", "PCR"
-   "simple-PCR-3", "PCR"
-   "simple-ADN-1", "ADN"
-   "simple-ADN-2", "ADN"
-   "simple-ADN-3", "ADN"
-
-.. class:: h3
-
 Outputs
 
 **Sequence file** (sequences.fasta):
@@ -277,6 +264,18 @@ Examples for the filters on abundance and occurence of the OTUs :
 -To keep the filters that are present in 5 samples, fill the **Minimum prevalence method** field with **all samples** option, with "5".
 
 -To keep the filters that are present in half of the replicates, fill the **Minimum prevalence method** field with **replicate identification** option, with a minimum prevalence of "0.5".
+
+static/images/FROGS_otu_filter_replicates_file.png
+
+
+In this example, if we want to keep the OTUs/ASVs that are present in at least 50% of the samples, we set the threshold at 0.5. The process will therefore keep the OTUs/ASVs present in at least 
+
+ - 2 "rich" samples
+ - 3 "richAB" samples,
+ - 1 "lowAB" sample
+ - 1 "april21" sample
+
+and all OTUs/ASVs in sample9 since it is the only representative of the "low" condition.
 
 -To display the 20 biggest OTU, fill the corresponding field with "20".
 
