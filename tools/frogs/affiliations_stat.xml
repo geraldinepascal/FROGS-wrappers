@@ -10,7 +10,6 @@
 		    --output-file '$summary_file'
 		    --taxonomic-ranks $taxonomic_ranks
 		    --rarefaction-ranks $rarefaction_ranks
-		    --add-otu-rarefaction
 		    #if $affiliation.affiliation_type == "FROGS_blast"
 		    	--multiple-tag 'blast_affiliations'
 		        --tax-consensus-tag 'blast_taxonomy'
