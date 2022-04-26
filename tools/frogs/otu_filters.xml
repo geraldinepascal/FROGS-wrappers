@@ -95,8 +95,7 @@
 				</param>
 			</when>
 			<when value="replicate">
-				<param name="replicate_file" type="data" format="txt" optional="True" label="Replicate file" help="Replicate file to link each sample to its group. First column of the file must indicate the sample name, and the second column the group name of this replicate.
-					Exemple: TEM1_L0001_R   Temoin." />
+				<param name="replicate_file" type="data" format="txt" optional="True" label="File of replicated sample names" help="Replicate file to link each sample to its group (cf. Help section)." />
 				<param name="min_replicate_presence" type="float" min="0" max="1" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep OTU present in at least this proportion of replicates in at least one group (must be a proportion between 0 and 1).">
 				</param>
 			</when>
@@ -201,22 +200,14 @@ The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.or
 
 A sequence fasta file containing the reference sequence of known contaminant
 
-**Replication file** (optional):
+**File of replicated sample names** (optional):
 
-If you chose " replicate identification " for minimum prevalence method, this file is required to identify which group the samples belong to :
+If you selected " replicate identification " for the minimum prevalence method, this file is needed to identify the group to which the samples belong.
 
-.. csv-table::
-   :widths: 10, 100
-   :class: table table-striped
+If not all samples are present in the "File of replicated sample names", they will not be affected by this filter step and will be kept in the abundance table.
 
-   "simple-PCR-1", "PCR"
-   "simple-PCR-2", "PCR"
-   "simple-PCR-3", "PCR"
-   "simple-ADN-1", "ADN"
-   "simple-ADN-2", "ADN"
-   "simple-ADN-3", "ADN"
-
-.. class:: h3
+The file must consist of only 2 columns, separated by a tab or a space. The first column contains the exact names of the samples (exactly those contained in the biom file) and the second column contains the name of the group to which they belong.
+Please note that group names must not contain accents, spaces or special characters.
 
 Outputs
 
@@ -232,7 +223,7 @@ Outputs
 
  The list of the OTUs deleted by filters (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
 
-**Summary file** (report.html):
+**Report file** (report.html):
 
  The filters and the number of removed sequences (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
 
@@ -273,6 +264,18 @@ Examples for the filters on abundance and occurence of the OTUs :
 -To keep the filters that are present in 5 samples, fill the **Minimum prevalence method** field with **all samples** option, with "5".
 
 -To keep the filters that are present in half of the replicates, fill the **Minimum prevalence method** field with **replicate identification** option, with a minimum prevalence of "0.5".
+
+static/images/FROGS_otu_filter_replicates_file.png
+
+
+In this example, if we want to keep the OTUs/ASVs that are present in at least 50% of the samples, we set the threshold at 0.5. The process will therefore keep the OTUs/ASVs present in at least 
+
+ - 2 "rich" samples
+ - 3 "richAB" samples,
+ - 1 "lowAB" sample
+ - 1 "april21" sample
+
+and all OTUs/ASVs in sample9 since it is the only representative of the "low" condition.
 
 -To display the 20 biggest OTU, fill the corresponding field with "20".
 

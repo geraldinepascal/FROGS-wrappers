@@ -1,23 +1,14 @@
 <?xml version="1.0"?>
 <macros>
     <token name="@TOOL_VERSION@">3.2.3</token>
-    <token name="@VERSION_SUFFIX@">3</token>
+    <token name="@VERSION_SUFFIX@">4</token>
     
     <xml name="requirements">
         <requirements>
-<!--             <requirement type="package" version="@TOOL_VERSION@">frogs</requirement> -->
+            <requirement type="package" version="@TOOL_VERSION@">frogs</requirement>
             <yield />
         </requirements>
     </xml>
-
-
-    <xml name="requirements_frogsfunc">
-        <expand macro="requirements">
-            <requirement type="package" version="2.4.1">picrust2</requirement>
-            <yield />
-        </expand>
-    </xml>
-
 
     <token name="@CPUS@">--nb-cpus \${GALAXY_SLOTS:-1}</token>
     <xml name="requirements_phyloseq">
@@ -30,6 +21,13 @@
         </expand>
     </xml>
 
+    <xml name="requirements_frogsfunc">
+        <expand macro="requirements">
+            <requirement type="package" version="2.4.1">picrust2</requirement>
+            <yield />
+        </expand>
+    </xml>
+    
     <xml name="taxonomic_ranks">
         <param argument="--taxonomic-ranks" type="text" optional="false" value="Domain Phylum Class Order Family Genus Species" 
             label="Taxonomic ranks" help="The ordered taxonomic ranks levels stored in BIOM. Each rank is separated by one space">
@@ -55,8 +53,9 @@
         </sanitizer>
         <validator type="regex">[A-Za-z0-9 =-_+,.]+</validator>
     </xml>
+    
     <token name="@HELP_LOGO@">
-.. image:: static/images/FROGS_logo.png
+.. image:: FROGS_logo.png
    :height: 144
    :width: 110
 

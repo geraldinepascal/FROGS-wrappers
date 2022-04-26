@@ -18,11 +18,17 @@
 <tool id="FROGSFUNC_step3_functions" name="FROGSFUNC_step3_functions" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
     <description>Predicting of functions weighted by the relative abundance of OTUs in the community. Inferring the metagenomes of the communities.</description>
 
+<!-- commenté par Maria
     <macros>
         <import>macros.xml</import>
     </macros>
 
     <expand macro="requirements_frogsfunc" />
+-->
+    <!-- ajouté par Maria pour test sur genologin-->
+    <requirements>
+        <requirement type="package" version="2.4.1">picrust2</requirement>
+    </requirements>
     
     <stdio>
         <exit_code range="1:" />
@@ -38,14 +44,7 @@
             --seqtab $seqtab
             --weighted $weighted
             --excluded $excluded
-            #if $is_strat.strat
-                --strat-out
-                --contrib $contrib
-                --min-reads $is_strat.min_reads 
-                --min-samples $is_strat.min_samples
-            #end if
             --html $summary_file
-            --debug
     </command> 
     <inputs>
         <!-- Input files -->
@@ -60,23 +59,13 @@
         </param>
         <!-- Parameters-->
         <param argument="--max-nsti" name="max_nsti" type="float" label="NSTI cut-off" help="Any sequence with an NSTI above this threshold will be out. (default: 2)" value="2" min="0" optional="false" /> 
-        <conditional name="is_strat">
-            <param name="strat" type="boolean" label="Do you want a stratified table per sequence ?" help='Product another table of the predicted gene abundance contributed by each OTU. Note this will greatly increase the runtime.' />
-            <when value="true">
-                <param argument="--min-reads" name="min_reads" type="integer" optional="false" min="1" value="1" label="Minimum abundance to keep an OTU" help='All OTUs containing less than this minimum threshold of sequences will all be grouped in the "RARE" category. (default: 1).' />
-                <param  argument="--min-samples" name="min_samples" type="integer" optional="false" min="1" value="1" label="Minimum number of samples to keep an OTU."  help='All OTUs present in less than this minimum sample threshold will be grouped in the "RARE" category. (default: 1).' />
-            </when>
-        </conditional>
     </inputs>
     <outputs>
-        <data format="html" name="summary_file" label="${tool.name}: frogsfunc_functions_summary.html" from_work_dir="frogsfunc_functions_summary.html"/>
+        <data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="report.html"/>
         <data format="tabular" name="seqtab" label="${tool.name}: frogsfunc_functions_marker_norm.tsv" from_work_dir="frogsfunc_functions_marker_norm.tsv.tsv"/> 
         <data format="tabular" name="weighted" label="${tool.name}: frogsfunc_functions_weighted_nsti.tsv" from_work_dir="frogsfunc_functions_weighted_nsti.tsv"/> 
         <data format="tabular" name="excluded" label="${tool.name}: frogsfunc_functions_excluded.tsv" from_work_dir="frogsfunc_functions_excluded.tsv"/>
-       <data format="tabular" name="function_abund" label="${tool.name}:   frogsfunc_functions_unstrat.tsv" from_work_dir=" frogsfunc_functions_unstrat.tsv"/> 
-        <data format="tabular" name="contrib" label="${tool.name}:  frogsfunc_functions_strat.tsv" from_work_dir=" frogsfunc_functions_strat.tsv">
-            <filter>strat</filter>
-        </data>
+        <data format="tabular" name="function_abund" label="${tool.name}:   frogsfunc_functions_unstrat.tsv" from_work_dir=" frogsfunc_functions_unstrat.tsv"/> 
     </outputs>
 
 
@@ -93,7 +82,7 @@
             <output name="function_abund" file="references/27-frogsfunc_functions_unstrat.tsv" compare="diff" lines_diff="0" />
             <output name="seqtab" file="references/27-frogsfunc_functions_marker_norm.tsv" compare="diff" lines_diff="0" />
             <output name="weighted" file="references/27-frogsfunc_functions_weighted_nsti.tsv" compare="diff" lines_diff="0" />
-            <output name="summary_file" file="references/27-frogsfunc_functions_summary.html" compare="diff" lines_diff="0" />
+            <output name="summary_file" file="references/27-frogsfunc_functions_report.html" compare="diff" lines_diff="0" />
             <output name="excluded" file="references/27-frogsfunc_functions_excluded.txt" compare="diff" lines_diff="0" />
         </test>
     </tests>
@@ -141,39 +130,12 @@ Inputs
 
  Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences. 
          
-**Do you want a stratified table per sequence ?**:
-
- If stratified option is activated, a new table is built. It will contain the abundances of each function of each OTU in each sample.
- A "RARE" OTU category can been created at this step. All OTUs containing less than this minimum threshold of sequences will all be grouped in the "RARE" category. And all OTUs present in less than this minimum sample threshold will be grouped in the "RARE" category.
- If you choose 1, none OTU will be grouped in "RARE" category.
-         
- 
-.. image:: icon_warning_sml.gif 
-
-Warning, the file produced may be heavy and time-consuming.
-
 
 .. class:: h3
 
 Outputs
 
-**Function abundance file**:
- 
- function abundance predictions of metagenome, per sample. (frogsfunc_functions_unstrat.tsv)
-
-**Seqtab normalized file**:
-
- Table with abundance normalized per marker copy number. (frogsfunc_functions_marker_norm.tsv)
-
-**Weighted nsti file**:
-
- Table with average NSTI calculated per sample. (frogsfunc_functions_weighted_nsti.tsv)
-
-**Contrib per sequences file** (optionnal):
-
- If stratified option is activated, a new table is built. It represents the contribution of each OTU within each functions (frogsfunc_functions_strat.tsv).
-
-**Summary file**: (frogsfunc_functions_summary.html)
+**Report file**: (report.html)
 
 .. image:: FROGS_frogsfunc_functions_piechart.png
     :height: 500
@@ -190,6 +152,30 @@ OTUs are out if the NSTI associated is above the threshold.
 
 
 Gene families/function from KEGG or Metacyc databases are classified according to 3 hierarchy levels. The graph shows the proportion of each level within the selected samples.
+
+**Function abundance file**:
+ 
+ It is the function abundance predictions of metagenome, per sample. (frogsfunc_functions_unstrat.tsv)
+ 
+ - Classification column: the hierarchy classification of the gene function. 
+ - db_link column: the url on the link accession ID (*observation_name*) of the function. 
+ - observation_name: Accession identifier 
+ - last columns: Abundances of these functions in each samples.
+
+**Excluded sequences**:
+
+ Information (FROGS taxonomy, PICRUSt2 taxonomy, NSTI) about removed sequences that have a NSTI value aboved the NSTI threshold chosen in this step.
+
+**Normalized OTU abundance table**:
+
+ Table with normalized abundance per marker copy number. (frogsfunc_functions_marker_norm.tsv)
+
+**Weighted NSTI file**:
+
+ It is the table with average NSTI calculated per sample. (frogsfunc_functions_weighted_nsti.tsv)
+
+
+
 
 @HELP_CONTACT@
 
