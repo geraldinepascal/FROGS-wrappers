@@ -14,13 +14,25 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-#This is a sample file that enables tools FROGS_frogsfunc_placeseqs to place 
-#studies sequences (i.e. OTUs) into a reference tree.
+#This is a sample file that enables tools FROGS_frogsfunc_functions and tools FROGS_frogsfunc_pathways to map 
+#functions and pathways ID to their names.
 #
-#<identifiant>	<marker_gene>	<file_path>	<path_to_default_dir>
+#PICRUSt2 files are present in the arborescence of PICRUSt2. Please consult 
+#PICRUSt2 documentation to find out where they are located in your environment.
 #
-#First column will be the visible name in galaxy.
+#If you are not comfortable with picrust2 command lines, just create .loc files 
+#with EXAMPLE FOR TEST files remembering to replace <PATH_TO> with the real path.
 #
+#<identifiant>	<category> <path_to_description_dir>
+#For exemple:
+#-rwxrwxr-x 1 vdarbot vdarbot  69390 avril  1  2021 cog_info.tsv.gz
+#-rwxrwxr-x 1 vdarbot vdarbot  32796 avril  1  2021 ec_level4_info.tsv.gz
+#-rwxrwxr-x 1 vdarbot vdarbot 145092 avril  1  2021 KEGG_modules_info.tsv.gz
+#-rwxrwxr-x 1 vdarbot vdarbot   4971 avril  1  2021 KEGG_pathways_info.tsv.gz
+#-rwxrwxr-x 1 vdarbot vdarbot 241813 avril  1  2021 ko_info.tsv.gz
+#-rwxrwxr-x 1 vdarbot vdarbot  31399 avril  1  2021 metacyc_pathways_info.txt.gz
+#-rwxrwxr-x 1 vdarbot vdarbot 163704 avril  1  2021 pfam_info.tsv.gz
+#-rwxrwxr-x 1 vdarbot vdarbot  63866 avril  1  2021 tigrfam_info.tsv.gz
 #
 # EXAMPLE FOR TEST :
 #picrust2_default_dir	description	<PATH_TO>/picrust2/default_files/description_mapfiles/

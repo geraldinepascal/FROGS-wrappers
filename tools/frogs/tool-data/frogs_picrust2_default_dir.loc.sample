@@ -17,10 +17,21 @@
 #This is a sample file that enables tools FROGS_frogsfunc_placeseqs to place 
 #studies sequences (i.e. OTUs) into a reference tree.
 #
-#<identifiant>	<marker_gene>	<file_path>	<path_to_default_dir>
+#PICRUSt2 files are present in the arborescence of PICRUSt2. Please consult 
+#PICRUSt2 documentation to find out where they are located in your environment.
 #
-#First column will be the visible name in galaxy.
+#If you are not comfortable with picrust2 command lines, just create .loc files 
+#with EXAMPLE FOR TEST files remembering to replace <PATH_TO> with the real path.
 #
+#<identifiant>	<marker_gene>	<path_to_default_dir>
+#
+#default dir must contain these files:
+#
+#-rw-rw-r-- 1 vdarbot vdarbot 31922081 avril  1  2021 pro_ref.fna
+#-rwxrwxr-x 1 vdarbot vdarbot   272826 avril  1  2021 pro_ref.hmm
+#-rwxrwxr-x 1 vdarbot vdarbot      116 avril  1  2021 pro_ref.model
+#-rwxrwxr-x 1 vdarbot vdarbot     1707 avril  1  2021 pro_ref.raxml_info
+#-rwxrwxr-x 1 vdarbot vdarbot   600048 avril  1  2021 pro_ref.tre
 #
 # EXAMPLE FOR TEST :
 #picrust2_default_dir_16S	16S	<PATH_TO>/picrust2/default_files/prokaryotic/pro_ref/

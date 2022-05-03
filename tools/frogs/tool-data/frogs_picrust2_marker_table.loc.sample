@@ -14,13 +14,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-#This is a sample file that enables tools FROGS_frogsfunc_placeseqs to place 
-#studies sequences (i.e. OTUs) into a reference tree.
+#This is a sample file that enables tools FROGS_frogsfunc_copynumbers to predict 
+#the copy number of gene families present in the predicted genome for OTU, 
+# given a tree and a set of known trait values (FROGS_frogsfunc_placeseqs).
 #
-#<identifiant>	<marker_gene>	<file_path>	<path_to_default_dir>
+#PICRUSt2 files are present in the arborescence of PICRUSt2. Please consult 
+#PICRUSt2 documentation to find out where they are located in your environment.
 #
-#First column will be the visible name in galaxy.
+#If you are not comfortable with picrust2 command lines, just create .loc files 
+#with EXAMPLE FOR TEST files remembering to replace <PATH_TO> with the real path.
 #
+#<marker_gene>	<db>	<picrust2_input_marker>	<picrust2_input_function>
+#
+#With 16S data, PICRUSt2 only takes the dname of the database as input (for exemple EC).
+#With ITS and 18S data, you have to specify the path of marke gene counts files.
 #
 # EXAMPLE FOR TEST :
 #16S	EC	EC	EC

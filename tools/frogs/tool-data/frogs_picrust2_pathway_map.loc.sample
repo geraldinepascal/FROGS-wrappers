@@ -14,10 +14,16 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 #
-#This is a sample file that enables tools FROGS_frogsfunc_placeseqs to place 
-#studies sequences (i.e. OTUs) into a reference tree.
+#This is a sample file that enables tools FROGS_frogsfunc_pathways to map pathways to reactions. 
+#The default mapfile maps MetaCyc reactions to prokaryotic MetaCyc pathways.
 #
-#<identifiant>	<marker_gene>	<file_path>	<path_to_default_dir>
+#PICRUSt2 files are present in the arborescence of PICRUSt2. Please consult 
+#PICRUSt2 documentation to find out where they are located in your environment.
+#
+#If you are not comfortable with picrust2 command lines, just create .loc files 
+#with EXAMPLE FOR TEST files remembering to replace <PATH_TO> with the real path.
+#
+#<db_id>	<db_name>	<marker_gene>	<path_to_mapfiles>
 #
 #First column will be the visible name in galaxy.
 #
