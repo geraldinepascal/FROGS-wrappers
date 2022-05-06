@@ -18,7 +18,7 @@
 <tool id="FROGSFUNC_step1_placeseqs" name="FROGSFUNC_step1_placeseqs" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
 	<description>Place studies sequences (i.e. OTUs) into a reference tree.</description>
 
-<!-- commenté par Maria
+ commenté par Maria
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -26,7 +26,7 @@
     <expand macro="requirements_frogsfunc">
         <requirement type="package" version="3.1.2">ete3</requirement>
     </expand>
--->
+
 
     <!-- ajouté par Maria pour test sur genologin-->
     <requirements>

@@ -14,7 +14,7 @@
         tree.py
             --input-sequences '$input_otu'
             --biom-file '$biomfile'
-            @CPUS@
+<!--             @CPUS@ -->
             --out-tree '$out_tree'
             --html '$html'
     </command>

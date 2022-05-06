@@ -11,7 +11,7 @@
     <command detect_errors="exit_code">
         preprocess.py '$sequencer_type.sequencer_selected'
         --output-dereplicated '$dereplicated_file' --output-count '$count_file' --summary '$summary_file'
-        @CPUS@
+<!--         @CPUS@ -->
         --min-amplicon-size $sequencer_type.min_amplicon_size
         --max-amplicon-size $sequencer_type.max_amplicon_size
         #if $sequencer_type.sequencer_selected == "illumina"

@@ -8,7 +8,7 @@
     </expand>
     <command detect_errors="exit_code">
     clustering.py
-        @CPUS@
+<!--         @CPUS@ -->
         --input-fasta '$sequence_file'
         --input-count '$count_file'
         --output-biom '$abundance_biom'
