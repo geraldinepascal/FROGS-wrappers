@@ -19,7 +19,7 @@
 	<head>
 		<title>FROGS Cluster stat</title>
 		<meta charset="UTF-8">
-		<meta name="version" content="3.2.3">
+		<meta name="version" content="4.0.0">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></link>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></link>
@@ -838,14 +838,14 @@
 			// Data
 			//
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			var clusters_sizes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 16] ;
+			var clusters_sizes = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13] ;
 			var series = [{
 				'name': "All",
-				'data': [3, 3, 5, 5, 8, 7, 4, 8, 1, 1, 2, 1, 1, 1]
+				'data': [2, 6, 6, 9, 8, 8, 4, 2, 2, 2, 1]
 			}];
 			var sum_series = new Array() ;
-			var samples_distrib = {"01_subsample": {"shared_seq": 97, "shared_observations": 42, "own_seq": 3, "own_observations": 2}, "02_subsample": {"shared_seq": 99, "shared_observations": 41, "own_seq": 1, "own_observations": 1}, "03_subsample": {"shared_seq": 99, "shared_observations": 39, "own_seq": 1, "own_observations": 1}} ;
-			var newick = "((03_subsample,(01_subsample,02_subsample):0.360):0.440);" ;
+			var samples_distrib = {"01_subsample": {"shared_seq": 100, "shared_observations": 45, "own_seq": 0, "own_observations": 0}, "02_subsample": {"shared_seq": 100, "shared_observations": 43, "own_seq": 0, "own_observations": 0}, "03_subsample": {"shared_seq": 98, "shared_observations": 44, "own_seq": 2, "own_observations": 1}} ;
+			var newick = "((01_subsample,(02_subsample,03_subsample):0.350):0.365);" ;
 
 
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
