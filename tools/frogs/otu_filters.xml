@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_OTU_filters" name="FROGS OTU Filters" version="beta">
+<tool id="FROGS_OTU_filters" name="FROGS OTU Filters" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
 	<description>Filters OTUs on several criteria.</description>
 
     <macros>
@@ -285,6 +285,6 @@ and all OTUs/ASVs in sample9 since it is the only representative of the "low" co
 @HELP_CONTACT@
 
 	</help>
-<!-- 	<expand macro="citations" /> -->
+	<expand macro="citations" />
 </tool>
 
