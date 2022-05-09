@@ -18,18 +18,12 @@
 <tool id="FROGSFUNC_step3_functions" name="FROGSFUNC_step3_functions" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
     <description>Predicting of functions weighted by the relative abundance of OTUs in the community. Inferring the metagenomes of the communities.</description>
 
-<!--  commenté par Maria -->
     <macros>
         <import>macros.xml</import>
     </macros>
 
     <expand macro="requirements_frogsfunc" />
 
-    <!-- ajouté par Maria pour test sur genologin-->
-    <requirements>
-        <requirement type="package" version="2.4.1">picrust2</requirement>
-    </requirements>
-    
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />
