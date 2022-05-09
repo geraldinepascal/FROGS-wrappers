@@ -18,7 +18,6 @@
 <tool id="FROGSFUNC_step1_placeseqs" name="FROGSFUNC_step1_placeseqs" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
 	<description>Place studies sequences (i.e. OTUs) into a reference tree.</description>
 
- commenté par Maria
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -28,10 +27,8 @@
     </expand>
 
 
-    <!-- ajouté par Maria pour test sur genologin-->
     <requirements>
         <requirement type="package" version="2.4.1">picrust2</requirement>
-        <!-- sur bioconda on est que à la version 3.1.1 ... je ne sais pas si c'est mieux de rester au maximum avec les recettes bioconda -->
         <requirement type="package" version="3.1.2">ete3</requirement>
     </requirements>
 

@@ -18,15 +18,12 @@
 <tool id="FROGSFUNC_step2_copynumbers" name="FROGSFUNC_step2_copynumbers" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
 	<description>Hidden-state prediction of gene families/functions. This script predicts the missing genome for each OTU sequence, i.e. it predicts the copy number of functions (and 16S/ITS/18S copy number) for each OTU sequence. </description>
 
- commenté par Maria
 	<macros>
         <import>macros.xml</import>
     </macros>
     
     <expand macro="requirements_frogsfunc" />
 
-
-    <!-- ajouté par Maria pour test sur genologin-->
     <requirements>
         <requirement type="package" version="2.4.1">picrust2</requirement>
     </requirements>
