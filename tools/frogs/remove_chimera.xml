@@ -8,7 +8,7 @@
     </expand>
     <command detect_errors="exit_code">
 		remove_chimera.py
-<!-- 		    @CPUS@ -->
+		    @CPUS@
 		    --input-fasta '$sequence_file' --non-chimera '$non_chimera_fasta'
 		    --summary '$summary_file'
 		    #if $abundance_type.abundance_type_selected == "biom"
