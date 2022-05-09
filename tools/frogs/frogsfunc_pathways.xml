@@ -65,27 +65,10 @@
           </options>
         </param>
         <param argument="--normalisation" label="Do you want to normalize the final output table ?" help='Values are divided by sum of columns, then multiplied by 10^6 (CPM values).' type="boolean" />
-<!--         <conditional name="is_per_sequence_contrib">
-          <param name="per_sequence_contrib" label="Do you want a stratified table ?" help='Produces a new table containing the abundances of each pathway of each OTU in each sample. Note this will greatly increase the runtime.' type="boolean" />
-       	  <when value="true">
-       		  <param name="per_sequence_abun" type="data" label="Abundance table normalized by the number of copies of marker" help="normalized abundance table from FROGSFUNC_step3_function tool (frogsfunc_function_marker_norm.tsv)." optional="false">
-              <validator type="empty_field" message="This parameter is required." />
-            </param>
-       		<param name="per_sequence_function" type="data" label="Abundance function file" help="table contains predicted function abundances per sequence from FROGSFUNC_step2_copynumbers tool (frogsfunc_copynumbers_predicted_functions.tsv)." optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        	</param>
-       	  </when>
-        </conditional> -->
         </inputs>
 	<outputs>
 		<data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="report.html"/>
 		 <data format="tabular" name="abund" label="${tool.name}: frogsfunc_pathways_unstrat.tsv" from_work_dir="frogsfunc_pathways_unstrat.tsv"/> 
-<!--          <data format="tabular" name="contrib" label="${tool.name}: frogsfunc_pathways_strat.tsv" from_work_dir="frogsfunc_pathways_strat.tsv"> 
-            <filter>is_per_sequence_contrib['per_sequence_contrib']</filter>
-         </data>
-         <data format="tabular" name="predictions" label="${tool.name}: frogsfunc_pathways_predictions.tsv" from_work_dir="frogsfunc_pathways_predictions.tsv">
-            <filter>is_per_sequence_contrib['per_sequence_contrib']</filter>
-         </data> -->
 	</outputs>
 
   <tests>
