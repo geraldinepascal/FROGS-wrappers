@@ -91,7 +91,8 @@
 		<test>
             <param name="input_biom" value="references/25-frogsfunc_placeseqs.biom" />
 			<param name="input_tree" value="references/25-frogsfunc_placeseqs_tree.nwk" />
-            <param name="category" value="16S" />
+            <param name="function.fields.path" value="databases/frogs_picrust2_db/prokaryotic/16S_test.txt.gz" />
+            <param name="function.fields.traits" value="databases/frogs_picrust2_db/prokaryotic/ec_test.txt.gz" />
             <param name="function" value="EC"/>
 			<param name="hsp_method" value="mp" />
 
