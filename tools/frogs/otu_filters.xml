@@ -1,14 +1,40 @@
-<tool id="FROGS_OTU_filters" name="FROGS OTU Filters" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-	<description>Filters OTUs on several criteria</description>
+<?xml version="1.0"?>
+<!--
+# Copyright (C) 2015 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<tool id="FROGS_OTU_filters" name="FROGS OTU Filters" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+	<description>Filters OTUs on several criteria.</description>
+
     <macros>
         <import>macros.xml</import>
     </macros>
+
     <expand macro="requirements">
         <requirement type="package" version="2.10">blast</requirement>
     </expand>
-    <command detect_errors="exit_code">
-		otu_filters.py
-			@CPUS@
+
+        <stdio>
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+
+	<command>
+
+			otu_filters.py
+			--nb-cpus \${GALAXY_SLOTS:-1}
 			--input-biom '$input_biom'
 			--input-fasta '$input_fasta'
 			--output-fasta '$output_fasta'
@@ -16,8 +42,15 @@
 			--excluded '$output_excluded'
 			--summary '$output_summary'
 
-			#if $min_sample_presence
-				--min-sample-presence $min_sample_presence
+			#if $choice_prevalence_method.prevalence_method == "all"
+				#if $choice_prevalence_method.min_sample_presence
+					--min-sample-presence $choice_prevalence_method.min_sample_presence
+				#end if
+			#else if $choice_prevalence_method.prevalence_method == "replicate"
+				#if $choice_prevalence_method.min_replicate_presence
+					--min-replicate-presence $choice_prevalence_method.min_replicate_presence
+					--replicate_file $choice_prevalence_method.replicate_file
+				#end if
 			#end if
 
 			#if $choice_abundance_unit.abundance_unit_type == "count"
@@ -51,7 +84,22 @@
 		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: FASTA)" />
 		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)" />
 
-		<param argument="--min_sample_presence" type="integer" min="2" optional="true" label="Minimum prevalence" help="Fill the field only if you want this treatment. Keep OTU if it is present in at least this number of samples."/>
+		<conditional name="choice_prevalence_method">
+			<param name="prevalence_method" type="select" label="Minimum prevalence method">
+				<option value="all"> all samples </option>
+				<option value="replicate"> replicate identification </option>
+			</param>
+			<when value="all">
+				<param name="min_sample_presence" type="integer" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep OTU if it is present in at least this number of samples.">
+					<validator type="in_range" min="2" message="To be effective this threshold need to be higher than 1" />
+				</param>
+			</when>
+			<when value="replicate">
+				<param name="replicate_file" type="data" format="txt" optional="True" label="File of replicated sample names" help="Replicate file to link each sample to its group (cf. Help section)." />
+				<param name="min_replicate_presence" type="float" min="0" max="1" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep OTU present in at least this proportion of replicates in at least one group (must be a proportion between 0 and 1).">
+				</param>
+			</when>
+		</conditional>
 
 		<conditional name="choice_abundance_unit">
 			<param name="abundance_unit_type" type="select" label="Minimum OTU abundancy as proportion or count. We recommend to use a proportion of 0.00005.">
@@ -152,7 +200,14 @@ The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.or
 
 A sequence fasta file containing the reference sequence of known contaminant
 
-.. class:: h3
+**File of replicated sample names** (optional):
+
+If you selected " replicate identification " for the minimum prevalence method, this file is needed to identify the group to which the samples belong.
+
+If not all samples are present in the "File of replicated sample names", they will not be affected by this filter step and will be kept in the abundance table.
+
+The file must consist of only 2 columns, separated by a tab or a space. The first column contains the exact names of the samples (exactly those contained in the biom file) and the second column contains the name of the group to which they belong.
+Please note that group names must not contain accents, spaces or special characters.
 
 Outputs
 
@@ -168,7 +223,7 @@ Outputs
 
  The list of the OTUs deleted by filters (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
 
-**Summary file** (report.html):
+**Report file** (report.html):
 
  The filters and the number of removed sequences (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
 
@@ -206,7 +261,21 @@ Please check that the input fasta file and the input BIOM file correspond to the
 
 Examples for the filters on abundance and occurence of the OTUs :
 
--To keep the filters that are present in 5 samples, fill the corresponding field with "5".
+-To keep the filters that are present in 5 samples, fill the **Minimum prevalence method** field with **all samples** option, with "5".
+
+-To keep the filters that are present in half of the replicates, fill the **Minimum prevalence method** field with **replicate identification** option, with a minimum prevalence of "0.5".
+
+static/images/FROGS_otu_filter_replicates_file.png
+
+
+In this example, if we want to keep the OTUs/ASVs that are present in at least 50% of the samples, we set the threshold at 0.5. The process will therefore keep the OTUs/ASVs present in at least 
+
+ - 2 "rich" samples
+ - 3 "richAB" samples,
+ - 1 "lowAB" sample
+ - 1 "april21" sample
+
+and all OTUs/ASVs in sample9 since it is the only representative of the "low" condition.
 
 -To display the 20 biggest OTU, fill the corresponding field with "20".
 
@@ -218,3 +287,4 @@ Examples for the filters on abundance and occurence of the OTUs :
 	</help>
 	<expand macro="citations" />
 </tool>
+

@@ -1,0 +1,41 @@
+# Copyright (C) 2022 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+#This is a sample file that enables tools FROGS_frogsfunc_placeseqs to place 
+#studies sequences (i.e. OTUs) into a reference tree.
+#
+#PICRUSt2 files are present in the arborescence of PICRUSt2. Please consult 
+#PICRUSt2 documentation to find out where they are located in your environment.
+#
+#If you are not comfortable with picrust2 command lines, just create .loc files 
+#with EXAMPLE FOR TEST files remembering to replace <Galaxy_dir> with the real path.
+#
+#The indicated path is the one if you do not change the default galaxy config of conda directory.
+#
+#<identifiant>	<marker_gene>	<path_to_default_dir>
+#
+#default dir must contain these files:
+#
+#-rw-rw-r-- 1 vdarbot vdarbot 31922081 avril  1  2021 pro_ref.fna
+#-rwxrwxr-x 1 vdarbot vdarbot   272826 avril  1  2021 pro_ref.hmm
+#-rwxrwxr-x 1 vdarbot vdarbot      116 avril  1  2021 pro_ref.model
+#-rwxrwxr-x 1 vdarbot vdarbot     1707 avril  1  2021 pro_ref.raxml_info
+#-rwxrwxr-x 1 vdarbot vdarbot   600048 avril  1  2021 pro_ref.tre
+#
+# EXAMPLE FOR TEST :
+#picrust2_default_dir_16S	16S	<Galaxy_dir>/database/dependencies/_conda/envs/__picrust2@2.4.1/lib/python3.6/site-packages/picrust2/default_files/prokaryotic/pro_ref/
+#picrust2_default_dir_ITS	ITS	<Galaxy_dir>/database/dependencies/_conda/envs/__picrust2@2.4.1/lib/python3.6/site-packages/picrust2/default_files/fungi/fungi_ITS/
+#picrust2_default_dir_18S	18S	<Galaxy_dir>/database/dependencies/_conda/envs/__picrust2@2.4.1/lib/python3.6/site-packages/picrust2/default_files/fungi/fungi_18S/

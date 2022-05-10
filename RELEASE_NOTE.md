@@ -1,3 +1,27 @@
+# v4.0.0+galaxy2 [2022-05]
+
+### Tools added:
+
+PICRUSt2 is a software for predicting functional abundances based only on marker gene sequences. This tool is integrated in S suite as FROGSFunc tools. They are splittedto 4 steps :
+ * frogsfunc_placeseqs : places the OTUs into a reference phylogenetic tree.
+ * frogsfunc_copynumbers : predicts marker and function copy number of each OTU.
+ * frogsfunc_functions : calculates functions abundances in each sample.
+ * frogsfunc_pathways :  calculates pathway abundances in each sample.
+
+### Function added
+
+  * Normalisation : 
+    * add "Sampling by the number of sequences of the smallest sample" sampling method. This method automatically detects the sample with the smallest number of sequences, and samples all other samples with that number.  
+    * If you chose "Select a number of reads" sampling method, you may or not activate "Remove samples" option. If it's activated, samples whose total number of sequences is lower than the specified number, will be removed from the abundance table. If the option is disabled, the samples will be kept in the analysis but with a number of sequences lower than the specified number (the total number of the sample). 
+  * Otu_filter : add "Replicate identification" Minimum prevalence method. It allows to keep OTUs present in miniam replication proportions in at least one group (must be a proportion between 0 and 1). 
+  * Affiliation_stat : add OTU rarefaction curves in HTML, in addition to the previously existing taxonomic ranks.
+  * Remove_chimera : add "% Clusters kept" and "% Cluster abundance kept" in HTML chimera detection by sample table.
+
+### Bug corrected:
+
+* Affiliation_OTU : do not perform Needlall alignment if reduced reference database constructing by blasting R1 and R2 part of FROGS_combined OTU sequences is empty
+
+
 # v3.2.3+galaxy2 [2021-06]
 
 This version still refers to FROGS_3.2.3 suit.
