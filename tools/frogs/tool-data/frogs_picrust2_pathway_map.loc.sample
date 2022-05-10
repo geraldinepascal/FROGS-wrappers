@@ -21,15 +21,17 @@
 #PICRUSt2 documentation to find out where they are located in your environment.
 #
 #If you are not comfortable with picrust2 command lines, just create .loc files 
-#with EXAMPLE FOR TEST files remembering to replace <PATH_TO> with the real path.
+#with EXAMPLE FOR TEST files remembering to replace <Galaxy_dir> with the real path.
+#
+#The indicated path is the one if you do not change the default galaxy config of conda directory.
 #
 #<db_id>	<db_name>	<marker_gene>	<path_to_mapfiles>
 #
-#First column will be the visible name in galaxy.
+#
 #
 #
 # EXAMPLE FOR TEST :
-#pro_metacyc_pathway	Metacyc	16S	<PATH_TO>/picrust2/default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt
-#fungi_metacyc_pathway	Metacyc	ITS	<PATH_TO>/picrust2/default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_fungi.txt
-#fungi_metacyc_pathway	Metacyc	18S	<PATH_TO>/picrust2/default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_fungi.txt
-#kegg_modules_pathway	Kegg	16S	<PATH_TO>/picrust2/default_files/pathway_mapfiles/KEGG_pathways_to_KO.tsv
+#pro_metacyc_pathway	Metacyc	16S	<Galaxy_dir>/database/dependencies/_conda/envs/__picrust2@2.4.1/lib/python3.6/site-packages/picrust2/default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt
+#fungi_metacyc_pathway	Metacyc	ITS	<Galaxy_dir>/database/dependencies/_conda/envs/__picrust2@2.4.1/lib/python3.6/site-packages/picrust2/default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_fungi.txt
+#fungi_metacyc_pathway	Metacyc	18S	<Galaxy_dir>/database/dependencies/_conda/envs/__picrust2@2.4.1/lib/python3.6/site-packages/picrust2/default_files/pathway_mapfiles/metacyc_path2rxn_struc_filt_fungi.txt
+#kegg_modules_pathway	Kegg	16S	<Galaxy_dir>/database/dependencies/_conda/envs/__picrust2@2.4.1/lib/python3.6/site-packages/picrust2/default_files/pathway_mapfiles/KEGG_pathways_to_KO.tsv

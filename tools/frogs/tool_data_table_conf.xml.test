@@ -17,20 +17,10 @@
         <columns>value, name, path</columns>
         <file path="${__HERE__}/test-data/databases/frogs_picrust2_default_dir.loc" />
     </table>
-    <!-- Locations of picrust2 description files directory -->
-   <table name="frogs_picrust2_description_dir" comment_char="#">
-        <columns>value, name, path</columns>
-        <file path="${__HERE__}/test-data/databases/frogs_picrust2_description_dir.loc" />
-    </table>
         <!-- Locations of picrust2 marker table files -->
    <table name="frogs_picrust2_marker_table" comment_char="#">
         <columns>value, name, path, traits</columns>
         <file path="${__HERE__}/test-data/databases/frogs_picrust2_marker_table.loc" />
-    </table>
-        <!-- Locations of picrust2 traits table files -->
-   <table name="frogs_picrust2_traits_table" comment_char="#">
-        <columns>value, name, path</columns>
-        <file path="${__HERE__}/test-data/databases/frogs_picrust2_traits_table.loc" />
     </table>
     <!-- Locations of picrust2 pathway map files -->
    <table name="frogs_picrust2_pathway_map" comment_char="#">

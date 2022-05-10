@@ -175,8 +175,7 @@ Gene families/function from KEGG or Metacyc databases are classified according t
 
     </help>
 
-    <citations>
-        <expand macro="citations" />
-    </citations>
+
+    <expand macro="citations" />
     
 </tool>

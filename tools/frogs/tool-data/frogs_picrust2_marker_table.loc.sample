@@ -22,7 +22,9 @@
 #PICRUSt2 documentation to find out where they are located in your environment.
 #
 #If you are not comfortable with picrust2 command lines, just create .loc files 
-#with EXAMPLE FOR TEST files remembering to replace <PATH_TO> with the real path.
+#with EXAMPLE FOR TEST files remembering to replace <Galaxy_dir> with the real path.
+#
+#The indicated path is the one if you do not change the default galaxy config of conda directory.
 #
 #<marker_gene>	<db>	<picrust2_input_marker>	<picrust2_input_function>
 #
@@ -36,5 +38,5 @@
 #16S	COG	COG	COG
 #16S	TIGRFAM	TIGRFAM	TIGRFAM
 #16S	PHENO	PHENO	PHENO
-#ITS	EC	<PATH_TO>/picrust2/default_files/fungi/ITS_counts.txt.gz	<PATH_TO>/picrust2/default_files/fungi/ec_ITS_counts.txt.gz
-#18S	EC	<PATH_TO>/picrust2/default_files/fungi/18S_counts.txt.gz	<PATH_TO>/picrust2/default_files/fungi/ec_18S_counts.txt.gz
+#ITS	EC	<Galaxy_dir>/database/dependencies/_conda/envs/__picrust2@2.4.1/lib/python3.6/site-packages/picrust2/default_files/fungi/ITS_counts.txt.gz	<Galaxy_dir>/database/dependencies/_conda/envs/__picrust2@2.4.1/lib/python3.6/site-packages/picrust2/default_files/fungi/ec_ITS_counts.txt.gz
+#18S	EC	<Galaxy_dir>/database/dependencies/_conda/envs/__picrust2@2.4.1/lib/python3.6/site-packages/picrust2/default_files/fungi/18S_counts.txt.gz	<Galaxy_dir>/database/dependencies/_conda/envs/__picrust2@2.4.1/lib/python3.6/site-packages/picrust2/default_files/fungi/ec_18S_counts.txt.gz

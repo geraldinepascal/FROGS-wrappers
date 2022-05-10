@@ -178,8 +178,7 @@ The graph shows the number of kept OTUs and sequences according to the NSTI thre
 
 	</help>
 
-	<citations>
-		<expand macro="citations" />
-	</citations>
+
+	<expand macro="citations" />
 	
 </tool>

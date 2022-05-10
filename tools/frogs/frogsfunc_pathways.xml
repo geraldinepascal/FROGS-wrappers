@@ -174,8 +174,6 @@ Outputs
 
   </help>
 
-  <citations>
-    <expand macro="citations" />
-  </citations>
+  <expand macro="citations" />
   
 </tool>
