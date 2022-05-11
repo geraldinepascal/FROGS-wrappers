@@ -36,3 +36,4 @@
 16S	COG	COG	COG
 16S	TIGRFAM	TIGRFAM	TIGRFAM
 16S	PHENO	PHENO	PHENO
+ITS	EC	${__HERE__}/frogs_picrust2_db/prokaryotic/16S_test.txt.gz	${__HERE__}/frogs_picrust2_db/prokaryotic/ec_test.txt.gz

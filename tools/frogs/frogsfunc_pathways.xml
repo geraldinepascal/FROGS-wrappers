@@ -73,12 +73,8 @@
 
   <tests>
     <test>
-      <param name="input_file" value="references/27-frogsfunc_functions_unstrat.tsv" />
+      <param name="input_file" value="input/frogsfunc_functions_unstrat.tsv" />
       <param name="category" value="16S" />
-      <param name="map_file" value="databases/frogs_picrust2_db/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt"/>
-        <conditional name="is_per_sequence_contrib">
-        <param name="per_sequence_contrib" value="false"/>
-        </conditional>
 
       <output name="abund" file="references/28-frogsfunc_pathways_unstrat.tsv" compare="diff" lines_diff="0" />
       <output name="summary_file" file="references/28-frogsfunc_pathways_report.html" compare="diff" lines_diff="0" />
