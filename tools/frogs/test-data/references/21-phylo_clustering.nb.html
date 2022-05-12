@@ -11,7 +11,7 @@
 
 
 
-<title>FROGS Phyloseq: Sample clustering using different linkage method (version 3.2.3)</title>
+<title>FROGS Phyloseq: Sample clustering using different linkage method (version 4.0.0)</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1499,6 +1499,8 @@ window.initializeCodeFolding = function(show) {
   // select all R code blocks
   var rCodeBlocks = $('pre.r, pre.python, pre.bash, pre.sql, pre.cpp, pre.stan, pre.julia, pre.foldable');
   rCodeBlocks.each(function() {
+    // skip if the block has fold-none class
+    if ($(this).hasClass('fold-none')) return;
 
     // create a collapsable div to wrap the code in
     var div = $('<div class="collapse r-code-collapse"></div>');
@@ -1514,7 +1516,9 @@ window.initializeCodeFolding = function(show) {
     showCodeButton.append(showCodeText);
     showCodeButton
         .attr('data-toggle', 'collapse')
+        .attr('data-bs-toggle', 'collapse') // BS5
         .attr('data-target', '#' + id)
+        .attr('data-bs-target', '#' + id)   // BS5
         .attr('aria-expanded', showThis)
         .attr('aria-controls', id);
 
@@ -1604,6 +1608,7 @@ if (window.hljs) {
 
 
 
+
 <style type="text/css">
 #rmd-source-code {
   display: none;
@@ -1634,6 +1639,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -1743,7 +1751,7 @@ pre code {
 <div id="header">
 
 <div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
 <ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
 <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
 <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
@@ -1754,7 +1762,8 @@ pre code {
 
 
 
-<h1 class="title toc-ignore">FROGS Phyloseq: Sample clustering using different linkage method (version 3.2.3)</h1>
+<h1 class="title toc-ignore">FROGS Phyloseq: Sample clustering using
+different linkage method (version 4.0.0)</h1>
 
 </div>
 
@@ -1797,13 +1806,23 @@ h4 {
 <p>Phyloseq 1.38.0</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjpbIiMjIEltcG9ydCBwYWNrYWdlcyIsImxpYnJhcnkocGh5bG9zZXEpIiwibGlicmFyeShzY2FsZXMpIiwibGlicmFyeShhcGUpIiwic291cmNlKGZpbGUucGF0aChwYXJhbXMkbGliZGlyLCBcImdyYXBoaWNhbF9tZXRob2RzLlJcIikpIiwiIyMgQWx0ZXJuYXRpdmUgdG8gc291cmNlIGFsbCBleHRyYSBmdW5jdGlvbiBmcm9tIGEgZ2l0aHViIHJlcG8iLCIjIyBzb3VyY2UoXCJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vbWFoZW5kcmEtbWFyaWFkYXNzb3UvcGh5bG9zZXEtZXh0ZW5kZWQvbWFzdGVyL2xvYWQtZXh0cmEtZnVuY3Rpb25zLlJcIikiLCIiLCIjIyBTZXR0aW5nIHZhcmlhYmxlcyIsIiAgIyMgVGhlIFBoeWxvc2VxIG9iamVjdCAoZm9ybWF0IHJkYXRhKSIsIiAgIyBwaHlsb3NlcSA8LSBcIlwiIiwiIiwiICAjIyBUaGUgYmV0YSBkaXZlcnNpdHkgZGlzdGFuY2UgbWF0cml4IGZpbGUiLCIgICMgZGlzdGFuY2UgPC0gXCJcIiIsIiIsIiAgIyMgVGhlIGV4cGVyaW1lbnQgdmFyaWFibGUgdGhhdCB5b3Ugd2FudCB0byBhbmFseXNlIiwiICAjIHZhckV4cCA8LSBcIlwiIiwiIiwiIyMgQ3JlYXRlIGlucHV0IGFuZCBwYXJhbWV0ZXJzIGRhdGFmcmFtZSIsIiAgIyBwYXJhbXMgPC0gZGF0YS5mcmFtZSggXCJwaHlsb3NlcVwiID0gcGh5bG9zZSwgXCJkaXN0YW5jZVwiID0gZGlzdGFuY2UsIFwidmFyRXhwXCIgPSB2YXJFeHApIiwiIiwiIyMgTG9hZCBkYXRhIiwiICAjIyB0aGUgcGh5bG9zZXEgb2JqZWN0IiwibG9hZChwYXJhbXMkcGh5bG9zZXEpIiwiIiwiICAjIyB0aGUgZGlzdGFuY2UgbWF0cml4IGZpbGUiLCJBICAgICAgICA8LSByZWFkLnRhYmxlKGZpbGU9cGFyYW1zJGRpc3RhbmNlLCByb3cubmFtZXM9MSkiLCJkaXN0ICAgICA8LSBhcy5kaXN0KEEpIl19 -->
+<!-- rnb-source-begin eyJkYXRhIjpbIiMjIEltcG9ydCBwYWNrYWdlcyIsImxpYnJhcnkocGh5bG9zZXEpIiwibGlicmFyeShzY2FsZXMpIl19 -->
 <pre class="r"><code>## Import packages
 library(phyloseq)
-library(scales)
-library(ape)
-source(file.path(params$libdir, &quot;graphical_methods.R&quot;))
-## Alternative to source all extra function from a github repo
+library(scales)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-warning-begin eyJkYXRhIjoiV2FybmluZzogbGUgcGFja2FnZSAnc2NhbGVzJyBhIMOpdMOpIGNvbXBpbMOpIGF2ZWMgbGEgdmVyc2lvbiBSIDQuMS4zXG4ifQ== -->
+<pre><code>Warning: le package &#39;scales&#39; a été compilé avec la version R 4.1.3</code></pre>
+<!-- rnb-warning-end -->
+<!-- rnb-source-begin eyJkYXRhIjpbImxpYnJhcnkoYXBlKSIsInNvdXJjZShmaWxlLnBhdGgocGFyYW1zJGxpYmRpciwgXCJncmFwaGljYWxfbWV0aG9kcy5SXCIpKSJdfQ== -->
+<pre class="r"><code>library(ape)
+source(file.path(params$libdir, &quot;graphical_methods.R&quot;))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-warning-begin eyJkYXRhIjoiV2FybmluZzogbGUgcGFja2FnZSAnZ2dwbG90MicgYSDDqXTDqSBjb21waWzDqSBhdmVjIGxhIHZlcnNpb24gUiA0LjEuM1xuIn0= -->
+<pre><code>Warning: le package &#39;ggplot2&#39; a été compilé avec la version R 4.1.3</code></pre>
+<!-- rnb-warning-end -->
+<!-- rnb-source-begin eyJkYXRhIjpbIiMjIEFsdGVybmF0aXZlIHRvIHNvdXJjZSBhbGwgZXh0cmEgZnVuY3Rpb24gZnJvbSBhIGdpdGh1YiByZXBvIiwiIyMgc291cmNlKFwiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21haGVuZHJhLW1hcmlhZGFzc291L3BoeWxvc2VxLWV4dGVuZGVkL21hc3Rlci9sb2FkLWV4dHJhLWZ1bmN0aW9ucy5SXCIpIiwiIiwiIyMgU2V0dGluZyB2YXJpYWJsZXMiLCIgICMjIFRoZSBQaHlsb3NlcSBvYmplY3QgKGZvcm1hdCByZGF0YSkiLCIgICMgcGh5bG9zZXEgPC0gXCJcIiIsIiIsIiAgIyMgVGhlIGJldGEgZGl2ZXJzaXR5IGRpc3RhbmNlIG1hdHJpeCBmaWxlIiwiICAjIGRpc3RhbmNlIDwtIFwiXCIiLCIiLCIgICMjIFRoZSBleHBlcmltZW50IHZhcmlhYmxlIHRoYXQgeW91IHdhbnQgdG8gYW5hbHlzZSIsIiAgIyB2YXJFeHAgPC0gXCJcIiIsIiIsIiMjIENyZWF0ZSBpbnB1dCBhbmQgcGFyYW1ldGVycyBkYXRhZnJhbWUiLCIgICMgcGFyYW1zIDwtIGRhdGEuZnJhbWUoIFwicGh5bG9zZXFcIiA9IHBoeWxvc2UsIFwiZGlzdGFuY2VcIiA9IGRpc3RhbmNlLCBcInZhckV4cFwiID0gdmFyRXhwKSIsIiIsIiMjIExvYWQgZGF0YSIsIiAgIyMgdGhlIHBoeWxvc2VxIG9iamVjdCIsImxvYWQocGFyYW1zJHBoeWxvc2VxKSIsIiIsIiAgIyMgdGhlIGRpc3RhbmNlIG1hdHJpeCBmaWxlIiwiQSAgICAgICAgPC0gcmVhZC50YWJsZShmaWxlPXBhcmFtcyRkaXN0YW5jZSwgcm93Lm5hbWVzPTEpIiwiZGlzdCAgICAgPC0gYXMuZGlzdChBKSJdfQ== -->
+<pre class="r"><code>## Alternative to source all extra function from a github repo
 ## source(&quot;https://raw.githubusercontent.com/mahendra-mariadassou/phyloseq-extended/master/load-extra-functions.R&quot;)
 
 ## Setting variables
@@ -1862,7 +1881,7 @@ dist     &lt;- as.dist(A)</code></pre>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRlJPR1MgUGh5bG9zZXE6IFNhbXBsZSBjbHVzdGVyaW5nIHVzaW5nIGRpZmZlcmVudCBsaW5rYWdlIG1ldGhvZCAodmVyc2lvbiAzLjIuMykiCm91dHB1dDogCiAgaHRtbF9ub3RlYm9vazoKICAgIGNvZGVfZm9sZGluZzogaGlkZQpwYXJhbXM6CiAgIHBoeWxvc2VxOgogICAgICB2YWx1ZTogeAogICB2YXJFeHA6CiAgICAgIHZhbHVlOiB4CiAgIGRpc3RhbmNlOgogICAgICB2YWx1ZTogeAogICBsaWJkaXI6CiAgICAgIHZhbHVlOiB4Ci0tLQo8bWV0YSBodHRwLWVxdWl2PSJDb250ZW50LVR5cGUiIGNvbnRlbnQ9InRleHQvaHRtbDsgY2hhcnNldD1VVEYtOCI+Cgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgpjb2RlLnJ7IC8qIENvZGUgYmxvY2sgKi8KICBmb250LXNpemU6IDExcHg7Cn0KcHJlIHsgLyogQ29kZSBibG9jayAqLwogIGZvbnQtc2l6ZTogMTFweAp9Ci5idXR0b24gewogICAgYmFja2dyb3VuZC1jb2xvcjogIzJhN2VjYzsgLyogQmx1ZSAqLwogICAgYm9yZGVyICAgICAgICAgIDogbm9uZTsKICAgIGNvbG9yICAgICAgICAgICA6IHdoaXRlOwogICAgcGFkZGluZyAgICAgICAgIDogNXB4IDEwcHg7CiAgICB0ZXh0LWFsaWduICAgICAgOiBjZW50ZXI7CiAgICB0ZXh0LWRlY29yYXRpb24gOiBub25lOwogICAgZGlzcGxheSAgICAgICAgIDogaW5saW5lLWJsb2NrOwogICAgZm9udC1zaXplICAgICAgIDogMTJweDsKICAgIG1hcmdpbiAgICAgICAgICA6IDRweCAycHg7CiAgICBjdXJzb3IgICAgICAgICAgOiBwb2ludGVyOwogICAgYm9yZGVyLXJhZGl1cyAgIDogOHB4Owp9Cmg0IHsgCiAgICBkaXNwbGF5ICAgICAgOiBibG9jazsKICAgIGZvbnQtc2l6ZSAgICA6IDFlbTsKICAgIG1hcmdpbi10b3AgICA6IDEuMzNlbTsKICAgIG1hcmdpbi1ib3R0b206IDEuMzNlbTsKICAgIG1hcmdpbi1sZWZ0ICA6IDA7CiAgICBtYXJnaW4tcmlnaHQgOiAwOwogICAgZm9udC13ZWlnaHQgIDogYm9sZDsKICAgIGNvbG9yICAgICAgICA6ICMyYTdlY2M7Cn0KPC9zdHlsZT4KCgpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKUGh5bG9zZXEgYHIgcGFja2FnZVZlcnNpb24oInBoeWxvc2VxIilgCgpgYGB7ciBpbXBvcnQsIG1lc3NhZ2U9RkFMU0V9CgojIyBJbXBvcnQgcGFja2FnZXMKbGlicmFyeShwaHlsb3NlcSkKbGlicmFyeShzY2FsZXMpCmxpYnJhcnkoYXBlKQpzb3VyY2UoZmlsZS5wYXRoKHBhcmFtcyRsaWJkaXIsICJncmFwaGljYWxfbWV0aG9kcy5SIikpCiMjIEFsdGVybmF0aXZlIHRvIHNvdXJjZSBhbGwgZXh0cmEgZnVuY3Rpb24gZnJvbSBhIGdpdGh1YiByZXBvCiMjIHNvdXJjZSgiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL21haGVuZHJhLW1hcmlhZGFzc291L3BoeWxvc2VxLWV4dGVuZGVkL21hc3Rlci9sb2FkLWV4dHJhLWZ1bmN0aW9ucy5SIikKCiMjIFNldHRpbmcgdmFyaWFibGVzCiAgIyMgVGhlIFBoeWxvc2VxIG9iamVjdCAoZm9ybWF0IHJkYXRhKQogICMgcGh5bG9zZXEgPC0gIiIKCiAgIyMgVGhlIGJldGEgZGl2ZXJzaXR5IGRpc3RhbmNlIG1hdHJpeCBmaWxlCiAgIyBkaXN0YW5jZSA8LSAiIgoKICAjIyBUaGUgZXhwZXJpbWVudCB2YXJpYWJsZSB0aGF0IHlvdSB3YW50IHRvIGFuYWx5c2UKICAjIHZhckV4cCA8LSAiIgoKIyMgQ3JlYXRlIGlucHV0IGFuZCBwYXJhbWV0ZXJzIGRhdGFmcmFtZQogICMgcGFyYW1zIDwtIGRhdGEuZnJhbWUoICJwaHlsb3NlcSIgPSBwaHlsb3NlLCAiZGlzdGFuY2UiID0gZGlzdGFuY2UsICJ2YXJFeHAiID0gdmFyRXhwKQoKIyMgTG9hZCBkYXRhCiAgIyMgdGhlIHBoeWxvc2VxIG9iamVjdApsb2FkKHBhcmFtcyRwaHlsb3NlcSkKCiAgIyMgdGhlIGRpc3RhbmNlIG1hdHJpeCBmaWxlCkEgICAgICAgIDwtIHJlYWQudGFibGUoZmlsZT1wYXJhbXMkZGlzdGFuY2UsIHJvdy5uYW1lcz0xKQpkaXN0ICAgICA8LSBhcy5kaXN0KEEpCmBgYAoKIyB7LnRhYnNldCAudGFic2V0LWZhZGUgLnRhYnNldC1waWxsc30KCiMjIFdhcmQgRDIKYGBge3Igd2FyZCwgZmlnLndpZHRoPTgsIGZpZy5oZWlnaHQ9NywgZWNobz1GQUxTRX0KcGxvdF9jbHVzdChkYXRhLCBkaXN0LCBtZXRob2QgPSAid2FyZC5EMiIsIGNvbG9yID0gcGFyYW1zJHZhckV4cCkKYGBgCgojIyBDb21wbGV0ZQpgYGB7ciBjb21wbGV0ZSwgZmlnLndpZHRoPTgsIGZpZy5oZWlnaHQ9NywgZWNobz1GQUxTRX0KcGxvdF9jbHVzdChkYXRhLCBkaXN0LCBtZXRob2QgPSAiY29tcGxldGUiLCBjb2xvciA9IHBhcmFtcyR2YXJFeHApCmBgYAoKIyMgU2luZ2xlCmBgYHtyIHNpbmdsZSwgZmlnLndpZHRoPTgsIGZpZy5oZWlnaHQ9NywgZWNobz1GQUxTRX0KcGxvdF9jbHVzdChkYXRhLCBkaXN0LCBtZXRob2QgPSAic2luZ2xlIiwgY29sb3IgPSBwYXJhbXMkdmFyRXhwKQpgYGAK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRlJPR1MgUGh5bG9zZXE6IFNhbXBsZSBjbHVzdGVyaW5nIHVzaW5nIGRpZmZlcmVudCBsaW5rYWdlIG1ldGhvZCAodmVyc2lvbiA0LjAuMCkiCm91dHB1dDogCiAgaHRtbF9ub3RlYm9vazoKICAgIGNvZGVfZm9sZGluZzogaGlkZQpwYXJhbXM6CiAgIHBoeWxvc2VxOgogICAgICB2YWx1ZTogeAogICB2YXJFeHA6CiAgICAgIHZhbHVlOiB4CiAgIGRpc3RhbmNlOgogICAgICB2YWx1ZTogeAogICBsaWJkaXI6CiAgICAgIHZhbHVlOiB4Ci0tLQo8bWV0YSBodHRwLWVxdWl2PSJDb250ZW50LVR5cGUiIGNvbnRlbnQ9InRleHQvaHRtbDsgY2hhcnNldD1VVEYtOCI+Cgo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPgpjb2RlLnJ7IC8qIENvZGUgYmxvY2sgKi8KICBmb250LXNpemU6IDExcHg7Cn0KcHJlIHsgLyogQ29kZSBibG9jayAqLwogIGZvbnQtc2l6ZTogMTFweAp9Ci5idXR0b24gewogICAgYmFja2dyb3VuZC1jb2xvcjogIzJhN2VjYzsgLyogQmx1ZSAqLwogICAgYm9yZGVyICAgICAgICAgIDogbm9uZTsKICAgIGNvbG9yICAgICAgICAgICA6IHdoaXRlOwogICAgcGFkZGluZyAgICAgICAgIDogNXB4IDEwcHg7CiAgICB0ZXh0LWFsaWduICAgICAgOiBjZW50ZXI7CiAgICB0ZXh0LWRlY29yYXRpb24gOiBub25lOwogICAgZGlzcGxheSAgICAgICAgIDogaW5saW5lLWJsb2NrOwogICAgZm9udC1zaXplICAgICAgIDogMTJweDsKICAgIG1hcmdpbiAgICAgICAgICA6IDRweCAycHg7CiAgICBjdXJzb3IgICAgICAgICAgOiBwb2ludGVyOwogICAgYm9yZGVyLXJhZGl1cyAgIDogOHB4Owp9Cmg0IHsgCiAgICBkaXNwbGF5ICAgICAgOiBibG9jazsKICAgIGZvbnQtc2l6ZSAgICA6IDFlbTsKICAgIG1hcmdpbi10b3AgICA6IDEuMzNlbTsKICAgIG1hcmdpbi1ib3R0b206IDEuMzNlbTsKICAgIG1hcmdpbi1sZWZ0ICA6IDA7CiAgICBtYXJnaW4tcmlnaHQgOiAwOwogICAgZm9udC13ZWlnaHQgIDogYm9sZDsKICAgIGNvbG9yICAgICAgICA6ICMyYTdlY2M7Cn0KPC9zdHlsZT4KCgpgYGB7ciBzZXR1cCwgaW5jbHVkZT1GQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFLCBlcnJvciA9IFRSVUUpCmBgYApQaHlsb3NlcSBgciBwYWNrYWdlVmVyc2lvbigicGh5bG9zZXEiKWAKCmBgYHtyIGltcG9ydCwgbWVzc2FnZT1GQUxTRX0KCiMjIEltcG9ydCBwYWNrYWdlcwpsaWJyYXJ5KHBoeWxvc2VxKQpsaWJyYXJ5KHNjYWxlcykKbGlicmFyeShhcGUpCnNvdXJjZShmaWxlLnBhdGgocGFyYW1zJGxpYmRpciwgImdyYXBoaWNhbF9tZXRob2RzLlIiKSkKIyMgQWx0ZXJuYXRpdmUgdG8gc291cmNlIGFsbCBleHRyYSBmdW5jdGlvbiBmcm9tIGEgZ2l0aHViIHJlcG8KIyMgc291cmNlKCJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vbWFoZW5kcmEtbWFyaWFkYXNzb3UvcGh5bG9zZXEtZXh0ZW5kZWQvbWFzdGVyL2xvYWQtZXh0cmEtZnVuY3Rpb25zLlIiKQoKIyMgU2V0dGluZyB2YXJpYWJsZXMKICAjIyBUaGUgUGh5bG9zZXEgb2JqZWN0IChmb3JtYXQgcmRhdGEpCiAgIyBwaHlsb3NlcSA8LSAiIgoKICAjIyBUaGUgYmV0YSBkaXZlcnNpdHkgZGlzdGFuY2UgbWF0cml4IGZpbGUKICAjIGRpc3RhbmNlIDwtICIiCgogICMjIFRoZSBleHBlcmltZW50IHZhcmlhYmxlIHRoYXQgeW91IHdhbnQgdG8gYW5hbHlzZQogICMgdmFyRXhwIDwtICIiCgojIyBDcmVhdGUgaW5wdXQgYW5kIHBhcmFtZXRlcnMgZGF0YWZyYW1lCiAgIyBwYXJhbXMgPC0gZGF0YS5mcmFtZSggInBoeWxvc2VxIiA9IHBoeWxvc2UsICJkaXN0YW5jZSIgPSBkaXN0YW5jZSwgInZhckV4cCIgPSB2YXJFeHApCgojIyBMb2FkIGRhdGEKICAjIyB0aGUgcGh5bG9zZXEgb2JqZWN0CmxvYWQocGFyYW1zJHBoeWxvc2VxKQoKICAjIyB0aGUgZGlzdGFuY2UgbWF0cml4IGZpbGUKQSAgICAgICAgPC0gcmVhZC50YWJsZShmaWxlPXBhcmFtcyRkaXN0YW5jZSwgcm93Lm5hbWVzPTEpCmRpc3QgICAgIDwtIGFzLmRpc3QoQSkKYGBgCgojIHsudGFic2V0IC50YWJzZXQtZmFkZSAudGFic2V0LXBpbGxzfQoKIyMgV2FyZCBEMgpgYGB7ciB3YXJkLCBmaWcud2lkdGg9OCwgZmlnLmhlaWdodD03LCBlY2hvPUZBTFNFfQpwbG90X2NsdXN0KGRhdGEsIGRpc3QsIG1ldGhvZCA9ICJ3YXJkLkQyIiwgY29sb3IgPSBwYXJhbXMkdmFyRXhwKQpgYGAKCiMjIENvbXBsZXRlCmBgYHtyIGNvbXBsZXRlLCBmaWcud2lkdGg9OCwgZmlnLmhlaWdodD03LCBlY2hvPUZBTFNFfQpwbG90X2NsdXN0KGRhdGEsIGRpc3QsIG1ldGhvZCA9ICJjb21wbGV0ZSIsIGNvbG9yID0gcGFyYW1zJHZhckV4cCkKYGBgCgojIyBTaW5nbGUKYGBge3Igc2luZ2xlLCBmaWcud2lkdGg9OCwgZmlnLmhlaWdodD03LCBlY2hvPUZBTFNFfQpwbG90X2NsdXN0KGRhdGEsIGRpc3QsIG1ldGhvZCA9ICJzaW5nbGUiLCBjb2xvciA9IHBhcmFtcyR2YXJFeHApCmBgYAo=</div>
 
 
 
