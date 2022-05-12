@@ -49,12 +49,9 @@
 	</command> 
 	<inputs>
     	<!-- Input files -->
-		<param argument="--input-fasta" format="fasta" name="input_fasta" type="data" label="Sequence file" help="The sequence file to analyse (format: fasta)." optional="false">
-       		<validator type="empty_field" message="This parameter is required." />
-    	</param>
-		<param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance file to analyse (format: biom). Taxonomic affiliations must be inside (FROGS Affiliation OTU step)." optional="false">
-        	<validator type="empty_field" message="This parameter is required." />
-        </param>
+		<param argument="--input-fasta" format="fasta" name="input_fasta" type="data" label="Sequence file" help="The sequence file to analyse (format: fasta)." optional="false"/>
+		<param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance file to analyse (format: biom). Taxonomic affiliations must be inside (FROGS Affiliation OTU step)." optional="false"/>
+
     	<!-- Parameters -->
         <param argument="--ref-dir" name="marker" type="select" label="Taxonomy marker" display="radio" help="Taxonomic marker of interest.">
 			<options from_data_table="frogs_picrust2_default_dir">
