@@ -208,6 +208,8 @@ If not all samples are present in the "File of replicated sample names", they wi
 
 The file must consist of only 2 columns, separated by a tab or a space. The first column contains the exact names of the samples (exactly those contained in the biom file) and the second column contains the name of the group to which they belong.
 Please note that group names must not contain accents, spaces or special characters.
+		
+.. class:: h3
 
 Outputs
 
@@ -279,7 +281,7 @@ and all OTUs/ASVs in sample9 since it is the only representative of the "low" co
 
 -To display the 20 biggest OTU, fill the corresponding field with "20".
 
--To filter on abundance, we advise you to specify 0.005%. It seems to be the optimal threshold (`Bokulich *et al*, 2013 &lt;http://www.nature.com/nmeth/journal/v10/n1/abs/nmeth.2276.html&gt;`_ ).
+-To filter on abundance, we advise you to specify 0.005% (i.e. 0.00005). It seems to be the optimal threshold (`Bokulich *et al*, 2013 &lt;http://www.nature.com/nmeth/journal/v10/n1/abs/nmeth.2276.html&gt;`_ ).
 
 
 @HELP_CONTACT@
