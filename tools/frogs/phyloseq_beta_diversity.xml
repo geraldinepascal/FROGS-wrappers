@@ -94,7 +94,7 @@ Output
 
 The review of beta diversity with heatmap plots:
 
-.. image:: static/images/FROGS_Phyloseq_beta_diversity.png
+.. image:: FROGS_Phyloseq_beta_diversity.png
      :height: 609
      :width: 800
 
@@ -102,7 +102,7 @@ The review of beta diversity with heatmap plots:
 **beta diversity matrix** (format tabular):
 The distance matrix of beta diversity.
 
- .. image:: static/images/FROGS_Phyloseq_beta_diversity_matrix.png
+ .. image:: FROGS_Phyloseq_beta_diversity_matrix.png
 
 .. class:: infomark page-header h2
 

@@ -152,7 +152,7 @@ How it works
 
 Swarm use an iterative growth process and the use of sequence abundance values to delineate OTUs.
 
-.. image:: static/images/FROGS_cluster_swarm.png
+.. image:: FROGS_cluster_swarm.png
    :height: 223
    :width: 666
 
@@ -162,7 +162,7 @@ After agregation Swarm refines the clusters by looking at the abundancies along 
 
 On the other hand, the fastidious option of swarm allow to aggregate small and rare cluster into bigger one if they share sequence with at most 2*d distance. In this case d is restricted to 1 so, cluster distance will be 2. (image extracted from `Swarm github &lt;https://github.com/torognes/swarm&gt;`_)
 
-.. image:: static/images/FROGS_cluster_fastidious.png
+.. image:: FROGS_cluster_fastidious.png
    :height: 319
    :width: 681
 
