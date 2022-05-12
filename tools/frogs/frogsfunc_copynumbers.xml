@@ -63,7 +63,7 @@
             </options>
 		</param>
 
-		<param name="function" type="select" label="Function table" multiple="true" display="checkboxes" optional="false" help=" 16S : at least 'EC' or/and 'KO' should be chosen (EC for Metacyc pathway analysis or/and KO for KEGG pathway analysis) - others values are optionnal. ITS and 18S : 'EC' only available." >
+		<param name="function" type="select" label="Function table" multiple="true" optional="false" help=" 16S : at least 'EC' or/and 'KO' should be chosen (EC for Metacyc pathway analysis or/and KO for KEGG pathway analysis) - others values are optionnal. ITS and 18S : 'EC' only available." >
 			<options from_data_table="frogs_picrust2_marker_table">
 				<column name='name' index='1' />
 				<column name='value' index='1' />
