@@ -51,7 +51,7 @@
 		<conditional name="sampling_method">
 			<param name="sampling_by_min" type="select" label="Sampling method" help='Sampling by the number of sequences of the smallest sample, or select a number manually' display='radio'>
             	<option value="yes" selected="true">Sampling by the number of sequences of the smallest sample</option>
-            	<option value="no">Select a number of reads</option>
+            	<option value="no">Select a number of sequences</option>
 			</param>
 		<when value="no">
 			<param name="num_reads" type="integer" optional="true" min="1" value="" label="Number of reads" help="The final number of reads per sample." />
@@ -106,8 +106,8 @@ The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.or
 
 Sequence normalisation method :
 
- - **Sampling by the number of sequences of the smallest sample** : Automatically detects the number of reads of the smallest sample, and selects this number for all other samples.
- - **Select number of reads** : Manually select a number of reads.
+ - **Sampling by the number of sequences of the smallest sample** : Automatically detects the number of sequences of the smallest sample, and selects this number for all other samples.
+ - **Select number of sequences** : Manually select a number of sequences.
 
 With this number, a random draw of sequences is made and once normalisation is complete, each sample will contain the specified number of sequences.
 
