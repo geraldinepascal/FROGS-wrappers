@@ -131,7 +131,7 @@ BARCODE_FILE :
 
 Example of barcode file: Here the sample is multiplexed by both fragment ends.
 
- .. image:: static/images/FROGS_demultiplex_barcode.png
+ .. image:: FROGS_demultiplex_barcode.png
    :height: 60
    :width: 316
 

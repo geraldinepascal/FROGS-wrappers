@@ -265,7 +265,7 @@ Examples for the filters on abundance and occurence of the OTUs :
 
 -To keep the filters that are present in half of the replicates, fill the **Minimum prevalence method** field with **replicate identification** option, with a minimum prevalence of "0.5".
 
-static/images/FROGS_otu_filter_replicates_file.png
+FROGS_otu_filter_replicates_file.png
 
 
 In this example, if we want to keep the OTUs/ASVs that are present in at least 50% of the samples, we set the threshold at 0.5. The process will therefore keep the OTUs/ASVs present in at least 

@@ -54,21 +54,21 @@ Output
 
  *Clusters distribution* : describes the sizes distribution of all clusters thank to boxplot and tables
 
- .. image:: static/images/FROGS_cluster_stat_clusterDistrib1.png
+ .. image:: FROGS_cluster_stat_clusterDistrib1.png
     :height: 1180
     :width: 900
 
  *Sequences distributions* : describes the sequences distribution among clusters
 
- .. image:: static/images/FROGS_cluster_stat_seq_dist.png
+ .. image:: FROGS_cluster_stat_seq_dist.png
 
  *Samples distribution* : describes clusters distribution among sample and give an `hierarchical clustering &lt;http://en.wikipedia.org/wiki/Hierarchical_clustering&gt;`_ on samples abundance profile (distance method = `braycurtis &lt;http://fr.wikipedia.org/wiki/Distance_de_Bray-Curtis&gt;`_, linkage method = average)
 
- .. image:: static/images/FROGS_cluster_stat_sample_dist1.png
+ .. image:: FROGS_cluster_stat_sample_dist1.png
     :height: 400
     :width: 700
 
- .. image:: static/images/FROGS_cluster_stat_sample_dist2.png
+ .. image:: FROGS_cluster_stat_sample_dist2.png
     :height: 350
     :width: 610
 

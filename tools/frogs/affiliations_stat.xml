@@ -121,27 +121,27 @@ Output
 
   *-Taxonomy distribution*: display the distribution of each taxon and the rarefaction for each taxonomic rank and for each sample
 
-  .. image:: static/images/FROGS_affiliation_stat_taxonomies.png
+  .. image:: FROGS_affiliation_stat_taxonomies.png
     :height: 380
     :width: 891
 
-  .. image:: static/images/FROGS_affiliation_stat_rarefaction.png
+  .. image:: FROGS_affiliation_stat_rarefaction.png
     :height: 380
     :width: 794
 
-  .. image:: static/images/FROGS_affiliation_stat_sunburst.png
+  .. image:: FROGS_affiliation_stat_sunburst.png
     :height: 380
     :width: 440
 
   -Bootstrap distribution: display for affiliation methods with bootstrap the bootstrap on each taxonomic rank
 
-  .. image:: static/images/FROGS_affiliation_stat_bootstrap.png
+  .. image:: FROGS_affiliation_stat_bootstrap.png
     :height: 380
     :width: 867
 
   -Alignment distribution: display for affiliation methods with alignment the distribution of identity/covrage
 
-  .. image:: static/images/FROGS_affiliation_stat_alignment.png
+  .. image:: FROGS_affiliation_stat_alignment.png
     :height: 380
     :width: 859
 

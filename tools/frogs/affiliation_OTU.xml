@@ -88,7 +88,7 @@ Outputs
 
  This file presents the number of sequences affiliated by blast, and the number of multi-affiliation (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
 
- .. image:: static/images/FROGS_affiliation_summary.png
+ .. image:: FROGS_affiliation_summary.png
    :height: 975
    :width: 867
 
@@ -119,13 +119,13 @@ Alignment metrics details on identity percentage calculation
 
 * **Case 1: a sequencing of overlapping sequences i.e. 16S V3-V4 amplicon MiSeq sequencing**
 
-.. image:: static/images/FROGS_affiliation_overlapped_percent_id.png
+.. image:: FROGS_affiliation_overlapped_percent_id.png
     :height: 325
     :width: 807
 
 * **Case 2 : a sequencing of non-overlapping sequences: case of ITS1 amplicon MiSeq sequencing**
 
-.. image:: static/images/FROGS_affiliation_combined_percent_id.png
+.. image:: FROGS_affiliation_combined_percent_id.png
     :height: 310
     :width: 887
 
@@ -133,7 +133,7 @@ Alignment metrics details on identity percentage calculation
 
 With the classical method of %id calculation, filtering on %id will systematically removed “FROGS combined” OTUs. So, we proposed to replace the classical %id by a %id computed on the sequenced bases only.
 
-.. image:: static/images/FROGS_affiliation_percent_id_formula.png
+.. image:: FROGS_affiliation_percent_id_formula.png
     :height: 36
     :width: 637
 

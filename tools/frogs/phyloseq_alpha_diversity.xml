@@ -80,22 +80,22 @@ Output
 
 **Html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): the review of richness plots and rarefaction curves.
 
-.. image:: static/images/FROGS_Phyloseq_plot_richness.png
+.. image:: FROGS_Phyloseq_plot_richness.png
      :height: 400
      :width: 525
 
-.. image:: static/images/FROGS_Phyloseq_plot_richness_box.png
+.. image:: FROGS_Phyloseq_plot_richness_box.png
      :height: 400
      :width: 499
 
-.. image:: static/images/FROGS_Phyloseq_rarefaction_curves.png
+.. image:: FROGS_Phyloseq_rarefaction_curves.png
      :height: 400
      :width: 498
 
 **Alpha diversity table** (alpha_diversity.tsv):
 The data file containing table of alpha diversity indices.
 
-.. image:: static/images/FROGS_Phyloseq_alpha_diversity_table.png
+.. image:: FROGS_Phyloseq_alpha_diversity_table.png
 
 .. class:: infomark page-header h2
 
