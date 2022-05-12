@@ -107,7 +107,7 @@
 				<option value="count">as count</option>
 			</param>
 			<when value="proportion">
-				<param name="min_abundance_proportion" argument="--min_abundance" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep OTU" help='Fill the field only if you want this treatment. Example: 0.00005, recommended by Bokulich et al 2013, to keep OTU with at least 0.005% of all sequences)'>
+				<param name="min_abundance_proportion" argument="--min_abundance" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep OTU" help='Fill the field only if you want this treatment. Example: 0.00005, recommended by Bokulich et al 2013, to keep OTU with at least 0.005% of all sequences'>
 					<validator type="in_range" min="0" exclude_min="true" max="1" exclude_max="true" message="Abundance proportion threshold need to be strictly greater than 0 and less than 1, otherwise you will not remove anything or remove everything." />
 				</param>
 			</when>
@@ -171,7 +171,7 @@
 
 What it does
 
-Filter the OTUs of an abundance table according to:
+Filter the OTUs in an abundance table according to:
 
 -The abundance and the occurence of OTUs: presence in samples, OTU size and maximum number of OTUs.
 
@@ -208,6 +208,8 @@ If not all samples are present in the "File of replicated sample names", they wi
 
 The file must consist of only 2 columns, separated by a tab or a space. The first column contains the exact names of the samples (exactly those contained in the biom file) and the second column contains the name of the group to which they belong.
 Please note that group names must not contain accents, spaces or special characters.
+
+.. class:: h3
 
 Outputs
 
@@ -247,7 +249,7 @@ The OTUs discarded are listed in the excluded file.
    :widths: 5, 150
    :class: table table-striped
 
-   "1", "Except the filter to select the n most abundant OTUs, all the selected filters are run independently. For each filters a list of the OTUs to remove is generated. Concerning contaminant research, OTU are added to the previous list if it aligns on a contaminant reference sequence with 80% identity and 80% coverage"
+   "1", "Except the filter to select the n most abundant OTUs, all the selected filters are run independently. For each filters a list of the OTUs to remove is generated. Concerning contaminant research, OTUs are added to the previous list if it aligns on a contaminant reference sequence with 80% of identity and 80% of coverage"
    "2", "All the OTUs tagged to remove by at least one filter are removed."
    "3", "If the filter to select the N most abundant OTUs is filled it is applied."
 
@@ -277,9 +279,9 @@ In this example, if we want to keep the OTUs/ASVs that are present in at least 5
 
 and all OTUs/ASVs in sample9 since it is the only representative of the "low" condition.
 
--To display the 20 biggest OTU, fill the corresponding field with "20".
+-To display the 20 biggest OTUs, fill the corresponding field with "20".
 
--To filter on abundance, we advise you to specify 0.005%. It seems to be the optimal threshold (`Bokulich *et al*, 2013 &lt;http://www.nature.com/nmeth/journal/v10/n1/abs/nmeth.2276.html&gt;`_ ).
+-To filter on abundance, we advise you to specify 0.005% i.e. 0.00005. It seems to be the optimal threshold (`Bokulich *et al*, 2013 &lt;http://www.nature.com/nmeth/journal/v10/n1/abs/nmeth.2276.html&gt;`_ ).
 
 
 @HELP_CONTACT@
