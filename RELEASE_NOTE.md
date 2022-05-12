@@ -1,12 +1,12 @@
-# v4.0.0+galaxy2 [2022-05]
+# v4.0.0+galaxy1 [2022-05]
 
 ### Tools added:
 
-PICRUSt2 is a software for predicting functional abundances based only on marker gene sequences. This tool is integrated in S suite as FROGSFunc tools. They are splittedto 4 steps :
- * frogsfunc_placeseqs : places the OTUs into a reference phylogenetic tree.
- * frogsfunc_copynumbers : predicts marker and function copy number of each OTU.
- * frogsfunc_functions : calculates functions abundances in each sample.
- * frogsfunc_pathways :  calculates pathway abundances in each sample.
+PICRUSt2 is a software for predicting functional abundances based only on marker gene sequences. These tools are integrated in FROGS suite as FROGSFunc tools. They are splitted into 4 steps :
+ * frogsfunc_step1_placeseqs : places the OTUs into a reference phylogenetic tree.
+ * frogsfunc_step2_copynumbers : predicts marker and function copy number of each OTU.
+ * frogsfunc_step3_functions : calculates functions abundances in each sample.
+ * frogsfunc_step4_pathways :  calculates pathway abundances in each sample.
 
 ### Function added
 
@@ -20,6 +20,8 @@ PICRUSt2 is a software for predicting functional abundances based only on marker
 ### Bug corrected:
 
 * Affiliation_OTU : do not perform Needlall alignment if reduced reference database constructing by blasting R1 and R2 part of FROGS_combined OTU sequences is empty
+
+  
 
 
 # v3.2.3+galaxy2 [2021-06]

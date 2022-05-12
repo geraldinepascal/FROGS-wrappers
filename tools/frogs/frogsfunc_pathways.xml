@@ -45,9 +45,9 @@
 	</command> 
 	<inputs>
         <!-- Input files -->       
-        <param argument="--input-file" format="tabular" name="input_file" type="data" label="Function abundance file" help="TSV function abundances table from FROGSFUNC_step3_function tool, frogsfunc_functions_unstrat.tsv (unstratified table)." optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
+        <param argument="--input-file" format="tabular" name="input_file" type="data" label="Function abundance file" help="TSV function abundances table from FROGSFUNC_step3_function tool, frogsfunc_functions_unstrat.tsv (unstratified table)." optional="false"/>
+
+        <!-- References -->
 	      <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
           <options from_data_table="frogs_picrust2_pathway_map">
             <column name='name' index='2' />
@@ -64,6 +64,8 @@
               <validator type="no_options" message="A built-in database is not available" />
           </options>
         </param>
+
+        <!-- Parameters-->
         <param argument="--normalisation" label="Do you want to normalize the final output table ?" help='Values are divided by sum of columns, then multiplied by 10^6 (CPM values).' type="boolean" />
         </inputs>
 	<outputs>
