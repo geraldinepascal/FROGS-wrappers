@@ -109,7 +109,7 @@ Sequence normalisation method :
  - **Sampling by the number of sequences of the smallest sample** : Automatically detects the number of reads of the smallest sample, and selects this number for all other samples.
  - **Select number of reads** : Manually select a number of reads.
 
-.. image:: icon_warning_sml.gif 
+.. class:: warningmark
 
 If the **remove samples** option is enabled, samples whose total number of sequences is lower than the specified number will be removed inside the abundance table. 
 If the option is disabled, the samples will be kept in the analysis but with a number of sequences lower than the specified number (the total number of the sample).

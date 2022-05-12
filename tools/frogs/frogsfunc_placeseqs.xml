@@ -131,7 +131,7 @@ Input
  
  EPA-NG or SEPP. SEPP is a low-memory alternative to EPA-ng for placing sequences. 
 
-.. image:: icon_warning_sml.gif 
+.. class:: warningmark
 
 So, if the tool crashes with EPA-ng, try again with SEPP.
 
