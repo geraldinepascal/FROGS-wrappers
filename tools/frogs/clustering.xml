@@ -29,13 +29,13 @@
         <param format="tabular" name="count_file" type="data" label="Count file" help="It contains the count by sample for each sequence (format: TSV)"/>
         <!-- Parameters -->
         <conditional name="FROGS_guidelines">
-            <param name="guidelines_version" type="select" label="FROGS guidelines version" help="Denoising step prior to a d3 clustering is no more recommended since FROGS 3.2, but you can still choose it.">
+            <param name="guidelines_version" type="select" label="FROGS guidelines version" help="The denoising step before a d3 clustering is no longer recommended since FROGS 3.2, but you can still choose it.">
                 <option value="3.2" selected="true">New guidelines from version 3.2</option>
                 <option value="3.1">First guidelines until 3.1</option>
             </param>
             <when value="3.2">
                 <param argument="--distance" type="integer" label="Aggregation distance clustering" help="Maximum number of differences between sequences in each aggregation swarm step. (recommended d=1)" value="1" min="1" max="15" optional="false" />
-                <param argument="--fastidious" type="boolean" checked="true" truevalue="--fastidious" falsevalue="" label="Refine OTU clustering" help="Clustering will be performed with the swarm --fastidious option, which is recommended and only usable in association with a distance of 1 (default and recommended: Yes)" />
+                <param argument="--fastidious" type="boolean" checked="true" truevalue="--fastidious" falsevalue="" label="Refine OTU clustering" help="Clustering will be performed with the swarm --fastidious option. It is recommended and only usable in association with a distance of 1 (default and recommended: Yes)" />
             </when>
             <when value="3.1">
                 <param argument="--distance" type="integer" value="3" min="1" max="15" optional="false" label="Aggregation distance clustering" help="Maximum number of differences between sequences in each aggregation swarm step" />
@@ -150,17 +150,17 @@ How it works
 
 **Swarm focus**
 
-Swarm use an iterative growth process and the use of sequence abundance values to delineate OTUs.
+Swarm uses an iterative growth process and the use of sequence abundance values to delineate OTUs.
 
 .. image:: FROGS_cluster_swarm.png
    :height: 223
    :width: 666
 
-In each groth step the sequence of the previous step is used to find the others sequences with a number of differences inferior or equal to the "Aggregation distance".
+In each growth step, the sequence of the previous step is used to find the others sequences with a number of differences inferior or equal to the "Aggregation distance".
 
-After agregation Swarm refines the clusters by looking at the abundancies along the connections. Theoritically the abundances must decrease when you are going away from the seed (which is often the most abundant sequence). If this abundance raises again it means that two different clusters are connected by some poorly abundant sequences, so swarm cut the connection.
+After agregation Swarm refines the clusters by looking at the abundancies along the connections. Theoritically the abundances must decrease when you are going away from the seed (which is often the most abundant sequence). If this abundance raises again, it means that two different clusters are connected by some poorly abundant sequences, so swarm cut the connection.
 
-On the other hand, the fastidious option of swarm allow to aggregate small and rare cluster into bigger one if they share sequence with at most 2*d distance. In this case d is restricted to 1 so, cluster distance will be 2. (image extracted from `Swarm github &lt;https://github.com/torognes/swarm&gt;`_)
+On the other hand, the fastidious option of swarm allows to aggregate small and rare clusters into bigger one if they share sequence with at most 2*d distance. In this cases, d is restricted to 1 so, cluster distance will be 2. (image extracted from `Swarm github &lt;https://github.com/torognes/swarm&gt;`_)
 
 .. image:: FROGS_cluster_fastidious.png
    :height: 319
