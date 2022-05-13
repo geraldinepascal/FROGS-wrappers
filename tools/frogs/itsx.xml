@@ -126,14 +126,14 @@ Outputs
 
  The sequence file with discarded sequences.
 
-**Summary file** (report.html):
+**Report file** (report.html):
 
  This file presents the summary of process (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
 
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
 .. csv-table::
    :header: "Steps", "Description"
