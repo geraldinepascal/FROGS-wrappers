@@ -57,7 +57,7 @@
 
 What it does
 
-Add taxonomic affiliation in abundance file.
+this tool adds taxonomic affiliation in abundance file.
 
 
 .. class:: infomark page-header h2
@@ -84,7 +84,7 @@ Outputs
 
  The abundance file with affiliation (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
-**Summary file** (report.html):
+**Report file** (report.html):
 
  This file presents the number of sequences affiliated by blast, and the number of multi-affiliation (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
 
@@ -100,7 +100,7 @@ All the databases we format (on demand) for RDPClassifier and NCBI Blast+ are in
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
 .. csv-table::
    :header: "Steps", "Description"
