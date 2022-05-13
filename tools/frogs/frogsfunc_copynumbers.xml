@@ -46,9 +46,13 @@
 	</command> 
 	<inputs>
 	    <!-- Input files -->
-        <param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance file to analyse i.e. FROGSFUNC_step1_placeseqs tool output file (frogsfunc_placeseqs.biom)." optional="false" />
-	    <param argument="--tree" format="nhx" name="input_tree" type="data" label="Tree file" help="The file contains the tree information from FROGSFUNC_step1_placeseqs tool (frogsfunc_placeseqs_tree.nwk)."	optional="false" />
-
+        <param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance file to analyse i.e. FROGSFUNC_step1_placeseqs tool output file (frogsfunc_placeseqs.biom)." optional="false">
+            <validator type="empty_field" message="This parameter is required." />
+        </param>
+	    <param argument="--tree" format="nhx" name="input_tree" type="data" label="Tree file" help="The file contains the tree information from FROGSFUNC_step1_placeseqs tool (frogsfunc_placeseqs_tree.nwk)."
+	    	optional="false">
+        	<validator type="empty_field" message="This parameter is required." />
+        </param>
 	   	<!-- Parameters-->
 	    <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
             <options from_data_table="frogs_picrust2_marker_table">
@@ -59,7 +63,7 @@
             </options>
 		</param>
 
-		<param name="function" type="select" label="Function table" multiple="true" optional="false" help=" 16S : at least 'EC' or/and 'KO' should be chosen (EC for Metacyc pathway analysis or/and KO for KEGG pathway analysis) - others values are optionnal. ITS and 18S : 'EC' only available." >
+		<param name="function" type="select" label="Function table" multiple="true" display="checkboxes" optional="false" help=" 16S : at least 'EC' or/and 'KO' should be chosen (EC for Metacyc pathway analysis or/and KO for KEGG pathway analysis) - others values are optionnal. ITS and 18S : 'EC' only available." >
 			<options from_data_table="frogs_picrust2_marker_table">
 				<column name='name' index='1' />
 				<column name='value' index='1' />
@@ -69,7 +73,6 @@
  		<validator type="expression" message="'EC' is the default database used by PICRUSt2. 'EC' or 'KO' must be at least selected. Other tables are optionnal">"EC" in value or "KO" in value</validator>               
             </options>
         </param>
-
 		<param argument="--hsp-method" name="hsp_method" type="select" label="HSP method" help='Hidden-state prediction method to use: maximum parsimony (mp), empirical probabilities (emp_prob), continuous traits prediction using subtree averaging (subtree_average), continuous traits prediction with phylogentic independent contrast (pic), continuous traits reconstruction using squared-change parsimony (scp) (default: mp).' multiple="false" display="radio">
             <option value="mp">mp</option>
             <option value="emp_prob">emp_prob</option>
