@@ -53,7 +53,7 @@
 	</command>
     <inputs>
         <!-- Files -->
-        <param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: FASTA)"/>
+        <param format="fasta" name="input_fasta" type="data" label="Sequence file" help="The sequence file to filter (format: FASTA)"/>
         <param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)"/>
         <expand macro="taxonomic_ranks"/>
         <!-- It is used for optional output fasta -->
@@ -156,11 +156,11 @@
 
 What it does
 
-Remove OTUs or hide taxonomical metadata according to one (or more criteria):
+This tool removes OTUs or hides taxonomical metadata according to one or more criteria:
 
  - for RDP taxonomy : a minimal bootstrap threshold at a specific rank
 
- - for Blast taxonomy : a minimal identity rate, coverage rate, or alignment length, or a maximal evalue, or the absence of full or partial taxon name.
+ - for blast taxonomy : a minimal identity rate, coverage rate, or alignment length, or a maximal evalue, or the absence of full or partial taxon name.
 
 
 .. class:: infomark page-header h2
@@ -201,23 +201,23 @@ Outputs
 
  The list of blast affiliations for multi-affiliated impacted OTU (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
 
-**Summary file** (report.html):
+**Report file** (report.html):
 
- A summary report HTML of impacted OTUs, taxonomies lost and details by samples (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
+ A report HTML of impacted OTUs, lost taxonomies and details by samples (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
 .. csv-table::
    :header: "Steps", "description"
    :widths: 10, 150
    :class: table table-striped
 
-   "1", "Compare all affiliations (RDP and all Blast hits) to each filtering criteria."
-   "2", "Update concensus Blast taxonomy if at least one blast criteria has an impact. When only part of the Blast affiliations are removed, the concensus Blast taxonomy is updated, and if it changes, the OTU is considered as *Modified*."
-   "3", "**In deleting mode**, OTU is removed either if the RDP bootstrap criteria is not respected or if none of the blast affiliation respect all the criteria . **In hidding mode**, RDP affiliation is hidden (removed) if the RDP bootstrap criteria is not respected, and independantly, blast affiliations are hidden (removed) if none of the blast affiliation respect all the criteria."
-   "4", "Write valid OTU into the filtered.biom file with potential Blast affiliation updated and impacting criteria annotations.All impacted/modified OTU with their original metadata are reported in the impacted.tsv file with its associated impacted.multihit.tsv file. Impacting status (OTU_deleted / Affiliation_masked / Blast_taxonomy_changed) and the list of impacting criteria are also reported in the impacted.tsv file."
+   "1", "Compare all affiliations (RDP and all blast hits) to each filtering criteria."
+   "2", "Update concensus blast taxonomy if at least one blast criteria has an impact. When only part of the blast affiliations are removed, the concensus blast taxonomy is updated, and if it changes, the OTU is considered as *Modified*."
+   "3", "**In deleting mode**, OTU is removed either if the RDP bootstrap criteria is not respected or if none of the blast affiliation respect all the criteria . **In hidding mode**, RDP affiliation is hidden if the RDP bootstrap criteria is not respected, and independantly, blast affiliations are hidden if none of the blast affiliation respect all the criteria."
+   "4", "Write valid OTU into the filtered.biom file with potential blast affiliation updated and impacting criteria annotations.All impacted/modified OTU with their original metadata are reported in the impacted.tsv file with its associated impacted.multihit.tsv file. Impacting status (OTU_deleted / Affiliation_masked / Blast_taxonomy_changed) and the list of impacting criteria are also reported in the impacted.tsv file."
 
 
 .. class:: infomark page-header h2
@@ -227,8 +227,8 @@ Advices
 Imagine that you want to filter out affiliations with:
 
 - RDP bootstrap at the Species level less than 0.8
-- Blast %identity and %coverage less than 100
-- Blast taxonomies with "unknown species"
+- blast %identity and %coverage less than 100
+- blast taxonomies with "unknown species"
 
 What will append in these different cases in deleting or hidding mode:
 
@@ -239,10 +239,10 @@ What will append in these different cases in deleting or hidding mode:
 The RDP taxonomy does not respect the RDP boostrap threshold, but all blast affiliation criteria are respected.
 
 In deleting mode, Cluster_1 will be removed.
-In the summary.html, it will be considered as "Removed", and if the RDP taxonomy and/or the Blast taxonomy is/are not kept thanks to an other OTU, the RDP/Blast taxonomy(ies) will be considered as lost.
+In the report.html, it will be considered as "Removed", and if the RDP taxonomy and/or the blast taxonomy is/are not kept thanks to an other OTU, the RDP/blast taxonomy(ies) will be considered as lost.
 
 In hidding mode, RDP taxonomy will be removed, blast taxonomy will remain unchanged and Cluster_1 will be kept.
-In the summary.html, it will be considered as "Hidden", and if the RDP taxonomy is not kept thanks to an other OTU, the RDP taxonomy will be considered as lost.
+In the report.html, it will be considered as "Hidden", and if the RDP taxonomy is not kept thanks to an other OTU, the RDP taxonomy will be considered as lost.
 
 - Cluster 2:
 
@@ -251,10 +251,10 @@ In the summary.html, it will be considered as "Hidden", and if the RDP taxonomy 
 The RDP taxonomy respects the RDP boostrap threshold, but none of the blast affiliations respect all the blast criteria.
 
 In deleting mode, Cluster_1 will be removed.
-In the summary.html, it will be considered as "Removed", and if the two blast taxonomies are not kept thanks to others OTUs, they will be considered as lost. In the same way, if there is no other OTU, affiliated to Sulfurimonas genus but with an ambiguous species, 1 Multi-affilaition will be considered as lost in the summary.html. And idem for the RDP taxonomy.
+In the report.html, it will be considered as "Removed", and if the two blast taxonomies are not kept thanks to others OTUs, they will be considered as lost. In the same way, if there is no other OTU, affiliated to Sulfurimonas genus but with an ambiguous species, 1 Multi-affilaition will be considered as lost in the report.html. And idem for the RDP taxonomy.
 
 In hidding mode, RDP taxonomy will be remain unchanged, blast taxonomy will be removed and Cluster_2 will be kept.
-In the summary.html, it will be considered as "Hidden", and if the two taxonomies are not kept thanks to others OTUs, they will be considered as lost. In the same way, if there is no other OTU, affiliated to Sulfurimonas genus but with an ambiguous species, 1 Multi-affilaition will be considered as lost in the summary.html.
+In the report.html, it will be considered as "Hidden", and if the two taxonomies are not kept thanks to others OTUs, they will be considered as lost. In the same way, if there is no other OTU, affiliated to Sulfurimonas genus but with an ambiguous species, 1 Multi-affilaition will be considered as lost in the report.html.
 
 - Cluster 3:
 
@@ -263,8 +263,8 @@ In the summary.html, it will be considered as "Hidden", and if the two taxonomie
 The RDP taxonomy respects the RDP boostrap threshold, and one of the two blast affiliations respect all the blast criteria.
 
 In both deleting and hidding mode, Cluster_1 will be kept.
-In the summary.html, it will be considered as "Modified", as the RDP taxonomy will remain unchanged and the blast taxonomy will be updated.
-If no other OTU is affiliated to the "unknown species" of the Fusobacterium genu, this species will be considered as lost. In the same way if no other OTU is affiliated to Fusobacterium genus but with an ambiguous species, 1 Multi-affilaition at the Species level will be considered as lost in the summary.html.
+In the report.html, it will be considered as "Modified", as the RDP taxonomy will remain unchanged and the blast taxonomy will be updated.
+If no other OTU is affiliated to the "unknown species" of the Fusobacterium genu, this species will be considered as lost. In the same way if no other OTU is affiliated to Fusobacterium genus but with an ambiguous species, 1 Multi-affilaition at the Species level will be considered as lost in the report.html.
 
 @HELP_CONTACT@
 
