@@ -20,8 +20,8 @@
     </command>
     <inputs>
         <!-- Files -->
-        <param format="fasta" name="input_otu" type="data" label="OTUs sequence file" help="OTUs sequence file (format: FASTA). Warning: FROGS Tree does not work on more than 10000 sequences!"/>
-        <param format="biom1" name="biomfile" type="data" label="Biom file" help="The abundance table of OTUs (format: BIOM)"/>
+        <param format="fasta" name="input_otu" type="data" label="Sequence file" help="Sequence file (format: FASTA). Warning: FROGS Tree does not work on more than 10000 sequences!"/>
+        <param format="biom1" name="biomfile" type="data" label="Biom file" help="The abundance file (format: BIOM)"/>
     </inputs>
     <outputs>
         <data format="nhx" name="out_tree" label="${tool.name}: tree.nwk" from_work_dir="tree.nwk" />
@@ -52,8 +52,8 @@
 
 What it does
 
-Creation of a multiple alignment of OTUs with `Mafft &lt;http://mafft.cbrc.jp/alignment/software&gt;`_.
-And creation of a rooted phylogenetic tree with `FastTree &lt;http://www.microbesonline.org/fasttree/&gt;`_ and `Phangorn R package &lt;https://cran.r-project.org/web/packages/phangorn/index.html&gt;`_.
+This tool creates a multiple alignment of OTUs with `Mafft &lt;http://mafft.cbrc.jp/alignment/software&gt;`_.
+And creates a rooted phylogenetic tree with `FastTree &lt;http://www.microbesonline.org/fasttree/&gt;`_ and `Phangorn R package &lt;https://cran.r-project.org/web/packages/phangorn/index.html&gt;`_.
 
 .. class:: infomark page-header h2
 
@@ -63,14 +63,14 @@ Inputs/Outputs
 
 Input
 
-**OTUs fasta file**:
+**Fasta file**:
 
-The OTUs sequence file (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
+The OTU sequence file (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
 Careful: FROGS Tree works only with less than 10 000 sequences!
 
  .. image:: FROGS_tree_otufile.png
 
-**OTUs biom file**:
+**Biom file**:
 
 The OTUs biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
 This file can be obtained in particular with the FROGS pipeline.
@@ -85,9 +85,9 @@ The phylogenetic tree in Newick format (format `nwk or nhx &lt;https://en.wikipe
 
  .. image:: FROGS_nwk_treefile.png
 
-**Html file** (summary.html):
+**Report file** (report.html):
 
-The summary file describing which OTUs are contained or not in the phylogenetic tree.
+The report file describing which OTUs are contained or not in the phylogenetic tree.
 
 .. class:: infomark page-header h2
 

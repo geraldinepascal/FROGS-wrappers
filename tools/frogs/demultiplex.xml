@@ -137,7 +137,7 @@ Example of barcode file: Here the sample is multiplexed by both fragment ends.
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
 For each sequence or sequence pair, the sequence fragment at the beginning (forward multiplexing) of the (first) read or at the end (reverse multiplexing) of the (second) read will be compared to all barcodes of the barecode file.
 

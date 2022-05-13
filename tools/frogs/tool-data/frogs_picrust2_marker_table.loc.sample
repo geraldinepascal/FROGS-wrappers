@@ -18,20 +18,23 @@
 #the copy number of gene families present in the predicted genome for OTU, 
 # given a tree and a set of known trait values (FROGS_frogsfunc_placeseqs).
 #
-#PICRUSt2 files are present in the arborescence of PICRUSt2. Please consult 
-#PICRUSt2 documentation to find out where they are located in your environment.
-#
-#If you are not comfortable with picrust2 command lines, just create .loc files 
-#with EXAMPLE FOR TEST files remembering to replace <Galaxy_dir> with the real path.
-#
-#The indicated path is the one if you do not change the default galaxy config of conda directory.
+#PICRUSt2 files are present in the arborescence of PICRUSt2. 
 #
 #<marker_gene>	<db>	<picrust2_input_marker>	<picrust2_input_function>
 #
-#With 16S data, PICRUSt2 only takes the dname of the database as input (for exemple EC).
-#With ITS and 18S data, you have to specify the path of marke gene counts files.
+# For 16S data (see the 6 first lines), PICRUSt2 only takes the dname of the database as input (for exemple EC).
+# With ITS and 18S data, you have to specify the path of marker gene counts files.
 #
-# EXAMPLE FOR TEST :
+#
+# Bellow you will find out how to implement this loc file.
+#
+# The indicated path is the one if you do not change the default galaxy config of conda directory.
+# Just adapt path by replacing <Galaxy_dir> with the real path and eventually the picrust version.
+#
+# If you are not using this default conda behavior, please consult PICRUSt2 documentation to find out where they are located in your environment.
+#
+#
+#
 #16S	EC	EC	EC
 #16S	KO	KO	KO
 #16S	PFAM	PFAM	PFAM

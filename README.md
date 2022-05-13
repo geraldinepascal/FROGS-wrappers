@@ -46,7 +46,7 @@ FROGS and is data manager are available on the Toolshed (owner : frogs).
 
 It will install FROGS thanks to [conda](https://anaconda.org/bioconda/frogs), download all these XML tools and well configure them in your Galaxy.
 
-The 30 FROGS tools will be in random order in your tools panel. We propose to control that order by modifying the `shed_tool_conf.xml`  which will render the following`integrated_tool_panel.xml ` file.
+The 29 FROGS tools will be in random order in your tools panel. We propose to control that order by modifying the `shed_tool_conf.xml`  which will render the following`integrated_tool_panel.xml ` file.
 
 We suppose that you installed FROGS in a specific section named `FROGS`.
 

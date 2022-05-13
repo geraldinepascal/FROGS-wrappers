@@ -21,14 +21,14 @@
     </command>
     <inputs>
         <!-- Files -->
-        <param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: FASTA)." />
+        <param format="fasta" name="input_fasta" type="data" label="Sequence file" help="The sequence file to filter (format: FASTA)." />
         <param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)" />
-        <param argument="--region" type="select" label="ITS region" help="Which fungal ITS region is targeted: either ITS1 or ITS2">
+        <param argument="--region" type="select" label="ITS region" help="Which fungal ITS region is targeted: either ITS1 or ITS2 ?">
             <option value="ITS1">ITS1</option>
             <option value="ITS2">ITS2</option>
         </param>
         <param argument="--check-its-only" name="trim_sequence" type="boolean" checked="false" truevalue="" falsevalue="--check-its-only" label="Trim conserved sequence (SSU, 5.8S, LSU) ?" help="If Yes, only part of the sequences with ITS signature will be kept, SSU, LSU or 5.8S regions will be trimmed (default : No)" />
-        <param argument="--organism-groups" type="select" multiple="true" display="checkboxes" label="Choose pertinent organisms to scan?" help="Save a lot of time by checking pertinent organism group model to scan">
+        <param argument="--organism-groups" type="select" multiple="true" display="checkboxes" label="Choose pertinent organisms to scan:" help="Save a lot of time by checking pertinent organism group model to scan">
             <option value="F" selected="true">Fungi</option>
             <option value="A">Alveolata</option>
             <option value="B">Bryophyta</option>
@@ -78,7 +78,7 @@
 
 What it does
 
-Identify (and optionnaly extract) the highly variable ITS1 and ITS2 subregions from ITS sequences.
+This tool identifies (and optionnaly extract) the highly variable ITS1 and ITS2 subregions from ITS sequences.
 
 .. class:: infomark page-header h2
 
@@ -126,14 +126,14 @@ Outputs
 
  The sequence file with discarded sequences.
 
-**Summary file** (report.html):
+**Report file** (report.html):
 
  This file presents the summary of process (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
 
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
 .. csv-table::
    :header: "Steps", "Description"
@@ -142,7 +142,7 @@ How it works
 
    "1", "Predicts positions of the ribosomal genes in the sequences (`ITSx &lt;http://microbiology.se/software/itsx/&gt;`_)."
    "2", "Removes the sequences without prediction of the targeted ITS region (ITS1 or ITS2)."
-   "3", "(optional) trim conserved region."
+   "3", "(optional) trims conserved region."
 
 
 

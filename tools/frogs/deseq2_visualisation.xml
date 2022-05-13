@@ -24,9 +24,9 @@
         <param format="rdata" argument="--phyloseqData" type="data" label="Phyloseq object (format: RData)" help="This is the result of FROGS Phyloseq Import Data, used in FROGSSTAT DESeq2 Preprocess tool" />
         <param format="rdata" argument="--dds" type="data" label="DESeq2 object (format: RData)" help="This is the result of FROGSSTAT DESeq2 Preprocess tool"/>
         <!-- Parameters -->
-        <param argument="var" type="text" value="" label="Experimental variable" help="The factor suspected to have an effect on OTUs' abundances (one of the variables used in FROGS DESeq2 Preprocess tool). Ex : Treatment"/>
+        <param argument="var" type="text" value="" label="Experimental variable" help="The suspected factor to have an effect on OTU abundances (one of the variables used in FROGS DESeq2 Preprocess tool). Ex : Treatment"/>
         <conditional name="varType">
-            <param type="select" name="vartType_selected" label="Is your Variable quantitative or qualitative?" help="If qualitative, choose 2 conditions to compare">
+            <param type="select" name="vartType_selected" label="Is your variable quantitative or qualitative?" help="If qualitative, choose 2 conditions to compare">
                 <option value="qual">Qualitative</option>
                 <option value="quant">Quantitative</option>
             </param>
@@ -40,7 +40,7 @@
             </when>
             <when value="quant"/>
         </conditional>
-        <param argument="--padj" type="float" value="0.05" label="Adjusted p-value threshold" help="Threshold used for statistical significance of the differentially abundant OTUs analysis"/>
+        <param argument="--padj" type="float" value="0.05" label="Adjusted p-value threshold" help="Threshold used for statistical significance of the differentially abundant OTU analysis"/>
     </inputs>
     <outputs>
         <data format="html" name="html" label="${tool.name}: report.nb.html" from_work_dir="report.nb.html"/>
@@ -134,13 +134,13 @@ The html file contains Table, Pie Chart, MA plot, Volcano plot and Heatmap plot.
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
-Based on the variable you precise to construct the model in FROGSSTAT DESeq2 Preprocess, this tool will construct table and graphs to visualise différentially abundant OTU between condition of the selected variables.
+Based on the variable you precise to construct the model in FROGSSTAT DESeq2 Preprocess, this tool will construct table and graphs to visualise differentially abundant OTU between condition of the selected variables.
 
-You may first precise the variable used to construct the model during the FROGSSTAT DESeq Preprocess step. If you precised variable with a confounding factor (a second variale), you may choose between one of the variables, but remember that you will see the result of this variable corrected by the confounding factor (and reversely) not just the selected variable itself.
+You may first precise the variable used to construct the model during the FROGSSTAT DESeq Preprocess step. If you precised variable with a confounding factor (a second variable), you may choose between one of the variables, but remember that you will see the result of this variable corrected by the confounding factor (and reversely) not just the selected variable itself.
 
-If the variable is qualitative (ex: variable Treatment is define by two conditions : treatment1, treatment2, control), you must specify 2 conditions to compare (e.g. treatment1 vs treatment2 or treatment1 vs control, ...).
+If the variable is qualitative (ex: variable treatment is define by two conditions : treatment1, treatment2, control), you must specify 2 conditions to compare (e.g. treatment1 vs treatment2 or treatment1 vs control, ...).
 
 @HELP_CONTACT@
 

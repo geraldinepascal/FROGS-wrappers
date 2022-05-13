@@ -354,7 +354,7 @@ Outputs
 
  This file contains the count of all unique sequences in each sample (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
 
-**Summary file** (report.html):
+**Report file** (report.html):
 
  This file reports the number of remaining sequences after each filter (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_). Depending of the tool configuration there will be more or less filtering steps so more or less bars in the barplot.
 
@@ -370,7 +370,7 @@ Outputs
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
 .. csv-table::
    :header: "Steps", "Illumina", "454"

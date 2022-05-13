@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGS_normalisation" name="FROGS Abundance normalisation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-        <description>Normalise OTUs abundance.</description>
+        <description>Normalise OTU abundance.</description>
 
     <macros>
         <import>macros.xml</import>
@@ -123,7 +123,7 @@ Outputs
 
 **Sequence file** (normalised_seed.fasta):
 
- The normalised sequences file (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
+ The normalised sequence file (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
 
 **Abundance file** (normalised_abundance.biom):
 
