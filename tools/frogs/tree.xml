@@ -85,7 +85,7 @@ The phylogenetic tree in Newick format (format `nwk or nhx &lt;https://en.wikipe
 
  .. image:: FROGS_nwk_treefile.png
 
-**Report file** (summary.html):
+**Report file** (report.html):
 
 The report file describing which OTUs are contained or not in the phylogenetic tree.
 
