@@ -18,7 +18,9 @@
 #taxonomy affiliation. You will need to create or download Blast+ index and train your database
 #for RDP classifier these data files.
 #
-#download link : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation
+# a datamanager is available to deal with these databases : https://toolshed.g2.bx.psu.edu/view/frogs/data_manager_frogs/7403d6c4f510
+#
+# databases formatted and shared by FROGS team are available here : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation
 #
 #Finally you will need to create frogs_db.loc file similar to this one.
 #The frogs_db.loc file has this format (longer white space characters are
@@ -51,4 +53,5 @@
 #
 #<value>    <name>    <file_path>
 #
-#ITS_test	ITS1 extract	<FROGS-wrappers>/test-data/databases/frogs_db_data/ITS1.rdp.fasta
+# FOR TESTING
+#ITS_test	ITS1 extract	<Galaxy_dir>/database/shed_tools/toolshed.g2.bx.psu.edu/repos/frogs/frogs/XXXXXX/frogs/test-data/databases/frogs_db_data/ITS1.rdp.fasta

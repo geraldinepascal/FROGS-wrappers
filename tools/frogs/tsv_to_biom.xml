@@ -18,7 +18,7 @@
     <inputs>
         <!-- Files -->
         <param format="tabular" name="tsv_file" type="data" label="Abundance TSV File" help="Your FROGS abundance TSV file. Take care to keep original column names." />
-        <param format="tabular" name="multi_affi_file" type="data" label="Multi_hits TSV File" help="TSV file describing multi_hit blast results." optional="true" />
+        <param format="tabular" name="multi_affi_file" type="data" label="Multi_affiliation TSV File" help="TSV file describing multi_affiliation blast results." optional="true" />
         <!-- Parameters -->
         <param name="extract_fasta" type="boolean" label="Extract seeds in FASTA file" help="If there is a 'seed_sequence' column in your TSV table, you can extract seed sequences in a separated FASTA file." />
     </inputs>
@@ -58,7 +58,7 @@ Authorised column names :  rdp_tax_and_bootstrap, blast_taxonomy, blast_subject,
 
 **Multiple affiliation file**:
 
-The file that stores the multiple blast hits.
+The file that stores the multiple blast affiliations.
 
 .. class:: h3
 
@@ -76,13 +76,13 @@ Outputs
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
 FROGS TSV_to_BIOM detects any metadata (columns before "observation_name") and names of samples (columns after "observation_sum").
 
 Then it reconstructs the BIOM abundance file : for each "observation_name" it adds the associated metadata and the count of samples.
 
-If blast_taxonomy is included in metadata and if blast_subject is equal to "multi-subject", it parses multi_hit TSV file. Then it extracts the list of blast_affiliations that contains the non ambiguous blast_taxonomy.
+If blast_taxonomy is included in metadata and if blast_subject is equal to "multi-subject", it parses multi_affiliation TSV file. Then it extracts the list of blast_affiliations that contains the non ambiguous blast_taxonomy.
 
 
 
@@ -96,9 +96,9 @@ If you modify your abundance TSV file
 
     * -do not modify column names
     * -do not remove columns
-    * -take care to choose a taxonomy available in your multi_hit TSV file
-    * -if you delete lines of the multi_hit file, take care to not remove a complete cluster whithout removing all "multi tags" in you abundance TSV file.
-    * -if you want to rename a taxon level (ex : genus "Ruminiclostridium 5;" to genus "Ruminiclostridium;"), do not forget to modify also your multi_hit TSV file.
+    * -take care to choose a taxonomy available in your multi_affiliation TSV file
+    * -if you delete lines of the multi_affiliation file, take care to not remove a complete cluster whithout removing all "multi tags" in you abundance TSV file.
+    * -if you want to rename a taxon level (ex : genus "Ruminiclostridium 5;" to genus "Ruminiclostridium;"), do not forget to modify also your multi_affiliation TSV file.
 
 
 

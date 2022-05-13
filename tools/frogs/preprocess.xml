@@ -340,7 +340,7 @@ Sample files added one after another or provide in an archive file (tar or tar.g
    :Files: One sequence file by sample (format `FASTQ &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_)
    :Example: splA.fastq.gz,  splB.fastq.gz
 
-Remark: In an archive if you use R1 and R2 files their names must end with *_R1* and *_R2*. The part upstram from this tag (_R1 and _R2) will be consider as sample name.
+Remark: In an archive, if you use R1 and R2 files, their names must end with *_R1* and *_R2*. The part upstream from this tag (_R1 and _R2) will be consider as sample name.
 
 .. class:: h3
 
@@ -348,13 +348,13 @@ Outputs
 
 **Sequence file** (dereplicated.fasta):
 
- Only one file with all samples sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_). These sequences are dereplicated: strictly identical sequence are represented only once, the initial count by sample is kept in count file (see bellowà) and the total count is added in the sequence header. A "FROGS_combined" suffix will be added to un-merged pair sequence if you want to keep them.
+ Only one file with all samples sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_). These sequences are dereplicated: strictly identical sequences are represented only once, the initial count by sample is kept in count file (see bellow) and the total count is added in the sequence header. A "FROGS_combined" suffix will be added to un-merged pair sequence if you want to keep them.
 
 **Count file** (count.tsv):
 
  This file contains the count of all unique sequences in each sample (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
 
-**Summary file** (report.html):
+**Report file** (report.html):
 
  This file reports the number of remaining sequences after each filter (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_). Depending of the tool configuration there will be more or less filtering steps so more or less bars in the barplot.
 
@@ -370,7 +370,7 @@ Outputs
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
 .. csv-table::
    :header: "Steps", "Illumina", "454"
@@ -378,8 +378,8 @@ How it works
    :class: table table-striped
 
    "1", "For un-merged data: Merges R1 and R2 with a maximum of M% mismatch in the overlaped region(`VSEARCH &lt;https://github.com/torognes/vsearch/&gt;`_ or `FLASH &lt;http://ccb.jhu.edu/software/FLASH/&gt;`_ or optionnaly `PEAR &lt;https://sco.h-its.org/exelixis/web/software/pear/&gt;`_) with a minimum of 10 bp in the overlap region. Resulting un-merged reads may optionnaly be artificially combined by adding 100 N between the reads", "/"
-   "2", "If sequencing protocol is the illumina standard protocol : Removes sequences where the two primers are not present and removes primers in the remaining sequence (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_). The primer search accepts 10% of differences", "Removes sequences where the two primers are not present, removes primers sequence from amplicon sequence and reverse complement the sequences on strand -  (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_). The primer search accepts 10% of differences"
-   "3", "Filters sequences with ambiguous nucleotides and for merged sequences filters on their length which must be range between 'Minimum amplicon size - primer length' and 'Maximum amplicon size - primer length'", "Removes sequences with at least one homopolymer with more than seven nucleotides and with a distance of less than or equal to 10 nucleo-tides between two poor quality positions, i.e. with a Phred quality score lesser than 10"
+   "2", "If sequencing protocol is the illumina standard protocol: Removes sequences where the two primers are not present and removes primers in the remaining sequence (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_). The primer search accepts 10% of differences", "Removes sequences where the two primers are not present, removes primers sequence from amplicon sequence and reverse complement the sequences on strand -  (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_). The primer search accepts 10% of differences"
+   "3", "Filters sequences with ambiguous nucleotides and for merged sequences filters on their length which must be range between 'Minimum amplicon size - primer length' and 'Maximum amplicon size - primer length'", "Removes sequences with at least one homopolymer with more than seven nucleotides and with a distance of less than or equal to 10 nucleotides between two poor quality positions, i.e. with a Phred quality score lesser than 10"
    "4", "Dereplicates sequences", "Dereplicates sequences"
 
 
@@ -391,7 +391,8 @@ Advices/details on parameters
 
 Keeping or not un-merged paired reads
 
-This option is usefull when and only when, targeted amplicon is longer than the sequencing technology can provide (ITS amplicon for example). In other case, carefully, you will only keep noise in your analysis.
+.. class:: warningmark
+This option is usefull when and only when, **targeted amplicon is longer than the sequencing technology** can provide (ITS amplicons, V1-V4 region of 16S for example). In other case, carefully, you will only keep noise in your analysis.
 
 .. class:: h3
 
@@ -413,7 +414,7 @@ What is the difference between overlapped sequences and combined sequences?
 
 **“FROGS combined” warning points**
 
-Reads pair are not merged because:
+Read pairs are not merged because:
 
     - the real amplicon length is greater than de number of base sequences (490 bp for MiSeq 2x250bp, remember of the minimum 10 bp overlap)
     - the overlapped region is smaller than 10 (fixed parameter in FROGS).
@@ -429,7 +430,7 @@ Imagine a MiSeq sequencing of 2x250pb with sequences that cannot overlap, the re
 
 Primers parameters
 
-The (`Kozich et al. 2013 &lt;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3753973/&gt;`_ ) protocol uses custom sequencing primers which are also the PCR primers. In this case the reads do not contain the PCR primers.
+The (`Kozich et al. 2013 &lt;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3753973/&gt;`_ ) protocol uses custom sequencing primers that are also the PCR primers. In this case, the reads do not contain the PCR primers.
 
 In case of Illumina standard protocol, the primers must be provided in 5' to 3' orientation.
 
@@ -445,13 +446,13 @@ Example:
 
 .. class:: h3
 
-FLASH : Amplicons sizes parameters
+FLASH : Amplicon size parameters
 
  .. class:: infomark
 
- We now recommend to use PEAR if availbale (only for accademic user) or Vsearch.
+ We now recommend to use PEAR if availbale (only for accademic user) or Vsearch. PEAR is available only in command line.
 
- The two following images show two examples of perfect values fors sizes parameters.
+ The two following images show two examples of perfect values for sizes parameters.
 
  .. image:: FROGS_preprocess_ampliconSize_unimodal_v3.png
     :height: 415
