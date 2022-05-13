@@ -21,11 +21,11 @@
     <inputs>
         <!-- Files -->
         <param format="biom1" argument="--biomfile" type="data" label="Abundance biom file with taxonomical metadata (format: BIOM)" help="The file contains the  OTU informations "/>
-        <param format="tabular,tsv" argument="--samplefile" type="data" label="Sample file (format: TSV)" help="The file contains the samples informations."/>
-        <param format="nhx" argument="--treefile" type="data" optional="true" label="Tree file (format: Newick)" help="The file contains the tree informations (optional)"/>
+        <param format="tabular,tsv" argument="--samplefile" type="data" label="Sample file (format: TSV)" help="The file contains the samples information."/>
+        <param format="nhx" argument="--treefile" type="data" optional="true" label="Tree file (format: Newick)" help="The file contains the tree information (optional)"/>
         <!-- Parameters -->
         <param argument="--ranks" type="text" value="Kingdom Phylum Class Order Family Genus Species" 
-            label="Names of taxonomics levels" help="The ordered taxonomic levels stored in BIOM. Each level is separated by one space">
+            label="Names of taxonomic levels" help="The ordered taxonomic levels stored in BIOM. Each level is separated by one space">
             <expand macro="sanitizer_validator"/>
         </param>
         <param argument="--normalisation" type="boolean" label="Do you want to normalise your data ?" help="To normalise data before statistical analysis (default : No)"/>
@@ -109,7 +109,7 @@ Output
 
   .. image:: FROGS_Phyloseq_import_data_html.png
 
-**Data file** (format rdata): The informations of data in one phyloseq object.
+**Data file** (format rdata): The information of data in one phyloseq object.
 
 
 .. class:: infomark page-header h2
