@@ -68,7 +68,7 @@ Input
 The OTUs sequence file (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
 Careful: FROGS Tree works only with less than 10 000 sequences!
 
- .. image:: static/images/FROGS_tree_otufile.png
+ .. image:: FROGS_tree_otufile.png
 
 **OTUs biom file**:
 
@@ -83,7 +83,7 @@ Outputs
 
 The phylogenetic tree in Newick format (format `nwk or nhx &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
 
- .. image:: static/images/FROGS_nwk_treefile.png
+ .. image:: FROGS_nwk_treefile.png
 
 **Html file** (summary.html):
 

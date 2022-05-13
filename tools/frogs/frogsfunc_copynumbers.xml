@@ -169,6 +169,8 @@ Output table with predicted function abundances per sequence. (frogsfunc_copynum
 **Report file**:
 
 .. image:: FROGS_frogsfunc_copynumbers_nsti.png
+    :height: 350
+    :width: 639
 
 Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences but the predictions for these sequences are less reliable. The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 

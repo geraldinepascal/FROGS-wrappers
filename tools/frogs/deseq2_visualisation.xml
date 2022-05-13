@@ -108,27 +108,27 @@ The html file contains Table, Pie Chart, MA plot, Volcano plot and Heatmap plot.
 
 * Table containing the differentially abundant OTUs.
 
- .. image:: static/images/FROGS_DESeq2_html_table.png
+ .. image:: FROGS_DESeq2_html_table.png
     :height: 216
     :width: 789
 
 * Pie Chart, MA plot and Volcano plot
 
- .. image:: static/images/FROGS_DESeq2_html_pieChart.png
+ .. image:: FROGS_DESeq2_html_pieChart.png
     :height: 576
     :width: 768
 
- .. image:: static/images/FROGS_DESeq2_html_MA_plot.png
+ .. image:: FROGS_DESeq2_html_MA_plot.png
     :height: 480
     :width: 672
 
- .. image:: static/images/FROGS_DESeq2_html_Volcano_plot.png
+ .. image:: FROGS_DESeq2_html_Volcano_plot.png
     :height: 506
     :width: 633
 
 * Heatmap plot corresponding to the differentially abundant OTUs.
 
- .. image:: static/images/FROGS_DESeq2_html_heatmap_plot.png
+ .. image:: FROGS_DESeq2_html_heatmap_plot.png
     :height: 576
     :width: 768
 

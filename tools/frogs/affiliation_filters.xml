@@ -234,7 +234,7 @@ What will append in these different cases in deleting or hidding mode:
 
 - Cluster 1:
 
-.. image:: static/images/FROGS_affiliation_filter1.png
+.. image:: FROGS_affiliation_filter1.png
 
 The RDP taxonomy does not respect the RDP boostrap threshold, but all blast affiliation criteria are respected.
 
@@ -246,7 +246,7 @@ In the summary.html, it will be considered as "Hidden", and if the RDP taxonomy 
 
 - Cluster 2:
 
-.. image:: static/images/FROGS_affiliation_filter2.png
+.. image:: FROGS_affiliation_filter2.png
 
 The RDP taxonomy respects the RDP boostrap threshold, but none of the blast affiliations respect all the blast criteria.
 
@@ -258,7 +258,7 @@ In the summary.html, it will be considered as "Hidden", and if the two taxonomie
 
 - Cluster 3:
 
-.. image:: static/images/FROGS_affiliation_filter3.png
+.. image:: FROGS_affiliation_filter3.png
 
 The RDP taxonomy respects the RDP boostrap threshold, and one of the two blast affiliations respect all the blast criteria.
 

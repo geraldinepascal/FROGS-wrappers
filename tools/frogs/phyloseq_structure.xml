@@ -80,7 +80,7 @@ Output
 
 The review of data structure with an ordination plot and with an heatmap plot:
 
-.. image:: static/images/FROGS_Phyloseq_plot_sample_ellipse.png
+.. image:: FROGS_Phyloseq_plot_sample_ellipse.png
      :height: 343
      :width: 450
 
@@ -90,7 +90,7 @@ The review of data structure with an ordination plot and with an heatmap plot:
 These percentages will be computed for MDS/PCoA and DPCoA ordination methods as a percentage of explained beta diversity variation.
 For NMDS there is not simple equivalent notion.
 
-.. image:: static/images/FROGS_Phyloseq_plot_heatmap_red.png
+.. image:: FROGS_Phyloseq_plot_heatmap_red.png
      :height: 343
      :width: 450
 

@@ -111,7 +111,7 @@ Sequence normalisation method :
 
 With this number, a random draw of sequences is made and once normalisation is complete, each sample will contain the specified number of sequences.
 
-.. image:: static/images/icon_warning_sml.gif 
+.. class:: warningmark
 
 If the **remove samples** option is enabled, samples whose total number of sequences is lower than the specified number will be removed inside the abundance table. 
 
