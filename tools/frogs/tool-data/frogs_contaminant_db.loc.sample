@@ -31,6 +31,7 @@
 #then the phiX_db.loc entry would look like this:
 #
 #
+#
 # EXAMPLE FOR TEST :
 #phiX_test	phiX_test	${__HERE__}/contaminant_db/phi.fa
 #
@@ -42,5 +43,10 @@
 #-rw-rwxr-- 1 gpascal FROGS   88 16 sept.  2015 phi.fa.nin
 #-rw-rwxr-- 1 gpascal FROGS 1348 16 sept.  2015 phi.fa.nsq
 #
-#phiX	phiX	tool-data/contaminant_db/phi.fa
-#Arabido_TAIR10_Chl_Mito	Arabidopsis TAIR10 Chloroplast and mitochondria	tool-data/contaminant_db/Araport11-TAIR10Col0_Chl_MT.fa
+#
+#
+#
+# PRODUCTION FILES, with FROGS toolsheds path to adapt (Galaxy_dir and XXXXXX)
+#
+#phiX	phiX	<Galaxy_dir>/database/shed_tools/toolshed.g2.bx.psu.edu/repos/frogs/frogs/XXXXXX/frogs/tool-data/databases/tool-data/contaminant_db/phi.fa
+#Arabido_TAIR10_Chl_Mito	Arabidopsis TAIR10 Chloroplast and mitochondria	<Galaxy_dir>/database/shed_tools/toolshed.g2.bx.psu.edu/repos/frogs/frogs/XXXXXX/frogs/tool-data/databases/tool-data/contaminant_db/Araport11-TAIR10Col0_Chl_MT.fa

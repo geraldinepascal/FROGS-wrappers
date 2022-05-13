@@ -131,7 +131,7 @@ Input
  
  EPA-NG or SEPP. SEPP is a low-memory alternative to EPA-ng for placing sequences. 
 
-.. image:: icon_warning_sml.gif 
+.. class:: warningmark
 
 So, if the tool crashes with EPA-ng, try again with SEPP.
 
@@ -165,7 +165,7 @@ Outputs
    
  The report file describes which OTUs are contained or not in the phylogenetic tree. Note that PICRUSt2 uses its own reference tree to affiliate OTUs/ASVs from reference sequences. The report file indicates for each OTU/ASV which is the closest PICRUSt2 reference sequence, and compares it to the original FROGS taxonomy. Clicking on the sequence ID gives you more information about it (`JGI database &lt;https://img.jgi.doe.gov/&gt;`_).
 
-.. image:: static/images/FROGS_frogsfunc_placeseqs_piecharts.png
+.. image:: FROGS_frogsfunc_placeseqs_piecharts.png
 	:height: 290
 	:width: 676
 
@@ -173,7 +173,7 @@ Outputs
 The pie charts describe the proportion of number of OTUs/ASVs excluded and the proportion of total sequences excluded for the following steps.
 OTUs/ASVs are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold parameter.
 
-.. image:: static/images/FROGS_frogsfunc_placeseqs_table_JGI.png
+.. image:: FROGS_frogsfunc_placeseqs_table_JGI.png
 	:height: 580
 	:width: 1220
 
@@ -197,7 +197,7 @@ OTUs/ASVs are excluded if the total length of the input sequence aligned against
 
 * **Comment** : " identical taxonomy " if the FROGS and PICRUSt2 taxonomic affiliations are identical. " identical sequence " if the OTU sequence is strictly the same as the reference sequence.
 
-.. image:: static/images/FROGS_frogsfunc_placeseqs_closest_explained.png
+.. image:: FROGS_frogsfunc_placeseqs_closest_explained.png
 
 Closest reference sequence (from JGI database) from one cluster sequence.
 

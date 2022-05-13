@@ -31,7 +31,7 @@
 	</command>
 	<inputs>
 		<!-- Files -->
-		<param format="biom1" name="biom" type="data" label="Abundance file" help="OTUs abundances and affiliations (format: BIOM)"/>
+		<param format="biom1" name="biom" type="data" label="Abundance file" help="Abundances and affiliations (format: BIOM)"/>
 		<!-- Parameters -->
 		<expand macro="taxonomic_ranks"/>
 		<param argument="--rarefaction-ranks" type="text"  optional="false" value="Class Order Family Genus Species" 
@@ -115,33 +115,33 @@ The FROGS's tools working on clusters and others metagenomic workflows produce f
 
 Output
 
-**Summary file** (summary.html):
+**Report file** (report.html):
 
  OTUs taxonomies and affiliations metrics (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_):
 
-  *-Taxonomy distribution*: display the distribution of each taxon and the rarefaction for each taxonomic rank and for each sample
+  *-Taxonomy distribution*: displays the distribution of each taxon and the rarefaction for each taxonomic rank and for each sample
 
-  .. image:: static/images/FROGS_affiliation_stat_taxonomies.png
+  .. image:: FROGS_affiliation_stat_taxonomies.png
     :height: 380
     :width: 891
 
-  .. image:: static/images/FROGS_affiliation_stat_rarefaction.png
+  .. image:: FROGS_affiliation_stat_rarefaction.png
     :height: 380
     :width: 794
 
-  .. image:: static/images/FROGS_affiliation_stat_sunburst.png
+  .. image:: FROGS_affiliation_stat_sunburst.png
     :height: 380
     :width: 440
 
-  -Bootstrap distribution: display for affiliation methods with bootstrap the bootstrap on each taxonomic rank
+  -Bootstrap distribution: displays for affiliation methods with bootstrap the bootstrap on each taxonomic rank
 
-  .. image:: static/images/FROGS_affiliation_stat_bootstrap.png
+  .. image:: FROGS_affiliation_stat_bootstrap.png
     :height: 380
     :width: 867
 
-  -Alignment distribution: display for affiliation methods with alignment the distribution of identity/covrage
+  -Alignment distribution: displays for affiliation methods with alignment the distribution of identity/coverage
 
-  .. image:: static/images/FROGS_affiliation_stat_alignment.png
+  .. image:: FROGS_affiliation_stat_alignment.png
     :height: 380
     :width: 859
 

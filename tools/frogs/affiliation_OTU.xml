@@ -29,11 +29,11 @@
             <options from_data_table="frogs_db"/>
             <validator type="no_options" message="A built-in database is not available"/>
         </param>
-        <param argument="--rdp" type="boolean" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allow you to perform it also with RDP classifier (default No)"/>
+        <param argument="--rdp" type="boolean" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allows to perform it also with RDP classifier tool (default No)"/>
         <expand macro="taxonomic_ranks"/>
         <!-- Files -->
-        <param format="fasta" name="fasta_sequences" type="data" label="OTU seed sequence" help="OTU sequences (format: FASTA)"/>
-        <param format="biom1" name="biom_abundance" type="data" label="Abundance file" help="OTU abundances (format: BIOM)"/>
+        <param format="fasta" name="fasta_sequences" type="data" label="Sequence file" help="The sequences to affiliated (format: FASTA)"/>
+        <param format="biom1" name="biom_abundance" type="data" label="Abundance file" help="The abundance file (format: BIOM)"/>
     </inputs>
     <outputs>
         <data format="biom1" name="biom_affiliation" label="${tool.name}: affiliation_abundance.biom" from_work_dir="affiliation.biom"/>
@@ -57,7 +57,7 @@
 
 What it does
 
-Add taxonomic affiliation in abundance file.
+this tool adds taxonomic affiliation in abundance file.
 
 
 .. class:: infomark page-header h2
@@ -84,11 +84,11 @@ Outputs
 
  The abundance file with affiliation (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
-**Summary file** (report.html):
+**Report file** (report.html):
 
  This file presents the number of sequences affiliated by blast, and the number of multi-affiliation (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
 
- .. image:: static/images/FROGS_affiliation_summary.png
+ .. image:: FROGS_affiliation_summary.png
    :height: 975
    :width: 867
 
@@ -100,7 +100,7 @@ All the databases we format (on demand) for RDPClassifier and NCBI Blast+ are in
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
 .. csv-table::
    :header: "Steps", "Description"
@@ -119,13 +119,13 @@ Alignment metrics details on identity percentage calculation
 
 * **Case 1: a sequencing of overlapping sequences i.e. 16S V3-V4 amplicon MiSeq sequencing**
 
-.. image:: static/images/FROGS_affiliation_overlapped_percent_id.png
+.. image:: FROGS_affiliation_overlapped_percent_id.png
     :height: 325
     :width: 807
 
 * **Case 2 : a sequencing of non-overlapping sequences: case of ITS1 amplicon MiSeq sequencing**
 
-.. image:: static/images/FROGS_affiliation_combined_percent_id.png
+.. image:: FROGS_affiliation_combined_percent_id.png
     :height: 310
     :width: 887
 
@@ -133,16 +133,18 @@ Alignment metrics details on identity percentage calculation
 
 With the classical method of %id calculation, filtering on %id will systematically removed “FROGS combined” OTUs. So, we proposed to replace the classical %id by a %id computed on the sequenced bases only.
 
-.. image:: static/images/FROGS_affiliation_percent_id_formula.png
+.. image:: FROGS_affiliation_percent_id_formula.png
     :height: 36
     :width: 637
 
 For the precedent use cases we will obtain:
 
 * Case 1: 16S V3V4 overlapped sequence
+
   % sequenced bases identity = 400 matches / 400 bp = 100%
 
 * Case 2: very large ITS1 “FROGS combined” shorter than the real sequence
+
   % sequenced bases identity = (250 + 250 ) / (600 - 100) = 100%
 
 This calculation allows to return 100% of identity on sequenced bases for “FROGS combined” shorter or longer than reality in case of perfect sequencing, and a smaller percentage of identity in the case of small overlap repeat kept in FROGS combined sequence.

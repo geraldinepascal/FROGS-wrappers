@@ -125,7 +125,7 @@ Input
  
  If this option is set, the pathway abundances file (frogsfunc_functions_unstrat.tsv) is normalized: values are divided by sum of columns, then multiplied by 10^6 (Count Per Million values).
 
-.. image:: icon_warning_sml.gif 
+.. class:: warningmark
 
 This normalization allows to compare the samples between them. But to perform more precise statistical analysis, some tools as **DESeq2 need the non-normalized abundance table** to perform the normalization by themselves. So be careful which table to use for further analysis.
 

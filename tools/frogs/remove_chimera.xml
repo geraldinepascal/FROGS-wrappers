@@ -65,7 +65,7 @@
 
 What it does
 
-Remove chimeric sequences by sample.
+This tool removes chimeric sequences by sample.
 
 
 .. class:: infomark page-header h2
@@ -121,14 +121,14 @@ Outputs
 
  The abundance file with only non-chimera (format the same of the abundance input).
 
-**Summary file** (report.html):
+**Report file** (report.html):
 
  This file presents the number of removed elements (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
 
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
 .. csv-table::
    :header: "Steps", "Description"

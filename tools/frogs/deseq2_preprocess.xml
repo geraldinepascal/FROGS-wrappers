@@ -20,7 +20,7 @@
 		<!-- Files -->
         <param format="rdata" name="data" type="data" label="Phyloseq object " help="This is the result of FROGSSTAT Phyloseq Import Data with normalise option set to NO (DESeq2 is more powerful on unnormalised counts) (format RData)"/>
         <!-- Parameters -->
-	    <param name="var1" type="text" label="Experimental variable" help="The factor suspected to have an effect on OTUs' abundances. Ex: Treatment, etc.">
+	    <param name="var1" type="text" label="Experimental variable" help="The factor suspected to have an effect on OTU abundances. Ex: Treatment, etc.">
             <expand macro="sanitizer_validator"/>
         </param>
 		<conditional name="multiple">
@@ -58,7 +58,7 @@
 
 What it does
 
-Launch Rscript to compute differential abundance analysis using `DESeq2 &lt;https://bioconductor.org/packages/release/bioc/html/DESeq2.html&gt;`_ on a `Phyloseq &lt;https://joey711.github.io/phyloseq/&gt;`_ object.
+This tool launches Rscript to compute differential abundance analysis using `DESeq2 &lt;https://bioconductor.org/packages/release/bioc/html/DESeq2.html&gt;`_ on a `Phyloseq &lt;https://joey711.github.io/phyloseq/&gt;`_ object.
 
 .. class:: infomark page-header h2
 
@@ -86,7 +86,7 @@ This result will be one of the input of the FROGSSTAT DESeq Visualisation tool.
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
 The DESeq function performs a default analysis through the steps:
 
@@ -99,10 +99,10 @@ The DESeq function performs a default analysis through the steps:
 
 You must precise at least on variable on which the differential abundances will be compared.
 
-You may precise a confounding factor, by adding an other variable and precise the relation between the two variables:
+You may precise a confounding factor, by adding an other variable and you may precise the relation between the two variables:
 
-- + for independant variables
-- * for interacting variables
+- for independant variables
+- for interacting variables
 
 @HELP_CONTACT@
 
