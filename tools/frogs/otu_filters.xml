@@ -141,7 +141,7 @@
 	<outputs>
 		<data format="biom1" name="output_biom" label="${tool.name}: otuFilter_abundance.biom" from_work_dir="otuFilter_abundance.biom" />
 		<data format="fasta" name="output_fasta" label="${tool.name}: otuFilter_sequences.fasta" from_work_dir="otuFilter_sequences.fasta" />
-		<data format="tabular" name="output_excluded" label="${tool.name}: excluded.tsv" from_work_dir="excluded.tsv" />
+		<data format="tsv" name="output_excluded" label="${tool.name}: excluded.tsv" from_work_dir="excluded.tsv" />
 		<data format="html" name="output_summary" label="${tool.name}: report.html" from_work_dir="report.html" />
 	</outputs>
 	<tests>
