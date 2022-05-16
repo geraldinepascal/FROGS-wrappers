@@ -95,7 +95,7 @@
 				</param>
 			</when>
 			<when value="replicate">
-				<param name="replicate_file" type="data" format="txt" optional="True" label="File of replicated sample names" help="Replicate file to link each sample to its group (cf. Help section)." />
+				<param name="replicate_file" type="data" format="tsv" optional="True" label="File of replicated sample names" help="Replicate file to link each sample to its group (cf. Help section)." />
 				<param name="min_replicate_presence" type="float" min="0" max="1" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep OTU present in at least this proportion of replicates in at least one group (must be a proportion between 0 and 1).">
 				</param>
 			</when>
@@ -206,7 +206,8 @@ If you selected " replicate identification " for the minimum prevalence method, 
 
 If not all samples are present in the "File of replicated sample names", they will not be affected by this filter step and will be kept in the abundance table.
 
-The file must consist of only 2 columns, separated by a tab or a space. The first column contains the exact names of the samples (exactly those contained in the biom file) and the second column contains the name of the group to which they belong.
+The file must consist of only 2 columns, separated by a tabulation. The first column contains the exact names of the samples (exactly those contained in the biom file) and the second column contains the name of the group to which they belong.
+
 Please note that group names must not contain accents, spaces or special characters.
 
 .. class:: h3
