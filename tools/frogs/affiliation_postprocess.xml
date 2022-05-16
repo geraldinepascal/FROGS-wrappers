@@ -106,7 +106,7 @@ The aggregation composition file (format text) describing the composition of eac
 
 How it works ?
 
-If a reference fasta file is provided, for each OTU with multiaffiliation, among the different possible affiliations, we only keep the affiliation of the sequence with the shorter length. The aim is to resolve ambiguities due to potential inclusive sequences such as ITS.
+If a reference fasta file is provided, for each OTU with multiaffiliation, among the different possible affiliations, we only keep the affiliation of the sequence with the shortest length. The aim is to resolve ambiguities due to potential inclusive sequences such as ITS.
 
 Second step is the OTUs aggregation that shares the same taxonomy inferred on alignment metrics.
 The process starts with the most abundant OTU. If an OTU shares at least one affiliation with another OTU with at least I% of identity and C% of alignment coverage, the OTUs are aggregated together : the different affiliations, are merged, blast concensus taxonomy is updated and abundance counts are summed. The seed of the most abundant OTU is kept.

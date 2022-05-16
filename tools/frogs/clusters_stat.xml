@@ -52,7 +52,7 @@ Output
 
 **Report file** (report.html):
 
- *Cluster distribution* : describes the sizes distribution of all clusters thank to boxplot and tables
+ *Cluster distribution* : describes the sizes distribution of all clusters thanks to boxplots and tables
 
  .. image:: FROGS_cluster_stat_clusterDistrib1.png
     :height: 1180
