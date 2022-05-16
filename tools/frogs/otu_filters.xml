@@ -81,7 +81,7 @@
 	</command>
 	<inputs>
 		<!-- Files -->
-		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: FASTA)" />
+		<param format="fasta" name="input_fasta" type="data" label="Sequence file" help="The sequence file to filter (format: FASTA)" />
 		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)" />
 
 		<conditional name="choice_prevalence_method">

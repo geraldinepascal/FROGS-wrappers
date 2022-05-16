@@ -26,7 +26,7 @@
     <inputs>
         <!-- Files -->
         <param format="fasta" name="sequence_file" type="data" label="Sequences file" help="The dereplicated sequences file (format: FASTA)" />
-        <param format="tabular" name="count_file" type="data" label="Count file" help="It contains the count by sample for each sequence (format: TSV)"/>
+        <param format="tabular,tsv" name="count_file" type="data" label="Count file" help="It contains the count by sample for each sequence (format: TSV)"/>
         <!-- Parameters -->
         <conditional name="FROGS_guidelines">
             <param name="guidelines_version" type="select" label="FROGS guidelines version" help="The denoising step before a d3 clustering is no longer recommended since FROGS 3.2, but you can still choose it.">

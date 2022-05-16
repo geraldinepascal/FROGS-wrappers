@@ -31,7 +31,7 @@
                 <param format="biom1" name="abundance_biom" type="data" label="Abundance file (format: BIOM)" help="It contains the count by sample for each sequence."  />
             </when>
             <when value="count">
-                <param format="tabular" name="abundance_count" type="data" label="Count file (format: TSV)" help="It contains the count by sample for each sequence (see below)."  />
+                <param format="tabular,tsv" name="abundance_count" type="data" label="Count file (format: TSV)" help="It contains the count by sample for each sequence (see below)."  />
             </when>
         </conditional>
     </inputs>
@@ -135,7 +135,7 @@ How it works ?
    :widths: 10, 90
    :class: table table-striped
 
-   "1", "Split input data by sample (classicaly the PCR is realised by sample)."
+   "1", "Split input data by sample (classicaly the PCR is performed by sample)."
    "2", "Find chimera in each sample (`vsearch &lt;https://github.com/torognes/vsearch&gt;`_)."
    "3", "Remove the sequences identify as chimera in all samples where they are present."
 

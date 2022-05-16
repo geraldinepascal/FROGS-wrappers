@@ -340,7 +340,7 @@ Sample files added one after another or provide in an archive file (tar or tar.g
    :Files: One sequence file by sample (format `FASTQ &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_)
    :Example: splA.fastq.gz,  splB.fastq.gz
 
-Remark: In an archive, if you use R1 and R2 files, their names must end with *_R1* and *_R2*. The part upstream from this tag (_R1 and _R2) will be consider as sample name.
+Remark: In an archive, if you use R1 and R2 files, their names must end with *_R1* and *_R2*. The upstream part from this tag (_R1 and _R2) will be consider as sample name.
 
 .. class:: h3
 
@@ -348,7 +348,7 @@ Outputs
 
 **Sequence file** (dereplicated.fasta):
 
- Only one file with all samples sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_). These sequences are dereplicated: strictly identical sequences are represented only once, the initial count by sample is kept in count file (see bellow) and the total count is added in the sequence header. A "FROGS_combined" suffix will be added to un-merged pair sequence if you want to keep them.
+ Only one file with all samples sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_). These sequences are dereplicated: strictly identical sequences are represented only once, the initial count by sample is kept in count file (see bellow) and the total count is added in the sequence header. A "FROGS_combined" suffix will be added to un-merged pair sequences if you want to keep them.
 
 **Count file** (count.tsv):
 
@@ -392,6 +392,7 @@ Advices/details on parameters
 Keeping or not un-merged paired reads
 
 .. class:: warningmark
+
 This option is usefull when and only when, **targeted amplicon is longer than the sequencing technology** can provide (ITS amplicons, V1-V4 region of 16S for example). In other case, carefully, you will only keep noise in your analysis.
 
 .. class:: h3
