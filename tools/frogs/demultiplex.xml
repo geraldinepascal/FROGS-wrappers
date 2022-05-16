@@ -21,7 +21,7 @@
 	</command>
 	<inputs>
 		<!-- Input file -->
-		<param format="tabular" argument="--input_barcode" type="data" label="Barcode file" help="This file describes barcodes and samples (one line by sample tabulated separated from barcode sequence(s)). See Help section" />
+		<param format="tabular,tsv" argument="--input_barcode" type="data" label="Barcode file" help="This file describes barcodes and samples (one line by sample tabulated separated from barcode sequence(s)). See Help section" />
 
 		<conditional name="fastq_input">
 	      	<param name="fastq_input_selector" type="select" label="Single or Paired-end reads" help="Select between paired and single-end data">
