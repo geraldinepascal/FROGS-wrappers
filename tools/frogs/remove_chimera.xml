@@ -31,7 +31,7 @@
                 <param format="biom1" name="abundance_biom" type="data" label="Abundance file (format: BIOM)" help="It contains the count by sample for each sequence."  />
             </when>
             <when value="count">
-                <param format="tabular" name="abundance_count" type="data" label="Count file (format: TSV)" help="It contains the count by sample for each sequence (see below)."  />
+                <param format="tabular,tsv" name="abundance_count" type="data" label="Count file (format: TSV)" help="It contains the count by sample for each sequence (see below)."  />
             </when>
         </conditional>
     </inputs>
