@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGSFUNC_step3_functions" name="FROGSFUNC_step3_functions" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-    <description>Predicting of functions weighted by the relative abundance of OTUs in the community. Inferring the metagenomes of the communities.</description>
+    <description>Calculates functions abundances in each sample.</description>
 
     <macros>
         <import>macros.xml</import>
