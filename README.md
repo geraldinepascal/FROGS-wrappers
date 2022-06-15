@@ -265,7 +265,7 @@ We provide some databanks for each of these 3 data tables, you simply need to do
 
 In order to use the FROGSFUNC tools, you must also create 3 other .loc files which must indicate the paths to the reference files of PICRUSt2 (present in the directory of the tool installed via conda for example) :
 
-- Place studied sequences ((.e. OTUs) into a reference tree.
+- Place studied sequences (.e. OTUs) into a reference tree.
   
   loc file : `frogs_picrust2_default_dir.loc`
 
