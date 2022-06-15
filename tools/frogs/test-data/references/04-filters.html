@@ -19,7 +19,7 @@
 	<head>
 		<title>FROGS OTU Filters</title>
 		<meta charset="UTF-8">
-		<meta name="version" content="4.0.0">
+		<meta name="version" content="4.0.1">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></link>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></link>
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -576,7 +576,7 @@
 			// Data
 			//
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			var processed_filters = ["Present in less than 3 samples", "Abundance < 0.005% (i.e 8 sequences )", "Present in databank of contaminants"] ;
+			var processed_filters = ["Present in less than 3 samples", "Present in less than 50.0%  of replicates of all replicate groups.", "Abundance < 0.005% (i.e 8 sequences )", "Present in databank of contaminants"] ;
 			/* Example:
 				['filterA', 'filterB', 'filterC']
 			*/
@@ -609,7 +609,7 @@
 					}
 				}
 			*/
-			var replicate_groups = {} ;
+			var replicate_groups = {"group_1": {"Replicates": "01_subsample, 02_subsample"}, "group_2": {"Replicates": "03_subsample"}} ;
 
 
 			var by_filters_results = [{"filters": ["Present in less than 3 samples", "Abundance < 0.005% (i.e 8 sequences )"], "count": 74864}, {"filters": ["Abundance < 0.005% (i.e 8 sequences )"], "count": 1}] ;
