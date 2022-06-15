@@ -54,7 +54,7 @@
             <!-- <output name="html" file="references/19-phylo_beta_div.nb.html" compare="diff" lines_diff="0" /> -->
             <!-- sinon test le nombre de fois où il y a img src= on en attend 2 -->
             <output name="html">
-                <discovered_dataset designation="unifrac.tsv" ftype="tabular" file="references/unifrac.tsv" compare="diff" lines_diff="0"/>
+                <discovered_dataset designation="unifrac.tsv" ftype="tsv" file="references/unifrac.tsv" compare="diff" lines_diff="0"/>
             </output>
         </test>
     </tests>
