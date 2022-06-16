@@ -69,7 +69,8 @@
             <param name="input_fasta" value="references/08-affiliation_postprocessed.fasta"/>
 	        <param name="input_biom" value="references/08-affiliation_postprocessed.biom"/>
         	<conditional name="sampling_method">
-        	<param name="sampling_by_min" value="true"/>
+        	<param name="sampling_by_min" value="no"/>
+        	<param name="num_reads" value="100"/>
         	</conditional>
             <output name="summary_file" file="references/09-normalisation.html" compare="sim_size" delta="0" />
             <output name="summary_file" file="references/09-normalisation.html" compare="diff" lines_diff="4" />
