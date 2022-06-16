@@ -576,7 +576,7 @@
 			// Data
 			//
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			var processed_filters = ["Present in less than 3 samples", "Present in less than 50.0%  of replicates of all replicate groups.", "Abundance < 0.005% (i.e 8 sequences )", "Present in databank of contaminants"] ;
+			var processed_filters = ["Present in less than 50.0%  of replicates of all replicate groups.", "Abundance < 0.005% (i.e 8 sequences )", "Present in databank of contaminants"] ;
 			/* Example:
 				['filterA', 'filterB', 'filterC']
 			*/
@@ -589,7 +589,7 @@
 					'nb_seq_ini': 100000
 				}
 			*/
-			var by_samples_results = {"01_subsample": {"initial": 25127, "filtered": {"Present in less than 3 samples": 25071, "Abundance < 0.005% (i.e 8 sequences )": 25072}, "kept": 55}, "02_subsample": {"initial": 24947, "filtered": {"Present in less than 3 samples": 24891, "Abundance < 0.005% (i.e 8 sequences )": 24892}, "kept": 55}, "03_subsample": {"initial": 24960, "filtered": {"Present in less than 3 samples": 24904, "Abundance < 0.005% (i.e 8 sequences )": 24905}, "kept": 55}} ;
+			var by_samples_results = {"01_subsample": {"initial": 25127, "filtered": {"Abundance < 0.005% (i.e 8 sequences )": 25072}, "kept": 55}, "02_subsample": {"initial": 24947, "filtered": {"Abundance < 0.005% (i.e 8 sequences )": 24892}, "kept": 55}, "03_subsample": {"initial": 24960, "filtered": {"Abundance < 0.005% (i.e 8 sequences )": 24905}, "kept": 55}} ;
 			/* Example:
 				{
 					'sampleA':{
@@ -612,7 +612,7 @@
 			var replicate_groups = {"group_1": {"Replicates": "01_subsample, 02_subsample"}, "group_2": {"Replicates": "03_subsample"}} ;
 
 
-			var by_filters_results = [{"filters": ["Present in less than 3 samples", "Abundance < 0.005% (i.e 8 sequences )"], "count": 74864}, {"filters": ["Abundance < 0.005% (i.e 8 sequences )"], "count": 1}] ;
+			var by_filters_results = [{"filters": ["Abundance < 0.005% (i.e 8 sequences )"], "count": 74865}] ;
 			/* Example:
 				[
 					{'filters':['filterA'], 'count': 10},
