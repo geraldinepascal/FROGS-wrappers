@@ -251,7 +251,30 @@ We provide some databanks for each of these 3 data tables, you simply need to do
 
   loc file :`frogs_db.loc`
 
-- Contaminant databank for filter tool
+**FROGS** provides a **data_manager** (installable via the toolshed). It concerns only taxonomical assignation databank which are listed here : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv.
+
+  You may choose to download all formatted databases, or filter them on:
+
+  	* date : all available database since DATE
+  	* amplicon : ex: 16S
+  	* base : ex: SILVA
+  	* filters : this column is not always filled, but for example, we propose SILVA 16S database filtered on pintail score
+ 	* version	: ex : 138.1
+
+Datatables will be added in `<Galaxy_Dir>/config/shed_tool_data_table_conf.xml` 
+
+Loc files will be in : `tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/<RANDOM>/`
+
+You may modify the directory where you want to store reference files by changing  the `galaxy_data_manager_data_path` in the `galaxy.yml` files. All FROGS databases will be placed in a `frogs_db` directory.
+
+Since FROGS-wrappers 3.2.3+galaxy2, FROGS datamanager have been published in it's own toolshed repository : https://toolshed.g2.bx.psu.edu/view/frogs/data_manager_frogs/
+
+To remove previous installed datamanager, simply remove `<data_manager> ... </data_manager>` sections in your `shed_data_manager_conf.xml` galaxy config file.
+Previously `frogs_db.loc` are in `tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/*/frogs_db.loc` and will still be available in all FROGS affiliation tools you have installed, do not remove it until you are sure that defined reference databases are useless.
+
+
+
+- Contaminant databank for otu_filter tool
 
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/contaminants
 
@@ -265,43 +288,17 @@ We provide some databanks for each of these 3 data tables, you simply need to do
 
 In order to use the FROGSFUNC tools, you must also create 3 other .loc files which must indicate the paths to the reference files of PICRUSt2 (present in the directory of the tool installed via conda for example) :
 
-- Place studied sequences ((.e. OTUs) into a reference tree.
+- Place studied sequences ((.e. OTUs) into a reference tree, for frogsfunc_step1 tool
   
   loc file : `frogs_picrust2_default_dir.loc`
 
-- Predict the copy number of gene families present in the predicted genome for OTU.
+- Predict the copy number of gene families present in the predicted genome for OTU, for frogsfunc_step2 tool
   
   loc file : `frogs_picrust2_marker_table.loc`
 
-- Map pathways to reactions.
+- Map pathways to reactions, , for frogsfunc_step4 tool
   
   loc file : `frogs_picrust2_pathway_map.loc`
-
-
-
-* **FROGS** provides a **data_manager** (installable via the toolshed). It concerns only taxonomical assignation databank which are listed here : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv.
-
-  You may choose to download all formatted databases, or filter them on:
-
-  * date : all available database since DATE
-  * amplicon : ex: 16S
-  * base : ex: SILVA
-  * filters : this column is not always filled, but for example, we propose SILVA 16S database filtered on pintail score
-  * version	: ex : 138.1
-
-Datatables will be added in `<Galaxy_Dir>/config/shed_tool_data_table_conf.xml` 
-
-Loc files will be in : `tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/<RANDOM>/`
-
-
-
-You may modify the directory where you want to store reference files by changing  the `galaxy_data_manager_data_path` in the `galaxy.yml` files. All FROGS databases will be placed in a `frogs_db` directory.
-
-Since FROGS-wrappers 3.2.3+galaxy2, FROGS datamanager have been published in it's own toolshed repository : https://toolshed.g2.bx.psu.edu/view/frogs/data_manager_frogs/
-
-To remove previous installed datamanager, simply remove `<data_manager> ... </data_manager>` sections in your `shed_data_manager_conf.xml` galaxy config file.
-Previously `frogs_db.loc` are in `tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/*/frogs_db.loc` and will still be available in all FROGS affiliation tools you have installed, do not remove it until you are sure that defined reference databases are useless.
-
 
 
 * **Manual installation** :
