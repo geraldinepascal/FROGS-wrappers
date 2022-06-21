@@ -245,55 +245,26 @@ Databanks are defined in `loc` files and `loc` files are defined in Galaxy datat
 
 We provide some databanks for each of these 3 data tables, you simply need to download them and add them in the corresponding `loc` files.
 
+
 - Assignation databank for affiliation_OTU tool
 
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation
 
   loc file :`frogs_db.loc`
 
-- Contaminant databank for filter tool
-
-  URL : http://genoweb.toulouse.inra.fr/frogs_databanks/contaminants
-
-  loc file : `frogs_contaminant_db.loc`
-
-- Hyper variable in length amplicon databank for affiliation_postprocess tool
-
-  URL : http://genoweb.toulouse.inra.fr/frogs_databanks/HVL
-
-  loc file : `frogs_HVL.loc`
-
-In order to use the FROGSFUNC tools, you must also create 3 other .loc files which must indicate the paths to the reference files of PICRUSt2 (present in the directory of the tool installed via conda for example) :
-
-- Place studied sequences (.e. OTUs) into a reference tree.
-  
-  loc file : `frogs_picrust2_default_dir.loc`
-
-- Predict the copy number of gene families present in the predicted genome for OTU.
-  
-  loc file : `frogs_picrust2_marker_table.loc`
-
-- Map pathways to reactions.
-  
-  loc file : `frogs_picrust2_pathway_map.loc`
-
-
-
-* **FROGS** provides a **data_manager** (installable via the toolshed). It concerns only taxonomical assignation databank which are listed here : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv.
+FROGS provides a data_manager (installable via the toolshed). It concerns only taxonomical assignation databank which are listed here : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation/FROGS_databases.tsv.
 
   You may choose to download all formatted databases, or filter them on:
 
-  * date : all available database since DATE
-  * amplicon : ex: 16S
-  * base : ex: SILVA
-  * filters : this column is not always filled, but for example, we propose SILVA 16S database filtered on pintail score
-  * version	: ex : 138.1
+    * date : all available database since DATE
+    * amplicon : ex: 16S
+    * base : ex: SILVA
+    * filters : this column is not always filled, but for example, we propose SILVA 16S database filtered on pintail score
+    * version : ex : 138.1
 
 Datatables will be added in `<Galaxy_Dir>/config/shed_tool_data_table_conf.xml` 
 
 Loc files will be in : `tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/<RANDOM>/`
-
-
 
 You may modify the directory where you want to store reference files by changing  the `galaxy_data_manager_data_path` in the `galaxy.yml` files. All FROGS databases will be placed in a `frogs_db` directory.
 
@@ -303,8 +274,38 @@ To remove previous installed datamanager, simply remove `<data_manager> ... </da
 Previously `frogs_db.loc` are in `tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/*/frogs_db.loc` and will still be available in all FROGS affiliation tools you have installed, do not remove it until you are sure that defined reference databases are useless.
 
 
+- Contaminant databank for otu_filter tool
 
-* **Manual installation** :
+  URL : http://genoweb.toulouse.inra.fr/frogs_databanks/contaminants
+
+  loc file : `frogs_contaminant_db.loc`
+  
+
+- Hyper variable in length amplicon databank for affiliation_postprocess tool
+
+  URL : http://genoweb.toulouse.inra.fr/frogs_databanks/HVL
+
+  loc file : `frogs_HVL.loc`
+  
+
+In order to use the FROGSFUNC tools, you must also create 3 other .loc files which must indicate the paths to the reference files of PICRUSt2 (present in the directory of the tool installed via conda for example) :
+
+- Place studied sequences ((.e. OTUs) into a reference tree, for frogsfunc_step1 tool
+  
+  loc file : `frogs_picrust2_default_dir.loc`
+  
+
+- Predict the copy number of gene families present in the predicted genome for OTU, for frogsfunc_step2 tool
+  
+  loc file : `frogs_picrust2_marker_table.loc`
+  
+
+- Map pathways to reactions, , for frogsfunc_step4 tool
+  
+  loc file : `frogs_picrust2_pathway_map.loc`
+
+
+**Manual installation** :
 
   * datatables : `<Galaxy_Dir>/config/tool_data_table_conf.xml` , example : `<Galaxy_Dir>/tools/FROGS/tools/frogs/tool_data_table_conf.xml.sample`
 
@@ -315,10 +316,6 @@ Previously `frogs_db.loc` are in `tool-data/toolshed.g2.bx.psu.edu/repos/frogs/f
     Copy and rename them as indicated in the tool_data_table.
 
     Then add entry as indicated in each loc files.
-
-
-
-
 
 # Galaxy configuration
 
