@@ -93,8 +93,8 @@
                 <!-- Samples -->
                 <conditional name="input_type">
                     <param name="input_type_selected" type="select" label="Input type" help="Samples files can be provided in a single TAR archive or sample by sample (with one or two files each).">
-                        <option value="files_by_samples" selected="true">Files by samples</option>
-                        <option value="archive">TAR Archive</option>
+                        <option value="files_by_samples" >Files by samples</option>
+                        <option value="archive" selected="true">TAR Archive</option>
                     </param>
                     <when value="archive">
                         <param name="archive_file" type="data" format="tar,tgz" label="TAR archive file" help="The TAR file containing the sequences file(s) for each sample." />

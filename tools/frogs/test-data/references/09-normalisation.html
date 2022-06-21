@@ -19,7 +19,7 @@
 	<head>
 		<title>FROGS Abundance Normalisation</title>
 		<meta charset="UTF-8">
-		<meta name="version" content="4.0.0">
+		<meta name="version" content="4.0.1">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></link>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></link>
@@ -365,9 +365,9 @@
 			$(function() {
 				var categories = ["Nb OTU before normalisation", "Nb OTU after normalisation"] ;
 				var del_categories = ["Nb sequences"] ;
-				var series_by_sample = [{"name": "01_subsample", "data": [55, 55]}, {"name": "02_subsample", "data": [55, 55]}, {"name": "03_subsample", "data": [55, 55]}] ;
+				var series_by_sample = [{"name": "01_subsample", "data": [55, 41]}, {"name": "02_subsample", "data": [55, 46]}, {"name": "03_subsample", "data": [55, 40]}] ;
 				var del_by_sample = [] ;
-				var remove_info = {"abundance_kept": 74781, "abundance_removed": 347, "nb_kept": 55, "nb_removed": 0} ;
+				var remove_info = {"abundance_kept": 300, "abundance_removed": 74828, "nb_kept": 51, "nb_removed": 4} ;
 
 				// Remove alert
 				$('#js-alert').remove();
@@ -488,7 +488,7 @@
 	        		</div>
 				</div>
 			<div id="filter-delete">
-				<h2 class="pb-2 mt-4 mb-2 border-bottom">Kept samples (nb sequences < None)</h2>
+				<h2 class="pb-2 mt-4 mb-2 border-bottom">Kept samples (nb sequences < 100)</h2>
 			</div>
 			<div id="filter-log">
 				<h2 class="pb-2 mt-4 mb-2 border-bottom"> Normalisation summary per samples</h2>
