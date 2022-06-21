@@ -75,7 +75,7 @@
 
   <tests>
     <test>
-      <param name="input_file" value="input/frogsfunc_functions_unstrat.tsv" />
+      <param name="input_file" value="references/27-frogsfunc_functions_unstrat.tsv" />
       <param name="category" value="16S" />
 
       <output name="abund" file="references/28-frogsfunc_pathways_unstrat.tsv" compare="diff" lines_diff="0" />
