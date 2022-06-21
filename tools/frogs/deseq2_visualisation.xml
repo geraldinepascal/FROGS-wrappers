@@ -67,7 +67,7 @@
                     <!-- lfcSE of otu_01582 -->
                     <has_text text='[2.208' />
                     <!-- pvalue otu_01582 -->
-                    <has_text text='[1.052' />
+                    <has_text text='[1.054' />
                 </assert_contents>
             </output>
         </test>
