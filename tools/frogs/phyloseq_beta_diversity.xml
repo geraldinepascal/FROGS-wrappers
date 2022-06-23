@@ -43,7 +43,7 @@
     </inputs>
     <outputs>
         <data format="html" name="html" label="${tool.name}: beta_diversity.nb.html" from_work_dir="beta_diversity.nb.html">
-            <discover_datasets pattern="__designation__" ext="tabular" directory="BetaMatrix" visible="true"/>
+            <discover_datasets pattern="__designation__" ext="tsv" directory="BetaMatrix" visible="true"/>
         </data>
     </outputs>
     <tests>
@@ -54,7 +54,7 @@
             <!-- <output name="html" file="references/19-phylo_beta_div.nb.html" compare="diff" lines_diff="0" /> -->
             <!-- sinon test le nombre de fois où il y a img src= on en attend 2 -->
             <output name="html">
-                <discovered_dataset designation="unifrac.tsv" ftype="tabular" file="references/unifrac.tsv" compare="diff" lines_diff="0"/>
+                <discovered_dataset designation="unifrac.tsv" ftype="tsv" file="references/unifrac.tsv" compare="diff" lines_diff="0"/>
             </output>
         </test>
     </tests>

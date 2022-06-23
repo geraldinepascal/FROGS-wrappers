@@ -81,7 +81,7 @@
 	</command>
 	<inputs>
 		<!-- Files -->
-		<param format="fasta" name="input_fasta" type="data" label="Sequences file" help="The sequence file to filter (format: FASTA)" />
+		<param format="fasta" name="input_fasta" type="data" label="Sequence file" help="The sequence file to filter (format: FASTA)" />
 		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)" />
 
 		<conditional name="choice_prevalence_method">
@@ -95,7 +95,7 @@
 				</param>
 			</when>
 			<when value="replicate">
-				<param name="replicate_file" type="data" format="txt" optional="True" label="File of replicated sample names" help="Replicate file to link each sample to its group (cf. Help section)." />
+				<param name="replicate_file" type="data" format="tsv" optional="True" label="File of replicated sample names" help="Replicate file to link each sample to its group (cf. Help section)." />
 				<param name="min_replicate_presence" type="float" min="0" max="1" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep OTU present in at least this proportion of replicates in at least one group (must be a proportion between 0 and 1).">
 				</param>
 			</when>
@@ -141,7 +141,7 @@
 	<outputs>
 		<data format="biom1" name="output_biom" label="${tool.name}: otuFilter_abundance.biom" from_work_dir="otuFilter_abundance.biom" />
 		<data format="fasta" name="output_fasta" label="${tool.name}: otuFilter_sequences.fasta" from_work_dir="otuFilter_sequences.fasta" />
-		<data format="tabular" name="output_excluded" label="${tool.name}: excluded.tsv" from_work_dir="excluded.tsv" />
+		<data format="tsv" name="output_excluded" label="${tool.name}: excluded.tsv" from_work_dir="excluded.tsv" />
 		<data format="html" name="output_summary" label="${tool.name}: report.html" from_work_dir="report.html" />
 	</outputs>
 	<tests>
@@ -156,6 +156,11 @@
             <conditional name="contaminantSource">
             	<param name="which_contaminantSource" value="server"/>
 				<param name="contaminant_db" value="phiX_test" />
+			</conditional>
+			<conditional name="choice_prevalence_method">
+				<param name="prevalence_method" value="replicate" />
+				<param name="replicate_file" value="input/replicate_file.tsv" />
+				<param name="min_replicate_presence" value="0.5"/>
 			</conditional>
 	 	    <output name="output_fasta" file="references/04-filters.fasta" compare="diff" lines_diff="0" />
 	 	    <output name="output_biom" file="references/04-filters.biom" compare="sim_size" delta="0" />
@@ -206,7 +211,8 @@ If you selected " replicate identification " for the minimum prevalence method, 
 
 If not all samples are present in the "File of replicated sample names", they will not be affected by this filter step and will be kept in the abundance table.
 
-The file must consist of only 2 columns, separated by a tab or a space. The first column contains the exact names of the samples (exactly those contained in the biom file) and the second column contains the name of the group to which they belong.
+The file must consist of only 2 columns, separated by a tabulation. The first column contains the exact names of the samples (exactly those contained in the biom file) and the second column contains the name of the group to which they belong.
+
 Please note that group names must not contain accents, spaces or special characters.
 
 .. class:: h3

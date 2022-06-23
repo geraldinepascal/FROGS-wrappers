@@ -14,7 +14,7 @@
     <inputs>
 		<!-- Files -->
 	    <param format="rdata" name="data" type="data" label="Phyloseq object (format: RData)" help="This is the result of FROGS Phyloseq Import Data tool."/>
-        <param argument="--distance-matrix" format="tabular" type="data" label="The beta diversity distance matrix file" help="This file is the result of FROGS Phyloseq Beta Diversity tool"/>
+        <param argument="--distance-matrix" format="tsv" type="data" label="The beta diversity distance matrix file" help="This file is the result of FROGS Phyloseq Beta Diversity tool"/>
 		<!-- Parameters -->
 		<param argument="--varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse">
             <expand macro="sanitizer_validator"/>

@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGSFUNC_step1_placeseqs" name="FROGSFUNC_step1_placeseqs" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-	<description>Place studies sequences (i.e. OTUs) into a reference tree.</description>
+	<description>Places the OTUs into a reference phylogenetic tree.</description>
 
     <macros>
         <import>macros.xml</import>
@@ -70,9 +70,9 @@
 	<outputs>
 		<data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="report.html"/>
 		<data format="nhx" name="out_tree" label="${tool.name}: frogsfunc_placeseqs_tree.nwk" from_work_dir="frogsfunc_placeseqs_tree.nwk"/>
-		<data format="tabular" name="excluded" label="${tool.name}: frogsfunc_placeseqs_excluded.tsv" from_work_dir="frogsfunc_placeseqs_excluded.tsv"/> 
+		<data format="tsv" name="excluded" label="${tool.name}: frogsfunc_placeseqs_excluded.tsv" from_work_dir="frogsfunc_placeseqs_excluded.tsv"/> 
 		<data format="fasta" name="insert_fasta" label="${tool.name}: frogsfunc_placeseqs.fasta" from_work_dir="frogsfunc_placeseqs.fasta"/>
-		<data format="tabular" name="closests_ref" label="${tool.name}: frogsfunc_placeseqs_closests_ref_sequences.txt" from_work_dir="frogsfunc_placeseqs_closests_ref_sequences.txt"/>
+		<data format="tsv" name="closests_ref" label="${tool.name}: frogsfunc_placeseqs_closests_ref_sequences.txt" from_work_dir="frogsfunc_placeseqs_closests_ref_sequences.txt"/>
 		<data format="biom1" name="insert_biom" label="${tool.name}: frogsfunc_placeseqs.biom" from_work_dir="frogsfunc_placeseqs.biom"/> 
 	</outputs>
 

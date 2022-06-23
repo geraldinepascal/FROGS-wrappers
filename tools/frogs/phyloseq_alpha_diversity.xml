@@ -30,7 +30,7 @@
         </param>
 	</inputs>
 	<outputs>
-		<data format="tabular" name="alphaD" label="${tool.name}: alpha_diversity.tsv" from_work_dir="alpha_diversity.tsv"/>
+		<data format="tsv" name="alphaD" label="${tool.name}: alpha_diversity.tsv" from_work_dir="alpha_diversity.tsv"/>
 		<data format="html" name="html" label="${tool.name}: alpha_diversity.nb.html" from_work_dir="alpha_diversity.nb.html"/>
 	</outputs>
     <tests>

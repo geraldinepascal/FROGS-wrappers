@@ -1,3 +1,9 @@
+# v4.0.1+galaxy1 [2022-06]
+
+### Bug corrected:
+
+* Clustering : change output format for swarm_composition file from .tsv to .txt
+
 # v4.0.0+galaxy1 [2022-05]
 
 ### Tools added:

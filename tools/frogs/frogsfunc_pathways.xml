@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGSFUNC_step4_pathways" name="FROGSFUNC_step4_pathways" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-	<description>Inference of pathway-level abundances. </description>
+	<description>Calculates pathway abundances in each sample. </description>
 
   <macros>
         <import>macros.xml</import>
@@ -45,7 +45,7 @@
 	</command> 
 	<inputs>
         <!-- Input files -->       
-        <param argument="--input-file" format="tabular" name="input_file" type="data" label="Function abundance file" help="TSV function abundances table from FROGSFUNC_step3_function tool, frogsfunc_functions_unstrat.tsv (unstratified table)." optional="false"/>
+        <param argument="--input-file" format="tsv" name="input_file" type="data" label="Function abundance file" help="TSV function abundances table from FROGSFUNC_step3_function tool, frogsfunc_functions_unstrat.tsv (unstratified table)." optional="false"/>
 
         <!-- References -->
 	      <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
@@ -70,12 +70,12 @@
         </inputs>
 	<outputs>
 		<data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="report.html"/>
-		 <data format="tabular" name="abund" label="${tool.name}: frogsfunc_pathways_unstrat.tsv" from_work_dir="frogsfunc_pathways_unstrat.tsv"/> 
+		 <data format="tsv" name="abund" label="${tool.name}: frogsfunc_pathways_unstrat.tsv" from_work_dir="frogsfunc_pathways_unstrat.tsv"/> 
 	</outputs>
 
   <tests>
     <test>
-      <param name="input_file" value="input/frogsfunc_functions_unstrat.tsv" />
+      <param name="input_file" value="references/27-frogsfunc_functions_unstrat.tsv" />
       <param name="category" value="16S" />
 
       <output name="abund" file="references/28-frogsfunc_pathways_unstrat.tsv" compare="diff" lines_diff="0" />

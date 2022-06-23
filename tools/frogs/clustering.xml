@@ -26,7 +26,7 @@
     <inputs>
         <!-- Files -->
         <param format="fasta" name="sequence_file" type="data" label="Sequences file" help="The dereplicated sequences file (format: FASTA)" />
-        <param format="tabular" name="count_file" type="data" label="Count file" help="It contains the count by sample for each sequence (format: TSV)"/>
+        <param format="tabular,tsv" name="count_file" type="data" label="Count file" help="It contains the count by sample for each sequence (format: TSV)"/>
         <!-- Parameters -->
         <conditional name="FROGS_guidelines">
             <param name="guidelines_version" type="select" label="FROGS guidelines version" help="The denoising step before a d3 clustering is no longer recommended since FROGS 3.2, but you can still choose it.">
@@ -46,7 +46,7 @@
     <outputs>
         <data format="fasta" name="seed_file" label="${tool.name}: seed_sequences.fasta" from_work_dir="seeds.fasta" />
         <data format="biom1" name="abundance_biom" label="${tool.name}: clustering_abundance.biom" from_work_dir="abundance.biom" />
-        <data format="tabular" name="swarms_composition" label="${tool.name}: swarms_composition.tsv" from_work_dir="swarms.tsv" />
+        <data format="txt" name="swarms_composition" label="${tool.name}: swarms_composition.txt" from_work_dir="swarms.tsv" />
     </outputs>
     <tests>
         <test>

@@ -21,7 +21,7 @@
 	</command>
 	<inputs>
 		<!-- Input file -->
-		<param format="tabular" argument="--input_barcode" type="data" label="Barcode file" help="This file describes barcodes and samples (one line by sample tabulated separated from barcode sequence(s)). See Help section" />
+		<param format="tabular,tsv" argument="--input_barcode" type="data" label="Barcode file" help="This file describes barcodes and samples (one line by sample tabulated separated from barcode sequence(s)). See Help section" />
 
 		<conditional name="fastq_input">
 	      	<param name="fastq_input_selector" type="select" label="Single or Paired-end reads" help="Select between paired and single-end data">
@@ -47,7 +47,7 @@
 	<outputs>
 		<data name="demultiplexed_archive" format="tar" label="${tool.name}: demultiplexed.tar.gz" from_work_dir="demultiplexed.tar.gz"/>
 		<data name="undemultiplexed_archive" format="tar" label="${tool.name}: undemultiplexed.tar.gz" from_work_dir="undemultiplexed.tar.gz"/>
-		<data name="summary" format="tabular" label="${tool.name}: report" from_work_dir="report.tsv"/>
+		<data name="summary" format="tsv" label="${tool.name}: report" from_work_dir="report.tsv"/>
 	</outputs>
     <tests>
         <test>
