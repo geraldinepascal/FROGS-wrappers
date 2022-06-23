@@ -62,8 +62,8 @@
 		</param>
         <param argument="--placement-tool" name="placement_tool" type="select" label="Placement tool" help="Placement tool for insertion of sequences into the reference tree. SEPP is a low-memory alternative to EPA-ng for placing sequences." multiple="false" display="radio">
 			<options from_data_table="frogs_picrust2_default_dir">
-				<column name='name' index='3' />
-				<column name='value' index='3' />
+				<column name='name' index='2' />
+				<column name='value' index='2' />
                 <filter type="param_value" ref="marker" column="1" /> 
 			</options>
 		</param>
