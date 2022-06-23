@@ -27,10 +27,6 @@
 #<unique_database_name>    <name>    <file_path>
 #
 #First column will be the visible name in galaxy.
-#So, for example, if you have  UNITE 7.1 ITS1 (only!) stored 
-#in /galaxy_databanks/ITS/UNITE_7.1/UNITE_ITS1.fasta 
-#then the HVL_db.loc entry would look like this:
-#
 #
 #
 # EXAMPLE FOR TEST :
@@ -40,5 +36,5 @@
 #
 # PRODUCTION FILES, with FROGS toolsheds path to adapt (Galaxy_dir and XXXXXX)
 #
-#UNITE_7.1_ITS1	UNITE 7.1 ITS1	<Galaxy_dir>/database/shed_tools/toolshed.g2.bx.psu.edu/repos/frogs/frogs/XXXXXX/frogs/tool-data/databases/frogs_HVL_db_data/Unite_s_7.1_20112016_ITS1.fasta
-#UNITE_7.1_ITS2	UNITE 7.1 ITS2	<Galaxy_dir>/database/shed_tools/toolshed.g2.bx.psu.edu/repos/frogs/frogs/XXXXXX/frogs/tool-data/databases/frogs_HVL_db_data/Unite_s_7.1_20112016_ITS2.fasta
+#UNITE_7.1_ITS1	UNITE 7.1 ITS1	<Galaxy_dir>/database/shed_tools/toolshed.g2.bx.psu.edu/repos/frogs/frogs/XXXXXX/frogs/tool-data/Unite_s_7.1_20112016_ITS1.fasta
+#UNITE_7.1_ITS2	UNITE 7.1 ITS2	<Galaxy_dir>/database/shed_tools/toolshed.g2.bx.psu.edu/repos/frogs/frogs/XXXXXX/frogs/tool-data/Unite_s_7.1_20112016_ITS2.fasta
