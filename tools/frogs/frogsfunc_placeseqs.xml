@@ -35,7 +35,7 @@
 	   		--input-fasta $input_fasta
 	   		--input-biom $input_biom
 	   		--min-align $min_align
-	   		--placement-tool $placement_tool.fields.value
+	   		--placement-tool $placement_tool
 	   		--out-tree $out_tree 
 	   		--excluded $excluded
 	   		--insert-biom $insert_biom
@@ -53,21 +53,16 @@
 		<param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance file to analyse (format: biom). Taxonomic affiliations must be inside (FROGS Affiliation OTU step)." optional="false"/>
 
     	<!-- Parameters -->
-        <param argument="--ref-dir" name="marker" type="select" label="Taxonomy marker" display="radio" multiple="false" help="Taxonomic marker of interest.">
-			<options from_data_table="frogs_picrust2_ref_dir">
+        <param argument="--ref-dir" name="marker" type="select" label="Taxonomy marker" display="radio" help="Taxonomic marker of interest.">
+			<options from_data_table="frogs_picrust2_default_dir">
 	     		<column name="name" index="1"/>
 	        	<column name="value" index="2"/>
-                <filter type="unique_value" column="1"/>
 					<validator type="no_options" message="A built-in database is not available" />
 			</options>
 		</param>
         <param argument="--placement-tool" name="placement_tool" type="select" label="Placement tool" help="Placement tool for insertion of sequences into the reference tree. SEPP is a low-memory alternative to EPA-ng for placing sequences." multiple="false" display="radio">
-			<options from_data_table="frogs_picrust2_ref_dir">
-				<column name="name" index="3" />
-				<column name="value" index="3" />
-                <filter type="param_value" ref="marker" column="2" /> 
-					<validator type="no_options" message="A built-in database is not available" />
-			</options>
+        	<option value="epa-ng">epa-ng</option>
+        	<option value="sepp">sepp</option>
 		</param>
 		<param argument="--min-align" name="min_align" type="float" label="Minimum alignment length" help="Proportion of the total length of an input sequence that must align with reference sequences. All other will be out. (default: 0.80)" value="0.8" min="0" max="1" optional="false" /> 
 	</inputs>
