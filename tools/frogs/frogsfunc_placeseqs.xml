@@ -135,6 +135,9 @@ Input
 
 So, if the tool crashes with EPA-ng, try again with SEPP.
 
+.. class:: warningmark
+
+SEPP is not usable for ITS and 18S analysis.
 
 .. class:: h3
 

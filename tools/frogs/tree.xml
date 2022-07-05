@@ -38,9 +38,9 @@
                 <assert_contents>
                     <has_text_matching expression="FROGS\sTree" />
                     <has_text_matching expression="abundance_removed.*:\s0" />
-                    <has_text_matching expression="abundance_kept.*:\s74781" />
+                    <has_text_matching expression="abundance_kept.*:\s300" />
                     <has_text_matching expression="otu_removed.*:\s0" />
-                    <has_text_matching expression="otu_kept.*:\s55" />
+                    <has_text_matching expression="otu_kept.*:\s51" />
                 </assert_contents>
             </output>
         </test>

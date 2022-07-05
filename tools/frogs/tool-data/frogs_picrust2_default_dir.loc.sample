@@ -36,6 +36,6 @@
 #-rwxrwxr-x 1 vdarbot vdarbot   600048 avril  1  2021 pro_ref.tre
 #
 # EXAMPLE FOR TEST :
-#picrust2_default_dir_16S	16S	<Galaxy_dir>/database/dependencies/_conda/envs/__picrust2@2.4.1/lib/python3.6/site-packages/picrust2/default_files/prokaryotic/pro_ref/
-#picrust2_default_dir_ITS	ITS	<Galaxy_dir>/database/dependencies/_conda/envs/__picrust2@2.4.1/lib/python3.6/site-packages/picrust2/default_files/fungi/fungi_ITS/
-#picrust2_default_dir_18S	18S	<Galaxy_dir>/database/dependencies/_conda/envs/__picrust2@2.4.1/lib/python3.6/site-packages/picrust2/default_files/fungi/fungi_18S/
+#picrust2_default_dir_16S	16S	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/prokaryotic/pro_ref/
+#picrust2_default_dir_ITS	ITS	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/fungi/fungi_ITS/
+#picrust2_default_dir_18S	18S	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/fungi/fungi_18S/
