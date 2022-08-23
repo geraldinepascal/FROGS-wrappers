@@ -39,10 +39,12 @@
             <validator type="regex">[A-Za-z ]+</validator>
         </param>
     </xml>
+
     <xml name="sanitizer_validator">
         <sanitizer invalid_char="">
             <valid initial="string.letters,string.digits">
                 <add value="+" />
+                <add value="*" />
                 <add value="-" />
                 <add value="=" />
                 <add value=" " />
@@ -51,7 +53,7 @@
                 <add value="." />
             </valid>
         </sanitizer>
-        <validator type="regex">[A-Za-z0-9 =-_+,.]+</validator>
+        <validator type="regex">[A-Za-z0-9+*-= _,.]+</validator>
     </xml>
     
     <token name="@HELP_LOGO@">
