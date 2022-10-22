@@ -36,12 +36,12 @@
 	   		--input-biom $input_biom
 	   		--min-align $min_align
 	   		--placement-tool $placement_tool
-	   		--out-tree $out_tree 
+	   		--output-tree $output_tree 
 	   		--excluded $excluded
-	   		--insert-biom $insert_biom
-	   		--insert-fasta $insert_fasta
+	   		--output-biom $output_biom
+	   		--output-fasta $output_fasta
 	   		--closests-ref $closests_ref
-	   		--html $summary_file
+	   		--summary $summary_file
 
 	   		#if $marker.name != "16S"
 	   		--ref-dir ${marker.value}
@@ -69,11 +69,11 @@
 
 	<outputs>
 		<data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="report.html"/>
-		<data format="nhx" name="out_tree" label="${tool.name}: frogsfunc_placeseqs_tree.nwk" from_work_dir="frogsfunc_placeseqs_tree.nwk"/>
+		<data format="nhx" name="output_tree" label="${tool.name}: frogsfunc_placeseqs_tree.nwk" from_work_dir="frogsfunc_placeseqs_tree.nwk"/>
 		<data format="tsv" name="excluded" label="${tool.name}: frogsfunc_placeseqs_excluded.tsv" from_work_dir="frogsfunc_placeseqs_excluded.tsv"/> 
-		<data format="fasta" name="insert_fasta" label="${tool.name}: frogsfunc_placeseqs.fasta" from_work_dir="frogsfunc_placeseqs.fasta"/>
+		<data format="fasta" name="output_fasta" label="${tool.name}: frogsfunc_placeseqs.fasta" from_work_dir="frogsfunc_placeseqs.fasta"/>
 		<data format="tsv" name="closests_ref" label="${tool.name}: frogsfunc_placeseqs_closests_ref_sequences.txt" from_work_dir="frogsfunc_placeseqs_closests_ref_sequences.txt"/>
-		<data format="biom1" name="insert_biom" label="${tool.name}: frogsfunc_placeseqs.biom" from_work_dir="frogsfunc_placeseqs.biom"/> 
+		<data format="biom1" name="output_biom" label="${tool.name}: frogsfunc_placeseqs.biom" from_work_dir="frogsfunc_placeseqs.biom"/> 
 	</outputs>
 
 	<tests>
@@ -84,10 +84,10 @@
 			<param name="ref_dir" value="databases/frogs_picrust2_db/prokaryotic/pro_ref/" />
 			<param name="min_align" value="0.8" />
 			
-			<output name="insert_fasta" file="references/25-frogsfunc_placeseqs.fasta" compare="diff" lines_diff="0" />
-			<output name="insert_biom" file="references/25-frogsfunc_placeseqs.biom" compare="diff" lines_diff="0"/>
+			<output name="output_fasta" file="references/25-frogsfunc_placeseqs.fasta" compare="diff" lines_diff="0" />
+			<output name="output_biom" file="references/25-frogsfunc_placeseqs.biom" compare="diff" lines_diff="0"/>
 			<output name="excluded" file="references/25-frogsfunc_placeseqs_excluded.txt" compare="diff" lines_diff="0" />
-			<output name="out_tree" file="references/25-frogsfunc_placeseqs_tree.nwk" compare="diff" lines_diff="0" />
+			<output name="output_tree" file="references/25-frogsfunc_placeseqs_tree.nwk" compare="diff" lines_diff="0" />
 			<output name="closests_ref" file="references/25-frogsfunc_placeseqs_closests_ref_sequences.txt" compare="diff" lines_diff="0" />
 			<output name="summary_file" file="references/25-frogsfunc_placeseqs_report.html" compare="diff" lines_diff="0" />
 		</test>

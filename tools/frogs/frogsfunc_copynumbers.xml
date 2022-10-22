@@ -31,9 +31,9 @@
     <command >
 	   frogsfunc_copynumbers.py
             --input-biom $input_biom
-	   		--tree $input_tree
+	   		--input-tree $input_tree
 	   		#if $category.value == "16S"
-	   			--in-trait $function.fields.name
+	   			--input-functions $function.fields.name
 	   		#end if
 	   		--hsp-method $hsp_method
 	   		--output-marker $out_marker
@@ -42,12 +42,12 @@
 	   		--observed-marker-table $function.fields.path
 	   		--observed-trait-table $function.fields.traits
 	   		#end if
-            --html $summary_file
+            --summary $summary_file
 	</command> 
 	<inputs>
 	    <!-- Input files -->
         <param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance file to analyse i.e. FROGSFUNC_step1_placeseqs tool output file (frogsfunc_placeseqs.biom)." optional="false"/>
-	    <param argument="--tree" format="nhx" name="input_tree" type="data" label="Tree file" help="The file contains the tree information from FROGSFUNC_step1_placeseqs tool (frogsfunc_placeseqs_tree.nwk)." optional="false"/>
+	    <param argument="--input-tree" format="nhx" name="input_tree" type="data" label="Tree file" help="The file contains the tree information from FROGSFUNC_step1_placeseqs tool (frogsfunc_placeseqs_tree.nwk)." optional="false"/>
 	   	<!-- Parameters-->
 	    <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
             <options from_data_table="frogs_picrust2_marker_table">

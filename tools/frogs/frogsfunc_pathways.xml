@@ -41,7 +41,7 @@
              --no-regroup
             #end if
           #end if
-	    --html $summary_file
+	    --summary $summary_file
 	</command> 
 	<inputs>
         <!-- Input files -->       

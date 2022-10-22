@@ -31,20 +31,22 @@
     <command >
        frogsfunc_functions.py
             --input-biom $input_biom
-            --function $function
-            --marker $marker
+            --input-fasta $input_fasta
+            --input-function $function
+            --input-marker $marker
             --max-nsti $max_nsti
-            --function-abund $function_abund
+            --output-function-abund $function_abund
             --seqtab $seqtab
             --weighted $weighted
             --excluded $excluded
-            --html $summary_file
+            --summary $summary_file
     </command> 
     <inputs>
         <!-- Input files -->
         <param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance file i.e. FROGSFUNC_step1_placeseqs tool output file (frogsfunc_placeseqs.biom)." optional="false"/>
-        <param argument='--function' format="tsv" type="data" label="Function file" help="Copy number table of functions present in the predicted genome for each OTU i.e. FROGSFUNC_step2_copynumbers tool output file (frogsfunc_copynumbers_predicted_functions.tsv)." optional="false"/>
-        <param argument='--marker' format="tsv" type="data" label="Marker file" help="Table of predicted marker copy number i.e. FROGSFUNC_step2_copynumbers output (frogsfunc_copynumbers_marker.tsv)." optional="false"/>
+       	<param argument="--input-fasta" format="fasta" name="input_fasta" type="data" label="Sequence file" help="The fasta file i.e. from FROGSFUNC_step1_placeseqs tool output file (frogsfunc_placeseqs.fasta)." optional="false"/>
+        <param argument='--input-function' format="tsv" type="data" label="Function file" help="Copy number table of functions present in the predicted genome for each OTU i.e. FROGSFUNC_step2_copynumbers tool output file (frogsfunc_copynumbers_predicted_functions.tsv)." optional="false"/>
+        <param argument='--input-marker' format="tsv" type="data" label="Marker file" help="Table of predicted marker copy number i.e. FROGSFUNC_step2_copynumbers output (frogsfunc_copynumbers_marker.tsv)." optional="false"/>
         
         <!-- Parameters-->
         <param argument="--max-nsti" name="max_nsti" type="float" label="NSTI cut-off" help="Any sequence with an NSTI above this threshold will be out. (default: 2)" value="2" min="0" optional="false" /> 
