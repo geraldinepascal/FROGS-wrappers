@@ -1,13 +1,13 @@
 <tool id="FROGS_preprocess" name="FROGS Pre-process" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
     <description>merging, denoising and dereplication</description>
-<!--     <macros>
+     <macros>
         <import>macros.xml</import>
     </macros>
     <expand macro="requirements">
         <requirement type="package" version="2.17.0">vsearch</requirement>
         <requirement type="package" version="1.2.11">flash</requirement>
         <requirement type="package" version="2.10">cutadapt</requirement>
-    </expand> -->
+    </expand> 
     <command detect_errors="exit_code">
         preprocess.py '$sequencer_type.sequencer_selected'
         --output-dereplicated '$dereplicated_file' --output-count '$count_file' --summary '$summary_file'
@@ -25,8 +25,8 @@
             #if $sequencer_type.primer_already_removed.primer_choice
                 --without-primers
             #else
-                --five-prim-primer '$sequencer_type.sequencing_protocol.five_prim_primer'
-                --three-prim-primer '$sequencer_type.sequencing_protocol.three_prim_primer'
+                --five-prim-primer '$sequencer_type.primer_already_removed.five_prim_primer'
+                --three-prim-primer '$sequencer_type.primer_already_removed.three_prim_primer'
             #end if
         #else
             --five-prim-primer '$sequencer_type.five_prim_primer'
@@ -51,16 +51,15 @@
             #end if
         #else
             #set $sep = ' '
-            --samples-names
-            #for $current in $sequencer_type.input_type.files_by_samples_type.samples
-                $sep'${current.name.strip()}'
-            #end for
-            --input-R1
-            #for $current in $sequencer_type.input_type.files_by_samples_type.samples
-                $sep'${current.R1_file}'
-            #end for
-
             #if $sequencer_type.sequencer_selected == "illumina"
+                --samples-names
+                #for $current in $sequencer_type.input_type.files_by_samples_type.samples
+                    $sep'${current.name.strip()}'
+                #end for
+                --input-R1
+                #for $current in $sequencer_type.input_type.files_by_samples_type.samples
+                    $sep'${current.R1_file}'
+                #end for
                 #if $sequencer_type.input_type.files_by_samples_type.files_by_samples_type_selected == "already_merged"
                     --already-contiged
                 #else
@@ -79,6 +78,15 @@
                         --keep-unmerged
                     #end if
                 #end if
+            #else
+                --samples-names
+                #for $current in $sequencer_type.input_type.samples
+                    $sep'${current.name.strip()}'
+                #end for            
+                --input-R1
+                #for $current in $sequencer_type.input_type.samples
+                    $sep'${current.R1_file}'
+                #end for
             #end if
         #end if
     </command>
