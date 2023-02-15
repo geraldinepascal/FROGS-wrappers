@@ -1,13 +1,13 @@
 <tool id="FROGS_preprocess" name="FROGS Pre-process" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
     <description>merging, denoising and dereplication</description>
-    <macros>
+<!--     <macros>
         <import>macros.xml</import>
     </macros>
     <expand macro="requirements">
         <requirement type="package" version="2.17.0">vsearch</requirement>
         <requirement type="package" version="1.2.11">flash</requirement>
         <requirement type="package" version="2.10">cutadapt</requirement>
-    </expand>
+    </expand> -->
     <command detect_errors="exit_code">
         preprocess.py '$sequencer_type.sequencer_selected'
         --output-dereplicated '$dereplicated_file' --output-count '$count_file' --summary '$summary_file'
@@ -20,6 +20,13 @@
                 --three-prim-primer '$sequencer_type.sequencing_protocol.three_prim_primer'
             #else
                 --without-primers
+            #end if
+        #elif $sequencer_type.sequencer_selected == "longreads"
+            #if $sequencer_type.primer_already_removed.primer_choice
+                --without-primers
+            #else
+                --five-prim-primer '$sequencer_type.sequencing_protocol.five_prim_primer'
+                --three-prim-primer '$sequencer_type.sequencing_protocol.three_prim_primer'
             #end if
         #else
             --five-prim-primer '$sequencer_type.five_prim_primer'
@@ -37,22 +44,23 @@
                 --merge-software $sequencer_type.input_type.archive_type.merge_software_type.merge_software
                 #if $sequencer_type.input_type.archive_type.merge_software_type.merge_software == "flash"
                     --expected-amplicon-size $sequencer_type.input_type.archive_type.merge_software_type.expected_amplicon_size
-            #end if
+                #end if
                 #if $sequencer_type.input_type.archive_type.keep_unmerged
                     --keep-unmerged
                 #end if
             #end if
         #else
             #set $sep = ' '
+            --samples-names
+            #for $current in $sequencer_type.input_type.files_by_samples_type.samples
+                $sep'${current.name.strip()}'
+            #end for
+            --input-R1
+            #for $current in $sequencer_type.input_type.files_by_samples_type.samples
+                $sep'${current.R1_file}'
+            #end for
+
             #if $sequencer_type.sequencer_selected == "illumina"
-                --samples-names
-                #for $current in $sequencer_type.input_type.files_by_samples_type.samples
-                    $sep'${current.name.strip()}'
-                #end for
-                --input-R1
-                #for $current in $sequencer_type.input_type.files_by_samples_type.samples
-                    $sep'${current.R1_file}'
-                #end for
                 #if $sequencer_type.input_type.files_by_samples_type.files_by_samples_type_selected == "already_merged"
                     --already-contiged
                 #else
@@ -71,15 +79,6 @@
                         --keep-unmerged
                     #end if
                 #end if
-            #else
-                --input-R1
-                #for $current in $sequencer_type.input_type.samples
-                    $sep'${current.R1_file}'
-                #end for
-                --samples-names
-                #for $current in $sequencer_type.input_type.samples
-                    $sep'${current.name.strip()}'
-                #end for
             #end if
         #end if
     </command>
@@ -87,6 +86,7 @@
         <conditional name="sequencer_type">
             <param name="sequencer_selected" type="select" label="Sequencer" help="Select the sequencing technology used to produce the sequences.">
                 <option value="illumina" selected="true">Illumina</option>
+                <option value="longreads">longreads</option>
                 <option value="454">454</option>
             </param>
             <when value="illumina">
@@ -190,6 +190,51 @@
                         </param>
                     </when>
                     <when value="without_primers"></when>
+                </conditional>
+            </when>
+
+            <when value="longreads">
+                <!-- Samples -->
+                <conditional name="input_type">
+                    <param name="input_type_selected" type="select" label="Input type" help="Samples files can be provided in single archive or with one file by sample.">
+                        <option value="files_by_samples">One file by sample</option>
+                        <option value="archive" selected="true">TAR Archive</option>
+                    </param>
+                    <when value="archive">
+                        <param name="archive_file" type="data" format="tar,tgz" label="TAR archive file" help="The TAR file containing the sequences file for each sample." />
+                    </when>
+                    <when value="files_by_samples">
+                        <repeat name="samples" title="Samples" min="1">
+                            <param name="name" type="text" label="Name" help="The sample name.">
+                                <expand macro="sanitizer_validator"/>
+                            </param>
+                            <param format="fastq" name="R1_file" type="data" label="Sequence file" help="FASTQ file of sample." />
+                        </repeat>
+                    </when>
+                </conditional>
+
+                <!-- Amplicons -->
+                <param argument="--min-amplicon-size" type="integer" value="" label="Minimum amplicon size" help="The minimum size for the amplicons (with primers)"/>
+                <param argument="--max_amplicon-size" type="integer" value="" label="Maximum amplicon size" help="The maximum size for the amplicons (with primers)"/>
+                
+                <!-- Primers -->
+                <conditional name="primer_already_removed">
+                    <param name="primer_choice" type="boolean" label="Are primers already removed from sequences?" help=""/>
+                    <when value="false">
+                        <param argument="--five-prim-primer" type="text"  label="5' primer" help="The 5' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters' help section">
+                            <sanitizer invalid_char="">
+                                <valid initial="string.letters"/>
+                            </sanitizer>
+                            <validator type="regex">[A-Za-z]+</validator>
+                        </param>
+                        <param argument="--three-prim-primer" type="text"  label="3' primer" help="The 3' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters' help section">
+                            <sanitizer invalid_char="">
+                                <valid initial="string.letters"/>
+                            </sanitizer>
+                            <validator type="regex">[A-Za-z]+</validator>
+                        </param>
+                    </when>
+                    <when value="true"></when>
                 </conditional>
             </when>
 

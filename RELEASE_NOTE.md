@@ -1,3 +1,10 @@
+# v4.1.0+galaxy1 [DEV]
+This version refers to FROGS_4.1.0 suit.
+
+### Function added:
+
+* Preprocess : can deal with longreads sequencing
+
 # v4.0.1+galaxy1 [2022-06]
 
 ### Bug corrected:
