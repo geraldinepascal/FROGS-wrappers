@@ -14,19 +14,12 @@
         @CPUS@
         --min-amplicon-size $sequencer_type.min_amplicon_size
         --max-amplicon-size $sequencer_type.max_amplicon_size
-        #if $sequencer_type.sequencer_selected == "illumina"
-            #if $sequencer_type.sequencing_protocol.sequencing_protocol_selected == "standard"
-                --five-prim-primer '$sequencer_type.sequencing_protocol.five_prim_primer'
-                --three-prim-primer '$sequencer_type.sequencing_protocol.three_prim_primer'
+        #if $sequencer_type.sequencer_selected in ('illumina', 'longreads')
+            #if $sequencer_type.is_primer_in_seq.primer_choice
+                --five-prim-primer '$sequencer_type.is_primer_in_seq.five_prim_primer'
+                --three-prim-primer '$sequencer_type.is_primer_in_seq.three_prim_primer'
             #else
                 --without-primers
-            #end if
-        #elif $sequencer_type.sequencer_selected == "longreads"
-            #if $sequencer_type.primer_already_removed.primer_choice
-                --without-primers
-            #else
-                --five-prim-primer '$sequencer_type.primer_already_removed.five_prim_primer'
-                --three-prim-primer '$sequencer_type.primer_already_removed.three_prim_primer'
             #end if
         #else
             --five-prim-primer '$sequencer_type.five_prim_primer'
@@ -94,7 +87,7 @@
         <conditional name="sequencer_type">
             <param name="sequencer_selected" type="select" label="Sequencer" help="Select the sequencing technology used to produce the sequences.">
                 <option value="illumina" selected="true">Illumina</option>
-                <option value="longreads">longreads</option>
+                <option value="longreads">Longreads (PACBIO, ONT)</option>
                 <option value="454">454</option>
             </param>
             <when value="illumina">
@@ -107,16 +100,15 @@
                     <when value="archive">
                         <param name="archive_file" type="data" format="tar,tgz" label="TAR archive file" help="The TAR file containing the sequences file(s) for each sample." />
                         <conditional name="archive_type">
-                            <param name="archive_type_selected" type="select" label="Are reads already merged ?" help="The archive contains 1 file by sample : R1 and R2 pair are already merged in one sequence.">
+                            <param name="archive_type_selected" type="select" label="Are reads already merged ?" help="Yes = The archive contains 1 file by sample : R1 and R2 pairs are already merged in one sequence.">
                                 <option value="paired" selected="true">No</option>
                                 <option value="already_merged">Yes</option>
                             </param>
-                            <!-- $sequencer_type.input_type.archive_type.archive_type_selected == "already_merged"  -->
                             <when value="paired">
                                 <!-- Reads size -->
                                 <param name="R1_size" type="integer" label="Reads 1 size" help="The maximum read1 size." value="" />
                                 <param name="R2_size" type="integer" label="Reads 2 size" help="The maximum read2 size." value="" />
-                                <param argument="--mismatch-rate" type="float" label="Mismatch rate" help="The maximum rate of mismatch in the overlap region" value="0.1" />
+                                <param argument="--mismatch-rate" type="float" label="Mismatch rate" help="The maximum rate of mismatches in the overlap region" value="0.1" />
                                 <conditional name="merge_software_type">
                                     <param argument="--merge-software" type="select" label="Merge software" help="Select the software to merge paired-end reads">
                                         <option value="vsearch" selected="true">Vsearch</option>
@@ -127,14 +119,14 @@
                                     </when>
                                     <when value="vsearch"></when>
                                 </conditional>
-                                <param argument="--keep-unmerged" type="boolean" label="Would you like to keep unmerged reads?" help="No : Unmerged reads will be excluded; Yes : unmerged reads will be artificially combined with 100 N. (default No)" />
+                                <param argument="--keep-unmerged" type="boolean" label="Would you like to keep unmerged reads?" help="No = Unmerged reads will be excluded; Yes = unmerged reads will be artificially combined with 100 N. (default No)" />
                             </when>
                             <when value="already_merged"></when>
                         </conditional>
                     </when>
                     <when value="files_by_samples">
                         <conditional name="files_by_samples_type">
-                            <param name="files_by_samples_type_selected" type="select" label="Are reads already merged ?" help="The inputs contain 1 file by sample : R1 and R2 pair are already merged in one sequence.">
+                            <param name="files_by_samples_type_selected" type="select" label="Are reads already merged ?" help="Yes = The inputs contain 1 file by sample : R1 and R2 pairq are already merged in one sequence.">
                                 <option value="paired" selected="true">No</option>
                                 <option value="already_merged">Yes</option>
                             </param>
@@ -161,7 +153,7 @@
                                     </when>
                                     <when value="vsearch"></when>
                                 </conditional>
-                                <param argument="--keep-unmerged" type="boolean" label="Would you like to keep unmerged reads?" help="No : Unmerged reads will be excluded; Yes : unmerged reads will be artificially combined with 100 N. (default No)" />
+                                <param argument="--keep-unmerged" type="boolean" label="Would you like to keep unmerged reads?" help="No = Unmerged reads will be excluded; Yes = unmerged reads will be artificially combined with 100 N. (default No)" />
                             </when>
                             <when value="already_merged">
                                 <repeat name="samples" title="Samples" min="1">
@@ -175,29 +167,26 @@
                     </when>
                 </conditional>
                 <!-- Amplicons -->
-                <param argument="--min-amplicon-size" type="integer" value="" label="Minimum amplicon size" help="The minimum size for the amplicons (with primers)"/>
-                <param argument="--max-amplicon-size" type="integer" value="" label="Maximum amplicon size" help="The maximum size for the amplicons (with primers)"/>
+                <param argument="--min-amplicon-size" type="integer" value="" label="Minimum amplicon size" help="The minimum size of the amplicons (with primers)"/>
+                <param argument="--max-amplicon-size" type="integer" value="" label="Maximum amplicon size" help="The maximum size of the amplicons (with primers)"/>
                 <!-- Primers -->
-                <conditional name="sequencing_protocol">
-                    <param name="sequencing_protocol_selected" type="select" label="Sequencing protocol" help="The protocol used for sequencing step: standard or custom with PCR primers as sequencing primers.">
-                        <option value="standard" selected="true">Illumina standard</option>
-                        <option value="without_primers">Custom protocol (Kozich et al. 2013)</option>
-                    </param>
-                    <when value="standard">
-                        <param argument="--five-prim-primer" type="text" label="5' primer" help="The 5' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters' help section">
+                <conditional name="is_primer_in_seq">
+                    <param name="primer_choice" type="boolean" checked="true" label="Do the sequences have PCR primers?" help=""/>
+                    <when value="true">
+                        <param argument="--five-prim-primer" type="text"  label="5' primer" help="The 5' primer sequence (wildcards are accepted). This primer must be written in 5' to 3' orientation (see details in 'Primers parameters' help section)">
                             <sanitizer invalid_char="">
                                 <valid initial="string.letters"/>
                             </sanitizer>
                             <validator type="regex">[A-Za-z]+</validator>
                         </param>
-                        <param argument="--three-prim-primer" type="text" label="3' primer" help="The 3' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters' help section">
+                        <param argument="--three-prim-primer" type="text"  label="3' primer" help="The 3' primer sequence (wildcards are accepted). This primer must be written in 5' to 3' orientation (see details in 'Primers parameters' help section)">
                             <sanitizer invalid_char="">
                                 <valid initial="string.letters"/>
                             </sanitizer>
                             <validator type="regex">[A-Za-z]+</validator>
                         </param>
                     </when>
-                    <when value="without_primers"></when>
+                    <when value="false"></when>
                 </conditional>
             </when>
 
@@ -226,23 +215,23 @@
                 <param argument="--max_amplicon-size" type="integer" value="" label="Maximum amplicon size" help="The maximum size for the amplicons (with primers)"/>
                 
                 <!-- Primers -->
-                <conditional name="primer_already_removed">
-                    <param name="primer_choice" type="boolean" label="Are primers already removed from sequences?" help=""/>
-                    <when value="false">
-                        <param argument="--five-prim-primer" type="text"  label="5' primer" help="The 5' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters' help section">
+                <conditional name="is_primer_in_seq">
+                    <param name="primer_choice" type="boolean" checked="true" label="Do the sequences have PCR primers?" help=""/>
+                    <when value="true">
+                        <param argument="--five-prim-primer" type="text"  label="5' primer" help="The 5' primer sequence (wildcards are accepted). This primer must be written in 5' to 3' orientation (see details in 'Primers parameters' help section)">
                             <sanitizer invalid_char="">
                                 <valid initial="string.letters"/>
                             </sanitizer>
                             <validator type="regex">[A-Za-z]+</validator>
                         </param>
-                        <param argument="--three-prim-primer" type="text"  label="3' primer" help="The 3' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters' help section">
+                        <param argument="--three-prim-primer" type="text"  label="3' primer" help="The 3' primer sequence (wildcards are accepted). This primer must be written in 5' to 3' orientation (see details in 'Primers parameters' help section)">
                             <sanitizer invalid_char="">
                                 <valid initial="string.letters"/>
                             </sanitizer>
                             <validator type="regex">[A-Za-z]+</validator>
                         </param>
                     </when>
-                    <when value="true"></when>
+                    <when value="false"></when>
                 </conditional>
             </when>
 
@@ -269,13 +258,13 @@
                 <param argument="--min-amplicon-size" type="integer" value="" label="Minimum amplicon size" help="The minimum size for the amplicons (with primers)"/>
                 <param argument="--max_amplicon-size" type="integer" value="" label="Maximum amplicon size" help="The maximum size for the amplicons (with primers)"/>
                 <!-- Primers -->
-                <param argument="--five-prim-primer" type="text"  label="5' primer" help="The 5' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters' help section">
+                <param argument="--five-prim-primer" type="text"  label="5' primer" help="The 5' primer sequence (wildcards are accepted). This primer must be written in 5' to 3' orientation (see details in 'Primers parameters' help section)">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters"/>
                     </sanitizer>
                     <validator type="regex">[A-Za-z]+</validator>
                 </param>
-                <param argument="--three-prim-primer" type="text"  label="3' primer" help="The 3' primer sequence (wildcards are accepted). The orientation is detailed below in 'Primers parameters' help section">
+                <param argument="--three-prim-primer" type="text"  label="3' primer" help="The 3' primer sequence (wildcards are accepted). This primer must be written in 5' to 3' orientation (see details in 'Primers parameters' help section)">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters"/>
                     </sanitizer>
@@ -354,62 +343,67 @@
 
 @HELP_LOGO@
 
-.. class:: infomark page-header h2
+.. class:: h2
 
 What it does
 
 FROGS Pre-process filters and dereplicates amplicons for use in diversity analysis.
 
-.. class:: infomark page-header h2
-
-Inputs/Outputs
-
-.. class:: h3
+.. class:: h2
 
 Inputs
 
-Sample files added one after another or provide in an archive file (tar or tar.gz).
+Sequencer (methods used to sequence data):
+	- short reads : Illumnia Miseq , Hiseq (paired-ends or single-ends)
+	- long reads : PACBIO or Oxford Nanopore Technology (single-ends)
+	- short reads : 454 (single-ends)
 
-.. container:: row
+Input file to submit and *"Are reads already merged ?"* parameter: 
+    - a .tar archive (option Archive TAR) containing one file *_R1* and one file *_R2* per sample if the sequences are paired and not merged. ex: samplesA-B-C-D.tar(.gz)
+    - or a .tar archive (option Archive TAR) containing one file per sample (i) if the sequences are paired-end and already merged or (ii) if the sequences are single-end. ex: samplesA-B.tar(.gz) in this case reply *Yes* at *"Are reads already merged ?"*.
+    - or one file by sample (option One file by sample). ex: sampleA_R1.fastq(.gz) + sampleA_R2.fastq(.gz) + sampleB_R1.fastq(.gz) + sampleB_R2.fastq(.gz) if you have 2 samples A and B and sequences are paired and not merged
+    - or one file by sample (option One file by sample). ex: sampleA.fastq(.gz) + sampleB.fastq(.gz) if sequences are paired-end and already merged. Iin this case reply *Yes* at *"Are reads already merged ?"*.
+    
+Remark:
+	- The sample name must be of R1 and R2 files must be end with *_R1* and *_R2*. The upstream part from this tag (_R1 and _R2) will be consider as sample name. ex: sampleA_R1.fastq + sampleA_R2.fastq, the kept name will be sampleA
+	- sample files (alone or inside an archive) must be in `FASTQ &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_ format or fastq.gz.
 
- .. container:: col-md-6
 
-  **Illumina inputs**
+.. class:: h4
 
-   :Usage: For samples sequenced in paired-end. In case of overlapping pair, the maximum amplicon length (including primers) must be inferior or equal to the length of the R1 plus R2 length minus 10. R1 and R2 are merged by the common region with a minimum length of 10.
-   :Files: One R1 and R2 by sample (format `FASTQ &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_)
-   :Example: splA_R1.fastq.gz,  splA_R2.fastq.gz,  splB_R1.fastq.gz,  splB_R2.fastq.gz
+For paired-end reads:
 
-  OR
+**read size:** The maximum size of read R1 and of read R2. It is common to find read sizes of 150, 250 or 300 for Illumina sequencers.
 
-   :Usage: For samples sequenced in single-ends or when R1 and R2 reads are already merged.
-   :Files: One sequence file by sample (format `FASTQ &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
-   :Example: splA.fastq.gz,  splB.fastq.gz
+**Mismatch rate:** The allowed maximum rate of mismatches during the merging between overlap sections of R1 and R2 reads. By default, the mismatch rate is 10%.
 
- .. container:: col-md-6
+**Merge software:** For read merging it is possible to choose between 2 software `VSEARCH &lt;https://github.com/torognes/vsearch/&gt;`_ (by default) or `FLASH &lt;http://ccb.jhu.edu/software/FLASH/&gt;`_. 
 
-  **454 inputs**
+**Would you like to keep unmerged reads?:** In some cases, it is necessary to keep unmergeable reads (ITS, non-mergeable reads *i.e.* V1V4 of 16S rRNA). *No* (by default) = Unmerged reads will be excluded; *Yes* = unmerged reads will be artificially combined and kept for following process.
 
-   :Files: One sequence file by sample (format `FASTQ &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_)
-   :Example: splA.fastq.gz,  splB.fastq.gz
 
-Remark: In an archive, if you use R1 and R2 files, their names must end with *_R1* and *_R2*. The upstream part from this tag (_R1 and _R2) will be consider as sample name.
+.. class:: h4
 
-.. class:: h3
+For paired-end and single-ends reads:
+
+**Minimum amplicon length:** The minimum size of the amplicons after read (R1, R2) pair merging.
+
+**Maximum amplicon length:** The maximum size of the amplicons after read (R1, R2) pair merging. In case of overlapping pairs, the maximum amplicon length (including primers) must be inferior or equal to the length of the R1 plus R2 length minus 10. R1 and R2 are merged by the common region with a minimum length of 10.
+
+Do the sequences have PCR primers?:
+	- Yes (By default), after processing, the sequences will be returned without the PCR primers.
+	- No, the sequences do not contain PCR primer (`Kozich et al. 2013 &lt;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3753973/&gt;`_)
+
+
+.. class:: h2
 
 Outputs
 
-**Sequence file** (dereplicated.fasta):
+**Sequence file** (dereplicated.fasta): Only one file with all samples sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_). These sequences are dereplicated: strictly identical sequences are represented only once, the initial count by sample is kept in count file (see bellow) and the total count is added in the sequence header. A "FROGS_combined" suffix will be added to unmerged paired sequences if you want to keep them.
 
- Only one file with all samples sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_). These sequences are dereplicated: strictly identical sequences are represented only once, the initial count by sample is kept in count file (see bellow) and the total count is added in the sequence header. A "FROGS_combined" suffix will be added to un-merged pair sequences if you want to keep them.
+**Count file** (count.tsv): This file contains the count of all unique sequences in each sample (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
 
-**Count file** (count.tsv):
-
- This file contains the count of all unique sequences in each sample (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
-
-**Report file** (report.html):
-
- This file reports the number of remaining sequences after each filter (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_). Depending of the tool configuration there will be more or less filtering steps so more or less bars in the barplot.
+**Report file** (report.html): This file reports the number of remaining sequences after each filter (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_). Depending of the tool configuration there will be more or less filtering steps so more or less bars in the barplot.
 
  .. image:: FROGS_preprocess_summary_v3.png
      :height: 850
@@ -421,44 +415,64 @@ Outputs
      :height: 379
      :width: 364
 
-.. class:: infomark page-header h2
+
+.. class:: h2
 
 How it works ?
 
 .. csv-table::
-   :header: "Steps", "Illumina", "454"
-   :widths: 5, 150, 150
-   :class: table table-striped
+   :header: "Steps", "Illumina"
+   :widths: 10, 150
+   :class: table table-hover
 
-   "1", "For un-merged data: Merges R1 and R2 with a maximum of M% mismatch in the overlaped region(`VSEARCH &lt;https://github.com/torognes/vsearch/&gt;`_ or `FLASH &lt;http://ccb.jhu.edu/software/FLASH/&gt;`_ or optionnaly `PEAR &lt;https://sco.h-its.org/exelixis/web/software/pear/&gt;`_) with a minimum of 10 bp in the overlap region. Resulting un-merged reads may optionnaly be artificially combined by adding 100 N between the reads", "/"
-   "2", "If sequencing protocol is the illumina standard protocol: Removes sequences where the two primers are not present and removes primers in the remaining sequence (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_). The primer search accepts 10% of differences", "Removes sequences where the two primers are not present, removes primers sequence from amplicon sequence and reverse complement the sequences on strand -  (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_). The primer search accepts 10% of differences"
-   "3", "Filters sequences with ambiguous nucleotides and for merged sequences filters on their length which must be range between 'Minimum amplicon size - primer length' and 'Maximum amplicon size - primer length'", "Removes sequences with at least one homopolymer with more than seven nucleotides and with a distance of less than or equal to 10 nucleotides between two poor quality positions, i.e. with a Phred quality score lesser than 10"
-   "4", "Dereplicates sequences", "Dereplicates sequences"
+   "1", "For unmerged data: Merges R1 and R2 with a maximum of M% mismatch in the overlaped region(`VSEARCH &lt;https://github.com/torognes/vsearch/&gt;`_ or `FLASH &lt;http://ccb.jhu.edu/software/FLASH/&gt;`_ or optionnaly `PEAR &lt;https://sco.h-its.org/exelixis/web/software/pear/&gt;`_) with a minimum of 10 bp in the overlap region. Resulting unmerged reads may optionnaly be artificially combined by adding 100 N between the reads"
+   "2", "If reads contains after sequencing the PCR primers: process removes sequences where the two primers are not present and removes primers in the kept sequences (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_). The primer search accepts 10% of differences."
+   "3", "Process filters sequences with ambiguous nucleotides and for *merged* sequences filters on their length that must be ranged between 'Minimum amplicon size minus primer length' and 'Maximum amplicon size minus primer length'"
+   "4", "Dereplicates sequences"
 
+.. csv-table::
+   :header: "Steps", "Longreads"
+   :widths: 10, 150
+   :class: table table-hover
 
-.. class:: infomark page-header h2
+   "1", "Non merging process, longreads from PACBIO or ONT are single-end reads"
+   "2", "If reads contains after sequencing the PCR primers: process searches 5' primer on reads, then for all reads without 5' primer found the process (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_) reverse-transcripts reads and searches again 5' primer (in dereplicates.fasta output, sequences have *rc* tag in the header when they have been reverse-complemented by cutadapt). Remark, after this step all reads are in same sens (5' -> 3'). Last step consists to search 3' primer on all theses reads. Process removes reads if 5' primer or 3' primer are not find at the end of process. When primers are found, reads are trimmed. The primer search accepts 10% of differences"
+   "3", "Process filters sequences with ambiguous nucleotides and on their length that must be range between 'Minimum amplicon size minus primer length' and 'Maximum amplicon size minus primer length'"
+   "4", "Dereplicates sequences"
+
+.. csv-table::
+   :header: "Steps", "454"
+   :widths: 10, 150
+   :class: table table-hover
+
+   "1", "Non merging process, 454 reads are single-end reads"
+   "2", "Removes sequences where the two primers are not present, removes primers sequence from amplicon sequence and reverse complement the sequences on strand -  (`cutadapt &lt;http://cutadapt.readthedocs.org/en/latest/guide.html&gt;`_). The primer search accepts 10% of differences"
+   "3", "Removes sequences with at least one homopolymer with more than seven nucleotides and with a distance of less than or equal to 10 nucleotides between two poor quality positions, *i.e.* with a Phred quality score lesser than 10"
+   "4", "Dereplicates sequences"
+
+.. class:: h2
 
 Advices/details on parameters
 
-.. class:: h3
+.. class:: h4
 
-Keeping or not un-merged paired reads
+Keeping or not unmerged paired-end reads
 
 .. class:: warningmark
 
 This option is usefull when and only when, **targeted amplicon is longer than the sequencing technology** can provide (ITS amplicons, V1-V4 region of 16S for example). In other case, carefully, you will only keep noise in your analysis.
 
-.. class:: h3
+.. class:: h4
 
 What is the difference between overlapped sequences and combined sequences?
 
-- **Case of a sequencing of overlapping sequences: case of 16S V3-V4 amplicon MiSeq sequencing**
+**Case of a sequencing of overlapping sequences: case of 16S V3-V4 amplicon MiSeq sequencing**
 
 .. image:: FROGS_preprocess_overlapped_sequence.png
      :height: 261
      :width: 531
 
-- **Case of a sequencing of non-overlapping sequences: case of ITS1 amplicon MiSeq sequencing**
+**Case of a sequencing of non-overlapping sequences: case of ITS1 amplicon MiSeq sequencing**
 
 .. image:: FROGS_preprocess_combined_sequence1.png
      :height: 279
@@ -480,13 +494,13 @@ Imagine a MiSeq sequencing of 2x250pb with sequences that cannot overlap, the re
      :height: 357
      :width: 798
 
-.. class:: h3
+.. class:: h4
 
 Primers parameters
 
-The (`Kozich et al. 2013 &lt;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3753973/&gt;`_ ) protocol uses custom sequencing primers that are also the PCR primers. In this case, the reads do not contain the PCR primers.
+The `Kozich et al. 2013 &lt;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC3753973/&gt;`_ protocol uses custom sequencing primers that are also the PCR primers. In this case, the reads do not contain the PCR primers.
 
-In case of Illumina standard protocol, the primers must be provided in 5' to 3' orientation.
+In case of standard protocol, the primers must be provided in 5' to 3' orientation.
 
 .. role:: alert-info
 
@@ -498,15 +512,21 @@ Example:
 
  Value for parameter 3' primer: ATTTCAG
 
-.. class:: h3
+
+.. class:: h4
+
+What happens if the 'merged' filter drasticaly reduces the number of sequences ?:
+
+After merging step with VSEARCH, PEAR or FLASH, if you observe a loss of more than 20% in all samples, this can highlight a quality problem (see `FastQC &lt;http://www.bioinformatics.babraham.ac.uk/projects/fastqc/&gt;`_).
+
+If the overlap between R1 and R2 is superior to 50 nucleotides and the quality of the end of the sequences is poor (see `FastQC &lt;http://www.bioinformatics.babraham.ac.uk/projects/fastqc/&gt;`_) you can try to cut the end of your sequences and relaunch the preprocess tool. You can either raise the mismatch percent in the overlapped region, but not too much!
+
+
+.. class:: h4
 
 FLASH : Amplicon size parameters
 
- .. class:: infomark
-
- We now recommend to use PEAR if availbale (only for accademic user) or Vsearch. PEAR is available only in command line.
-
- The two following images show two examples of perfect values for sizes parameters.
+The two following images show two examples of perfect values for sizes parameters.
 
  .. image:: FROGS_preprocess_ampliconSize_unimodal_v3.png
     :height: 415
@@ -516,15 +536,10 @@ FLASH : Amplicon size parameters
     :height: 415
     :width: 676
 
- Don't worry the "Expected amplicon size" does not need to be very accurate, and only necessary for sequences merging with FLASH.
+Don't worry, the "Expected amplicon size" does not need to be very accurate, and only necessary for sequences merging with FLASH.
 
-.. class:: h3
+**Remark :** We recommend to use PEAR if availbale (only for `academic user &lt;https://www.h-its.org/software/pear-paired-end-read-merger/&gt;`_) or Vsearch (by default on Galaxy interface). PEAR is available only in command line.
 
-If the filter 'merged' reduce drasticaly the number of sequences:
-
- In un-merged Illumina data, and targeted amplicon size in the range of R1+R2-10, the reduction of dataset by the merged filter is classicaly inferior than 20%. A loss of more than 20% in all samples can highlight a quality problem.
-
- If the overlap between R1 and R2 is superior to 50 nucleotides and the quality of the end of the sequences is poor (see `FastQC &lt;http://www.bioinformatics.babraham.ac.uk/projects/fastqc/&gt;`_) you can try to cut the end of your sequences and relaunch the preprocess tool. You can either raise the mismatch percent in the overlapped region, but not too much!
 
 
 @HELP_CONTACT@
