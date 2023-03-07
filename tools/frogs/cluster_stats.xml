@@ -1,11 +1,11 @@
-<tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGS_cluster_stats" name="FROGS Cluster stats" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
 	<description>Process some metrics on clusters</description>
     <macros>
         <import>macros.xml</import>
     </macros>
     <expand macro="requirements"/>
     <command detect_errors="exit_code">
-	clusters_stat.py
+	cluster_stats.py
 		--input-biom '$biom'
 		--output-file '$summary_file'
 	</command>
