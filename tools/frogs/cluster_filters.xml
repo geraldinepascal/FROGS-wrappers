@@ -15,8 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGS_OTU_filters" name="FROGS OTU Filters" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-	<description>Filters OTUs on several criteria.</description>
+<tool id="FROGS_cluster_filters" name="FROGS Cluster filters" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+	<description>Filters clusters on several criteria.</description>
 
     <macros>
         <import>macros.xml</import>
@@ -33,7 +33,7 @@
 
 	<command>
 
-			otu_filters.py
+			cluster_filters.py
 			--nb-cpus \${GALAXY_SLOTS:-1}
 			--input-biom '$input_biom'
 			--input-fasta '$input_fasta'
@@ -65,8 +65,8 @@
 				#end if
 			#end if
 
-			#if $nb_biggest_otu
-				--nb-biggest-otu $nb_biggest_otu
+			#if $nb_biggest_clusters
+				--nb-biggest-clusters $nb_biggest_otu
 			#end if
 
 
@@ -90,38 +90,38 @@
 				<option value="replicate"> replicate identification </option>
 			</param>
 			<when value="all">
-				<param name="min_sample_presence" type="integer" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep OTU if it is present in at least this number of samples.">
+				<param name="min_sample_presence" type="integer" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep cluster if it is present in at least this number of samples.">
 					<validator type="in_range" min="2" message="To be effective this threshold need to be higher than 1" />
 				</param>
 			</when>
 			<when value="replicate">
 				<param name="replicate_file" type="data" format="tsv" optional="True" label="File of replicated sample names" help="Replicate file to link each sample to its group (cf. Help section)." />
-				<param name="min_replicate_presence" type="float" min="0" max="1" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep OTU present in at least this proportion of replicates in at least one group (must be a proportion between 0 and 1).">
+				<param name="min_replicate_presence" type="float" min="0" max="1" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep cluster present in at least this proportion of replicates in at least one group (must be a proportion between 0 and 1).">
 				</param>
 			</when>
 		</conditional>
 
 		<conditional name="choice_abundance_unit">
-			<param name="abundance_unit_type" type="select" label="Minimum OTU abundancy as proportion or count. We recommend to use a proportion of 0.00005.">
+			<param name="abundance_unit_type" type="select" label="Minimum cluster abundancy as proportion or count. We recommend to use a proportion of 0.00005.">
 				<option value="proportion">as proportion</option>
 				<option value="count">as count</option>
 			</param>
 			<when value="proportion">
-				<param name="min_abundance_proportion" argument="--min_abundance" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep OTU" help='Fill the field only if you want this treatment. Example: 0.00005, recommended by Bokulich et al 2013, to keep OTU with at least 0.005% of all sequences'>
+				<param name="min_abundance_proportion" argument="--min_abundance" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep cluster" help='Fill the field only if you want this treatment. Example: 0.00005, recommended by Bokulich et al 2013, to keep cluster with at least 0.005% of all sequences'>
 					<validator type="in_range" min="0" exclude_min="true" max="1" exclude_max="true" message="Abundance proportion threshold need to be strictly greater than 0 and less than 1, otherwise you will not remove anything or remove everything." />
 				</param>
 			</when>
 			<when value="count">
-				<param name="min_abundance_count" argument="--min_abundance" type="integer" optional="true" label="Minimum number of sequences to keep OTU" help='Fill the field only if you want this treatment. Ex: 2 to keep OTU with at least 2 sequences, so remove single singleton'>
-					<validator type="in_range" min="2" message='To be effective this threshold need to be higher than 1. 2 means that you will remove OTU with 1 and only 1 sequence over all samples'/>
+				<param name="min_abundance_count" argument="--min_abundance" type="integer" optional="true" label="Minimum number of sequences to keep cluster" help='Fill the field only if you want this treatment. Ex: 2 to keep cluster with at least 2 sequences, so remove single singleton'>
+					<validator type="in_range" min="2" message='To be effective this threshold need to be higher than 1. 2 means that you will remove cluster with 1 and only 1 sequence over all samples'/>
 				</param>
 			</when>
 		</conditional>
 
-		<param argument="--nb-biggest-otu" type="integer" optional="true" label="N biggest OTUs" help="Fill the fields only if you want this treatment. Keep the N biggest OTU" />
+		<param argument="--nb-biggest-clusters" type="integer" optional="true" label="N biggest clusters" help="Fill the fields only if you want this treatment. Keep the N biggest clusters" />
 
 		<conditional name="contaminantSource">
-			<param name="which_contaminantSource" argument="--contaminant" type="select" label="Search for contaminant OTU." help="Either you use your own contaminant fasta file or you select one among available ones.">
+			<param name="which_contaminantSource" argument="--contaminant" type="select" label="Search for contaminant clusters." help="Either you use your own contaminant fasta file or you select one among available ones.">
 				<option value="no">No contaminant filter</option>
 				<option value="server">Use contaminant FASTA file from the server</option>
 				<option value="history">Use contaminant FASTA file from the history</option>
@@ -139,8 +139,8 @@
 		</conditional>
 	</inputs>
 	<outputs>
-		<data format="biom1" name="output_biom" label="${tool.name}: otuFilter_abundance.biom" from_work_dir="otuFilter_abundance.biom" />
-		<data format="fasta" name="output_fasta" label="${tool.name}: otuFilter_sequences.fasta" from_work_dir="otuFilter_sequences.fasta" />
+		<data format="biom1" name="output_biom" label="${tool.name}: clusterFilters_abundance.biom" from_work_dir="clusterFilters_abundance.biom" />
+		<data format="fasta" name="output_fasta" label="${tool.name}: clusterFilters_sequences.fasta" from_work_dir="clusterFilters_sequences.fasta" />
 		<data format="tsv" name="output_excluded" label="${tool.name}: excluded.tsv" from_work_dir="excluded.tsv" />
 		<data format="html" name="output_summary" label="${tool.name}: report.html" from_work_dir="report.html" />
 	</outputs>
@@ -176,9 +176,9 @@
 
 What it does
 
-Filter the OTUs in an abundance table according to:
+Filter the clusters in an abundance table according to:
 
--The abundance and the occurence of OTUs: presence in samples, OTU size and maximum number of OTUs.
+-The abundance and the occurence of clusters: presence in samples, cluster size and maximum number of clusters.
 
 -Contamination: from the list of proposition (ex : phiX, a control added in Illumina sequencing technologies) or from your history (ex : a fasta file containing a list of contaminant of your choice).
 
