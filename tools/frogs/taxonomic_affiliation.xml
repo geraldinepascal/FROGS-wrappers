@@ -1,4 +1,4 @@
-<tool id="FROGS_taxonomic_affiliation" name="FROGS Taxonomic affiliation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGS_taxonomic_affiliation" name="FROGS_5 Taxonomic affiliation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
     <description>Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
     <macros>
         <import>macros.xml</import>
