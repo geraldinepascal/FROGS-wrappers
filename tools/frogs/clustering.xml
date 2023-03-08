@@ -1,4 +1,4 @@
-<tool id="FROGS_clustering" name="FROGS Clustering swarm" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGS_clustering" name="FROGS_2 Clustering swarm" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
     <description>Single-linkage clustering on sequences</description>
     <macros>
         <import>macros.xml</import>
