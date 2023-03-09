@@ -23,7 +23,7 @@
 
     <xml name="requirements_frogsfunc">
         <expand macro="requirements">
-            <requirement type="package" version="2.4.1">picrust2</requirement>
+            <requirement type="package" version="2.5.1">picrust2</requirement>
             <yield />
         </expand>
     </xml>
