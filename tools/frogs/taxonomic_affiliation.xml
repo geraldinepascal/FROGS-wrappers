@@ -1,4 +1,4 @@
-<tool id="FROGS_affiliation_OTU" name="FROGS Affiliation OTU" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGS_taxonomic_affiliation" name="FROGS_5 Taxonomic affiliation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
     <description>Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
     <macros>
         <import>macros.xml</import>
@@ -10,7 +10,7 @@
     <command detect_errors="exit_code"><![CDATA[
     #set $reference_filename = str( $ref_file.fields.path )
     export GALAXY_MEMORY_GB=\$((\${GALAXY_MEMORY_MB:-2048}/1024)) &&
-    affiliation_OTU.py
+    taxonomic_affiliation.py
         --reference '${reference_filename}'
         --taxonomy-ranks $taxonomic_ranks
         --input-biom '$biom_abundance'

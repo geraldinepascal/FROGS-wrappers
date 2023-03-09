@@ -1,11 +1,11 @@
-<tool id="FROGS_clusters_stat" name="FROGS Clusters stat" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGS_cluster_stats" name="FROGS Cluster stats" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
 	<description>Process some metrics on clusters</description>
     <macros>
         <import>macros.xml</import>
     </macros>
     <expand macro="requirements"/>
     <command detect_errors="exit_code">
-	clusters_stat.py
+	cluster_stats.py
 		--input-biom '$biom'
 		--output-file '$summary_file'
 	</command>
@@ -29,7 +29,7 @@
 
 What it does
 
-FROGS Clusters stat computes several metrics and generates a HTML file describing clusters based on abundances, samples, ...
+FROGS Cluster stats computes several metrics and generates a HTML file describing clusters based on abundances, samples, ...
 
 
 .. class:: infomark page-header h2
@@ -54,21 +54,21 @@ Output
 
  *Cluster distribution* : describes the sizes distribution of all clusters thanks to boxplots and tables
 
- .. image:: FROGS_cluster_stat_clusterDistrib1.png
+ .. image:: FROGS_cluster_stats_clusterDistrib1.png
     :height: 1180
     :width: 900
 
  *Sequence distribution* : describes the sequences distribution among clusters
 
- .. image:: FROGS_cluster_stat_seq_dist.png
+ .. image:: FROGS_cluster_stats_seq_dist.png
 
  *Sample distribution* : describes clusters distribution among samples and gives an `hierarchical clustering &lt;http://en.wikipedia.org/wiki/Hierarchical_clustering&gt;`_ on samples abundance profile (distance method = `braycurtis &lt;http://fr.wikipedia.org/wiki/Distance_de_Bray-Curtis&gt;`_, linkage method = average)
 
- .. image:: FROGS_cluster_stat_sample_dist1.png
+ .. image:: FROGS_cluster_stats_sample_dist1.png
     :height: 400
     :width: 700
 
- .. image:: FROGS_cluster_stat_sample_dist2.png
+ .. image:: FROGS_cluster_stats_sample_dist2.png
     :height: 350
     :width: 610
 

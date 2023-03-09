@@ -1,11 +1,11 @@
-<tool id="FROGS_affiliations_stat" name="FROGS Affiliations stat" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGS_affiliation_stats" name="FROGS Affiliation stats" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
 	<description>Process some metrics on taxonomies</description>
     <macros>
         <import>macros.xml</import>
     </macros>
     <expand macro="requirements"/>
     <command detect_errors="exit_code">
-		affiliations_stat.py
+		affiliation_stats.py
 		    --input-biom '$biom'
 		    --output-file '$summary_file'
 		    --taxonomic-ranks $taxonomic_ranks
@@ -94,7 +94,7 @@
 
 What it does
 
-FROGS Affiliations stat computes several metrics and generates a HTML file describing OTUs based on their taxonomies and eventually the quality of the affiliations.
+FROGS Affiliation stats computes several metrics and generates a HTML file describing OTUs based on their taxonomies and eventually the quality of the affiliations.
 
 
 .. class:: infomark page-header h2
@@ -121,27 +121,27 @@ Output
 
   *-Taxonomy distribution*: displays the distribution of each taxon and the rarefaction for each taxonomic rank and for each sample
 
-  .. image:: FROGS_affiliation_stat_taxonomies.png
+  .. image:: FROGS_affiliation_stats_taxonomies.png
     :height: 380
     :width: 891
 
-  .. image:: FROGS_affiliation_stat_rarefaction.png
+  .. image:: FROGS_affiliation_stats_rarefaction.png
     :height: 380
     :width: 794
 
-  .. image:: FROGS_affiliation_stat_sunburst.png
+  .. image:: FROGS_affiliation_stats_sunburst.png
     :height: 380
     :width: 440
 
   -Bootstrap distribution: displays for affiliation methods with bootstrap the bootstrap on each taxonomic rank
 
-  .. image:: FROGS_affiliation_stat_bootstrap.png
+  .. image:: FROGS_affiliation_stats_bootstrap.png
     :height: 380
     :width: 867
 
   -Alignment distribution: displays for affiliation methods with alignment the distribution of identity/coverage
 
-  .. image:: FROGS_affiliation_stat_alignment.png
+  .. image:: FROGS_affiliation_stats_alignment.png
     :height: 380
     :width: 859
 
