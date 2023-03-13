@@ -222,7 +222,7 @@ The graph shows the number of kept clusters and sequences according to the NSTI 
     :height: 350
     :width: 1359
 
-The graph depicts the blast pourcentages of identity and coverage against the closest PICRUSt2 sequence (ordinate), against the NCTI score (abcsissa). Thus, the cluters with the best predictions will be located at the top left of the graph.
+The graph depicts the blast pourcentages of identity and coverage against the closest PICRUSt2 sequence (ordinate), against the NCTI score (abcsissa). Thus, the clusters with the best predictions will be located at the top left of the graph.
 
 @HELP_CONTACT@
 
