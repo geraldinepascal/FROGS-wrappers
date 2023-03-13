@@ -43,9 +43,11 @@
 	   		--closests-ref $closests_ref
 			--output-marker $output_marker
 	   		--summary $summary_file
+			--debug
 
 	   		#if $marker.name != "16S"
 	   		--ref-dir ${marker.value}
+			--input-marker-table ${marker.fields.traits}
 	   		#end if
 	</command> 
 	<inputs>
@@ -58,10 +60,11 @@
 			<options from_data_table="frogs_picrust2_default_dir">
 	     		<column name="name" index="1"/>
 	        	<column name="value" index="2"/>
+				<column name="traits" index="3"/>
 					<validator type="no_options" message="A built-in database is not available" />
 			</options>
 		</param>
-        <param argument="--placement-tool" name="placement_tool" type="select" label="Placement tool" help="Placement tool for insertion of sequences into the reference tree. SEPP is a low-memory alternative to EPA-ng for placing sequences." multiple="false" display="radio">
+        <param argument="--placement-tool" name="placement_tool" type="select" label="Placement tool" help="Placement tool for insertion of sequences into the reference tree. SEPP is a low-memory alternative to EPA-ng for placing sequences, and is only available for 16S analysis." multiple="false" display="radio">
         	<option value="epa-ng">epa-ng</option>
         	<option value="sepp">sepp</option>
 		</param>
