@@ -167,7 +167,11 @@ Outputs
 
 **Abundance table** (frogsfunc_placeseqs.biom)
 
-Cluster abundance biom file of inserted sequences into reference tree. 
+Cluster abundance biom file of inserted sequences into reference tree.
+
+**Marker copy number marker file**:
+
+Output table of predicted marker gene copy numbers per sequence. (frogsfunc_marker.tsv)
 
 
 **Report file** (report.html):
