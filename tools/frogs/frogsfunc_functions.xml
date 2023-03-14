@@ -16,13 +16,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGSFUNC_step3_functions" name="FROGSFUNC_step3_functions" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-    <description>Calculates functions abundances in each sample.</description>
+    <description>Calculates functions abundances in each sample li.</description>
 
     <macros>
         <import>macros.xml</import>
     </macros>
 
-    <expand macro="requirements_frogsfunc" />
+    <expand macro="requirements_frogsfunc">
+        <requirement type="package" version="3.1.2">ete3</requirement>
+    </expand>
 
     <stdio>
         <exit_code range="1:" />
@@ -32,31 +34,74 @@
        frogsfunc_functions.py
             --input-biom $input_biom
             --input-fasta $input_fasta
-            --input-function $function
-            --input-marker $marker
+            --input-tree $input_tree
+            --input-marker $input_marker
+            --marker-type $category.value
+            #if $category.value == "16S"
+                --functions $functions
+            #end if
+            #if $category.value != "16S"
+                --input-function-table $function.fields.traits
+            #end if 
             --max-nsti $max_nsti
-            --output-function-abund $function_abund
-            --seqtab $seqtab
-            --weighted $weighted
-            --excluded $excluded
+            --min-blast-ident $min_blast_ident
+            --min-blast-cov $min_blast_cov
+	   		--hsp-method $hsp_method
+            --output-biom $output_biom
+            --output-fasta $output_fasta
+            --output-function-abund $output_function_abund
+            --output-otu-norm $output_otu_norm
+            --output-weighted $output_weighted
+            --output-excluded $output_excluded
             --summary $summary_file
+            --debug
     </command> 
     <inputs>
         <!-- Input files -->
         <param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance file i.e. FROGSFUNC_step1_placeseqs tool output file (frogsfunc_placeseqs.biom)." optional="false"/>
        	<param argument="--input-fasta" format="fasta" name="input_fasta" type="data" label="Sequence file" help="The fasta file i.e. from FROGSFUNC_step1_placeseqs tool output file (frogsfunc_placeseqs.fasta)." optional="false"/>
-        <param argument='--input-function' format="tsv" type="data" label="Function file" help="Copy number table of functions present in the predicted genome for each OTU i.e. FROGSFUNC_step2_copynumbers tool output file (frogsfunc_copynumbers_predicted_functions.tsv)." optional="false"/>
-        <param argument='--input-marker' format="tsv" type="data" label="Marker file" help="Table of predicted marker copy number i.e. FROGSFUNC_step2_copynumbers output (frogsfunc_copynumbers_marker.tsv)." optional="false"/>
+        <param argument="--input-tree" format="nhx" name="input_tree" type="data" label="Tree file" help="The file contains the tree information from FROGSFUNC_step1_placeseqs tool (frogsfunc_placeseqs_tree.nwk)." optional="false"/>
+        <param argument='--input-marker' name="input_marker" format="tsv" type="data" label="Marker file" help="Table of predicted marker copy number i.e. FROGSFUNC_step1_placeseqs output (frogsfunc_marker.tsv)." optional="false"/>
         
         <!-- Parameters-->
-        <param argument="--max-nsti" name="max_nsti" type="float" label="NSTI cut-off" help="Any sequence with an NSTI above this threshold will be out. (default: 2)" value="2" min="0" optional="false" /> 
+	    <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
+            <options from_data_table="frogs_picrust2_marker_table">
+                <column name='name' index='0' />
+                <column name='value' index='0' />
+                <filter type="unique_value" column='0'/>
+                    <validator type="no_options" message="A built-in database is not available" />
+            </options>
+		</param>
+		<param argument='--functions' name="functions" type="select" label="Function table" multiple="true" optional="false" help=" 16S : at least 'EC' or/and 'KO' should be chosen (EC for Metacyc pathway analysis or/and KO for KEGG pathway analysis) - others values are optionnal. ITS and 18S : 'EC' only available." >
+			<options from_data_table="frogs_picrust2_marker_table">
+				<column name='name' index='1' />
+				<column name='value' index='1' />
+				<column name='path' index='2' />
+				<column name='traits' index='3' />
+                <filter type="param_value" ref="category" column="0" />   
+ 		<validator type="expression" message="'EC' is the default database used by PICRUSt2. 'EC' or 'KO' must be at least selected. Other tables are optionnal">"EC" in value or "KO" in value</validator>               
+            </options>
+        </param>
+        <param argument="--max-nsti" name="max_nsti" type="float" label="NSTI cut-off" help="Any sequence with an NSTI above this threshold will be out. (default: 2)" value="2" min="0" optional="false" />
+        <param argument="--min-blast-ident" name="min_blast_ident" type="float" label="Blast identity cut-off" help="Any sequence with a blast percentage identity against the PICRUSt2 closest ref above this value will will be out. (default: None)" value="0" min="0" max="1" optional="true" />
+        <param argument="--min-blast-cov" name="min_blast_cov" type="float" label="Blast coverage cut-off" help="Any sequence with a blast coverage identity against the PICRUSt2 closest ref above this value will will be out. (default: None)" value="0" min="0" max="1" optional="true" />
+		<param argument="--hsp-method" name="hsp_method" type="select" label="HSP method" help='Hidden-state prediction method to use: maximum parsimony (mp), empirical probabilities (emp_prob), continuous traits prediction using subtree averaging (subtree_average), continuous traits prediction with phylogentic independent contrast (pic), continuous traits reconstruction using squared-change parsimony (scp) (default: mp).' multiple="false" display="radio">
+            <option value="mp">mp</option>
+            <option value="emp_prob">emp_prob</option>
+            <option value="pic">pic</option>
+            <option value="scp">scp</option>
+            <option value="subtree_average">subtree_average</option>
+		</param> 
     </inputs>
     <outputs>
         <data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="report.html"/>
-        <data format="tsv" name="seqtab" label="${tool.name}: frogsfunc_functions_marker_norm.tsv" from_work_dir="frogsfunc_functions_marker_norm.tsv.tsv"/> 
-        <data format="tsv" name="weighted" label="${tool.name}: frogsfunc_functions_weighted_nsti.tsv" from_work_dir="frogsfunc_functions_weighted_nsti.tsv"/> 
-        <data format="tsv" name="excluded" label="${tool.name}: frogsfunc_functions_excluded.tsv" from_work_dir="frogsfunc_functions_excluded.tsv"/>
-        <data format="tsv" name="function_abund" label="${tool.name}:   frogsfunc_functions_unstrat.tsv" from_work_dir=" frogsfunc_functions_unstrat.tsv"/> 
+		<data format="biom1" name="output_biom" label="${tool.name}: frogsfunc_functions.biom" from_work_dir="frogsfunc_functions.biom"/>
+		<data format="fasta" name="output_fasta" label="${tool.name}: frogsfunc_functions.fasta" from_work_dir="frogsfunc_functions.fasta"/>
+
+        <data format="tsv" name="output_otu_norm" label="${tool.name}: frogsfunc_functions_marker_norm.tsv" from_work_dir="frogsfunc_functions_marker_norm.tsv.tsv"/> 
+        <data format="tsv" name="output_weighted" label="${tool.name}: frogsfunc_functions_weighted_nsti.tsv" from_work_dir="frogsfunc_functions_weighted_nsti.tsv"/> 
+        <data format="tsv" name="output_excluded" label="${tool.name}: frogsfunc_functions_excluded.tsv" from_work_dir="frogsfunc_functions_excluded.tsv"/>
+        <data format="tsv" name="output_function_abund" label="${tool.name}:   frogsfunc_functions_unstrat.tsv" from_work_dir="frogsfunc_functions_unstrat.tsv"/> 
     </outputs>
 
 
@@ -70,11 +115,11 @@
             <param name="min_samples" value="1" />
             <param name="strat" value="false" />
 
-            <output name="function_abund" file="references/27-frogsfunc_functions_unstrat.tsv" compare="diff" lines_diff="0" />
-            <output name="seqtab" file="references/27-frogsfunc_functions_marker_norm.tsv" compare="diff" lines_diff="0" />
-            <output name="weighted" file="references/27-frogsfunc_functions_weighted_nsti.tsv" compare="diff" lines_diff="0" />
+            <output name="output_function_abund" file="references/27-frogsfunc_functions_unstrat.tsv" compare="diff" lines_diff="0" />
+            <output name="output_otu_norm" file="references/27-frogsfunc_functions_marker_norm.tsv" compare="diff" lines_diff="0" />
+            <output name="output_weighted" file="references/27-frogsfunc_functions_weighted_nsti.tsv" compare="diff" lines_diff="0" />
             <output name="summary_file" file="references/27-frogsfunc_functions_report.html" compare="diff" lines_diff="0" />
-            <output name="excluded" file="references/27-frogsfunc_functions_excluded.txt" compare="diff" lines_diff="0" />
+            <output name="output_excluded" file="references/27-frogsfunc_functions_excluded.txt" compare="diff" lines_diff="0" />
         </test>
     </tests>
 
