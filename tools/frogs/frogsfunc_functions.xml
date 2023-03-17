@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGSFUNC_step3_functions" name="FROGSFUNC_step3_functions" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-    <description>Calculates functions abundances in each sample lo.</description>
+    <description>Calculates functions abundances in each sample.</description>
 
   <macros>
         <import>macros.xml</import>
@@ -203,42 +203,20 @@ For more informations about the different databases:
 
 **HSP method**:
 
-  Hidden-state prediction method to use.
+ Hidden-state prediction method to use.
 
          
-
 .. class:: h3
 
 Outputs
 
-
 **Fasta file**:
 
- Sequence file without excluded ASVs (NSTI, blast perc identity or blast perc coverage thresholds). frogsfunc_functions.fasta)
+ Sequence file without excluded ASVs (NSTI, blast perc identity or blast perc coverage thresholds). (frogsfunc_functions.fasta)
 
-**Biom file** 
+**Biom file**:
 
- Biom file without excluded ASVs (NSTI, blast perc identity or blast perc coverage thresholds). frogsfunc_functions.biom)
-
-**Abundance table** (frogsfunc_placeseqs.biom)
-
-**Report file**: (report.html)
-
-.. image:: FROGS_frogsfunc_functions_piechart.png
-    :height: 500
-    :width: 1352
-
-ASVs are out if the NSTI associated is above the threshold.
-
-.. image:: FROGS_frogsfunc_functions_table.png
-    :height: 580
-    :width: 1352
- 
-
-.. image:: FROGS_frogsfunc_functions_sunburst.png
-
-
-Gene families/function from KEGG or Metacyc databases are classified according to 3 hierarchy levels. The graph shows the proportion of each level within the selected samples.
+ Biom file without excluded ASVs (NSTI, blast perc identity or blast perc coverage thresholds). (frogsfunc_functions.biom)
 
 **Function abundance file**:
  
@@ -252,7 +230,12 @@ Gene families/function from KEGG or Metacyc databases are classified according t
 
 **Excluded sequences**:
 
- Information (FROGS taxonomy, PICRUSt2 taxonomy, NSTI) about removed sequences that have a NSTI value aboved the NSTI threshold chosen in this step.
+Information about removed sequences that have a NSTI value aboved the NSTI threshold chosen in this step:
+  - ASV: ASV name id.
+  - FROGS_taxonomy
+  - PICRUSt2_taxonomy
+  - exclusion_paramater: The paramater(s) that excluded the ASVs.
+  - value_parameter: The values associated with the paramater(s).
 
 **Normalized ASV abundance table**:
 
@@ -260,7 +243,33 @@ Gene families/function from KEGG or Metacyc databases are classified according t
 
 **Weighted NSTI file**:
 
- It is the table with average NSTI calculated per sample. (frogsfunc_functions_weighted_nsti.tsv)
+ Output file with the mean of nsti value per sample. (frogsfunc_functions_weighted_nsti.tsv)
+
+**Report file**: (report.html)
+
+.. image:: FROGS_frogsfunc_functions_piechart.png
+    :height: 500
+    :width: 1352
+
+ASVs are out if the NSTI associated is above the threshold, or if the BLAST values are below the thresholds.
+
+
+.. image:: FROGS_frogsfunc_functions_starplot.png
+    :height: 540
+    :width: 1324
+
+Number of different taxonomic names by rank before (green) and after (orange) application of the filters.
+
+
+.. image:: FROGS_frogsfunc_functions_table.png
+    :height: 580
+    :width: 1452
+ 
+
+.. image:: FROGS_frogsfunc_functions_sunburst.png
+
+
+Gene families/function from KEGG or Metacyc databases are classified according to 3 hierarchy levels. The graph shows the proportion of each level within the selected samples.
 
 
 
