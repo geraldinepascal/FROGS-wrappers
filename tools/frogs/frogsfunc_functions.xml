@@ -16,15 +16,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGSFUNC_step3_functions" name="FROGSFUNC_step3_functions" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-    <description>Calculates functions abundances in each sample li.</description>
+    <description>Calculates functions abundances in each sample lo.</description>
 
-    <macros>
+  <macros>
         <import>macros.xml</import>
-    </macros>
+  </macros>
 
-    <expand macro="requirements_frogsfunc">
-        <requirement type="package" version="3.1.2">ete3</requirement>
-    </expand>
+  <expand macro="requirements_frogsfunc" />
+
 
     <stdio>
         <exit_code range="1:" />
@@ -41,7 +40,7 @@
                 --functions $functions
             #end if
             #if $category.value != "16S"
-                --input-function-table $function.fields.traits
+                --input-function-table $functions.fields.traits
             #end if 
             --max-nsti $max_nsti
             --min-blast-ident $min_blast_ident
@@ -54,7 +53,7 @@
             --output-weighted $output_weighted
             --output-excluded $output_excluded
             --summary $summary_file
-            --debug
+
     </command> 
     <inputs>
         <!-- Input files -->
@@ -131,13 +130,13 @@
 
 What it does
 
-Predicting of functions weighted by the relative abundance of OTUs in the community. Inferring the metagenomes of the communities with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_.
+Predicting of functions weighted by the relative abundance of ASVs in the community. Inferring the metagenomes of the communities with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_.
 There are two steps performed at this stage:
 
-    (i) The read depth per OTU is divided by the predicted marker (16S/ITS/18S) copy numbers. This is performed to help control for variation in marker copy numbers across organisms, which can result in interpretation issues.
-        For instance, imagine an organism with five identical copies of the 16S gene that is at the same absolute abundance as an organism with one 16S gene. The OTU corresponding to the first organism would erroneously be inferred to be at higher relative abundance simply because this organism had more copies of the 16S gene.
+    (i) The read depth per ASV is divided by the predicted marker (16S/ITS/18S) copy numbers. This is performed to help control for variation in marker copy numbers across organisms, which can result in interpretation issues.
+        For instance, imagine an organism with five identical copies of the 16S gene that is at the same absolute abundance as an organism with one 16S gene. The ASV corresponding to the first organism would erroneously be inferred to be at higher relative abundance simply because this organism had more copies of the 16S gene.
          
-    (ii) The OTU read depths per sample (after normalizing by marker (16S/ITS/18S) copy number) are multiplied by the predicted function copy numbers per OTU.         
+    (ii) The ASV read depths per sample (after normalizing by marker (16S/ITS/18S) copy number) are multiplied by the predicted function copy numbers per ASV.         
 
 
 .. class:: infomark page-header h2
@@ -152,24 +151,76 @@ Inputs
 
 **Biom file**:
 
- The OTUs biom file from FROGSFUNC_step1_placeseqs tool (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (frogsfunc_placeseqs.biom)
+ The ASVs biom file from FROGSFUNC_step1_placeseqs tool (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (frogsfunc_placeseqs.biom from frogsfunc_1_placeseqs)
 
-**Function file**:
+**Sequence file**:
 
- The table of predicted function abundance from FROGSFUNC_step2_copynumbers tool. (frogsfunc_copynumbers_predicted_functions.tsv)
+ The sequence file of inserted ASVs into PICRUST2 reference tree from (frogsfunc_placesesqs.fasta from frogsfunc_1_placeseqs).
+
+**Tree file**:
+
+ The phylogenetic tree output with insert sequences into the reference tree (format: newick) (frogsfunc_placesesqs_tree.nwk from frogsfunc_1_placeseqs).
+
 
 **Marker file**:
 
- Output table of predicted marker gene copy numbers per sequence from FROGSFUNC_step2_copynumbers tool. (frogsfunc_copynumbers_marker.tsv)
+Output table of predicted marker gene copy numbers per sequence. (frogsfunc_marker.tsv from frogsfunc_1_placeseqs)
+
+.. class:: h3
+
+Parameters
+
+**Taxonomic marker**:
+
+ Marker gene to be analyzed.
+
+**Function table**:
+
+Which default pre-calculated count table to use ?
+- For 16S rRNA gene you can choose between: 'EC', 'KO', 'PFAM', 'COG', 'TIGRFAM', and/or 'PHENO'. You must select at least 'EC' or 'KO' because for next FROGSFUNC tools, the information from Metacyc (EC) or KEGG (KO) are requiered.
+- For ITS and 18S markers, 'EC' is only available.
+
+For more informations about the different databases:
+
+ - EC : https://enzyme.expasy.org/
+ - KO : https://www.genome.jp/kegg/ko.html
+ - PFAM : http://pfam.xfam.org/
+ - COG : https://www.ncbi.nlm.nih.gov/research/cog-project/
+ - TIGRFAM : https://tigrfams.jcvi.org/cgi-bin/index.cgi
+ - PHENO : https://phenodb.org/
 
 **NSTI cut-off**:
 
- Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences. 
+ Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the ASV and the nearest sequenced reference genome. This metric can be used to identify ASVs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any ASVs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
+
+**Blast identity cut-off**:
+
+ Sequences with blast percentage identity against the PICRUSt2 closest ref above this value will be excluded (between 0 and 1).
+
+**Blast coverage cut-off**:
+ 
+ Sequence with a blast coverage identity against the PICRUSt2 closest ref above this value will will be excluded. (between 0 and 1).
+
+**HSP method**:
+
+  Hidden-state prediction method to use.
+
          
 
 .. class:: h3
 
 Outputs
+
+
+**Fasta file**:
+
+ Sequence file without excluded ASVs (NSTI, blast perc identity or blast perc coverage thresholds). frogsfunc_functions.fasta)
+
+**Biom file** 
+
+ Biom file without excluded ASVs (NSTI, blast perc identity or blast perc coverage thresholds). frogsfunc_functions.biom)
+
+**Abundance table** (frogsfunc_placeseqs.biom)
 
 **Report file**: (report.html)
 
@@ -177,7 +228,7 @@ Outputs
     :height: 500
     :width: 1352
 
-OTUs are out if the NSTI associated is above the threshold.
+ASVs are out if the NSTI associated is above the threshold.
 
 .. image:: FROGS_frogsfunc_functions_table.png
     :height: 580
@@ -191,18 +242,19 @@ Gene families/function from KEGG or Metacyc databases are classified according t
 
 **Function abundance file**:
  
- It is the function abundance predictions of metagenome, per sample. (frogsfunc_functions_unstrat.tsv)
+ It is the function abundance predictions of metagenome, per sample. (frogsfunc_functions_unstrat_DATABASENAME.tsv, for exemple: frogsfunc_functions_unstrat_EC.tsv)
  
  - Classification column: the hierarchy classification of the gene function. 
  - db_link column: the url on the link accession ID (*observation_name*) of the function. 
- - observation_name: Accession identifier 
+ - observation_name: Accession identifier
+ - observation_sum: Total abundance of functions across all samples.
  - last columns: Abundances of these functions in each samples.
 
 **Excluded sequences**:
 
  Information (FROGS taxonomy, PICRUSt2 taxonomy, NSTI) about removed sequences that have a NSTI value aboved the NSTI threshold chosen in this step.
 
-**Normalized OTU abundance table**:
+**Normalized ASV abundance table**:
 
  Table with normalized abundance per marker copy number. (frogsfunc_functions_marker_norm.tsv)
 

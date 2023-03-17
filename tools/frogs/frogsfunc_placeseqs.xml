@@ -16,15 +16,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGSFUNC_step1_placeseqs" name="FROGSFUNC_step1_placeseqs" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-	<description>Places clusters into a reference phylogenetic tree.</description>
+	<description>Places ASVs into a reference phylogenetic tree.</description>
 
-    <macros>
+  <macros>
         <import>macros.xml</import>
-    </macros>
+  </macros>
 
-    <expand macro="requirements_frogsfunc">
-        <requirement type="package" version="3.1.2">ete3</requirement>
-    </expand>
+  <expand macro="requirements_frogsfunc" />
 
     <stdio>
         <exit_code range="1:" />
@@ -43,7 +41,6 @@
 	   		--closests-ref $closests_ref
 			--output-marker $output_marker
 	   		--summary $summary_file
-			--debug
 
 	   		#if $marker.name != "16S"
 	   		--ref-dir ${marker.value}
@@ -68,7 +65,7 @@
         	<option value="epa-ng">epa-ng</option>
         	<option value="sepp">sepp</option>
 		</param>
-		<param argument="--min-align" name="min_align" type="float" label="Minimum alignment length" help="Proportion of the total length of an input sequence that must align with reference sequences. All other will be out. (default: 0.80)" value="0.8" min="0" max="1" optional="false" /> 
+		<param argument="--min-align" name="min_align" type="float" label="Minimum alignment length" help="Proportion of the total length of an input sequence that must align with reference sequences. All others will be out. (default: 0.80)" value="0.8" min="0" max="1" optional="false" /> 
 	</inputs>
 
 	<outputs>
@@ -126,11 +123,11 @@ Input
 
 **Sequence file** (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_):
 
- The clusters fasta sequence file.
+ The ASVs fasta sequence file.
 
 **Biom file** (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_):
 
- The clusters biom file. Taxonomic affiliations must be done before (bion file from FROGS taxonomic_affiliation tool).
+ The ASVs biom file. Taxonomic affiliations must be done before (bion file from FROGS taxonomic_affiliation tool).
 
 
 **Placement tool** 
@@ -167,7 +164,7 @@ Outputs
 
 **Abundance table** (frogsfunc_placeseqs.biom)
 
-Cluster abundance biom file of inserted sequences into reference tree.
+Biom file of ASV abundances with inserted sequences into PICRUSt2 reference tree.
 
 **Marker copy number marker file**:
 
@@ -176,57 +173,57 @@ Output table of predicted marker gene copy numbers per sequence. (frogsfunc_mark
 
 **Report file** (report.html):
    
- The report file describes which clusters are contained or not in the phylogenetic tree. Note that PICRUSt2 uses its own reference tree to affiliate clusters from reference sequences. The report file indicates for each cluster which is the closest PICRUSt2 reference sequence, and compares it to the original FROGS taxonomy. Clicking on the sequence ID gives you more information about it (`JGI database &lt;https://img.jgi.doe.gov/&gt;`_).
+The report file describes ASVs are contained or not in the phylogenetic tree. Note that PICRUSt2 uses its own reference tree to affiliate ASVs from reference sequences. The report file indicates for each ASV which is the closest PICRUSt2 reference sequence, and compares it to the original FROGS taxonomy. Clicking on the sequence ID gives you more information about it (`JGI database &lt;https://img.jgi.doe.gov/&gt;`_).
 
 .. image:: FROGS_frogsfunc_placeseqs_piecharts.png
 	:height: 290
 	:width: 676
 
 
-The pie charts describe the proportion of number of clusters excluded and the proportion of total sequences excluded for the following steps.
-Clusters are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold parameter.
+The pie charts describe the proportion of number of excluded ASVs and the proportion of total excluded sequences for the following steps.
+ASVs are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold parameter.
 
 .. image:: FROGS_frogsfunc_placeseqs_table_JGI.png
 	:height: 580
 	:width: 1220
 
-* **Cluster** : Cluster name.
+* **ASV** : ASV name.
 
-* **Nb sequences** : Cluster sequence abundances.
+* **Nb sequences** : ASV sequence abundances.
 
 * **FROGS Taxonomy** : Taxonomic affiliation made by FROGS (FROGS taxonomic_affiliation).
 
-* **PICRUSt2 closest ID (JGI)** : Identifiant (JGI) of the closest reference sequence from the cluster inserted in the reference tree (see the explanatory illustration at the bottom of this page).
+* **PICRUSt2 closest ID (JGI)** : Identifiant (JGI) of the closest reference sequence from the inserted ASV in the reference tree (see the explanatory illustration at the bottom of this page).
  
 * **PICRUSt2 closest reference name** : Genome Name / Sample Name.
 
-* **PICRUSt2 closest taxonomy** : Taxonomy (JGI) of the closest reference sequence from the cluster inserted in the reference tree under the following format: Kingdom;Phylum;Class;Order;Family;Genus;Species
+* **PICRUSt2 closest taxonomy** : Taxonomy (JGI) of the closest reference sequence from the ASV inserted in the reference tree under the following format: Kingdom;Phylum;Class;Order;Family;Genus;Species
 
-* **NSTI** : Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the cluster and the nearest sequenced reference genome. This metric can be used to identify clusters that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any clusters with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
+* **NSTI** : Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the ASV and the nearest sequenced reference genome. This metric can be used to identify ASVs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any ASVs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 
 * **NSTI confidence** : According to the NSTI score, we guide you in the confidence you can bring to the issue affiliation of PICRUSt2.
 
 * **Lowest same taxonomic rank between FROGS and PICRUSt2** : Comparison between FROGS and PICRUSt2 taxonomic affiliations. Lowest common taxonomic rank between FROGS and PICRUSt2 affiliations.
 
-* **Comment** : " identical taxonomy " if the FROGS and PICRUSt2 taxonomic affiliations are identical. " identical sequence " if the cluster sequence is strictly the same as the reference sequence.
+* **Comment** : " identical taxonomy " if the FROGS and PICRUSt2 taxonomic affiliations are identical. " identical sequence " if the ASV sequence is strictly the same as the reference sequence.
 
 .. image:: FROGS_frogsfunc_placeseqs_closest_explained.png
 
-Closest reference sequence (from JGI database) from one cluster sequence.
+Closest reference sequence (from JGI database) from one ASV sequence.
 
 .. image:: FROGS_frogsfunc_placeseqs_nsti.png
     :height: 350
     :width: 1359
 
-Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance between the cluster and the nearest sequenced reference genome. This metric can be used to identify clusters that are highly distant from all reference sequences but the predictions for these sequences are less reliable. The higher the NSTI score, the less the affiliations are relevant. Any cluster with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
+Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance between the ASV and the nearest sequenced reference genome. This metric can be used to identify ASVs that are highly distant from all reference sequences but the predictions for these sequences are less reliable. The higher the NSTI score, the less the affiliations are relevant. Any ASV with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 
-The graph shows the number of kept clusters and sequences according to the NSTI threshold. It is a decision support graphic to help choosing the NSTI threshold. This NSTI threshold will be asked to set in the next tool FROGSFUNC_step2_functions. A good practice is to choose a NSTI threshold that retains a good number of sequences and as low as possible i.e. while ensuring that the taxonomies derived from FROGS and PICRUSt2 do not diverge too much.
+The graph shows the number of kept ASVs and sequences according to the NSTI threshold. It is a decision support graphic to help choose the NSTI threshold. This NSTI threshold will be asked to set in the next tool FROGSFUNC_step2_functions. A good practice is to choose a NSTI threshold that retains a good number of sequences and as low as possible i.e. while ensuring that the taxonomies derived from FROGS and PICRUSt2 do not diverge too much.
 
 .. image:: FROGS_frogsfunc_placeseqs_blast.png
     :height: 350
     :width: 1359
 
-The graph depicts the blast pourcentages of identity and coverage against the closest PICRUSt2 sequence (ordinate), against the NCTI score (abcsissa). Thus, the clusters with the best predictions will be located at the top left of the graph.
+The graph depicts the blast percentages of identity and coverage against the closest PICRUSt2 sequence (ordinate), against the NSTI score (abcsissa). Thus, the ASVs with the best predictions will be located at the top left of the graph.
 
 @HELP_CONTACT@
 
