@@ -1,10 +1,9 @@
 <tool id="FROGS_affiliation_filters" name="FROGS Affiliation Filters" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>Filters OTUs on several affiliation criteria</description>
+    <description>Filters ASVs on several affiliation criteria 1</description>
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/>
-    <command detect_errors="exit_code">
+    <expand macro="requirements"/>   <command detect_errors="exit_code">
 		affiliation_filters.py
 			--input-biom '$input_biom'
 			--input-fasta '$input_fasta'
@@ -43,11 +42,17 @@
 			#end if
 
 			#set $sep = ' '
-            #if $blast.taxon_ignored
+            #if $blast.keep_or_ignore.taxa_choice == "ignore"
             	--ignore-blast-taxa
-            	#for $current in $blast.taxon_ignored
-                	$sep'${current.ignore_blast_taxa}'
-            	#end for
+                #for $current in $blast.keep_or_ignore.taxon_ignored
+                    $sep'${current.ignore_blast_taxa}'
+                #end for
+            #end if
+            #if $blast.keep_or_ignore.taxa_choice == "keep"
+            	--keep-blast-taxa
+                #for $current in $blast.keep_or_ignore.taxon_kept
+                    $sep'${current.keep_blast_taxa}'
+                #end for
             #end if
 
 	</command>
@@ -57,7 +62,7 @@
         <param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)"/>
         <expand macro="taxonomic_ranks"/>
         <!-- It is used for optional output fasta -->
-        <param name="mode" type="select" label="Filtering mode" multiple="false" help="Do you want to delete OTU or hide affiliations?" optional="false" display="radio">
+        <param name="mode" type="select" label="Filtering mode" multiple="false" help="Do you want to delete ASV or hide affiliations?" optional="false" display="radio">
             <option value="hide" selected="true">Hidding mode</option>
             <option value="delete">Deleting mode</option>
         </param>
@@ -66,21 +71,47 @@
             <param argument="--min-blast-identity" type="float" min="0.0" max="1.0" optional="true" label="Minimum identity" help="Fill the field only if you want this treatment"/>
             <param argument="--min-blast-coverage" type="float" min="0.0" max="1.0" optional="true" label="Minimum coverage" help="Fill the field only if you want this treatment"/>
             <param argument="--min-blast-length" type="integer" min="0" optional="true" label="Minimum alignment length" help="Fill the field only if you want this treatment"/>
-            <repeat name="taxon_ignored" title="Filter blast affiliations including these taxon / word">
-                <param argument="--ignore-blast-taxa" type="text" optional="true" label="Full or partial taxon name" help="Example: &quot;unknown species&quot; or &quot;subsp.&quot;">
-                    <sanitizer invalid_char="">
-                        <valid initial="string.letters,string.digits">
-                            <add value="/" />
-                            <add value="+" />
-                            <add value="-" />
-                            <add value="=" />
-                            <add value=" " />
-                            <add value="_" />
-                        </valid>
-                    </sanitizer>
-                    <validator type="regex">[A-Za-z0-9 =-_/+]+</validator>
+            <conditional name="keep_or_ignore">
+                <param name="taxa_choice" type="select" label="Blast taxa keyword filters" help='Do you want to keep or ignore blast affiliations including these taxon / word ?' display='select'>
+                    <option value="" selected="true">No filter</option>
+                    <option value="ignore">Ignore taxa</option>
+            	    <option value="keep" >Keep taxa</option>
                 </param>
-            </repeat>
+                <when value="ignore">
+                    <repeat name="taxon_ignored" title="Remove blast affiliations including these taxon / word">
+                        <param argument="--ignore-blast-taxa" type="text" optional="true" label="Full or partial taxon name" help="Example: &quot;unknown species&quot; or &quot;subsp.&quot;">
+                            <sanitizer invalid_char="">
+                                <valid initial="string.letters,string.digits">
+                                    <add value="/" />
+                                    <add value="+" />
+                                    <add value="-" />
+                                    <add value="=" />
+                                    <add value=" " />
+                                    <add value="_" />
+                                </valid>
+                            </sanitizer>
+                            <validator type="regex">[A-Za-z0-9 =-_/+]+</validator>
+                        </param>
+                    </repeat>
+                </when>
+                <when value="keep">
+                    <repeat name="taxon_kept" title="Keep blast affiliations including these taxon / word">
+                        <param argument="--keep-blast-taxa" type="text" optional="true" label="Full or partial taxon name" help="Example: &quot;unknown species&quot; or &quot;subsp.&quot;">
+                            <sanitizer invalid_char="">
+                                <valid initial="string.letters,string.digits">
+                                    <add value="/" />
+                                    <add value="+" />
+                                    <add value="-" />
+                                    <add value="=" />
+                                    <add value=" " />
+                                    <add value="_" />
+                                </valid>
+                            </sanitizer>
+                            <validator type="regex">[A-Za-z0-9 =-_/+]+</validator>
+                        </param>
+                    </repeat>
+                </when>
+            </conditional>
         </section>
         <section name="rdp" title="Filter on RDP affiliations" expanded="false">
             <param name="rdp_rank" type="text" optional="true" value="" label="Taxonomical rank on which to apply bootstrap filter" help="One of the available taxonomical rank name. Ex: Species">
@@ -156,7 +187,7 @@
 
 What it does
 
-This tool removes OTUs or hides taxonomical metadata according to one or more criteria:
+This tool removes ASVs or hides taxonomical metadata according to one or more criteria:
 
  - for RDP taxonomy : a minimal bootstrap threshold at a specific rank
 
@@ -174,11 +205,11 @@ Inputs
 
 **Abundance file**:
 
-The abundance of each OTU with taxonomical metadata (format `BIOM &lt;http://biom-format.org/&gt;`_).
+The abundance of each ASV with taxonomical metadata (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
 **Sequence file** (optional):
 
-The OTUs seed sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_). This parameter is mandatory in case of using deleting mode.
+The clusters seed sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_). This parameter is mandatory in case of using deleting mode.
 
 
 .. class:: h3
@@ -195,15 +226,15 @@ Outputs
 
 **Impacted abundance tabular file** (impacted.tsv):
 
- The list of the OTUs deleted/hidden or with updated blast affiliation (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
+ The list of the ASVs deleted/hidden or with updated blast affiliation (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
 
 **Impacted multihit tabular file** (impacted.multihit.tsv):
 
- The list of blast affiliations for multi-affiliated impacted OTU (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
+ The list of blast affiliations for multi-affiliated impacted ASV (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
 
 **Report file** (report.html):
 
- A report HTML of impacted OTUs, lost taxonomies and details by samples (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
+ A report HTML of impacted ASVs, lost taxonomies and details by samples (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
 
 .. class:: infomark page-header h2
 
@@ -215,9 +246,9 @@ How it works ?
    :class: table table-striped
 
    "1", "Compare all affiliations (RDP and all blast hits) to each filtering criteria."
-   "2", "Update concensus blast taxonomy if at least one blast criteria has an impact. When only part of the blast affiliations are removed, the concensus blast taxonomy is updated, and if it changes, the OTU is considered as *Modified*."
-   "3", "**In deleting mode**, OTU is removed either if the RDP bootstrap criteria is not respected or if none of the blast affiliation respect all the criteria . **In hidding mode**, RDP affiliation is hidden if the RDP bootstrap criteria is not respected, and independantly, blast affiliations are hidden if none of the blast affiliation respect all the criteria."
-   "4", "Write valid OTU into the filtered.biom file with potential blast affiliation updated and impacting criteria annotations.All impacted/modified OTU with their original metadata are reported in the impacted.tsv file with its associated impacted.multihit.tsv file. Impacting status (OTU_deleted / Affiliation_masked / Blast_taxonomy_changed) and the list of impacting criteria are also reported in the impacted.tsv file."
+   "2", "Update concensus blast taxonomy if at least one blast criteria has an impact. When only part of the blast affiliations are removed, the concensus blast taxonomy is updated, and if it changes, the ASV is considered as *Modified*."
+   "3", "**In deleting mode**, ASV is removed either if the RDP bootstrap criteria is not respected or if none of the blast affiliation respect all the criteria . **In hidding mode**, RDP affiliation is hidden if the RDP bootstrap criteria is not respected, and independantly, blast affiliations are hidden if none of the blast affiliation respect all the criteria."
+   "4", "Write valid ASV into the filtered.biom file with potential blast affiliation updated and impacting criteria annotations.All impacted/modified ASV with their original metadata are reported in the impacted.tsv file with its associated impacted.multihit.tsv file. Impacting status (ASV_deleted / Affiliation_masked / Blast_taxonomy_changed) and the list of impacting criteria are also reported in the impacted.tsv file."
 
 
 .. class:: infomark page-header h2
@@ -239,10 +270,10 @@ What will append in these different cases in deleting or hidding mode:
 The RDP taxonomy does not respect the RDP boostrap threshold, but all blast affiliation criteria are respected.
 
 In deleting mode, Cluster_1 will be removed.
-In the report.html, it will be considered as "Removed", and if the RDP taxonomy and/or the blast taxonomy is/are not kept thanks to an other OTU, the RDP/blast taxonomy(ies) will be considered as lost.
+In the report.html, it will be considered as "Removed", and if the RDP taxonomy and/or the blast taxonomy is/are not kept thanks to an other ASV, the RDP/blast taxonomy(ies) will be considered as lost.
 
 In hidding mode, RDP taxonomy will be removed, blast taxonomy will remain unchanged and Cluster_1 will be kept.
-In the report.html, it will be considered as "Hidden", and if the RDP taxonomy is not kept thanks to an other OTU, the RDP taxonomy will be considered as lost.
+In the report.html, it will be considered as "Hidden", and if the RDP taxonomy is not kept thanks to an other ASV, the RDP taxonomy will be considered as lost.
 
 - Cluster 2:
 
@@ -251,10 +282,10 @@ In the report.html, it will be considered as "Hidden", and if the RDP taxonomy i
 The RDP taxonomy respects the RDP boostrap threshold, but none of the blast affiliations respect all the blast criteria.
 
 In deleting mode, Cluster_1 will be removed.
-In the report.html, it will be considered as "Removed", and if the two blast taxonomies are not kept thanks to others OTUs, they will be considered as lost. In the same way, if there is no other OTU, affiliated to Sulfurimonas genus but with an ambiguous species, 1 Multi-affilaition will be considered as lost in the report.html. And idem for the RDP taxonomy.
+In the report.html, it will be considered as "Removed", and if the two blast taxonomies are not kept thanks to others ASVs, they will be considered as lost. In the same way, if there is no other ASV, affiliated to Sulfurimonas genus but with an ambiguous species, 1 Multi-affilaition will be considered as lost in the report.html. And idem for the RDP taxonomy.
 
 In hidding mode, RDP taxonomy will be remain unchanged, blast taxonomy will be removed and Cluster_2 will be kept.
-In the report.html, it will be considered as "Hidden", and if the two taxonomies are not kept thanks to others OTUs, they will be considered as lost. In the same way, if there is no other OTU, affiliated to Sulfurimonas genus but with an ambiguous species, 1 Multi-affilaition will be considered as lost in the report.html.
+In the report.html, it will be considered as "Hidden", and if the two taxonomies are not kept thanks to others ASVs, they will be considered as lost. In the same way, if there is no other ASV, affiliated to Sulfurimonas genus but with an ambiguous species, 1 Multi-affilaition will be considered as lost in the report.html.
 
 - Cluster 3:
 
@@ -264,7 +295,7 @@ The RDP taxonomy respects the RDP boostrap threshold, and one of the two blast a
 
 In both deleting and hidding mode, Cluster_1 will be kept.
 In the report.html, it will be considered as "Modified", as the RDP taxonomy will remain unchanged and the blast taxonomy will be updated.
-If no other OTU is affiliated to the "unknown species" of the Fusobacterium genu, this species will be considered as lost. In the same way if no other OTU is affiliated to Fusobacterium genus but with an ambiguous species, 1 Multi-affilaition at the Species level will be considered as lost in the report.html.
+If no other ASV is affiliated to the "unknown species" of the Fusobacterium genu, this species will be considered as lost. In the same way if no other ASV is affiliated to Fusobacterium genus but with an ambiguous species, 1 Multi-affilaition at the Species level will be considered as lost in the report.html.
 
 @HELP_CONTACT@
 
