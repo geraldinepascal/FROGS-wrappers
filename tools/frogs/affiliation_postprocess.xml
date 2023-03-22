@@ -34,7 +34,7 @@
     					<column name="value" index="1"/-->
                 </param>
             </when>
-            <when value="false"/>
+            <when value="No"/>
         </conditional>
         <param argument="--identity" type="float" min="0.0" max="100.0" value="99.0" label="Minimum identity for aggregation" help="ASVs will be aggregated if they share the same taxonomy with at least X% identity"/>
         <param argument="--coverage" type="float" min="0.0" max="100.0" value="99.0" label="Minimum coverage for aggregation" help="ASVs will be aggregated if they share the same taxonomy with at least X% alignment coverage"/>
