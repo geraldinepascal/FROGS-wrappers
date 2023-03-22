@@ -15,7 +15,7 @@
         --min-amplicon-size $sequencer_type.min_amplicon_size
         --max-amplicon-size $sequencer_type.max_amplicon_size
         #if $sequencer_type.sequencer_selected in ('illumina', 'longreads')
-            #if $sequencer_type.is_primer_in_seq.primer_choice
+            #if $sequencer_type.is_primer_in_seq.primer_choice == "true"
                 --five-prim-primer '$sequencer_type.is_primer_in_seq.five_prim_primer'
                 --three-prim-primer '$sequencer_type.is_primer_in_seq.three_prim_primer'
             #else
@@ -120,8 +120,8 @@
                                     <when value="vsearch"></when>
                                 </conditional>
                                 <param argument="--keep-unmerged" type="select" label="Would you like to keep unmerged reads?" help="No = Unmerged reads will be excluded; Yes = unmerged reads will be artificially combined with 100 N. (default No)" >
-                                    <option value="No" selected="true">No, unmerged reads will be excluded</option>
-                                    <option value="Yes">Yes, unmerged reads will be artificially combined with 100 N.</option>
+                                    <option value="No" selected="true">No, unmerged reads will be excluded.</option>
+                                    <option value="Yes">Yes, unmerged reads will be artificially combined.</option>
                                 </param>
                             </when>
                             <when value="already_merged"></when>
@@ -158,7 +158,7 @@
                                 </conditional>
                                 <param argument="--keep-unmerged" type="select" label="Would you like to keep unmerged reads?" help="No = Unmerged reads will be excluded; Yes = unmerged reads will be artificially combined with 100 N. (default No)">
                                     <option value="No" selected="true">No, unmerged reads will be excluded</option>
-                                    <option value="Yes">Yes, unmerged reads will be artificially combined with 100 N.</option>
+                                    <option value="Yes">Yes, unmerged reads will be artificially combined.</option>
                                 </param>
                             </when>
                             <when value="already_merged">
@@ -177,7 +177,10 @@
                 <param argument="--max-amplicon-size" type="integer" value="" label="Maximum amplicon size" help="The maximum size of the amplicons (with primers)"/>
                 <!-- Primers -->
                 <conditional name="is_primer_in_seq">
-                    <param name="primer_choice" type="boolean" checked="true" label="Do the sequences have PCR primers?" help=""/>
+                    <param name="primer_choice" type="select" label="Do the sequences have PCR primers?" help="">
+                        <option value="true" selected="true">Yes</option>
+                        <option value="false">No</option>     
+                    </param>
                     <when value="true">
                         <param argument="--five-prim-primer" type="text"  label="5' primer" help="The 5' primer sequence (wildcards are accepted). This primer must be written in 5' to 3' orientation (see details in 'Primers parameters' help section)">
                             <sanitizer invalid_char="">
@@ -222,7 +225,10 @@
                 
                 <!-- Primers -->
                 <conditional name="is_primer_in_seq">
-                    <param name="primer_choice" type="boolean" checked="true" label="Do the sequences have PCR primers?" help=""/>
+                    <param name="primer_choice" type="select" label="Do the sequences have PCR primers?" help="">
+                        <option value="true" selected="true">Yes</option>
+                        <option value="false">No</option> 
+                    </param>
                     <when value="true">
                         <param argument="--five-prim-primer" type="text"  label="5' primer" help="The 5' primer sequence (wildcards are accepted). This primer must be written in 5' to 3' orientation (see details in 'Primers parameters' help section)">
                             <sanitizer invalid_char="">
