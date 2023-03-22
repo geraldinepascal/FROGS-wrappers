@@ -53,6 +53,7 @@
             	<option value="yes" selected="true">Sampling by the number of sequences of the smallest sample</option>
             	<option value="no">Select a number of sequences</option>
 			</param>
+		<when value="yes"/>
 		<when value="no">
 			<param name="num_reads" type="integer" optional="true" min="1" value="" label="Number of reads" help="The final number of reads per sample." />
 			<param name="delete_samples" type="boolean" label="Remove samples that have an initial number of reads below the number of reads to sample ?"  />
