@@ -10,7 +10,7 @@
     <command detect_errors="exit_code">
     deseq2_preprocess.py
         --analysis '$analysis_type.analysis'
-        #if $analysis_type.analysis == 'OTU'
+        #if $analysis_type.analysis == 'ASV'
             --data '$data'
         #else:
             --input-functions '$input_functions'
@@ -27,10 +27,10 @@
 		<!-- Files -->
 		<conditional name="analysis_type">
 			<param name="analysis" type="select" label="Type of analysis" help='Type of data to perform the differential analysis. ASV: DESeq2 is run on the ASVs abundances table. FUNC: DESeq2 is run on FROGSFUNC function abundances table (frogsfunc_functions_unstrat.tsv from FROGSFUNC_2_functions step).' display='radio'>
-            	<option value="OTU" selected="true">ASV</option>
+            	<option value="ASV" selected="true">ASV</option>
             	<option value="FUNC">FUNC</option>
 			</param>
-		<when value="OTU">
+		<when value="ASV">
             <param format="rdata" name="data" type="data" label="Phyloseq object " help="This is the result of FROGSSTAT Phyloseq Import Data with normalise option set to NO (DESeq2 is more powerful on unnormalised counts) (format RData)"/>
 		</when>
 		<when value="FUNC">

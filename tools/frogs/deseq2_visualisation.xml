@@ -23,7 +23,7 @@
     <inputs>
         <!-- Files -->
         <param name="analysis" type="select" label="Type of analysis" help='Type of data to perform the differential analysis. ASV: DESeq2 is run on the ASVs abundances table. FUNC: DESeq2 is run on FROGSFUNC function abundances table (frogsfunc_functions_unstrat.tsv from FROGSFUNC_2_functions step).' display='radio'>
-            	<option value="OTU" selected="true">ASV</option>
+            	<option value="ASV" selected="true">ASV</option>
             	<option value="FUNC">FUNC</option>
 		</param>
         <param format="rdata" argument="--abundanceData" type="data" label="Phyloseq object (format: RData)" help="This is the result of FROGS Phyloseq Import Data when ASV analysis and used in FROGSSTAT DESeq2 Preprocess tool, or the result of FROGS DESeq2 Preprocess tool when FUNC analysis." />

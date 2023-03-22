@@ -66,7 +66,7 @@
 			#end if
 
 			#if $nb_biggest_clusters
-				--nb-biggest-clusters $nb_biggest_otu
+				--nb-biggest-clusters $nb_biggest_clusters
 			#end if
 
 
@@ -199,7 +199,7 @@ The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`
 
 **Abundance file**:
 
-The abundance of each ASV in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
+The abundance of each cluster in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
 **Contaminant fasta file** (optional):
 
@@ -229,7 +229,7 @@ Outputs
 
 **Excluded file** (excluded.txt):
 
- The list of the ASVs deleted by filters (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
+ The list of the clusters deleted by filters (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
 
 **Report file** (report.html):
 
@@ -245,16 +245,16 @@ The ASVs kept are the ones that satisfy into the BIOM input file the thresholds 
 
 The BIOM abundance table and the fasta file are written again according to the ASVs kept.
 
-The ASVs discarded are listed in the excluded file.
+The clusters discarded are listed in the excluded file.
 
 .. csv-table::
    :header: "Steps", "description"
    :widths: 5, 150
    :class: table table-striped
 
-   "1", "Except the filter to select the n most abundant ASVs, all the selected filters are run independently. For each filters a list of the ASVs to remove is generated. Concerning contaminant research, ASVs are added to the previous list if it aligns on a contaminant reference sequence with 80% of identity and 80% of coverage"
-   "2", "All the ASVs tagged to remove by at least one filter are removed."
-   "3", "If the filter to select the N most abundant ASVs is filled it is applied."
+   "1", "Except the filter to select the n most abundant clusters, all the selected filters are run independently. For each filters a list of the clusters removed is generated. Concerning contaminant research, clusters are added to the previous list if it aligns on a contaminant reference sequence with 80% of identity and 80% of coverage"
+   "2", "All the clusters tagged to remove by at least one filter are removed."
+   "3", "If the filter to select the N most abundant clusters is filled it is applied."
 
 
 
@@ -262,28 +262,28 @@ The ASVs discarded are listed in the excluded file.
 
 Advices
 
-Please check that the input fasta file and the input BIOM file correspond to the same ASVs.
+Please check that the input fasta file and the input BIOM file correspond to the same clusters.
 
-Examples for the filters on abundance and occurence of the ASVs :
+Examples for the filters on abundance and occurence of the clusters :
 
--To keep the filters that are present in 5 samples, fill the **Minimum prevalence method** field with **all samples** option, with "5".
+-To keep the clusters that are present in 5 samples, fill the **Minimum prevalence method** field with **all samples** option, with "5".
 
--To keep the filters that are present in half of the replicates, fill the **Minimum prevalence method** field with **replicate identification** option, with a minimum prevalence of "0.5".
+-To keep the clusters that are present in half of the replicates, fill the **Minimum prevalence method** field with **replicate identification** option, with a minimum prevalence of "0.5".
 
 .. image:: FROGS_otu_filter_replicates_file.png
 
-In this example, if we want to keep the ASVs that are present in at least 50% of the samples, we set the threshold at 0.5. The process will therefore keep the ASVs present in at least 
+In this example, if we want to keep the clusters that are present in at least 50% of the samples, we set the threshold at 0.5. The process will therefore keep the clusters present in at least 
 
  - 2 "rich" samples
  - 3 "richAB" samples,
  - 1 "lowAB" sample
  - 1 "april21" sample
 
-and all ASVs in sample9 since it is the only representative of the "low" condition.
+and all clusters in sample9 since it is the only representative of the "low" condition.
 
--To display the 20 **biggest** ASVs, fill the corresponding field with "20".
+-To display the 20 **biggest** clusters, fill the corresponding field with "20".
 
--To filter on **abundance** of ASV i.e. the ASV size, we advise you to specify 0.005% i.e. 0.00005. It seems to be the optimal threshold (`Bokulich *et al*, 2013 &lt;http://www.nature.com/nmeth/journal/v10/n1/abs/nmeth.2276.html&gt;`_ ).
+-To filter on **abundance** of cluster i.e. the cluster size, we advise you to specify 0.005% i.e. 0.00005. It seems to be the optimal threshold (`Bokulich *et al*, 2013 &lt;http://www.nature.com/nmeth/journal/v10/n1/abs/nmeth.2276.html&gt;`_ ).
 
 
 @HELP_CONTACT@
