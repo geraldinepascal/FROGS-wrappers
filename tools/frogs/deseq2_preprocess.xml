@@ -8,7 +8,14 @@
         <requirement type="package" version="1.6.6">r-optparse</requirement>
     </expand>
     <command detect_errors="exit_code">
-    deseq2_preprocess.py --data '$data'
+    deseq2_preprocess.py
+        --analysis '$analysis_type.analysis'
+        #if $analysis_type.analysis == 'OTU'
+            --data '$data'
+        #else:
+            --input-functions '$input_functions'
+            --samplefile '$samplefile'
+        #end if
         #if $multiple.seconde == 'true'
             --var '$var1${multiple.mod}${multiple.var2}'
         #else
@@ -18,9 +25,21 @@
 	</command>
     <inputs>
 		<!-- Files -->
-        <param format="rdata" name="data" type="data" label="Phyloseq object " help="This is the result of FROGSSTAT Phyloseq Import Data with normalise option set to NO (DESeq2 is more powerful on unnormalised counts) (format RData)"/>
-        <!-- Parameters -->
-	    <param name="var1" type="text" label="Experimental variable" help="The factor suspected to have an effect on OTU abundances. Ex: Treatment, etc.">
+		<conditional name="analysis_type">
+			<param name="analysis" type="select" label="Type of analysis" help='Type of data to perform the differential analysis. ASV: DESeq2 is run on the ASVs abundances table. FUNC: DESeq2 is run on FROGSFUNC function abundances table (frogsfunc_functions_unstrat.tsv from FROGSFUNC_2_functions step).' display='radio'>
+            	<option value="OTU" selected="true">ASV</option>
+            	<option value="FUNC">FUNC</option>
+			</param>
+		<when value="OTU">
+            <param format="rdata" name="data" type="data" label="Phyloseq object " help="This is the result of FROGSSTAT Phyloseq Import Data with normalise option set to NO (DESeq2 is more powerful on unnormalised counts) (format RData)"/>
+		</when>
+		<when value="FUNC">
+            <param format="tsv" name="input_functions" type="data" label="Function abundances file " help="Input file of metagenome function prediction abundances (frogsfunc_functions_unstrat.tsv from FROGSFUNC function step)."/>
+            <param format="tabular,tsv" argument="--samplefile" type="data" label="Sample file (format: TSV)" help="The file contains the samples information."/>
+		</when>
+		</conditional>
+        <!-- Parameters -->			
+	    <param name="var1" type="text" label="Experimental variable" help="The factor suspected to have an effect on ASV/FUNC abundances. Ex: Treatment, etc.">
             <expand macro="sanitizer_validator"/>
         </param>
 		<conditional name="multiple">
@@ -42,6 +61,7 @@
     </inputs>
     <outputs>
         <data format="rdata" name="dds" label="${tool.name}: dds.Rdata" from_work_dir="DESeq2_preprocess.Rdata"/>
+        <data format="rdata" name="phyloseq" label="${tool.name}: abundances.Rdata" from_work_dir="data.Rdata"/>
     </outputs>
     <tests>
         <test>
@@ -83,6 +103,9 @@ Ouput
 **dds object** (format rdata):
 A DESeq2 dataset (dds) stored in rdata file.
 This result will be one of the input of the FROGSSTAT DESeq Visualisation tool.
+
+group_input_function_table.add_argument('--out-Phyloseq', default='phyloseq_functions.Rdata', help="path to store phyloseq-class object in Rdata file. [Default: %(default)s]" )
+
 
 .. class:: infomark page-header h2
 

@@ -45,7 +45,7 @@
 	</command> 
 	<inputs>
         <!-- Input files -->       
-        <param argument="--input-file" format="tsv" name="input_file" type="data" label="Function abundance file" help="TSV function abundances table from FROGSFUNC_step3_function tool, frogsfunc_functions_unstrat.tsv (unstratified table)." optional="false"/>
+        <param argument="--input-file" format="tsv" name="input_file" type="data" label="Function abundance file" help="TSV function abundances table from FROGSFUNC_2_function tool, frogsfunc_functions_unstrat_EC.tsv for Metacyc database or frogsfunc_functions_unstrat_KO.tsv for Kegg database (unstratified table)." optional="false"/>
 
         <!-- References -->
 	      <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
@@ -56,7 +56,7 @@
               <validator type="no_options" message="A built-in database is not available" />
           </options>
 			  </param>
-        <param name="map_file" type='select' label="Pathway reference" help="For 16S marker, choose Metacyc or KEGG in accordance with your choice in the FROGSFUNC_step2_copynumbers tool. For ITS or 18S marker, Metacyc is the only valid option." optional="false" multiple='false' display='radio'>
+        <param name="map_file" type='select' label="Pathway reference" help="For 16S marker, choose Metacyc or KEGG in accordance with your choice in the FROGSFUNC_2_copynumbers tool. For ITS or 18S marker, Metacyc is the only valid option." optional="false" multiple='false' display='radio'>
           <options from_data_table="frogs_picrust2_pathway_map">
             <column name='name' index='1'/>
             <column name='value' index='3'/>
@@ -91,10 +91,10 @@
 	     
 What it does
 
-FROGSFUNC_step4_pathway is the last step of `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. This script infers MetaCyc/KEGG pathway abundances based on EC/KO number abundances.
+FROGSFUNC_3_pathway is the last step of `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. This script infers MetaCyc/KEGG pathway abundances based on EC or KO number abundances.
 	     
-    - Regroups EC/KO numbers to MetaCyc/KEGG reactions.
-    - Infers which MetaCyc/KEGG pathways are present based on these reactions with `MinPath &lt;http://omics.informatics.indiana.edu/MinPath/&gt;`_.
+    - Regroups EC or KO numbers to MetaCyc or KEGG reactions, depending of the unstrat abundances input file.
+    - Infers which MetaCyc or KEGG pathways are present based on these reactions with `MinPath &lt;http://omics.informatics.indiana.edu/MinPath/&gt;`_.
     - Calculates and returns the abundance of pathways identified as present.
 
 .. class:: infomark page-header h2
@@ -107,17 +107,17 @@ Input
 
 **Function prediction abundance file**:
 
- TSV function abundances table from FROGSFUNC_step3_function tool, frogsfunc_functions_unstrat.tsv (unstratified table).
+ TSV function abundances table from FROGSFUNC_2_function tool, frogsfunc_functions_unstrat_EC.tsv or frogsfunc_functions_unstrat_KO.tsv (unstratified table).
 
 **Taxonomic marker:**
 
- Output table of predicted marker gene copy numbers per sequence from FROGSFUNC_step2_copynumbers tool. (frogsfunc_copynumbers_marker.tsv)
+ Output table of predicted marker gene copy numbers per sequence from FROGSFUNC_1_placeseqs tool. (frogsfunc_marker.tsv)
 
 **Pathway reference:**
 
  Mapping of pathways to reactions.
  
- - For 16S marker, choose Metacyc or KEGG in accordance with your choice in the FROGSFUNC_step2_copynumbers tool. If you want both, run this tool twice.
+ - For 16S marker, choose Metacyc or KEGG in accordance with your choice in the FROGSFUNC_2_functions tool. If you want both, run this tool twice.
  - For ITS or 18S marker, Metacyc is the only valid option.
 
 

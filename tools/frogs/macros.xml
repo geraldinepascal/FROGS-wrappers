@@ -24,6 +24,7 @@
     <xml name="requirements_frogsfunc">
         <expand macro="requirements">
             <requirement type="package" version="2.5.1">picrust2</requirement>
+            <requirement type="package" version="3.1.2">ete3</requirement>
             <yield />
         </expand>
     </xml>
@@ -89,7 +90,7 @@ Depending on which kind of amplicon you are working on, please cite one of the t
                 pages = {1287-1294},
                 year = {2018},
                 month = {04},
-                abstract = "{Metagenomics leads to major advances in microbial ecology and biologists need user friendly tools to analyze their data on their own.This Galaxy-supported pipeline, called FROGS, is designed to analyze large sets of amplicon sequences and produce abundance tables of Operational Taxonomic Units (OTUs) and their taxonomic affiliation. The clustering uses Swarm. The chimera removal uses VSEARCH, combined with original cross-sample validation. The taxonomic affiliation returns an innovative multi-affiliation output to highlight databases conflicts and uncertainties. Statistical results and numerous graphical illustrations are produced along the way to monitor the pipeline. FROGS was tested for the detection and quantification of OTUs on real and in silico datasets and proved to be rapid, robust and highly sensitive. It compares favorably with the widespread mothur, UPARSE and QIIME.Source code and instructions for installation: https://github.com/geraldinepascal/FROGS.git. A companion website: http://frogs.toulouse.inra.fr.Supplementary data are available at Bioinformatics online.}",
+                abstract = "{Metagenomics leads to major advances in microbial ecology and biologists need user friendly tools to analyze their data on their own.This Galaxy-supported pipeline, called FROGS, is designed to analyze large sets of amplicon sequences and produce abundance tables of ASVs and their taxonomic affiliation. The clustering uses Swarm. The chimera removal uses VSEARCH, combined with original cross-sample validation. The taxonomic affiliation returns an innovative multi-affiliation output to highlight databases conflicts and uncertainties. Statistical results and numerous graphical illustrations are produced along the way to monitor the pipeline. FROGS was tested for the detection and quantification of ASVs on real and in silico datasets and proved to be rapid, robust and highly sensitive. It compares favorably with the widespread mothur, UPARSE and QIIME.Source code and instructions for installation: https://github.com/geraldinepascal/FROGS.git. A companion website: http://frogs.toulouse.inra.fr.Supplementary data are available at Bioinformatics online.}",
                 issn = {1367-4803},
                 doi = {10.1093/bioinformatics/btx791},
                 url = {https://doi.org/10.1093/bioinformatics/btx791},

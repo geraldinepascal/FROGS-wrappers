@@ -20,7 +20,7 @@
     </command>
     <inputs>
         <!-- Files -->
-        <param format="biom1" argument="--biomfile" type="data" label="Abundance biom file with taxonomical metadata (format: BIOM)" help="The file contains the  OTU informations "/>
+        <param format="biom1" argument="--biomfile" type="data" label="Abundance biom file with taxonomical metadata (format: BIOM)" help="The file contains the  ASV information "/>
         <param format="tabular,tsv" argument="--samplefile" type="data" label="Sample file (format: TSV)" help="The file contains the samples information."/>
         <param format="nhx" argument="--treefile" type="data" optional="true" label="Tree file (format: Newick)" help="The file contains the tree information (optional)"/>
         <!-- Parameters -->
@@ -44,7 +44,7 @@
             <output name="html">
                 <assert_contents>
                     <!-- check phyloseq object summary-->
-                    <has_text text='otu_table()   OTU Table:         [ 508 taxa and 64 samples ]'/>
+                    <has_text text='asv_table()   ASV Table:         [ 508 taxa and 64 samples ]'/>
                     <has_text text='sample_data() Sample Data:       [ 64 samples by 4 sample variables ]' />
                     <has_text text='tax_table()   Taxonomy Table:    [ 508 taxa by 7 taxonomic ranks ]' />
                     <has_text text='phy_tree()    Phylogenetic Tree: [ 508 tips and 507 internal nodes ]' />
@@ -79,9 +79,9 @@ Inputs/Outputs
 
 Input
 
-**OTU biom file**:
+**ASV biom file**:
 
-The OTU biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
+The ASV biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
 The example of biom file:
 
   .. image:: FROGS_Phyloseq_biomfile.png

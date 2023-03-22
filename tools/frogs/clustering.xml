@@ -34,11 +34,11 @@
                 <option value="3.1">First guidelines until 3.1</option>
             </param>
             <when value="3.2">
-                <param argument="--distance" type="integer" label="Aggregation distance clustering" help="Maximum number of differences between sequences in each aggregation swarm step. (recommended d=1)" value="1" min="1" max="15" optional="false" />
-                <param argument="--fastidious" type="boolean" checked="true" truevalue="--fastidious" falsevalue="" label="Refine OTU clustering" help="Clustering will be performed with the swarm --fastidious option. It is recommended and only usable in association with a distance of 1 (default and recommended: Yes)" />
+                <param argument="--distance" type="integer" label="Aggregation distance clustering" help="Maximum number of differences between sequences in each aggregation Swarm step. (recommended d=1)" value="1" min="1" max="15" optional="false" />
+                <param argument="--fastidious" type="boolean" checked="true" truevalue="--fastidious" falsevalue="" label="Refine clustering" help="Clustering will be performed with the Swarm --fastidious option. It is recommended and only usable in association with a distance of 1 (default and recommended: Yes)" />
             </when>
             <when value="3.1">
-                <param argument="--distance" type="integer" value="3" min="1" max="15" optional="false" label="Aggregation distance clustering" help="Maximum number of differences between sequences in each aggregation swarm step" />
+                <param argument="--distance" type="integer" value="3" min="1" max="15" optional="false" label="Aggregation distance clustering" help="Maximum number of differences between sequences in each aggregation Swarm step" />
                 <param argument="--denoising" type="boolean" checked="true" truevalue="--denoising" falsevalue="" label="Efficient denoising ? (equals to a first clustering step with d=1)" help="Clustering will be perform in two steps, first with distance = 1 and then with an aggregation distance of next input parameter (default : Yes)" />
             </when>
         </conditional>
@@ -146,11 +146,11 @@ How it works
    "1", "Sorting the reads by their abundance", "Sorting the reads by their abundance", "Sorting the reads by their abundance"
    "2", "/", "/", "Clusters the reads (`Swarm &lt;https://github.com/torognes/swarm&gt;`_) with an agglomeration distance of 1"
    "3", "/", "/", "Sorting the pre-clusters sequences by their abundance"
-   "4", "Clusters the reads (`Swarm &lt;https://github.com/torognes/swarm&gt;`_) with the distance you specified", "Clusters the reads (`Swarm &lt;https://github.com/torognes/swarm&gt;`_) with the distance you specified and the (`--fastidious option of swarm &lt;https://github.com/torognes/swarm/blob/master/README.md#refine-swarm-otus&gt;`_)", "Clusters the pre-clusters sequences (`Swarm &lt;https://github.com/torognes/swarm&gt;`_) with the distance you specified"
+   "4", "Clusters the reads (`Swarm &lt;https://github.com/torognes/swarm&gt;`_) with the distance you specified", "Clusters the reads (`Swarm &lt;https://github.com/torognes/swarm&gt;`_) with the distance you specified and the (`--fastidious option of Swarm &lt;https://github.com/torognes/swarm/blob/master/README.md#refine-swarm-otus&gt;`_)", "Clusters the pre-clusters sequences (`Swarm &lt;https://github.com/torognes/swarm&gt;`_) with the distance you specified"
 
 **Swarm focus**
 
-Swarm uses an iterative growth process and the use of sequence abundance values to delineate OTUs.
+Swarm uses an iterative growth process and the use of sequence abundance values to delineate clusters.
 
 .. image:: FROGS_cluster_swarm.png
    :height: 223
@@ -158,9 +158,9 @@ Swarm uses an iterative growth process and the use of sequence abundance values 
 
 In each growth step, the sequence of the previous step is used to find the others sequences with a number of differences inferior or equal to the "Aggregation distance".
 
-After agregation Swarm refines the clusters by looking at the abundancies along the connections. Theoritically the abundances must decrease when you are going away from the seed (which is often the most abundant sequence). If this abundance raises again, it means that two different clusters are connected by some poorly abundant sequences, so swarm cut the connection.
+After agregation Swarm refines the clusters by looking at the abundancies along the connections. Theoritically the abundances must decrease when you are going away from the seed (which is often the most abundant sequence). If this abundance raises again, it means that two different clusters are connected by some poorly abundant sequences, so Swarm cut the connection.
 
-On the other hand, the fastidious option of swarm allows to aggregate small and rare clusters into bigger one if they share sequence with at most 2*d distance. In this cases, d is restricted to 1 so, cluster distance will be 2. (image extracted from `Swarm github &lt;https://github.com/torognes/swarm&gt;`_)
+On the other hand, the fastidious option of Swarm allows to aggregate small and rare clusters into bigger one if they share sequence with at most 2*d distance. In this cases, d is restricted to 1 so, cluster distance will be 2. (image extracted from `Swarm github &lt;https://github.com/torognes/swarm&gt;`_)
 
 .. image:: FROGS_cluster_fastidious.png
    :height: 319
@@ -173,11 +173,11 @@ Advices
 
 The fastidious strategy is recommended since FROGS 3.2
 
-The fastidious option is recommended with an aggregating distance of 1. "It will reduce the number of small OTUs while maintaining a high clustering resolution, by postulating the existence of an intermediate amplicon sequences"
+The fastidious option is recommended with an aggregating distance of 1. "It will reduce the number of small clusters while maintaining a high clustering resolution, by postulating the existence of an intermediate amplicon sequences"
 
 The denoising strategy was recommended until FROGS 3.1
 
-The denoising step allows to build very fine clusters with minimal differences. In this case, the number of differences between sequences of each crowns is equal to 1. This first clustering is extremly quick. After the denoising, a second swarm is run with an aggregation distance >1 as you have configured, between seeds from this first clustering. We recommended a distance of 3.
+The denoising step allows to build very fine clusters with minimal differences. In this case, the number of differences between sequences of each crowns is equal to 1. This first clustering is extremly quick. After the denoising, a second Swarm is run with an aggregation distance >1 as you have configured, between seeds from this first clustering. We recommended a distance of 3.
 
 To have some metrics on your clusters, you can use the tool **FROGS Clusters Stat**.
 

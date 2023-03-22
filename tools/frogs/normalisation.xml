@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGS_normalisation" name="FROGS Abundance normalisation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-        <description>Normalise OTU abundance.</description>
+        <description>Normalise ASV abundance.</description>
 
     <macros>
         <import>macros.xml</import>
@@ -101,7 +101,7 @@ The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`
 
 **Abundance file**:
 
-The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
+The abundance of each ASV in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
 **Sampling method**:
 

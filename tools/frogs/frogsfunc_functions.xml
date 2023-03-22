@@ -31,6 +31,7 @@
     </stdio>
     <command >
        frogsfunc_functions.py
+            @CPUS@
             --input-biom $input_biom
             --input-fasta $input_fasta
             --input-tree $input_tree

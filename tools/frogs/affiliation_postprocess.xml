@@ -1,5 +1,5 @@
 <tool id="FROGS_affiliation_postprocess" name="FROGS Affiliation postprocess" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>Aggregates OTUs based on alignment metrics</description>
+    <description>Aggregates ASVs based on alignment metrics</description>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -33,8 +33,8 @@
             </when>
             <when value="false"/>
         </conditional>
-        <param argument="--identity" type="float" min="0.0" max="100.0" value="99.0" label="Minimum identity for aggregation" help="OTUs will be aggregated if they share the same taxonomy with at least X% identity"/>
-        <param argument="--coverage" type="float" min="0.0" max="100.0" value="99.0" label="Minimum coverage for aggregation" help="OTUs will be aggregated if they share the same taxonomy with at least X% alignment coverage"/>
+        <param argument="--identity" type="float" min="0.0" max="100.0" value="99.0" label="Minimum identity for aggregation" help="ASVs will be aggregated if they share the same taxonomy with at least X% identity"/>
+        <param argument="--coverage" type="float" min="0.0" max="100.0" value="99.0" label="Minimum coverage for aggregation" help="ASVs will be aggregated if they share the same taxonomy with at least X% alignment coverage"/>
     </inputs>
     <outputs>
         <data format="biom1" name="biom_out" label="${tool.name}: affiliation_abundance.biom" from_work_dir="affiliation.biom"/>
@@ -62,7 +62,7 @@
 
 What it does
 
-This tool resolves multi-hit ambiguities if exact amplicon length are available and aggregrated OTUs sharing same taxonomy based on alignment metrics thresholds
+This tool resolves multi-hit ambiguities if exact amplicon length are available and aggregrated ASVs sharing same taxonomy based on alignment metrics thresholds
 
 
 .. class:: infomark page-header h2
@@ -75,11 +75,11 @@ Inputs
 
 **Abundance file**:
 
-The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_) with taxonomic affiliations metadata.
+The abundance of each ASV in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_) with taxonomic affiliations metadata.
 
 **Sequence file**:
 
-The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_) of each OTU seed.
+The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_) of each ASV seed.
 
 **Reference file** (optionnal):
 
@@ -92,24 +92,24 @@ Outputs
 
 **Abundance file**:
 
- The abundance file of OTUs and aggregated OTUs, with their affiliation (format `BIOM &lt;http://biom-format.org/&gt;`_) and with potentially less ambiguities.
+ The abundance file of ASVs and aggregated ASVs, with their affiliation (format `BIOM &lt;http://biom-format.org/&gt;`_) and with potentially less ambiguities.
 
 **Sequence file**:
 
-The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_) of each aggregated OTU seed.
+The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_) of each aggregated ASV seed.
 
 **Composition file**:
 
-The aggregation composition file (format text) describing the composition of each resulting OTU.
+The aggregation composition file (format text) describing the composition of each resulting ASV.
 
 .. class:: infomark page-header h2
 
 How it works ?
 
-If a reference fasta file is provided, for each OTU with multiaffiliation, among the different possible affiliations, we only keep the affiliation of the sequence with the shortest length. The aim is to resolve ambiguities due to potential inclusive sequences such as ITS.
+If a reference fasta file is provided, for each ASV with multiaffiliation, among the different possible affiliations, we only keep the affiliation of the sequence with the shortest length. The aim is to resolve ambiguities due to potential inclusive sequences such as ITS.
 
-Second step is the OTUs aggregation that shares the same taxonomy inferred on alignment metrics.
-The process starts with the most abundant OTU. If an OTU shares at least one affiliation with another OTU with at least I% of identity and C% of alignment coverage, the OTUs are aggregated together : the different affiliations, are merged, blast concensus taxonomy is updated and abundance counts are summed. The seed of the most abundant OTU is kept.
+Second step is the ASVs aggregation that shares the same taxonomy inferred on alignment metrics.
+The process starts with the most abundant ASV. If an ASV shares at least one affiliation with another ASV with at least I% of identity and C% of alignment coverage, the ASVs are aggregated together : the different affiliations, are merged, blast concensus taxonomy is updated and abundance counts are summed. The seed of the most abundant ASV is kept.
 
 
 @HELP_CONTACT@

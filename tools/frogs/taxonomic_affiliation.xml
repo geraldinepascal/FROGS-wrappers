@@ -1,5 +1,5 @@
 <tool id="FROGS_taxonomic_affiliation" name="FROGS_5 Taxonomic affiliation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>Taxonomic affiliation of each OTU's seed by RDPtools and BLAST</description>
+    <description>Taxonomic affiliation of each ASV's seed by RDPtools and BLAST</description>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -74,7 +74,7 @@ The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`
 
 **Abundance file**:
 
-The abundance of each OTU in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
+The abundance of each ASV in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
 .. class:: h3
 
@@ -107,9 +107,9 @@ How it works ?
    :widths: 5, 150
    :class: table table-striped
 
-   "1", "`RDPClassifier &lt;http://rdp.cme.msu.edu/classifier/classifier.jsp&gt;`_ may be used with database to associate to each OTU a taxonomy and a bootstrap (example: *Bacteria;(1.0);Firmicutes;(1.0);Clostridia;(1.0);Clostridiales;(1.0);Clostridiaceae 1;(1.0);Clostridium sensu stricto;(1.0);*)."
-   "2", "`blastn+ &lt;https://blast.ncbi.nlm.nih.gov/Blast.cgi&gt;`_ or `needlall &lt;http://emboss.sourceforge.net/apps/release/6.6/emboss/apps/needleall.html&gt;`_ is used to find alignment between each OTU and the database. Only the bests hits with the same score are reported. blastn+ is used for merged read pair, and needall is used for artificially combined sequence. For each alignment returned, several metrics are computed: identity percentage, coverage percentage, and alignment length"
-   "3", "For each OTU with several blastn+/needlall alignment results a consensus is determined on each taxonomic level. If all the taxa at a taxonomic rank are identical the taxon name is reported otherwise *Multi-affiliation* is reported. For example, if you have an OTU with two equivalent hits, associated to *Bacteria;Proteobacteria;Gamma Proteobacteria;Enterobacteriales*, and *Bacteria;Proteobacteria;Beta Proteobacteria;Methylophilales*, the consensus will be *Bacteria;Proteobacteria;Multi-affiliation;Multi-affiliation*."
+   "1", "`RDPClassifier &lt;http://rdp.cme.msu.edu/classifier/classifier.jsp&gt;`_ may be used with database to associate to each ASV a taxonomy and a bootstrap (example: *Bacteria;(1.0);Firmicutes;(1.0);Clostridia;(1.0);Clostridiales;(1.0);Clostridiaceae 1;(1.0);Clostridium sensu stricto;(1.0);*)."
+   "2", "`blastn+ &lt;https://blast.ncbi.nlm.nih.gov/Blast.cgi&gt;`_ or `needlall &lt;http://emboss.sourceforge.net/apps/release/6.6/emboss/apps/needleall.html&gt;`_ is used to find alignment between each ASV and the database. Only the bests hits with the same score are reported. blastn+ is used for merged read pair, and needall is used for artificially combined sequence. For each alignment returned, several metrics are computed: identity percentage, coverage percentage, and alignment length"
+   "3", "For each ASV with several blastn+/needlall alignment results a consensus is determined on each taxonomic level. If all the taxa at a taxonomic rank are identical the taxon name is reported otherwise *Multi-affiliation* is reported. For example, if you have an ASV with two equivalent hits, associated to *Bacteria;Proteobacteria;Gamma Proteobacteria;Enterobacteriales*, and *Bacteria;Proteobacteria;Beta Proteobacteria;Methylophilales*, the consensus will be *Bacteria;Proteobacteria;Multi-affiliation;Multi-affiliation*."
 
 .. class:: infomark page-header h2
 
@@ -131,7 +131,7 @@ Alignment metrics details on identity percentage calculation
 
 **- Finally, how percentage identity is computed ?**
 
-With the classical method of %id calculation, filtering on %id will systematically removed “FROGS combined” OTUs. So, we proposed to replace the classical %id by a %id computed on the sequenced bases only.
+With the classical method of %id calculation, filtering on %id will systematically removed “FROGS combined” ASVs. So, we proposed to replace the classical %id by a %id computed on the sequenced bases only.
 
 .. image:: FROGS_affiliation_percent_id_formula.png
     :height: 36
@@ -154,9 +154,9 @@ This calculation allows to return 100% of identity on sequenced bases for “FRO
 
 Advices
 
-This tool can take large time. It is recommended to filter your OTU abundance and sequence files before this tool (see **FROGS OTU Filters**).
+This tool can take large time. It is recommended to filter your ASV abundance and sequence files before this tool (see **FROGS cluster Filters**).
 
-As you can see the affiliation of each OTU is not human readable in outputed abundance file. We provide a tools to convert these BIOM file in tabulated file, see the **FROGS BIOM to TSV** tool.
+As you can see the affiliation of each ASV is not human readable in outputed abundance file. We provide a tools to convert these BIOM file in tabulated file, see the **FROGS BIOM to TSV** tool.
 
 
 @HELP_CONTACT@

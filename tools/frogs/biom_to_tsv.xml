@@ -71,21 +71,21 @@ Outputs
 
 **Multiple affiliation file**:
 
- If you have used *FROGS affiliation* on your data, each OTU can have several affiliations: several alignments with same score on reference database. The multiple affiliation file contains details on these possibles affiliations (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
+ If you have used *FROGS affiliation* on your data, each ASV can have several affiliations: several alignments with same score on reference database. The multiple affiliation file contains details on these possibles affiliations (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
 
 
 .. class:: infomark page-header h2
 
 How it works ?
 
-FROGS Biom to Tsv will search if any metadata are available, and the OTU sequence if fasta file is precised. Then it will extract the OTU name, sum the sample abundance, and extract the detailed abundance for each sample. Finally, it will write all these fields separated by tabulation in the TSV file.
+FROGS Biom to Tsv will search if any metadata are available, and the ASV sequence if fasta file is precised. Then it will extract the ASV name, sum the sample abundance, and extract the detailed abundance for each sample. Finally, it will write all these fields separated by tabulation in the TSV file.
 
 
 .. class:: infomark page-header h2
 
 Advices
 
-This output tsv file is easily readable in any spreadsheet software. Be aware that these software have a number of line limit (1 048 576 for Excel and LibreOffice calc ate least). If you have more OTU, use **FROGS Filters** to extract for example the most abundant OTU before converting your BIOM abundance table in TSV file.
+This output tsv file is easily readable in any spreadsheet software. Be aware that these software have a number of line limit (1 048 576 for Excel and LibreOffice calc ate least). If you have more ASV, use **FROGS Filters** to extract for example the most abundant ASV before converting your BIOM abundance table in TSV file.
 
 
 @HELP_CONTACT@
