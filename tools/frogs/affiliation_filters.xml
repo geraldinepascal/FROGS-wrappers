@@ -72,11 +72,12 @@
             <param argument="--min-blast-coverage" type="float" min="0.0" max="1.0" optional="true" label="Minimum coverage" help="Fill the field only if you want this treatment"/>
             <param argument="--min-blast-length" type="integer" min="0" optional="true" label="Minimum alignment length" help="Fill the field only if you want this treatment"/>
             <conditional name="keep_or_ignore">
-                <param name="taxa_choice" type="select" label="Blast taxa keyword filters" help='Do you want to keep or ignore blast affiliations including these taxon / word ?' display='select'>
+                <param name="taxa_choice" type="select" label="Blast taxa keyword filters" help="Do you want to keep or ignore blast affiliations including these taxon / word ?" >
                     <option value="" selected="true">No filter</option>
                     <option value="ignore">Ignore taxa</option>
             	    <option value="keep" >Keep taxa</option>
                 </param>
+                <when value=""/>
                 <when value="ignore">
                     <repeat name="taxon_ignored" title="Remove blast affiliations including these taxon / word">
                         <param argument="--ignore-blast-taxa" type="text" optional="true" label="Full or partial taxon name" help="Example: &quot;unknown species&quot; or &quot;subsp.&quot;">
