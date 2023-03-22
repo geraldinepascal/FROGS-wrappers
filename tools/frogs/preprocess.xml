@@ -38,7 +38,7 @@
                 #if $sequencer_type.input_type.archive_type.merge_software_type.merge_software == "flash"
                     --expected-amplicon-size $sequencer_type.input_type.archive_type.merge_software_type.expected_amplicon_size
                 #end if
-                #if $sequencer_type.input_type.archive_type.keep_unmerged
+                #if $sequencer_type.input_type.archive_type.keep_unmerged == "Yes"
                     --keep-unmerged
                 #end if
             #end if
@@ -67,7 +67,7 @@
                     #if $sequencer_type.input_type.files_by_samples_type.merge_software_type.merge_software == "flash"
                         --expected-amplicon-size $sequencer_type.input_type.files_by_samples_type.merge_software_type.expected_amplicon_size
                     #end if
-                    #if $sequencer_type.input_type.files_by_samples_type.keep_unmerged
+                    #if $sequencer_type.input_type.files_by_samples_type.keep_unmerged == "Yes"
                         --keep-unmerged
                     #end if
                 #end if
@@ -119,7 +119,10 @@
                                     </when>
                                     <when value="vsearch"></when>
                                 </conditional>
-                                <param argument="--keep-unmerged" type="boolean" label="Would you like to keep unmerged reads?" help="No = Unmerged reads will be excluded; Yes = unmerged reads will be artificially combined with 100 N. (default No)" />
+                                <param argument="--keep-unmerged" type="select" label="Would you like to keep unmerged reads?" help="No = Unmerged reads will be excluded; Yes = unmerged reads will be artificially combined with 100 N. (default No)" >
+                                    <option value="No" selected="true">No, unmerged reads will be excluded</option>
+                                    <option value="Yes">Yes, unmerged reads will be artificially combined with 100 N.</option>
+                                </param>
                             </when>
                             <when value="already_merged"></when>
                         </conditional>
@@ -153,7 +156,10 @@
                                     </when>
                                     <when value="vsearch"></when>
                                 </conditional>
-                                <param argument="--keep-unmerged" type="boolean" label="Would you like to keep unmerged reads?" help="No = Unmerged reads will be excluded; Yes = unmerged reads will be artificially combined with 100 N. (default No)" />
+                                <param argument="--keep-unmerged" type="select" label="Would you like to keep unmerged reads?" help="No = Unmerged reads will be excluded; Yes = unmerged reads will be artificially combined with 100 N. (default No)">
+                                    <option value="No" selected="true">No, unmerged reads will be excluded</option>
+                                    <option value="Yes">Yes, unmerged reads will be artificially combined with 100 N.</option>
+                                </param>
                             </when>
                             <when value="already_merged">
                                 <repeat name="samples" title="Samples" min="1">
