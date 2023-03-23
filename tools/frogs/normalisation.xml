@@ -36,7 +36,7 @@
 		                       #if $sampling_method.sampling_by_min == "yes"
 		                       	 --sampling-by-min
 		                       #else
-		                         --num-reads $sampling_method.num_reads
+		                         --num-reads '$sampling_method.num_reads'
 		                       	 #if $sampling_method.delete_samples == "true"
 		                           --delete-samples
 		                         #end if
