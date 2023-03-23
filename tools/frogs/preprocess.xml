@@ -119,7 +119,7 @@
                                     </when>
                                     <when value="vsearch"></when>
                                 </conditional>
-                                <param argument="--keep-unmerged" type="select" label="Would you like to keep unmerged reads?" help="No = Unmerged reads will be excluded; Yes = unmerged reads will be artificially combined with 100 N. (default No)" >
+                                <param argument="--keep-unmerged" type="select" label="Would you like to keep unmerged reads?" help="No = Unmerged reads will be excluded; Yes = unmerged reads will be artificially combined with 100 N. (default No)" display="radio">
                                     <option value="No" selected="true">No, unmerged reads will be excluded.</option>
                                     <option value="Yes">Yes, unmerged reads will be artificially combined.</option>
                                 </param>
@@ -156,7 +156,7 @@
                                     </when>
                                     <when value="vsearch"></when>
                                 </conditional>
-                                <param argument="--keep-unmerged" type="select" label="Would you like to keep unmerged reads?" help="No = Unmerged reads will be excluded; Yes = unmerged reads will be artificially combined with 100 N. (default No)">
+                                <param argument="--keep-unmerged" type="select" label="Would you like to keep unmerged reads?" help="No = Unmerged reads will be excluded; Yes = unmerged reads will be artificially combined with 100 N. (default No)" display="radio">
                                     <option value="No" selected="true">No, unmerged reads will be excluded</option>
                                     <option value="Yes">Yes, unmerged reads will be artificially combined.</option>
                                 </param>
@@ -177,7 +177,7 @@
                 <param argument="--max-amplicon-size" type="integer" value="" label="Maximum amplicon size" help="The maximum size of the amplicons (with primers)"/>
                 <!-- Primers -->
                 <conditional name="is_primer_in_seq">
-                    <param name="primer_choice" type="select" label="Do the sequences have PCR primers?" help="">
+                    <param name="primer_choice" type="select" label="Do the sequences have PCR primers?" help="" display="radio">
                         <option value="true" selected="true">Yes</option>
                         <option value="false">No</option>     
                     </param>
@@ -225,7 +225,7 @@
                 
                 <!-- Primers -->
                 <conditional name="is_primer_in_seq">
-                    <param name="primer_choice" type="select" label="Do the sequences have PCR primers?" help="">
+                    <param name="primer_choice" type="select" label="Do the sequences have PCR primers?" help="" display="radio">
                         <option value="true" selected="true">Yes</option>
                         <option value="false">No</option> 
                     </param>
