@@ -45,7 +45,7 @@
 	</command> 
 	<inputs>
         <!-- Input files -->       
-        <param argument="--input-file" format="tsv" name="input_file" type="data" label="Function abundance file" help="TSV function abundances table from FROGSFUNC_2_function tool, frogsfunc_functions_unstrat_EC.tsv for Metacyc database or frogsfunc_functions_unstrat_KO.tsv for Kegg database (unstratified table)." optional="false"/>
+        <param argument="--input-file" format="tsv" type="data" label="Function abundance file" help="TSV function abundances table from FROGSFUNC_2_function tool, frogsfunc_functions_unstrat_EC.tsv for Metacyc database or frogsfunc_functions_unstrat_KO.tsv for Kegg database (unstratified table)." optional="false"/>
 
         <!-- References -->
 	      <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
