@@ -49,8 +49,8 @@
 	</command> 
 	<inputs>
     	<!-- Input files -->
-		<param argument="--input-fasta" format="fasta" name="input_fasta" type="data" label="Sequence file" help="The sequence file to analyse (format: fasta)." optional="false"/>
-		<param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance file to analyse (format: biom). Taxonomic affiliations must be inside (FROGS taxonomic_affiliation step)." optional="false"/>
+		<param argument="--input-fasta" format="fasta" type="data" label="Sequence file" help="The sequence file to analyse (format: fasta)." optional="false"/>
+		<param argument="--input-biom" format="biom1" type="data" label="Biom file" help="The abundance file to analyse (format: biom). Taxonomic affiliations must be inside (FROGS taxonomic_affiliation step)." optional="false"/>
 
     	<!-- Parameters -->
         <param argument="--ref-dir" name="marker" type="select" label="Taxonomy marker" display="radio" help="Taxonomic marker of interest.">
@@ -61,11 +61,11 @@
 					<validator type="no_options" message="A built-in database is not available" />
 			</options>
 		</param>
-        <param argument="--placement-tool" name="placement_tool" type="select" label="Placement tool" help="Placement tool for insertion of sequences into the reference tree. SEPP is a low-memory alternative to EPA-ng for placing sequences, and is only available for 16S analysis." multiple="false" display="radio">
+        <param argument="--placement-tool" type="select" label="Placement tool" help="Placement tool for insertion of sequences into the reference tree. SEPP is a low-memory alternative to EPA-ng for placing sequences, and is only available for 16S analysis." multiple="false" display="radio">
         	<option value="epa-ng">epa-ng</option>
         	<option value="sepp">sepp</option>
 		</param>
-		<param argument="--min-align" name="min_align" type="float" label="Minimum alignment length" help="Proportion of the total length of an input sequence that must align with reference sequences. All others will be out. (default: 0.80)" value="0.8" min="0" max="1" optional="false" /> 
+		<param argument="--min-align" type="float" label="Minimum alignment length" help="Proportion of the total length of an input sequence that must align with reference sequences. All others will be out. (default: 0.80)" value="0.8" min="0" max="1" optional="false" /> 
 	</inputs>
 
 	<outputs>
