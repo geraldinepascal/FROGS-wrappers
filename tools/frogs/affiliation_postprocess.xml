@@ -22,7 +22,7 @@
         <param format="fasta" name="input_fasta" type="data" label="Sequence file" help="The sequence file to filter (format: FASTA)."/>
         <param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)"/>
         <conditional name="is_HVL">
-            <param name="HVL_amplicon" type="select" label="Is this an amplicon hyper variable in length?" help="Multi-affiliation tag may be resolved by selecting the shortest amplicon reference. For this you need the reference fasta file of your targetted amplicon.">
+            <param name="HVL_amplicon" type="select" label="Is this an amplicon hyper variable in length?" help="Multi-affiliation tag may be resolved by selecting the shortest amplicon reference. For this, you need the reference fasta file of your target amplicon.">
                 <option value="No">No</option>
                 <option value="Yes" >Yes</option>
             </param>
@@ -65,7 +65,7 @@
 
 What it does
 
-This tool resolves multi-hit ambiguities if exact amplicon length are available and aggregrated ASVs sharing same taxonomy based on alignment metrics thresholds
+This tool resolves multi-affiliation ambiguities if exact amplicon length are available and aggregrated ASVs sharing same taxonomy based on alignment metrics thresholds
 
 
 .. class:: infomark page-header h2
@@ -82,7 +82,7 @@ The abundance of each ASV in each sample (format `BIOM &lt;http://biom-format.or
 
 **Sequence file**:
 
-The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_) of each ASV seed.
+The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_) of each ASV sequence.
 
 **Reference file** (optionnal):
 
@@ -99,7 +99,7 @@ Outputs
 
 **Sequence file**:
 
-The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_) of each aggregated ASV seed.
+The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_) of each aggregated ASV sequence.
 
 **Composition file**:
 
@@ -109,10 +109,11 @@ The aggregation composition file (format text) describing the composition of eac
 
 How it works ?
 
-If a reference fasta file is provided, for each ASV with multiaffiliation, among the different possible affiliations, we only keep the affiliation of the sequence with the shortest length. The aim is to resolve ambiguities due to potential inclusive sequences such as ITS.
+This step is the ASVs aggregation that shares the same taxonomy inferred on alignment metrics.
+The process starts with the most abundant ASV. If an ASV shares at least one affiliation with another ASV with at least I% of identity and C% of alignment coverage, the ASVs are aggregated together : the different affiliations, are merged, blast concensus taxonomy is updated and abundance counts are summed. The sequence of the most abundant ASV is kept.
 
-Second step is the ASVs aggregation that shares the same taxonomy inferred on alignment metrics.
-The process starts with the most abundant ASV. If an ASV shares at least one affiliation with another ASV with at least I% of identity and C% of alignment coverage, the ASVs are aggregated together : the different affiliations, are merged, blast concensus taxonomy is updated and abundance counts are summed. The seed of the most abundant ASV is kept.
+If a reference fasta file is provided, for each ASV with multi-affiliation, among the different possible affiliations, we only keep the affiliation of the sequence with the shortest length. This is useful to resolve ambiguities due to potential inclusive sequences such as ITS.
+This step also makes it possible to group ASVs from different copies of the same marker gene, thus having the same affiliation.
 
 
 @HELP_CONTACT@

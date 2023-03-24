@@ -94,7 +94,7 @@
 
 What it does
 
-FROGS Affiliation stats computes several metrics and generates a HTML file describing ASVs based on their taxonomies and eventually the quality of the affiliations.
+FROGS_Affiliation_stats computes several metrics and generates a HTML file describing ASVs based on their taxonomies and eventually the quality of the affiliations.
 
 
 .. class:: infomark page-header h2
@@ -107,9 +107,8 @@ Input
 
 **Abundance file**:
 
-The abundance and affiliation of each ASVs (format `BIOM &lt;http://biom-format.org/&gt;`_). This file can be produced by FROGS Affiliation ASV.
+The abundance and affiliation of each ASV (format `BIOM &lt;http://biom-format.org/&gt;`_). This file can be produced by FROGS_taxonomic_affiliation tool.
 
-The FROGS's tools working on clusters and others metagenomic workflows produce files in BIOM format.
 
 .. class:: h3
 
@@ -117,7 +116,7 @@ Output
 
 **Report file** (report.html):
 
- ASVs taxonomies and affiliations metrics (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_):
+ ASVs taxonomies and affiliation metrics (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_):
 
   *-Taxonomy distribution*: displays the distribution of each taxon and the rarefaction for each taxonomic rank and for each sample
 

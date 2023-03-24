@@ -94,11 +94,11 @@ This tool is usefull if you have modified your abundance TSV file and  that you 
 
 If you modify your abundance TSV file
 
-    * -do not modify column names
-    * -do not remove columns
-    * -take care to choose a taxonomy available in your multi_affiliation TSV file
-    * -if you delete lines of the multi_affiliation file, take care to not remove a complete cluster whithout removing all "multi tags" in you abundance TSV file.
-    * -if you want to rename a taxon level (ex : genus "Ruminiclostridium 5;" to genus "Ruminiclostridium;"), do not forget to modify also your multi_affiliation TSV file.
+    * do not modify column names
+    * do not remove columns
+    * take care to choose a taxonomy available in your multi_affiliation TSV file
+    * if you delete lines of the multi_affiliation file, take care to not remove a complete cluster whithout removing all "multi tags" in you abundance TSV file.
+    * if you want to rename a taxon level (ex : genus "Ruminiclostridium 5;" to genus "Ruminiclostridium;"), do not forget to modify also your multi_affiliation TSV file.
 
 
 

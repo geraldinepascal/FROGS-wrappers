@@ -57,7 +57,7 @@
 
 What it does
 
-this tool adds taxonomic affiliation in abundance file.
+This tool adds taxonomic affiliations in abundance file.
 
 
 .. class:: infomark page-header h2
@@ -82,11 +82,11 @@ Outputs
 
 **Abundance file** (tax_affiliation.biom):
 
- The abundance file with affiliation (format `BIOM &lt;http://biom-format.org/&gt;`_).
+ The abundance file with affiliations (format `BIOM &lt;http://biom-format.org/&gt;`_).
 
 **Report file** (report.html):
 
- This file presents the number of sequences affiliated by blast, and the number of multi-affiliation (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
+ This file presents the number of affiliated sequences by blast, and the number of multi-affiliations (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
 
  .. image:: FROGS_affiliation_summary.png
    :height: 975
@@ -96,7 +96,7 @@ Outputs
 
 Reference database
 
-All the databases we format (on demand) for RDPClassifier and NCBI Blast+ are inventoried here: http://genoweb.toulouse.inrae.fr/frogs_databanks/assignation/readme.txt
+All the available databases (on demand to frogs-support@inrae.fr) for RDPClassifier and NCBI Blast+ are listed here: http://genoweb.toulouse.inrae.fr/frogs_databanks/assignation/readme.txt
 
 .. class:: infomark page-header h2
 
@@ -154,9 +154,9 @@ This calculation allows to return 100% of identity on sequenced bases for “FRO
 
 Advices
 
-This tool can take large time. It is recommended to filter your ASV abundance and sequence files before this tool (see **FROGS cluster Filters**).
+This can be a long process. It is recommended to filter your ASV abundances and sequences before this step of taxonomic affiliation (see **FROGS cluster Filters**).
 
-As you can see the affiliation of each ASV is not human readable in outputed abundance file. We provide a tools to convert these BIOM file in tabulated file, see the **FROGS BIOM to TSV** tool.
+As you can see the affiliation of each ASV is not human readable in outputed abundance file. We provide a tools to convert this BIOM file in tabulated file, see the **FROGS BIOM to TSV** tool.
 
 
 @HELP_CONTACT@
