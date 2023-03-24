@@ -6,12 +6,13 @@
     <expand macro="requirements"/>
     <command detect_errors="exit_code">
 	biom_to_tsv.py
+	$extract_multi_align
 	    --input-biom '$biom_file'
 		#if $sequence_file
 		    --input-fasta '$sequence_file'
 		#end if
 		--output-tsv '$tsv_file'
-		#if $extract_multi_align
+		#if $extract_multi_align == "yes"
 		    --output-multi-affi '$multi_affi_file'
 	    #end if
 	</command>
@@ -20,12 +21,15 @@
 		<param format="biom1" name="biom_file" type="data" label="Abundance file" help="The BIOM file to convert (format: BIOM)" optional="false" />
 		<param format="fasta" name="sequence_file" type="data" label="Sequences file (optional)" help="The sequences file (format: fasta). If you use this option the sequences will be add in TSV." optional="true" />
 		<!-- Parameters -->
-		<param name="extract_multi_align" type="boolean" label="Extract multi-alignments" help="If you have used FROGS_5_taxonomic_affiliation on your data, you can extract information about multiple alignements in a second TSV." checked="true"/>
+		<param name="extract_multi_align" type="select" label="Extract multi-alignments" help="If you have used FROGS_5_taxonomic_affiliation on your data, you can extract information about multiple alignements in a second TSV.">
+            <option value="yes" selected="true">Yes</option>
+            <option value="no" >No</option>
+		</param>
 	</inputs>
 	<outputs>
 		<data format="tsv" name="tsv_file" label="${tool.name}: abundance.tsv" from_work_dir="abundance.tsv"/>
 		<data format="tsv" name="multi_affi_file" label="${tool.name}: multi-affiliations.tsv" from_work_dir="multi_hits.tsv" >
-			<filter>extract_multi_align</filter>
+			<filter>extract_multi_align == "yes"</filter>
 		</data>
 	</outputs>
 	<tests>
