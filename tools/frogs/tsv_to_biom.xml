@@ -1,5 +1,5 @@
 <tool id="FROGS_tsv_to_biom" name="FROGS TSV_to_BIOM" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>Converts a TSV file in a BIOM file</description>
+    <description>Converts a TSV file in a BIOM file 1</description>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -11,7 +11,7 @@
 	    #if $multi_affi_file
 	        --input-multi-affi '$multi_affi_file'
 	    #end if
-	    #if $extract_fasta
+	    #if $extract_fasta == "yes"
 	        --output-fasta '$sequence_file'
 	    #end if
     </command>
@@ -20,12 +20,15 @@
         <param format="tabular,tsv" name="tsv_file" type="data" label="Abundance TSV File" help="Your FROGS abundance TSV file. Take care to keep original column names." />
         <param format="tabular,tsv" name="multi_affi_file" type="data" label="Multi_affiliation TSV File" help="TSV file describing multi_affiliation blast results." optional="true" />
         <!-- Parameters -->
-        <param name="extract_fasta" type="boolean" label="Extract seeds in FASTA file" help="If there is a 'seed_sequence' column in your TSV table, you can extract seed sequences in a separated FASTA file." />
+        <param name="extract_fasta" type="select" display="radio" label="Extract seeds in FASTA file" help="If there is a 'seed_sequence' column in your TSV table, you can extract seed sequences in a separated FASTA file." >
+            <option value="yes">Yes</option>
+            <option value="no" selected="true">No</option>
+		</param>
     </inputs>
     <outputs>
         <data format="biom1" name="biom_file" label="${tool.name}: abundance.biom" from_work_dir="abundance.biom" />
         <data format="fasta" name="sequence_file" label="${tool.name}: sequences.fasta" from_work_dir="seed.fasta">
-            <filter>extract_fasta</filter>
+            <filter>extract_fasta == "yes"</filter>
         </data>
     </outputs>
     <tests>
