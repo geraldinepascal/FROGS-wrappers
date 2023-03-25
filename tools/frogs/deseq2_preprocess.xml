@@ -1,5 +1,5 @@
 <tool id="FROGSSTAT_DESeq2_Preprocess" name="FROGSSTAT DESeq2 Preprocess" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>import a Phyloseq object and prepare it for DESeq2 differential abundance analysis</description>
+    <description>import a Phyloseq object and prepare it for DESeq2 differential abundance analysis a</description>
     <macros>
         <import>macros.xml</import>
     </macros>
@@ -62,7 +62,9 @@
     </inputs>
     <outputs>
         <data format="rdata" name="dds" label="${tool.name}: dds.Rdata" from_work_dir="DESeq2_preprocess.Rdata"/>
-        <data format="rdata" name="phyloseq" label="${tool.name}: abundances.Rdata" from_work_dir="phyloseq_functions.Rdata"/>
+        <data format="rdata" name="phyloseq" label="${tool.name}: abundances.Rdata" from_work_dir="phyloseq_data.Rdata">
+            <filter> analysis_type['analysis'] == 'FUNC'</filter>
+        </data>
     </outputs>
     <tests>
         <test>
