@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGSFUNC_step1_placeseqs" name="FROGSFUNC_step1_placeseqs" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+<tool id="FROGSFUNC_step1_placeseqs" name="FROGSFUNC_1_placeseqs" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
 	<description>Places ASVs into a reference phylogenetic tree.</description>
 
   <macros>
@@ -58,12 +58,16 @@
 	     		<column name="name" index="1"/>
 	        	<column name="value" index="2"/>
 				<column name="traits" index="3"/>
+                <filter type="unique_value" column='1'/>
 					<validator type="no_options" message="A built-in database is not available" />
 			</options>
 		</param>
         <param argument="--placement-tool" type="select" label="Placement tool" help="Placement tool for insertion of sequences into the reference tree. SEPP is a low-memory alternative to EPA-ng for placing sequences, and is only available for 16S analysis." multiple="false" display="radio">
-        	<option value="epa-ng">epa-ng</option>
-        	<option value="sepp">sepp</option>
+			<options from_data_table="frogs_picrust2_default_dir">       	
+				<column name='name' index='4' />
+				<column name='value' index='4' />
+                <filter type="param_value" ref="marker" column="2" />  
+			</options>
 		</param>
 		<param argument="--min-align" type="float" label="Minimum alignment length" help="Proportion of the total length of an input sequence that must align with reference sequences. All others will be out. (default: 0.80)" value="0.8" min="0" max="1" optional="false" /> 
 	</inputs>
@@ -104,13 +108,16 @@
 
 What it does
 
-FROGSFUNC_step1_placeseqs is the first step of PICRUSt2. It inserts your study sequences into a reference tree (`details &lt;https://github.com/picrust/picrust2/wiki/Sequence-placement&gt;`_). By default, this reference tree is based on 20,000 16S sequences from genomes in the `Integrated Microbial Genomes database &lt;https://img.jgi.doe.gov/&gt;`_. The script performs this step, which specifically:
+**FROGSFUNC_1_placeseqs_copynumber** is the first step of PICRUSt2. It inserts your study sequences into a reference tree (`details &lt;https://github.com/picrust/picrust2/wiki/Sequence-placement&gt;`_). By default, this reference tree is based on 20,000 16S sequences from genomes in the `Integrated Microbial Genomes database &lt;https://img.jgi.doe.gov/&gt;`_. The script performs this step, which specifically:
 
     - Aligns your study sequences with a multiple-sequence alignment of reference 16S, ITS or 18S sequences with `HMMER &lt;http://hmmer.org&gt;`_.
 
     - Finds the most likely placements of your study sequences in the reference tree with `EPA_NG &lt;https://github.com/Pbdas/epa-ng#build-instructions&gt;`_ or `SEPP &lt;https://github.com/smirarab/sepp&gt;`_.
 
     - Produces a treefile with the most likely placement for each sequence as the new tips with `GAPPA &lt;https://github.com/lczech/gappa&gt;`_.
+    
+    - Predicts marker copy number based solely on the sequences of marker genes with PICRUSt2. The available marker genes are 16S, ITS and 18S.
+    
 
 .. class:: infomark page-header h2
 
@@ -121,16 +128,16 @@ Inputs/Outputs
 Input
 
 
-**Sequence file** (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_):
+**-Sequence file-** (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_):
 
  The ASVs fasta sequence file.
 
-**Biom file** (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_):
+**-Biom file-** (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_):
 
  The ASVs biom file. Taxonomic affiliations must be done before (bion file from FROGS taxonomic_affiliation tool).
 
 
-**Placement tool** 
+**-Placement tool-** 
  
  EPA-NG or SEPP. SEPP is a low-memory alternative to EPA-ng for placing sequences. 
 
@@ -146,32 +153,34 @@ SEPP is not usable for ITS and 18S analysis.
 
 Outputs
 
-**Newick file** (frogsfunc_placeseqs_tree.nwk):
+**-Tree file-** (FROGSFUNC_1_placeseqs_copynumber_tree.nwk):
 
  The phylogenetic tree output with insert sequences into the reference tree (format: newick). (format `nhx &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
 
-**Excluded sequence file** (frogsfunc_placeseqs_excluded.tsv):
+**-Excluded sequence file-** (FROGSFUNC_1_placeseqs_copynumber_excluded.tsv):
 
  List of sequences not inserted in the PICRUSt2 reference tree. Sequences are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold (0.8 per default). These sequences are excluded for the next steps.
 
-**Closests reference sequences file** (frogsfunc_placeseqs_closests_ref_sequences.txt):
+**-Closests reference sequences file-** (FROGSFUNC_1_placeseqs_copynumber_closests_ref_sequences.txt):
 
  Information on the sequences from the PICRUST2 reference tree that are the closest neighbours of your studied sequences. 
 
-**File of sequences placed in the phylogenetic tree** (frogsfunc_placeseqs.fasta)
+**-File of sequences placed in the phylogenetic tree-** (FROGSFUNC_1_placeseqs_copynumber.fasta):
 
  Sequence file of inserted sequences into PICRUST2 reference tree.
 
-**Abundance table** (frogsfunc_placeseqs.biom)
+**-Abundance table-** (FROGSFUNC_1_placeseqs_copynumber.biom):
 
 Biom file of ASV abundances with inserted sequences into PICRUSt2 reference tree.
 
-**Marker copy number marker file**:
+**-Marker copy number marker file-**:
 
-Output table of predicted marker gene copy numbers per sequence. (frogsfunc_marker.tsv)
+.. image:: FROGS_frogsfunc_copynumbers_marker.png
 
+This output table of predicted marker gene copy numbers per sequence. (frogsfunc_marker.tsv)
+Marker gene copy number prediction is used to normalize the counting matrices of metabolic functions (inside FROGSFUNC_2_functions). For example, if the ASV has two 16S copies, the abundance of metabolic function for this ASV will be divided by 2.
 
-**Report file** (report.html):
+**-Report file-** (report.html):
    
 The report file describes ASVs are contained or not in the phylogenetic tree. Note that PICRUSt2 uses its own reference tree to affiliate ASVs from reference sequences. The report file indicates for each ASV which is the closest PICRUSt2 reference sequence, and compares it to the original FROGS taxonomy. Clicking on the sequence ID gives you more information about it (`JGI database &lt;https://img.jgi.doe.gov/&gt;`_).
 
@@ -217,7 +226,7 @@ Closest reference sequence (from JGI database) from one ASV sequence.
 
 Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance between the ASV and the nearest sequenced reference genome. This metric can be used to identify ASVs that are highly distant from all reference sequences but the predictions for these sequences are less reliable. The higher the NSTI score, the less the affiliations are relevant. Any ASV with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 
-The graph shows the number of kept ASVs and sequences according to the NSTI threshold. It is a decision support graphic to help choose the NSTI threshold. This NSTI threshold will be asked to set in the next tool FROGSFUNC_step2_functions. A good practice is to choose a NSTI threshold that retains a good number of sequences and as low as possible i.e. while ensuring that the taxonomies derived from FROGS and PICRUSt2 do not diverge too much.
+The graph shows the number of kept ASVs and sequences according to the NSTI threshold. It is a decision support graphic to help choose the NSTI threshold. This NSTI threshold will be asked to set in the next tool FROGSFUNC_2_functions. A good practice is to choose a NSTI threshold that retains a good number of sequences and as low as possible i.e. while ensuring that the taxonomies derived from FROGS and PICRUSt2 do not diverge too much.
 
 .. image:: FROGS_frogsfunc_placeseqs_blast.png
     :height: 350
