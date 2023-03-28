@@ -1,4 +1,4 @@
-<tool id="FROGSSTAT_DESeq2_Visualisation" name="FROGSTAT Deseq2 Visualisation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGSSTAT_DESeq2_Visualisation" name="FROGSSTAT DESeq2 Visualisation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
     <description>to extract and visualise differentially abundant ASVs or functions</description>
     <macros>
         <import>macros.xml</import>
@@ -17,21 +17,25 @@
             --mod1 '$varType.mod1' 
             --mod2 '$varType.mod2'
         #end if
+        #if $analysis == "FUNCTION":
+            --ipath-over '$over'
+            --ipath-under '$under'
+        #end if
         --padj $padj
         --html '$html'
     </command>
     <inputs>
         <!-- Files -->
-        <param name="analysis" type="select" label="Type of analysis" help='Type of data to perform the differential analysis. ASV: DESeq2 is run on the ASVs abundances table. FUNC: DESeq2 is run on FROGSFUNC function abundances table (frogsfunc_functions_unstrat.tsv from FROGSFUNC_2_functions step).' display='radio'>
+        <param name="analysis" type="select" label="Type of analysis" help="Type of data to perform the differential analysis. ASV: DESeq2 is run on the ASV abundance table. FUNCTION: DESeq2 is run on predicted function abundance table from FROGSFUNC_2_function tool." display='radio'>
             	<option value="ASV" selected="true">ASV</option>
-            	<option value="FUNC">FUNC</option>
+            	<option value="FUNCTION">FUNCTION</option>
 		</param>
-        <param format="rdata" argument="--abundanceData" type="data" label="Phyloseq object (format: RData)" help="This is the result of FROGS Phyloseq Import Data when ASV analysis and used in FROGSSTAT DESeq2 Preprocess tool, or the result of FROGS DESeq2 Preprocess tool when FUNC analysis." />
-        <param format="rdata" argument="--dds" type="data" label="DESeq2 object (format: RData)" help="This is the result of FROGSSTAT DESeq2 Preprocess tool"/>
+        <param format="rdata" argument="--abundanceData" type="data" label="Data object (format: data.RData)" help="For ASV: asv.data.Rdata from FROGSSTAT_Phyloseq_Import_Data tool - For FUNCTION: function.data.Rdata from FROGSSTAT_DESeq2_Preprocess tool." />
+        <param format="rdata" argument="--dds" type="data" label="DESeq2 object (format: dds.RData)" help="This is the result of FROGSSTAT_DESeq2_Preprocess tool asv.dds.Rdata or function.dds.Rdata"/>
         <!-- Parameters -->
-        <param argument="var" type="text" value="" label="Experimental variable" help="The suspected factor to have an effect on ASV/FUNC abundances (one of the variables used in FROGS DESeq2 Preprocess tool). Ex : Treatment"/>
+        <param argument="var" type="text" value="" label="Experimental variable" help="The factor that could have an effect on ASV/FUNCTION abundances. Ex : Treatment"/>
         <conditional name="varType">
-            <param type="select" name="vartType_selected" label="Is your variable quantitative or qualitative?" help="If qualitative, choose 2 conditions to compare">
+            <param type="select" name="vartType_selected" label="The experimental variable is it quantitative or qualitative?" help="If qualitative, choose 2 conditions to compare">
                 <option value="qual">Qualitative</option>
                 <option value="quant">Quantitative</option>
             </param>
@@ -45,10 +49,16 @@
             </when>
             <when value="quant"/>
         </conditional>
-        <param argument="--padj" type="float" value="0.05" label="Adjusted p-value threshold" help="Threshold used for statistical significance of the differentially abundant ASV/FUNC analysis"/>
+        <param argument="--padj" type="float" value="0.05" label="Adjusted p-value threshold" help="Threshold used for statistical significance of the differentially abundant ASV/FUNCTION analysis"/>
     </inputs>
     <outputs>
         <data format="html" name="html" label="${tool.name}: report.nb.html" from_work_dir="report.nb.html"/>
+        <data format="tsv" name="over" label="${tool.name}: ipath_over.tsv" from_work_dir="ipath_over.tsv">
+            <filter>analysis == "FUNCTION"</filter>
+        </data>
+        <data format="tsv" name="under" label="${tool.name}: ipath_under.tsv" from_work_dir="ipath_under.tsv">
+            <filter>analysis == "FUNCTION"</filter>
+        </data>
     </outputs>
     <tests>
         <test>
@@ -95,27 +105,36 @@ Inputs/Outputs
 
 Input
 
-**phyloseq object** (format rdata):
-One phyloseq object stored in a rdata file.
-This file is the result of FROGSSTAT Phyloseq Import Data for ASV analysis, or DESeq2 preprocess for FUNC analysis.
+**-Data object-** (format data.Rdata):
+One *phyloseq* object stored in a Rdata file.
+This file is the result of :
 
-**dds object** (format rdata):
-A DESeq2 dataset (dds) stored in rdata file.
-This file is the result of FROGSSTAT DESeq2 preprocess.
+	1.	for **ASV**: asv.dds.Rdata from FROGSSTAT_Phyloseq_Import_Data tool
+	2.	for **FUNCTION**: DESeq2_preprocess_tool output for FUNCTION parameter.
+
+**-DESeq2 object-** (format dds.Rdata):
+A DESeq2 dataset (dds) stored in Rdata file.
+This file is the result of FROGSSTAT_DESeq2_preprocess tool.
 
 .. class:: h3
 
 Ouput
 
-**html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): visualisation of "Differential Abundance".
+**-2 TSV files-**
+- ipath_under.tsv 
+- ipath_over.tsv
+To visualise and explore metabolic pathways with `IPATH3 website  &lt;https://pathways.embl.de/&gt;`_ , use the two files **ipath_under.tsv** and **ipath_over.tsv** as inputs.
+
+
+**-html file-** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): visualisation of *Differential Abundance* of ASV or FUNCTIONS depending on the case.
 
 The html file contains Table, Pie Chart, MA plot, Volcano plot and Heatmap plot. If the experimental variable is qualitative, only samples corresponding to the 2 compared conditions are shown in the Heatmap. Otherwise, samples are sorted in increasing order of the experimental variable.
 
 * Table containing the differentially abundant ASVs.
 
  .. image:: FROGS_DESeq2_html_table.png
-    :height: 216
-    :width: 789
+    :height: 448
+    :width: 641
 
 * Pie Chart, MA plot and Volcano plot
 
@@ -137,11 +156,11 @@ The html file contains Table, Pie Chart, MA plot, Volcano plot and Heatmap plot.
     :height: 576
     :width: 768
 
-* Differentially abundant functions visualized with iPath 3 (FUNC analysis only).
+* Differentially abundant functions visualized with iPath 3 (FUNCTION analysis only).
 
  .. image:: FROGS_DESeq2_html_ipath.png
-    :height: 576
-    :width: 768
+    :height: 720
+    :width: 584
 
 .. class:: infomark page-header h2
 
