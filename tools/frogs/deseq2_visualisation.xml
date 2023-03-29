@@ -30,8 +30,8 @@
             	<option value="ASV" selected="true">ASV</option>
             	<option value="FUNCTION">FUNCTION</option>
 		</param>
-        <param format="rdata" argument="--abundanceData" type="data" label="Data object (format: data.RData)" help="For ASV: asv.data.Rdata from FROGSSTAT_Phyloseq_Import_Data tool - For FUNCTION: function.data.Rdata from FROGSSTAT_DESeq2_Preprocess tool." />
-        <param format="rdata" argument="--dds" type="data" label="DESeq2 object (format: dds.RData)" help="This is the result of FROGSSTAT_DESeq2_Preprocess tool asv.dds.Rdata or function.dds.Rdata"/>
+        <param format="rdata" argument="--abundanceData" type="data" label="Data object (format: data.RData)" help="For ASV: asv_data.Rdata from FROGSSTAT_Phyloseq_Import_Data tool - For FUNCTION: function_data.Rdata from FROGSSTAT_DESeq2_Preprocess tool." />
+        <param format="rdata" argument="--dds" type="data" label="DESeq2 object (format: dds.RData)" help="This is the result of FROGSSTAT_DESeq2_Preprocess tool asv_dds.Rdata or function_dds.Rdata"/>
         <!-- Parameters -->
         <param argument="var" type="text" value="" label="Experimental variable" help="The factor that could have an effect on ASV/FUNCTION abundances. Ex : Treatment"/>
         <conditional name="varType">
