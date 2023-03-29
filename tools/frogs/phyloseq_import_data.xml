@@ -34,7 +34,7 @@
         </param>
     </inputs>
     <outputs>
-        <data format="rdata" name="data" label="${tool.name}: data.Rdata" from_work_dir="data.Rdata"/>
+        <data format="rdata" name="data" label="${tool.name}: asv_data.Rdata" from_work_dir="asv_data.Rdata"/>
         <data format="html" name="html" label="${tool.name}: report.nb.html" from_work_dir="report.nb.html"/>
     </outputs>
     <tests>
@@ -47,7 +47,7 @@
             <output name="html">
                 <assert_contents>
                     <!-- check phyloseq object summary-->
-                    <has_text text='asv_table()   ASV Table:         [ 508 taxa and 64 samples ]'/>
+                    <has_text text='otu_table()   OTU Table:         [ 508 taxa and 64 samples ]'/>
                     <has_text text='sample_data() Sample Data:       [ 64 samples by 4 sample variables ]' />
                     <has_text text='tax_table()   Taxonomy Table:    [ 508 taxa by 7 taxonomic ranks ]' />
                     <has_text text='phy_tree()    Phylogenetic Tree: [ 508 tips and 507 internal nodes ]' />

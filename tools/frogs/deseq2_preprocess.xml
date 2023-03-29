@@ -12,16 +12,17 @@
         --analysis '$analysis_type.analysis'
         #if $analysis_type.analysis == 'ASV'
             --data '$data'
+            --out-Rdata '$dds_asv'
         #else:
             --input-functions '$input_functions'
             --samplefile '$samplefile'
+            --out-Rdata '$dds_function'
         #end if
         #if $multiple.seconde == 'true'
             --var '$var1${multiple.mod}${multiple.var2}'
         #else
             --var '$var1'
         #end if
-        --out-Rdata '$dds'
 
 	</command>
     <inputs>
@@ -61,8 +62,13 @@
         </conditional>
     </inputs>
     <outputs>
-        <data format="rdata" name="dds" label="${tool.name}: dds.Rdata" from_work_dir="DESeq2_preprocess.Rdata"/>
-        <data format="rdata" name="phyloseq" label="${tool.name}: abundances.Rdata" from_work_dir="phyloseq_data.Rdata">
+        <data format="rdata" name="dds_asv" label="${tool.name}: asv_dds.Rdata" from_work_dir="asv_dds.Rdata">
+            <filter> analysis_type['analysis'] == 'ASV'</filter>
+        </data>
+        <data format="rdata" name="dds_function" label="${tool.name}: function_dds.Rdata" from_work_dir="function_dds.Rdata">
+            <filter> analysis_type['analysis'] == 'FUNCTION'</filter>
+        </data>
+        <data format="rdata" name="phyloseq" label="${tool.name}: function_data.Rdata" from_work_dir="function_data.Rdata">
             <filter> analysis_type['analysis'] == 'FUNCTION'</filter>
         </data>
     </outputs>
