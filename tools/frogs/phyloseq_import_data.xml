@@ -12,7 +12,7 @@
                 --treefile '$treefile'
             #end if
             --ranks $ranks
-            #if $normalisation
+            #if $normalisation == "true"
                 --normalisation
             #end if
             --html '$html'
@@ -21,14 +21,17 @@
     <inputs>
         <!-- Files -->
         <param format="biom1" argument="--biomfile" type="data" label="Abundance biom file with taxonomical metadata (format: BIOM)" help="The file contains the  ASV information "/>
-        <param format="tabular,tsv" argument="--samplefile" type="data" label="Sample file (format: TSV)" help="The file contains the samples information."/>
-        <param format="nhx" argument="--treefile" type="data" optional="true" label="Tree file (format: Newick)" help="The file contains the tree information (optional)"/>
+        <param format="tabular,tsv" argument="--samplefile" type="data" label="Metadata associated to samples (format: TSV)" help="The file contains the metadata that characterise each sample."/>
+        <param format="nhx" argument="--treefile" type="data" optional="true" label="Taxonomic tree file (format: Newick)" help="The file contains the taxonomic tree information from FROGS Tree tool (optional)"/>
         <!-- Parameters -->
         <param argument="--ranks" type="text" value="Kingdom Phylum Class Order Family Genus Species" 
             label="Names of taxonomic levels" help="The ordered taxonomic levels stored in BIOM. Each level is separated by one space">
             <expand macro="sanitizer_validator"/>
         </param>
-        <param argument="--normalisation" type="boolean" label="Do you want to normalise your data ?" help="To normalise data before statistical analysis (default : No)"/>
+        <param argument="--normalisation" type="select" label="Do you want to normalise your data ?" help="To normalise data before statistical analysis (default : No)" display="radio">
+            <option value="false">No, keep abundance as it is.</option>
+            <option value="true">Yes, subsample abundances to the smallest sample size.</option>            
+        </param>
     </inputs>
     <outputs>
         <data format="rdata" name="data" label="${tool.name}: data.Rdata" from_work_dir="data.Rdata"/>
@@ -79,7 +82,7 @@ Inputs/Outputs
 
 Input
 
-**ASV biom file**:
+**ASV abundance file (in biom format)**:
 
 The ASV biom file (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_).
 The example of biom file:
@@ -94,7 +97,7 @@ Newick file (format `nxh &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_) 
 
   .. image:: FROGS_nwk_treefile.png
 
-**Sample file**:
+**Metadata file**:
 The file contains the conditions of experiment with sample ID in the first column:
 
   .. image:: FROGS_Phyloseq_samplefile.png
@@ -105,11 +108,11 @@ The file contains the conditions of experiment with sample ID in the first colum
 
 Output
 
-**Html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): The summary of phyloseq object.
+**Html report file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): The summary of phyloseq object.
 
   .. image:: FROGS_Phyloseq_import_data_html.png
 
-**Data file** (format rdata): The information of data in one phyloseq object.
+**Data file** (format Rdata): The information of data in one phyloseq object.
 
 
 .. class:: infomark page-header h2

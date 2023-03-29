@@ -19,7 +19,7 @@
         --summary '$summary'
         @CPUS@
         --java-mem \$GALAXY_MEMORY_GB
-        #if $rdp
+        #if $rdp == "yes"
           --rdp
         #end if
     ]]></command>
@@ -29,7 +29,10 @@
             <options from_data_table="frogs_db"/>
             <validator type="no_options" message="A built-in database is not available"/>
         </param>
-        <param argument="--rdp" type="boolean" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allows to perform it also with RDP classifier tool (default No)"/>
+        <param argument="--rdp" type="select" display="radio" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allows to perform it also with RDP classifier tool (default No)">
+            <option value="yes" >Yes</option>
+            <option value="no" selected="true" >No</option>
+		</param>
         <expand macro="taxonomic_ranks"/>
         <!-- Files -->
         <param format="fasta" name="fasta_sequences" type="data" label="Sequence file" help="The sequences to affiliated (format: FASTA)"/>
@@ -44,7 +47,7 @@
             <param name="ref_file" value="ITS1_test"/>
             <param name="fasta_sequences" value="references/04-filters.fasta"/>
             <param name="biom_abundance" value="references/04-filters.biom"/>
-            <param name="rdp" value="true"/>
+            <param name="rdp" value="yes"/>
             <output name="biom_affiliation" file="references/06-affiliation.biom" compare="sim_size" delta="5"/>
             <output name="summary" file="references/06-affiliation.html" compare="diff" lines_diff="0"/>
         </test>
@@ -120,14 +123,14 @@ Alignment metrics details on identity percentage calculation
 * **Case 1: a sequencing of overlapping sequences i.e. 16S V3-V4 amplicon MiSeq sequencing**
 
 .. image:: FROGS_affiliation_overlapped_percent_id.png
-    :height: 325
-    :width: 807
+    :height: 198
+    :width: 604
 
 * **Case 2 : a sequencing of non-overlapping sequences: case of ITS1 amplicon MiSeq sequencing**
 
 .. image:: FROGS_affiliation_combined_percent_id.png
-    :height: 310
-    :width: 887
+    :height: 232
+    :width: 664
 
 **- Finally, how percentage identity is computed ?**
 

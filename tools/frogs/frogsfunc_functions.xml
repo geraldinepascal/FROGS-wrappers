@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGSFUNC_step3_functions" name="FROGSFUNC_step3_functions" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+<tool id="FROGSFUNC_step3_functions" name="FROGSFUNC_2_functions" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
     <description>Calculates functions abundances in each sample.</description>
 
   <macros>
@@ -58,10 +58,10 @@
     </command> 
     <inputs>
         <!-- Input files -->
-        <param argument="--input-biom" format="biom1" type="data" label="Biom file" help="The abundance file i.e. FROGSFUNC_1_placeseqs tool output file (frogsfunc_placeseqs.biom)." optional="false"/>
-       	<param argument="--input-fasta" format="fasta" type="data" label="Sequence file" help="The fasta file i.e. from FROGSFUNC_1_placeseqs tool output file (frogsfunc_placeseqs.fasta)." optional="false"/>
-        <param argument="--input-tree" format="nhx" type="data" label="Tree file" help="The file contains the tree information from FROGSFUNC_1_placeseqs tool (frogsfunc_placeseqs_tree.nwk)." optional="false"/>
-        <param argument="--input-marker" format="tsv" type="data" label="Marker file" help="Table of predicted marker copy number i.e. FROGSFUNC_1_placeseqs output (frogsfunc_marker.tsv)." optional="false"/>
+        <param argument="--input-biom" format="biom1" type="data" label="Biom file" help="The abundance file i.e. FROGSFUNC_1_placeseqs_copynumber tool output file (frogsfunc_placeseqs.biom)." optional="false"/>
+       	<param argument="--input-fasta" format="fasta" type="data" label="Sequence file" help="The fasta file i.e. from FROGSFUNC_1_placeseqs_copynumber tool output file (frogsfunc_placeseqs.fasta)." optional="false"/>
+        <param argument="--input-tree" format="nhx" type="data" label="Tree file" help="The file contains the tree information from FROGSFUNC_1_placeseqs_copynumber tool (frogsfunc_placeseqs_tree.nwk)." optional="false"/>
+        <param argument="--input-marker" format="tsv" type="data" label="Marker file" help="Table of predicted marker copy number i.e. FROGSFUNC_1_placeseqs_copynumber output (frogsfunc_marker.tsv)." optional="false"/>
         
         <!-- Parameters-->
 	    <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
@@ -72,7 +72,7 @@
                     <validator type="no_options" message="A built-in database is not available" />
             </options>
 		</param>
-		<param argument="--functions" type="select" label="Function table" multiple="true" optional="false" help=" 16S : at least 'EC' or/and 'KO' should be chosen (EC for Metacyc pathway analysis or/and KO for KEGG pathway analysis) - others values are optionnal. ITS and 18S : 'EC' only available." >
+		<param argument="--functions" type="select" label="Target function database" multiple="true" optional="false" help=" 16S : at least 'EC' or/and 'KO' should be chosen (EC for Metacyc pathway analysis or/and KO for KEGG pathway analysis) - others values are optionnal. ITS and 18S : 'EC' only available." >
 			<options from_data_table="frogs_picrust2_marker_table">
 				<column name='name' index='1' />
 				<column name='value' index='1' />
@@ -167,14 +167,14 @@
 What it does
 
 FROGSFUNC_2_functions is the second step of PICRUSt2. It ables to predicts : 
-	(i) Functional abundances (and marker copy number) based solely on the sequences of marker genes with PICRUSt2. The available marker genes are 16S, ITS and 18S.
-	
+	(i) Functional abundances based solely on the sequences of marker genes with PICRUSt2. The available marker genes are 16S, ITS and 18S.
+
 	(ii) Functions, weighted by the relative abundance of ASVs in the community. Inferring the metagenomes of the communities with `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_.
 
 
 There are three steps performed at this stage:
-	(i) It runs hidden-state prediction (hsp) to predict function abundances with castor-R of each ASVs placed in the PICRUSt2 reference phylogenetic tree (FROGSFUNC_1_placeseqs outputs).
-
+	(i) It runs hidden-state prediction (hsp) to predict function abundances with castor-R of each ASVs placed in the PICRUSt2 reference phylogenetic tree (FROGSFUNC_1_placeseqs_copynumber outputs).
+	
     (ii) The read depth per ASV is divided by the predicted marker (16S/ITS/18S) copy numbers. This is performed to help control for variation in marker copy numbers across organisms, which can result in interpretation issues. For instance, imagine an organism with five identical copies of the 16S gene that is at the same absolute abundance as an organism with one 16S gene. The ASV corresponding to the first organism would erroneously be inferred to be at higher relative abundance simply because this organism had more copies of the 16S gene.
         
     (iii) The ASV read depths per sample (after normalizing by marker (16S/ITS/18S) copy number) are multiplied by the predicted function copy numbers per ASV.         
@@ -190,32 +190,32 @@ Inputs/Outputs
 Inputs
 
 
-**Biom file**:
+**-Biom file-**:
 
- The ASVs biom file from FROGSFUNC_1_placeseqs tool (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (frogsfunc_placeseqs.biom from frogsfunc_1_placeseqs)
+The ASVs biom file from FROGSFUNC_1_placeseqs_copynumber tool (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_). (FROGSFUNC_1_placeseqs_copynumber.biom from FROGSFUNC_1_placeseqs_copynumber)
 
-**Sequence file**:
+**-Sequence file-**:
 
- The sequence file of inserted ASVs into PICRUST2 reference tree from (frogsfunc_placesesqs.fasta from frogsfunc_1_placeseqs).
+The sequence file of inserted ASVs into PICRUST2 reference tree from (frogsfunc_placesesqs.fasta from FROGSFUNC_1_placeseqs_copynumber step).
 
-**Tree file**:
+**-Tree file (format newick nwk)-**:
 
- The phylogenetic tree output with insert sequences into the reference tree (format: newick) (frogsfunc_placesesqs_tree.nwk from frogsfunc_1_placeseqs).
+The file contains the tree informations from FROGSFUNC_1_placeseqs_copynumber step (FROGSFUNC_1_placeseqs_copynumber output : FROGSFUNC_1_placeseqs_copynumber_tree.nwk)
 
+**-Marker file-**:
 
-**Marker file**:
-
-Output table of predicted marker gene copy numbers per sequence. (frogsfunc_marker.tsv from frogsfunc_1_placeseqs)
+Output table of predicted marker gene copy numbers per sequence. (frogsfunc_marker.tsv from FROGSFUNC_1_placeseqs_copynumber step)
 
 .. class:: h3
 
 Parameters
 
-**Taxonomic marker**:
 
- Marker gene to be analyzed.
+**-Taxonomic marker-**:
 
-**Function table**:
+Marker gene to be analyzed from the previous FROGSFUNC_1_placeseqs_copynumber step (frogsfunc_marker.tsv from FROGSFUNC_1_placeseqs_copynumber).
+
+**-Target function database-**:
 
 Which default pre-calculated count table to use ?
  - For 16S rRNA gene you can choose between: 'EC', 'KO', 'PFAM', 'COG', 'TIGRFAM', and/or 'PHENO'. You must select at least 'EC' or 'KO' because for next FROGSFUNC tools, the information from Metacyc (EC) or KEGG (KO) are requiered.
@@ -230,19 +230,19 @@ For more informations about the different databases:
  - TIGRFAM : https://tigrfams.jcvi.org/cgi-bin/index.cgi
  - PHENO : https://phenodb.org/
 
-**NSTI cut-off**:
+**-NSTI cut-off-**:
 
  Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the ASV and the nearest sequenced reference genome. This metric can be used to identify ASVs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any ASVs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 
-**Identity alignment cut-off**:
+**-Identity alignment cut-off-**:
 
  All sequences with a identity percentage of alignment against the PICRUSt2 closest reference sequence is lower than this value will be excluded (between 0 and 1).
 
-**Coverage alignment cut-off**:
+**-Coverage alignment cut-off-**:
  
  All sequences with a coverage percentage of alignment against the PICRUSt2 closest reference sequence is lower than this value will be excluded (between 0 and 1).
 
-**HSP method**:
+**-HSP method-**:
 
  Hidden-state prediction method to use.
 
@@ -251,17 +251,17 @@ For more informations about the different databases:
 
 Outputs
 
-**Fasta file**:
+**-Fasta file-**:
 
- Sequence file without excluded ASVs (NSTI, blast perc identity or blast perc coverage thresholds). (frogsfunc_functions.fasta)
+ Sequence file without excluded ASVs (NSTI, blast perc identity or blast perc coverage thresholds). (FROGSFUNC_2_functions.fasta)
 
-**Biom file**:
+**-ASV abundance Biom file - one per chosen target function database (EC, KO, PFAM, COG, TIGRFAM,PHENO)-**:
 
- Biom file without excluded ASVs (NSTI, blast perc identity or blast perc coverage thresholds). (frogsfunc_functions.biom)
+ ASV abundance data i a biom file without excluded ASVs (NSTI, %identity or %coverage thresholds alignment). (FROGSFUNC_2_functions.biom)
 
-**Function abundance file**:
+**-Function abundance file-**:
  
- It is the function abundance predictions of metagenome, per sample. (frogsfunc_functions_unstrat_DATABASENAME.tsv, for exemple: frogsfunc_functions_unstrat_EC.tsv)
+ It is the function abundance predictions of metagenome, per sample. (frogsfunc_functions_unstrat_DATABASENAME.tsv, for exemple: FROGSFUNC_2_functions_unstrat_EC.tsv)
  
 Table column description:
  - classification: the hierarchy classification of the gene function. 
@@ -270,7 +270,15 @@ Table column description:
  - observation_sum: Total abundance of functions across all samples.
  - last columns: Abundances of these functions in each samples.
 
-**Excluded sequences file**:
+**-ASV normalized abundance table-**:
+
+ Table with normalized abundances per marker copy number from FROGSFUNC_1 step. (FROGSFUNC_2_functions_marker_norm.tsv)
+
+**-Weighted NSTI file-**:
+
+ Output file with the mean of NSTI value per sample. (FROGSFUNC_2_functions_weighted_nsti.tsv)
+
+**-Excluded sequences file-**:
  
 Information about removed sequences that have a NSTI value aboved the NSTI threshold chosen in this step:
  - ASV: ASV name id.
@@ -279,26 +287,22 @@ Information about removed sequences that have a NSTI value aboved the NSTI thres
  - exclusion_paramater: The paramater(s) that excluded the ASVs.
  - value_parameter: The values associated with the paramater(s).
 
-**ASV normalized abundance table**:
+**-Copy number marker file - one per chosen target function database (EC, KO, PFAM, COG, TIGRFAM,PHENO)-**:
 
- Table with normalized abundances per marker copy number. (frogsfunc_functions_marker_norm.tsv)
+Output table of predicted function copy numbers per ASV. There are as many tables as chosen target function database (EC, KO, PFAM, COG, TIGRFAM,PHENO) (exemple : FROGSFUNC_step3_functions: EC_copynumbers_predicted.tsv and FROGSFUNC_step3_functions: PHENO_copynumbers_predicted.tsv )
 
-**Weighted NSTI file**:
-
- Output file with the mean of NSTI value per sample. (frogsfunc_functions_weighted_nsti.tsv)
-
-**Report file**: (report.html)
+**-Report file-**: (report.html)
 
 .. image:: FROGS_frogsfunc_functions_piechart.png
-    :height: 500
-    :width: 1352
+    :height: 375
+    :width: 1014
 
 ASVs are excluded if the associated NSTI is above the threshold, or if the alignment values are below the thresholds.
 
 
 .. image:: FROGS_frogsfunc_functions_starplot.png
-    :height: 540
-    :width: 1324
+    :height: 466
+    :width: 806
 
 Number of different taxonomic ranks before (green) and after (orange) application of the filters. 
 

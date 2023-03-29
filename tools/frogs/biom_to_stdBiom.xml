@@ -62,7 +62,7 @@ Outputs
 
 How it works ?
 
-FROGS BIOM to std BIOM extracts the blast alignment details in a second file, write a BIOM usable in every tools using BIOM and defined the consensus taxonomy provided by blast as main taxonomy.
+**FROGS BIOM to std BIOM** extracts the blast alignment details in a second file, write a BIOM usable in every tools using BIOM and defined the consensus taxonomy provided by blast as main taxonomy.
 
 
 

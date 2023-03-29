@@ -22,7 +22,7 @@
         <param format="fasta" name="input_fasta" type="data" label="Sequence file" help="The sequence file to filter (format: FASTA)."/>
         <param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)"/>
         <conditional name="is_HVL">
-            <param name="HVL_amplicon" type="select" label="Is this an amplicon hyper variable in length?" help="Multi-affiliation tag may be resolved by selecting the shortest amplicon reference. For this, you need the reference fasta file of your target amplicon.">
+            <param name="HVL_amplicon" type="select" display="radio" label="Is this an amplicon hyper variable in length?" help="Multi-affiliation tag may be resolved by selecting the shortest amplicon reference. For this, you need the reference fasta file of your target amplicon.">
                 <option value="No">No</option>
                 <option value="Yes" >Yes</option>
             </param>

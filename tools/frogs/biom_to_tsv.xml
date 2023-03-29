@@ -6,7 +6,6 @@
     <expand macro="requirements"/>
     <command detect_errors="exit_code">
 	biom_to_tsv.py
-	$extract_multi_align
 	    --input-biom '$biom_file'
 		#if $sequence_file
 		    --input-fasta '$sequence_file'
@@ -21,7 +20,7 @@
 		<param format="biom1" name="biom_file" type="data" label="Abundance file" help="The BIOM file to convert (format: BIOM)" optional="false" />
 		<param format="fasta" name="sequence_file" type="data" label="Sequences file (optional)" help="The sequences file (format: fasta). If you use this option the sequences will be add in TSV." optional="true" />
 		<!-- Parameters -->
-		<param name="extract_multi_align" type="select" label="Extract multi-alignments" help="If you have used FROGS_5_taxonomic_affiliation on your data, you can extract information about multiple alignements in a second TSV.">
+		<param name="extract_multi_align" type="select" display="radio"  label="Extract multi-alignments" help="If you have used FROGS_5_taxonomic_affiliation on your data, you can extract information about multiple alignements in a second TSV.">
             <option value="yes" selected="true">Yes</option>
             <option value="no" >No</option>
 		</param>

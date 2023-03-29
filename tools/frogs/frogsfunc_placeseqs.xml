@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGSFUNC_step1_placeseqs" name="FROGSFUNC_1_placeseqs" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+<tool id="FROGSFUNC_step1_placeseqs" name="FROGSFUNC_1_placeseqs_and_copynumbers" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
 	<description>Places ASVs into a reference phylogenetic tree.</description>
 
   <macros>
@@ -134,7 +134,7 @@ Input
 
 **-Biom file-** (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_):
 
- The ASVs biom file. Taxonomic affiliations must be done before (bion file from FROGS taxonomic_affiliation tool).
+ The ASVs biom file. Taxonomic affiliations must be done before (biom file from FROGS taxonomic_affiliation tool).
 
 
 **-Placement tool-** 
@@ -161,7 +161,7 @@ Outputs
 
  List of sequences not inserted in the PICRUSt2 reference tree. Sequences are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold (0.8 per default). These sequences are excluded for the next steps.
 
-**-Closests reference sequences file-** (FROGSFUNC_1_placeseqs_copynumber_closests_ref_sequences.txt):
+**-Closest reference sequences file-** (FROGSFUNC_1_placeseqs_copynumber_closests_ref_sequences.txt):
 
  Information on the sequences from the PICRUST2 reference tree that are the closest neighbours of your studied sequences. 
 
@@ -193,8 +193,8 @@ The pie charts describe the proportion of number of excluded ASVs and the propor
 ASVs are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold parameter.
 
 .. image:: FROGS_frogsfunc_placeseqs_table_JGI.png
-	:height: 580
-	:width: 1220
+	:height: 792
+	:width: 1599
 
 * **ASV** : ASV name.
 
@@ -217,20 +217,22 @@ ASVs are excluded if the total length of the input sequence aligned against refe
 * **Comment** : " identical taxonomy " if the FROGS and PICRUSt2 taxonomic affiliations are identical. " identical sequence " if the ASV sequence is strictly the same as the reference sequence.
 
 .. image:: FROGS_frogsfunc_placeseqs_closest_explained.png
-
+    :height: 269
+    :width: 825
+    
 Closest reference sequence (from JGI database) from one ASV sequence.
 
 .. image:: FROGS_frogsfunc_placeseqs_nsti.png
-    :height: 350
-    :width: 1359
+    :height: 295
+    :width: 778
 
 Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance between the ASV and the nearest sequenced reference genome. This metric can be used to identify ASVs that are highly distant from all reference sequences but the predictions for these sequences are less reliable. The higher the NSTI score, the less the affiliations are relevant. Any ASV with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 
 The graph shows the number of kept ASVs and sequences according to the NSTI threshold. It is a decision support graphic to help choose the NSTI threshold. This NSTI threshold will be asked to set in the next tool FROGSFUNC_2_functions. A good practice is to choose a NSTI threshold that retains a good number of sequences and as low as possible i.e. while ensuring that the taxonomies derived from FROGS and PICRUSt2 do not diverge too much.
 
 .. image:: FROGS_frogsfunc_placeseqs_blast.png
-    :height: 350
-    :width: 1359
+    :height: 295
+    :width: 920
 
 The graph depicts the blast percentages of identity and coverage against the closest PICRUSt2 sequence (ordinate), against the NSTI score (abcsissa). Thus, the ASVs with the best predictions will be located at the top left of the graph.
 

@@ -1,4 +1,4 @@
-<tool id="FROGS_affiliation_stats" name="FROGS Affiliation stats" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+<tool id="FROGS_affiliation_stats" name="FROGS_6_Affiliation_Stat" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
 	<description>Process some metrics on taxonomies</description>
     <macros>
         <import>macros.xml</import>
@@ -94,7 +94,7 @@
 
 What it does
 
-FROGS_Affiliation_stats computes several metrics and generates a HTML file describing ASVs based on their taxonomies and eventually the quality of the affiliations.
+FROGS_6_Affiliation_stats computes several metrics and generates a HTML file describing ASVs based on their taxonomies and eventually the quality of the affiliations.
 
 
 .. class:: infomark page-header h2
@@ -107,7 +107,7 @@ Input
 
 **Abundance file**:
 
-The abundance and affiliation of each ASV (format `BIOM &lt;http://biom-format.org/&gt;`_). This file can be produced by FROGS_taxonomic_affiliation tool.
+The abundance and affiliation of each ASV (format `BIOM &lt;http://biom-format.org/&gt;`_). This file can be produced by FROGS_5_taxonomic_affiliation tool.
 
 
 .. class:: h3
@@ -135,14 +135,14 @@ Output
   -Bootstrap distribution: displays for affiliation methods with bootstrap the bootstrap on each taxonomic rank
 
   .. image:: FROGS_affiliation_stats_bootstrap.png
-    :height: 380
-    :width: 867
+    :height: 568
+    :width: 1050
 
   -Alignment distribution: displays for affiliation methods with alignment the distribution of identity/coverage
 
   .. image:: FROGS_affiliation_stats_alignment.png
-    :height: 380
-    :width: 859
+    :height: 570
+    :width: 731
 
 
 @HELP_CONTACT@

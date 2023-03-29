@@ -9,7 +9,6 @@
     <command detect_errors="exit_code">
 	itsx.py
 	    @CPUS@
-	    --region '$region'
 	    --input-fasta '$input_fasta'
 	    --input-biom '$input_biom'
 	    --out-fasta '$out_fasta'
@@ -17,17 +16,34 @@
 	    --out-removed '$out_excluded'
 	    --summary '$summary_file'
 	    --organism-groups '$organism_groups'
-	    $trim_sequence
+        
+        #if $trim_sequence.check_its_only == "yes"
+            --check-its-only
+       #else
+         --region $trim_sequence.region
+       #end if
+       
     </command>
     <inputs>
         <!-- Files -->
         <param format="fasta" name="input_fasta" type="data" label="Sequence file" help="The sequence file to filter (format: FASTA)." />
         <param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)" />
-        <param argument="--region" type="select" label="ITS region" help="Which fungal ITS region is targeted: either ITS1 or ITS2 ?">
-            <option value="ITS1">ITS1</option>
-            <option value="ITS2">ITS2</option>
-        </param>
-        <param argument="--check-its-only" name="trim_sequence" type="boolean" checked="false" truevalue="" falsevalue="--check-its-only" label="Trim conserved sequence (SSU, 5.8S, LSU) ?" help="If Yes, only part of the sequences with ITS signature will be kept, SSU, LSU or 5.8S regions will be trimmed (default : No)" />
+        
+        <conditional name="trim_sequence">
+			<param argument="--check-its-only" type="select" label="Trim conserved sequence (SSU, 5.8S, LSU) ?" help="If Yes, only part of the sequences with ITS signature will be kept, SSU, LSU or 5.8S regions will be trimmed (default : No)" display="radio">
+            	<option value="yes" selected="true">No, keep conserved regions</option>
+            	<option value="no" >Yes, trim conserved regions</option>
+
+			</param>
+		<when value="yes"/>
+		<when value="no">
+			<param argument="--region" type="select" label="ITS region" help="Which fungal ITS region is targeted: either ITS1 or ITS2 ?" display="radio">
+                <option value="ITS1">ITS1</option>
+                <option value="ITS2">ITS2</option>
+            </param>
+		</when>
+		</conditional>
+         
         <param argument="--organism-groups" type="select" multiple="true" display="checkboxes" label="Choose pertinent organisms to scan:" help="Save a lot of time by checking pertinent organism group model to scan">
             <option value="F" selected="true">Fungi</option>
             <option value="A">Alveolata</option>
