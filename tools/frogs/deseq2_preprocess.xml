@@ -25,7 +25,7 @@
         #end if
 
 	</command>
-    <inputs>
+    <inputs>m
 		<!-- Files -->
 		<conditional name="analysis_type">
 			<param name="analysis" type="select" label="Type of analysis" help="Type of data to perform the differential analysis. ASV: DESeq2 is run on the ASV abundance table. FUNCTION: DESeq2 is run on predicted function abundance table from FROGSFUNC_2_function tool." display='radio'>
@@ -37,7 +37,7 @@
 		</when>
 		<when value="FUNCTION">
             <param format="tsv" name="input_functions" type="data" label="Function abundances file " help="Input file of predicted function abundances (frogsfunc_functions_unstrat.tsv from FROGSFUNC_2_function tool)."/>
-            <param format="tabular,tsv" argument="--samplefile" type="data" label="Sample file (format: TSV)" help="The file must contain the metadata that characterise each sample."/> 
+            <param format="tabular,tsv" argument="--samplefile" type="data" label="Metadata asociated to samples (format: TSV)" help="The file must contain the metadata that characterise each sample."/> 
 		</when>
 		</conditional>
         <!-- Parameters -->			
