@@ -19,7 +19,7 @@
 	<head>
 		<title>FROGS Abundance Normalisation</title>
 		<meta charset="UTF-8">
-		<meta name="version" content="4.0.1">
+		<meta name="version" content="4.1.0">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></link>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></link>
@@ -363,11 +363,11 @@
 
 			
 			$(function() {
-				var categories = ["Nb OTU before normalisation", "Nb OTU after normalisation"] ;
+				var categories = ["Nb ASV before normalisation", "Nb ASV after normalisation"] ;
 				var del_categories = ["Nb sequences"] ;
-				var series_by_sample = [{"name": "01_subsample", "data": [55, 41]}, {"name": "02_subsample", "data": [55, 46]}, {"name": "03_subsample", "data": [55, 40]}] ;
+				var series_by_sample = [{"name": "01_subsample", "data": [55, 39]}, {"name": "02_subsample", "data": [55, 40]}, {"name": "03_subsample", "data": [55, 41]}] ;
 				var del_by_sample = [] ;
-				var remove_info = {"abundance_kept": 300, "abundance_removed": 74828, "nb_kept": 51, "nb_removed": 4} ;
+				var remove_info = {"abundance_kept": 300, "abundance_removed": 74828, "nb_kept": 50, "nb_removed": 5} ;
 
 				// Remove alert
 				$('#js-alert').remove();
@@ -411,7 +411,7 @@
 					['Kept', remove_info['nb_kept']],
 					['Removed', remove_info['nb_removed']]
 				];
-				$('#nb-filtered').highcharts( pie_param('Clusters', nb_filtered_data, 'Clusters') );
+				$('#nb-filtered').highcharts( pie_param('ASVs', nb_filtered_data, 'ASVs') );
 				var abundance_filtered_data = [
   					['Kept', remove_info['abundance_kept']],
   					['Removed', remove_info['abundance_removed']]
