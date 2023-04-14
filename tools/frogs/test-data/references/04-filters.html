@@ -17,9 +17,9 @@
 -->
 <html>
 	<head>
-		<title>FROGS OTU Filters</title>
+		<title>FROGS ASV Filters</title>
 		<meta charset="UTF-8">
-		<meta name="version" content="4.0.1">
+		<meta name="version" content="4.1.0">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></link>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></link>
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -432,7 +432,7 @@
 					['Kept', global_results['nb_clstr_kept']],
 					['Removed', (global_results['nb_clstr_ini'] - global_results['nb_clstr_kept'])]
 				];
-				$('#nb-filtered').highcharts( pie_param('OTUs', nb_filtered_data, 'OTUs') );
+				$('#nb-filtered').highcharts( pie_param('ASVs', nb_filtered_data, 'ASVs') );
 				
 				// Results by sequences
 				var abundance_filtered_data = [
@@ -536,7 +536,7 @@
 					}
 					sample_table_data.push( sample_data );
 				}
-				$('#' + container_id).append( table("OTUs removed by sample", sample_table_titles, sample_table_data) );
+				$('#' + container_id).append( table("ASVs removed by sample", sample_table_titles, sample_table_data) );
 				$('#' + container_id + ' table').prop( 'id', 'details-table' );
 				$('#' + container_id + ' table').DataTable({
 					dom: 	"<'#details-csv-export'><'row'<'col-sm-5'l><'col-sm-7'f>>" +
@@ -557,7 +557,7 @@
 					group_data = [group, replicate_groups[group]['Replicates']] ;
 					group_table_data.push( group_data );
 				}
-				$('#' + container_id).append( table("OTUs removed by sample", group_table_titles, group_table_data) );
+				$('#' + container_id).append( table("ASVs removed by sample", group_table_titles, group_table_data) );
 				$('#' + container_id + ' table').prop( 'id', 'details-table' );
 				$('#' + container_id + ' table').DataTable({
 					dom:	"<'#details-csv-export'><'row'<'col-sm-5'l><'col-sm-7'f>>" +
@@ -576,7 +576,7 @@
 			// Data
 			//
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			var processed_filters = ["Present in less than 50.0%  of replicates of all replicate groups.", "Abundance < 0.005% (i.e 8 sequences )", "Present in databank of contaminants"] ;
+			var processed_filters = ["Present in less than 3 samples", "Present in less than 50.0%  of replicates of all replicate groups.", "Abundance < 0.005% (i.e 8 sequences )"] ;
 			/* Example:
 				['filterA', 'filterB', 'filterC']
 			*/
@@ -589,7 +589,7 @@
 					'nb_seq_ini': 100000
 				}
 			*/
-			var by_samples_results = {"01_subsample": {"initial": 25127, "filtered": {"Abundance < 0.005% (i.e 8 sequences )": 25072}, "kept": 55}, "02_subsample": {"initial": 24947, "filtered": {"Abundance < 0.005% (i.e 8 sequences )": 24892}, "kept": 55}, "03_subsample": {"initial": 24960, "filtered": {"Abundance < 0.005% (i.e 8 sequences )": 24905}, "kept": 55}} ;
+			var by_samples_results = {"01_subsample": {"initial": 25127, "filtered": {"Present in less than 3 samples": 25071, "Abundance < 0.005% (i.e 8 sequences )": 25072}, "kept": 55}, "02_subsample": {"initial": 24947, "filtered": {"Present in less than 3 samples": 24891, "Abundance < 0.005% (i.e 8 sequences )": 24892}, "kept": 55}, "03_subsample": {"initial": 24960, "filtered": {"Present in less than 3 samples": 24904, "Abundance < 0.005% (i.e 8 sequences )": 24905}, "kept": 55}} ;
 			/* Example:
 				{
 					'sampleA':{
@@ -612,7 +612,7 @@
 			var replicate_groups = {"group_1": {"Replicates": "01_subsample, 02_subsample"}, "group_2": {"Replicates": "03_subsample"}} ;
 
 
-			var by_filters_results = [{"filters": ["Abundance < 0.005% (i.e 8 sequences )"], "count": 74865}] ;
+			var by_filters_results = [{"filters": ["Present in less than 3 samples", "Abundance < 0.005% (i.e 8 sequences )"], "count": 74864}, {"filters": ["Abundance < 0.005% (i.e 8 sequences )"], "count": 1}] ;
 			/* Example:
 				[
 					{'filters':['filterA'], 'count': 10},
@@ -669,7 +669,7 @@
         <!-- Content -->
         <div id="content" class="hidden">
         	<ul class="nav nav-tabs">
-				<li class="nav-item active"><a class="nav-link active" href="#view-by-filters">Filters by OTUs</a></li>
+				<li class="nav-item active"><a class="nav-link active" href="#view-by-filters">Filters by ASVs</a></li>
 				<li class="nav-item"><a class="nav-link" href="#view-by-samples">Filters by samples</a></li>
 				<li class="nav-item" id="view-by-replicates-nav"><a class="nav-link" href="#view-by-replicates">Replicate Groups</a></li>
 			</ul>
@@ -688,7 +688,7 @@
 		       		<div class="row">
 		       			<div class="col-md-2 col-ld-3"></div>
 						<div id="venn-filters" class="col-md-8 col-ld-6">
-		                    <p> Draw a Venn to see which OTUs had been deleted by the filters chosen (Maximum 6 options): </p>
+		                    <p> Draw a Venn to see which ASVs had been deleted by the filters chosen (Maximum 6 options): </p>
 		                    <ul id="byFilters-jvenn-chkbx"></ul>
 		                    <button id="byFilters-jvenn-btn" class="btn d-block mx-auto" disabled><span class="fa fa-gears" aria-hidden="true"> Venn</span></button>
 		                </div>
@@ -714,7 +714,7 @@
 		  <div class="modal-dialog modal-lg">
 			<div class="modal-content">
 			  <div class="modal-header">
-				<h4 class="modal-title">Venn on removed OTUs</h4>
+				<h4 class="modal-title">Venn on removed ASVs</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			  </div>
 			  <div class="modal-body">
