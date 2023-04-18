@@ -306,7 +306,7 @@
                             <param name="merge_software" value="flash" />
                             <param name="expected_amplicon_size" value="420" />
                         </conditional>
-                        <param name="keep_unmerged" value="true" />
+                        <param name="keep_unmerged" value="Yes" />
                     </conditional>
                 </conditional>
                 <param name="min_amplicon_size" value="44" />
@@ -335,7 +335,7 @@
                         <conditional name="merge_software_type">
                             <param name="merge_software" value="vsearch" />
                         </conditional>
-                        <param name="keep_unmerged" value="true" />
+                        <param name="keep_unmerged" value="Yes" />
                     </conditional>
                 </conditional>
                 <param name="min_amplicon_size" value="44" />
