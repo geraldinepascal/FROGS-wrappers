@@ -19,7 +19,7 @@
 	<head>
 		<title>FROGS Affiliation Filters</title>
 		<meta charset="UTF-8">
-		<meta name="version" content="4.0.1">
+		<meta name="version" content="4.1.0">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></link>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></link>
 		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -433,7 +433,7 @@
 					[mode, global_results['cluster'][mode]],
 					['Modified', global_results['cluster']['Modified']]
 				];
-				$('#nb-filtered').highcharts( pie_param('OTUs', nb_filtered_data, 'OTUs') );
+				$('#nb-filtered').highcharts( pie_param('ASVs', nb_filtered_data, 'ASVs') );
 				
 				// Results by sequences
 				var abundance_filtered_data = [
@@ -556,7 +556,7 @@
 					}
 					sample_table_data.push( sample_data );
 				}
-				$('#' + container_id).append( table("OTUs removed by sample", sample_table_titles, sample_table_data) );
+				$('#' + container_id).append( table("ASVs removed by sample", sample_table_titles, sample_table_data) );
 				$('#' + container_id + ' table').prop( 'id', 'details-table' );
 				$('#' + container_id + ' table').DataTable({
 					dom: 	"<'#details-csv-export'><'row'<'col-sm-5'l><'col-sm-7'f>>" +
@@ -576,7 +576,7 @@
 			// Data
 			//
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			var processed_filters = ["Blast evalue > 1e-150", "Blast taxonomies belong to undesired taxon: g__Sarcodon / s__Trichoderma", "Blast identity < 1.0"] ;
+			var processed_filters = ["Blast evalue > 1e-150", "Blast identity < 100.0"] ;
 			/* Example:
 				['filterA', 'filterB', 'filterC']
 			*/
@@ -623,7 +623,7 @@
 			 	}
 			 } ;
 			 */
-			var by_samples_results = {"01_subsample": {"initial": 55, "filtered": {"Blast evalue > 1e-150": 30, "Blast taxonomies belong to undesired taxon: g__Sarcodon / s__Trichoderma": 6, "Blast identity < 1.0": 1}, "kept": 25}, "02_subsample": {"initial": 55, "filtered": {"Blast evalue > 1e-150": 30, "Blast taxonomies belong to undesired taxon: g__Sarcodon / s__Trichoderma": 6, "Blast identity < 1.0": 1}, "kept": 25}, "03_subsample": {"initial": 55, "filtered": {"Blast evalue > 1e-150": 30, "Blast taxonomies belong to undesired taxon: g__Sarcodon / s__Trichoderma": 6, "Blast identity < 1.0": 1}, "kept": 25}} ;
+			var by_samples_results = {"01_subsample": {"initial": 55, "filtered": {"Blast evalue > 1e-150": 30, "Blast identity < 100.0": 1}, "kept": 25}, "02_subsample": {"initial": 55, "filtered": {"Blast evalue > 1e-150": 30, "Blast identity < 100.0": 1}, "kept": 25}, "03_subsample": {"initial": 55, "filtered": {"Blast evalue > 1e-150": 30, "Blast identity < 100.0": 1}, "kept": 25}} ;
 			/* Example:
 				{
 					'sampleA':{
@@ -643,7 +643,7 @@
 					}
 				}
 			*/
-			var by_filters_results = [{"filters": ["Blast evalue > 1e-150"], "count": 23}, {"filters": ["Blast evalue > 1e-150", "Blast taxonomies belong to undesired taxon: g__Sarcodon / s__Trichoderma"], "count": 6}, {"filters": ["Blast evalue > 1e-150", "Blast identity < 1.0"], "count": 1}] ;
+			var by_filters_results = [{"filters": ["Blast evalue > 1e-150"], "count": 29}, {"filters": ["Blast evalue > 1e-150", "Blast identity < 100.0"], "count": 1}] ;
 			/* Example:
 				[
 					{'filters':['filterA'], 'count': 10},
@@ -693,7 +693,7 @@
         <!-- Content -->
         <div id="content" class="hidden">
         	<ul class="nav nav-tabs">
-				<li class="nav-item active"><a class="nav-link active" href="#view-by-filters">Filters by OTUs</a></li>
+				<li class="nav-item active"><a class="nav-link active" href="#view-by-filters">Filters by ASVs</a></li>
 				<li class="nav-item"><a class="nav-link" href="#view-by-samples">Filters by samples</a></li>
 			</ul>
 
@@ -709,7 +709,7 @@
 		
 					<h2 class="pb-2 mt-4 mb-2 border-bottom">Taxon lost summary</h2>
 					Filtering criteria are applied by affiliation. So for blast, filters are not only applied on the blast consensus taxonomy but on each blast hit (cf multihit.tsv file).<br>
-					For each OTU, none, part or all blast affiliations may be removed, resulting in unchanged / updated or deleted blast consensus taxonomy.<br>
+					For each ASV, none, part or all blast affiliations may be removed, resulting in unchanged / updated or deleted blast consensus taxonomy.<br>
 					The detailed number of lost affiliations (not only the consensus) by rank are summarised. It may also precise if blast consensus multi-affiliation are lost.<br><br>
 		            <div id="taxon_lost"></div>
 
@@ -717,7 +717,7 @@
 		       		<div class="row">
 		       			<div class="col-md-2 col-ld-3"></div>
 						<div id="venn-filters" class="col-md-8 col-ld-6">
-Draw a Venn to see which OTUs had its taxonomy masked by the filters chosen (Maximum 6 options): 		                    <ul id="byFilters-jvenn-chkbx"></ul>
+Draw a Venn to see which ASVs had its taxonomy masked by the filters chosen (Maximum 6 options): 		                    <ul id="byFilters-jvenn-chkbx"></ul>
 		                    <button id="byFilters-jvenn-btn" class="btn d-block mx-auto" disabled><span class="fa fa-gears" aria-hidden="true"> Venn</span></button>
 		                </div>
 		                <div class="col-md-2 col-ld-3"></div>
@@ -725,7 +725,7 @@ Draw a Venn to see which OTUs had its taxonomy masked by the filters chosen (Max
 		        </div>
 		    
                 <div id="view-by-samples" role="tabpanel" class="tab-pane disabled">
-					<h2 class="pb-2 mt-4 mb-2 border-bottom">Details by samples of masked OTUs</h2>
+					<h2 class="pb-2 mt-4 mb-2 border-bottom">Details by samples</h2>
 		            <div id="filter-log"></div>
                 </div>
             </div>
@@ -737,7 +737,7 @@ Draw a Venn to see which OTUs had its taxonomy masked by the filters chosen (Max
 		  <div class="modal-dialog modal-lg">
 			<div class="modal-content">
 			  <div class="modal-header">
-				<h4 class="modal-title">Venn on removed OTUs</h4>
+				<h4 class="modal-title">Venn on removed ASVs</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			  </div>
 			  <div class="modal-body">
