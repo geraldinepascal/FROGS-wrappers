@@ -19,7 +19,7 @@
 	<head>
 		<title>FROGS Affiliations stat</title>
 		<meta charset="UTF-8">
-		<meta name="version" content="4.0.1">
+		<meta name="version" content="4.1.0">
 		<!-- CSS -->
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"></link>
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"></link>
@@ -611,7 +611,7 @@
 				
 				// Parameters
 				var clean_type = {
-					"clstr": "OTUs",
+					"clstr": "ASVs",
 					"seq": "sequences"
 				}
 				var categories_ident = [1, 50, 80, 90, 95, 99, 100, 101];
@@ -737,7 +737,7 @@
 				
 				// Parameters
 				var clean_type = {
-					"clstr": "OTUs",
+					"clstr": "ASVs",
 					"seq": "sequences"
 				}
 				var bootstrap_categories = [50, 80, 90, 95, 100, 101];
@@ -868,7 +868,7 @@
 				for( var rank = 0 ; rank < taxonomic_ranks.length ; rank++ ){
 					titles.push( "Nb " + taxonomic_ranks[rank].toLowerCase() );
 				}
-				titles.push( "Nb otus" );
+				titles.push( "Nb asv" );
 				titles.push( "Nb sequences" );
 				$('#taxBySample-table thead').append( '<tr><th>' + titles.join("</th><th>") + '</th></tr>' );
 				$('#taxBySample-table .title').attr( "colspan", titles.length );
@@ -886,7 +886,7 @@
 					for( var rank = 0 ; rank < taxonomic_ranks.length ; rank++ ){
 						sample_data.push( numberDisplay(tree.getNodeByDepth(rank+1).length) );
 					}
-					sample_data.push( numberDisplay(rarefaction[sample_name]['nb_otus']) );
+					sample_data.push( numberDisplay(rarefaction[sample_name]['nb_asv']) );
 					sample_data.push( numberDisplay(rarefaction[sample_name]['nb_seq']) );
 					// Add row data
 					$('#taxBySample-table tbody').append( '<tr><td>' + sample_data.join("</td><td>") + '</td></tr>' );
@@ -978,7 +978,7 @@
 			var bootstrap_score_load = function( cotainer_id ){
 				$('#' + cotainer_id).highcharts( bootstrap_param() );
 				
-				$('#bootstrap-clstr-btn').on('click', function (e) { // Display view by OTUs
+				$('#bootstrap-clstr-btn').on('click', function (e) { // Display view by ASVs
 					if( $('#bootstrap-clstr-btn').hasClass("btn-default") ){
 						$('#bootstrap-clstr-btn').removeClass( "btn-default" );
 						$('#bootstrap-clstr-btn').addClass( "btn-primary" );
@@ -1018,9 +1018,9 @@
 			/* Example:
 				["Surface-01", "Surface-02", "Surface-03", "Middle-01", "Middle-02", "Middle-03"]
 			*/
-			var tree_distribution = "(((((((\"s__Trichoderma_mienum\":{\"0\": 3, \"1\": 3, \"2\": 5},\"s__Trichoderma_cremeum\":{\"0\": 3, \"1\": 3, \"2\": 5},\"s__Trichoderma_aggressivum\":{\"0\": 3, \"1\": 2, \"2\": 1},\"s__Trichoderma_rodmanii\":{\"0\": 1, \"2\": 1})\"g__Trichoderma\")\"f__Hypocreaceae\")\"o__Hypocreales\",(((\"s__Pestalotiopsis_diversiseta\":{\"0\": 3, \"1\": 2, \"2\": 1})\"g__Pestalotiopsis\",(\"s__Adisciso_tricellulare\":{\"0\": 1, \"1\": 2, \"2\": 1})\"g__Adisciso\")\"f__Amphisphaeriaceae\",((\"s__Hypoxylon_fragiforme\":{\"0\": 1, \"1\": 4, \"2\": 1})\"g__Hypoxylon\")\"f__Xylariaceae\")\"o__Xylariales\",(((\"s__Phaeoacremonium_rubrigenum\":{\"0\": 1, \"1\": 3, \"2\": 2})\"g__Phaeoacremonium\")\"f__Togniniaceae\")\"o__Diaporthales\")\"c__Sordariomycetes\",((((\"s__Elaphomyces_compleximurus\":{\"0\": 2, \"1\": 2, \"2\": 2})\"g__Elaphomyces\")\"f__Elaphomycetaceae\",((\"s__Rasamsonia_emersonii\":{\"0\": 5, \"1\": 3, \"2\": 1})\"g__Rasamsonia\",(\"s__Aspergillus_caninus\":{\"1\": 1},\"s__Aspergillus_microcysticus\":{\"2\": 1})\"g__Aspergillus\")\"f__Trichocomaceae\")\"o__Eurotiales\",(((\"s__Exophiala_equina\":{\"0\": 4, \"1\": 3, \"2\": 4})\"g__Exophiala\")\"f__Herpotrichiellaceae\")\"o__Chaetothyriales\")\"c__Eurotiomycetes\",((((\"s__Lindgomyces_breviappendiculatus\":{\"0\": 3, \"1\": 3, \"2\": 4})\"g__Lindgomyces\")\"f__Lindgomycetaceae\")\"o__Pleosporales\")\"c__Dothideomycetes\",((((\"s__Terfezia_claveryi\":{\"0\": 4, \"1\": 3})\"g__Terfezia\")\"f__Pezizaceae\",((\"s__Tuber_latisporum\":{\"0\": 1, \"1\": 2})\"g__Tuber\")\"f__Tuberaceae\")\"o__Pezizales\")\"c__Pezizomycetes\")\"p__Ascomycota\",(((((\"s__Amanita_franchetii\":{\"0\": 2, \"2\": 5})\"g__Amanita\")\"f__Amanitaceae\",((\"s__Tricholoma_portentosum\":{\"0\": 3, \"1\": 2})\"g__Tricholoma\",(\"s__Gamundia_leucophylla\":{\"0\": 1, \"1\": 2, \"2\": 1})\"g__Gamundia\")\"f__Tricholomataceae\",((\"s__Phaeocollybia_kauffmanii\":{\"0\": 3, \"1\": 2})\"g__Phaeocollybia\",(\"s__Cortinarius_gentianeus\":{\"0\": 4, \"1\": 1, \"2\": 3},\"s__Cortinarius_limonius\":{\"0\": 3, \"1\": 1, \"2\": 1},\"s__Cortinarius_aurantiobasis\":{\"0\": 3, \"1\": 1},\"s__Cortinarius_calojanthinus\":{\"0\": 2, \"1\": 1, \"2\": 2},\"s__Cortinarius_sinapivelus\":{\"0\": 4, \"1\": 1},\"s__Cortinarius_amnicola\":{\"0\": 2, \"1\": 4, \"2\": 2},\"s__Cortinarius_caesiocolor\":{\"1\": 1, \"2\": 3},\"s__Cortinarius_parkeri\":{\"1\": 1})\"g__Cortinarius\")\"f__Cortinariaceae\",((\"s__Entoloma_sp\":{\"0\": 5, \"1\": 1})\"g__Entoloma\")\"f__Entolomataceae\",((\"s__Pholiota_highlandensis\":{\"0\": 4, \"2\": 3})\"g__Pholiota\",(\"s__Hypholoma_capnoides\":{\"1\": 1, \"2\": 6})\"g__Hypholoma\")\"f__Strophariaceae\",((\"s__Inocybe_sindonia\":{\"0\": 1, \"1\": 3, \"2\": 3})\"g__Inocybe\")\"f__Inocybaceae\",((\"s__Gymnopus_hybridus\":{\"0\": 5, \"1\": 2, \"2\": 2})\"g__Gymnopus\")\"f__Omphalotaceae\",((\"s__Psathyrella_sublatispora\":{\"0\": 2, \"1\": 2},\"s__Psathyrella_multipedata\":{\"1\": 1})\"g__Psathyrella\",(\"s__Coprinopsis_candidolanata\":{\"0\": 1, \"1\": 1, \"2\": 2},\"s__Coprinopsis_pachyderma\":{\"1\": 5, \"2\": 5})\"g__Coprinopsis\")\"f__Psathyrellaceae\",((\"s__Megacollybia_subfurfuracea\":{\"0\": 1, \"2\": 3})\"g__Megacollybia\")\"f__Marasmiaceae\",((\"s__Lepiota_geogenia\":{\"1\": 1, \"2\": 3})\"g__Lepiota\")\"f__Agaricaceae\")\"o__Agaricales\",(((\"s__Hymenochaete_longispora\":{\"0\": 2, \"1\": 3, \"2\": 5})\"g__Hymenochaete\",(\"s__Pseudochaete_subrigidula\":{\"0\": 1, \"1\": 2, \"2\": 1})\"g__Pseudochaete\")\"f__Hymenochaetaceae\")\"o__Hymenochaetales\",(((\"s__Alpova_corsicus\":{\"0\": 2, \"1\": 4, \"2\": 2},\"s__Alpova_alpestris\":{\"0\": 2, \"1\": 5, \"2\": 2})\"g__Alpova\")\"f__Paxillaceae\",((\"s__Truncocolumella_rubra\":{\"0\": 1, \"1\": 2, \"2\": 4})\"g__Truncocolumella\")\"f__Suillaceae\",((\"s__Xerocomus_porophyllus\":{\"1\": 2, \"2\": 1})\"g__Xerocomus\")\"f__Boletaceae\")\"o__Boletales\",(((\"s__Lactarius_semisanguifluus\":{\"0\": 2, \"1\": 1, \"2\": 2},\"s__Lactarius_cyathuliformis\":{\"0\": 4, \"1\": 5, \"2\": 1},\"s__Lactarius_sp\":{\"0\": 1, \"1\": 2, \"2\": 3})\"g__Lactarius\")\"f__Russulaceae\")\"o__Russulales\",(((\"s__Sarcodon_quercophilus\":{\"0\": 1, \"1\": 1, \"2\": 3})\"g__Sarcodon\",(\"s__Hydnellum_peckii\":{\"0\": 3, \"1\": 2, \"2\": 2},\"s__Hydnellum_suaveolens\":{\"1\": 1, \"2\": 1})\"g__Hydnellum\")\"f__Bankeraceae\")\"o__Thelephorales\")\"c__Agaricomycetes\")\"p__Basidiomycota\")\"k__Fungi\")\"root\"" ;
+			var tree_distribution = "(((((((\"s__Adisciso_tricellulare\":{\"0\": 6, \"1\": 2, \"2\": 1})\"g__Adisciso\",(\"s__Pestalotiopsis_diversiseta\":{\"0\": 2, \"1\": 1, \"2\": 4})\"g__Pestalotiopsis\")\"f__Amphisphaeriaceae\",((\"s__Hypoxylon_fragiforme\":{\"0\": 2, \"1\": 2, \"2\": 1})\"g__Hypoxylon\")\"f__Xylariaceae\")\"o__Xylariales\",(((\"s__Phaeoacremonium_rubrigenum\":{\"0\": 1, \"1\": 1, \"2\": 2})\"g__Phaeoacremonium\")\"f__Togniniaceae\")\"o__Diaporthales\",(((\"s__Trichoderma_aggressivum\":{\"0\": 4, \"1\": 3, \"2\": 1},\"s__Trichoderma_rodmanii\":{\"0\": 1, \"1\": 4, \"2\": 3},\"s__Trichoderma_mienum\":{\"1\": 3, \"2\": 1},\"s__Trichoderma_cremeum\":{\"1\": 4, \"2\": 1})\"g__Trichoderma\")\"f__Hypocreaceae\")\"o__Hypocreales\")\"c__Sordariomycetes\",((((\"s__Elaphomyces_compleximurus\":{\"0\": 4, \"2\": 4})\"g__Elaphomyces\")\"f__Elaphomycetaceae\",((\"s__Rasamsonia_emersonii\":{\"0\": 3, \"2\": 3})\"g__Rasamsonia\",(\"s__Aspergillus_caninus\":{\"0\": 2})\"g__Aspergillus\")\"f__Trichocomaceae\")\"o__Eurotiales\",(((\"s__Exophiala_equina\":{\"0\": 3, \"1\": 2, \"2\": 2})\"g__Exophiala\")\"f__Herpotrichiellaceae\")\"o__Chaetothyriales\")\"c__Eurotiomycetes\",((((\"s__Lindgomyces_breviappendiculatus\":{\"0\": 1, \"1\": 1, \"2\": 1})\"g__Lindgomyces\")\"f__Lindgomycetaceae\")\"o__Pleosporales\")\"c__Dothideomycetes\",((((\"s__Tuber_latisporum\":{\"0\": 3, \"1\": 2, \"2\": 4})\"g__Tuber\")\"f__Tuberaceae\",((\"s__Terfezia_claveryi\":{\"1\": 3, \"2\": 4})\"g__Terfezia\")\"f__Pezizaceae\")\"o__Pezizales\")\"c__Pezizomycetes\")\"p__Ascomycota\",(((((\"s__Psathyrella_multipedata\":{\"0\": 4, \"1\": 1, \"2\": 2},\"s__Psathyrella_sublatispora\":{\"0\": 6, \"1\": 3, \"2\": 2})\"g__Psathyrella\",(\"s__Coprinopsis_pachyderma\":{\"0\": 2, \"1\": 4, \"2\": 4},\"s__Coprinopsis_candidolanata\":{\"0\": 4, \"2\": 2})\"g__Coprinopsis\")\"f__Psathyrellaceae\",((\"s__Amanita_franchetii\":{\"0\": 2, \"1\": 1, \"2\": 1})\"g__Amanita\")\"f__Amanitaceae\",((\"s__Cortinarius_limonius\":{\"0\": 5, \"1\": 1, \"2\": 2},\"s__Cortinarius_caesiocolor\":{\"0\": 2, \"1\": 3, \"2\": 3},\"s__Cortinarius_gentianeus\":{\"0\": 2},\"s__Cortinarius_sinapivelus\":{\"0\": 2, \"1\": 3},\"s__Cortinarius_calojanthinus\":{\"0\": 1, \"1\": 4, \"2\": 3},\"s__Cortinarius_aurantiobasis\":{\"1\": 4, \"2\": 2},\"s__Cortinarius_parkeri\":{\"1\": 1},\"s__Cortinarius_amnicola\":{\"2\": 1})\"g__Cortinarius\",(\"s__Phaeocollybia_kauffmanii\":{\"1\": 3})\"g__Phaeocollybia\")\"f__Cortinariaceae\",((\"s__Tricholoma_portentosum\":{\"0\": 3, \"1\": 3, \"2\": 5})\"g__Tricholoma\",(\"s__Gamundia_leucophylla\":{\"0\": 2, \"1\": 1, \"2\": 3})\"g__Gamundia\")\"f__Tricholomataceae\",((\"s__Entoloma_sp\":{\"0\": 6, \"1\": 1, \"2\": 8})\"g__Entoloma\")\"f__Entolomataceae\",((\"s__Pholiota_highlandensis\":{\"0\": 4})\"g__Pholiota\",(\"s__Hypholoma_capnoides\":{\"0\": 1, \"2\": 2})\"g__Hypholoma\")\"f__Strophariaceae\",((\"s__Megacollybia_subfurfuracea\":{\"0\": 1, \"1\": 5, \"2\": 5})\"g__Megacollybia\")\"f__Marasmiaceae\",((\"s__Gymnopus_hybridus\":{\"0\": 1, \"1\": 2, \"2\": 1})\"g__Gymnopus\")\"f__Omphalotaceae\",((\"s__Inocybe_sindonia\":{\"0\": 1, \"1\": 2, \"2\": 1})\"g__Inocybe\")\"f__Inocybaceae\",((\"s__Lepiota_geogenia\":{\"1\": 1, \"2\": 5})\"g__Lepiota\")\"f__Agaricaceae\")\"o__Agaricales\",(((\"s__Lactarius_semisanguifluus\":{\"0\": 4, \"2\": 1},\"s__Lactarius_sp\":{\"0\": 2, \"1\": 2},\"s__Lactarius_cyathuliformis\":{\"0\": 2, \"1\": 4})\"g__Lactarius\")\"f__Russulaceae\")\"o__Russulales\",(((\"s__Xerocomus_porophyllus\":{\"0\": 2, \"2\": 3})\"g__Xerocomus\")\"f__Boletaceae\",((\"s__Truncocolumella_rubra\":{\"0\": 1, \"1\": 1, \"2\": 1})\"g__Truncocolumella\")\"f__Suillaceae\",((\"s__Alpova_alpestris\":{\"0\": 1, \"1\": 1, \"2\": 1},\"s__Alpova_corsicus\":{\"1\": 6})\"g__Alpova\")\"f__Paxillaceae\")\"o__Boletales\",(((\"s__Pseudochaete_subrigidula\":{\"0\": 2, \"1\": 1, \"2\": 1})\"g__Pseudochaete\",(\"s__Hymenochaete_longispora\":{\"1\": 2, \"2\": 3})\"g__Hymenochaete\")\"f__Hymenochaetaceae\")\"o__Hymenochaetales\",(((\"s__Hydnellum_suaveolens\":{\"0\": 3, \"1\": 4, \"2\": 2},\"s__Hydnellum_peckii\":{\"0\": 2, \"1\": 5, \"2\": 1})\"g__Hydnellum\",(\"s__Sarcodon_quercophilus\":{\"1\": 3, \"2\": 3})\"g__Sarcodon\")\"f__Bankeraceae\")\"o__Thelephorales\")\"c__Agaricomycetes\")\"p__Basidiomycota\")\"k__Fungi\")\"root\"" ;
 			/* This string is in newick extended format. The metadata is the count by sample (each sample is referenced by is index position in "samples_names"). */
-			var rarefaction = {"01_subsample": {"nb_otus": 41, "nb_seq": 100, "Family": [2, 4, 6, 8, 10, 12, 13, 14, 14, 15, 15, 15, 15, 17, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 22, 22, 22, 22, 23, 23, 24, 24], "Genus": [2, 4, 6, 8, 10, 12, 13, 14, 15, 16, 17, 17, 17, 19, 20, 20, 21, 22, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 26, 26, 27, 27, 27, 27, 28, 28, 30, 30], "Species": [2, 4, 6, 8, 10, 12, 14, 15, 17, 19, 21, 21, 21, 23, 25, 25, 26, 27, 29, 29, 29, 29, 30, 30, 31, 31, 31, 32, 32, 32, 33, 34, 34, 35, 35, 35, 35, 35, 35, 35, 36, 36, 37, 37, 37, 38, 39, 39, 41, 41], "OTUs": [2, 4, 5, 7, 8, 10, 12, 14, 15, 15, 17, 19, 20, 20, 21, 23, 23, 24, 26, 27, 29, 30, 30, 31, 33, 33, 33, 33, 35, 36, 37, 37, 37, 37, 37, 37, 39, 39, 40, 40, 40, 40, 40, 41, 41, 41, 41, 41, 41, 41]}, "02_subsample": {"nb_otus": 46, "nb_seq": 100, "Family": [2, 3, 5, 7, 9, 10, 11, 13, 14, 14, 14, 14, 14, 15, 15, 17, 17, 18, 18, 19, 19, 20, 20, 20, 20, 20, 21, 21, 21, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24], "Genus": [2, 3, 5, 7, 9, 10, 11, 13, 15, 16, 17, 17, 17, 18, 18, 20, 20, 21, 21, 22, 22, 23, 23, 23, 23, 23, 24, 24, 24, 25, 26, 26, 26, 26, 27, 27, 27, 28, 28, 28, 29, 29, 29, 29, 29, 29, 29, 30, 30, 31], "Species": [2, 3, 5, 7, 9, 11, 13, 15, 17, 18, 20, 21, 22, 24, 24, 26, 26, 27, 28, 29, 29, 31, 32, 32, 33, 33, 35, 35, 36, 37, 39, 39, 39, 39, 40, 40, 40, 41, 41, 42, 43, 43, 43, 43, 43, 43, 44, 45, 45, 46], "OTUs": [2, 4, 6, 7, 9, 10, 12, 14, 16, 18, 20, 21, 23, 24, 25, 26, 28, 30, 31, 31, 32, 33, 33, 35, 35, 35, 36, 37, 37, 37, 37, 37, 37, 39, 39, 39, 40, 40, 42, 42, 43, 43, 44, 44, 44, 45, 45, 45, 46, 46]}, "03_subsample": {"nb_otus": 40, "nb_seq": 100, "Family": [1, 3, 5, 7, 9, 10, 10, 11, 12, 13, 13, 13, 14, 14, 15, 16, 16, 16, 16, 16, 18, 18, 19, 19, 19, 19, 20, 21, 21, 21, 21, 21, 21, 21, 22, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23], "Genus": [1, 3, 5, 7, 9, 10, 11, 12, 13, 14, 15, 15, 16, 16, 17, 18, 18, 19, 19, 19, 21, 21, 22, 22, 23, 23, 24, 25, 25, 25, 25, 25, 25, 25, 26, 26, 26, 26, 26, 26, 26, 26, 28, 28, 28, 28, 28, 28, 28, 28], "Species": [2, 4, 6, 8, 10, 12, 13, 14, 16, 17, 19, 20, 22, 22, 23, 24, 25, 26, 27, 28, 30, 30, 31, 31, 32, 32, 33, 34, 34, 34, 34, 34, 34, 34, 35, 35, 36, 37, 37, 37, 37, 37, 39, 39, 39, 40, 40, 40, 40, 40], "OTUs": [2, 4, 6, 7, 9, 11, 12, 14, 16, 17, 17, 18, 20, 20, 21, 22, 23, 24, 24, 26, 27, 28, 29, 30, 31, 31, 31, 31, 32, 33, 33, 34, 34, 34, 34, 35, 35, 36, 37, 37, 38, 39, 39, 39, 40, 40, 40, 40, 40, 40]}} ;
+			var rarefaction = {"01_subsample": {"nb_asv": 39, "nb_seq": 100, "Family": [2, 4, 5, 7, 7, 8, 10, 11, 11, 13, 13, 14, 14, 14, 14, 14, 14, 14, 16, 17, 17, 17, 17, 17, 17, 18, 19, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 21, 21, 21, 21, 22, 23, 23, 23, 23, 23, 24, 24], "Genus": [2, 4, 5, 7, 7, 8, 10, 11, 11, 13, 14, 15, 15, 15, 15, 15, 15, 15, 17, 19, 19, 20, 20, 20, 20, 21, 22, 23, 23, 24, 24, 25, 25, 25, 25, 25, 25, 25, 26, 26, 26, 26, 27, 28, 28, 28, 28, 28, 29, 29], "Species": [2, 4, 6, 8, 10, 11, 13, 14, 15, 17, 18, 19, 20, 20, 21, 21, 21, 21, 23, 25, 25, 26, 26, 26, 26, 27, 28, 29, 29, 31, 31, 33, 33, 33, 33, 33, 33, 33, 34, 34, 34, 34, 35, 36, 36, 37, 38, 38, 39, 39], "ASVs": [2, 3, 4, 6, 8, 9, 11, 11, 13, 14, 16, 16, 16, 17, 19, 21, 23, 24, 25, 26, 26, 27, 29, 29, 30, 30, 30, 30, 31, 32, 32, 32, 33, 33, 33, 34, 35, 35, 36, 37, 38, 38, 38, 38, 39, 39, 39, 39, 39, 39]}, "02_subsample": {"nb_asv": 40, "nb_seq": 100, "Family": [2, 4, 5, 7, 9, 10, 11, 11, 11, 11, 11, 13, 13, 13, 13, 13, 15, 16, 16, 16, 16, 16, 17, 17, 17, 18, 18, 19, 19, 19, 19, 19, 20, 20, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 21, 22, 22], "Genus": [2, 4, 6, 8, 10, 11, 12, 12, 12, 12, 13, 15, 15, 15, 15, 15, 17, 18, 19, 20, 20, 20, 21, 22, 22, 23, 23, 24, 24, 24, 24, 24, 26, 26, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 28, 28], "Species": [2, 4, 6, 8, 10, 11, 12, 12, 12, 14, 16, 18, 20, 20, 20, 21, 23, 24, 25, 26, 28, 29, 31, 33, 33, 34, 34, 35, 35, 35, 35, 35, 37, 37, 38, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 39, 40, 40], "ASVs": [2, 4, 6, 7, 8, 10, 12, 13, 15, 17, 18, 19, 20, 22, 24, 24, 25, 25, 26, 27, 28, 28, 28, 29, 29, 29, 30, 31, 31, 31, 32, 32, 32, 33, 33, 33, 33, 34, 35, 36, 36, 36, 38, 38, 38, 39, 40, 40, 40, 40]}, "03_subsample": {"nb_asv": 41, "nb_seq": 100, "Family": [2, 4, 6, 7, 9, 11, 12, 13, 14, 14, 15, 16, 17, 18, 18, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 24, 24, 25, 25, 25, 25, 25, 26, 26, 26], "Genus": [2, 4, 6, 8, 10, 12, 13, 14, 15, 15, 16, 17, 18, 20, 20, 21, 21, 22, 22, 23, 23, 24, 24, 25, 25, 26, 26, 26, 27, 27, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 29, 29, 30, 30, 30, 30, 30, 31, 31, 31], "Species": [2, 4, 6, 8, 10, 12, 13, 14, 15, 17, 18, 20, 21, 23, 23, 24, 24, 25, 27, 28, 28, 29, 30, 32, 32, 33, 33, 34, 35, 35, 36, 36, 36, 37, 37, 37, 37, 37, 37, 38, 39, 39, 40, 40, 40, 40, 40, 41, 41, 41], "ASVs": [1, 3, 5, 7, 9, 11, 12, 14, 15, 17, 17, 17, 18, 18, 19, 21, 22, 24, 25, 26, 27, 28, 28, 29, 29, 30, 30, 30, 31, 31, 33, 34, 35, 36, 36, 36, 36, 36, 36, 38, 38, 39, 39, 39, 39, 39, 39, 40, 41, 41]}} ;
 			/* Example:
 				{
 					"Surface-01": {
@@ -1037,11 +1037,11 @@
 			/* Example:
 				1000
 			*/
-			var rarefaction_ranks = ["Family", "Genus", "Species", "OTUs"] ;
+			var rarefaction_ranks = ["Family", "Genus", "Species", "ASVs"] ;
 			/* Example:
 				["Family", "Genus", "Species"]
 			*/
-			var alignment_scores = [[100.0, 100.0, {"clstr": 50, "seq": 296}], [99.627, 100.0, {"clstr": 1, "seq": 4}]] ;
+			var alignment_scores = [[100.0, 100.0, {"clstr": 49, "seq": 294}], [99.627, 100.0, {"clstr": 1, "seq": 6}]] ;
 			/* Example:
 				[
 					[100, 100, { "clstr": 53, "seq": 20500 }],
@@ -1143,14 +1143,14 @@
 				<div id="bootstrap-distrib" role="tabpanel" class="tab-pane disabled">
 					<div id="bootstrap-barplot"></div>
 					<div id="set-bootstrap-barplot" class="set-datatype">
-						<button id="bootstrap-clstr-btn" type="button" class="btn btn-md btn-block">by OTUs</button>
+						<button id="bootstrap-clstr-btn" type="button" class="btn btn-md btn-block">by ASVs</button>
 						<button id="bootstrap-seq-btn" type="button" class="btn btn-md btn-block">by sequences</button>
 					</div>
 				</div>
 				<div id="alignment-distrib" role="tabpanel" class="tab-pane disabled">
 					<div id="alignment-heatmap"></div>
 					<div id="set-alignment-heatmap" class="set-datatype">
-						<button id="heatmap-clstr-btn" type="button" class="btn btn-md btn-block" disabled>by OTUs</button>
+						<button id="heatmap-clstr-btn" type="button" class="btn btn-md btn-block" disabled>by ASVs</button>
 						<button id="heatmap-seq-btn" type="button" class="btn btn-md btn-block">by sequences</button>
 					</div>
 				</div>
