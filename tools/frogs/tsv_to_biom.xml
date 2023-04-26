@@ -35,7 +35,7 @@
         <test>
             <param name="tsv_file" value="references/12-biom2tsv.tsv" />
             <param name="multi_affi_file" value="references/12-biom2tsv-affiliation_multihit.tsv" />
-            <param name="extract_fasta" value="true" />
+            <param name="extract_fasta" value="yes" />
             <output name="biom_file" file="references/14-tsv2biom.biom" compare="sim_size" delta="0" />
             <output name="sequence_file" file="references/14-tsv2biom.fasta" compare="diff" lines_diff="0" />
         </test>
