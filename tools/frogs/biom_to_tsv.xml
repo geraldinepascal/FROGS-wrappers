@@ -35,7 +35,7 @@
 		<test>
 			<param name="biom_file" value="references/09-normalisation.biom"/>
 			<param name="sequence_file" value="references/09-normalisation.fasta"/>
-			<param name="extract_multi_align" value="true"/>
+			<param name="extract_multi_align" value="yes"/>
 			<output name="tsv_file" value="references/12-biom2tsv.tsv" compare="diff" lines_diff="0"/>
 			<output name="multi_affi_file" value="references/12-biom2tsv-affiliation_multihit.tsv" compare="diff" lines_diff="0"/>
 		</test>
