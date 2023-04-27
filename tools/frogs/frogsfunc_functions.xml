@@ -95,12 +95,12 @@
     </inputs>
     <outputs>
         <data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="report.html"/>
-		<data format="biom1" name="output_biom" label="${tool.name}: frogsfunc_functions.biom" from_work_dir="frogsfunc_functions.biom"/>
-		<data format="fasta" name="output_fasta" label="${tool.name}: frogsfunc_functions.fasta" from_work_dir="frogsfunc_functions.fasta"/>
+		<data format="biom1" name="output_biom" label="${tool.name}: frogsfunc_functions_asv_abundances.biom" from_work_dir="frogsfunc_functions.biom"/>
+		<data format="fasta" name="output_fasta" label="${tool.name}: frogsfunc_functions_asv.fasta" from_work_dir="frogsfunc_functions.fasta"/>
 
         <data format="tsv" name="output_otu_norm" label="${tool.name}: frogsfunc_functions_marker_norm.tsv" from_work_dir="frogsfunc_functions_marker_norm.tsv.tsv"/> 
         <data format="tsv" name="output_weighted" label="${tool.name}: frogsfunc_functions_weighted_nsti.tsv" from_work_dir="frogsfunc_functions_weighted_nsti.tsv"/> 
-        <data format="tsv" name="output_excluded" label="${tool.name}: frogsfunc_functions_excluded.tsv" from_work_dir="frogsfunc_functions_excluded.tsv"/>
+        <data format="tsv" name="output_excluded" label="${tool.name}: frogsfunc_functions_asv_excluded.tsv" from_work_dir="frogsfunc_functions_excluded.tsv"/>
         <data format="tsv" name="output_copy_ec_abund" label="${tool.name}: EC_copynumbers_predicted.tsv" from_work_dir="EC_copynumbers_predicted.tsv">
             <filter>"EC" in functions</filter>
         </data>
@@ -255,7 +255,7 @@ Outputs
 
  Sequence file without excluded ASVs (NSTI, blast perc identity or blast perc coverage thresholds). (FROGSFUNC_2_functions.fasta)
 
-**-ASV abundance Biom file - one per chosen target function database (EC, KO, PFAM, COG, TIGRFAM,PHENO)-**:
+**-ASV abundance Biom file-**:
 
  ASV abundance data i a biom file without excluded ASVs (NSTI, %identity or %coverage thresholds alignment). (FROGSFUNC_2_functions.biom)
 
