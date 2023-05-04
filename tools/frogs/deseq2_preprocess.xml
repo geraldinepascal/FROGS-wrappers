@@ -24,32 +24,32 @@
             --var '$var1'
         #end if
 
-	</command>
+    </command>
     <inputs>m
-		<!-- Files -->
-		<conditional name="analysis_type">
-			<param name="analysis" type="select" label="Type of analysis" help="Type of data to perform the differential analysis. ASV: DESeq2 is run on the ASV abundance table. FUNCTION: DESeq2 is run on predicted function abundance table from FROGSFUNC_2_function tool." display='radio'>
-            	<option value="ASV" selected="true">ASV</option>
-            	<option value="FUNCTION">FUNCTION</option>
-			</param>
-		<when value="ASV">
+        <!-- Files -->
+        <conditional name="analysis_type">
+            <param name="analysis" type="select" label="Type of analysis" help="Type of data to perform the differential analysis. ASV: DESeq2 is run on the ASV abundance table. FUNCTION: DESeq2 is run on predicted function abundance table from FROGSFUNC_2_function tool." display='radio'>
+                <option value="ASV" selected="true">ASV</option>
+                <option value="FUNCTION">FUNCTION</option>
+            </param>
+        <when value="ASV">
             <param format="rdata" name="data" type="data" label="Phyloseq object " help="This is the result of FROGSSTAT_Phyloseq_Import_Data without normalisation (DESeq2 is more powerful on unnormalised counts) (format RData)"/>
-		</when>
-		<when value="FUNCTION">
+        </when>
+        <when value="FUNCTION">
             <param format="tsv" name="input_functions" type="data" label="Function abundances file " help="Input file of predicted function abundances (frogsfunc_functions_unstrat.tsv from FROGSFUNC_2_function tool)."/>
             <param format="tabular,tsv" argument="--samplefile" type="data" label="Metadata asociated to samples (format: TSV)" help="The file must contain the metadata that characterise each sample."/> 
-		</when>
-		</conditional>
-        <!-- Parameters -->			
-	    <param name="var1" type="text" label="Experimental variable" help="The factor that could have an effect on ASV/FUNCTION abundances. Ex: Treatment, etc.">
+        </when>
+        </conditional>
+        <!-- Parameters -->        
+        <param name="var1" type="text" label="Experimental variable" help="The factor that could have an effect on ASV/FUNCTION abundances. Ex: Treatment, etc.">
             <expand macro="sanitizer_validator"/>
         </param>
-		<conditional name="multiple">
+        <conditional name="multiple">
             <param name="seconde" type="select" label="Do you want to correct a confounding factor?" help="If yes, specify the counfouding factor">
                 <option value="true">True</option>
                 <option value="false" selected="true">False</option>
             </param>
-		    <when value="false"/>
+            <when value="false"/>
             <when value="true">
                 <param name="var2" type="text" label="Variable 2" help="Confounding factor. Ex: Gender, etc.">
                     <expand macro="sanitizer_validator"/>

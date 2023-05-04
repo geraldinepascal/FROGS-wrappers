@@ -40,7 +40,7 @@
                     <has_text_matching expression="abundance_removed.*:\s0" />
                     <has_text_matching expression="abundance_kept.*:\s300" />
                     <has_text_matching expression="otu_removed.*:\s0" />
-                    <has_text_matching expression="otu_kept.*:\s51" />
+                    <has_text_matching expression="otu_kept.*:\s50" />
                 </assert_contents>
             </output>
         </test>

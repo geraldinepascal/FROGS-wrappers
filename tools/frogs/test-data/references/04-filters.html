@@ -576,7 +576,7 @@
 			// Data
 			//
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			var processed_filters = ["Present in less than 3 samples", "Present in less than 50.0%  of replicates of all replicate groups.", "Abundance < 0.005% (i.e 8 sequences )"] ;
+			var processed_filters = ["Present in less than 3 samples", "Abundance < 0.005% (i.e 8 sequences )"] ;
 			/* Example:
 				['filterA', 'filterB', 'filterC']
 			*/
@@ -609,7 +609,7 @@
 					}
 				}
 			*/
-			var replicate_groups = {"group_1": {"Replicates": "01_subsample, 02_subsample"}, "group_2": {"Replicates": "03_subsample"}} ;
+			var replicate_groups = {} ;
 
 
 			var by_filters_results = [{"filters": ["Present in less than 3 samples", "Abundance < 0.005% (i.e 8 sequences )"], "count": 74864}, {"filters": ["Abundance < 0.005% (i.e 8 sequences )"], "count": 1}] ;

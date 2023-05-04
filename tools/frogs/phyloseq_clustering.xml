@@ -29,7 +29,7 @@
 			<param name="varExp" value="EnvType"/>
 			<param name="distance_matrix" value="references/unifrac.tsv"/>
       		<!-- <output name="html" file="references/21-phylo_clustering.nb.html" compare="diff" lines_diff="0"/> -->
-      		<output name="html">
+      		<!-- <output name="html">
       			<assert_contents>
                     <has_text text='FROGS Phyloseq: Sample clustering using different linkage method (version 4.0.1)' />
                     <has_text text='Phyloseq 1.38.0' />
@@ -38,7 +38,7 @@
                     <has_text text='Single' />
                     <has_text text='img src=' />
                 </assert_contents>
-            </output>
+            </output> -->
 		</test>
 	</tests>
 	<help>

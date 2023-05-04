@@ -153,11 +153,6 @@
 		    	<param name="abundance_unit_type" value="proportion" />
 				<param name="min_abundance_proportion" value="0.00005" />
 		    </conditional>
-			<conditional name="choice_prevalence_method">
-				<param name="prevalence_method" value="replicate" />
-				<param name="replicate_file" value="input/replicate_file.tsv" />
-				<param name="min_replicate_presence" value="0.5"/>
-			</conditional>
 	 	    <output name="output_fasta" file="references/04-filters.fasta" compare="diff" lines_diff="0" />
 	 	    <output name="output_biom" file="references/04-filters.biom" compare="sim_size" delta="0" />
 		    <output name="output_excluded" file="references/04-filters.excluded" compare="diff" lines_diff="0" />
