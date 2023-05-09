@@ -25,7 +25,7 @@
         #end if
 
     </command>
-    <inputs>m
+    <inputs>
         <!-- Files -->
         <conditional name="analysis_type">
             <param name="analysis" type="select" label="Type of analysis" help="Type of data to perform the differential analysis. ASV: DESeq2 is run on the ASV abundance table. FUNCTION: DESeq2 is run on predicted function abundance table from FROGSFUNC_2_function tool." display='radio'>
@@ -74,9 +74,12 @@
     </outputs>
     <tests>
         <test>
-            <param name="data" value="references/16-phylo_import.Rdata" />
             <param name="var1" value="EnvType"/>
-            <output name="dds" file="references/23-deseq2_preprocess.Rdata" compare="sim_size" delta="50"/>
+            <conditional name="analysis_type">
+                <param name="analysis" value="ASV"/>
+                <param name="data" value="references/16-phylo_import.Rdata" />
+            </conditional>
+            <output name="dds_asv" file="references/23-deseq2_preprocess.Rdata" compare="sim_size" delta="50"/>
         </test>
     </tests>
     <help>
@@ -111,8 +114,8 @@ We need unnormalised data to analyse the abundance differencies.
 		- the file that must contain the **metadata** that characterise each sample i.e. the conditions of experiment with sample ID in the first column as: 
 
   .. image:: FROGS_Phyloseq_samplefile.png
-     :height: 115
-     :width: 369
+	 :height: 115
+	 :width: 369
 
 
 .. class:: h3
@@ -133,12 +136,12 @@ How it works ?
 
 The DESeq2 function performs a default analysis through the steps:
 
-       1. estimation of size factors: ‘estimateSizeFactors’
+	   1. estimation of size factors: ‘estimateSizeFactors’
 
-       2. estimation of dispersion: ‘estimateDispersions’
+	   2. estimation of dispersion: ‘estimateDispersions’
 
-       3. Negative Binomial GLM fitting and Wald statistics:
-          ‘nbinomWaldTest’
+	   3. Negative Binomial GLM fitting and Wald statistics:
+		  ‘nbinomWaldTest’
 
 You must precise at least on variable on which the differential abundances will be compared.
 

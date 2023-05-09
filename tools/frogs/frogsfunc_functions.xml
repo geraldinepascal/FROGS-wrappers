@@ -142,15 +142,14 @@
 
     <tests>
         <test>
+            <param name="input_fasta" value="references/25-frogsfunc_placeseqs.fasta" />
             <param name="input_biom" value="references/25-frogsfunc_placeseqs.biom" />
-            <param name="function" value="references/26-frogsfunc_copynumbers_predicted_functions.tsv" />
-            <param name="marker" value="references/26-frogsfunc_copynumbers_marker.tsv"/>
+            <param name="input_tree" value="references/25-frogsfunc_placeseqs_tree.nwk" />
+            <param name="input_marker" value="references/25-frogsfunc_copynumbers_marker.tsv" />
+            <param name="functions" value="EC" />
             <param name="max_nsti" value="2" />
-            <param name="min_reads" value="1" />
-            <param name="min_samples" value="1" />
-            <param name="strat" value="false" />
 
-            <output name="output_function_abund" file="references/27-frogsfunc_functions_unstrat.tsv" compare="diff" lines_diff="0" />
+            <output name="output_function_ec_abund" file="references/27-frogsfunc_functions_unstrat.tsv" compare="diff" lines_diff="0" />
             <output name="output_otu_norm" file="references/27-frogsfunc_functions_marker_norm.tsv" compare="diff" lines_diff="0" />
             <output name="output_weighted" file="references/27-frogsfunc_functions_weighted_nsti.tsv" compare="diff" lines_diff="0" />
             <output name="summary_file" file="references/27-frogsfunc_functions_report.html" compare="diff" lines_diff="0" />

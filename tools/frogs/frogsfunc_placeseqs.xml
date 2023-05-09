@@ -96,7 +96,7 @@
 			<output name="output_tree" file="references/25-frogsfunc_placeseqs_tree.nwk" compare="diff" lines_diff="0" />
 			<output name="closests_ref" file="references/25-frogsfunc_placeseqs_closests_ref_sequences.txt" compare="diff" lines_diff="0" />
 			<output name="summary_file" file="references/25-frogsfunc_placeseqs_report.html" compare="diff" lines_diff="0" />
-			<output name="output_marker" file="references/26-frogsfunc_marker.tsv" compare="diff" lines_diff="0" /> 
+			<output name="output_marker" file="references/25-frogsfunc_copynumbers_marker.tsv" compare="diff" lines_diff="0" /> 
 		</test>
 	</tests>
 
