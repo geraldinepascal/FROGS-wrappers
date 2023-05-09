@@ -87,7 +87,7 @@
 			<param name="input_fasta" value="input/frogsfunc.fasta" />
             <param name="input_biom" value="input/frogsfunc.biom" />
             <param name="placement_tool" value="sepp"/>
-			<param name="ref_dir" value="databases/frogs_picrust2_db/prokaryotic/pro_ref/" />
+			<!-- <param name="ref_dir" value="databases/frogs_picrust2_db/prokaryotic/pro_ref/" /> -->
 			<param name="min_align" value="0.8" />
 			
 			<output name="output_fasta" file="references/25-frogsfunc_placeseqs.fasta" compare="diff" lines_diff="0" />
