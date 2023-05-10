@@ -63,21 +63,6 @@ jobs:
       run: pip install wheel
     - name: Install Planemo and flake8
       run: pip install planemo flake8 flake8-import-order
-    - name: Fake a Planemo run to update cache
-      if: steps.cache-pip.outputs.cache-hit != 'true' || steps.cache-planemo.outputs.cache-hit != 'true'
-      run: |
-        touch tool.xml
-        PIP_QUIET=1 planemo test --galaxy_python_version ${{ matrix.python-version }} --no_conda_auto_init --galaxy_source $GALAXY_REPO --galaxy_branch $GALAXY_REPO
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-    # The range of commits to check for changes is:
-    # - `origin/master...` for all events happening on a feature branch
-    # - for events on the master branch we compare against the sha before the event
-    #   (note that this does not work for feature branch events since we want all
-    #   commits on the feature branch and not just the commits of the last event)
-    # - for pull requests we compare against the 1st ancestor, given the current
-    #   HEAD is the merge between the PR branch and the base branch
     - name: Set commit range (push to the feature branch)
       if: github.ref != 'refs/heads/master' && github.event_name == 'push'
       run: |
