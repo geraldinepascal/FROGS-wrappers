@@ -66,6 +66,8 @@ jobs:
         key: planemo_cache_py_${{ matrix.python-version }}_gxy_${{ steps.get-galaxy-sha.outputs.galaxy-head-sha }}
     # Install the `wheel` package so that when installing other packages which
     # are not available as wheels, pip will build a wheel for them, which can be cached.
+    - name: update pip
+      run: pip install --upgrade pip
     - name: Install wheel
       run: pip install wheel
     - name: Install flake8
