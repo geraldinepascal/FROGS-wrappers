@@ -7,7 +7,7 @@ on:
     branches:
       - master
 env:
-  GALAXY_REPO: https://github.com/galaxyproject/galaxy
+  GALAXY_FORK: galaxyproject
   GALAXY_BRANCH: release_23.0
   MAX_CHUNKS: 8
 concurrency:
