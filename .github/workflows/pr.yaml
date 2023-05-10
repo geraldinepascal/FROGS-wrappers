@@ -10,11 +10,6 @@ env:
   GALAXY_FORK: galaxyproject
   GALAXY_REPO: release_23.0
   MAX_CHUNKS: 8
-concurrency:
-  # Group runs by PR, but keep runs on the default branch separate
-  # because we do not want to cancel ToolShed uploads
-  group: pr-${{ (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') && github.run_number || github.ref }}
-  cancel-in-progress: true
 jobs:
   # the setup job does two things:
   # 1. cache the pip cache and .planemo
@@ -22,7 +17,8 @@ jobs:
   # it produces one artifact which contains
   # - a file with the latest SHA from the chosen branch of the Galaxy repo
   # - a file containing the list of changed repositories
-  # which are needed in subsequent steps.#   setup:
+  # which are needed in subsequent steps.
+  setup:
     name: Setup cache and determine changed repositories
     runs-on: ubuntu-latest
     outputs:
@@ -71,7 +67,7 @@ jobs:
       if: steps.cache-pip.outputs.cache-hit != 'true' || steps.cache-planemo.outputs.cache-hit != 'true'
       run: |
         touch tool.xml
-        PIP_QUIET=1 planemo test --galaxy_python_version ${{ matrix.python-version }} --no_conda_auto_init --galaxy_source $GALAXY_REPO --galaxy_branch $GALAXY_REPO
+        PIP_QUIET=1 planemo test --galaxy_python_version ${{ matrix.python-version }} --no_conda_auto_init --galaxy_source $GALAXY_REPO --galaxy_branch $GALAXY_RELEASE
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
@@ -125,7 +121,6 @@ jobs:
     - name: Show chunks
       run: |
         echo 'Using ${{ steps.get-chunks.outputs.nchunks }} chunks (${{ steps.get-chunks.outputs.chunk_list }})'
-
 
   # Planemo lint the changed repositories
   lint:
@@ -402,177 +397,46 @@ jobs:
             exit 1
         fi
 
-
-
-
-#       name: Galaxy Tool Linting and Tests for push and PR
-# on:
-#   push:
-#     branches:
-#       - master
-#   pull_request:
-#     branches:
-#       - master
-# env:
-#   GALAXY_REPO: https://github.com/galaxyproject/galaxy
-#   GALAXY_RELEASE: release_21.05
-#   MAX_CHUNKS: 8
-# jobs:
-#   # the setup job does two things:
-#   # 1. cache the pip cache and .planemo
-#   # 2. determine the list of changed repositories
-#   # it produces one artifact which contains
-#   # - a file with the latest SHA from the chosen branch of the Galaxy repo
-#   # - a file containing the list of changed repositories
-#   # which are needed in subsequent steps.
-#   setup:
-#     name: Setup cache and determine changed repositories
-#     runs-on: ubuntu-latest
-#     outputs:
-#       galaxy_head_sha: ${{ steps.get-galaxy-sha.outputs.galaxy_head_sha }}
-#       commit_range: ${{ steps.get-commit-range.outputs.commit_range }}
-#       nchunks: ${{ steps.get-chunks.outputs.nchunks }}
-#       chunk_list: ${{ steps.get-chunks.outputs.chunk_list }}
-#     strategy:
-#       matrix:
-#         python-version: [3.7]
-#     steps:
-#     - name: Print github context properties
-#       run: |
-#         echo 'event: ${{ github.event_name }}'
-#         echo 'sha: ${{ github.sha }}'
-#         echo 'ref: ${{ github.ref }}'
-#         echo 'head_ref: ${{ github.head_ref }}'
-#         echo 'base_ref: ${{ github.base_ref }}'
-#         echo 'event.before: ${{ github.event.before }}'
-#         echo 'event.after: ${{ github.event.after }}'
-#     - name: Determine latest commit in the Galaxy repo
-#       id: get-galaxy-sha
-#       run: echo "::set-output name=galaxy_head_sha::$(git ls-remote ${{ env.GALAXY_REPO }} refs/heads/${{ env.GALAXY_RELEASE }} | cut -f1)"
-#     - uses: actions/setup-python@v1
-#       with:
-#         python-version: ${{ matrix.python-version }}
-#     - name: Cache .cache/pip
-#       uses: actions/cache@v2
-#       id: cache-pip
-#       with:
-#         path: ~/.cache/pip
-#         key: pip_cache_py_${{ matrix.python-version }}_gxy_${{ steps.get-galaxy-sha.outputs.galaxy_head_sha }}
-#     - name: Cache .planemo
-#       uses: actions/cache@v2
-#       id: cache-planemo
-#       with:
-#         path: ~/.planemo
-#         key: planemo_cache_py_${{ matrix.python-version }}_gxy_${{ steps.get-galaxy-sha.outputs.galaxy_head_sha }}
-#     # Install the `wheel` package so that when installing other packages which
-#     # are not available as wheels, pip will build a wheel for them, which can be cached.
-#     - name: Install wheel
-#       run: pip install wheel
-#     - name: Install Planemo and flake8
-#       run: pip install planemo flake8 flake8-import-order
-#     - name: Fake a Planemo run to update cache
-#       if: steps.cache-pip.outputs.cache-hit != 'true' || steps.cache-planemo.outputs.cache-hit != 'true'
-#       run: |
-#         touch tool.xml
-#         PIP_QUIET=1 planemo test --galaxy_python_version ${{ matrix.python-version }} --no_conda_auto_init --galaxy_source $GALAXY_REPO --galaxy_branch $GALAXY_RELEASE
-#     - uses: actions/checkout@v2
-#       with:
-#         fetch-depth: 0
-#     # The range of commits to check for changes is:
-#     # - `origin/master...` for all events happening on a feature branch
-#     # - for events on the master branch we compare against the sha before the event
-#     #   (note that this does not work for feature branch events since we want all
-#     #   commits on the feature branch and not just the commits of the last event)
-#     # - for pull requests we compare against the 1st ancestor, given the current
-#     #   HEAD is the merge between the PR branch and the base branch
-#     - name: Set commit range (push to the feature branch)
-#       if: github.ref != 'refs/heads/master' && github.event_name == 'push'
-#       run: |
-#         git fetch origin master
-#         echo "COMMIT_RANGE=origin/master..." >> $GITHUB_ENV
-#     - name: Set commit range (push to the master branch, e.g. merge)
-#       if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-#       run: echo "COMMIT_RANGE=${{ github.event.before }}.." >> $GITHUB_ENV
-#     - name: Set commit range (pull request)
-#       if: github.event_name == 'pull_request'
-#       run: echo "COMMIT_RANGE=HEAD~.." >> $GITHUB_ENV
-#     - id: get-commit-range
-#       run: echo "::set-output name=commit_range::$COMMIT_RANGE"
-#     - name: Planemo ci_find_repos for the commit range
-#       run: planemo ci_find_repos --changed_in_commit_range $COMMIT_RANGE --exclude packages --exclude deprecated --exclude_from .tt_skip --output repository_list.txt
-#     - name: Show repository list
-#       run: cat repository_list.txt
-#     - uses: actions/upload-artifact@v2
-#       with:
-#         name: Workflow artifacts
-#         path: repository_list.txt
-#     - name: Planemo ci_find_tools for the repository list
-#       run: |
-#         touch tool_list.txt
-#         if [ -s repository_list.txt ]; then
-#             planemo ci_find_tools --output tool_list.txt $(cat repository_list.txt)
-#         fi
-#     - name: Show tool list
-#       run: cat tool_list.txt
-#     - name: Compute chunks
-#       id: get-chunks
-#       run: |
-#         nchunks=$(wc -l < tool_list.txt)
-#         if [ "$nchunks" -gt "$MAX_CHUNKS" ]; then
-#             nchunks=$MAX_CHUNKS
-#         elif [ "$nchunks" -eq 0 ]; then
-#             nchunks=1
-#         fi
-#         echo "::set-output name=nchunks::$nchunks"
-#         echo "::set-output name=chunk_list::[$(seq -s ", " 0 $(($nchunks - 1)))]"
-#     - name: Show chunks
-#       run: |
-#         echo 'Using ${{ steps.get-chunks.outputs.nchunks }} chunks (${{ steps.get-chunks.outputs.chunk_list }})'
-
-
-
-
-
-#   deploy the tools to the toolsheds (first TTS for testing)
-#   deploy:
-#     name: Deploy
-#     needs: [setup, lint, flake8, lintr, combine_outputs]
-#     strategy:
-#       matrix:
-#         python-version: [3.7]
-#     runs-on: ubuntu-latest
-#     if: github.ref == 'refs/heads/master' && github.repository_owner == 'frogs'
-#     steps:
-#     - uses: actions/checkout@v2
-#       with:
-#         fetch-depth: 1
-#     - uses: actions/setup-python@v1
-#       with:
-#         python-version: ${{ matrix.python-version }}
-#     - uses: actions/download-artifact@v2
-#       with:
-#         name: Workflow artifacts
-#         path: ../workflow_artifacts/
-#     - name: Cache .cache/pip
-#       uses: actions/cache@v2
-#       id: cache-pip
-#       with:
-#         path: ~/.cache/pip
-#         key: pip_cache_py_${{ matrix.python-version }}_gxy_${{ needs.setup.outputs.galaxy_head_sha }}
-#     - name: Install Planemo
-#       run: pip install planemo
-#     - name: Deploy on testtoolshed
-#       env:
-#         SHED_KEY: ${{ secrets.TTS_API_KEY }}
-#       run: |
-#         while read -r DIR; do
-#             planemo shed_update --shed_target testtoolshed --shed_key "${{ env.SHED_KEY }}" --force_repository_creation "$DIR" || exit 1;
-#         done < ../workflow_artifacts/repository_list.txt
-#       continue-on-error: true
-#     - name: Deploy on toolshed
-#       env:
-#         SHED_KEY: ${{ secrets.TS_API_KEY }}
-#       run: |
-#         while read -r DIR; do
-#             planemo shed_update --shed_target toolshed --shed_key "${{ env.SHED_KEY }}" --force_repository_creation "$DIR" || exit 1;
-#         done < ../workflow_artifacts/repository_list.txt
+  # deploy the tools to the toolsheds (first TTS for testing)
+  # deploy:
+  #   name: Deploy
+  #   needs: [setup, lint, flake8, lintr, combine_outputs]
+  #   strategy:
+  #     matrix:
+  #       python-version: [3.7]
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/master' && github.repository_owner == 'frogs'
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #     with:
+  #       fetch-depth: 1
+  #   - uses: actions/setup-python@v1
+  #     with:
+  #       python-version: ${{ matrix.python-version }}
+  #   - uses: actions/download-artifact@v2
+  #     with:
+  #       name: Workflow artifacts
+  #       path: ../workflow_artifacts/
+  #   - name: Cache .cache/pip
+  #     uses: actions/cache@v2
+  #     id: cache-pip
+  #     with:
+  #       path: ~/.cache/pip
+  #       key: pip_cache_py_${{ matrix.python-version }}_gxy_${{ needs.setup.outputs.galaxy_head_sha }}
+  #   - name: Install Planemo
+  #     run: pip install planemo
+  #   - name: Deploy on testtoolshed
+  #     env:
+  #       SHED_KEY: ${{ secrets.TTS_API_KEY }}
+  #     run: |
+  #       while read -r DIR; do
+  #           planemo shed_update --shed_target testtoolshed --shed_key "${{ env.SHED_KEY }}" --force_repository_creation "$DIR" || exit 1;
+  #       done < ../workflow_artifacts/repository_list.txt
+  #     continue-on-error: true
+  #   - name: Deploy on toolshed
+  #     env:
+  #       SHED_KEY: ${{ secrets.TS_API_KEY }}
+  #     run: |
+  #       while read -r DIR; do
+  #           planemo shed_update --shed_target toolshed --shed_key "${{ env.SHED_KEY }}" --force_repository_creation "$DIR" || exit 1;
+  #       done < ../workflow_artifacts/repository_list.txt
