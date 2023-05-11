@@ -63,64 +63,64 @@ jobs:
       run: pip install wheel
     - name: Install Planemo and flake8
       run: pip install planemo flake8 flake8-import-order
-    # - name: Fake a Planemo run to update cache
-    #   if: steps.cache-pip.outputs.cache-hit != 'true' || steps.cache-planemo.outputs.cache-hit != 'true'
-    #   run: |
-    #     touch tool.xml
-    #     PIP_QUIET=1 planemo test --galaxy_python_version ${{ matrix.python-version }} --no_conda_auto_init --galaxy_source $GALAXY_REPO --galaxy_branch $GALAXY_REPO
-    # - uses: actions/checkout@v2
-    #   with:
-    #     fetch-depth: 0
-    # # The range of commits to check for changes is:
-    # # - `origin/master...` for all events happening on a feature branch
-    # # - for events on the master branch we compare against the sha before the event
-    # #   (note that this does not work for feature branch events since we want all
-    # #   commits on the feature branch and not just the commits of the last event)
-    # # - for pull requests we compare against the 1st ancestor, given the current
-    # #   HEAD is the merge between the PR branch and the base branch
-    # - name: Set commit range (push to the feature branch)
-    #   if: github.ref != 'refs/heads/master' && github.event_name == 'push'
-    #   run: |
-    #     git fetch origin master
-    #     echo "COMMIT_RANGE=origin/master..." >> $GITHUB_ENV
-    # - name: Set commit range (push to the master branch, e.g. merge)
-    #   if: github.ref == 'refs/heads/master' && github.event_name == 'push'
-    #   run: echo "COMMIT_RANGE=${{ github.event.before }}.." >> $GITHUB_ENV
-    # - name: Set commit range (pull request)
-    #   if: github.event_name == 'pull_request'
-    #   run: echo "COMMIT_RANGE=HEAD~.." >> $GITHUB_ENV
-    # - id: get-commit-range
-    #   run: echo "::set-output name=commit_range::$COMMIT_RANGE"
-    # - name: Planemo ci_find_repos for the commit range
-    #   run: planemo ci_find_repos --changed_in_commit_range $COMMIT_RANGE --exclude packages --exclude deprecated --exclude_from .tt_skip --output repository_list.txt
-    # - name: Show repository list
-    #   run: cat repository_list.txt
-    # - uses: actions/upload-artifact@v2
-    #   with:
-    #     name: Workflow artifacts
-    #     path: repository_list.txt
-    # - name: Planemo ci_find_tools for the repository list
-    #   run: |
-    #     touch tool_list.txt
-    #     if [ -s repository_list.txt ]; then
-    #         planemo ci_find_tools --output tool_list.txt $(cat repository_list.txt)
-    #     fi
-    # - name: Show tool list
-    #   run: cat tool_list.txt
-    # - name: Compute chunks
-    #   id: get-chunks
-    #   run: |
-    #     nchunks=$(wc -l < tool_list.txt)
-    #     if [ "$nchunks" -gt "$MAX_CHUNKS" ]; then
-    #         nchunks=$MAX_CHUNKS
-    #     elif [ "$nchunks" -eq 0 ]; then
-    #         nchunks=1
-    #     fi
-    #     echo "::set-output name=nchunks::$nchunks"
-    #     echo "::set-output name=chunk_list::[$(seq -s ", " 0 $(($nchunks - 1)))]"
-    # - name: Show chunks
-    #   run: |
-    #     echo 'Using ${{ steps.get-chunks.outputs.nchunks }} chunks (${{ steps.get-chunks.outputs.chunk_list }})'
+    - name: Fake a Planemo run to update cache
+      if: steps.cache-pip.outputs.cache-hit != 'true' || steps.cache-planemo.outputs.cache-hit != 'true'
+      run: |
+        touch tool.xml
+        PIP_QUIET=1 planemo test --galaxy_python_version ${{ matrix.python-version }} --no_conda_auto_init --galaxy_source $GALAXY_REPO --galaxy_branch $GALAXY_REPO
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    # The range of commits to check for changes is:
+    # - `origin/master...` for all events happening on a feature branch
+    # - for events on the master branch we compare against the sha before the event
+    #   (note that this does not work for feature branch events since we want all
+    #   commits on the feature branch and not just the commits of the last event)
+    # - for pull requests we compare against the 1st ancestor, given the current
+    #   HEAD is the merge between the PR branch and the base branch
+    - name: Set commit range (push to the feature branch)
+      if: github.ref != 'refs/heads/master' && github.event_name == 'push'
+      run: |
+        git fetch origin master
+        echo "COMMIT_RANGE=origin/master..." >> $GITHUB_ENV
+    - name: Set commit range (push to the master branch, e.g. merge)
+      if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+      run: echo "COMMIT_RANGE=${{ github.event.before }}.." >> $GITHUB_ENV
+    - name: Set commit range (pull request)
+      if: github.event_name == 'pull_request'
+      run: echo "COMMIT_RANGE=HEAD~.." >> $GITHUB_ENV
+    - id: get-commit-range
+      run: echo "::set-output name=commit_range::$COMMIT_RANGE"
+    - name: Planemo ci_find_repos for the commit range
+      run: planemo ci_find_repos --changed_in_commit_range $COMMIT_RANGE --exclude packages --exclude deprecated --exclude_from .tt_skip --output repository_list.txt
+    - name: Show repository list
+      run: cat repository_list.txt
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Workflow artifacts
+        path: repository_list.txt
+    - name: Planemo ci_find_tools for the repository list
+      run: |
+        touch tool_list.txt
+        if [ -s repository_list.txt ]; then
+            planemo ci_find_tools --output tool_list.txt $(cat repository_list.txt)
+        fi
+    - name: Show tool list
+      run: cat tool_list.txt
+    - name: Compute chunks
+      id: get-chunks
+      run: |
+        nchunks=$(wc -l < tool_list.txt)
+        if [ "$nchunks" -gt "$MAX_CHUNKS" ]; then
+            nchunks=$MAX_CHUNKS
+        elif [ "$nchunks" -eq 0 ]; then
+            nchunks=1
+        fi
+        echo "::set-output name=nchunks::$nchunks"
+        echo "::set-output name=chunk_list::[$(seq -s ", " 0 $(($nchunks - 1)))]"
+    - name: Show chunks
+      run: |
+        echo 'Using ${{ steps.get-chunks.outputs.nchunks }} chunks (${{ steps.get-chunks.outputs.chunk_list }})'
 
   # Planemo lint the changed repositories
   lint:
