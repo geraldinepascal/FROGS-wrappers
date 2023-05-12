@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGS_normalisation" name="FROGS Abundance normalisation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-        <description>Normalise ASV abundance.</description>
+        <description>Normalise ASV abundance. </description>
 
     <macros>
         <import>macros.xml</import>

@@ -1,5 +1,5 @@
 <tool id="FROGSSTAT_Phyloseq_Sample_Clustering" name="FROGSSTAT Phyloseq Sample Clustering" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-	<description>of samples using different linkage methods</description>
+	<description>of samples using different linkage methods </description>
     <macros>
         <import>macros.xml</import>
     </macros>

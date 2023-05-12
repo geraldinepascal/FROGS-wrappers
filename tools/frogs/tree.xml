@@ -1,5 +1,5 @@
 <tool id="FROGS_Tree" name="FROGS Tree" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>Reconstruction of phylogenetic tree </description>
+    <description>Reconstruction of phylogenetic tree  </description>
     <macros>
         <import>macros.xml</import>
     </macros>

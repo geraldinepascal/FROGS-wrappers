@@ -1,5 +1,5 @@
 <tool id="FROGS_itsx" name="FROGS ITSx" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>Extract the highly variable ITS1 and ITS2 subregions from ITS sequences</description>
+    <description>Extract the highly variable ITS1 and ITS2 subregions from ITS sequences </description>
     <macros>
         <import>macros.xml</import>
     </macros>

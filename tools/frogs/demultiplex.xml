@@ -1,5 +1,5 @@
 <tool id="FROGS_demultiplex" name="FROGS_0 Demultiplex reads" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-	<description>Attribute reads to samples in function of inner barcode</description>
+	<description>Attribute reads to samples in function of inner barcode </description>
     <macros>
         <import>macros.xml</import>
     </macros>

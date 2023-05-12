@@ -1,5 +1,5 @@
 <tool id="FROGS_tsv_to_biom" name="FROGS TSV_to_BIOM" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>Converts a TSV file in a BIOM file 1</description>
+    <description>Converts a TSV file in a BIOM file 1 </description>
     <macros>
         <import>macros.xml</import>
     </macros>

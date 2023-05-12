@@ -1,5 +1,5 @@
 <tool id="FROGS_affiliation_filters" name="FROGS Affiliation Filters" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>Filters ASVs on several affiliation criteria</description>
+    <description>Filters ASVs on several affiliation criteria </description>
     <macros>
         <import>macros.xml</import>
     </macros>

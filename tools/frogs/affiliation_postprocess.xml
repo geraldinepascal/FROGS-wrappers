@@ -1,5 +1,5 @@
 <tool id="FROGS_affiliation_postprocess" name="FROGS Affiliation postprocess" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>Aggregates ASVs based on alignment metrics</description>
+    <description>Aggregates ASVs based on alignment metrics </description>
     <macros>
         <import>macros.xml</import>
     </macros>

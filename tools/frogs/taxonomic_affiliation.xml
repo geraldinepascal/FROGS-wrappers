@@ -1,5 +1,5 @@
 <tool id="FROGS_taxonomic_affiliation" name="FROGS_5 Taxonomic affiliation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>Taxonomic affiliation of each ASV's seed by RDPtools and BLAST</description>
+    <description>Taxonomic affiliation of each ASV's seed by RDPtools and BLAST </description>
     <macros>
         <import>macros.xml</import>
     </macros>

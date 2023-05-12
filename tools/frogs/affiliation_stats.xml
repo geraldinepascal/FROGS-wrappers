@@ -1,5 +1,5 @@
 <tool id="FROGS_affiliation_stats" name="FROGS_6_Affiliation_Stat" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-	<description>Process some metrics on taxonomies</description>
+	<description>Process some metrics on taxonomies </description>
     <macros>
         <import>macros.xml</import>
     </macros>

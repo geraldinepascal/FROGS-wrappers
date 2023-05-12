@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGSFUNC_step1_placeseqs" name="FROGSFUNC_1_placeseqs_and_copynumbers" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-	<description>Places ASVs into a reference phylogenetic tree.</description>
+	<description>Places ASVs into a reference phylogenetic tree. </description>
 
   <macros>
         <import>macros.xml</import>
