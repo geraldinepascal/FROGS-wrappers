@@ -1,5 +1,5 @@
 <tool id="FROGSSTAT_Phyloseq_Alpha_Diversity" name="FROGSSTAT Phyloseq Alpha Diversity" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-	<description>with richness plot</description>
+	<description>with richness plot </description>
     <macros>
         <import>macros.xml</import>
     </macros>

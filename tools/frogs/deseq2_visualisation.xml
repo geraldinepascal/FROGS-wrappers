@@ -1,5 +1,5 @@
 <tool id="FROGSSTAT_DESeq2_Visualisation" name="FROGSSTAT DESeq2 Visualisation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>to extract and visualise differentially abundant ASVs or functions</description>
+    <description>to extract and visualise differentially abundant ASVs or functions </description>
     <macros>
         <import>macros.xml</import>
     </macros>

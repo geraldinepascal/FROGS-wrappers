@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGSFUNC_step4_pathways" name="FROGSFUNC_3_pathways" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-	<description>Calculates pathway abundances in each sample. </description>
+	<description>Calculates pathway abundances in each sample.  </description>
 
   <macros>
         <import>macros.xml</import>

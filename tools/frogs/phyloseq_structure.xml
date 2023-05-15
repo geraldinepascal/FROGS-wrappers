@@ -1,5 +1,5 @@
 <tool id="FROGSSTAT_Phyloseq_Structure_Visualisation" name="FROGSSTAT Phyloseq Structure Visualisation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-	<description>with heatmap plot and ordination plot</description>
+	<description>with heatmap plot and ordination plot </description>
     <macros>
         <import>macros.xml</import>
     </macros>

@@ -1,5 +1,5 @@
 <tool id="FROGSSTAT_DESeq2_Preprocess" name="FROGSSTAT DESeq2 Preprocess" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>import a Phyloseq object and prepare it for DESeq2 differential abundance analysis</description>
+    <description>import a Phyloseq object and prepare it for DESeq2 differential abundance analysis </description>
     <macros>
         <import>macros.xml</import>
     </macros>

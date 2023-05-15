@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <tool id="FROGS_cluster_filters" name="FROGS_4 Cluster filters" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
-	<description>Filters clusters on several criteria.</description>
+	<description>Filters clusters on several criteria. </description>
 
     <macros>
         <import>macros.xml</import>
