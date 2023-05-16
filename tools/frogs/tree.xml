@@ -53,7 +53,7 @@
 What it does
 
 This tool creates a multiple alignment of ASVs with `Mafft &lt;http://mafft.cbrc.jp/alignment/software&gt;`_.
-And creates a rooted phylogenetic tree with `FastTree &lt;http://www.microbesonline.org/fasttree/&gt;`_ and `Phangorn R package &lt;https://cran.r-project.org/web/packages/phangorn/index.html&gt;`_.
+And creates a rooted phylogenetic tree with FastTree and `Phangorn R package &lt;https://cran.r-project.org/web/packages/phangorn/index.html&gt;`_.
 
 .. class:: infomark page-header h2
 
