@@ -1,5 +1,5 @@
 <tool id="FROGS_preprocess" name="FROGS_1 Pre-process" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>merging, denoising and dereplication </description>
+    <description>merging, denoising and dereplication</description>
      <macros>
         <import>macros.xml</import>
     </macros>
@@ -311,8 +311,8 @@
                 </conditional>
                 <param name="min_amplicon_size" value="44" />
                 <param name="max_amplicon_size" value="490" />
-                <conditional name="sequencing_protocol">
-                    <param name="sequencing_protocol_selected" value="standard" />
+                  <conditional name="is_primer_in_seq">
+                    <param name="primer_choice" value="true" />
                     <param name="five_prim_primer" value="GGCGVACGGGTGAGTAA" />
                     <param name="three_prim_primer" value="GTGCCAGCNGCNGCGG" />
                 </conditional>
@@ -340,8 +340,8 @@
                 </conditional>
                 <param name="min_amplicon_size" value="44" />
                 <param name="max_amplicon_size" value="490" />
-                <conditional name="sequencing_protocol">
-                    <param name="sequencing_protocol_selected" value="standard" />
+                <conditional name="is_primer_in_seq">
+                    <param name="primer_choice" value="true" />
                     <param name="five_prim_primer" value="GGCGVACGGGTGAGTAA" />
                     <param name="three_prim_primer" value="GTGCCAGCNGCNGCGG" />
                 </conditional>

@@ -146,6 +146,7 @@
             <param name="input_biom" value="references/25-frogsfunc_placeseqs.biom" />
             <param name="input_tree" value="references/25-frogsfunc_placeseqs_tree.nwk" />
             <param name="input_marker" value="references/25-frogsfunc_copynumbers_marker.tsv" />
+            <param name="category.value" value="frogs_picrust2_marker_table" />
             <param name="functions" value="EC" />
             <param name="max_nsti" value="2" />
 
