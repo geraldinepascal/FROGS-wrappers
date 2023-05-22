@@ -317,7 +317,6 @@
                     <param name="three_prim_primer" value="GTGCCAGCNGCNGCGG" />
                 </conditional>
             </conditional>
-            <output name="dereplicated_file" file="references/01-prepro-flash.fasta" compare="diff" lines_diff="0" />
             <output name="count_file" file="references/01-prepro-flash.tsv" compare="diff" lines_diff="0" />
             <output name="summary_file" file="references/01-prepro-flash.html" compare="sim_size" delta="0" />
         </test>

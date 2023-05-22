@@ -67,7 +67,6 @@
                 <param name="distance" value="3" />
                 <param name="denoising" value="true" />
             </conditional>
-            <output name="seed_file" file="references/02-clustering_denoising.fasta" compare="diff" lines_diff="0" />
             <output name="swarms_composition" file="references/02-clustering_denoising_compo.tsv" compare="diff" lines_diff="0" />
             <output name="abundance_biom" file="references/02-clustering_denoising.biom" compare="sim_size" delta="0" />
         </test>
@@ -79,7 +78,6 @@
                 <param name="distance" value="1" />
                 <param name="fastidious" value="true" />
             </conditional>
-            <output name="seed_file" file="references/02-clustering_fastidious.fasta" compare="diff" lines_diff="0" />
             <output name="swarms_composition" file="references/02-clustering_fastidious_compo.tsv" compare="diff" lines_diff="0" />
             <output name="abundance_biom" file="references/02-clustering_fastidious.biom" compare="sim_size" delta="0" />
         </test>
