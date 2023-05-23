@@ -94,7 +94,7 @@
 
 What it does
 
-FROGS_6_Affiliation_stats computes several metrics and generates a HTML file describing ASVs based on their taxonomies and eventually the quality of the affiliations.
+"FROGS Affiliation stats" computes several metrics and generates a HTML file describing ASVs based on their taxonomies and eventually the quality of the affiliations.
 
 
 .. class:: infomark page-header h2
