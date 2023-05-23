@@ -67,7 +67,6 @@ We suppose that you installed FROGS in a specific section named `FROGS`.
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_normalisation/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_Tree/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliation_stats/4.1.0+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliations_stat/4.0.1+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_biom_to_stdBiom/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_biom_to_tsv/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_tsv_to_biom/4.1.0+galaxy1" />
