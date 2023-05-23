@@ -6,16 +6,16 @@
 
 Visit our web site : http://frogs.toulouse.inrae.fr/
 
-[![Release](https://img.shields.io/badge/release-4.0.1+galaxy1-blue.svg)](https://github.com/geraldinepascal/FROGS-wrappers/releases)   ![Date](https://img.shields.io/badge/date-June%202022-red.svg)   [![Galaxy Tool Linting and Tests for push and PR](https://github.com/geraldinepascal/FROGS-wrappers/actions/workflows/pr.yaml/badge.svg?branch=master)](https://github.com/geraldinepascal/FROGS-wrappers/actions/workflows/pr.yaml)   [<img src="https://www.podcastscience.fm/wp-content/uploads/2017/12/deezer.png" width="5%" style="display: block; margin: auto;"/>](https://www.deezer.com/fr/playlist/5233843102?utm_source=deezer&utm_content=playlist-5233843102&utm_term=18632989_1545296531&utm_medium=web)
+[![Release](https://img.shields.io/badge/release-4.1.0+galaxy1-blue.svg)](https://github.com/geraldinepascal/FROGS-wrappers/releases)   ![Date](https://img.shields.io/badge/date-May%202023-red.svg)   [![Galaxy Tool Linting and Tests for push and PR](https://github.com/geraldinepascal/FROGS-wrappers/actions/workflows/pr.yaml/badge.svg?branch=master)](https://github.com/geraldinepascal/FROGS-wrappers/actions/workflows/pr.yaml)   [<img src="https://www.podcastscience.fm/wp-content/uploads/2017/12/deezer.png" width="5%" style="display: block; margin: auto;"/>](https://www.deezer.com/fr/playlist/5233843102?utm_source=deezer&utm_content=playlist-5233843102&utm_term=18632989_1545296531&utm_medium=web)
 
 
 
 
 # Description
 
-FROGS is a workflow designed to produce an OTU count matrix from high depth sequencing amplicon data.
+FROGS is a workflow designed to produce an ASV count matrix from high depth sequencing amplicon data.
 
-FROGS also provide statistical tools to explore OTU count table and taxonomical affiliations.
+FROGS also provide statistical tools to explore ASV count table and taxonomical affiliations.
 
 FROGS-wrappers allow to add FROGS on a Galaxy instance.
 
@@ -46,53 +46,52 @@ FROGS and is data manager are available on the Toolshed (owner : frogs).
 
 It will install FROGS thanks to [conda](https://anaconda.org/bioconda/frogs), download all these XML tools and well configure them in your Galaxy.
 
-The 29 FROGS tools will be in random order in your tools panel. We propose to control that order by modifying the `shed_tool_conf.xml`  which will render the following`integrated_tool_panel.xml ` file.
+The 28 FROGS tools will be in random order in your tools panel. We propose to control that order by modifying the `shed_tool_conf.xml`  which will render the following`integrated_tool_panel.xml ` file.
 
 We suppose that you installed FROGS in a specific section named `FROGS`.
 
 ```
-<section id="FROGS_4.0.1+galaxy1" name="FROGS" version="">
+<section id="FROGS_4.1.0+galaxy1" name="FROGS" version="">
 
-    <label id="FROGS_OTU_toolshed_4.0.1+galaxy1" text="OTUs reconstruction" version="" />
+    <label id="FROGS_ASV_toolshed_4.1_0+galaxy1" text="ASVs reconstruction" version="" />
 
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_demultiplex/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_preprocess/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_clustering/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_remove_chimera/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_OTU_filters/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_itsx/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliation_OTU/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliation_filters/4.0.1+galaxy1" />    
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliation_postprocess/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_normalisation/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_Tree/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_clusters_stat/4.0.1+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_demultiplex/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_preprocess/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_clustering/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_remove_chimera/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_cluster_filters/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_itsx/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_taxonomic_affiliation/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliation_filters/4.1.0+galaxy1" />    
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliation_postprocess/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_normalisation/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_Tree/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliation_stats/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliations_stat/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_biom_to_stdBiom/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_biom_to_tsv/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_tsv_to_biom/4.0.1+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_biom_to_stdBiom/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_biom_to_tsv/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_tsv_to_biom/4.1.0+galaxy1" />
 
-    <label id="FROGSSTAT_Phyloseq_toolshed_4.0.1+galaxy1" text="OTUs structure and composition analysis" version="" />
+    <label id="FROGSSTAT_Phyloseq_toolshed_4.1.0+galaxy1" text="ASVs structure and composition analysis" version="" />
 
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Import_Data/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Composition_Visualisation/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Alpha_Diversity/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Beta_Diversity/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Sample_Clustering/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Structure_Visualisation/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance/4.0.1+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Import_Data/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Composition_Visualisation/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Alpha_Diversity/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Beta_Diversity/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Sample_Clustering/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Structure_Visualisation/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance/4.1.0+galaxy1" />
 
-    <label id="FROGSSTAT_DESeq_toolshed_4.0.1+galaxy1" text="Differential abundance analysis" version="" />
+    <label id="FROGSSTAT_DESeq_toolshed_4.1.0+galaxy1" text="Differential abundance analysis" version="" />
 
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_DESeq2_Preprocess/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_DESeq2_Visualisation/4.0.1+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_DESeq2_Preprocess/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_DESeq2_Visualisation/4.1.0+galaxy1" />
 
-    <label id="FROGFUNC_toolshed_4.0.1+galaxy1" text="Functionnal abundance predictions based on marker gene sequences" version="" />
+    <label id="FROGFUNC_toolshed_4.1.0+galaxy1" text="Functionnal abundance predictions based on marker gene sequences" version="" />
 
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step1_placeseqs/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step2_copynumbers/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step3_functions/4.0.1+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step4_pathways/4.0.1+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step1_placeseqs/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step2_functions/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step3_pathways/4.1.0+galaxy1" />
 
 </section>
 ```
@@ -123,24 +122,24 @@ You should start by installing [FROGS](https://github.com/geraldinepascal/FROGS)
 
    ```
      <section id="frogs_local" name="FROGS local">
-       <label id="frogs_otu_construction" text="OTUs reconstruction" />
+       <label id="frogs_asv_construction" text="ASVs reconstruction" />
        <tool file="FROGS/demultiplex.xml" />
        <tool file="FROGS/preprocess.xml" />
        <tool file="FROGS/clustering.xml" />
        <tool file="FROGS/remove_chimera.xml" />
-       <tool file="FROGS/otu_filters.xml" />
+       <tool file="FROGS/cluster_filters.xml" />
        <tool file="FROGS/itsx.xml" />
-       <tool file="FROGS/affiliation_OTU.xml" />
+       <tool file="FROGS/taxonomic_affiliation.xml" />
        <tool file="FROGS/affiliation_filters.xml" />
        <tool file="FROGS/affiliation_postprocess.xml" />
        <tool file="FROGS/normalisation.xml" />
        <tool file="FROGS/tree.xml" />
-       <tool file="FROGS/clusters_stat.xml" />
-       <tool file="FROGS/affiliations_stat.xml" />
+       <tool file="FROGS/cluster_stats.xml" />
+       <tool file="FROGS/affiliation_stats.xml" />
        <tool file="FROGS/biom_to_stdBiom.xml" />
        <tool file="FROGS/biom_to_tsv.xml" />
        <tool file="FROGS/tsv_to_biom.xml" />
-       <label id="frogsstat_phyloseq" text="OTUs structure and composition analysis" />
+       <label id="frogsstat_phyloseq" text="ASVs structure and composition analysis" />
        <tool file="FROGS/phyloseq_import_data.xml" />
        <tool file="FROGS/phyloseq_composition.xml" />
        <tool file="FROGS/phyloseq_alpha_diversity.xml" />
@@ -153,7 +152,6 @@ You should start by installing [FROGS](https://github.com/geraldinepascal/FROGS)
        <tool file="FROGS/deseq2_visualisation.xml" />
        <label id="frogsfunc" text="Functionnal abundance predictions based on marker gene sequences" />
        <tool file="FROGS/frogsfunc_placeseqs.xml" />
-       <tool file="FROGS/frogsfunc_copynumbers.xml" />
        <tool file="FROGS/frogsfunc_functions.xml" />
        <tool file="FROGS/frogsfunc_pathways.xml" />
      </section>     
@@ -167,25 +165,25 @@ Tools order in the Galaxy interface will not follow the tool_conf.xml definition
 Modify manually the `galaxy_dir/config/integrated_tool_panel.xml`:
 
 ```
-    <section id="frogs_local" name="FROGS local" version="4.0.1">
-        <label id="frogs_otu_construction" text="OTUs reconstruction" version="4.0.1" />
+    <section id="frogs_local" name="FROGS local" version="4.1.0">
+        <label id="frogs_asv_construction" text="ASVs reconstruction" version="4.1.0" />
         <tool id="FROGS_demultiplex" />
         <tool id="FROGS_preprocess" />
         <tool id="FROGS_clustering" />
         <tool id="FROGS_remove_chimera" />
-        <tool id="FROGS_OTU_filters" />
+        <tool id="FFROGS_cluster_filters" />
         <tool id="FROGS_itsx" />
-        <tool id="FROGS_affiliation_OTU" />
+        <tool id="FROGS_taxonomic_affiliation" />
         <tool id="FROGS_affiliation_filters" />
         <tool id="FROGS_affiliation_postprocess" />
         <tool id="FROGS_normalisation" />
         <tool id="FROGS_Tree" />
-        <tool id="FROGS_clusters_stat" />
-        <tool id="FROGS_affiliations_stat" />
+        <tool id="FROGS_cluster_stats" />
+        <tool id="FROGS_affiliation_stats" />
         <tool id="FROGS_biom_to_stdBiom" />
         <tool id="FROGS_biom_to_tsv" />
         <tool id="FROGS_tsv_to_biom" />
-        <label id="frogsstat_phyloseq" text="OTUs structure and composition analysis" version="4.0.1" />
+        <label id="frogsstat_phyloseq" text="ASVs structure and composition analysis" version="4.1.0" />
         <tool id="FROGSSTAT_Phyloseq_Import_Data" />
         <tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" />
         <tool id="FROGSSTAT_Phyloseq_Alpha_Diversity" />
@@ -193,17 +191,15 @@ Modify manually the `galaxy_dir/config/integrated_tool_panel.xml`:
         <tool id="FROGSSTAT_Phyloseq_Sample_Clustering" />
         <tool id="FROGSSTAT_Phyloseq_Structure_Visualisation" />
         <tool id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" />
-        <label id="frogsstat_deseq" text="Differential abundance analysis" version="4.0.1" />
+        <label id="frogsstat_deseq" text="Differential abundance analysis" version="4.1.0" />
         <tool id="FROGSSTAT_DESeq2_Preprocess" />
         <tool id="FROGSSTAT_DESeq2_Visualisation" />
-        <label id="frogsfunc" text="unctionnal abundance predictions based on marker gene sequences" version="4.0.1" />
+        <label id="frogsfunc" text="unctionnal abundance predictions based on marker gene sequences" version="4.1.0" />
         <tool id="FROGSFUNC_step1_placeseqs" />
-        <tool id="FROGSFUNC_step2_copynumbers" />
-        <tool id="FROGSFUNC_step3_functions" />
-        <tool id="FROGSFUNC_step4_pathways" />
+        <tool id="FROGSFUNC_step2_functions" />
+        <tool id="FROGSFUNC_step3_pathways" />
     </section>
 ```
-
 
 
 1. <u>Add images</u>
@@ -246,7 +242,7 @@ Databanks are defined in `loc` files and `loc` files are defined in Galaxy datat
 We provide some databanks for each of these 3 data tables, you simply need to download them and add them in the corresponding `loc` files.
 
 
-- Assignation databank for affiliation_OTU tool
+- Assignation databank for taxonomic_affiliation tool
 
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/assignation
 
@@ -274,7 +270,7 @@ To remove previous installed datamanager, simply remove `<data_manager> ... </da
 Previously `frogs_db.loc` are in `tool-data/toolshed.g2.bx.psu.edu/repos/frogs/frogs/*/frogs_db.loc` and will still be available in all FROGS affiliation tools you have installed, do not remove it until you are sure that defined reference databases are useless.
 
 
-- Contaminant databank for otu_filter tool
+- Contaminant databank for cluster_filter tool
 
   URL : http://genoweb.toulouse.inra.fr/frogs_databanks/contaminants
 
@@ -290,12 +286,12 @@ Previously `frogs_db.loc` are in `tool-data/toolshed.g2.bx.psu.edu/repos/frogs/f
 
 In order to use the FROGSFUNC tools, you must also create 3 other .loc files which must indicate the paths to the reference files of PICRUSt2 (present in the directory of the tool installed via conda for example) :
 
-- Place studied sequences ((.e. OTUs) into a reference tree, for frogsfunc_step1 tool
+- Place studied sequences ((.e. ASVs) into a reference tree, for frogsfunc_step1 tool
   
   loc file : `frogs_picrust2_default_dir.loc`
   
 
-- Predict the copy number of gene families present in the predicted genome for OTU, for frogsfunc_step2 tool
+- Predict the copy number of gene families present in the predicted genome for ASV, for frogsfunc_step2 tool
   
   loc file : `frogs_picrust2_marker_table.loc`
   
@@ -342,29 +338,35 @@ FROGS outputs, for almost all tools, report in HTML format. To allow their visua
 You need to uncomment `sanitize_whitelist_file` line in `<Galaxy_Dir>/config/galaxy.ini`, create the corresponding `<Galaxy_Dir>/config/sanitize_whitelist.txt` file if not already done, and add the following lines in it. You may also manage it from the Admin interface of Galaxy in the `Manage Allowlist` section.
 
 ```
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_DESeq2_Preprocess/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_DESeq2_Visualisation/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Alpha_Diversity/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Beta_Diversity/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Composition_Visualisation/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Import_Data/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Sample_Clustering/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Structure_Visualisation/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_OTU_filters/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_Tree/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliation_OTU/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliation_filters/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliations_stat/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_clusters_stat/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_itsx/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_normalisation/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_preprocess/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_remove_chimera/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step1_placeseqs/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step2_copynumbers/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step3_functions/4.0.1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step4_pathways/4.0.1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step1_placeseqs/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step3_functions/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step4_pathways/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_DESeq2_Preprocess/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_DESeq2_Visualisation/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Alpha_Diversity/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Beta_Diversity/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Composition_Visualisation/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Import_Data/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Sample_Clustering/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Structure_Visualisation/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_Tree/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliation_filters/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliation_postprocess/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_affiliation_stats/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_biom_to_stdBiom/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_biom_to_tsv/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_cluster_filters/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_cluster_stats/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_clustering/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_demultiplex/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_itsx/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_normalisation/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_preprocess/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_remove_chimera/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_taxonomic_affiliation/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_tsv_to_biom/4.1.0+galaxy1
+
 ```
 
 ## Set memory and parallelisation settings
@@ -381,7 +383,7 @@ All CPUs must be on the same computer/node.
      |      preprocess       |     8Gb     |      -      |   12 CPUs and 96 GB   |
      |      clustering       |      -      |    10 Gb    |   16 CPUs and 60 GB   |
      | ITSx / remove_chimera |     3Gb     |     5Gb     |   12 CPUs and 36 GB   |
-     |    affiliation_OTU    |      -      |    20 Gb    |  30 CPUs and 300 GB   |
+     |    taxonomic_affiliation    |      -      |    20 Gb    |  30 CPUs and 300 GB   |
 
    * Galaxy configuration
 
@@ -416,7 +418,7 @@ All CPUs must be on the same computer/node.
 		<param id="galaxy_external_chown_script">scripts/external_chown_script.py</param>
 		<param id="nativeSpecification">-clear -q galaxyq -l mem=3G -l h_vmem=4G -pe parallel_smp 12</param>
 	</destination>
-	<destination id="FROGS_affiliation_OTU_job" runner="drmaa">
+	<destination id="FROGS_taxonomic_affiliation_job" runner="drmaa">
 		<param id="galaxy_external_runjob_script">scripts/drmaa_external_runner.py</param>
 		<param id="galaxy_external_killjob_script">scripts/drmaa_external_killer.py</param>
 		<param id="galaxy_external_chown_script">scripts/external_chown_script.py</param>
@@ -429,7 +431,7 @@ All CPUs must be on the same computer/node.
 	<tool id="FROGS_clustering" destination="FROGS_clustering_job"/>     
 	<tool id="FROGS_remove_chimera" destination="FROGS_remove_chimera_job"/>
 	<tool id="FROGS_itsx" destination="FROGS_itsx_job"/>
-	<tool id="FROGS_affiliation_OTU" destination="FROGS_affiliation_OTU_job"/>
+	<tool id="FROGS_taxonomic_affiliation" destination="FROGS_taxonomic_affiliation_job"/>
 </tools>
 ```
 
