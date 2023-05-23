@@ -2,10 +2,7 @@ categories: [Metagenomics]
 description: 'Suite for metabarcoding analysis'
 homepage_url: http://frogs.toulouse.inrae.fr/
 long_description: 'This is FROGS Galaxy Wrappers
-FROGS: Find Rapidly OTUs through Galaxy Solution
-FROGS is a workflow designed to produce an OTU count matrix from high depth sequencing amplicon data.
-Adviced :
-reorder integrated_tool_panel.xml as indicated here : https://github.com/geraldinepascal/FROGS-wrappers#simplest-way
+FROGS is a workflow designed to produce an ASV count matrix from high depth sequencing amplicon data. Adviced : reorder integrated_tool_panel.xml as indicated here : https://github.com/geraldinepascal/FROGS-wrappers#simplest-way 
 '
 name: frogs
 owner: frogs
