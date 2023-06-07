@@ -35,11 +35,11 @@
 #
 #
 #
-#16S	EC	EC	EC
-#16S	KO	KO	KO
-#16S	PFAM	PFAM	PFAM
-#16S	COG	COG	COG
-#16S	TIGRFAM	TIGRFAM	TIGRFAM
-#16S	PHENO	PHENO	PHENO
-#ITS	EC	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/fungi/ITS_counts.txt.gz	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/fungi/ec_ITS_counts.txt.gz
-#18S	EC	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/fungi/18S_counts.txt.gz	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/fungi/ec_18S_counts.txt.gz
+#16S	EC	EC	EC	2.5.1
+#16S	KO	KO	KO	2.5.1
+#16S	PFAM	PFAM	PFAM	2.5.1
+#16S	COG	COG	COG	2.5.1
+#16S	TIGRFAM	TIGRFAM	TIGRFAM	2.5.1
+#16S	PHENO	PHENO	PHENO	2.5.1
+#ITS	EC	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/fungi/ITS_counts.txt.gz	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/fungi/ec_ITS_counts.txt.gz	2.5.1
+#18S	EC	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/fungi/18S_counts.txt.gz	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/fungi/ec_18S_counts.txt.gz	2.5.1

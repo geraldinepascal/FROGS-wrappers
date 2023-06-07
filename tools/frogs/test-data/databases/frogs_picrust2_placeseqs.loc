@@ -34,4 +34,4 @@
 #-rwxrwxr-x 1 vdarbot vdarbot   600048 avril  1  2021 pro_ref.tre
 #
 # EXAMPLE FOR TEST :
-picrust2_default_dir_16S	16S	${__HERE__}/frogs_picrust2_db/prokaryotic/pro_ref/	${__HERE__}/frogs_picrust2_db/prokaryiotic/pro_ref/16S_counts.txt.gz	sepp	4.1
+picrust2_default_dir_16S	16S	${__HERE__}/frogs_picrust2_db/prokaryotic/pro_ref/	${__HERE__}/frogs_picrust2_db/prokaryiotic/16S_counts.txt.gz	sepp	2.5.1

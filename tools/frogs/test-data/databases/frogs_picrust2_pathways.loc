@@ -29,4 +29,4 @@
 #
 #
 # EXAMPLE FOR TEST :
-pro_metacyc_pathway	Metacyc	16S	${__HERE__}/frogs_picrust2_db/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt
+pro_metacyc_pathway	Metacyc	16S	${__HERE__}/frogs_picrust2_db/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt  2.5.1
