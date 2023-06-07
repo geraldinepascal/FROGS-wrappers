@@ -18,14 +18,14 @@
         <file path="${__HERE__}/tool-data/frogs_picrust2_placeseqs.loc" />
     </table>
         <!-- Locations of picrust2 marker table files -->
-   <table name="frogs_picrust2_marker_table" comment_char="#">
+   <table name="frogs_picrust2_functions" comment_char="#">
         <columns>value, name, path, traits, version</columns>
-        <file path="${__HERE__}/tool-data/frogs_picrust2_marker_table.loc" />
+        <file path="${__HERE__}/tool-data/frogs_picrust2_functions.loc" />
     </table>
         <!-- Locations of picrust2 traits table files -->
     <!-- Locations of picrust2 pathway map files -->
-   <table name="frogs_picrust2_pathway_map" comment_char="#">
+   <table name="frogs_picrust2_pathways" comment_char="#">
         <columns>marker, path, value, name, version </columns>
-        <file path="${__HERE__}/tool-data/frogs_picrust2_pathway_map.loc" />
+        <file path="${__HERE__}/tool-data/frogs_picrust2_pathways.loc" />
     </table>
 </tables>
