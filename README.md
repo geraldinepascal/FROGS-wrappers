@@ -58,6 +58,7 @@ We suppose that you installed FROGS in a specific section named `FROGS`.
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_demultiplex/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_preprocess/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_clustering/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_cluster_stats/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_remove_chimera/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_cluster_filters/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_itsx/4.1.0+galaxy1" />
@@ -89,8 +90,8 @@ We suppose that you installed FROGS in a specific section named `FROGS`.
     <label id="FROGFUNC_toolshed_4.1.0+galaxy1" text="Functionnal abundance predictions based on marker gene sequences" version="" />
 
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step1_placeseqs/4.1.0+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step2_functions/4.1.0+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step3_pathways/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step3_functions/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step4_pathways/4.1.0+galaxy1" />
 
 </section>
 ```
