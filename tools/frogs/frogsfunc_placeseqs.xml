@@ -56,7 +56,7 @@
 
     	<!-- Parameters -->
         <param argument="--ref-dir" name="marker" type="select" label="Taxonomy marker" display="radio" help="Taxonomic marker of interest.">
-			<options from_data_table="frogs_picrust2_default_dir">
+			<options from_data_table="frogs_picrust2_placeseqs">
 	     		<column name="name" index="1"/>
 	        	<column name="value" index="2"/>
 				<column name="traits" index="3"/>
@@ -65,7 +65,7 @@
 			</options>
 		</param>
         <param argument="--placement-tool" type="select" label="Placement tool" help="Placement tool for insertion of sequences into the reference tree. SEPP is a low-memory alternative to EPA-ng for placing sequences, and is only available for 16S analysis." multiple="false" display="radio">
-			<options from_data_table="frogs_picrust2_default_dir">       	
+			<options from_data_table="frogs_picrust2_placeseqs">       	
 				<column name='name' index='4' />
 				<column name='value' index='4' />
                 <filter type="param_value" ref="marker" column="2" />  

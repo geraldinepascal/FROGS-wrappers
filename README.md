@@ -58,6 +58,7 @@ We suppose that you installed FROGS in a specific section named `FROGS`.
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_demultiplex/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_preprocess/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_clustering/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_cluster_stats/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_remove_chimera/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_cluster_filters/4.1.0+galaxy1" />
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGS_itsx/4.1.0+galaxy1" />
@@ -295,7 +296,7 @@ In order to use the FROGSFUNC tools, you must also create 3 other .loc files whi
   loc file : `frogs_picrust2_marker_table.loc`
   
 
-- Map pathways to reactions, , for frogsfunc_step4 tool
+- Map pathways to reactions, , for frogsfunc_step3 tool
   
   loc file : `frogs_picrust2_pathway_map.loc`
 
@@ -338,8 +339,8 @@ You need to uncomment `sanitize_whitelist_file` line in `<Galaxy_Dir>/config/gal
 
 ```
 toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step1_placeseqs/4.1.0+galaxy1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step3_functions/4.1.0+galaxy1
-toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step4_pathways/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step2_functions/4.1.0+galaxy1
+toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step3_pathways/4.1.0+galaxy1
 toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_DESeq2_Preprocess/4.1.0+galaxy1
 toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_DESeq2_Visualisation/4.1.0+galaxy1
 toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSSTAT_Phyloseq_Alpha_Diversity/4.1.0+galaxy1

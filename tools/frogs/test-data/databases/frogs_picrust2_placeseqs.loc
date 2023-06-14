@@ -23,7 +23,7 @@
 #If you are not comfortable with picrust2 command lines, just create .loc files 
 #with EXAMPLE FOR TEST files remembering to replace <PATH_TO> with the real path.
 #
-#<identifiant>	<marker_gene>	<path_to_default_dir>
+#<identifiant>	<marker_gene>	<path_to_default_dir> <path_to_marker_copy_numbers> <placement_tool>	<frogs_version>
 #
 #default dir must contain these files:
 #
@@ -34,4 +34,4 @@
 #-rwxrwxr-x 1 vdarbot vdarbot   600048 avril  1  2021 pro_ref.tre
 #
 # EXAMPLE FOR TEST :
-picrust2_default_dir_16S	16S	${__HERE__}/frogs_picrust2_db/prokaryotic/pro_ref/	${__HERE__}/frogs_picrust2_db/prokaryiotic/pro_ref/16S_counts.txt.gz	sepp
+picrust2_default_dir_16S	16S	${__HERE__}/frogs_picrust2_db/prokaryotic/pro_ref/	${__HERE__}/frogs_picrust2_db/prokaryiotic/16S_counts.txt.gz	sepp	2.5.1

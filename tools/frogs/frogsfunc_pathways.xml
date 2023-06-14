@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGSFUNC_step4_pathways" name="FROGSFUNC_3_pathways" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+<tool id="FROGSFUNC_step3_pathways" name="FROGSFUNC_3_pathways" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
 	<description>Calculates pathway abundances in each sample.  </description>
 
   <macros>
@@ -43,7 +43,7 @@
 
         <!-- References -->
 	      <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
-          <options from_data_table="frogs_picrust2_pathway_map">
+          <options from_data_table="frogs_picrust2_pathways">
             <column name='name' index='2' />
             <column name='value' index='2' />
             <filter type="unique_value" column='2'/>
@@ -51,7 +51,7 @@
           </options>
 			  </param>
         <param name="map_file" type='select' label="Pathway reference" help="For 16S marker, choose Metacyc or KEGG in accordance with your choice in the FROGSFUNC_1_placeseqs_copynumbers tool. For ITS or 18S marker, Metacyc is the only valid option." optional="false" multiple='false' display='radio'>
-          <options from_data_table="frogs_picrust2_pathway_map">
+          <options from_data_table="frogs_picrust2_pathways">
             <column name='name' index='1'/>
             <column name='value' index='3'/>
             <filter type="param_value" ref="category" column="2" />               

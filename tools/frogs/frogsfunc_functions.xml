@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGSFUNC_step3_functions" name="FROGSFUNC_2_functions" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+<tool id="FROGSFUNC_step2_functions" name="FROGSFUNC_2_functions" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
     <description>Calculates functions abundances in each sample. </description>
 
   <macros>
@@ -65,7 +65,7 @@
         
         <!-- Parameters-->
 	    <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
-            <options from_data_table="frogs_picrust2_marker_table">
+            <options from_data_table="frogs_picrust2_functions">
                 <column name='name' index='0' />
                 <column name='value' index='0' />
                 <filter type="unique_value" column='0'/>
@@ -73,7 +73,7 @@
             </options>
 		</param>
 		<param argument="--functions" type="select" label="Target function database" multiple="true" optional="false" help=" 16S : at least 'EC' or/and 'KO' should be chosen (EC for Metacyc pathway analysis or/and KO for KEGG pathway analysis) - others values are optionnal. ITS and 18S : 'EC' only available." >
-			<options from_data_table="frogs_picrust2_marker_table">
+			<options from_data_table="frogs_picrust2_functions">
 				<column name='name' index='1' />
 				<column name='value' index='1' />
 				<column name='path' index='2' />
@@ -146,7 +146,7 @@
             <param name="input_biom" value="references/25-frogsfunc_placeseqs.biom" />
             <param name="input_tree" value="references/25-frogsfunc_placeseqs_tree.nwk" />
             <param name="input_marker" value="references/25-frogsfunc_copynumbers_marker.tsv" />
-            <param name="category.value" value="frogs_picrust2_marker_table" />
+            <param name="category.value" value="frogs_picrust2_functions" />
             <param name="functions" value="EC" />
             <param name="max_nsti" value="2" />
 
