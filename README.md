@@ -90,8 +90,8 @@ We suppose that you installed FROGS in a specific section named `FROGS`.
     <label id="FROGFUNC_toolshed_4.1.0+galaxy1" text="Functionnal abundance predictions based on marker gene sequences" version="" />
 
     <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step1_placeseqs/4.1.0+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step2_functions/4.1.0+galaxy1" />
-    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step3_pathways/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step3_functions/4.1.0+galaxy1" />
+    <tool id="toolshed.g2.bx.psu.edu/repos/frogs/frogs/FROGSFUNC_step4_pathways/4.1.0+galaxy1" />
 
 </section>
 ```
