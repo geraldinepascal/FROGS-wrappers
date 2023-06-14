@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGSFUNC_step3_functions" name="FROGSFUNC_2_functions" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+<tool id="FROGSFUNC_step2_functions" name="FROGSFUNC_2_functions" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
     <description>Calculates functions abundances in each sample. </description>
 
   <macros>
