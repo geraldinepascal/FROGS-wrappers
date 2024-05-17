@@ -3,6 +3,7 @@
      <macros>
         <import>macros.xml</import>
     </macros>
+    <expand macro="xrefs"/>
     <expand macro="requirements">
         <requirement type="package" version="2.17.0">vsearch</requirement>
         <requirement type="package" version="1.2.11">flash</requirement>

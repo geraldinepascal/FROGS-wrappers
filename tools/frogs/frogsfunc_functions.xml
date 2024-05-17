@@ -17,14 +17,11 @@
 -->
 <tool id="FROGSFUNC_step2_functions" name="FROGSFUNC_2_functions" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
     <description>Calculates functions abundances in each sample. </description>
-
-  <macros>
-        <import>macros.xml</import>
-  </macros>
-
-  <expand macro="requirements_frogsfunc" />
-
-
+    <macros>
+            <import>macros.xml</import>
+    </macros>
+    <expand macro="xrefs"/>
+    <expand macro="requirements_frogsfunc" />
     <stdio>
         <exit_code range="1:" />
         <exit_code range=":-1" />

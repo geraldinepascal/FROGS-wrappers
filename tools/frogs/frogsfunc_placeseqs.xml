@@ -21,7 +21,7 @@
   <macros>
         <import>macros.xml</import>
   </macros>
-
+  <expand macro="xrefs"/>
   <expand macro="requirements_frogsfunc" >
 	<requirement type="package" version="4.5.2">dendropy</requirement>
   </expand>

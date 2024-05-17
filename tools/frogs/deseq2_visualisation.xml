@@ -3,6 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
+    <expand macro="xrefs"/>
     <expand macro="requirements_phyloseq">
         <requirement type="package" version="1.34.0">bioconductor-deseq2</requirement>
         <requirement type="package" version="0.18">r-dt</requirement>

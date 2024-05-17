@@ -22,6 +22,7 @@
         <import>macros.xml</import>
   </macros>
 
+  <expand macro="xrefs"/>
   <expand macro="requirements_frogsfunc" />
 
   <stdio>
