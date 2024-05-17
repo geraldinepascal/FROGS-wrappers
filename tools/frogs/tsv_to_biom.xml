@@ -1,8 +1,9 @@
 <tool id="FROGS_tsv_to_biom" name="FROGS TSV_to_BIOM" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>Converts a TSV file in a BIOM file</description>
+    <description>Converts a TSV file in a BIOM file 1 </description>
     <macros>
         <import>macros.xml</import>
     </macros>
+    <expand macro="xrefs"/>
     <expand macro="requirements" />
     <command detect_errors="exit_code">
 	tsv_to_biom.py
@@ -11,28 +12,31 @@
 	    #if $multi_affi_file
 	        --input-multi-affi '$multi_affi_file'
 	    #end if
-	    #if $extract_fasta
+	    #if $extract_fasta == "yes"
 	        --output-fasta '$sequence_file'
 	    #end if
     </command>
     <inputs>
         <!-- Files -->
-        <param format="tabular" name="tsv_file" type="data" label="Abundance TSV File" help="Your FROGS abundance TSV file. Take care to keep original column names." />
-        <param format="tabular" name="multi_affi_file" type="data" label="Multi_hits TSV File" help="TSV file describing multi_hit blast results." optional="true" />
+        <param format="tabular,tsv" name="tsv_file" type="data" label="Abundance TSV File" help="Your FROGS abundance TSV file. Take care to keep original column names." />
+        <param format="tabular,tsv" name="multi_affi_file" type="data" label="Multi_affiliation TSV File" help="TSV file describing multi_affiliation blast results." optional="true" />
         <!-- Parameters -->
-        <param name="extract_fasta" type="boolean" label="Extract seeds in FASTA file" help="If there is a 'seed_sequence' column in your TSV table, you can extract seed sequences in a separated FASTA file." />
+        <param name="extract_fasta" type="select" display="radio" label="Extract seeds in FASTA file" help="If there is a 'seed_sequence' column in your TSV table, you can extract seed sequences in a separated FASTA file." >
+            <option value="yes">Yes</option>
+            <option value="no" selected="true">No</option>
+		</param>
     </inputs>
     <outputs>
         <data format="biom1" name="biom_file" label="${tool.name}: abundance.biom" from_work_dir="abundance.biom" />
         <data format="fasta" name="sequence_file" label="${tool.name}: sequences.fasta" from_work_dir="seed.fasta">
-            <filter>extract_fasta</filter>
+            <filter>extract_fasta == "yes"</filter>
         </data>
     </outputs>
     <tests>
         <test>
             <param name="tsv_file" value="references/12-biom2tsv.tsv" />
             <param name="multi_affi_file" value="references/12-biom2tsv-affiliation_multihit.tsv" />
-            <param name="extract_fasta" value="true" />
+            <param name="extract_fasta" value="yes" />
             <output name="biom_file" file="references/14-tsv2biom.biom" compare="sim_size" delta="0" />
             <output name="sequence_file" file="references/14-tsv2biom.fasta" compare="diff" lines_diff="0" />
         </test>
@@ -58,7 +62,7 @@ Authorised column names :  rdp_tax_and_bootstrap, blast_taxonomy, blast_subject,
 
 **Multiple affiliation file**:
 
-The file that stores the multiple blast hits.
+The file that stores the multiple blast affiliations.
 
 .. class:: h3
 
@@ -76,13 +80,13 @@ Outputs
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
 FROGS TSV_to_BIOM detects any metadata (columns before "observation_name") and names of samples (columns after "observation_sum").
 
 Then it reconstructs the BIOM abundance file : for each "observation_name" it adds the associated metadata and the count of samples.
 
-If blast_taxonomy is included in metadata and if blast_subject is equal to "multi-subject", it parses multi_hit TSV file. Then it extracts the list of blast_affiliations that contains the non ambiguous blast_taxonomy.
+If blast_taxonomy is included in metadata and if blast_subject is equal to "multi-subject", it parses multi_affiliation TSV file. Then it extracts the list of blast_affiliations that contains the non ambiguous blast_taxonomy.
 
 
 
@@ -94,11 +98,11 @@ This tool is usefull if you have modified your abundance TSV file and  that you 
 
 If you modify your abundance TSV file
 
-    * -do not modify column names
-    * -do not remove columns
-    * -take care to choose a taxonomy available in your multi_hit TSV file
-    * -if you delete lines of the multi_hit file, take care to not remove a complete cluster whithout removing all "multi tags" in you abundance TSV file.
-    * -if you want to rename a taxon level (ex : genus "Ruminiclostridium 5;" to genus "Ruminiclostridium;"), do not forget to modify also your multi_hit TSV file.
+    * do not modify column names
+    * do not remove columns
+    * take care to choose a taxonomy available in your multi_affiliation TSV file
+    * if you delete lines of the multi_affiliation file, take care to not remove a complete cluster whithout removing all "multi tags" in you abundance TSV file.
+    * if you want to rename a taxon level (ex : genus "Ruminiclostridium 5;" to genus "Ruminiclostridium;"), do not forget to modify also your multi_affiliation TSV file.
 
 
 

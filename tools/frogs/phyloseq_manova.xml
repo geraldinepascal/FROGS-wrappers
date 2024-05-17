@@ -1,8 +1,9 @@
 <tool id="FROGSSTAT_Phyloseq_Multivariate_Analysis_Of_Variance" name="FROGSSTAT Phyloseq Multivariate Analysis Of Variance" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>perform Multivariate Analysis of Variance (MANOVA)</description>
+    <description>perform Multivariate Analysis of Variance (MANOVA) </description>
     <macros>
         <import>macros.xml</import>
     </macros>
+	<expand macro="xrefs"/>
     <expand macro="requirements_phyloseq" />
     <command detect_errors="exit_code">
     phyloseq_manova.py
@@ -14,7 +15,7 @@
     <inputs>
 		<!-- Files -->
 	    <param format="rdata" name="data" type="data" label="Phyloseq object (format: RData)" help="This is the result of FROGS Phyloseq Import Data tool."/>
-        <param argument="--distance-matrix" format="tabular" type="data" label="The beta diversity distance matrix file" help="This file is the result of FROGS Phyloseq Beta Diversity tool"/>
+        <param argument="--distance-matrix" format="tsv" type="data" label="The beta diversity distance matrix file" help="This file is the result of FROGS Phyloseq Beta Diversity tool"/>
 		<!-- Parameters -->
 		<param argument="--varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse">
             <expand macro="sanitizer_validator"/>
@@ -63,7 +64,7 @@ Output
 
 **html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): The review of Manova test.
 
-.. image:: static/images/FROGS_Phyloseq_manova.png
+.. image:: FROGS_Phyloseq_manova.png
 
 .. class:: infomark page-header h2
 

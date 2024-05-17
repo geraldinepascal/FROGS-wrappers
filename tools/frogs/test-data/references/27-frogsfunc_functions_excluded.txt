@@ -1,1 +1,1 @@
-#No excluded OTUs.
+#No excluded ASV.

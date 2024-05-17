@@ -1,8 +1,9 @@
-<tool id="FROGS_demultiplex" name="FROGS Demultiplex reads" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-	<description>Attribute reads to samples in function of inner barcode</description>
+<tool id="FROGS_demultiplex" name="FROGS_0 Demultiplex reads" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+	<description>Attribute reads to samples in function of inner barcode </description>
     <macros>
         <import>macros.xml</import>
     </macros>
+	<expand macro="xrefs"/>
     <expand macro="requirements" />
     <command detect_errors="exit_code">
 		demultiplex.py
@@ -21,7 +22,7 @@
 	</command>
 	<inputs>
 		<!-- Input file -->
-		<param format="tabular" argument="--input_barcode" type="data" label="Barcode file" help="This file describes barcodes and samples (one line by sample tabulated separated from barcode sequence(s)). See Help section" />
+		<param format="tabular,tsv" argument="--input_barcode" type="data" label="Barcode file" help="This file describes barcodes and samples (one line by sample tabulated separated from barcode sequence(s)). See Help section" />
 
 		<conditional name="fastq_input">
 	      	<param name="fastq_input_selector" type="select" label="Single or Paired-end reads" help="Select between paired and single-end data">
@@ -47,7 +48,7 @@
 	<outputs>
 		<data name="demultiplexed_archive" format="tar" label="${tool.name}: demultiplexed.tar.gz" from_work_dir="demultiplexed.tar.gz"/>
 		<data name="undemultiplexed_archive" format="tar" label="${tool.name}: undemultiplexed.tar.gz" from_work_dir="undemultiplexed.tar.gz"/>
-		<data name="summary" format="tabular" label="${tool.name}: report" from_work_dir="report.tsv"/>
+		<data name="summary" format="tsv" label="${tool.name}: report" from_work_dir="report.tsv"/>
 	</outputs>
     <tests>
         <test>
@@ -131,13 +132,13 @@ BARCODE_FILE :
 
 Example of barcode file: Here the sample is multiplexed by both fragment ends.
 
- .. image:: static/images/FROGS_demultiplex_barcode.png
+ .. image:: FROGS_demultiplex_barcode.png
    :height: 60
    :width: 316
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
 For each sequence or sequence pair, the sequence fragment at the beginning (forward multiplexing) of the (first) read or at the end (reverse multiplexing) of the (second) read will be compared to all barcodes of the barecode file.
 

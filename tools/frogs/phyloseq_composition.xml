@@ -1,8 +1,9 @@
 <tool id="FROGSSTAT_Phyloseq_Composition_Visualisation" name="FROGSSTAT Phyloseq Composition Visualisation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>with bar plot and composition plot</description>
+    <description>with bar plot and composition plot </description>
     <macros>
         <import>macros.xml</import>
     </macros>
+    <expand macro="xrefs"/>
     <expand macro="requirements_phyloseq">
         <requirement type="package" version="4.9.3">r-plotly</requirement>
     </expand>
@@ -69,7 +70,7 @@
 
 What it does
 
-Using `phyloseq &lt;https://joey711.github.io/phyloseq/&gt;`_ and custom R function, this tool constructs two plots to visualise the sample composition: one at the OTU level and another one at the specified aggregation level (*e.g.* Phylum) after keeping only a subset of taxa (*e.g.* Bacteria at the level Kingdom). It helps answer the question: "What is the composition at the Phylum level within Bacteria?". By default, the plot exhibits only the abundance of the 9 most abundant taxa (as specified). In general, the representation of more than 10 taxa is hard to read on plots.
+Using `phyloseq &lt;https://joey711.github.io/phyloseq/&gt;`_ and custom R function, this tool constructs two plots to visualise the sample composition: one at the ASV level and another one at the specified aggregation level (*e.g.* Phylum) after keeping only a subset of taxa (*e.g.* Bacteria at the level Kingdom). It helps answer the question: "What is the composition at the Phylum level within Bacteria?". By default, the plot exhibits only the abundance of the 9 most abundant taxa (as specified). In general, the representation of more than 10 taxa is hard to read on plots.
 
 
 .. class:: infomark page-header h2
@@ -81,7 +82,7 @@ Inputs/Outputs
 Input
 
 **data file** (format rdata):
-One phyloseq object containing the OTU abundance table, their taxonomies and optionnaly a phylogenetic tree, and the sample experiment metadata.
+One phyloseq object containing the ASV abundance table, their taxonomies and optionnaly a phylogenetic tree, and the sample experiment metadata.
 this file is the result of FROGS Phyloseq Import Data tool.
 
 .. class:: h3
@@ -90,26 +91,26 @@ Output
 
 **html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): data composition plots.
 
-Bar plot of OTUs is colored with aggregated taxonomic level *i.e* "Phylum" :
+Bar plot of ASVs is colored with aggregated taxonomic level *i.e* "Phylum" :
 
- .. image:: static/images/FROGS_Phyloseq_bar_plot.png
+ .. image:: FROGS_Phyloseq_bar_plot.png
      :height: 646
      :width: 800
 
-Composition plot: plot the most abundant sub taxonomic level among a selection of OTUs.
+Composition plot: plot the most abundant sub taxonomic level among a selection of ASVs.
 
-- Selection of OTUs:
+- Selection of ASVs:
 
     - Taxonomic level name to subset: Kingdom
     - Taxon name: Bacteria
 
-- Aggregation of OTUs :
+- Aggregation of ASVs :
 
     - Taxonomic level used to agglomerate: Phylum
 
 - Number of the most abundant taxa to keep: 9
 
- .. image:: static/images/FROGS_Phyloseq_composition_plot.png
+ .. image:: FROGS_Phyloseq_composition_plot.png
      :height: 644
      :width: 800
 

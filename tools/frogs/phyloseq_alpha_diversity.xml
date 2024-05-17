@@ -1,8 +1,9 @@
 <tool id="FROGSSTAT_Phyloseq_Alpha_Diversity" name="FROGSSTAT Phyloseq Alpha Diversity" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-	<description>with richness plot</description>
+	<description>with richness plot </description>
     <macros>
         <import>macros.xml</import>
     </macros>
+    <expand macro="xrefs"/>
     <expand macro="requirements_phyloseq" />
     <command detect_errors="exit_code">
     phyloseq_alpha_diversity.py
@@ -30,7 +31,7 @@
         </param>
 	</inputs>
 	<outputs>
-		<data format="tabular" name="alphaD" label="${tool.name}: alpha_diversity.tsv" from_work_dir="alpha_diversity.tsv"/>
+		<data format="tsv" name="alphaD" label="${tool.name}: alpha_diversity.tsv" from_work_dir="alpha_diversity.tsv"/>
 		<data format="html" name="html" label="${tool.name}: alpha_diversity.nb.html" from_work_dir="alpha_diversity.nb.html"/>
 	</outputs>
     <tests>
@@ -71,7 +72,7 @@ Inputs/Outputs
 Input
 
 **Data file** (format RData):
-One phyloseq object containing OTU abundance table, their taxonomies (and optionnaly a phylogenetics tree, and the sample experiment metadata.
+One phyloseq object containing ASV abundance table, their taxonomies (and optionnaly a phylogenetics tree, and the sample experiment metadata.
 This file is the result of "FROGS Phyloseq Import Data tool".
 
 .. class:: h3
@@ -80,22 +81,22 @@ Output
 
 **Html file** (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_): the review of richness plots and rarefaction curves.
 
-.. image:: static/images/FROGS_Phyloseq_plot_richness.png
+.. image:: FROGS_Phyloseq_plot_richness.png
      :height: 400
      :width: 525
 
-.. image:: static/images/FROGS_Phyloseq_plot_richness_box.png
+.. image:: FROGS_Phyloseq_plot_richness_box.png
      :height: 400
      :width: 499
 
-.. image:: static/images/FROGS_Phyloseq_rarefaction_curves.png
+.. image:: FROGS_Phyloseq_rarefaction_curves.png
      :height: 400
      :width: 498
 
 **Alpha diversity table** (alpha_diversity.tsv):
 The data file containing table of alpha diversity indices.
 
-.. image:: static/images/FROGS_Phyloseq_alpha_diversity_table.png
+.. image:: FROGS_Phyloseq_alpha_diversity_table.png
 
 .. class:: infomark page-header h2
 

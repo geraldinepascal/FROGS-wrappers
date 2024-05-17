@@ -15,15 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGSFUNC_step4_pathways" name="FROGSFUNC_step4_pathways" version= "beta">
-	<description>Inference of pathway-level abundances. </description>
-<!-- 
+<tool id="FROGSFUNC_step3_pathways" name="FROGSFUNC_3_pathways" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+	<description>Calculates pathway abundances in each sample.  </description>
+
   <macros>
         <import>macros.xml</import>
-  </macros> -->
+  </macros>
 
- <!--    <expand macro="requirements_frogsfunc" /> -->
-    
+  <expand macro="xrefs"/>
+  <expand macro="requirements_frogsfunc" />
+
   <stdio>
     <exit_code range="1:" />
     <exit_code range=":-1" />
@@ -34,91 +35,46 @@
           #if $normalisation
             --normalisation
           #end if
-          #if $is_per_sequence_contrib.per_sequence_contrib 
-            --per-sequence-contrib
-            --per-sequence-abun $per_sequence_abun
-            --per-sequence-function $per_sequence_function 
-          #end if
 	    --map $map_file.value
-         
-          #if $category.value == "16S"
-            #if $map_file.fields.name == "Kegg"
-             --no-regroup
-            #end if
-          #end if
-	    --html $summary_file
-	    --debug
+	    --summary $summary_file
 	</command> 
 	<inputs>
         <!-- Input files -->       
-        <param argument="--input-file" format="tabular" name="input_file" type="data" label="Function abundance file" help="TSV function abundances table from FROGSFUNC_step3_function tool, frogsfunc_functions_unstrat.tsv (unstratified table)." optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        </param>
+        <param argument="--input-file" format="tsv" type="data" label="Function abundance file" help="TSV function abundances table from FROGSFUNC_2_functions tool, FROGSFUNC_2_functions_unstrat_EC.tsv for Metacyc database or FROGSFUNC_2_functions_unstrat_KO.tsv for Kegg database (unstratified table)." optional="false"/>
+
+        <!-- References -->
 	      <param name="category" type="select" label="Taxonomic marker" help="Taxonomic marker of interest." multiple="false" display="radio">
-          <options from_data_table="frogs_picrust2_pathway_map">
+          <options from_data_table="frogs_picrust2_pathways">
             <column name='name' index='2' />
             <column name='value' index='2' />
             <filter type="unique_value" column='2'/>
               <validator type="no_options" message="A built-in database is not available" />
           </options>
 			  </param>
-        <param name="map_file" type='select' label="Pathway reference" help="For 16S marker, choose Metacyc or KEGG in accordance with your choice in the FROGSFUNC_step2_copynumbers tool. For ITS or 18S marker, Metacyc is the only valid option." optional="false" multiple='false' display='radio'>
-          <options from_data_table="frogs_picrust2_pathway_map">
+        <param name="map_file" type='select' label="Pathway reference" help="For 16S marker, choose Metacyc or KEGG in accordance with your choice in the FROGSFUNC_1_placeseqs_copynumbers tool. For ITS or 18S marker, Metacyc is the only valid option." optional="false" multiple='false' display='radio'>
+          <options from_data_table="frogs_picrust2_pathways">
             <column name='name' index='1'/>
             <column name='value' index='3'/>
             <filter type="param_value" ref="category" column="2" />               
               <validator type="no_options" message="A built-in database is not available" />
           </options>
         </param>
+
+        <!-- Parameters-->
         <param argument="--normalisation" label="Do you want to normalize the final output table ?" help='Values are divided by sum of columns, then multiplied by 10^6 (CPM values).' type="boolean" />
-        <conditional name="is_per_sequence_contrib">
-          <param name="per_sequence_contrib" label="Do you want a stratified table ?" help='Produces a new table containing the abundances of each pathway of each OTU in each sample. Note this will greatly increase the runtime.' type="boolean" />
-       	  <when value="true">
-       		  <param name="per_sequence_abun" type="data" label="Abundance table normalized by the number of copies of marker" help="normalized abundance table from FROGSFUNC_step3_function tool (frogsfunc_function_marker_norm.tsv)." optional="false">
-              <validator type="empty_field" message="This parameter is required." />
-            </param>
-       		<param name="per_sequence_function" type="data" label="Abundance function file" help="table contains predicted function abundances per sequence from FROGSFUNC_step2_copynumbers tool (frogsfunc_copynumbers_predicted_functions.tsv)." optional="false">
-            <validator type="empty_field" message="This parameter is required." />
-        	</param>
-       	  </when>
-        </conditional>
         </inputs>
 	<outputs>
-		<data format="html" name="summary_file" label="${tool.name}: frogsfunc_pathways_summary.html" from_work_dir="frogsfunc_pathways_summary.html"/>
-		 <data format="tabular" name="abund" label="${tool.name}: frogsfunc_pathways_unstrat.tsv" from_work_dir="frogsfunc_pathways_unstrat.tsv"/> 
-         <data format="tabular" name="contrib" label="${tool.name}: frogsfunc_pathways_strat.tsv" from_work_dir="frogsfunc_pathways_strat.tsv"> 
-            <filter>is_per_sequence_contrib['per_sequence_contrib']</filter>
-         </data>
-         <data format="tabular" name="predictions" label="${tool.name}: frogsfunc_pathways_predictions.tsv" from_work_dir="frogsfunc_pathways_predictions.tsv">
-            <filter>is_per_sequence_contrib['per_sequence_contrib']</filter>
-         </data>
+		<data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="report.html"/>
+		 <data format="tsv" name="abund" label="${tool.name}: frogsfunc_pathways_unstrat.tsv" from_work_dir="frogsfunc_pathways_unstrat.tsv"/>
 	</outputs>
 
   <tests>
     <test>
       <param name="input_file" value="references/27-frogsfunc_functions_unstrat.tsv" />
       <param name="category" value="16S" />
-      <param name="map_file" value="/save/frogs/bin/PICRUST/picrust2-2.4.1/picrust2/frogsfunc_suppdata/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt"/>
-        <conditional name="is_per_sequence_contrib">
-        <param name="per_sequence_contrib" value="false"/>
-        </conditional>
 
       <output name="abund" file="references/28-frogsfunc_pathways_unstrat.tsv" compare="diff" lines_diff="0" />
-      <output name="summary_file" file="references/28-frogsfunc_pathways_summary.html" compare="diff" lines_diff="0" />
-    </test>
-    <test>
-      <param name="input_file" value="references/27-frogsfunc_functions_unstrat.tsv" />
-      <param name="category" value="16S" />t
-      <param name="map_file" value="/save/frogs/bin/PICRUST/picrust2-2.4.1/picrust2/frogsfunc_suppdata/pathway_mapfiles/metacyc_path2rxn_struc_filt_pro.txt"/>
-        <conditional name="is_per_sequence_contrib">
-        <param name="per_sequence_contrib" value="true"/>
-        </conditional>
-    <param name="per_sequence_abun" value="references/27-frogsfunc_functions_marker_norm.tsv" />
-    <param name="per_sequence_function" value="references/26-frogsfunc_copynumbers_predicted_functions.tsv" />
-
-      <output name="abund" file="references/28-frogsfunc_pathways_unstrat.tsv" compare="diff" lines_diff="0" />
-      <output name="contrib" file="references/28-frogsfunc_pathways_strat.tsv" compare="diff" lines_diff="0" />
-      <output name="predictions" file="references/28-frogsfunc_pathways_predictions.tsv" compare="diff" lines_diff="0" />
+      <output name="summary_file" file="references/28-frogsfunc_pathways_report.html" compare="diff" lines_diff="0" />
     </test>
   </tests>
 
@@ -130,10 +86,10 @@
 	     
 What it does
 
-FROGSFUNC_step4_pathway is the last step of `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. This script infers MetaCyc/KEGG pathway abundances based on EC/KO number abundances.
+**FROGSFUNC_3_pathways** is the last step of `PICRUSt2 &lt;https://github.com/picrust/picrust2&gt;`_. This script infers MetaCyc/KEGG pathway abundances based on **EC** or **KO** number abundances.
 	     
-    - Regroups EC/KO numbers to MetaCyc/KEGG reactions.
-    - Infers which MetaCyc/KEGG pathways are present based on these reactions with `MinPath &lt;http://omics.informatics.indiana.edu/MinPath/&gt;`_.
+    - Regroups EC or KO numbers to MetaCyc or KEGG reactions, depending of the unstrat abundances input file.
+    - Infers which MetaCyc or KEGG pathways are present based on these reactions with `MinPath &lt;http://omics.informatics.indiana.edu/MinPath/&gt;`_.
     - Calculates and returns the abundance of pathways identified as present.
 
 .. class:: infomark page-header h2
@@ -144,54 +100,57 @@ Inputs/Outputs
 
 Input
 
-**Function prediction abundance file**:
+**-Function prediction abundance file (EC or KO)-**:
 
- TSV function abundances table from FROGSFUNC_step3_function tool, frogsfunc_functions_unstrat.tsv (unstratified table).
+ TSV function abundances table from FROGSFUNC_2_functions tool, frogsfunc_functions_unstrat_EC.tsv or frogsfunc_functions_unstrat_KO.tsv (unstratified table).
 
-**Pathway reference**:
+**-Taxonomic marker-**:
 
- Mapping of pathways to reactions. For 16S marker, choose Metacyc or KEGG in accordance with your choice in the FROGSFUNC_step2_copynumbers tool. For ITS or 18S marker, Metacyc is the only valid option.	     
+ Output table of predicted marker gene copy numbers per sequence from FROGSFUNC_1_placeseqs tool. (frogsfunc_marker.tsv)
 
-**Do you want to normalize the final output table ?**:
+**-Pathway reference-**:
+
+ Mapping of pathways to reactions.
+ 
+ - For 16S marker, choose Metacyc or KEGG in accordance with your choice in the FROGSFUNC_2_functions tool. If you want both, run this tool twice.
+ - For ITS or 18S marker, Metacyc is the only valid option.
+
+
+**-Do you want to normalize the final output table ?-**:
  
  If this option is set, the pathway abundances file (frogsfunc_functions_unstrat.tsv) is normalized: values are divided by sum of columns, then multiplied by 10^6 (Count Per Million values).
 
-.. image:: static/images/icon_warning_sml.gif 
+.. class:: warningmark
 
-This normalization allows to compare the samples between them. But to perform more precise statistical analysis, some tools as DESeq2 need the non-normalized abundance table to perform the normalization by themselves. So be careful which table to use for further analysis.
-
+This normalization allows to compare the samples between them. But to perform more precise statistical analysis, some tools as **DESeq2 need the non-normalized abundance table** to perform the normalization by themselves. So be careful which table to use for further analysis.
 
 .. class:: h3
 
 Outputs
 
-**Pathways abundances prediction**:
-
- Pathways abundances for each samples. (frogsfunc_pathways_unstrat.tsv)
-
- The table contains pathway abundances of each samples. 
-
-**Pathways abundances prediction with OTU contribution**:
-
- If stratified option is activated, a new table is built. It contains the abundances of each pathway of each OTU in each sample. (frogsfunc_pathways_strat.tsv).
-
-.. image:: static/images/icon_warning_sml.gif 
-
-Warning, the file produced may be heavy and it is time-consuming !
-
-**Summary file**:
-
-.. image:: static/images/FROGS_frogsfunc_pathways_sunburst.png
+**-HTML report-**:        
+ 
+ The HTML file summarizes information about pathway abundances within each sample.
+ 
+.. image:: FROGS_frogsfunc_pathways_sunburst.png
 
 
-Pathways (in KEGG and Metacyc) are classified according to 3 hierarchy levels. The diagram shows the proportion of each level within the samples selected.
+**-Pathways abundances tables - unstratified-**:
+
+ It is the pathways abundance predictions of metagenome, per sample. (frogsfunc_pathways_unstrat.tsv)
+
+ - Classification column: the hierarchy classification of the pathway.
+ - db_link column: the url on the link accession ID (observation_name) of the pathway.
+ - observation_name: Accession identifier
+ - last columns: Abundances of these pathway in each samples.
+
+
+
 
 @HELP_CONTACT@
 
   </help>
 
-  <citations>
-    <expand macro="citations" />
-  </citations>
+  <expand macro="citations" />
   
 </tool>

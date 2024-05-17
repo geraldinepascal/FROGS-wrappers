@@ -15,16 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<tool id="FROGSFUNC_step1_placeseqs" name="FROGSFUNC_step1_placeseqs" version= "beta">
-	<description>Place studies sequences (i.e. OTUs) into a reference tree.</description>
+<tool id="FROGSFUNC_step1_placeseqs" name="FROGSFUNC_1_placeseqs_and_copynumbers" version= "@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+	<description>Places ASVs into a reference phylogenetic tree. </description>
 
-    <macros>
+  <macros>
         <import>macros.xml</import>
-    </macros>
-
-<!--      <expand macro="requirements_frogsfunc">
-        <requirement type="package" version="3.1.2">ete3</requirement>
-    </expand>-->
+  </macros>
+  <expand macro="xrefs"/>
+  <expand macro="requirements_frogsfunc" >
+	<requirement type="package" version="4.5.2">dendropy</requirement>
+  </expand>
 
     <stdio>
         <exit_code range="1:" />
@@ -36,64 +36,69 @@
 	   		--input-biom $input_biom
 	   		--min-align $min_align
 	   		--placement-tool $placement_tool
-	   		--out-tree $out_tree 
+	   		--output-tree $output_tree 
 	   		--excluded $excluded
-	   		--insert-biom $insert_biom
-	   		--insert-fasta $insert_fasta
+	   		--output-biom $output_biom
+	   		--output-fasta $output_fasta
 	   		--closests-ref $closests_ref
-	   		--html $summary_file
-	   		--debug
+			--output-marker $output_marker
+	   		--summary $summary_file
 
 	   		#if $marker.name != "16S"
 	   		--ref-dir ${marker.value}
+			--input-marker-table ${marker.fields.traits}
 	   		#end if
 	</command> 
 	<inputs>
     	<!-- Input files -->
-		<param argument="--input-fasta" format="fasta" name="input_fasta" type="data" label="Sequence file" help="The sequence file to analyse (format: fasta)." optional="false">
-       		<validator type="empty_field" message="This parameter is required." />
-    	</param>
-		<param argument="--input-biom" format="biom1" name="input_biom" type="data" label="Biom file" help="The abundance file to analyse (format: biom). Taxonomic affiliations must be inside (FROGS Affiliation OTU step)." optional="false">
-        	<validator type="empty_field" message="This parameter is required." />
-        </param>
+		<param argument="--input-fasta" format="fasta" type="data" label="Sequence file" help="The sequence file to analyse (format: fasta)." optional="false"/>
+		<param argument="--input-biom" format="biom1" type="data" label="Biom file" help="The abundance file to analyse (format: biom). Taxonomic affiliations must be inside (FROGS taxonomic_affiliation step)." optional="false"/>
+
     	<!-- Parameters -->
         <param argument="--ref-dir" name="marker" type="select" label="Taxonomy marker" display="radio" help="Taxonomic marker of interest.">
-			<options from_data_table="frogs_picrust2_default_dir">
+			<options from_data_table="frogs_picrust2_placeseqs">
 	     		<column name="name" index="1"/>
 	        	<column name="value" index="2"/>
+				<column name="traits" index="3"/>
+                <filter type="unique_value" column='1'/>
 					<validator type="no_options" message="A built-in database is not available" />
 			</options>
 		</param>
-        <param argument="--placement-tool" name="placement_tool" type="select" label="Placement tool" help="Placement tool for insertion of sequences into the reference tree. SEPP is a low-memory alternative to EPA-ng for placing sequences." multiple="false" display="radio">
-        	<option value="epa-ng">epa-ng</option>
-        	<option value="sepp">sepp</option>
+        <param argument="--placement-tool" type="select" label="Placement tool" help="Placement tool for insertion of sequences into the reference tree. SEPP is a low-memory alternative to EPA-ng for placing sequences, and is only available for 16S analysis." multiple="false" display="radio">
+			<options from_data_table="frogs_picrust2_placeseqs">       	
+				<column name='name' index='4' />
+				<column name='value' index='4' />
+                <filter type="param_value" ref="marker" column="2" />  
+			</options>
 		</param>
-		<param argument="--min-align" name="min_align" type="float" label="Minimum alignment length" help="Proportion of the total length of an input sequence that must align with reference sequences. All other will be out. (default: 0.80)" value="0.8" min="0" max="1" optional="false" /> 
+		<param argument="--min-align" type="float" label="Minimum alignment length" help="Proportion of the total length of an input sequence that must align with reference sequences. All others will be out. (default: 0.80)" value="0.8" min="0" max="1" optional="false" /> 
 	</inputs>
 
 	<outputs>
-		<data format="html" name="summary_file" label="${tool.name}: frogsfunc_placeseqs_summary.html" from_work_dir="frogsfunc_placeseqs_summary.html"/>
-		<data format="nhx" name="out_tree" label="${tool.name}: frogsfunc_placeseqs_tree.nwk" from_work_dir="frogsfunc_placeseqs_tree.nwk"/>
-		<data format="tabular" name="excluded" label="${tool.name}: frogsfunc_placeseqs_excluded.tsv" from_work_dir="frogsfunc_placeseqs_excluded.tsv"/> 
-		<data format="fasta" name="insert_fasta" label="${tool.name}: frogsfunc_placeseqs.fasta" from_work_dir="frogsfunc_placeseqs.fasta"/>
-		<data format="tabular" name="closests_ref" label="${tool.name}: frogsfunc_placeseqs_closests_ref_sequences.txt" from_work_dir="frogsfunc_placeseqs_closests_ref_sequences.txt"/>
-		<data format="biom1" name="insert_biom" label="${tool.name}: frogsfunc_placeseqs.biom" from_work_dir="frogsfunc_placeseqs.biom"/> 
+		<data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="report.html"/>
+		<data format="nhx" name="output_tree" label="${tool.name}: frogsfunc_placeseqs_tree.nwk" from_work_dir="frogsfunc_placeseqs_tree.nwk"/>
+		<data format="tsv" name="excluded" label="${tool.name}: frogsfunc_placeseqs_excluded.tsv" from_work_dir="frogsfunc_placeseqs_excluded.tsv"/> 
+		<data format="fasta" name="output_fasta" label="${tool.name}: frogsfunc_placeseqs.fasta" from_work_dir="frogsfunc_placeseqs.fasta"/>
+		<data format="tsv" name="closests_ref" label="${tool.name}: frogsfunc_placeseqs_closests_ref_sequences.txt" from_work_dir="frogsfunc_placeseqs_closests_ref_sequences.txt"/>
+		<data format="biom1" name="output_biom" label="${tool.name}: frogsfunc_placeseqs.biom" from_work_dir="frogsfunc_placeseqs.biom"/>
+		<data format="tsv" name="output_marker" label="${tool.name}: frogsfunc_marker.tsv" from_work_dir="frogsfunc_marker.tsv"/> 
 	</outputs>
 
 	<tests>
 		<test>
 			<param name="input_fasta" value="input/frogsfunc.fasta" />
             <param name="input_biom" value="input/frogsfunc.biom" />
-            <param name="placement_tool" value="sepp"/>
-			<param name="marker" value="16S" />
+			<param name="marker.name" value="picrust2_default_dir_16S"/>
+			<param name="marker.placement_tool" value="picrust2_default_dir_16S"/>
 			<param name="min_align" value="0.8" />
 			
-			<output name="insert_fasta" file="references/25-frogsfunc_placeseqs.fasta" compare="diff" lines_diff="0" />
-			<output name="insert_biom" file="references/25-frogsfunc_placeseqs.biom" compare="diff" lines_diff="0"/>
+			<output name="output_fasta" file="references/25-frogsfunc_placeseqs.fasta" compare="diff" lines_diff="0" />
+			<output name="output_biom" file="references/25-frogsfunc_placeseqs.biom" compare="diff" lines_diff="0"/>
 			<output name="excluded" file="references/25-frogsfunc_placeseqs_excluded.txt" compare="diff" lines_diff="0" />
-			<output name="out_tree" file="references/25-frogsfunc_placeseqs_tree.nwk" compare="diff" lines_diff="0" />
+			<output name="output_tree" file="references/25-frogsfunc_placeseqs_tree.nwk" compare="diff" lines_diff="0" />
 			<output name="closests_ref" file="references/25-frogsfunc_placeseqs_closests_ref_sequences.txt" compare="diff" lines_diff="0" />
-			<output name="summary_file" file="references/25-frogsfunc_placeseqs_summary.html" compare="diff" lines_diff="0" />
+			<output name="summary_file" file="references/25-frogsfunc_placeseqs_report.html" compare="diff" lines_diff="0" />
+			<output name="output_marker" file="references/25-frogsfunc_copynumbers_marker.tsv" compare="diff" lines_diff="0" /> 
 		</test>
 	</tests>
 
@@ -105,13 +110,16 @@
 
 What it does
 
-FROGSFUNC_step1_placeseqs is the first step of PICRUSt2. It inserts your study sequences into a reference tree (`details &lt;https://github.com/picrust/picrust2/wiki/Sequence-placement&gt;`_). By default, this reference tree is based on 20,000 16S sequences from genomes in the `Integrated Microbial Genomes database &lt;https://img.jgi.doe.gov/&gt;`_. The script performs this step, which specifically:
+**FROGSFUNC_1_placeseqs_copynumber** is the first step of PICRUSt2. It inserts your study sequences into a reference tree (`details &lt;https://github.com/picrust/picrust2/wiki/Sequence-placement&gt;`_). By default, this reference tree is based on 20,000 16S sequences from genomes in the `Integrated Microbial Genomes database &lt;https://img.jgi.doe.gov/&gt;`_. The script performs this step, which specifically:
 
     - Aligns your study sequences with a multiple-sequence alignment of reference 16S, ITS or 18S sequences with `HMMER &lt;http://hmmer.org&gt;`_.
 
     - Finds the most likely placements of your study sequences in the reference tree with `EPA_NG &lt;https://github.com/Pbdas/epa-ng#build-instructions&gt;`_ or `SEPP &lt;https://github.com/smirarab/sepp&gt;`_.
 
     - Produces a treefile with the most likely placement for each sequence as the new tips with `GAPPA &lt;https://github.com/lczech/gappa&gt;`_.
+    
+    - Predicts marker copy number based solely on the sequences of marker genes with PICRUSt2. The available marker genes are 16S, ITS and 18S.
+    
 
 .. class:: infomark page-header h2
 
@@ -122,98 +130,116 @@ Inputs/Outputs
 Input
 
 
-**Sequence file** (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_):
+**-Sequence file-** (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_):
 
- The OTUs fasta sequence file.
+ The ASVs fasta sequence file.
 
-**Biom file** (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_):
+**-Biom file-** (format `biom1 &lt;http://biom-format.org/documentation/format_versions/biom-1.0.html&gt;`_):
 
- The OTUs biom file. Taxonomic affiliations must be done before (bion file form FROGS Affiliation OTU tool).
+ The ASVs biom file. Taxonomic affiliations must be done before (biom file from FROGS taxonomic_affiliation tool).
 
 
-**Placement tool** 
+**-Placement tool-** 
  
  EPA-NG or SEPP: SEPP is a low-memory alternative to EPA-ng for placing sequences. 
 
-.. image:: static/images/icon_warning_sml.gif 
+.. class:: warningmark
 
 So, if the tool crashes with EPA-ng, try again with SEPP.
 
+.. class:: warningmark
+
+SEPP is not usable for ITS and 18S analysis.
 
 .. class:: h3
 
 Outputs
 
-**Newick file** (frogsfunc_placeseqs_tree.nwk):
+**-Tree file-** (FROGSFUNC_1_placeseqs_copynumber_tree.nwk):
 
  The phylogenetic tree output with insert sequences into the reference tree (format: newick). (format `nhx &lt;https://en.wikipedia.org/wiki/Newick_format&gt;`_).
 
-**Excluded sequence file** (frogsfunc_placeseqs_excluded.tsv):
+**-Excluded sequence file-** (FROGSFUNC_1_placeseqs_copynumber_excluded.tsv):
 
  List of sequences not inserted in the PICRUSt2 reference tree. Sequences are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold (0.8 per default). These sequences are excluded for the next steps.
 
-**Closests reference sequences file** (frogsfunc_placeseqs_closests_ref_sequences.txt):
+**-Closest reference sequences file-** (FROGSFUNC_1_placeseqs_copynumber_closests_ref_sequences.txt):
 
  Information on the sequences from the PICRUST2 reference tree that are the closest neighbours of your studied sequences. 
 
-**File of sequences placed in the phylogenetic tree** (frogsfunc_placeseqs.fasta)
+**-File of sequences placed in the phylogenetic tree-** (FROGSFUNC_1_placeseqs_copynumber.fasta):
 
  Sequence file of inserted sequences into PICRUST2 reference tree.
 
-**Abundance table** (frogsfunc_placeseqs.biom)
+**-Abundance table-** (FROGSFUNC_1_placeseqs_copynumber.biom):
 
- OTU abundance biom file of inserted sequences into reference tree. 
+Biom file of ASV abundances with inserted sequences into PICRUSt2 reference tree.
 
-**Summary file** (frogsfunc_placeseqs_summary.html):
+**-Marker copy number marker file-**:
+
+.. image:: FROGS_frogsfunc_copynumbers_marker.png
+
+This output table of predicted marker gene copy numbers per sequence. (frogsfunc_marker.tsv)
+Marker gene copy number prediction is used to normalize the counting matrices of metabolic functions (inside FROGSFUNC_2_functions). For example, if the ASV has two 16S copies, the abundance of metabolic function for this ASV will be divided by 2.
+
+**-Report file-** (report.html):
    
- The summary file describes which OTUs are contained or not in the phylogenetic tree. Note that PICRUSt2 uses its own reference tree to affiliate OTUs/ASVs from reference sequences. The summary file indicates for each OTU/ASV which is the closest PICRUSt2 reference sequence, and compares it to the original FROGS taxonomy. Clicking on the sequence ID gives you more information about it (`JGI database &lt;https://img.jgi.doe.gov/&gt;`_).
+The report file describes ASVs are contained or not in the phylogenetic tree. Note that PICRUSt2 uses its own reference tree to affiliate ASVs from reference sequences. The report file indicates for each ASV which is the closest PICRUSt2 reference sequence, and compares it to the original FROGS taxonomy. Clicking on the sequence ID gives you more information about it (`JGI database &lt;https://img.jgi.doe.gov/&gt;`_).
 
-.. image:: static/images/FROGS_frogsfunc_placeseqs_piecharts.png
+.. image:: FROGS_frogsfunc_placeseqs_piecharts.png
 	:height: 290
 	:width: 676
 
 
-The pie charts describe the proportion of number of OTUs excluded and the proportion of total sequences excluded for the following steps.
-OTUs are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold.
+The pie charts describe the proportion of number of excluded ASVs and the proportion of total excluded sequences for the following steps.
+ASVs are excluded if the total length of the input sequence aligned against reference sequence is less than the specified " Minimum alignment length " threshold parameter.
 
-.. class:: h3
+.. image:: FROGS_frogsfunc_placeseqs_table_JGI.png
+	:height: 792
+	:width: 1599
 
-Result table
+* **ASV** : ASV name.
 
-.. image:: static/images/FROGS_frogsfunc_placeseqs_table_JGI.png
-	:height: 580
-	:width: 1220
+* **Nb sequences** : ASV sequence abundances.
 
-* **Cluster** : OTU name.
+* **FROGS Taxonomy** : Taxonomic affiliation made by FROGS (FROGS taxonomic_affiliation).
 
-* **Nb sequences** : OTU sequence abundances.
-
-* **FROGS Taxonomy** : Taxonomic affiliation made by FROGS (FROGS Affiliation OTU).
-
-* **PICRUSt2 closest ID** : Identifiant (JGI) of the closest reference sequence from the OTU inserted in the reference tree (see the explanatory illustration at the bottom of this page).
+* **PICRUSt2 closest ID (JGI)** : Identifiant (JGI) of the closest reference sequence from the inserted ASV in the reference tree (see the explanatory illustration at the bottom of this page).
  
 * **PICRUSt2 closest reference name** : Genome Name / Sample Name.
 
-* **PICRUSt2 closest taxonomy** : Taxonomy (JGI) of the closest reference sequence from the OTU inserted in the reference tree under the following format: Kingdom;Phylum;Class;Order;Family;Genus;Species
+* **PICRUSt2 closest taxonomy** : Taxonomy (JGI) of the closest reference sequence from the ASV inserted in the reference tree under the following format: Kingdom;Phylum;Class;Order;Family;Genus;Species
 
-* **PICRUSt2 closest distance from cluster (NSTI)** : Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the OTU and the nearest sequenced reference genome. This metric can be used to identify OTUs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any OTUs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
+* **NSTI** : Nearest Sequenced Taxon Index (`NSTI &lt;https://www.nature.com/articles/nbt.2676&gt;`_) is the phylogenetic distance between the ASV and the nearest sequenced reference genome. This metric can be used to identify ASVs that are highly distant from all reference sequences (the predictions for these sequences are less reliable!). The higher the NSTI score, the less the affiliations are relevant. Any ASVs with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
 
-* **NSTI confidence** 
+* **NSTI confidence** : According to the NSTI score, we guide you in the confidence you can bring to the issue affiliation of PICRUSt2.
 
-* **Lowest same taxonomic rank between FROGS and PICRUSt2** : Comparison between FROGS and PICRUSt2 taxonomic affiliations.
+* **Lowest same taxonomic rank between FROGS and PICRUSt2** : Comparison between FROGS and PICRUSt2 taxonomic affiliations. Lowest common taxonomic rank between FROGS and PICRUSt2 affiliations.
 
-* **Comment** : " identical taxonomy " if the FROGS and PICRUSt2 taxonomic affiliations are identical. " identical sequence " if the OTU sequence is strictly the same as the reference sequence.
+* **Comment** : " identical taxonomy " if the FROGS and PICRUSt2 taxonomic affiliations are identical. " identical sequence " if the ASV sequence is strictly the same as the reference sequence.
 
-.. image:: static/images/FROGS_frogsfunc_placeseqs_closest_explained.png
+.. image:: FROGS_frogsfunc_placeseqs_closest_explained.png
+    :height: 269
+    :width: 825
+    
+Closest reference sequence (from JGI database) from one ASV sequence.
 
-Closest reference sequence (from JGI database) from one cluster sequence.
+.. image:: FROGS_frogsfunc_placeseqs_nsti.png
+    :height: 295
+    :width: 778
+
+Nearest Sequenced Taxon Index (NSTI) is the phylogenetic distance between the ASV and the nearest sequenced reference genome. This metric can be used to identify ASVs that are highly distant from all reference sequences but the predictions for these sequences are less reliable. The higher the NSTI score, the less the affiliations are relevant. Any ASV with a NSTI value higher than 2 are typically either from uncharacterized phyla or off-target sequences.
+
+The graph shows the number of kept ASVs and sequences according to the NSTI threshold. It is a decision support graphic to help choose the NSTI threshold. This NSTI threshold will be asked to set in the next tool FROGSFUNC_2_functions. A good practice is to choose a NSTI threshold that retains a good number of sequences and as low as possible i.e. while ensuring that the taxonomies derived from FROGS and PICRUSt2 do not diverge too much.
+
+.. image:: FROGS_frogsfunc_placeseqs_blast.png
+    :height: 295
+    :width: 920
+
+The graph depicts the blast percentages of identity and coverage against the closest PICRUSt2 sequence (ordinate), against the NSTI score (abcsissa). Thus, the ASVs with the best predictions will be located at the top left of the graph.
 
 @HELP_CONTACT@
 
-	</help>
-
-	<citations>
-		<expand macro="citations" />
-	</citations>
-	
+    </help>
+    <expand macro="citations" />
 </tool>

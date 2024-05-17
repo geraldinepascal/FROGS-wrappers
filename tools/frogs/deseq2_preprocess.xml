@@ -1,34 +1,56 @@
 <tool id="FROGSSTAT_DESeq2_Preprocess" name="FROGSSTAT DESeq2 Preprocess" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-    <description>import a Phyloseq object and prepare it for DESeq2 differential abundance analysis</description>
+    <description>import a Phyloseq object and prepare it for DESeq2 differential abundance analysis </description>
     <macros>
         <import>macros.xml</import>
     </macros>
+    <expand macro="xrefs"/>
     <expand macro="requirements_phyloseq">
         <requirement type="package" version="1.34.0">bioconductor-deseq2</requirement>
         <requirement type="package" version="1.6.6">r-optparse</requirement>
     </expand>
     <command detect_errors="exit_code">
-    deseq2_preprocess.py --data '$data'
+    deseq2_preprocess.py
+        --analysis '$analysis_type.analysis'
+        #if $analysis_type.analysis == 'ASV'
+            --data '$data'
+            --out-Rdata '$dds_asv'
+        #else:
+            --input-functions '$input_functions'
+            --samplefile '$samplefile'
+            --out-Rdata '$dds_function'
+        #end if
         #if $multiple.seconde == 'true'
             --var '$var1${multiple.mod}${multiple.var2}'
         #else
             --var '$var1'
         #end if
-        --out-Rdata '$dds'
-	</command>
+
+    </command>
     <inputs>
-		<!-- Files -->
-        <param format="rdata" name="data" type="data" label="Phyloseq object " help="This is the result of FROGSSTAT Phyloseq Import Data with normalise option set to NO (DESeq2 is more powerful on unnormalised counts) (format RData)"/>
-        <!-- Parameters -->
-	    <param name="var1" type="text" label="Experimental variable" help="The factor suspected to have an effect on OTUs' abundances. Ex: Treatment, etc.">
+        <!-- Files -->
+        <conditional name="analysis_type">
+            <param name="analysis" type="select" label="Type of analysis" help="Type of data to perform the differential analysis. ASV: DESeq2 is run on the ASV abundance table. FUNCTION: DESeq2 is run on predicted function abundance table from FROGSFUNC_2_function tool." display='radio'>
+                <option value="ASV" selected="true">ASV</option>
+                <option value="FUNCTION">FUNCTION</option>
+            </param>
+        <when value="ASV">
+            <param format="rdata" name="data" type="data" label="Phyloseq object " help="This is the result of FROGSSTAT_Phyloseq_Import_Data without normalisation (DESeq2 is more powerful on unnormalised counts) (format RData)"/>
+        </when>
+        <when value="FUNCTION">
+            <param format="tsv" name="input_functions" type="data" label="Function abundances file " help="Input file of predicted function abundances (frogsfunc_functions_unstrat.tsv from FROGSFUNC_2_function tool)."/>
+            <param format="tabular,tsv" argument="--samplefile" type="data" label="Metadata asociated to samples (format: TSV)" help="The file must contain the metadata that characterise each sample."/> 
+        </when>
+        </conditional>
+        <!-- Parameters -->        
+        <param name="var1" type="text" label="Experimental variable" help="The factor that could have an effect on ASV/FUNCTION abundances. Ex: Treatment, etc.">
             <expand macro="sanitizer_validator"/>
         </param>
-		<conditional name="multiple">
-            <param name="seconde" type="select" label="Do you want to correct for a confounding factor?" help="If yes, specifiy counfouding factor">
+        <conditional name="multiple">
+            <param name="seconde" type="select" label="Do you want to correct a confounding factor?" help="If yes, specify the counfouding factor">
                 <option value="true">True</option>
                 <option value="false" selected="true">False</option>
             </param>
-		    <when value="false"/>
+            <when value="false"/>
             <when value="true">
                 <param name="var2" type="text" label="Variable 2" help="Confounding factor. Ex: Gender, etc.">
                     <expand macro="sanitizer_validator"/>
@@ -41,13 +63,24 @@
         </conditional>
     </inputs>
     <outputs>
-        <data format="rdata" name="dds" label="${tool.name}: dds.Rdata" from_work_dir="DESeq2_preprocess.Rdata"/>
+        <data format="rdata" name="dds_asv" label="${tool.name}: asv_dds.Rdata" from_work_dir="asv_dds.Rdata">
+            <filter> analysis_type['analysis'] == 'ASV'</filter>
+        </data>
+        <data format="rdata" name="dds_function" label="${tool.name}: function_dds.Rdata" from_work_dir="function_dds.Rdata">
+            <filter> analysis_type['analysis'] == 'FUNCTION'</filter>
+        </data>
+        <data format="rdata" name="phyloseq" label="${tool.name}: function_data.Rdata" from_work_dir="function_data.Rdata">
+            <filter> analysis_type['analysis'] == 'FUNCTION'</filter>
+        </data>
     </outputs>
     <tests>
         <test>
-            <param name="data" value="references/16-phylo_import.Rdata" />
             <param name="var1" value="EnvType"/>
-            <output name="dds" file="references/23-deseq2_preprocess.Rdata" compare="sim_size" delta="50"/>
+            <conditional name="analysis_type">
+                <param name="analysis" value="ASV"/>
+                <param name="data" value="references/16-phylo_import.Rdata" />
+            </conditional>
+            <output name="dds_asv" file="references/23-deseq2_preprocess.Rdata" compare="sim_size" delta="50"/>
         </test>
     </tests>
     <help>
@@ -58,7 +91,7 @@
 
 What it does
 
-Launch Rscript to compute differential abundance analysis using `DESeq2 &lt;https://bioconductor.org/packages/release/bioc/html/DESeq2.html&gt;`_ on a `Phyloseq &lt;https://joey711.github.io/phyloseq/&gt;`_ object.
+This tool launches Rscript to compute differential abundance analysis using `DESeq2 &lt;https://bioconductor.org/packages/release/bioc/html/DESeq2.html&gt;`_ on a `Phyloseq &lt;https://joey711.github.io/phyloseq/&gt;`_ object.
 
 .. class:: infomark page-header h2
 
@@ -68,41 +101,55 @@ Inputs/Outputs
 
 Input
 
-**phyloseq object** (format rdata):
-A phyloseq object stored in a rdata file.
-This file is the result of FROGSSTAT Phyloseq Import Data.
+Two cases :
+
+-1. for **ASV**:	A **phyloseq object** stored in a Rdata file. This file is the result of FROGSSTAT Phyloseq Import Data. We need unnormalised data to analyse the abundance differencies.
 
 .. class:: warningmark
 
 We need unnormalised data to analyse the abundance differencies.
 
+
+-2. For **FUNCTION**: two files:
+		- the files that contains predicted **function abundances**, it is named frogsfunc_functions_unstrat.tsv and produced by FROGSFUNC_2_function tool.
+		- the file that must contain the **metadata** that characterise each sample i.e. the conditions of experiment with sample ID in the first column as: 
+
+  .. image:: FROGS_Phyloseq_samplefile.png
+	 :height: 115
+	 :width: 369
+
+
 .. class:: h3
 
 Ouput
 
-**dds object** (format rdata):
-A DESeq2 dataset (dds) stored in rdata file.
-This result will be one of the input of the FROGSSTAT DESeq Visualisation tool.
+Two cases :
+
+1.	For **ASV**: a **dds.object** that is a DESeq2 dataset (dds) stored in Rdata file. This result will be one of the input of the FROGSSTAT DESeq Visualisation tool.
+2.	For **FUNCTION**:
+		- a **dds.object** that is a DESeq2 dataset (dds) stored in Rdata file. This result will be one of the input of the FROGSSTAT DESeq Visualisation tool.
+		- a **abundance.Rdata** taht contains information of data in one phyloseq object.
+
 
 .. class:: infomark page-header h2
 
-How it works
+How it works ?
 
-The DESeq function performs a default analysis through the steps:
+The DESeq2 function performs a default analysis through the steps:
 
-       1. estimation of size factors: ‘estimateSizeFactors’
+	   1. estimation of size factors: ‘estimateSizeFactors’
 
-       2. estimation of dispersion: ‘estimateDispersions’
+	   2. estimation of dispersion: ‘estimateDispersions’
 
-       3. Negative Binomial GLM fitting and Wald statistics:
-          ‘nbinomWaldTest’
+	   3. Negative Binomial GLM fitting and Wald statistics:
+		  ‘nbinomWaldTest’
 
 You must precise at least on variable on which the differential abundances will be compared.
 
-You may precise a confounding factor, by adding an other variable and precise the relation between the two variables:
+You may precise a confounding factor, by adding an other variable and you may precise the relation between the two variables:
 
-- + for independant variables
-- * for interacting variables
+- for independant variables
+- for interacting variables
 
 @HELP_CONTACT@
 
