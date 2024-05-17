@@ -3,6 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
+    <expand macro="xrefs"/>
     <expand macro="requirements_phyloseq">
         <requirement type="package" version="2.3">r-gridextra</requirement>
     </expand>

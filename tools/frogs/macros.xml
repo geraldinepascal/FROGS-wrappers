@@ -2,6 +2,12 @@
 <macros>
     <token name="@TOOL_VERSION@">4.1.0</token>
     <token name="@VERSION_SUFFIX@">3</token>
+
+    <xml name="xrefs">
+        <xrefs>
+            <xref type="bio.tools">frogs</xref>
+        </xrefs>
+    </xml>
     
     <xml name="requirements">
         <requirements>

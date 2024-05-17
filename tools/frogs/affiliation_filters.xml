@@ -3,7 +3,9 @@
     <macros>
         <import>macros.xml</import>
     </macros>
-    <expand macro="requirements"/>   <command detect_errors="exit_code">
+    <expand macro="xrefs"/>
+    <expand macro="requirements"/>
+    <command detect_errors="exit_code">
 		affiliation_filters.py
 			--input-biom '$input_biom'
 			--input-fasta '$input_fasta'

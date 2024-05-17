@@ -3,6 +3,7 @@
     <macros>
         <import>macros.xml</import>
     </macros>
+    <expand macro="xrefs"/>
     <expand macro="requirements_phyloseq" />
     <command detect_errors="exit_code">
     phyloseq_alpha_diversity.py
