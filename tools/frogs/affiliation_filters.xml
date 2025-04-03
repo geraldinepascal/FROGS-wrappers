@@ -225,11 +225,11 @@ Outputs
 
  The updated sequences after filtering (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_), in case of using deleting mode.
 
-**Impacted abundance tabular file** (impacted_cluster.tsv):
+**Impacted abundance tabular file** (impacted.tsv):
 
  The list of the ASVs deleted/hidden or with updated blast affiliation (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
 
-**Impacted multi-affiliation tabular file** (impacted_cluster.multi-affiliation.tsv):
+**Impacted multihit tabular file** (impacted.multihit.tsv):
 
  The list of blast affiliations for multi-affiliated impacted ASV (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
 
