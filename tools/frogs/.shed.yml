@@ -5,5 +5,5 @@ long_description: 'This is FROGS Galaxy Wrappers
 FROGS is a workflow designed to produce an ASV count matrix from high depth sequencing amplicon data. Adviced : reorder integrated_tool_panel.xml as indicated here : https://github.com/geraldinepascal/FROGS-wrappers#simplest-way 
 '
 name: frogs
-owner: frogs
+owner: oinizan
 remote_repository_url: https://github.com/geraldinepascal/FROGS-wrappers/

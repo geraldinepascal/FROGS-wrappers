@@ -1,5 +1,5 @@
-# v4.1.0+galaxy1 [DEV]
-This version refers to FROGS_4.1.0 suit.
+# v4.2.0+galaxy1 [DEV]
+This version refers to FROGS_4.2.0 suit.
 
 ### Function added:
 
