@@ -1,0 +1,88 @@
+<tool id="FROGS_cluster_stats" name="FROGS_Cluster_Stat" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+	<description>Process some metrics on clusters </description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+	<expand macro="xrefs"/>
+    <expand macro="requirements"/>
+    <command detect_errors="exit_code">
+	cluster_stats.py
+		--input-biom '$biom'
+		--output-file '$summary_file'
+	</command>
+	<inputs>
+		<param format="biom1" name="biom" type="data" label="Abundance file" help="Clusters abundance (format: BIOM)"/>
+	</inputs>
+	<outputs>
+		<data format="html" name="summary_file" label="${tool.name}: report.html" from_work_dir="summary.html"/>
+	</outputs>
+	<tests>
+		<test>
+			<param name="biom" value="references/09-normalisation.biom"/>
+			<output name="summary_file" value="references/10-clustersStat.html" compare="diff" lines_diff="0"/>
+		</test>
+	</tests>
+	<help>
+
+@HELP_LOGO@
+
+.. class:: infomark page-header h2
+
+What it does
+
+FROGS Cluster stats computes several metrics and generates a HTML file describing clusters based on abundances, samples, ...
+
+
+.. class:: infomark page-header h2
+
+Input/output
+
+.. class:: h3
+
+Input
+
+**Abundance file**:
+
+The abundance of each cluster in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
+
+The FROGS's tools working on clusters and others metagenomic workflows produce files in BIOM format.
+
+.. class:: h3
+
+Output
+
+**Report file** (report.html):
+
+ *Cluster distribution* : describes the sizes distribution of all clusters thanks to boxplots and tables
+
+ .. image:: FROGS_cluster_stats_clusterDistrib1.png
+    :height: 1180
+    :width: 900
+
+ *Sequence distribution* : describes the sequences distribution among clusters
+
+ .. image:: FROGS_cluster_stats_seq_dist.png
+
+ *Sample distribution* : describes clusters distribution among samples and gives an `hierarchical clustering &lt;http://en.wikipedia.org/wiki/Hierarchical_clustering&gt;`_ on samples abundance profile (distance method = `braycurtis &lt;http://fr.wikipedia.org/wiki/Distance_de_Bray-Curtis&gt;`_, linkage method = average)
+
+ .. image:: FROGS_cluster_stats_sample_dist1.png
+    :height: 400
+    :width: 700
+
+ .. image:: FROGS_cluster_stats_sample_dist2.png
+    :height: 350
+    :width: 610
+
+.. class:: infomark page-header h2
+
+Advices
+
+This is a very usefull tool to see the evolution of the clusters. Do not hesitate to run this tool after each FROGS step beginning at the clustering step.
+
+
+
+@HELP_CONTACT@
+
+	</help>
+	<expand macro="citations" />
+</tool>

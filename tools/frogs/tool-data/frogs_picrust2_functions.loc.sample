@@ -1,0 +1,45 @@
+# Copyright (C) 2022 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+#This is a sample file that enables tools FROGS_frogsfunc_copynumbers to predict 
+#the copy number of gene families present in the predicted genome for OTU, 
+# given a tree and a set of known trait values (FROGS_frogsfunc_placeseqs).
+#
+#PICRUSt2 files are present in the arborescence of PICRUSt2. 
+#
+#<marker_gene>	<db>	<picrust2_input_marker>	<picrust2_input_function>
+#
+# For 16S data (see the 6 first lines), PICRUSt2 only takes the dname of the database as input (for exemple EC).
+# With ITS and 18S data, you have to specify the path of marker gene counts files.
+#
+#
+# Bellow you will find out how to implement this loc file.
+#
+# The indicated path is the one if you do not change the default galaxy config of conda directory.
+# Just adapt path by replacing <Galaxy_dir> with the real path and eventually the picrust version.
+#
+# If you are not using this default conda behavior, please consult PICRUSt2 documentation to find out where they are located in your environment.
+#
+#
+#
+#16S	EC	EC	EC	2.5.1
+#16S	KO	KO	KO	2.5.1
+#16S	PFAM	PFAM	PFAM	2.5.1
+#16S	COG	COG	COG	2.5.1
+#16S	TIGRFAM	TIGRFAM	TIGRFAM	2.5.1
+#16S	PHENO	PHENO	PHENO	2.5.1
+#ITS	EC	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/fungi/ITS_counts.txt.gz	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/fungi/ec_ITS_counts.txt.gz	2.5.1
+#18S	EC	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/fungi/18S_counts.txt.gz	<Galaxy_dir>/database/dependencies/_conda/envs/<PICRUSt2_env>/lib/python3.6/site-packages/picrust2/default_files/fungi/ec_18S_counts.txt.gz	2.5.1

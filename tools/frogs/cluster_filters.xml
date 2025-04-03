@@ -1,0 +1,285 @@
+<?xml version="1.0"?>
+<!--
+# Copyright (C) 2015 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<tool id="FROGS_cluster_filters" name="FROGS_4 Cluster filters" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@">
+	<description>Filters clusters on several criteria. </description>
+
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+	<expand macro="xrefs"/>
+    <expand macro="requirements">
+        <requirement type="package" version="2.10">blast</requirement>
+    </expand>
+
+        <stdio>
+                <exit_code range="1:" />
+                <exit_code range=":-1" />
+        </stdio>
+
+	<command>
+
+			cluster_filters.py
+			--nb-cpus \${GALAXY_SLOTS:-1}
+			--input-biom '$input_biom'
+			--input-fasta '$input_fasta'
+			--output-fasta '$output_fasta'
+			--output-biom '$output_biom'
+			--excluded '$output_excluded'
+			--summary '$output_summary'
+
+			#if $choice_prevalence_method.prevalence_method == "all"
+				#if $choice_prevalence_method.min_sample_presence
+					--min-sample-presence $choice_prevalence_method.min_sample_presence
+				#end if
+			#else if $choice_prevalence_method.prevalence_method == "replicate"
+				#if $choice_prevalence_method.min_replicate_presence
+					--min-replicate-presence $choice_prevalence_method.min_replicate_presence
+					--replicate_file $choice_prevalence_method.replicate_file
+				#end if
+			#end if
+
+			#if $choice_abundance_unit.abundance_unit_type == "count"
+				#if $choice_abundance_unit.min_abundance_count
+					--min-abundance $choice_abundance_unit.min_abundance_count
+				#end if
+			#end if
+
+			#if $choice_abundance_unit.abundance_unit_type == "proportion"
+				#if $choice_abundance_unit.min_abundance_proportion
+					--min-abundance $choice_abundance_unit.min_abundance_proportion
+				#end if
+			#end if
+
+			#if $nb_biggest_clusters
+				--nb-biggest-clusters $nb_biggest_clusters
+			#end if
+
+
+			#if $contaminantSource.which_contaminantSource == "history"
+				##build index on the fly
+				--contaminant '${contaminantSource.ownContaminantFile}'
+			#else if $contaminantSource.which_contaminantSource == "server"
+				##use precomputed indexes
+				--contaminant '${contaminantSource.contaminants_db.fields.path}'
+			#end if
+
+	</command>
+	<inputs>
+		<!-- Files -->
+		<param format="fasta" name="input_fasta" type="data" label="Sequence file" help="The sequence file to filter (format: FASTA)" />
+		<param format="biom1" name="input_biom" type="data" label="Abundance file" help="The abundance file to filter (format: BIOM)" />
+
+		<conditional name="choice_prevalence_method">
+			<param name="prevalence_method" type="select" label="Minimum prevalence method">
+				<option value="all"> all samples </option>
+				<option value="replicate"> replicate identification </option>
+			</param>
+			<when value="all">
+				<param name="min_sample_presence" type="integer" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep cluster if it is present in at least this number of samples.">
+					<validator type="in_range" min="2" message="To be effective this threshold need to be higher than 1" />
+				</param>
+			</when>
+			<when value="replicate">
+				<param name="replicate_file" type="data" format="tabular,tsv" optional="True" label="File of replicated sample names" help="Replicate file to link each sample to its group (cf. Help section)." />
+				<param name="min_replicate_presence" type="float" min="0" max="1" optional="true" label="Minimum prevalence" size="5" help="Fill the field only if you want this treatment. Keep cluster present in at least this proportion of replicates in at least one group (must be a proportion between 0 and 1).">
+				</param>
+			</when>
+		</conditional>
+
+		<conditional name="choice_abundance_unit">
+			<param name="abundance_unit_type" type="select" label="Minimum cluster abundancy as proportion or count. We recommend to use a proportion of 0.00005.">
+				<option value="proportion">as proportion</option>
+				<option value="count">as count</option>
+			</param>
+			<when value="proportion">
+				<param name="min_abundance_proportion" argument="--min_abundance" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep cluster" help="Fill the field only if you want this treatment. Example: 0.00005, recommended by Bokulich et al 2013, to keep cluster with at least 0.005% of all sequences">
+					<validator type="in_range" min="0" exclude_min="true" max="1" exclude_max="true" message="Abundance proportion threshold need to be strictly greater than 0 and less than 1, otherwise you will not remove anything or remove everything." />
+				</param>
+			</when>
+			<when value="count">
+				<param name="min_abundance_count" argument="--min_abundance" type="integer" optional="true" label="Minimum number of sequences to keep cluster" help="Fill the field only if you want this treatment. Ex: 2 to keep cluster with at least 2 sequences, so remove single singleton">
+					<validator type="in_range" min="2" message="To be effective this threshold need to be higher than 1. 2 means that you will remove cluster with 1 and only 1 sequence over all samples"/>
+				</param>
+			</when>
+		</conditional>
+
+		<param argument="--nb-biggest-clusters" type="integer" optional="true" label="N biggest clusters" help="Fill the fields only if you want this treatment. Keep the N biggest clusters" />
+
+		<conditional name="contaminantSource">
+			<param name="which_contaminantSource" argument="--contaminant" type="select" label="Search for contaminant clusters." help="Either you use your own contaminant fasta file or you select one among available ones.">
+				<option value="no">No contaminant filter</option>
+				<option value="server">Use contaminant FASTA file from the server</option>
+				<option value="history">Use contaminant FASTA file from the history</option>
+			</param>
+			<when value="no"/>
+			<when value="server">
+				<param name="contaminants_db" type="select" label="Contaminant databank" help="For example the phiX databank (the phiX is a control added in Illumina sequencing technologies).">
+					<options from_data_table="frogs_contaminant_db"></options>
+					<validator type="no_options" message="A built-in database is not available" />
+				</param>
+			</when>
+			<when value="history">
+				<param name="ownContaminantFile" type="data" format="fasta" label="Select a contaminante reference from history" />
+			</when>
+		</conditional>
+	</inputs>
+	<outputs>
+		<data format="biom1" name="output_biom" label="${tool.name}: clusterFilters_abundance.biom" from_work_dir="clusterFilters_abundance.biom" />
+		<data format="fasta" name="output_fasta" label="${tool.name}: clusterFilters_sequences.fasta" from_work_dir="clusterFilters_sequences.fasta" />
+		<data format="tsv" name="output_excluded" label="${tool.name}: excluded.tsv" from_work_dir="excluded.tsv" />
+		<data format="html" name="output_summary" label="${tool.name}: report.html" from_work_dir="report.html" />
+	</outputs>
+	<tests>
+		<test>
+	        <param name="input_fasta" value="references/03-chimera.fasta" />
+            <param name="input_biom" value="references/03-chimera.biom" />
+            <param name="min_sample_presence" value="3" />
+		    <conditional name="choice_abundance_unit">
+		    	<param name="abundance_unit_type" value="proportion" />
+				<param name="min_abundance_proportion" value="0.00005" />
+		    </conditional>
+	 	    <output name="output_fasta" file="references/04-filters.fasta" compare="diff" lines_diff="0" />
+	 	    <output name="output_biom" file="references/04-filters.biom" compare="sim_size" delta="0" />
+		    <output name="output_excluded" file="references/04-filters.excluded" compare="diff" lines_diff="0" />
+		    <output name="output_summary" file="references/04-filters.html" compare="diff" lines_diff="0" />
+	    </test>
+	</tests>
+	<help>
+
+@HELP_LOGO@
+
+.. class:: infomark page-header h2
+
+What it does
+
+Filter the clusters in an abundance table according to:
+
+	(i) The abundance and the occurence of clusters: presence in samples, cluster size and maximum number of clusters.
+
+	(ii) Contamination: from the list of proposition (ex : phiX, a control added in Illumina sequencing technologies) or from your history (ex : a fasta file containing a list of contaminant of your choice).
+
+
+
+.. class:: infomark page-header h2
+
+Inputs/outputs
+
+
+.. class:: h3
+
+Inputs
+
+**Sequence file**:
+
+The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
+
+**Abundance file**:
+
+The abundance of each cluster in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
+
+**Contaminant fasta file** (optional):
+
+A sequence fasta file containing the reference sequence of known contaminant
+
+**File of replicated sample names** (optional):
+
+If you selected " replicate identification " for the minimum prevalence method, this file is needed to identify the group to which the samples belong.
+
+If not all samples are present in the "File of replicated sample names", they will not be affected by this filter step and will be kept in the abundance table.
+
+The file must consist of only 2 columns, separated by a tabulation. The first column contains the exact names of the samples (exactly those contained in the biom file) and the second column contains the name of the group to which they belong.
+
+Please note that group names must not contain accents, spaces or special characters.
+
+.. class:: h3
+
+Outputs
+
+**Sequence file** (sequences.fasta):
+
+ The sequences after filtering (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
+
+**Abundance file** (abundance.biom):
+
+ The abundance after filtering (format `BIOM &lt;http://biom-format.org/&gt;`_).
+
+**Excluded file** (excluded.txt):
+
+ The list of the clusters deleted by filters (format `TSV &lt;https://en.wikipedia.org/wiki/Tab-separated_values&gt;`_).
+
+**Report file** (report.html):
+
+ The filters and the number of removed sequences (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
+
+
+
+.. class:: infomark page-header h2
+
+How it works?
+
+The ASVs kept are the ones that satisfy into the BIOM input file the thresholds specified by the user.
+
+The BIOM abundance table and the fasta file are written again according to the ASVs kept.
+
+The clusters discarded are listed in the excluded file.
+
+.. csv-table::
+   :header: "Steps", "description"
+   :widths: 5, 150
+   :class: table table-striped
+
+   "1", "Except the filter to select the n most abundant clusters, all the selected filters are run independently. For each filters a list of the clusters removed is generated. Concerning contaminant research, clusters are added to the previous list if it aligns on a contaminant reference sequence with 80% of identity and 80% of coverage"
+   "2", "All the clusters tagged to remove by at least one filter are removed."
+   "3", "If the filter to select the N most abundant clusters is filled it is applied."
+
+
+
+.. class:: infomark page-header h2
+
+Advices
+
+Please check that the input fasta file and the input BIOM file correspond to the same clusters.
+
+Examples for the filters on abundance and occurence of the clusters :
+
+-To keep the clusters that are present in 5 samples, fill the **Minimum prevalence method** field with **all samples** option, with "5".
+
+-To keep the clusters that are present in half of the replicates, fill the **Minimum prevalence method** field with **replicate identification** option, with a minimum prevalence of "0.5".
+
+.. image:: FROGS_otu_filter_replicates_file.png
+
+In this example, if we want to keep the clusters that are present in at least 50% of the samples, we set the threshold at 0.5. The process will therefore keep the clusters present in at least 
+
+ - 2 "rich" samples
+ - 3 "richAB" samples,
+ - 1 "lowAB" sample
+ - 1 "april21" sample
+
+and all clusters in sample9 since it is the only representative of the "low" condition.
+
+-To display the 20 **biggest** clusters, fill the corresponding field with "20".
+
+-To filter on **abundance** of cluster i.e. the cluster size, we advise you to specify 0.005% i.e. 0.00005. It seems to be the optimal threshold (`Bokulich *et al*, 2013 &lt;http://www.nature.com/nmeth/journal/v10/n1/abs/nmeth.2276.html&gt;`_ ).
+
+
+@HELP_CONTACT@
+
+	</help>
+	<expand macro="citations" />
+</tool>
+

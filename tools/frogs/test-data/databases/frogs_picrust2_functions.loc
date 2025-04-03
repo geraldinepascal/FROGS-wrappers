@@ -1,0 +1,39 @@
+# Copyright (C) 2022 INRA
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#
+#This is a sample file that enables tools FROGS_frogsfunc_copynumbers to predict 
+#the copy number of gene families present in the predicted genome for OTU, 
+# given a tree and a set of known trait values (FROGS_frogsfunc_placeseqs).
+#
+#PICRUSt2 files are present in the arborescence of PICRUSt2. Please consult 
+#PICRUSt2 documentation to find out where they are located in your environment.
+#
+#If you are not comfortable with picrust2 command lines, just create .loc files 
+#with EXAMPLE FOR TEST files remembering to replace <PATH_TO> with the real path.
+#
+#<marker_gene>	<db>	<picrust2_input_marker>	<picrust2_input_function>	<picrust_version>
+#
+#With 16S data, PICRUSt2 only takes the dname of the database as input (for exemple EC).
+#With ITS and 18S data, you have to specify the path of marke gene counts files.
+#
+# EXAMPLE FOR TEST :
+16S	EC	EC	EC	2.5.1
+16S	KO	KO	KO	2.5.1
+16S	PFAM	PFAM	PFAM	2.5.1
+16S	COG	COG	COG	2.5.1
+16S	TIGRFAM	TIGRFAM	TIGRFAM	2.5.1
+16S	PHENO	PHENO	PHENO	2.5.1
+ITS	EC	${__HERE__}/frogs_picrust2_db/prokaryotic/16S_test.txt.gz	${__HERE__}/frogs_picrust2_db/prokaryotic/ec_test.txt.gz	2.5.1

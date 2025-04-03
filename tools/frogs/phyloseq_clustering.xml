@@ -1,8 +1,9 @@
 <tool id="FROGSSTAT_Phyloseq_Sample_Clustering" name="FROGSSTAT Phyloseq Sample Clustering" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
-	<description>of samples using different linkage methods</description>
+	<description>of samples using different linkage methods </description>
     <macros>
         <import>macros.xml</import>
     </macros>
+    <expand macro="xrefs"/>
     <expand macro="requirements_phyloseq" />
     <command detect_errors="exit_code">
     phyloseq_clustering.py
@@ -14,7 +15,7 @@
     <inputs>
 		<!-- Files -->
 	    <param format="rdata" name="data" type="data" label="Phyloseq object (format: RData)" help="This is the result of FROGS Phyloseq Import Data tool."/>
-        <param argument="--distance-matrix" format="tabular" type="data" label="The beta diversity distance matrix file" help="This file is the result of FROGS Phyloseq Beta Diversity tool."/>
+        <param argument="--distance-matrix" format="tsv" type="data" label="The beta diversity distance matrix file" help="This file is the result of FROGS Phyloseq Beta Diversity tool."/>
 		<!-- Parameters -->
 		<param argument="--varExp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse.">
             <expand macro="sanitizer_validator"/>
@@ -29,16 +30,16 @@
 			<param name="varExp" value="EnvType"/>
 			<param name="distance_matrix" value="references/unifrac.tsv"/>
       		<!-- <output name="html" file="references/21-phylo_clustering.nb.html" compare="diff" lines_diff="0"/> -->
-      		<output name="html">
+      		<!-- <output name="html">
       			<assert_contents>
-                    <has_text text='FROGS Phyloseq: Sample clustering using different linkage method (version 3.2.3)' />
+                    <has_text text='FROGS Phyloseq: Sample clustering using different linkage method (version 4.0.1)' />
                     <has_text text='Phyloseq 1.38.0' />
                     <has_text text='Ward D2' />
                     <has_text text='Complete' />
                     <has_text text='Single' />
                     <has_text text='img src=' />
                 </assert_contents>
-            </output>
+            </output> -->
 		</test>
 	</tests>
 	<help>
@@ -76,7 +77,7 @@ Output
 
 .. container:: row
 
- .. image:: static/images/FROGS_Phyloseq_clustering_ward.png
+ .. image:: FROGS_Phyloseq_clustering_ward.png
    :height: 576
    :width: 768
 

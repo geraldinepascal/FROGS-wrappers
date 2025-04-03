@@ -1,0 +1,170 @@
+<tool id="FROGS_taxonomic_affiliation" name="FROGS_5 Taxonomic affiliation" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" license="GPL-2.0-only" profile="20.05">
+    <description>Taxonomic affiliation of each ASV's seed by RDPtools and BLAST </description>
+    <macros>
+        <import>macros.xml</import>
+    </macros>
+    <expand macro="xrefs"/>
+    <expand macro="requirements">
+        <requirement type="package" version="2.10">blast</requirement>
+        <requirement type="package" version="6.6.0">emboss</requirement>
+    </expand>
+    <command detect_errors="exit_code"><![CDATA[
+    #set $reference_filename = str( $ref_file.fields.path )
+    export GALAXY_MEMORY_GB=\$((\${GALAXY_MEMORY_MB:-2048}/1024)) &&
+    taxonomic_affiliation.py
+        --reference '${reference_filename}'
+        --taxonomy-ranks $taxonomic_ranks
+        --input-biom '$biom_abundance'
+        --input-fasta '$fasta_sequences'
+        --output-biom '$biom_affiliation'
+        --summary '$summary'
+        @CPUS@
+        --java-mem \$GALAXY_MEMORY_GB
+        #if $rdp == "yes"
+          --rdp
+        #end if
+    ]]></command>
+    <inputs>
+        <!-- Database Choice -->
+        <param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
+            <options from_data_table="frogs_db"/>
+            <validator type="no_options" message="A built-in database is not available"/>
+        </param>
+        <param argument="--rdp" type="select" display="radio" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allows to perform it also with RDP classifier tool (default No)">
+            <option value="yes" >Yes</option>
+            <option value="no" selected="true" >No</option>
+		</param>
+        <expand macro="taxonomic_ranks"/>
+        <!-- Files -->
+        <param format="fasta" name="fasta_sequences" type="data" label="Sequence file" help="The sequences to affiliated (format: FASTA)"/>
+        <param format="biom1" name="biom_abundance" type="data" label="Abundance file" help="The abundance file (format: BIOM)"/>
+    </inputs>
+    <outputs>
+        <data format="biom1" name="biom_affiliation" label="${tool.name}: affiliation_abundance.biom" from_work_dir="affiliation.biom"/>
+        <data format="html" name="summary" label="${tool.name}: report.html" from_work_dir="report.html"/>
+    </outputs>
+    <tests>
+        <test>
+            <param name="ref_file" value="ITS1_test"/>
+            <param name="fasta_sequences" value="references/04-filters.fasta"/>
+            <param name="biom_abundance" value="references/04-filters.biom"/>
+            <param name="rdp" value="yes"/>
+            <output name="biom_affiliation" file="references/06-affiliation.biom" compare="sim_size" delta="5"/>
+            <output name="summary" file="references/06-affiliation.html" compare="diff" lines_diff="0"/>
+        </test>
+    </tests>
+    <help>
+
+@HELP_LOGO@
+
+.. class:: infomark page-header h2
+
+What it does
+
+This tool adds taxonomic affiliations in abundance file.
+
+
+.. class:: infomark page-header h2
+
+Inputs/outputs
+
+.. class:: h3
+
+Inputs
+
+**Sequence file**:
+
+The sequences (format `FASTA &lt;https://en.wikipedia.org/wiki/FASTA_format&gt;`_).
+
+**Abundance file**:
+
+The abundance of each ASV in each sample (format `BIOM &lt;http://biom-format.org/&gt;`_).
+
+.. class:: h3
+
+Outputs
+
+**Abundance file** (tax_affiliation.biom):
+
+ The abundance file with affiliations (format `BIOM &lt;http://biom-format.org/&gt;`_).
+
+**Report file** (report.html):
+
+ This file presents the number of affiliated sequences by blast, and the number of multi-affiliations (format `HTML &lt;https://en.wikipedia.org/wiki/HTML&gt;`_).
+
+ .. image:: FROGS_affiliation_summary.png
+   :height: 975
+   :width: 867
+
+.. class:: infomark page-header h2
+
+Reference database
+
+All the available databases (on demand to frogs-support@inrae.fr) for RDPClassifier and NCBI Blast+ are listed here: http://genoweb.toulouse.inrae.fr/frogs_databanks/assignation/readme.txt
+
+.. class:: infomark page-header h2
+
+How it works ?
+
+.. csv-table::
+   :header: "Steps", "Description"
+   :widths: 5, 150
+   :class: table table-striped
+
+   "1", "`RDPClassifier &lt;https://github.com/rdpstaff/classifier&gt;`_ may be used with database to associate to each ASV a taxonomy and a bootstrap (example: *Bacteria;(1.0);Firmicutes;(1.0);Clostridia;(1.0);Clostridiales;(1.0);Clostridiaceae 1;(1.0);Clostridium sensu stricto;(1.0);*)."
+   "2", "`blastn+ &lt;https://blast.ncbi.nlm.nih.gov/Blast.cgi&gt;`_ or `needlall &lt;http://emboss.sourceforge.net/apps/release/6.6/emboss/apps/needleall.html&gt;`_ is used to find alignment between each ASV and the database. Only the bests hits with the same score are reported. blastn+ is used for merged read pair, and needall is used for artificially combined sequence. For each alignment returned, several metrics are computed: identity percentage, coverage percentage, and alignment length"
+   "3", "For each ASV with several blastn+/needlall alignment results a consensus is determined on each taxonomic level. If all the taxa at a taxonomic rank are identical the taxon name is reported otherwise *Multi-affiliation* is reported. For example, if you have an ASV with two equivalent hits, associated to *Bacteria;Proteobacteria;Gamma Proteobacteria;Enterobacteriales*, and *Bacteria;Proteobacteria;Beta Proteobacteria;Methylophilales*, the consensus will be *Bacteria;Proteobacteria;Multi-affiliation;Multi-affiliation*."
+
+.. class:: infomark page-header h2
+
+Alignment metrics details on identity percentage calculation
+
+**- Problem with classical %id computation method**
+
+* **Case 1: a sequencing of overlapping sequences i.e. 16S V3-V4 amplicon MiSeq sequencing**
+
+.. image:: FROGS_affiliation_overlapped_percent_id.png
+    :height: 198
+    :width: 604
+
+* **Case 2 : a sequencing of non-overlapping sequences: case of ITS1 amplicon MiSeq sequencing**
+
+.. image:: FROGS_affiliation_combined_percent_id.png
+    :height: 232
+    :width: 664
+
+**- Finally, how percentage identity is computed ?**
+
+With the classical method of %id calculation, filtering on %id will systematically removed “FROGS combined” ASVs. So, we proposed to replace the classical %id by a %id computed on the sequenced bases only.
+
+.. image:: FROGS_affiliation_percent_id_formula.png
+    :height: 36
+    :width: 637
+
+For the precedent use cases we will obtain:
+
+* Case 1: 16S V3V4 overlapped sequence
+
+  % sequenced bases identity = 400 matches / 400 bp = 100%
+
+* Case 2: very large ITS1 “FROGS combined” shorter than the real sequence
+
+  % sequenced bases identity = (250 + 250 ) / (600 - 100) = 100%
+
+This calculation allows to return 100% of identity on sequenced bases for “FROGS combined” shorter or longer than reality in case of perfect sequencing, and a smaller percentage of identity in the case of small overlap repeat kept in FROGS combined sequence.
+
+.. class:: infomark page-header h2
+
+
+Advices
+
+This can be a long process. It is recommended to filter your ASV abundances and sequences before this step of taxonomic affiliation (see **FROGS cluster Filters**).
+
+As you can see the affiliation of each ASV is not human readable in outputed abundance file. We provide a tools to convert this BIOM file in tabulated file, see the **FROGS BIOM to TSV** tool.
+
+
+@HELP_CONTACT@
+
+    </help>
+    <expand macro="citations"/>
+</tool>
