@@ -26,6 +26,7 @@
         <exit_code range="1:" />
         <exit_code range=":-1" />
     </stdio>
+    <code file="functions_validator.py" />
     <command >
        frogsfunc_functions.py
             @CPUS@
@@ -76,7 +77,6 @@
 				<column name='path' index='2' />
 				<column name='traits' index='3' />
                 <filter type="param_value" ref="category" column="0" />   
- 		<validator type="expression" message="'EC' is the default database used by PICRUSt2. 'EC' or 'KO' must be at least selected. Other tables are optionnal">"EC" in value or "KO" in value</validator>               
             </options>
         </param>
         <param argument="--max-nsti" type="float" label="NSTI cut-off" help="Any sequence with an NSTI above this threshold will be out. (default: 2)" value="2" min="0" optional="false" />
