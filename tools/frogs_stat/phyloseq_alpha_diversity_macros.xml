@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<macros>
+    <token name="@PHYLOSEQ_ALPHA_DIVERSITY_CMD_LINE@">
+        phyloseq_alpha_diversity.py
+            --phyloseq-rdata '$frogsstat_tools.phyloseq_rdata'
+            --var-exp '$frogsstat_tools.var_exp'
+            --alpha-measures ${" ".join(str($alpha_measures).split(","))}
+            --alpha-out '$alpha_div_tsv'
+            --html '$html'
+    </token>
+
+    <xml name="phyloseq_alpha_diversity_inputs">
+        <!-- Files -->
+        <param argument="--phyloseq-rdata" name="phyloseq_rdata" type="data" format="rdata" label="Phyloseq object (format rdata)" help="This is the result of FROGSSTAT Phyloseq Import Data tool."/>
+        <!-- Params -->
+        <param argument="--var-exp" name="var_exp" type="text" value="EnvType" label="Grouping variable" help="Experimental variable used to group samples (Treatment, Host type, etc).">
+            <expand macro="sanitizer_validator"/>
+        </param>
+        <param argument="--alpha-measures" name="alpha_measures" type="select" multiple="true" display="checkboxes" label="The alpha diversity indices to compute">
+             <option value="Observed" selected="True">Observed</option>
+             <option value="Chao1" selected="True">Chao1</option>
+             <option value="Shannon" selected="True">Shannon</option>
+             <option value="InvSimpson" selected="True">InvSimpson</option>
+             <option value="Simpson">Simpson</option>
+             <option value="ACE">ACE</option>
+             <option value="Fisher">Fisher</option>
+        </param>
+    </xml>
+</macros>

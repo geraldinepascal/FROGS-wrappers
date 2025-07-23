@@ -1,0 +1,113 @@
+<tool id="FROGSSTAT_dev" name="FROGSSTAT_dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="21.05">
+    <description>structure and composition analysis</description>
+    <macros>
+        <import>macros.xml</import>
+        <import>frogstat_macros.xml</import>
+        <import>phyloseq_import_macros.xml</import>
+        <import>phyloseq_composition_macros.xml</import>
+        <import>phyloseq_alpha_diversity_macros.xml</import>
+        <import>phyloseq_beta_diversity_macros.xml</import>
+        <import>phyloseq_clustering_macros.xml</import>
+        <import>phyloseq_manova_macros.xml</import>
+        <import>phyloseq_structure_macros.xml</import>
+        <import>deseq2_preprocess_macros.xml</import>
+    </macros>
+
+    <expand macro="frogs_requirement">
+        <expand macro="frogsstat_full_requirements" />
+    </expand>
+
+    <command detect_errors="exit_code"><![CDATA[
+        #if $frogsstat_tools.tool_name == "phyloseq_import":
+            @PHYLOSEQ_IMPORT_CMD_LINE@
+
+        #elif $frogsstat_tools.tool_name == "phyloseq_composition":
+            @PHYLOSEQ_COMPOSITION_CMD_LINE@
+
+        #elif $frogsstat_tools.tool_name == "phyloseq_alpha_diversity":
+            @PHYLOSEQ_ALPHA_DIVERSITY_CMD_LINE@
+
+        #elif $frogsstat_tools.tool_name == "phyloseq_beta_diversity":
+            @PHYLOSEQ_BETA_DIVERSITY_CMD_LINE@
+
+        #elif $frogsstat_tools.tool_name == "phyloseq_clustering":
+            @PHYLOSEQ_CLUSTERING_CMD_LINE@
+
+        #elif $frogsstat_tools.tool_name == "phyloseq_manova":
+            @PHYLOSEQ_MANOVA_CMD_LINE@
+
+        #elif $frogsstat_tools.tool_name == "phyloseq_structure":
+            @PHYLOSEQ_STRUCTURE_CMD_LINE@
+
+        #elif $frogsstat_tools.tool_name == "deseq2_preprocess":   
+            @DESEQ2_PREPROCESS_CMD_LINE@
+        #end if
+    ]]>
+    </command>
+    
+    <inputs>
+        <conditional name="frogsstat_tools">
+            <param name="tool_name" type="select" label="Choose the FROGSSTAT analysis you want to perform">
+                <option value="" selected="true">-- Please select an analysis --</option>
+                <option value="phyloseq_import">Phyloseqy import data</option>
+                <option value="phyloseq_composition">Taxonomical composition analysis</option>
+                <option value="phyloseq_alpha_diversity">Alpha diversity analysis</option>
+                <option value="phyloseq_beta_diversity">Beta diversity analysis</option>
+                <option value="phyloseq_clustering">Clustering analysis</option>
+                <option value="phyloseq_manova">Multivariate Analysis of Variance</option>
+                <option value="phyloseq_structure">Structure analysis (based on ordination methods)</option>
+                <option value="deseq2_preprocess">DESeq2 preprocess analysis</option>
+<!-- 
+                <option value="deseq2_asv_preprocess">DESeq2 preprocess analysis for ASV</option>
+                <option value="deseq2_fun_preprocess">DESeq2 preprocess analysisfor FUNCTION</option>
+ -->
+
+            </param>
+            <!-- ##################### phyloseq_import  ##################### -->
+            <when value="phyloseq_import">
+                <expand macro="phyloseq_import_inputs" />
+            </when>
+            <!-- ##################### phyloseq_composition  ##################### -->
+            <when value="phyloseq_composition">
+                <expand macro="phyloseq_composition_inputs" />
+            </when>
+            <!-- ##################### phyloseq_alpha_diversity  ##################### -->
+            <when value="phyloseq_alpha_diversity">
+                <expand macro="phyloseq_alpha_diversity_inputs" />
+            </when>
+            <!-- ##################### phyloseq_beta_diversity  ##################### -->
+            <when value="phyloseq_beta_diversity">
+                <expand macro="phyloseq_beta_diversity_inputs" />
+            </when>
+            <!-- ##################### phyloseq_clustering  ##################### -->
+            <when value="phyloseq_clustering">
+                <expand macro="phyloseq_clustering_inputs" />
+            </when>
+            <!-- ##################### phyloseq_manova  ##################### -->
+            <when value="phyloseq_manova">
+                <expand macro="phyloseq_manova_inputs" />
+            </when>
+            <!-- ##################### phyloseq_structure  ##################### -->
+            <when value="phyloseq_structure">
+                <expand macro="phyloseq_structure_inputs" />
+            </when>
+            <!-- ##################### deseq2 preprocess  ##################### -->
+            <when value="deseq2_preprocess">
+                <expand macro="deseq2_preprocess_inputs" />
+            </when>
+        </conditional>
+    </inputs>
+    
+    <outputs>
+        <expand macro="frogsstat_outputs" />
+    </outputs>
+    
+    <tests>
+    </tests>
+
+    <help><![CDATA[
+    TODO: Fill in help.
+    ]]>
+    </help>
+
+</tool>

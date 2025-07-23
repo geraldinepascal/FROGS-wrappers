@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<macros>
+    <xml name="frogsstat_full_requirements">
+        <requirement type="package" version="4.1.2">r-base</requirement>
+        <requirement type="package" version="1.38.0">bioconductor-phyloseq</requirement>
+        <requirement type="package" version="4.1">r-essentials</requirement>
+        <requirement type="package" version="4.9.3">r-plotly</requirement>
+        <requirement type="package" version="1.34.0">bioconductor-deseq2</requirement>
+        <requirement type="package" version="2.3">r-gridextra</requirement>
+        <requirement type="package" version="0.18">r-dt</requirement>
+        <requirement type="package" version="1.6.6">r-optparse</requirement>
+        <yield />
+    </xml>
+
+     <xml name="frogsstat_outputs">
+        <data format="html" name="html" label="${tool.name} - ${tool_name}: report.nb.html" >
+            <filter>frogsstat_tools['tool_name'] != 'deseq2_preprocess'</filter>
+            <discover_datasets pattern="__designation__" ext="tsv" directory="BetaMatrix" visible="true"/>
+        </data>
+        <data format="tsv" name="alpha_div_tsv" label="${tool.name} - ${tool_name}: indices.tsv" >
+            <filter>frogsstat_tools['tool_name'] == 'phyloseq_alpha_diversity'</filter>
+        </data>
+        <data format="rdata" name="phyloseq_rdata" label="${tool.name} - ${tool_name}: phyloseq_asv.Rdata" >
+            <filter>frogsstat_tools['tool_name'] == 'phyloseq_import'</filter>
+        </data>
+        <data format="rdata" name="ASV_deseq_rdata" label="${tool.name} - ${tool_name}: deseq_asv.Rdata" >
+            <filter>frogsstat_tools['tool_name'] == 'deseq2_preprocess' and deseq2_analysis_type['analysis'] == 'ASV' </filter>
+        </data>
+        <data format="rdata" name="FUN_phyloseq_rdata" label="${tool.name} - ${tool_name}: phyloseq_fun.Rdata" >
+            <filter>frogsstat_tools['tool_name'] == 'deseq2_preprocess' and deseq2_analysis_type['analysis'] == 'FUNCTION' </filter>
+        </data>
+        <data format="rdata" name="FUN_deseq_rdata" label="${tool.name} - ${tool_name}: deseq_fun.Rdata" >
+            <filter>frogsstat_tools['tool_name'] == 'deseq2_preprocess' and deseq2_analysis_type['analysis'] == 'FUNCTION' </filter>
+        </data>
+    </xml>
+</macros>

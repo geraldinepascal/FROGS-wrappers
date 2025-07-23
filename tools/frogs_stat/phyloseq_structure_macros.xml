@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<macros>
+    <token name="@PHYLOSEQ_STRUCTURE_CMD_LINE@">
+    phyloseq_structure.py
+        --html '$html'
+        --phyloseq-rdata '$phyloseq_rdata'
+        --var-exp '$var_exp'
+        --ordination-method '$ordination_method'
+        --distance-matrix '$distance_matrix'
+    </token>
+
+    <xml name="phyloseq_structure_inputs">
+		<!-- Files -->
+	    <param argument="--phyloseq-rdata" name="phyloseq_rdata" type="data" format="rdata" label="Phyloseq object (format rdata)" help="This is the result of FROGS Phyloseq Import Data Tool."/>
+        <param argument="--distance-matrix" name="distance_matrix" type="data" format="tsv" label="The beta diversity distance matrix file" help="This file is the result of FROGS Phyloseq Beta Diversity tool"/>
+		<!-- Parameters -->
+		<param argument="--var-exp" name="var_exp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse." optional="false" value="" >
+            <expand macro="sanitizer_validator"/>
+        </param>
+		<param argument="--ordination-method" name="ordination_method" type="select" label="Ordination method">
+			<option value="MDS" >MDS/PCoA</option>
+			<option value="NMDS" >NMDS</option>
+            <option value="DPCoA" >DPCoA</option>
+        </param>
+    </xml>
+</macros>

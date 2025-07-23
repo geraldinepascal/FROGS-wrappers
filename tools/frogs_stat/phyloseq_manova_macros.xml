@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<macros>
+    <token name="@PHYLOSEQ_MANOVA_CMD_LINE@">
+    phyloseq_manova.py
+        --phyloseq-rdata '$phyloseq_rdata'
+        --var-exp '$var_exp'
+        --distance-matrix '$distance_matrix'
+        --html '$html'
+    </token>
+
+    <xml name="phyloseq_manova_inputs">
+		<!-- Files -->
+	    <param argument="--phyloseq-rdata" name="phyloseq_rdata" type="data" format="rdata" label="Phyloseq object (format: RData)" help="This is the result of FROGS Phyloseq Import Data tool."/>
+        <param argument="--distance-matrix" name="distance_matrix" type="data" format="tsv" label="The beta diversity distance matrix file" help="This file is the result of FROGS Phyloseq Beta Diversity tool."/>
+		<!-- Parameters -->
+		<param argument="--var-exp" name="var_exp" type="text" label="Experiment variable" help="The experiment variable that you want to analyse">
+            <expand macro="sanitizer_validator"/>
+        </param>
+    </xml>
+</macros>

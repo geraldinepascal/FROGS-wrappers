@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<macros>
+    <token name="@PHYLOSEQ_IMPORT_CMD_LINE@">
+        phyloseq_import_data.py
+            --input-biom '$input_biom'
+            --sample-metadata-tsv '$sample_metadata_tsv'
+            #if $tree_nwk
+                --tree-nwk '$tree_nwk'
+            #end if
+            --ranks $ranks
+            #if $normalisation == "true"
+                --normalisation
+            #end if
+            --html '$html'
+            --out-phyloseq-rdata '$phyloseq_rdata'
+    </token>
+
+    <xml name="phyloseq_import_inputs">
+        <!-- Files -->
+        <param argument="--input-biom" name="input_biom" type="data" format="biom1" label="Abundance biom file with taxonomical metadata (format: BIOM)" help="The file contains the  ASV information "/>
+        <param argument="--sample-metadata-tsv" name="sample_metadata_tsv" type="data" format="tabular,tsv" label="Metadata associated to samples (format: TSV)" help="The file contains the metadata that characterise each sample."/>
+        <param argument="--tree-nwk" name="tree_nwk" type="data" format="nhx" optional="true" label="Taxonomic tree file (format: Newick)" help="The file contains the taxonomic tree information from FROGS Tree tool (optional)"/>
+        <!-- Parameters -->
+        <param argument="--ranks" name="ranks" type="text" value="Kingdom Phylum Class Order Family Genus Species" 
+            label="Names of taxonomic levels" help="The ordered taxonomic levels stored in BIOM. Each level is separated by one space">
+            <expand macro="sanitizer_validator"/>
+        </param>
+        <param argument="--normalisation" name="normalisation" type="select" label="Do you want to normalise your data ?" help="To normalise data before statistical analysis (default : No)" display="radio">
+            <option value="false">No, keep abundance as it is.</option>
+            <option value="true">Yes, subsample abundances to the smallest sample size.</option>            
+        </param>
+    </xml>
+</macros>

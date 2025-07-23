@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<macros>
+    <token name="@PHYLOSEQ_COMPOSITION_CMD_LINE@">
+        phyloseq_composition.py
+            --phyloseq-rdata '$frogsstat_tools.phyloseq_rdata'
+            --var-exp '$frogsstat_tools.var_exp'
+            --taxa-rank-1 '$frogsstat_tools.taxa_rank_1'
+            --taxa-set-1 '$frogsstat_tools.taxa_set_1'
+            --taxa-rank-2 '$frogsstat_tools.taxa_rank_2'
+            --number-of-taxa $frogsstat_tools.number_of_taxa
+            --html '$html'
+    </token>
+
+    <xml name="phyloseq_composition_inputs">
+        <!-- Files -->
+        <param argument="--phyloseq-rdata" name="phyloseq_rdata" type="data" format="rdata" label="Phyloseq object (format rdata)" help="This is the result of FROGSSTAT Phyloseq Import Data tool."/>
+        <!-- Params -->
+        <param argument="--var-exp" name="var_exp" type="text" label="Grouping variable" help="Experimental variable used to group samples (Treatment, Host type, etc).">
+            <expand macro="sanitizer_validator"/>
+        </param>
+        <param argument="--taxa-rank-1" name="taxa_rank_1" type="text" label="Taxonomic level to filter your data" help="Ex: Kingdom, Phylum, Class, Order, Family, Genus, Species">
+            <expand macro="sanitizer_validator"/>
+        </param>
+        <param argument="--taxa-set-1" name="taxa_set_1" type="text" label="Taxa (at the above taxonomic level) to keep in the dataset" help="Ex: Bacteria (when filtering at the Kingdom level), Firmicutes (when filtering at the Phylum level). Multiple taxa (separated by a space) can be specified, i.e. Firmicutes Proteobacteria">
+            <expand macro="sanitizer_validator"/>
+        </param>
+        <param argument="--taxa-rank-2" name="taxa_rank_2" type="text" label="Taxonomic level used for aggregation" help="Ex: Family (when filtering at the Phylum level). The aggregation level must be below the filtering level">
+            <expand macro="sanitizer_validator"/>
+        </param>
+        <param argument="--number-of-taxa" name="number_of_taxa" type="integer" min="1" label="Number of most abundant taxa to keep" help="Ex: 9, i.e. Tool keeps the 9 most abundant taxa and the remaining taxa are aggregated in a group 'Other'"/>
+    </xml>
+
+
+                
+</macros>

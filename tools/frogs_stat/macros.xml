@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<macros>
+
+    <token name="@TOOL_VERSION@">0.0.0</token>
+    <token name="@VERSION_SUFFIX@">0</token>
+
+    <xml name="frogs_requirement">
+        <requirements>
+            <requirement type="package" version="@TOOL_VERSION@">frogs</requirement>
+            <yield />
+        </requirements>
+    </xml>
+
+    <xml name="sanitizer_validator">
+        <sanitizer invalid_char="">
+            <valid initial="string.letters,string.digits">
+                <add value="+" />
+                <add value="*" />
+                <add value="-" />
+                <add value="=" />
+                <add value=" " />
+                <add value="_" />
+                <add value="," />
+                <add value="." />
+            </valid>
+        </sanitizer>
+        <validator type="regex">[A-Za-z0-9+*-= _,.]+</validator>
+    </xml>
+</macros>

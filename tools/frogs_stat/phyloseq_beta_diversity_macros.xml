@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<macros>
+    <token name="@PHYLOSEQ_BETA_DIVERSITY_CMD_LINE@">
+        phyloseq_beta_diversity.py
+            --phyloseq-rdata '$phyloseq_rdata'
+            --var-exp '$var_exp'
+            #if $beta_methods != "None"
+                #if $other_beta_method != ""
+                    --beta-distance-methods '$beta_methods,$other_beta_method'
+                #else
+                    --beta-distance-methods '$beta_methods'
+                #end if
+            #else
+                #if $other_beta_method != ""
+                    --beta-distance-methods '$other_beta_method'
+                #end if
+            #end if
+            --matrix-outdir 'BetaMatrix'
+            --html '$html'
+    </token>
+
+    <xml name="phyloseq_beta_diversity_inputs">
+        <!-- Files -->
+        <param argument="--phyloseq-rdata" name="phyloseq_rdata" type="data" format="rdata" label="Phyloseq object (format rdata)" help="This is the result of FROGSSTAT Phyloseq Import Data tool."/>
+        <!-- Parameters -->
+        <param argument="--var-exp" name="var_exp" type="text" label="Grouping variable" help="Experimental variable used to group samples (Treatment, Host type, etc).">
+            <expand macro="sanitizer_validator"/>
+        </param>
+        <param argument="--beta-distance-methods" name="beta_methods" type="select" multiple="true" display="checkboxes" label="The methods of beta diversity" help="N.B. if the tree is not available in your RData, you cannot choose Unifrac or Weighted Unifrac">
+            <option value="unifrac">Unifrac</option>
+            <option value="wunifrac">Weighted Unifrac</option>
+            <option value="bray">Bray-Curtis</option>
+            <option value="cc">Jaccard (as cc method in betadiver vegan funcion)</option>
+        </param>
+        <param name="other_beta_method" type="text" optional="true" label="Other method" help="The other methods of beta diversity that you want to use (comma separated value). c.f. details below.">
+            <expand macro="sanitizer_validator"/>
+        </param>
+    </xml>              
+</macros>

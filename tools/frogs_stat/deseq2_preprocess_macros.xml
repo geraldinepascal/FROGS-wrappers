@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<macros>
+    <token name="@DESEQ2_PREPROCESS_CMD_LINE@">
+    echo deseq2_preprocess.py
+        --analysis '$deseq2_analysis_type.analysis'
+        #if $deseq2_analysis_type.analysis == 'ASV'
+            --phyloseq-rdata '$phyloseq_rdata'
+            --out-deseq-rdata '$ASV_deseq_rdata'
+        #else:
+            --input-functions '$input_functions'
+            --sample-metadata-tsv '$sample_metadata_tsv'
+            --out-phyloseq-rdata '$FUN_phyloseq_rdata'
+            --out-deseq-rdata '$FUN_deseq_rdata'
+        #end if
+        #if $multiple.correction == 'true'
+            --var-exp '$var_exp${multiple.model_type}${multiple.conf_factor}'
+        #else
+            --var-exp '$var_exp'
+        #end if
+
+    </token>
+
+    <xml name="deseq2_preprocess_inputs">
+        <!-- Files -->
+        <conditional name="deseq2_analysis_type">
+            <param argument="--analysis" name="analysis"  type="select" label="Type of analysis" help="Type of feature on which to perform differential analysis. ASV: DESeq2 is run on the ASV abundance table FROGSSTAT Phyloseq import data. FUNCTION: DESeq2 is run on predicted function abundance table from FROGSFUNC_2_function tool." >
+                <option value="" selected="true">-- Please select an analysis --</option>
+                <option value="ASV">ASV</option>
+                <option value="FUNCTION">FUNCTION</option>
+            </param>
+        <when value="ASV">
+            <param argument="--phyloseq-rdata" name="phyloseq_rdata" type="data" format="rdata" label="Phyloseq object " help="This is the result of FROGSSTAT_Phyloseq_Import_Data without normalisation (DESeq2 is more powerful on unnormalised counts) (format RData)"/>
+        </when>
+        <when value="FUNCTION">
+            <param argument="--input-functions" name="input_functions" type="data" format="tsv,tabular" label="Function abundances file " help="Input file of predicted function abundances (frogsfunc_functions_unstrat.tsv from FROGSFUNC_2_function tool)."/>
+            <param argument="--sample-metadata-tsv" name="sample_metadata_tsv" type="data" format="tabular,tsv" label="Metadata associated to samples (format: TSV)" help="The file contains the metadata that characterise each sample."/>
+        </when>
+        </conditional>
+        <!-- Parameters -->        
+        <param argument="--var-exp" name="var_exp" type="text" label="Experimental variable" help="One of your sample metadata variable that could have an effect on ASV/FUNCTION abundances. Ex: Treatment, etc.">
+            <expand macro="sanitizer_validator"/>
+        </param>
+        <conditional name="multiple">
+            <param name="correction" type="select" label="Do you want to correct a confounding factor?" help="If yes, specify the counfouding factor">
+                <option value="true">True</option>
+                <option value="false" selected="true">False</option>
+            </param>
+            <when value="false"/>
+            <when value="true">
+                <param name="conf_factor" type="text" label="Confounding factor" help="A second sample metadata variable. Ex: Gender, etc.">
+                    <expand macro="sanitizer_validator"/>
+                </param>
+                <param name="model_type" type="select" multiple="false" label="Type of model" help="Choose an additive model (+) if the effects of Treatment and Gender are independent. Choose a model with interaction (*) if the effect of Treatment is expected to depend on Gender.">
+                    <option value="+" selected="true">Linear (+)</option>
+                    <option value="*">Interaction (*)</option>
+                </param>
+            </when>
+        </conditional>
+    </xml>
+</macros>
