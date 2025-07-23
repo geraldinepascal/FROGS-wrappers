@@ -38,7 +38,7 @@
     <xml name="frogs_stat_outputs">
         <!-- HTML report : all but deseq2_preprocess -->
         <data format="html" name="html" label="${tool.name} - ${tool_name}: report.nb.html" >
-            <filter>frogs_stat_tools['tool_name'] != 'deseq2_preprocess'</filter>
+            <filter>frogs_stat_tools['tool_name'] != 'deseq2_asv_preprocess' and frogs_stat_tools['tool_name'] != 'deseq2_fun_preprocess'</filter>
             <!-- Beta diversity matrix (to discover): phyloseq_beta_diversity -->
             <discover_datasets pattern="__designation__" ext="tsv" directory="BetaMatrix" visible="true"/>
         </data>
@@ -46,17 +46,26 @@
         <data format="tsv" name="alpha_div_tsv" label="${tool.name} - ${tool_name}: indices.tsv" >
             <filter>frogs_stat_tools['tool_name'] == 'phyloseq_alpha_diversity'</filter>
         </data>
-        <data format="rdata" name="phyloseq_rdata" label="${tool.name} - ${tool_name}: phyloseq_asv.Rdata" >
+        <!-- Phyloseq Rdata : based on ASV by phyloseq_import, based on Function by deseq2_fun_preprocess -->
+        <data format="rdata" name="ASV_phyloseq_rdata" label="${tool.name} - ${tool_name}: phyloseq_asv.Rdata" >
             <filter>frogs_stat_tools['tool_name'] == 'phyloseq_import'</filter>
         </data>
-        <!-- <data format="rdata" name="ASV_deseq_rdata" label="${tool.name} - ${tool_name}: deseq_asv.Rdata" >
-            <filter>frogs_stat_tools['tool_name'] == 'deseq2_preprocess' and deseq2_analysis_type['analysis'] == 'ASV' </filter>
-        </data>
         <data format="rdata" name="FUN_phyloseq_rdata" label="${tool.name} - ${tool_name}: phyloseq_fun.Rdata" >
-            <filter>frogs_stat_tools['tool_name'] == 'deseq2_preprocess' and deseq2_analysis_type['analysis'] == 'FUNCTION' </filter>
+            <filter>frogs_stat_tools['tool_name'] == 'deseq2_fun_preprocess' </filter>
+        </data>
+        <!-- DESeq Rdata : based on ASV by deseq2_asv_preprocess, based on Function by deseq2_fun_preprocess -->
+        <data format="rdata" name="ASV_deseq_rdata" label="${tool.name} - ${tool_name}: deseq_asv.Rdata" >
+            <filter>frogs_stat_tools['tool_name'] == 'deseq2_asv_preprocess' </filter>
         </data>
         <data format="rdata" name="FUN_deseq_rdata" label="${tool.name} - ${tool_name}: deseq_fun.Rdata" >
-            <filter>frogs_stat_tools['tool_name'] == 'deseq2_preprocess' and deseq2_analysis_type['analysis'] == 'FUNCTION' </filter>
-        </data> -->
+            <filter>frogs_stat_tools['tool_name'] == 'deseq2_fun_preprocess'</filter>
+        </data>
+        <!-- Ipath3 inputs : deseq2_fun_visualisation -->
+        <data format="tsv" name="Function_over_abund" label="${tool.name}- ${tool_name}: ipath_over.tsv">
+            <filter>frogs_stat_tools['tool_name'] == 'deseq2_fun_visualisation'</filter>
+        </data>
+        <data format="tsv" name="Function_under_abund" label="${tool.name}- ${tool_name}: ipath_under.tsv">
+            <filter>frogs_stat_tools['tool_name'] == 'deseq2_fun_visualisation'</filter>
+        </data>
     </xml>
 </macros>
