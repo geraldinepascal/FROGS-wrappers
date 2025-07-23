@@ -2,18 +2,18 @@
 <macros>
     <token name="@PHYLOSEQ_COMPOSITION_CMD_LINE@">
         phyloseq_composition.py
-            --phyloseq-rdata '$frogsstat_tools.phyloseq_rdata'
-            --var-exp '$frogsstat_tools.var_exp'
-            --taxa-rank-1 '$frogsstat_tools.taxa_rank_1'
-            --taxa-set-1 '$frogsstat_tools.taxa_set_1'
-            --taxa-rank-2 '$frogsstat_tools.taxa_rank_2'
-            --number-of-taxa $frogsstat_tools.number_of_taxa
+            --phyloseq-rdata '$phyloseq_rdata'
+            --var-exp '$var_exp'
+            --taxa-rank-1 '$taxa_rank_1'
+            --taxa-set-1 '$taxa_set_1'
+            --taxa-rank-2 '$taxa_rank_2'
+            --number-of-taxa $number_of_taxa
             --html '$html'
     </token>
 
     <xml name="phyloseq_composition_inputs">
         <!-- Files -->
-        <param argument="--phyloseq-rdata" name="phyloseq_rdata" type="data" format="rdata" label="Phyloseq object (format rdata)" help="This is the result of FROGSSTAT Phyloseq Import Data tool."/>
+        <param argument="--phyloseq-rdata" name="phyloseq_rdata" type="data" format="rdata" label="Phyloseq object (format rdata)" help="This is the result of FROGS_STAT Phyloseq Import Data tool."/>
         <!-- Params -->
         <param argument="--var-exp" name="var_exp" type="text" label="Grouping variable" help="Experimental variable used to group samples (Treatment, Host type, etc).">
             <expand macro="sanitizer_validator"/>

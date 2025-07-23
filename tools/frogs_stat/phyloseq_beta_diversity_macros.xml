@@ -4,24 +4,14 @@
         phyloseq_beta_diversity.py
             --phyloseq-rdata '$phyloseq_rdata'
             --var-exp '$var_exp'
-            #if $beta_methods != "None"
-                #if $other_beta_method != ""
-                    --beta-distance-methods '$beta_methods,$other_beta_method'
-                #else
-                    --beta-distance-methods '$beta_methods'
-                #end if
-            #else
-                #if $other_beta_method != ""
-                    --beta-distance-methods '$other_beta_method'
-                #end if
-            #end if
+            --beta-distance-methods ${" ".join(str($beta_methods).split(","))} ${" ".join(str($other_beta_method).split(","))}
             --matrix-outdir 'BetaMatrix'
             --html '$html'
     </token>
 
     <xml name="phyloseq_beta_diversity_inputs">
         <!-- Files -->
-        <param argument="--phyloseq-rdata" name="phyloseq_rdata" type="data" format="rdata" label="Phyloseq object (format rdata)" help="This is the result of FROGSSTAT Phyloseq Import Data tool."/>
+        <param argument="--phyloseq-rdata" name="phyloseq_rdata" type="data" format="rdata" label="Phyloseq object (format rdata)" help="This is the result of FROGS_STAT Phyloseq Import Data tool."/>
         <!-- Parameters -->
         <param argument="--var-exp" name="var_exp" type="text" label="Grouping variable" help="Experimental variable used to group samples (Treatment, Host type, etc).">
             <expand macro="sanitizer_validator"/>
