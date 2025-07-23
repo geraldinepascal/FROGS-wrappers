@@ -11,7 +11,7 @@
             #if $normalisation == "true"
                 --normalisation
             #end if
-            --out-phyloseq-rdata '$phyloseq_rdata'
+            --output-phyloseq-rdata '$ASV_phyloseq_rdata'
             --html '$html'
     </token>
 
