@@ -1,0 +1,90 @@
+<tool id="FROGS_Core_dev" name="FROGS Core dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="21.05">
+    <description>ASV reconstruction and taxonomic annotation</description>
+    <macros>
+        <import>frogs_core_macros.xml</import>
+        <import>remove_chimera_macros.xml</import>
+        <import>cluster_filters_macros.xml</import>
+        <import>taxonomic_affiliation_macros.xml</import>
+        <import>itsx_macros.xml</import>
+        <import>cluster_stats_macros.xml</import>
+        <import>affiliation_stats_macros.xml</import>
+    </macros>
+
+    <expand macro="frogs_core_requirements" />
+
+    <command detect_errors="exit_code"><![CDATA[
+        ## MAIN TOOLS
+        #if $frogs_core_tools.tool_name == "remove_chimera":
+            @REMOVE_CHIMERA_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "cluster_filters":
+            @CLUSTER_FILTERS_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "taxonomic_affiliation":
+            @TAXONOMIC_AFFILIATION_CMD_LINE@
+
+        ## OPTIONAL TOOLS
+        #elif $frogs_core_tools.tool_name == "itsx":
+            @ITSX_CMD_LINE@
+
+        ## COMPAGNON TOOLS : stat and converter
+        #elif $frogs_core_tools.tool_name == "cluster_stats":
+            @CLUSTER_STATS_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "affiliation_stats":
+            @AFFILIATION_STATS_CMD_LINE@
+        #end if
+    ]]>
+    </command>
+    
+    <inputs>
+        <conditional name="frogs_core_tools">
+            <param name="tool_name" type="select" label="Choose the FROGS Core analysis you want to perform.">
+                <option value="" selected="true">-- Please select an analysis --</option>
+                <option value="remove_chimera">Main 3. Remove chimera</option> 
+                <option value="cluster_filters">Main 4. Cluster Filters</option> 
+                <option value="taxonomic_affiliation">Main 5. Taxonomic Affiliation</option> 
+                <option value="itsx">Optional 1. ITSx : extract ITS region </option> 
+                <option value="cluster_stats">Compagnon 1. Cluster Statistics</option> 
+                <option value="affiliation_stats">Compagnon 2. Affiliation Statistics</option> 
+            </param>
+            <!-- ##################### remove_chimera  ##################### -->
+            <when value="remove_chimera">
+                <expand macro="remove_chimera_inputs" />
+            </when>
+            <!-- ##################### cluster_filters  ##################### -->
+            <when value="cluster_filters">
+                <expand macro="cluster_filters_inputs" />
+            </when>
+            <!-- ##################### taxonomic_affiliation  ##################### -->
+            <when value="taxonomic_affiliation">
+                <expand macro="taxonomic_affiliation_inputs" />
+            </when>
+            <!-- ##################### itsx  ##################### -->
+            <when value="itsx">
+                <expand macro="itsx_inputs" />
+            </when>
+            <!-- ##################### cluster_stats  ##################### -->
+            <when value="cluster_stats">
+                <expand macro="cluster_stats_inputs" />
+            </when>
+            <!-- ##################### affiliation_stats  ##################### -->
+            <when value="affiliation_stats">
+                <expand macro="affiliation_stats_inputs" />
+            </when>
+        </conditional>
+    </inputs>
+    
+    <outputs>
+        <expand macro="frogs_core_outputs" />
+    </outputs>
+    
+    <tests>
+    </tests>
+
+    <help><![CDATA[
+    TODO: Fill in help.
+    ]]>
+    </help>
+
+</tool>

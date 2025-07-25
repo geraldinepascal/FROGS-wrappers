@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<macros>
+    <token name="@AFFILIATION_STATS_CMD_LINE@">
+        affiliation_stats.py
+            --input-biom '$input_biom'
+
+            --taxonomic-ranks $taxonomic_ranks
+            --rarefaction-ranks $rarefaction_ranks
+
+            #if $affiliation.affiliation_type == "FROGS_blast"
+                --multiple-tag 'blast_affiliations'
+                --tax-consensus-tag 'blast_taxonomy'
+                --identity-tag 'perc_identity'
+                --coverage-tag 'perc_query_coverage'
+            #elif $affiliation.affiliation_type == "FROGS_rdp"
+                --taxonomy-tag 'rdp_taxonomy'
+                --bootstrap-tag 'rdp_bootstrap'
+            #else
+                --taxonomy-tag '$affiliation.taxonomy_tag'
+
+                #if $affiliation.bootstrap_tag
+                    --bootstrap-tag '$affiliation.bootstrap_tag'
+                #end if
+
+                #if $affiliation.identity_tag and $affiliation.coverage_tag
+                    --identity-tag '$affiliation.identity_tag'
+                    --coverage-tag '$affiliation.coverage_tag'
+                #end if
+                
+            #end if
+
+            --html '$html'
+    </token>
+
+    <xml name="affiliation_stats_inputs">
+        <!-- Files -->
+        <param argument="--input-biom" name="input_biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
+        <!-- Parameters -->
+		<expand macro="taxonomic_ranks"/>
+		<param argument="--rarefaction-ranks" name="rarefaction_ranks" type="text" optional="false" value="Class Order Family Genus Species" 
+			label="Rarefaction ranks" help="The ranks that will be evaluated in rarefaction. Each rank is separated by one space.">
+			<sanitizer invalid_char="">
+				<valid initial="string.letters">
+					<add value=" " />
+				</valid>
+			</sanitizer>
+			<validator type="regex">[A-Za-z ]+</validator>
+		</param>
+		<conditional name="affiliation">
+			<param name="affiliation_type" type="select" label="Affiliation to process" help="Select the type of affiliation to process. If your affiliation has been processed with an external tool: use 'Custom'.">
+				<option value="FROGS_blast" selected="true">FROGS Blast</option>
+				<option value="FROGS_rdp">FROGS RDP</option>
+				<option value="custom">Custom</option>
+			</param>
+			<when value="FROGS_blast"/>
+			<when value="FROGS_rdp"/>
+			<when value="custom">
+				<param argument="--taxonomy-tag" type="text" value="taxonomy" label="Taxonomy tag" help="The metadata title in BIOM for the taxonomy">
+					<expand macro="sanitizer_validator"/>
+				</param>
+				<param argument="--bootstrap-tag" type="text" label="Bootstrap tag" help="The metadata title in BIOM for the taxonomy bootstrap">
+					<expand macro="sanitizer_validator"/>
+				</param>
+				<param argument="--identity-tag" type="text" label="Identity tag" help="The metadata tag used in BIOM file to store the alignment identity">
+					<expand macro="sanitizer_validator"/>
+				</param>
+				<param argument="--coverage-tag" type="text" label="Coverage tag" help="The metadata tag used in BIOM file to store the alignment ASVs coverage">
+					<expand macro="sanitizer_validator"/>
+				</param>
+			</when>
+		</conditional>
+    </xml>
+</macros>

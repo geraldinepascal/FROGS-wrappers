@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<macros>
+
+    <token name="@TOOL_VERSION@">5.0.2</token>
+    <token name="@VERSION_SUFFIX@">0</token>
+    
+    <token name="@CPUS@">--nb-cpus \${GALAXY_SLOTS:-1}</token>
+    
+
+    <token name="@EXPORT_GALAXY_MEMORY_GB@"><![CDATA[
+
+        export GALAXY_MEMORY_GB=\$((\${GALAXY_MEMORY_MB:-2048}/1024))
+        
+        &&
+    ]]></token>
+
+    <xml name="frogs_core_requirements">
+        <requirements>
+            <requirement type="package" version="@TOOL_VERSION@">frogs</requirement>
+            <requirement type="package" version="1.2.11">flash</requirement>
+            <requirement type="package" version="2.10">cutadapt</requirement>
+            <requirement type="package" version="2.17.0">vsearch</requirement>
+            <requirement type="package" version="3.1.4">swarm</requirement>
+            <requirement type="package" version="1.22.0">bioconductor-dada2</requirement>
+            <requirement type="package" version="1.1.2">itsx</requirement>
+            <requirement type="package" version="2.16.0">blast</requirement>
+            <requirement type="package" version="6.6.0">emboss</requirement>
+            <requirement type="package" version="7.525">mafft</requirement>
+            <requirement type="package" version="2.1.9">fasttree</requirement>
+            <requirement type="package" version="4.1.2">r-base</requirement>
+            <requirement type="package" version="4.1">r-essentials</requirement>
+            <requirement type="package" version="2.7.0">r-phangorn</requirement>
+
+        </requirements>
+    </xml>
+
+    <xml name="sanitizer_validator">
+        <sanitizer invalid_char="">
+            <valid initial="string.letters,string.digits">
+                <add value="+" />
+                <add value="*" />
+                <add value="-" />
+                <add value="=" />
+                <add value=" " />
+                <add value="_" />
+                <add value="," />
+                <add value="." />
+            </valid>
+        </sanitizer>
+        <validator type="regex">[A-Za-z0-9+*-= _,.]+</validator>
+    </xml>
+
+    <xml name="taxonomic_ranks">
+        <param argument="--taxonomic-ranks" name="taxonomic_ranks" type="text" optional="false" value="Domain Phylum Class Order Family Genus Species" 
+            label="Taxonomic ranks" help="The ordered taxonomic rank levels of the reference affiliation database. Each rank is separated by one space">
+            <sanitizer invalid_char="">
+                <valid initial="string.letters">
+                    <add value=" " />
+                </valid>
+            </sanitizer>
+            <validator type="regex">[A-Za-z ]+</validator>
+        </param>
+    </xml>
+
+    <xml name="frogs_core_outputs">
+        <!-- HTML report : all but demultiplexe -->
+        <data format="html" name="html" label="${tool.name} - ${tool_name}: report.nb.html" />
+        <!-- ASV sequence fasta : all but taxonomic affiliation, cluster_stats and affiliation_stats  -->
+        <data format="fasta" name="output_fasta" label="${tool.name} - ${tool_name}: sequence.fasta">
+            <filter> frogs_core_tools['tool_name'] != 'taxonomic_affiliation' and frogs_core_tools['tool_name'] != 'cluster_stats' and frogs_core_tools['tool_name'] != 'affiliation_stats'</filter>
+        </data>
+        <!-- ASV abundance biom : all but affiliation_stats  -->
+        <data format="biom1" name="output_biom" label="${tool.name} - ${tool_name}: abundance.biom">
+            <filter> frogs_core_tools['tool_name'] != 'cluster_stats' and frogs_core_tools['tool_name'] != 'affiliation_stats' </filter>
+        </data>
+        <!-- excluded tsv : cluster_filters  -->
+        <data format="tsv" name="output_excluded" label="${tool.name} - ${tool_name}: excluded.tsv">
+            <filter>frogs_core_tools['tool_name'] == 'cluster_filters'</filter>
+        </data>
+        <!-- excluded fasta : itsx  -->
+        <data format="fasta" name="output_removed_sequences" label="${tool.name} - ${tool_name}: nonITS_sequence.fasta">
+            <filter>frogs_core_tools['tool_name'] == 'itsx'</filter>
+        </data>
+    </xml>
+</macros>

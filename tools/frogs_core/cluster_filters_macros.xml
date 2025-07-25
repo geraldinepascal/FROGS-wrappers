@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<macros>
+    <token name="@CLUSTER_FILTERS_CMD_LINE@">
+        cluster_filters.py
+            @CPUS@
+            --input-biom '$input_biom'
+            --input-fasta '$input_fasta'
+
+            #if $choice_prevalence_samples.prevalence_samples == "all":
+                #if $choice_prevalence_samples.min_sample_presence:
+                    --min-sample-presence $choice_prevalence_samples.min_sample_presence
+                #end if
+            #elif $choice_prevalence_samples.prevalence_samples == "replicate":
+                #if $choice_prevalence_samples.min_replicate_presence:
+                    --min-replicate-presence $choice_prevalence_samples.min_replicate_presence
+                    --replicate-tsv '$choice_prevalence_samples.replicate_tsv'
+                #end if
+            #end if
+
+            #if $choice_abundance_unit.abundance_unit_type == "count":
+                #if $choice_abundance_unit.min_abundance_count:
+                    --min-abundance $choice_abundance_unit.min_abundance_count
+                #end if
+            #end if
+
+            #if $choice_abundance_unit.abundance_unit_type == "proportion":
+                #if $choice_abundance_unit.min_abundance_proportion:
+                    --min-abundance $choice_abundance_unit.min_abundance_proportion
+                #end if
+            #end if
+
+            #if $nb_biggest_clusters:
+                --nb-biggest-clusters $nb_biggest_clusters
+            #end if
+
+            #if $contaminant_source.which_contaminant_source == "history":
+                ##build index on the fly
+                --contaminant '${contaminant_source.own_contaminant}'
+            #elif $contaminant_source.which_contaminant_source == "server":
+                ##use precomputed indexes
+                --contaminant '${contaminant_source.server_contaminants.fields.path}'
+            #end if
+
+            --output-fasta '$output_fasta'
+            --output-biom '$output_biom'
+            --excluded '$output_excluded'
+            --html '$html'
+    </token>
+
+    <xml name="cluster_filters_inputs">
+        <!-- Files -->
+        <param argument="--input-fasta" name="input_fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />/>
+        <param argument="--input-biom" name="input_biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
+
+        <!-- Parameters -->
+        <!-- Filter on prevalence -->
+        <section name="prevalence_section" title="Filter on prevalence" expanded="true">
+            <conditional name="choice_prevalence_samples">
+                <param name="prevalence_samples" type="select" display="radio" label="Samples to consider">
+                    <option value="all"> all samples </option>
+                    <option value="replicate"> by group of replicates</option>
+                </param>
+                <when value="all">
+                    <param argument="--min-sample-presence" name="min_sample_presence" type="integer" optional="true" label="Minimum prevalence"  help="Fill the field only if you want this treatment. Keep cluster if it is present in at least this number of samples.">
+                        <validator type="in_range" min="2" message="To be effective this threshold need to be higher than 1" />
+                    </param>
+                </when>
+                <when value="replicate">
+                    <param argument="--replicate-tsv" name="replicate_tsv" type="data" format="tabular,tsv" optional="true" label="Sample replicates group (format : TSV)" help="First column indicates the sample name, and the second column the group name." />
+                    <param argument="--min-replicate-presence" name="min_replicate_presence" type="float" min="0" max="1" optional="true" label="Minimum prevalence" default="0" help="Fill the field only if you want this treatment. Keep cluster present in at least this proportion of replicates in at least one group (must be a proportion between 0 and 1).">
+                    </param>
+                </when>
+            </conditional>
+        </section>
+
+        <!-- Filter on abundance -->
+        <section name="abund_section" title="Filter on abundance" expanded="true">
+            <conditional name="choice_abundance_unit">
+                <param name="abundance_unit_type" type="select" display="radio" label="Minimum cluster abundancy as proportion or count. We recommend to use a proportion of 0.00005.">
+                    <option value="proportion">as proportion</option>
+                    <option value="count">as count</option>
+                </param>
+                <when value="proportion">
+                    <param argument="--min-abundance" name="min_abundance_proportion" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep cluster" help="Fill the field only if you want this treatment. Example: 0.00005, recommended by Bokulich et al 2013, to keep cluster with at least 0.005% of all sequences">
+                        <validator type="in_range" min="0" exclude_min="true" max="1" exclude_max="true" message="Abundance proportion threshold need to be strictly greater than 0 and less than 1, otherwise you will not remove anything or remove everything." />
+                    </param>
+                </when>
+                <when value="count">
+                    <param argument="--min-abundance" name="min_abundance_count" type="integer" optional="true" label="Minimum number of sequences to keep cluster" help="Fill the field only if you want this treatment. Ex: 2 to keep cluster with at least 2 sequences, so remove single singleton">
+                        <validator type="in_range" min="2" message="To be effective this threshold need to be higher than 1. 2 means that you will remove cluster with 1 and only 1 sequence over all samples"/>
+                    </param>
+                </when>
+            </conditional>
+        </section>
+
+        <!-- Filter on biggester-clusters -->
+        <section name="most_abund_section" title="Filter on the most abundant" expanded="true">
+		    <param argument="--nb-biggest-clusters" name="nb_biggest_clusters" type="integer" optional="true" label="N biggest clusters" help="Fill the fields only if you want this treatment. Keep the N most abundant clusters" />
+        </section>
+
+        <!-- Filter on contaminant -->
+        <section name="contaminant_section" title="Filter on contaminant" expanded="true">
+            <conditional name="contaminant_source">
+                <param name="which_contaminant_source" argument="--contaminant" type="select" label="Search for contaminant clusters." help="Either you use your own contaminant fasta file or you select one among available ones.">
+                    <option value="no">No contaminant filter</option>
+                    <option value="server">Use contaminant FASTA file from the server</option>
+                    <option value="history">Use contaminant FASTA file from the history</option>
+                </param>
+                <when value="no"/>
+                <when value="server">
+                    <param argument="--contaminant" name="server_contaminants" type="select" label="Contaminant databank" help="For example the phiX databank (the phiX is a control added in Illumina sequencing technologies).">
+                        <options from_data_table="frogs_contaminant_db"></options>
+                        <validator type="no_options" message="A built-in database is not available" />
+                    </param>
+                </when>
+                <when value="history">
+                    <param argument="--contaminant" name="own_contaminant" type="data" format="fasta" label="Select a contaminante reference from history" />
+                </when>
+            </conditional>
+        </section>
+    </xml>
+</macros>
