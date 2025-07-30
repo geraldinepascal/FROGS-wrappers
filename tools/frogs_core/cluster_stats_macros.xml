@@ -8,6 +8,6 @@
 
     <xml name="cluster_stats_inputs">
         <!-- Files -->
-        <param argument="--input-biom" name="input_biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
+        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
     </xml>
 </macros>

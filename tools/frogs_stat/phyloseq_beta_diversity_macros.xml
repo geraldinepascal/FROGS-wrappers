@@ -4,19 +4,19 @@
         phyloseq_beta_diversity.py
             --phyloseq-rdata '$phyloseq_rdata'
             --var-exp '$var_exp'
-            --beta-distance-methods ${" ".join(str($beta_methods).split(","))} ${" ".join(str($other_beta_method).split(","))}
+            --beta-distance-methods ${" ".join(str($beta_distance_methods).split(","))} ${" ".join(str($other_beta_method).split(","))}
             --matrix-outdir 'BetaMatrix'
             --html '$html'
     </token>
 
     <xml name="phyloseq_beta_diversity_inputs">
         <!-- Files -->
-        <param argument="--phyloseq-rdata" name="phyloseq_rdata" type="data" format="rdata" label="Phyloseq object (format rdata)" help="This is the result of FROGS_Stat Phyloseq Import Data tool."/>
+        <param argument="--phyloseq-rdata" type="data" format="rdata" label="Phyloseq object (format rdata)" help="This is the result of FROGS_Stat Phyloseq Import Data tool."/>
         <!-- Parameters -->
-        <param argument="--var-exp" name="var_exp" type="text" label="Grouping variable" help="Experimental variable used to group samples (Treatment, Host type, etc).">
+        <param argument="--var-exp" type="text" label="Grouping variable" help="Experimental variable used to group samples (Treatment, Host type, etc).">
             <expand macro="sanitizer_validator"/>
         </param>
-        <param argument="--beta-distance-methods" name="beta_methods" type="select" multiple="true" display="checkboxes" label="The methods of beta diversity" help="N.B. if the tree is not available in your RData, you cannot choose Unifrac or Weighted Unifrac">
+        <param argument="--beta-distance-methods" type="select" multiple="true" display="checkboxes" optional="true" label="The methods of beta diversity" help="N.B. if the tree is not available in your RData, you cannot choose Unifrac or Weighted Unifrac">
             <option value="unifrac">Unifrac</option>
             <option value="wunifrac">Weighted Unifrac</option>
             <option value="bray">Bray-Curtis</option>

@@ -1,13 +1,21 @@
-<tool id="FROGS_Core_dev" name="FROGS Core dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="21.05">
+<tool id="FROGS_Core_dev" name="FROGS Core dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
     <description>ASV reconstruction and taxonomic annotation</description>
     <macros>
         <import>frogs_core_macros.xml</import>
         <import>remove_chimera_macros.xml</import>
         <import>cluster_filters_macros.xml</import>
         <import>taxonomic_affiliation_macros.xml</import>
+        <import>demultiplex_macros.xml</import>
         <import>itsx_macros.xml</import>
+        <import>affiliation_filters_macros.xml</import>
+        <import>affiliation_postprocess_macros.xml</import>
+        <import>normalisation_macros.xml</import>
+        <import>tree_macros.xml</import>
         <import>cluster_stats_macros.xml</import>
         <import>affiliation_stats_macros.xml</import>
+        <import>biom_to_tsv_macros.xml</import>
+        <import>biom_to_std_biom_macros.xml</import>
+        <import>tsv_to_biom_macros.xml</import>
     </macros>
 
     <expand macro="frogs_core_requirements" />
@@ -24,8 +32,23 @@
             @TAXONOMIC_AFFILIATION_CMD_LINE@
 
         ## OPTIONAL TOOLS
+        #elif $frogs_core_tools.tool_name == "demultiplex":
+            @DEMULTIPLEX_CMD_LINE@
+
         #elif $frogs_core_tools.tool_name == "itsx":
             @ITSX_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "affiliation_filters":
+            @AFFILIATION_FILTERS_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "affiliation_postprocess":
+            @AFFILIATION_POSTPROCESS_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "normalisation":
+            @NORMALISATION_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "tree":
+            @TREE_CMD_LINE@
 
         ## COMPAGNON TOOLS : stat and converter
         #elif $frogs_core_tools.tool_name == "cluster_stats":
@@ -33,20 +56,37 @@
 
         #elif $frogs_core_tools.tool_name == "affiliation_stats":
             @AFFILIATION_STATS_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "biom_to_tsv":
+            @BIOM_TO_TSV_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "biom_to_std_biom":
+            @BIOM_TO_STD_BIOM_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "tsv_to_biom":
+            @TSV_TO_BIOM_CMD_LINE@
         #end if
     ]]>
     </command>
     
     <inputs>
         <conditional name="frogs_core_tools">
-            <param name="tool_name" type="select" label="Choose the FROGS Core analysis you want to perform.">
+            <param name="tool_name" type="select" display="radio" label="Choose the FROGS Core analysis you want to perform.">
                 <option value="" selected="true">-- Please select an analysis --</option>
                 <option value="remove_chimera">Main 3. Remove chimera</option> 
-                <option value="cluster_filters">Main 4. Cluster Filters</option> 
-                <option value="taxonomic_affiliation">Main 5. Taxonomic Affiliation</option> 
-                <option value="itsx">Optional 1. ITSx : extract ITS region </option> 
-                <option value="cluster_stats">Compagnon 1. Cluster Statistics</option> 
-                <option value="affiliation_stats">Compagnon 2. Affiliation Statistics</option> 
+                <option value="cluster_filters">Main 4. Cluster filters</option> 
+                <option value="taxonomic_affiliation">Main 5. Taxonomic affiliation</option> 
+                <option value="demultiplex">Optional 1. Demultiplex reads.</option> 
+                <option value="itsx">Optional 2. ITSx : extract ITS region </option> 
+                <option value="affiliation_filters">Optional 3. Affiliation filters </option> 
+                <option value="affiliation_postprocess">Optional 4. Affiliation postprocess </option> 
+                <option value="normalisation">Optional 5. Abundance normalisation </option> 
+                <option value="tree">Optional 6. ASV phylogenetic tree </option> 
+                <option value="cluster_stats">Compagnon 1. Cluster statistics</option> 
+                <option value="affiliation_stats">Compagnon 2. Affiliation statistics</option> 
+                <option value="biom_to_tsv">Compagnon 3. Convert Biom file to TSV file</option> 
+                <option value="biom_to_std_biom">Compagnon 4. Convert FROGS Biom file to standard Biom file</option> 
+                <option value="tsv_to_biom">Compagnon 5. Convert TSV file to Biom file</option> 
             </param>
             <!-- ##################### remove_chimera  ##################### -->
             <when value="remove_chimera">
@@ -60,9 +100,29 @@
             <when value="taxonomic_affiliation">
                 <expand macro="taxonomic_affiliation_inputs" />
             </when>
+            <!-- ##################### demultiplex  ##################### -->
+            <when value="demultiplex">
+                <expand macro="demultiplex_inputs" />
+            </when>
             <!-- ##################### itsx  ##################### -->
             <when value="itsx">
                 <expand macro="itsx_inputs" />
+            </when>
+            <!-- ##################### affiliation_filters  ##################### -->
+            <when value="affiliation_filters">
+                <expand macro="affiliation_filters_inputs" />
+            </when>
+            <!-- ##################### affiliation_postprocess  ##################### -->
+            <when value="affiliation_postprocess">
+                <expand macro="affiliation_postprocess_inputs" />
+            </when>
+            <!-- ##################### normalisation  ##################### -->
+            <when value="normalisation">
+                <expand macro="normalisation_inputs" />
+            </when>
+            <!-- ##################### tree  ##################### -->
+            <when value="tree">
+                <expand macro="tree_inputs" />
             </when>
             <!-- ##################### cluster_stats  ##################### -->
             <when value="cluster_stats">
@@ -71,6 +131,18 @@
             <!-- ##################### affiliation_stats  ##################### -->
             <when value="affiliation_stats">
                 <expand macro="affiliation_stats_inputs" />
+            </when>
+            <!-- ##################### biom_to_tsv  ##################### -->
+            <when value="biom_to_tsv">
+                <expand macro="biom_to_tsv_inputs" />
+            </when>
+            <!-- ##################### biom_to_std_biom  ##################### -->
+            <when value="biom_to_std_biom">
+                <expand macro="biom_to_std_biom_inputs" />
+            </when>
+            <!-- ##################### tsv_to_biom  ##################### -->
+            <when value="tsv_to_biom">
+                <expand macro="tsv_to_biom_inputs" />
             </when>
         </conditional>
     </inputs>

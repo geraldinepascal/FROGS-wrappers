@@ -63,23 +63,78 @@
     </xml>
 
     <xml name="frogs_core_outputs">
-        <!-- HTML report : all but demultiplexe -->
-        <data format="html" name="html" label="${tool.name} - ${tool_name}: report.nb.html" />
-        <!-- ASV sequence fasta : all but taxonomic affiliation, cluster_stats and affiliation_stats  -->
+        <!-- HTML report : all but demultiplex, affiliation_postprocess, biom_to_tsv -->
+        <data format="html" name="html" label="${tool.name} - ${tool_name}: report.nb.html">
+            <filter> frogs_core_tools['tool_name'] != 'demultiplex' </filter>
+            <filter> frogs_core_tools['tool_name'] != 'affiliation_postprocess' </filter>
+            <filter> frogs_core_tools['tool_name'] != 'biom_to_tsv' </filter>
+            <filter> frogs_core_tools['tool_name'] != 'biom_to_std_biom' </filter>
+            <filter> frogs_core_tools['tool_name'] != 'tsv_to_biom' </filter>
+        </data>
+        <!-- ASV sequence fasta : all but taxonomic affiliation, demultiplex, affiliation_filter in hiding mode, tree, cluster_stats, affiliation_stats, biom_to_tsv  -->
         <data format="fasta" name="output_fasta" label="${tool.name} - ${tool_name}: sequence.fasta">
-            <filter> frogs_core_tools['tool_name'] != 'taxonomic_affiliation' and frogs_core_tools['tool_name'] != 'cluster_stats' and frogs_core_tools['tool_name'] != 'affiliation_stats'</filter>
+            <filter> frogs_core_tools['tool_name'] != 'taxonomic_affiliation'</filter>
+            <filter> frogs_core_tools['tool_name'] != 'demultiplex'</filter>
+            <filter> frogs_core_tools['filter']['mode'] != 'hide' </filter>  <!-- affilitation_filters parameter -->
+            <filter> frogs_core_tools['tool_name'] != 'tree'</filter> 
+            <filter> frogs_core_tools['tool_name'] != 'cluster_stats'</filter> 
+            <filter> frogs_core_tools['tool_name'] != 'affiliation_stats'</filter>
+            <filter> frogs_core_tools['tool_name'] != 'biom_to_tsv'</filter>
+            <filter> frogs_core_tools['tool_name'] != 'biom_to_std_biom'</filter>
+            <filter> frogs_core_tools['extract_fasta'] == "yes" </filter> <!-- tsv_to_biom parameter -->
         </data>
-        <!-- ASV abundance biom : all but affiliation_stats  -->
+        <!-- ASV abundance biom : all but tree, demultiplex, cluster_stats, affiliation_stats, biom_to_tsv  -->
         <data format="biom1" name="output_biom" label="${tool.name} - ${tool_name}: abundance.biom">
-            <filter> frogs_core_tools['tool_name'] != 'cluster_stats' and frogs_core_tools['tool_name'] != 'affiliation_stats' </filter>
+            <filter> frogs_core_tools['tool_name'] != 'tree'</filter> 
+            <filter> frogs_core_tools['tool_name'] != 'demultiplex'</filter> 
+            <filter> frogs_core_tools['tool_name'] != 'cluster_stats'</filter> 
+            <filter> frogs_core_tools['tool_name'] != 'affiliation_stats' </filter>
+            <filter> frogs_core_tools['tool_name'] != 'biom_to_tsv' </filter>
+            <filter> frogs_core_tools['tool_name'] != 'biom_to_std_biom' </filter>
         </data>
-        <!-- excluded tsv : cluster_filters  -->
+        <!-- Specific cluster_filters  -->
         <data format="tsv" name="output_excluded" label="${tool.name} - ${tool_name}: excluded.tsv">
             <filter>frogs_core_tools['tool_name'] == 'cluster_filters'</filter>
         </data>
-        <!-- excluded fasta : itsx  -->
+        <!-- Specific demultiplex  -->
+         <data format="tar" name="output_demultiplexed" label="${tool.name} - ${tool_name}: demultiplexed.tar.gz">
+            <filter>frogs_core_tools['tool_name'] == 'demultiplex'</filter>
+        </data>
+        <data format="tar" name="output_excluded" label="${tool.name} - ${tool_name}: undemultiplexed.tar.gz">
+            <filter>frogs_core_tools['tool_name'] == 'demultiplex'</filter>
+        </data>
+        <data format="tsv" name="summary" label="${tool.name} - ${tool_name}: report.tsv">
+            <filter>frogs_core_tools['tool_name'] == 'demultiplex'</filter>
+        </data>
+        <!-- Specific itsx  -->
         <data format="fasta" name="output_removed_sequences" label="${tool.name} - ${tool_name}: nonITS_sequence.fasta">
             <filter>frogs_core_tools['tool_name'] == 'itsx'</filter>
+        </data>
+        <!-- Specific affiliation_filters  -->
+        <data format="tsv" name="output_impacted" label="${tool.name} - ${tool_name}: impacted_clusters.tsv">
+            <filter>frogs_core_tools['tool_name'] == 'affiliation_filters'</filter>
+        </data>
+        <data format="tsv" name="output_impacted_multihit" label="${tool.name} - ${tool_name}: impacted_clusters.multi-affiliations.tsv">
+            <filter>frogs_core_tools['tool_name'] == 'affiliation_filters'</filter>
+        </data>
+        <!-- Specific affiliation_postprocess  -->
+        <data format="tsv" name="output_compo" label="${tool.name} - ${tool_name}: OTU_aggregation_composition.tsv">
+            <filter>frogs_core_tools['tool_name'] == 'affiliation_postprocess'</filter>
+        </data>
+        <!-- Specific tree  -->
+        <data format="nhx" name="output_tree" label="${tool.name} - ${tool_name}: tree.nwk">
+            <filter>frogs_core_tools['tool_name'] == 'tree'</filter>
+        </data>
+        <!-- Specific biom_to_tsv and/or biom_to_std_biom -->
+        <data format="tsv" name="output_tsv" label="${tool.name} - ${tool_name}: abundance.tsv">
+            <filter>frogs_core_tools['tool_name'] == 'biom_to_tsv'</filter>
+        </data>
+        <data format="tsv" name="output_multihit" label="${tool.name} - ${tool_name}: multi-affiliations.tsv">
+            <filter>frogs_core_tools['tool_name'] == 'biom_to_tsv' or frogs_core_tools['tool_name'] == 'biom_to_std_biom'</filter>
+        </data>
+        <!-- Specific biom_to_std_biom  -->
+        <data format="biom1" name="output_std_biom" label="${tool.name} - ${tool_name}: abundance.std.biom">
+            <filter>frogs_core_tools['tool_name'] == 'biom_to_std_biom'</filter>
         </data>
     </xml>
 </macros>

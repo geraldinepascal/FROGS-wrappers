@@ -1,4 +1,4 @@
-<tool id="FROGS_Stat_dev" name="FROGS_Stat_dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="21.05">
+<tool id="FROGS_Stat_dev" name="FROGS_Stat_dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
     <description>structure and composition analysis</description>
     <macros>
         <import>frogs_stat_macros.xml</import>
@@ -54,7 +54,7 @@
     
     <inputs>
         <conditional name="frogs_stat_tools">
-            <param name="tool_name" type="select" label="Choose the FROGS_Stat analysis you want to perform.">
+            <param name="tool_name" type="select" display="radio" label="Choose the FROGS_Stat analysis you want to perform.">
                 <option value="" selected="true">-- Please select an analysis --</option>
                 <option value="phyloseq_import">Phyloseqy import data</option>
                 <option value="phyloseq_composition">Taxonomical composition analysis</option>

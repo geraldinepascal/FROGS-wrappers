@@ -1,18 +1,15 @@
 <?xml version="1.0"?>
 <macros>
-    <token name="@REMOVE_CHIMERA_CMD_LINE@">
-        remove_chimera.py
-            @CPUS@
-            --input-fasta '$input_fasta' 
+    <token name="@TREE_CMD_LINE@">
+        tree.py
+            --input-fasta '$input_fasta'
             --input-biom '$input_biom'
-            
-            --output-biom '$output_biom'
-            --output-fasta '$output_fasta'
+            @CPUS@
+            --output-tree '$output_tree'
             --html '$html'
-
     </token>
 
-    <xml name="remove_chimera_inputs">
+    <xml name="tree_inputs">
         <!-- Files -->
         <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />/>
         <param argument="--input-biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />

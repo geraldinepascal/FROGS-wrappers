@@ -42,7 +42,7 @@
             <!-- Beta diversity matrix (to discover): phyloseq_beta_diversity -->
             <discover_datasets pattern="__designation__" ext="tsv" directory="BetaMatrix" visible="true"/>
         </data>
-        <!-- Alpha diversity index : all but deseq2_preprocess -->
+        <!-- Alpha diversity index : phyloseq_alpha_diversity -->
         <data format="tsv" name="alpha_div_tsv" label="${tool.name} - ${tool_name}: indices.tsv" >
             <filter>frogs_stat_tools['tool_name'] == 'phyloseq_alpha_diversity'</filter>
         </data>

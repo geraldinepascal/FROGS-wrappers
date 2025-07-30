@@ -49,8 +49,8 @@
 
     <xml name="cluster_filters_inputs">
         <!-- Files -->
-        <param argument="--input-fasta" name="input_fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />/>
-        <param argument="--input-biom" name="input_biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
+        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />/>
+        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
 
         <!-- Parameters -->
         <!-- Filter on prevalence -->
@@ -61,13 +61,13 @@
                     <option value="replicate"> by group of replicates</option>
                 </param>
                 <when value="all">
-                    <param argument="--min-sample-presence" name="min_sample_presence" type="integer" optional="true" label="Minimum prevalence"  help="Fill the field only if you want this treatment. Keep cluster if it is present in at least this number of samples.">
+                    <param argument="--min-sample-presence" type="integer" optional="true" label="Minimum prevalence"  help="Fill the field only if you want this treatment. Keep cluster if it is present in at least this number of samples.">
                         <validator type="in_range" min="2" message="To be effective this threshold need to be higher than 1" />
                     </param>
                 </when>
                 <when value="replicate">
-                    <param argument="--replicate-tsv" name="replicate_tsv" type="data" format="tabular,tsv" optional="true" label="Sample replicates group (format : TSV)" help="First column indicates the sample name, and the second column the group name." />
-                    <param argument="--min-replicate-presence" name="min_replicate_presence" type="float" min="0" max="1" optional="true" label="Minimum prevalence" default="0" help="Fill the field only if you want this treatment. Keep cluster present in at least this proportion of replicates in at least one group (must be a proportion between 0 and 1).">
+                    <param argument="--replicate-tsv" type="data" format="tabular,tsv" optional="true" label="Sample replicates group (format : TSV)" help="First column indicates the sample name, and the second column the group name." />
+                    <param argument="--min-replicate-presence" type="float" min="0" max="1" optional="true" label="Minimum prevalence" value="0" help="Fill the field only if you want this treatment. Keep cluster present in at least this proportion of replicates in at least one group (must be a proportion between 0 and 1).">
                     </param>
                 </when>
             </conditional>
@@ -81,12 +81,12 @@
                     <option value="count">as count</option>
                 </param>
                 <when value="proportion">
-                    <param argument="--min-abundance" name="min_abundance_proportion" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep cluster" help="Fill the field only if you want this treatment. Example: 0.00005, recommended by Bokulich et al 2013, to keep cluster with at least 0.005% of all sequences">
+                    <param argument="--min-abundance" type="float" optional="true" label="Minimum proportion of sequences abundancy to keep cluster" help="Fill the field only if you want this treatment. Example: 0.00005, recommended by Bokulich et al 2013, to keep cluster with at least 0.005% of all sequences">
                         <validator type="in_range" min="0" exclude_min="true" max="1" exclude_max="true" message="Abundance proportion threshold need to be strictly greater than 0 and less than 1, otherwise you will not remove anything or remove everything." />
                     </param>
                 </when>
                 <when value="count">
-                    <param argument="--min-abundance" name="min_abundance_count" type="integer" optional="true" label="Minimum number of sequences to keep cluster" help="Fill the field only if you want this treatment. Ex: 2 to keep cluster with at least 2 sequences, so remove single singleton">
+                    <param argument="--min-abundance" type="integer" optional="true" label="Minimum number of sequences to keep cluster" help="Fill the field only if you want this treatment. Ex: 2 to keep cluster with at least 2 sequences, so remove single singleton">
                         <validator type="in_range" min="2" message="To be effective this threshold need to be higher than 1. 2 means that you will remove cluster with 1 and only 1 sequence over all samples"/>
                     </param>
                 </when>
@@ -95,7 +95,7 @@
 
         <!-- Filter on biggester-clusters -->
         <section name="most_abund_section" title="Filter on the most abundant" expanded="true">
-		    <param argument="--nb-biggest-clusters" name="nb_biggest_clusters" type="integer" optional="true" label="N biggest clusters" help="Fill the fields only if you want this treatment. Keep the N most abundant clusters" />
+		    <param argument="--nb-biggest-clusters" type="integer" optional="true" label="N biggest clusters" help="Fill the fields only if you want this treatment. Keep the N most abundant clusters" />
         </section>
 
         <!-- Filter on contaminant -->
@@ -108,7 +108,7 @@
                 </param>
                 <when value="no"/>
                 <when value="server">
-                    <param argument="--contaminant" name="server_contaminants" type="select" label="Contaminant databank" help="For example the phiX databank (the phiX is a control added in Illumina sequencing technologies).">
+                    <param argument="--contaminant" type="select" label="Contaminant databank" help="For example the phiX databank (the phiX is a control added in Illumina sequencing technologies).">
                         <options from_data_table="frogs_contaminant_db"></options>
                         <validator type="no_options" message="A built-in database is not available" />
                     </param>

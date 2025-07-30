@@ -25,8 +25,8 @@
 
     <xml name="taxonomic_affiliation_inputs">
         <!-- Files -->
-        <param argument="--input-fasta" name="input_fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />/>
-        <param argument="--input-biom" name="input_biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
+        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />/>
+        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
 
          <!-- Database Choice -->
         <param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">

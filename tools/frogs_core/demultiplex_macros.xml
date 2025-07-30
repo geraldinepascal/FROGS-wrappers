@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<macros>
+    <token name="@DEMULTIPLEX_CMD_LINE@">
+        demultiplex.py
+            --input-barcode '$input_barcode'        
+            #if str( $fastq_input.fastq_input_type ) == "paired":
+                --input-R1 '${fastq_input.input_R1}'
+                --input-R2 '${fastq_input.input_R2}'
+            #else:
+                --input-R1 '${fastq_input.input_R1}'
+            #end if
+
+            --mismatches $mismatches
+            --end '$end'
+
+            --summary '$summary'
+            --output-demultiplexed '$output_demultiplexed'
+            --output-excluded '$output_excluded'
+    </token>
+
+    <xml name="demultiplex_inputs">
+        <!-- Files -->
+        <param argument="--input_barcode" format="tsv,tabular" type="data" label="Barcode file" help="This file describes barcodes and samples (one line by sample tabulated separated from barcode sequence(s)). See Help section" />
+		<conditional name="fastq_input">
+	      	<param name="fastq_input_type" type="select" display="radio" label="Single or Paired-end reads" help="Select between paired and single-end data">
+	      		<option value="single">Single</option>
+	        	<option value="paired">Paired</option>
+	        </param>
+	      	<when value="paired">
+	        	<param argument="--input-R1" type="data" format="fastq" label="Select first set of reads" help="Specify dataset of your forward reads"/>
+	        	<param argument="--input-R2" type="data" format="fastq" label="Select second set of reads" help="Specify dataset of your reverse reads"/>
+	        </when>
+	        <when value="single">
+	        	<param argument="--input-R1" type="data" format="fastq" label="Select the set of reads" help="Specify dataset of your single end reads"/>
+	      	</when>
+	    </conditional>
+        <!-- Parameters -->
+        <param argument="--mismatches" type="integer"  value="0" label="Barcode mismatches" help="Number of mismatches allowed in barcode"/>
+		<param argument="--end" type="select" display="radio" label="Barcode on which end ?" help="The barcode is placed either at the beginning of the forward read or of the reverse read or both?">
+			<option value="bol" selected="true">Forward (bol)</option>
+			<option value="eol">Reverse (eol)</option>
+			<option value="both">Both ends (both)</option>
+		</param>
+    </xml>
+</macros>
