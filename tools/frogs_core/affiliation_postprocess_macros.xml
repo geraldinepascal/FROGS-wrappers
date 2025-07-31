@@ -14,7 +14,7 @@
 
             --output-biom '$output_biom'
             --output-fasta '$output_fasta'
-            --output-compo '$output_compo'
+            --output-compo '$output_asv_compo'
     </token>
 
     <xml name="affiliation_postprocess_inputs">

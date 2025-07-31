@@ -15,7 +15,7 @@
 
             --summary '$summary'
             --output-demultiplexed '$output_demultiplexed'
-            --output-excluded '$output_excluded'
+            --output-undemultiplexed '$output_undemultiplexed'
     </token>
 
     <xml name="demultiplex_inputs">
@@ -27,8 +27,8 @@
 	        	<option value="paired">Paired</option>
 	        </param>
 	      	<when value="paired">
-	        	<param argument="--input-R1" type="data" format="fastq" label="Select first set of reads" help="Specify dataset of your forward reads"/>
-	        	<param argument="--input-R2" type="data" format="fastq" label="Select second set of reads" help="Specify dataset of your reverse reads"/>
+                <param argument="--input-R1" type="data" format="fastq" label="Reads 1" help="R1 FASTQ file of paired-end reads." />
+                <param argument="--input-R2" type="data" format="fastq" label="Reads 2" help="R2 FASTQ file of paired-end reads." />
 	        </when>
 	        <when value="single">
 	        	<param argument="--input-R1" type="data" format="fastq" label="Select the set of reads" help="Specify dataset of your single end reads"/>
