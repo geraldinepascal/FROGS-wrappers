@@ -2,6 +2,7 @@
     <description>ASV reconstruction and taxonomic annotation</description>
     <macros>
         <import>frogs_core_macros.xml</import>
+        <import>processing_short_reads_macros.xml</import>
         <import>remove_chimera_macros.xml</import>
         <import>cluster_filters_macros.xml</import>
         <import>taxonomic_affiliation_macros.xml</import>
@@ -22,7 +23,10 @@
 
     <command detect_errors="exit_code"><![CDATA[
         ## MAIN TOOLS
-        #if $frogs_core_tools.tool_name == "remove_chimera":
+        #if $frogs_core_tools.tool_name == "processing_short_reads":
+            @PROCESSING_SHORT_READS_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "remove_chimera":
             @REMOVE_CHIMERA_CMD_LINE@
 
         #elif $frogs_core_tools.tool_name == "cluster_filters":
@@ -73,6 +77,7 @@
         <conditional name="frogs_core_tools">
             <param name="tool_name" type="select" display="radio" label="Choose the FROGS Core analysis you want to perform.">
                 <option value="" selected="true">-- Please select an analysis --</option>
+                <option value="processing_short_reads">Main 1.a. Pre-processing and denoising or clustering of short reads</option> 
                 <option value="remove_chimera">Main 3. Remove chimera</option> 
                 <option value="cluster_filters">Main 4. Cluster filters</option> 
                 <option value="taxonomic_affiliation">Main 5. Taxonomic affiliation</option> 
@@ -88,6 +93,10 @@
                 <option value="biom_to_std_biom">Compagnon 4. Convert FROGS Biom file to standard Biom file</option> 
                 <option value="tsv_to_biom">Compagnon 5. Convert TSV file to Biom file</option> 
             </param>
+            <!-- ##################### processing_short_reads  ##################### -->
+            <when value="processing_short_reads">
+                <expand macro="processing_short_reads_inputs" />
+            </when>
             <!-- ##################### remove_chimera  ##################### -->
             <when value="remove_chimera">
                 <expand macro="remove_chimera_inputs" />

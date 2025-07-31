@@ -22,6 +22,7 @@
             <requirement type="package" version="2.17.0">vsearch</requirement>
             <requirement type="package" version="3.1.4">swarm</requirement>
             <requirement type="package" version="1.22.0">bioconductor-dada2</requirement>
+            <requirement type="package" version="1.6.6">r-optparse</requirement>
             <requirement type="package" version="1.1.2">itsx</requirement>
             <requirement type="package" version="2.16.0">blast</requirement>
             <requirement type="package" version="6.6.0">emboss</requirement>
@@ -32,6 +33,13 @@
             <requirement type="package" version="2.7.0">r-phangorn</requirement>
 
         </requirements>
+    </xml>
+
+    <xml name="only_letter_sanitizer_validator">
+        <sanitizer invalid_char="">
+            <valid initial="string.letters"/>
+        </sanitizer>
+        <validator type="regex">[A-Za-z]+</validator>
     </xml>
 
     <xml name="sanitizer_validator">
@@ -92,6 +100,10 @@
             <filter> frogs_core_tools['tool_name'] != 'biom_to_tsv' </filter>
             <filter> frogs_core_tools['tool_name'] != 'biom_to_std_biom' </filter>
         </data>
+        <!-- Specific processing_short/454/long_reads with clustering  -->
+        <data format="txt" name="output_cluster_compo" label="${tool.name} - ${tool_name}: swarms_composition.txt">
+            <filter>frogs_core_tools['process_type']['process'] == 'clustering' </filter>
+        </data>
         <!-- Specific cluster_filters  -->
         <data format="tsv" name="output_excluded" label="${tool.name} - ${tool_name}: excluded.tsv">
             <filter>frogs_core_tools['tool_name'] == 'cluster_filters'</filter>
@@ -100,7 +112,7 @@
          <data format="tar" name="output_demultiplexed" label="${tool.name} - ${tool_name}: demultiplexed.tar.gz">
             <filter>frogs_core_tools['tool_name'] == 'demultiplex'</filter>
         </data>
-        <data format="tar" name="output_excluded" label="${tool.name} - ${tool_name}: undemultiplexed.tar.gz">
+        <data format="tar" name="output_undemultiplexed" label="${tool.name} - ${tool_name}: undemultiplexed.tar.gz">
             <filter>frogs_core_tools['tool_name'] == 'demultiplex'</filter>
         </data>
         <data format="tsv" name="summary" label="${tool.name} - ${tool_name}: report.tsv">
@@ -118,7 +130,7 @@
             <filter>frogs_core_tools['tool_name'] == 'affiliation_filters'</filter>
         </data>
         <!-- Specific affiliation_postprocess  -->
-        <data format="tsv" name="output_compo" label="${tool.name} - ${tool_name}: OTU_aggregation_composition.tsv">
+        <data format="tsv" name="output_asv_compo" label="${tool.name} - ${tool_name}: aggregation_composition.tsv">
             <filter>frogs_core_tools['tool_name'] == 'affiliation_postprocess'</filter>
         </data>
         <!-- Specific tree  -->
