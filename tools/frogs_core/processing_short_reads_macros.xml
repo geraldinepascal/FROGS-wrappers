@@ -100,15 +100,15 @@
                         <option value="files_by_samples" >Files by samples</option>
                     </param>
                     <when value="archive">
-                        <param argument="--input-archive" type="data" format="tar,tgz" label="TAR archive file" help="The TAR file containing the sequences fastq file(s) for each sample." />
+                        <param argument="--input-archive" type="data" format="tar,tgz" label="Archive file (tar format)" help="The TAR file containing the short R1 R2 read pairs fastq file for each sample. Illumina and Aviti sequencers are currently supported." />
                     </when>
                     <when value="files_by_samples">
                         <repeat name="samples" title="Samples" default="1" min="1">
                             <param argument="--samples-names" type="text" label="Name" help="The sample name.">
                                 <expand macro="sanitizer_validator"/>
                             </param>
-                            <param argument="--input-R1" type="data" format="fastq" label="Reads 1" help="R1 FASTQ file of paired-end reads." />
-                            <param argument="--input-R2" type="data" format="fastq" label="Reads 2" help="R2 FASTQ file of paired-end reads." />
+                            <param argument="--input-R1" type="data" format="fastq" label="R1 reads (fastq format)" help="R1 reads fastq file. Illumina and Aviti sequencers are currently supported." />
+                            <param argument="--input-R2" type="data" format="fastq" label="R2 reads (fastq format)" help="R2 reads fastq file. Illumina and Aviti sequencers are currently supported."  />
                         </repeat>
                     </when>
                 </conditional>
@@ -135,14 +135,14 @@
                         <option value="files_by_samples" >Files by samples</option>
                     </param>
                     <when value="archive">
-                        <param argument="--input-archive" type="data" format="tar,tgz" label="TAR archive file" help="The TAR file containing the sequences fastq file(s) for each sample." />
+                        <param argument="--input-archive" type="data" format="tar,tgz" label="Archive file (tar format)" help="The TAR file containing the short single end reads or merged pair reads fastq file for each sample. Illumina and Aviti sequencers are currently supported." />
                     </when>
                     <when value="files_by_samples">
                         <repeat name="samples" title="Samples" default="1" min="1">
                             <param argument="--samples-names" type="text" label="Name" help="The sample name.">
                                 <expand macro="sanitizer_validator"/>
                             </param>
-                            <param argument="--input-R1" type="data" format="fastq" label="Reads 1" help="R1 FASTQ file of paired-end reads." />
+                            <param argument="--input-R1" type="data" format="fastq" label="Short reads or merged reads (fastq format)" help="Single-end short reads or merge paired end reads fastq file. Illumina and Aviti sequencers are currently supported." />
                         </repeat>
                     </when>
                 </conditional>

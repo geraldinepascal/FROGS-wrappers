@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<macros>
+    <token name="@PROCESSING_454_READS_CMD_LINE@">
+        #set $sep = ' '
+
+        denoising.py 454 
+            @CPUS@
+
+            ## INPUTS
+            #if $input_files.file_type == "archive"
+                --input-archive '${input_files.input_archive}'
+            #else
+                --samples-names 
+                #for $current in $input_files.samples
+                    $sep'${current.samples_names.strip()}'
+                #end for
+                --input-R1 
+                #for $current in $input_files.samples
+                    $sep'${current.input_R1}'
+                #end for
+            #end if
+
+            ## AMPLICON PARAMETERS
+            --min-amplicon-size $min_amplicon_size
+            --max-amplicon-size $max_amplicon_size
+
+            ## PRIMERS
+            --five-prim-primer '$five_prim_primer'
+            --three-prim-primer '$three_prim_primer'
+
+            ## PROCESS TYPE
+            #if $process_type.process == "preprocess-only"
+                --process preprocess-only
+            #elif $process_type.process == "clustering"
+                --process swarm
+                --distance $process_type.distance
+                $process_type.cluster_improvements.clustering_options
+            #end if
+
+            ## OUTPUTS
+            --output-biom $output_biom 
+            --output-fasta $output_fasta
+            --html $html
+            #if $process_type.process == "clustering"
+                --output-compo $output_cluster_compo
+            #end if
+    </token>
+
+    <xml name="processing_454_reads_inputs">
+       <!-- Files -->
+        <conditional name="input_files">
+            <param name="file_type" type="select" label="Input type" help="Samples files can be provided in a single TAR archive or sample by sample (with one or two files each).">
+                <option value="archive" selected="true">TAR Archive</option>
+                <option value="files_by_samples" >Files by samples</option>
+            </param>
+            <when value="archive">
+                <param argument="--input-archive" type="data" format="tar,tgz" label="TAR archive file" help="The TAR file containing the 454 single end reads fastq file for each sample." />
+            </when>
+            <when value="files_by_samples">
+                <repeat name="samples" title="Samples" default="1" min="1">
+                    <param argument="--samples-names" type="text" label="Name" help="The sample name.">
+                        <expand macro="sanitizer_validator"/>
+                    </param>
+                    <param argument="--input-R1" type="data" format="fastq" label="454 reads (fastq format)" help="454 reads fastq file." />
+                </repeat>
+            </when>
+        </conditional>
+
+        <!-- Amplicons Parameters-->
+        <param argument="--min-amplicon-size" type="integer" value="" label="Minimum amplicon size" help="The minimum size of the amplicons (with primers)"/>
+        <param argument="--max-amplicon-size" type="integer" value="" label="Maximum amplicon size" help="The maximum size of the amplicons (with primers). For paired-end reads substract 10 bases corresponding to the minimum overlap between reads."/>
+
+        <!-- Primers -->
+        <param argument="--five-prim-primer" type="text" label="5' primer" help="The 5' primer sequence (wildcards are accepted). This primer must be written in 5' to 3' orientation.">
+            <expand macro="only_letter_sanitizer_validator"/>
+        </param>
+        <param argument="--three-prim-primer" type="text" label="3' primer" help="The 3' primer sequence (wildcards are accepted). This primer must be written in 5' to 3' orientation (see details in 'Primers parameters' help section)">
+                <expand macro="only_letter_sanitizer_validator"/>
+        </param>
+
+        <!-- Preprocessing only, clustering or denoising -->
+         <conditional name="process_type">
+            <param argument="--process" type="select" display="radio" label="Process type" help="Select the type of process to perform">
+                <option value="preprocess-only">Preprocessing only</option>
+                <option value="clustering" selected="true">Preprocessing and clustering with Swarm</option>
+            </param>
+            <when value="clustering">
+                <param argument="--distance" type="integer" min="1" value="1" optional="false" label="Distance threshold" help="The distance threshold for clustering with Swarm"/>
+                <conditional name="cluster_improvements">
+                    <param name="clustering_options" type="select" display="radio" label="Additionnally refine or denoise clustering" help="In association with --distance 1, use the Swarm --fastidious option to refine clustering (recommended since FROGS 3.2).&#10;Or use the --denoising FROGS option to perform pre-clustering with --distance = 1 before clustering with user defined distance.">
+                        <option value="--fastidious" selected="true">Refine clusters with --fastidiouis option (recommended since FROGS 3.2)</option>
+                        <option value="--denoising">Denoise with a pre-clustering (--distance : 1) step </option>
+                        <option value="">Do not refine or denoise clustering</option>
+                    </param>
+                </conditional>
+            </when>
+        </conditional>
+    </xml>
+</macros>

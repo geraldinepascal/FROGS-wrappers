@@ -3,6 +3,8 @@
     <macros>
         <import>frogs_core_macros.xml</import>
         <import>processing_short_reads_macros.xml</import>
+        <import>processing_long_reads_macros.xml</import>
+        <import>processing_454_reads_macros.xml</import>
         <import>remove_chimera_macros.xml</import>
         <import>cluster_filters_macros.xml</import>
         <import>taxonomic_affiliation_macros.xml</import>
@@ -25,6 +27,12 @@
         ## MAIN TOOLS
         #if $frogs_core_tools.tool_name == "processing_short_reads":
             @PROCESSING_SHORT_READS_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "processing_long_reads":
+            @PROCESSING_LONG_READS_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "processing_454_reads":
+            @PROCESSING_454_READS_CMD_LINE@
 
         #elif $frogs_core_tools.tool_name == "remove_chimera":
             @REMOVE_CHIMERA_CMD_LINE@
@@ -78,9 +86,11 @@
             <param name="tool_name" type="select" display="radio" label="Choose the FROGS Core analysis you want to perform.">
                 <option value="" selected="true">-- Please select an analysis --</option>
                 <option value="processing_short_reads">Main 1.a. Pre-processing and denoising or clustering of short reads</option> 
-                <option value="remove_chimera">Main 3. Remove chimera</option> 
-                <option value="cluster_filters">Main 4. Cluster filters</option> 
-                <option value="taxonomic_affiliation">Main 5. Taxonomic affiliation</option> 
+                <option value="processing_long_reads">Main 1.b. Pre-processing and denoising or clustering of long reads</option> 
+                <option value="processing_454_reads">Main 1.c. Pre-processing and denoising or clustering of 454 reads</option> 
+                <option value="remove_chimera">Main 2. Remove chimera</option> 
+                <option value="cluster_filters">Main 3. Cluster filters</option> 
+                <option value="taxonomic_affiliation">Main 4. Taxonomic affiliation</option> 
                 <option value="demultiplex">Optional 1. Demultiplex reads.</option> 
                 <option value="itsx">Optional 2. ITSx : extract ITS region </option> 
                 <option value="affiliation_filters">Optional 3. Affiliation filters </option> 
@@ -96,6 +106,14 @@
             <!-- ##################### processing_short_reads  ##################### -->
             <when value="processing_short_reads">
                 <expand macro="processing_short_reads_inputs" />
+            </when>
+            <!-- ##################### processing_long_reads  ##################### -->
+            <when value="processing_long_reads">
+                <expand macro="processing_long_reads_inputs" />
+            </when>
+            <!-- ##################### processing_454_reads  ##################### -->
+            <when value="processing_454_reads">
+                <expand macro="processing_454_reads_inputs" />
             </when>
             <!-- ##################### remove_chimera  ##################### -->
             <when value="remove_chimera">
