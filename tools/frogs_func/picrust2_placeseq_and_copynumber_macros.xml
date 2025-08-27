@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<macros>
+    <token name="@PICRUST2_PLACESEQ_AND_COPYNUMBER_CMD_LINE@">
+        frogsfunc_placeseqs.py
+            @CPUS@
+            --input-fasta '$input_fasta'
+            --input-biom '$input_biom'
+            #if $marker.name != "16S"
+            --ref-dir ${marker.value}
+            --input-marker-table ${marker.fields.traits}
+            #end if
+
+            --min-align $min_align
+            --placement-tool '$placement_tool'
+            --hsp-method mp
+
+            --output-tree '$output_tree' 
+            --excluded '$output_excluded'
+            --output-biom '$output_biom'
+            --output-fasta '$output_fasta'
+            --closests-ref '$output_closests_ref'
+            --output-marker-copy '$output_marker_copy'
+            --html '$html'
+
+
+    </token>
+
+    <xml name="picrust2_placeseq_and_copynumber_inputs">
+        <!-- Files -->
+        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The ASV sequence fasta file." />
+        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The ASV abundance biom file with taxonomic annotation." />
+
+        <!-- Parameters -->
+        <param name="marker" type="select" label="Marker gene" display="radio" help="Marker gene analysed.">
+            <options from_data_table="frogs_picrust2_placeseqs">
+                <column name="name" index="1"/>
+                <column name="value" index="2"/>
+                <column name="traits" index="3"/>
+                <filter type="unique_value" column='1'/>
+                    <validator type="no_options" message="A built-in database is not available" />
+            </options>
+        </param>
+        <param argument="--placement-tool" type="select" multiple="false" display="radio" label="Phylogenetic sequence placement tool" help="Phylogenetic placement tool to insert ASV sequences into the reference phylogenetic tree. SEPP,only available for 16S analysis, is a low-memory alternative to EPA-ng for placing sequences.">
+            <options from_data_table="frogs_picrust2_placeseqs">     
+                <column name='name' index='4' />
+                <column name='value' index='4' />
+                <filter type="param_value" ref="marker" column="2" />  
+            </options>
+        </param>
+        <param argument="--min-align" type="float" value="0.8" min="0" max="1" optional="false" label="Minimum alignment coverage" help="Proportion of the total length of an input sequence that must align with reference sequences. All others will be excluded." /> 
+    </xml>
+</macros>

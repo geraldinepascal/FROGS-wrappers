@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<macros>
+    <token name="@PICRUST2_FUNCTIONS_CMD_LINE@">
+        frogsfunc_functions.py
+                @CPUS@
+                --input-biom '$input_biom'
+                --input-fasta '$input_fasta'
+                --input-tree '$input_tree'
+                --input-marker-copy '$input_marker_copy'
+                --marker-type $marker.value
+
+                #if $marker.value == "16S"
+                    --functions ${" ".join(str($functions).split(","))}
+                #end if
+
+                #if $marker.value != "16S"
+                    --input-function-table $functions.fields.fun
+                #end if 
+
+                --max-nsti $max_nsti
+                --min-blast-ident $min_blast_ident
+                --min-blast-cov $min_blast_cov
+                --hsp-method '$hsp_method'
+
+                --html '$html'
+                --output-excluded '$output_excluded'
+                --output-biom '$output_biom'
+                --output-fasta '$output_fasta'
+                --output-asv-copy-norm '$output_asv_norm'
+                --output-weighted-nsti '$output_weighted_nsti'
+                --prefix-function-abund unstrat_abundance
+                
+                
+
+    </token>
+
+    <xml name="picrust2_functions_inputs">
+        <!-- Files -->
+        <param argument="--input-biom" format="biom1" type="data" label="ASV abundance file (format Biom)" help="ASV biom abundance file containing the PICRUSt2 taxonomic annotation (output of picrust2_placeseq_and_copynumber tool)." />
+        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="ASV sequence fasta file." />
+        <param argument="--input-tree" format="nhx,newick" type="data" label="ASV Phylogenetic tree (format nhx,newick)" help="PICRUSt2 phylogenetic tree."/>
+        <param argument="--input-marker-copy" format="tsv" type="data" label="Marker copy number file (format TSV)" help="PICRUSt2 estimation of marker copy number."/>
+        
+        <!-- Parameters-->
+        <param name="marker" type="select" multiple="false" display="radio" label="Marker gene" help="Marker gene analysed.">
+            <options from_data_table="frogs_picrust2_functions">
+                <column name='name' index='0' />
+                <column name='value' index='0' />
+                <filter type="unique_value" column='0'/>
+                <validator type="no_options" message="A built-in database is not available" />
+            </options>
+        </param>
+        <param argument="--functions" type="select" label="Target function database" display="checkboxes" multiple="true" optional="false" help=" 16S : at least 'EC' or/and 'KO' should be chosen (EC for Metacyc pathway analysis or/and KO for KEGG pathway analysis) - others values are optionnal. ITS and 18S : 'EC' only available." >
+            <options from_data_table="frogs_picrust2_functions">
+                <column name='name' index='1' />
+                <column name='value' index='1' />
+                <column name='path' index='2' />
+                <column name='fun' index='3' />
+                <filter type="param_value" ref="marker" column="0" />              
+            </options>
+        </param>
+        <param argument="--max-nsti" type="float" label="NSTI cut-off" help="ASV sequence with NSTI above this threshold will be excluded. (default: 2)" value="2" min="0" optional="false" />
+        <param argument="--min-blast-ident" type="float" label="Identity alignment cut-off" help="Percentage identity between the ASV sequence and the closest PICRUSt2 reference sequence. ASV sequence with identity percentage bellow this threshold will be excluded. (default: None)" value="0" min="0" max="1" optional="true" />
+        <param argument="--min-blast-cov" type="float" label="Coverage alignment cut-off" help="Coverage identity of the alignment between the input sequence and the PICRUSt2 reference sequence. ASV sequence with coverage percentage bellow this threshold will be excluded. (default: None)" value="0" min="0" max="1" optional="true" />
+        <param argument="--hsp-method" type="select" label="HSP method" help="Hidden-state prediction method to use: maximum parsimony (mp), empirical probabilities (emp_prob), continuous traits prediction using subtree averaging (subtree_average), continuous traits prediction with phylogentic independent contrast (pic), continuous traits reconstruction using squared-change parsimony (scp) (default: mp)." multiple="false" display="radio">
+            <option value="mp">mp</option>
+            <option value="emp_prob">emp_prob</option>
+            <option value="pic">pic</option>
+            <option value="scp">scp</option>
+            <option value="subtree_average">subtree_average</option>
+        </param>
+    </xml>
+</macros>

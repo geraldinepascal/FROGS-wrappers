@@ -1,0 +1,59 @@
+<tool id="FROGS_Func_dev" name="FROGS Func dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
+    <description>Functionnal abundance predictions based on marker gene sequences</description>
+    <macros>
+        <import>frogs_func_macros.xml</import>
+        <import>picrust2_placeseq_and_copynumber_macros.xml</import>
+        <import>picrust2_functions_macros.xml</import>
+        <import>picrust2_pathways_macros.xml</import>
+    </macros>
+
+    <expand macro="frogs_func_requirements" />
+
+    <command detect_errors="exit_code"><![CDATA[
+        #if $frogs_func_tools.tool_name == "picrust2_placeseq_and_copynumber"
+            @PICRUST2_PLACESEQ_AND_COPYNUMBER_CMD_LINE@
+
+        #elif $frogs_func_tools.tool_name == "picrust2_functions"
+            @PICRUST2_FUNCTIONS_CMD_LINE@
+        #elif $frogs_func_tools.tool_name == "picrust2_pathways"
+            @PICRUST2_PATHWAYS_CMD_LINE@
+        #end if
+    ]]>
+    </command>
+    
+    <inputs>
+        <conditional name="frogs_func_tools">
+            <param name="tool_name" type="select" display="radio" label="Choose the FROGS Func analysis you want to perform.">
+                <option value="" selected="true">-- Please select an analysis --</option>
+                <option value="picrust2_placeseq_and_copynumber">PICRUSt2 placement in a phylogenetic tree and estimation of gene copy number</option>
+                <option value="picrust2_functions">PICRUSt2 estimation of function abundances</option>
+                <option value="picrust2_pathways">PICRUSt2 estimation of pathway abundances</option>
+            </param>
+            <!-- ##################### picrust2_placeseq_and_copynumber  ##################### -->
+            <when value="picrust2_placeseq_and_copynumber">
+                <expand macro="picrust2_placeseq_and_copynumber_inputs" />
+            </when>
+            <!-- ##################### picrust2_functions  ##################### -->
+            <when value="picrust2_functions">
+                <expand macro="picrust2_functions_inputs" />
+            </when>
+            <!-- ##################### picrust2_pathways  ##################### -->
+            <when value="picrust2_pathways">
+                <expand macro="picrust2_pathways_inputs" />
+            </when>
+        </conditional>
+    </inputs>
+    
+    <outputs>
+        <expand macro="frogs_func_outputs" />
+    </outputs>
+    
+    <tests>
+    </tests>
+
+    <help><![CDATA[
+    TODO: Fill in help.
+    ]]>
+    </help>
+
+</tool>
