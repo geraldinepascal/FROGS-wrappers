@@ -1,5 +1,5 @@
-<tool id="FROGS_Stat_dev" name="FROGS_Stat_dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
-    <description>structure and composition analysis</description>
+<tool id="FROGS_Stat_dev" name="FROGS Stat dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
+    <description>Structure, composition differential abundance analysis</description>
     <macros>
         <import>frogs_stat_macros.xml</import>
         <import>phyloseq_import_macros.xml</import>
@@ -54,9 +54,9 @@
     
     <inputs>
         <conditional name="frogs_stat_tools">
-            <param name="tool_name" type="select" display="radio" label="Choose the FROGS_Stat analysis you want to perform.">
+            <param name="tool_name" type="select" display="radio" label="Choose the FROGS Stat analysis you want to perform.">
                 <option value="" selected="true">-- Please select an analysis --</option>
-                <option value="phyloseq_import">Phyloseqy import data</option>
+                <option value="phyloseq_import">Phyloseq import data</option>
                 <option value="phyloseq_composition">Taxonomical composition analysis</option>
                 <option value="phyloseq_alpha_diversity">Alpha diversity analysis</option>
                 <option value="phyloseq_beta_diversity">Beta diversity analysis</option>

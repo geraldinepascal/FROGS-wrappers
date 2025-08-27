@@ -115,7 +115,7 @@
         <data format="tar" name="output_undemultiplexed" label="${tool.name} - ${tool_name}: undemultiplexed.tar.gz">
             <filter>frogs_core_tools['tool_name'] == 'demultiplex'</filter>
         </data>
-        <data format="tsv" name="summary" label="${tool.name} - ${tool_name}: report.tsv">
+        <data format="tsv" name="output_count" label="${tool.name} - ${tool_name}: report.tsv">
             <filter>frogs_core_tools['tool_name'] == 'demultiplex'</filter>
         </data>
         <!-- Specific itsx  -->

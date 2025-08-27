@@ -118,7 +118,7 @@
                 <param argument="--mismatch-rate" type="float" value="0.1" label="Mismatch rate." help="The maximum rate of mismatches in the overlap region"/>
                 <conditional name="merge_software_type">
                     <param argument="--merge-software" type="select" display="radio" label="Merge software" help="Select the software to merge paired-end reads">
-                        <option value="pear" >Pear (only for non commercial, non military use. See Pear licence)</option>
+                        <!-- <option value="pear" >Pear (only for non commercial, non military use. See Pear licence)</option> -->
                         <option value="vsearch" >Vsearch</option>
                         <option value="flash">Flash</option>
                     </param>
