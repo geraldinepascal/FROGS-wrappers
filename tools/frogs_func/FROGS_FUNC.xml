@@ -1,4 +1,4 @@
-<tool id="FROGS_Func_dev" name="FROGS Func dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
+<tool id="FROGS5-Func_dev" name="FROGS-5 Func dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
     <description>Functionnal abundance predictions based on marker gene sequences</description>
     <macros>
         <import>frogs_func_macros.xml</import>
