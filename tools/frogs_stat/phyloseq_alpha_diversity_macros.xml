@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <macros>
     <token name="@PHYLOSEQ_ALPHA_DIVERSITY_CMD_LINE@">
+        
         phyloseq_alpha_diversity.py
             --phyloseq-rdata '$phyloseq_rdata'
             --var-exp '$var_exp'
@@ -16,7 +17,7 @@
         <param argument="--var-exp" type="text" value="" label="Grouping variable" help="Experimental variable used to group samples (Treatment, Host type, etc).">
             <expand macro="sanitizer_validator"/>
         </param>
-        <param argument="--alpha-measures" type="select" multiple="true" display="checkboxes" optional="false" label="The alpha diversity indices to compute">
+        <param argument="--alpha-measures" type="select" multiple="true" optional="false" label="The alpha diversity indices to compute">
              <option value="Observed" selected="True">Observed</option>
              <option value="Chao1" selected="True">Chao1</option>
              <option value="Shannon" selected="True">Shannon</option>
@@ -26,4 +27,26 @@
              <option value="Fisher">Fisher</option>
         </param>
     </xml>
+
+    <xml name="phyloseq_alpha_diversity_test_input">
+        <param name="phyloseq_rdata" value="references/16-phylo_import.Rdata" />
+        <param name="var_exp" value="EnvType" />
+        <param name="alpha_measures" value="Observed,Chao1,Shannon" />
+    </xml>
+
+    <xml name="phyloseq_alpha_diversity_test_output">
+        <output name="alpha_div_tsv" file="references/18-phylo_alpha_div.tsv" compare="diff" lines_diff="0" />
+        <output name="html" count="1" value="references/18-phylo_alpha_div.nb.html" compare="diff" lines_diff="0"/>
+        <output name="html" count="1">
+            <assert_contents>
+                <!-- check anova on Observed alpha metrics -->
+                <has_text text='EnvType      7  18148    2593   5.383 9.78e-05' />
+                <!-- check anova on Chao1 alpha metrics -->
+                <has_text text='EnvType      7  13764    1966   2.492   0.0269' />
+                <!-- check anova on Shannon alpha metrics -->
+                <has_text text='EnvType      7 11.333   1.619   3.553 0.003209' />
+            </assert_contents>
+        </output>
+    </xml>
+
 </macros>

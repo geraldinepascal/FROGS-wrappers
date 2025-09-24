@@ -1,4 +1,4 @@
-<tool id="FROGS_Stat_dev" name="FROGS Stat dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
+<tool id="FROGS5_Stat_dev" name="FROGS-5 Stat dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
     <description>Structure, composition differential abundance analysis</description>
     <macros>
         <import>frogs_stat_macros.xml</import>
@@ -68,6 +68,7 @@
                 <option value="deseq2_asv_visualisation">DESeq2 visualisation analysis for ASV</option>                
                 <option value="deseq2_fun_visualisation">DESeq2 visualisation analysis for FUNCTION</option>      
             </param>
+            <when value=""/>
             <!-- ##################### phyloseq_import  ##################### -->
             <when value="phyloseq_import">
                 <expand macro="phyloseq_import_inputs" />
@@ -120,11 +121,40 @@
     </outputs>
     
     <tests>
+        <!-- ##################### phyloseq_import  OK ##################### -->
+        <!-- <test expect_num_outputs="2">
+            <conditional name="frogs_stat_tools">
+                <param name="tool_name" value="phyloseq_import"/>
+                <expand macro="phyloseq_import_test_input"/>
+            </conditional>
+            <expand macro="phyloseq_import_test_output"/>
+        </test> -->
+        <!-- ##################### phyloseq_composition  OK ##################### -->
+        <!-- <test expect_num_outputs="1">
+            <conditional name="frogs_stat_tools">
+                <param name="tool_name" value="phyloseq_composition"/>
+                <expand macro="phyloseq_composition_test_input"/>
+            </conditional>
+            <expand macro="phyloseq_composition_test_output"/>
+        </test> -->
+        <!-- ##################### phyloseq_alpha_diversity  OK ##################### -->
+        <!-- <test expect_num_outputs="2">
+            <conditional name="frogs_stat_tools">
+                <param name="tool_name" value="phyloseq_alpha_diversity"/>
+                <expand macro="phyloseq_alpha_diversity_test_input"/>
+            </conditional>
+            <expand macro="phyloseq_alpha_diversity_test_output"/>
+        </test>         -->
     </tests>
 
     <help><![CDATA[
-    TODO: Fill in help.
+    Help to write
     ]]>
     </help>
+
+    <citations>
+        <citation type="doi">10.1093/bioinformatics/btx791</citation>
+        <citation type="doi">10.1093/bib/bbab318</citation>
+    </citations>
 
 </tool>

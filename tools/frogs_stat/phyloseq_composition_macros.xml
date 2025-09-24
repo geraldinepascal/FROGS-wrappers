@@ -30,6 +30,30 @@
         <param argument="--number-of-taxa" type="integer" value="9" min="1" label="Number of most abundant taxa to keep" help="Ex: 9, i.e. Tool keeps the 9 most abundant taxa and the remaining taxa are aggregated in a group 'Other'"/>
     </xml>
 
+    <xml name="phyloseq_composition_test_input">
+        <param name="phyloseq_rdata" value="references/16-phylo_import.Rdata"/>
+        <param name="var_exp" value="EnvType"/>
+        <param name="taxa_rank_1" value="Kingdom"/>
+        <param name="taxa_set_1" value="Bacteria"/>
+        <param name="taxa_rank_2" value="Phylum"/>
+        <param name="number_of_taxa" value="9" />
+    </xml>
 
+    <xml name="phyloseq_composition_test_output">
+        <output name="html" count="1">
+            <assert_contents>
+                <!-- check html report contents -->
+                <has_text_matching expression="Phylum: Actinobacteria.*Sample: BHT0.LOT07.*Abundance: 0.3806484555" />
+                <has_text_matching expression="Phylum: Bacteroidetes.*Sample: BHT0.LOT07.*Abundance: 0.0026380734" />
+                <has_text_matching expression="Phylum: Cyanobacteria.*Sample: BHT0.LOT07.*Abundance: 0.0000000000" />
+                <has_text_matching expression="Phylum: Firmicutes.*Sample: BHT0.LOT07.*Abundance: 0.6024168156" />
+                <has_text_matching expression="Phylum: Fusobacteria.*Sample: BHT0.LOT07.*Abundance: 0.0002552974" />
+                <has_text_matching expression="Phylum: Proteobacteria.*Sample: BHT0.LOT07.*Abundance: 0.0137860608" />
+                <has_text_matching expression="Phylum: Spirochaetes.*Sample: BHT0.LOT07.*Abundance: 0.0000000000" />
+                <has_text_matching expression="Phylum: Tenericutes.*Sample: BHT0.LOT07.*Abundance: 0.0002552974" />
+                <has_text_matching expression="Phylum: Other.*Sample: BHT0.LOT07.*Abundance: 0.0000000000" />
+            </assert_contents>
+        </output>
+    </xml>
                 
 </macros>
