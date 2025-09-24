@@ -58,10 +58,10 @@
 
     <xml name="deseq2_fun_preprocess_inputs">
         <!-- Files -->
-        <param argument="--input-functions-abund" name="input_functions_abund" type="data" format="tsv,tabular" label="Function abundances file " help="Input file of predicted function abundances (picrust2_functions_unstrat.tsv from FROGS_Func picrust_function tool)."/>
-        <param argument="--sample-metadata-tsv" name="sample_metadata_tsv" type="data" format="tabular,tsv" label="Metadata associated to samples (format: TSV)" help="The file contains the metadata that characterise each sample."/>
+        <param argument="--input-functions-abund" type="data" format="tsv,tabular" label="Function abundances file " help="Input file of predicted function abundances (picrust2_functions_unstrat.tsv from FROGS_Func picrust_function tool)."/>
+        <param argument="--sample-metadata-tsv" type="data" format="tabular,tsv" label="Metadata associated to samples (format: TSV)" help="The file contains the metadata that characterise each sample."/>
         <!-- Parameters -->        
-        <param argument="--var-exp" name="var_exp" type="text" label="Experimental variable" help="One of your sample metadata variable that could have an effect on ASV/FUNCTION abundances. Ex: Treatment, etc.">
+        <param argument="--var-exp" type="text" label="Experimental variable" help="One of your sample metadata variable that could have an effect on ASV/FUNCTION abundances. Ex: Treatment, etc.">
             <expand macro="sanitizer_validator"/>
         </param>
         <conditional name="multiple">
