@@ -55,4 +55,62 @@
         </conditional>
         <param argument="--padj" type="float" value="0.05" label="Adjusted p-value threshold" help="Threshold used for statistical significance of the differentially abundant analysis"/>
     </xml>
+
+    <xml name="deseq2_asv_visualisation_test_input">
+        <param name="phyloseq_rdata" value="references/16-phylo_import.Rdata" />
+        <param name="deseq_rdata" value="references/23-deseq2_preprocess_asv.Rdata"/>
+        <param name="var_exp" value="EnvType" />
+        <conditional name="varType">
+            <param name="vartType_selected" value="qualitative"/>
+            <param name="mod1" value="BoeufHache"/>
+            <param name="mod2" value="SaumonFume"/>
+        </conditional>
+        <param name="padj" value="0.05" />
+    </xml>
+
+    <xml name="deseq2_asv_visualisation_test_output">
+        <output name="html" count="1">
+            <assert_contents>
+                <has_text text="FROGSSTAT DESeq2: Visualisation (version 5.1.0)" />
+                <has_text text='["otu_01582",' />
+                <!-- baseMean value of otu_01582 -->
+                <has_text text='[52.44551094904603' />
+                <!-- Log2 FC of otu_01582 -->
+                <has_text text='[21.66238907239834' />
+                <!-- lfcSE of otu_01582 -->
+                <has_text text='[2.208926755092065' />
+                <!-- pvalue otu_01582 -->
+                <has_text text='[1.053071923664623e-22' />
+            </assert_contents>
+        </output>
+    </xml>
+
+        <xml name="deseq2_fun_visualisation_test_input">
+        <param name="phyloseq_rdata" value="references/23-phyloseq_functions.Rdata" />
+        <param name="deseq_rdata" value="references/23-deseq2_preprocess_func.Rdata"/>
+        <param name="var_exp" value="EnvType" />
+        <conditional name="varType">
+            <param name="vartType_selected" value="qualitative"/>
+            <param name="mod1" value="BoeufHache"/>
+            <param name="mod2" value="SaumonFume"/>
+        </conditional>
+        <param name="padj" value="0.05" />
+    </xml>
+
+    <xml name="deseq2_fun_visualisation_test_output">
+        <output name="html" count="1">
+            <assert_contents>
+                <has_text text="FROGSSTAT DESeq2: Visualisation (version 5.1.0)" />
+                <has_text text='["EC:1.3.1.76",' />
+                <!-- baseMean value of EC:1.3.1.76 -->
+                <has_text text='[753.1103444315089' />
+                <!-- Log2 FC of EC:1.3.1.76 -->
+                <has_text text='[-8.386170731613163' />
+                <!-- lfcSE of EC:1.3.1.76 -->
+                <has_text text='[1.005359955086068' />
+                <!-- pvalue EC:1.3.1.76 -->
+                <has_text text='[7.337830601151377e-17' />
+            </assert_contents>
+        </output>
+    </xml>
 </macros>

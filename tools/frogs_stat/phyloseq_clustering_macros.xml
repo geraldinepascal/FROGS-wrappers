@@ -17,4 +17,14 @@
             <expand macro="sanitizer_validator"/>
         </param>
     </xml>
+
+    <xml name="phyloseq_clustering_test_input">
+        <param name="phyloseq_rdata" value="references/16-phylo_import.Rdata" />
+        <param name="var_exp" value="EnvType" />
+		<param name="beta_distance_matrix" value="references/unifrac.tsv"/>
+    </xml>
+
+    <xml name="phyloseq_clustering_test_output">
+        <output name="html" count="1" file="references/21-phylo_clustering.nb.html" compare="diff" lines_diff="0"/>
+    </xml>
 </macros>
