@@ -28,6 +28,8 @@
             #if $is_primer_in_seq.primer_choice == "true"
                 --five-prim-primer '$is_primer_in_seq.five_prim_primer'
                 --three-prim-primer '$is_primer_in_seq.three_prim_primer'
+            #else
+                --without-primers
             #end if
 
             ## PROCESS TYPE
@@ -89,6 +91,7 @@
                      <expand macro="only_letter_sanitizer_validator"/>
                 </param>
             </when>
+            <when value="false"/>
         </conditional>
 
         <!-- Preprocessing only, clustering or denoising -->
@@ -98,6 +101,7 @@
                 <option value="clustering" selected="true">Preprocessing and clustering with Swarm</option>
                 <option value="denoising">Preprocessing and denoising with Dada2. /!\ Only Pacbio sequencers are currently supported /!\.</option>
             </param>
+            <when value="preprocess-only"/>
             <when value="clustering">
                 <param argument="--distance" type="integer" min="1" value="1" optional="false" label="Distance threshold" help="The distance threshold for clustering with Swarm"/>
                 <conditional name="cluster_improvements">
@@ -106,6 +110,9 @@
                         <option value="--denoising">Denoise with a pre-clustering (--distance : 1) step </option>
                         <option value="">Do not refine or denoise clustering</option>
                     </param>
+                    <when value="--fastidious"/>
+                    <when value="--denoising"/>
+                    <when value=""/>
                 </conditional>
             </when>
             <when value="denoising">
@@ -116,5 +123,71 @@
                 </param>
             </when>
         </conditional>
+    </xml>
+
+    <!-- Test swarm -->
+    <xml name="swarm_processing_long_reads_test_input">
+        <!-- Files -->
+        <conditional name="input_files">
+            <param name="file_type" value="archive" />
+            <param name="input_archive" ftype="tgz" value="input/LongReads.tar.gz" />
+        </conditional>
+
+        <!-- Amplicons Parameters-->
+        <param name="min_amplicon_size" value="400"/>
+        <param name="max_amplicon_size" value="3000"/>
+
+        <!-- Primers -->
+        <conditional name="is_primer_in_seq">
+            <param name="primer_choice" value="true" />
+            <param name="five_prim_primer" value="AGRGTTYGATYMTGGCTCAG" />
+            <param name="three_prim_primer" value="AAGTCGTAACAAGGTARCY"/>
+        </conditional>
+        
+        <!-- Preprocessing only, clustering or denoising -->
+        <conditional name="process_type">
+            <param name="process" value="clustering" />
+            <conditional name="cluster_improvements">
+                <param name="clustering_options" value="" />
+            </conditional>
+        </conditional>
+    </xml>
+
+    <xml name="swarm_processing_long_reads_test_output">
+        <output name="output_biom" file="references/01-denoising-long-swarm.biom" compare="sim_size" delta="0" />
+        <output name="output_fasta" file="references/01-denoising-long-swarm.fasta" compare="diff" lines_diff="0" />
+        <output name="output_cluster_compo" file="references/01-denoising-long-swarm_compo.tsv" compare="diff" lines_diff="0" />
+        <output name="html" file="references/01-denoising-long-swarm.html" compare="diff" lines_diff="0" />
+    </xml>
+
+    <!-- Test dada2 -->
+    <xml name="dada2_processing_long_reads_test_input">
+        <!-- Files -->
+        <conditional name="input_files">
+            <param name="file_type" value="archive" />
+            <param name="input_archive" ftype="tgz" value="input/LongReads.tar.gz" />
+        </conditional>
+
+        <!-- Amplicons Parameters-->
+        <param name="min_amplicon_size" value="400"/>
+        <param name="max_amplicon_size" value="3000"/>
+
+        <!-- Primers -->
+        <conditional name="is_primer_in_seq">
+            <param name="primer_choice" value="true" />
+            <param name="five_prim_primer" value="AGRGTTYGATYMTGGCTCAG" />
+            <param name="three_prim_primer" value="AAGTCGTAACAAGGTARCY"/>
+        </conditional>
+        
+        <!-- Preprocessing only, clustering or denoising -->
+        <conditional name="process_type">
+            <param name="process" value="denoising" />
+        </conditional>
+    </xml>
+
+    <xml name="dada2_processing_long_reads_test_output">
+        <output name="output_biom" file="references/01-denoising-long-dada2.biom" compare="sim_size" delta="0" />
+        <output name="output_fasta" file="references/01-denoising-long-dada2.fasta" compare="diff" lines_diff="0" />
+        <output name="html" file="references/01-denoising-long-dada2.html" compare="diff" lines_diff="0" />
     </xml>
 </macros>
