@@ -65,7 +65,7 @@
                 --five-prim-primer '$is_primer_in_seq.five_prim_primer'
                 --three-prim-primer '$is_primer_in_seq.three_prim_primer'
             #else
-				--without-primers
+                --without-primers
             #end if
 
             ## PROCESS TYPE
@@ -125,6 +125,7 @@
                         <option value="vsearch" >Vsearch</option>
                         <option value="flash">Flash</option>
                     </param>
+                    <when value="vsearch"/>
                     <when value="flash">
                         <param argument="--expected-amplicon-size" type="integer" min="0" label="Expected amplicon length" help="Specify the maximum expected amplicon length (covers ~90% of amplicons)" />
                     </when>
@@ -170,6 +171,7 @@
                      <expand macro="only_letter_sanitizer_validator"/>
                 </param>
             </when>
+            <when value="false"/>
         </conditional>
 
         <!-- Preprocessing only, clustering or denoising -->
@@ -179,6 +181,7 @@
                 <option value="Clustering Swarm" selected="true">Preprocessing and clustering with Swarm</option>
                 <option value="Denoising DADA2">Preprocessing and denoising with DADA2</option>
             </param>
+            <when value="Preprocess only"/>
             <when value="Clustering Swarm">
                 <param argument="--distance" type="integer" min="1" value="1" optional="false" label="Swarm distance threshold" help="Distance threshold used by Swarm for clustering."/>
                 <conditional name="cluster_improvements">
@@ -187,6 +190,9 @@
                         <option value="--denoising">With --distance > 1, perform a pre-clustering step</option>
                         <option value="">No clustering refinement</option>
                     </param>
+                    <when value="--fastidious"/>
+                    <when value="--denoising"/>
+                    <when value=""/>
                 </conditional>
             </when>
             <when value="Denoising DADA2">
@@ -197,5 +203,82 @@
                 </param>
             </when>
         </conditional>
+    </xml>
+
+    <!-- Test swarm -->
+    <xml name="swarm_processing_short_reads_test_input">
+        <!-- Files -->
+        <conditional name="fastq_input">
+            <param name="input_type" value="paired" />
+            <conditional name="input_files">
+                <param name="file_type" value="archive" />
+                <param name="input_archive" ftype="tgz" value="input/test_dataset.tar.gz" />
+            </conditional>
+            <!-- Paired parameters -->
+            <param name="R1_size" value="266" />
+            <param name="R2_size" value="267"/>
+            <param name="mismatch_rate" value="0.15"/>
+        </conditional>
+
+        <!-- Amplicons Parameters-->
+        <param name="min_amplicon_size" value="44"/>
+        <param name="max_amplicon_size" value="490"/>
+
+        <!-- Primers -->
+        <conditional name="is_primer_in_seq">
+            <param name="primer_choice" value="true" />
+            <param name="five_prim_primer" value="GGCGVACGGGTGAGTAA" />
+            <param name="three_prim_primer" value="GTGCCAGCNGCNGCGG"/>
+        </conditional>
+        
+        <!-- Preprocessing only, clustering or denoising -->
+        <conditional name="process_type">
+            <param name="process" value="clustering" />
+        </conditional>
+    </xml>
+
+    <xml name="swarm_processing_short_reads_test_output">
+        <output name="output_biom" file="references/01-denoising-swarm-vsearch.biom" compare="sim_size" delta="0" />
+        <output name="output_fasta" file="references/01-denoising-swarm-vsearch.fasta" compare="diff" lines_diff="0" />
+        <output name="output_cluster_compo" file="references/01-denoising-swarm-vsearch_compo.tsv" compare="diff" lines_diff="0" />
+        <output name="html" file="references/01-denoising-swarm-vsearch.html" compare="diff" lines_diff="0" />
+    </xml>
+
+    <!-- Test dada2 -->
+    <xml name="dada2_processing_short_reads_test_input">
+        <!-- Files -->
+        <conditional name="fastq_input">
+            <param name="input_type" value="paired" />
+            <conditional name="input_files">
+                <param name="file_type" value="archive" />
+                <param name="input_archive" ftype="tgz" value="input/verysmallITS.tar.gz" />
+            </conditional>
+            <!-- Paired parameters -->
+            <param name="R1_size" value="300" />
+            <param name="R2_size" value="300"/>
+            <param name="keep_unmerged" value="true" />
+        </conditional>
+
+        <!-- Amplicons Parameters-->
+        <param name="min_amplicon_size" value="50"/>
+        <param name="max_amplicon_size" value="1000"/>
+
+        <!-- Primers -->
+        <conditional name="is_primer_in_seq">
+            <param name="primer_choice" value="true" />
+            <param name="five_prim_primer" value="TAGACTCGTCAHCGATGAAGAACGYRG" />
+            <param name="three_prim_primer" value="GCATATCAATAAGCGSAGGAA"/>
+        </conditional>
+        
+        <!-- Preprocessing only, clustering or denoising -->
+        <conditional name="process_type">
+            <param name="process" value="denoising" />
+        </conditional>
+    </xml>
+
+    <xml name="dada2_processing_short_reads_test_output">
+        <output name="output_biom" file="references/01-denoising-dada2-clusters.biom" compare="sim_size" delta="0" />
+        <output name="output_fasta" file="references/01-denoising-dada2-clusters.fasta" compare="diff" lines_diff="0" />
+        <output name="html" file="references/01-denoising-dada2.html" compare="diff" lines_diff="0" />
     </xml>
 </macros>

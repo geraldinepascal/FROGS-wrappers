@@ -25,5 +25,19 @@
         <param name="other_beta_method" type="text" optional="true" label="Other method" help="The other methods of beta diversity that you want to use (comma separated value). c.f. details below.">
             <expand macro="sanitizer_validator"/>
         </param>
-    </xml>              
+    </xml>      
+    
+    <!-- Test -->
+    <xml name="phyloseq_beta_diversity_test_input">
+        <param name="phyloseq_rdata" value="references/16-phylo_import.Rdata" />
+        <param name="var_exp" value="EnvType" />
+        <param name="beta_distance_methods" value="cc,unifrac"/>
+    </xml>
+
+    <xml name="phyloseq_beta_diversity_test_output">
+        <output name="html" file="references/19-phylo_beta_div.nb.html" compare="diff" lines_diff="0" count="3" />
+        <output name="html">
+            <discovered_dataset designation="unifrac.tsv" ftype="tsv" file="references/unifrac.tsv" compare="diff" lines_diff="0"/>
+        </output>
+    </xml>
 </macros>

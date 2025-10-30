@@ -31,6 +31,7 @@
         </param>
     </xml>
 
+    <!-- Test -->
     <xml name="phyloseq_import_test_input">
         <param name="input_biom" value="input/chaillou.biom"/>
         <param name="sample_metadata_tsv" value="input/sample_metadata.tsv"/>

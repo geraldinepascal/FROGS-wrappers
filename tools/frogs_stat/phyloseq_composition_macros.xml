@@ -30,6 +30,7 @@
         <param argument="--number-of-taxa" type="integer" value="9" min="1" label="Number of most abundant taxa to retain" help="Number of the most abundant taxa to keep (e.g., 9). All remaining taxa are grouped under 'Other'."/>
     </xml>
 
+    <!-- Test -->
     <xml name="phyloseq_composition_test_input">
         <param name="phyloseq_rdata" value="references/16-phylo_import.Rdata"/>
         <param name="var_exp" value="EnvType"/>

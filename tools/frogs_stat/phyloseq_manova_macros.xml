@@ -17,4 +17,21 @@
             <expand macro="sanitizer_validator"/>
         </param>
     </xml>
+
+    <!-- Test -->
+    <xml name="phyloseq_manova_test_input">
+        <param name="phyloseq_rdata" value="references/16-phylo_import.Rdata" />
+        <param name="var_exp" value="EnvType" />
+		<param name="beta_distance_matrix" value="references/unifrac.tsv"/>
+    </xml>
+
+    <xml name="phyloseq_manova_test_output">
+        <output name="html" count="1">
+         <assert_contents>
+                <has_text text='EnvType    7    7.6565 1.09379  13.699 0.63132  1e-04 ***' />
+                <has_text text='Residuals 56    4.4713 0.07984         0.36868' />
+                <has_text text='Total     63   12.1278                 1.00000' />
+            </assert_contents>
+        </output>
+    </xml>
 </macros>

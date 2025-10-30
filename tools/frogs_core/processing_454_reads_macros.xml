@@ -84,6 +84,7 @@
                 <option value="Preprocess only">Preprocessing only</option>
                 <option value="Clustering Swarm" selected="true">Preprocessing and clustering with Swarm</option>
             </param>
+            <when value="Preprocess only"/>
             <when value="Clustering Swarm">
                 <param argument="--distance" type="integer" min="1" value="1" optional="false" label="Swarm distance threshold" help="Distance threshold used by Swarm for clustering."/>
                 <conditional name="cluster_improvements">
@@ -92,8 +93,46 @@
                         <option value="--denoising">With --distance > 1, perform a pre-clustering step</option>
                         <option value="">No clustering refinement</option>
                     </param>
+                    <when value="--fastidious"/>
+                    <when value="--denoising"/>
+                    <when value=""/>
                 </conditional>
             </when>
         </conditional>
+    </xml>
+
+    <!-- Test swarm -->
+    <xml name="swarm_processing_454_reads_test_input">
+        <!-- Files -->
+        <conditional name="input_files">
+            <param name="file_type" value="files_by_samples" />
+            <repeat name="samples">
+                <param name="samples_names" value="SRR443364_clipped" />
+                <param name="input_R1" ftype="fastq" value="input/SRR443364_clipped.fastq.gz" />
+            </repeat>
+        </conditional>
+
+        <!-- Amplicons Parameters-->
+        <param name="min_amplicon_size" value="340"/>
+        <param name="max_amplicon_size" value="450"/>
+
+        <!-- Primers -->
+        <param name="five_prim_primer" value="ACGGGAGGCAGCAG" />
+        <param name="three_prim_primer" value="AGGATTAGATACCCTGGTA"/>
+        
+        <!-- Preprocessing only, clustering or denoising -->
+        <conditional name="process_type">
+            <param name="process" value="clustering" />
+            <conditional name="cluster_improvements">
+                <param name="clustering_options" value="" />
+            </conditional>
+        </conditional>
+    </xml>
+
+    <xml name="swarm_processing_454_reads_test_output">
+        <output name="output_biom" file="references/01-denoising-454-swarm.biom" compare="sim_size" delta="0" />
+        <output name="output_fasta" file="references/01-denoising-454-swarm.fasta" compare="diff" lines_diff="0" />
+        <output name="output_cluster_compo" file="references/01-denoising-454-swarm_compo.tsv" compare="diff" lines_diff="0" />
+        <output name="html" file="references/01-denoising-454-swarm.html" compare="diff" lines_diff="0" />
     </xml>
 </macros>

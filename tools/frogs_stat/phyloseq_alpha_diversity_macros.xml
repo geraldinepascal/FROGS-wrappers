@@ -28,6 +28,7 @@
         </param>
     </xml>
 
+    <!-- Test -->
     <xml name="phyloseq_alpha_diversity_test_input">
         <param name="phyloseq_rdata" value="references/16-phylo_import.Rdata" />
         <param name="var_exp" value="EnvType" />

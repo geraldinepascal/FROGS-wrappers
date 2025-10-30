@@ -23,4 +23,21 @@
             <option value="DPCoA" >DPCoA</option>
         </param>
     </xml>
+
+    <!-- Test -->
+    <xml name="phyloseq_structure_test_input">
+        <param name="phyloseq_rdata" value="references/16-phylo_import.Rdata" />
+        <param name="var_exp" value="EnvType" />
+		<param name="beta_distance_matrix" value="references/unifrac.tsv"/>
+        <param name="ordination_method" value="MDS" />
+    </xml>
+
+    <xml name="phyloseq_structure_test_output">
+        <output name="html" count="1">
+            <assert_contents>
+                <has_text text='"title":{"text":"Axis.1   [22.1%]' />
+                <has_text text='"title":{"text":"Axis.2   [12.8%]' />
+            </assert_contents>
+        </output>
+    </xml>
 </macros>
