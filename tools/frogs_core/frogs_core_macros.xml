@@ -60,7 +60,7 @@
 
     <xml name="taxonomic_ranks">
         <param argument="--taxonomic-ranks" name="taxonomic_ranks" type="text" optional="false" value="Domain Phylum Class Order Family Genus Species" 
-            label="Taxonomic ranks" help="The ordered taxonomic rank levels of the reference affiliation database. Each rank is separated by one space">
+            label="Taxonomic ranks" help="Specify the ordered taxonomic rank levels used in the reference database. Separate each rank by a single space.">
             <sanitizer invalid_char="">
                 <valid initial="string.letters">
                     <add value=" " />
@@ -72,7 +72,7 @@
 
     <xml name="frogs_core_outputs">
         <!-- HTML report : all but demultiplex, affiliation_postprocess, biom_to_tsv -->
-        <data format="html" name="html" label="${tool.name} - ${tool_name}: report.nb.html">
+        <data format="html" name="html" label="${tool.name} - ${tool_name}: report.html">
             <filter> frogs_core_tools['tool_name'] != 'demultiplex' </filter>
             <filter> frogs_core_tools['tool_name'] != 'affiliation_postprocess' </filter>
             <filter> frogs_core_tools['tool_name'] != 'biom_to_tsv' </filter>
@@ -89,7 +89,7 @@
             <filter> frogs_core_tools['tool_name'] != 'affiliation_stats'</filter>
             <filter> frogs_core_tools['tool_name'] != 'biom_to_tsv'</filter>
             <filter> frogs_core_tools['tool_name'] != 'biom_to_std_biom'</filter>
-            <filter> frogs_core_tools['extract_fasta'] == "yes" </filter> <!-- tsv_to_biom parameter -->
+            <filter> frogs_core_tools['extract_fasta'] == 'yes' </filter> <!-- tsv_to_biom parameter -->
         </data>
         <!-- ASV abundance biom : all but tree, demultiplex, cluster_stats, affiliation_stats, biom_to_tsv  -->
         <data format="biom1" name="output_biom" label="${tool.name} - ${tool_name}: abundance.biom">
@@ -103,6 +103,7 @@
         <!-- Specific processing_short/454/long_reads with clustering  -->
         <data format="txt" name="output_cluster_compo" label="${tool.name} - ${tool_name}: swarms_composition.txt">
             <filter>frogs_core_tools['process_type']['process'] == 'clustering' </filter>
+            <filter>frogs_core_tools['tool_name'] == 'processing_short_reads' or frogs_core_tools['tool_name'] == 'processing_long_reads' or frogs_core_tools['tool_name'] == 'processing_454_reads' </filter>
         </data>
         <!-- Specific cluster_filters  -->
         <data format="tsv" name="output_excluded" label="${tool.name} - ${tool_name}: excluded.tsv">
@@ -142,7 +143,7 @@
             <filter>frogs_core_tools['tool_name'] == 'biom_to_tsv'</filter>
         </data>
         <data format="tsv" name="output_multihit" label="${tool.name} - ${tool_name}: multi-affiliations.tsv">
-            <filter>frogs_core_tools['tool_name'] == 'biom_to_tsv' or frogs_core_tools['tool_name'] == 'biom_to_std_biom'</filter>
+            <filter>(frogs_core_tools['tool_name'] == 'biom_to_tsv' and frogs_core_tools['extract_multi_align'] == 'yes') or frogs_core_tools['tool_name'] == 'biom_to_std_biom'</filter>
         </data>
         <!-- Specific biom_to_std_biom  -->
         <data format="biom1" name="output_std_biom" label="${tool.name} - ${tool_name}: abundance.std.biom">

@@ -47,7 +47,7 @@
 			<validator type="regex">[A-Za-z ]+</validator>
 		</param>
 		<conditional name="affiliation">
-			<param name="affiliation_type" type="select" label="Affiliation to process" help="Select the type of affiliation to process. If your affiliation has been processed with an external tool: use 'Custom'.">
+			<param name="affiliation_type" type="select" label="Affiliation to process" help="Select the type of affiliation to process. If your affiliation was generated with an external tool: use 'Custom'.">
 				<option value="FROGS_blast" selected="true">FROGS Blast</option>
 				<option value="FROGS_rdp">FROGS RDP</option>
 				<option value="custom">Custom</option>

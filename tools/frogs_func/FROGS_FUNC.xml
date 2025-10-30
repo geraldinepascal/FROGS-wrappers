@@ -1,5 +1,5 @@
 <tool id="FROGS5-Func_dev" name="FROGS-5 Func dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
-    <description>Functionnal abundance predictions based on marker gene sequences</description>
+    <description>Prediction of functional abundances using marker gene sequences</description>
     <macros>
         <import>frogs_func_macros.xml</import>
         <import>picrust2_placeseq_and_copynumber_macros.xml</import>
@@ -23,11 +23,11 @@
     
     <inputs>
         <conditional name="frogs_func_tools">
-            <param name="tool_name" type="select" display="radio" label="Choose the FROGS Func analysis you want to perform.">
-                <option value="" selected="true">-- Please select an analysis --</option>
-                <option value="picrust2_placeseq_and_copynumber">PICRUSt2 placement in a phylogenetic tree and estimation of gene copy number</option>
-                <option value="picrust2_functions">PICRUSt2 estimation of function abundances</option>
-                <option value="picrust2_pathways">PICRUSt2 estimation of pathway abundances</option>
+            <param name="tool_name" type="select" display="radio" label="Select a tool from the FROGS Func suite to run your analysis.">
+                <option value="" selected="true">-- Please select a tool --</option>
+                <option value="picrust2_placeseq_and_copynumber"> Tool 1: sequence placement and gene copy number estimation (PICRUSt2)</option>
+                <option value="picrust2_functions">Tool 2: functional abundance estimation (PICRUSt2)</option>
+                <option value="picrust2_pathways">Tool 3: pathway abundance estimation (PICRUSt2)</option>
             </param>
             <!-- ##################### picrust2_placeseq_and_copynumber  ##################### -->
             <when value="picrust2_placeseq_and_copynumber">
@@ -52,7 +52,7 @@
     </tests>
 
     <help><![CDATA[
-    TODO: Fill in help.
+    For more information and detailed documentation, visit the FROGS website https://frogs.inrae.fr.
     ]]>
     </help>
 

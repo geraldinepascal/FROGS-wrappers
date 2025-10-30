@@ -20,22 +20,24 @@
             
             --output-biom '$output_biom'
             --html '$html'
+            --nb-cpus 8
+            --java-mem 16
 
     ]]></token>
 
     <xml name="taxonomic_affiliation_inputs">
         <!-- Files -->
-        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />/>
-        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
+        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (.fasta)" help="The sequence file to be taxonomically affiliated." />/>
+        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (.biom)" help="The abundance file linked to the sequence to be taxonomically affiliated." />
 
          <!-- Database Choice -->
-        <param name="ref_file" type="select" label="Using reference database" help="Select reference from the list">
+        <param name="ref_file" type="select" label="Choose the reference database" help="Select the reference database from the list.">
             <options from_data_table="frogs_db"/>
-            <validator type="no_options" message="A built-in database is not available"/>
+            <validator type="no_options" message="No database is available"/>
         </param>
 
         <!-- Parameters -->
-        <param argument="--rdp" type="select" display="radio" label="Also perform RDP assignation?" help="Taxonomy affiliation will be perform thanks to Blast. This option allows to perform it also with RDP classifier tool (default No)">
+        <param argument="--rdp" type="select" display="radio" label="Run RDP taxonomic affiliation in addition to BLAST" help="Taxonomic affiliation is performed using BLAST. Enabling this option also runs taxonomic affiliation with the RDP Classifier (default: No).">
             <option value="yes" >Yes</option>
             <option value="no" selected="true" >No</option>
 		</param>

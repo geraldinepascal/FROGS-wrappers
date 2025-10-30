@@ -1,5 +1,5 @@
 <tool id="FROGS5_Stat_dev" name="FROGS-5 Stat dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
-    <description>Structure, composition differential abundance analysis</description>
+    <description>Analysis of community structure, composition, and differential abundances</description>
     <macros>
         <import>frogs_stat_macros.xml</import>
         <import>phyloseq_import_macros.xml</import>
@@ -54,19 +54,19 @@
     
     <inputs>
         <conditional name="frogs_stat_tools">
-            <param name="tool_name" type="select" display="radio" label="Choose the FROGS Stat analysis you want to perform.">
-                <option value="" selected="true">-- Please select an analysis --</option>
-                <option value="phyloseq_import">Phyloseq import data</option>
-                <option value="phyloseq_composition">Taxonomical composition analysis</option>
-                <option value="phyloseq_alpha_diversity">Alpha diversity analysis</option>
-                <option value="phyloseq_beta_diversity">Beta diversity analysis</option>
-                <option value="phyloseq_clustering">Clustering analysis</option>
-                <option value="phyloseq_structure">Structure analysis (based on ordination methods)</option>
-                <option value="phyloseq_manova">Multivariate Analysis of Variance</option>
-                <option value="deseq2_asv_preprocess">DESeq2 preprocess analysis for ASV</option>
-                <option value="deseq2_fun_preprocess">DESeq2 preprocess analysis for FUNCTION</option>
-                <option value="deseq2_asv_visualisation">DESeq2 visualisation analysis for ASV</option>                
-                <option value="deseq2_fun_visualisation">DESeq2 visualisation analysis for FUNCTION</option>      
+            <param name="tool_name" type="select" display="radio" label="Select a tool from the FROGS Stat suite to run your analysis.">
+                <option value="" selected="true">-- Please select a tool --</option>
+                <option value="phyloseq_import">Phyloseq: import data</option>
+                <option value="phyloseq_composition">Phyloseq: Taxonomic composition analysis</option>
+                <option value="phyloseq_alpha_diversity">Phyloseq: Alpha diversity analysis</option>
+                <option value="phyloseq_beta_diversity">Phyloseq: Beta diversity analysis</option>
+                <option value="phyloseq_clustering">Phyloseq: Clustering analysis</option>
+                <option value="phyloseq_structure">Phyloseq: Structure analysis (based on ordination methods)</option>
+                <option value="phyloseq_manova">Phyloseq: Multivariate Analysis of Variance</option>
+                <option value="deseq2_asv_preprocess">DESeq2: preprocess analysis for ASV</option>
+                <option value="deseq2_fun_preprocess">DESeq2: preprocess analysis for FUNCTION</option>
+                <option value="deseq2_asv_visualisation">DESeq2: visualisation analysis for ASV</option>                
+                <option value="deseq2_fun_visualisation">DESeq2: visualisation analysis for FUNCTION</option>      
             </param>
             <when value=""/>
             <!-- ##################### phyloseq_import  ##################### -->
@@ -148,7 +148,7 @@
     </tests>
 
     <help><![CDATA[
-    Help to write
+    For more information and detailed documentation, visit the FROGS website https://frogs.inrae.fr.
     ]]>
     </help>
 

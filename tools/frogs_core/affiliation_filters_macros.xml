@@ -47,14 +47,14 @@
                 --mask
             #end if
 
-            ## STAT PARAMETERS
+            ## SUMMARY PARAMETERS
 
-            #if $stat.affiliation.affiliation_type == "FROGS_blast"
+            #if $summary.affiliation.affiliation_type == "FROGS_blast"
                 --multiple-tag 'blast_affiliations'
                 --tax-consensus-tag 'blast_taxonomy'
                 --identity-tag 'perc_identity'
                 --coverage-tag 'perc_query_coverage'
-            #elif $stat.affiliation.affiliation_type == "FROGS_rdp"
+            #elif $summary.affiliation.affiliation_type == "FROGS_rdp"
                 --taxonomy-tag 'rdp_taxonomy'
                 --bootstrap-tag 'rdp_bootstrap'
             #end if
@@ -134,13 +134,13 @@
                     </sanitizer>
                     <validator type="regex">[A-Za-z ]+</validator>
                 </param>
-                <param name="min_rdp_bootstrap" type="float" min="0.0" max="1.0" optional="true" label="Minimum bootstrap" help="Fill these two fields if you want this treatment"/>
+                <param name="min_rdp_bootstrap" type="float" min="0.0" max="1.0" optional="true" label="Minimum bootstrap" help="Fill these two fields if you want this treatment (--min-rdp-bootstrap)"/>
             </section>
         </section>
         <!-- Stat parameters -->
-         <section name="stat" title="Stat parameters" expanded="true">
+         <section name="summary" title="AFfiliation summary parameters" expanded="true">
             <conditional name="affiliation">
-                <param name="affiliation_type" type="select" label="Affiliation to process" help="Select the type of affiliation to process. If your affiliation has been processed with an external tool: use 'Custom'.">
+                <param name="affiliation_type" type="select" label="Affiliation to process" help="Select the type of affiliation to process.">
                     <option value="FROGS_blast" selected="true">FROGS Blast</option>
                     <option value="FROGS_rdp">FROGS RDP</option>
                 </param>

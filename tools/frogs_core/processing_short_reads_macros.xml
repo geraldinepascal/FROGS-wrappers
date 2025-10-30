@@ -40,6 +40,7 @@
 
             ## SINGLE END READS
             #elif $fastq_input.input_type == "single"
+                --already-contiged
                 ## INPUTS
                 #if $fastq_input.input_files.file_type == "archive"
                     --input-archive '${fastq_input.input_files.input_archive}'
@@ -63,16 +64,18 @@
             #if $is_primer_in_seq.primer_choice == "true"
                 --five-prim-primer '$is_primer_in_seq.five_prim_primer'
                 --three-prim-primer '$is_primer_in_seq.three_prim_primer'
+            #else
+				--without-primers
             #end if
 
             ## PROCESS TYPE
-            #if $process_type.process == "preprocess-only"
+            #if $process_type.process == "Preprocess only"
                 --process preprocess-only
-            #elif $process_type.process == "clustering"
+            #elif $process_type.process == "Clustering Swarm"
                 --process swarm
                 --distance $process_type.distance
                 $process_type.cluster_improvements.clustering_options
-            #elif $process_type.process == "denoising"
+            #elif $process_type.process == "Denoising DADA2"
                 --process dada2
                 --sample-inference $process_type.sample_inference
             #end if
@@ -81,7 +84,7 @@
             --output-biom $output_biom 
             --output-fasta $output_fasta
             --html $html
-            #if $process_type.process == "clustering"
+            #if $process_type.process == "Clustering Swarm"
                 --output-compo $output_cluster_compo
             #end if
     </token>
@@ -89,60 +92,60 @@
     <xml name="processing_short_reads_inputs">
        <!-- Files -->
         <conditional name="fastq_input">
-	      	<param name="input_type" type="select" display="radio" label="Single or Paired-end reads" help="Select between paired and single-end sequence data">
-                <option value="paired" selected="true">Paired</option>
-	      		<option value="single">Single-end or already merged pair</option>
+	      	<param name="input_type" type="select" display="radio" label=" Paired-end or Single-end reads" help="">
+                <option value="paired" selected="true">Paired-end reads</option>
+	      		<option value="single">Single-end reads or Paired reads that have already been merged.</option>
 	        </param>
 	      	<when value="paired">
                 <conditional name="input_files">
-                    <param name="file_type" type="select" label="Input type" help="Samples files can be provided in a single TAR archive or sample by sample (with one or two files each).">
+                    <param name="file_type" type="select" label="Input" help="Sample files can be provided either as a single TAR archive or as separate files per sample (one or two files each).">
                         <option value="archive" selected="true">TAR Archive</option>
-                        <option value="files_by_samples" >Files by samples</option>
+                        <option value="files_per_sample" >Files per sample</option>
                     </param>
                     <when value="archive">
-                        <param argument="--input-archive" type="data" format="tar,tgz" label="Archive file (tar format)" help="The TAR file containing the short R1 R2 read pairs fastq file for each sample. Illumina and Aviti sequencers are currently supported." />
+                        <param argument="--input-archive" type="data" format="tar,tgz" label="Archive file (.tar.gz)" help="The TAR file containing the short R1 R2 read pairs (.fastq.gz) for each sample. Each sample should ideally have its R1 and R2 reads named consistently (e.g., sampleX_R1.fastq.gz and sampleX_R2.fastq.gz). Supported sequencers: Illumina and Aviti." />
                     </when>
-                    <when value="files_by_samples">
+                    <when value="files_per_sample">
                         <repeat name="samples" title="Samples" default="1" min="1">
-                            <param argument="--samples-names" type="text" label="Name" help="The sample name.">
+                            <param argument="--samples-names" type="text" label="Sample name" help="The sample name.">
                                 <expand macro="sanitizer_validator"/>
                             </param>
-                            <param argument="--input-R1" type="data" format="fastq" label="R1 reads (fastq format)" help="R1 reads fastq file. Illumina and Aviti sequencers are currently supported." />
-                            <param argument="--input-R2" type="data" format="fastq" label="R2 reads (fastq format)" help="R2 reads fastq file. Illumina and Aviti sequencers are currently supported."  />
+                            <param argument="--input-R1" type="data" format="fastq" label="R1 reads (.fastq.gz)" help="R1 reads fastq file. Supported sequencers: Illumina and Aviti." />
+                            <param argument="--input-R2" type="data" format="fastq" label="R2 reads (.fastq.gz)" help="R2 reads fastq file. Supported sequencers: Illumina and Aviti."  />
                         </repeat>
                     </when>
                 </conditional>
                 <!-- Paired parameters -->
-                <param argument="--R1-size" type="integer" label="Reads 1 size" help="The maximum read1 size." />
-                <param argument="--R2-size" type="integer" label="Reads 2 size" help="The maximum read2 size." />
-                <param argument="--mismatch-rate" type="float" value="0.1" label="Mismatch rate." help="The maximum rate of mismatches in the overlap region"/>
+                <param argument="--R1-size" type="integer" label="R1 read length" help="Please provide the maximum length of the R1 reads." />
+                <param argument="--R2-size" type="integer" label="R2 read length" help="Please provide the maximum length of the R2 reads." />
+                <param argument="--mismatch-rate" type="float" value="0.1" label="Mismatch rate (used for R1-R2 merging)" help="Maximum allowed mismatch rate in the overlap region between R1 and R2 reads."/>
                 <conditional name="merge_software_type">
-                    <param argument="--merge-software" type="select" display="radio" label="Merge software" help="Select the software to merge paired-end reads">
+                    <param argument="--merge-software" type="select" display="radio" label="Paired-end merging tool" help="Select the tool used to merge paired-end reads">
                         <!-- <option value="pear" >Pear (only for non commercial, non military use. See Pear licence)</option> -->
                         <option value="vsearch" >Vsearch</option>
                         <option value="flash">Flash</option>
                     </param>
                     <when value="flash">
-                        <param argument="--expected-amplicon-size" type="integer" min="0" label="Expected amplicon size" help="Maximum amplicon length expected in approximately 90% of the amplicons" />
+                        <param argument="--expected-amplicon-size" type="integer" min="0" label="Expected amplicon length" help="Specify the maximum expected amplicon length (covers ~90% of amplicons)" />
                     </when>
                 </conditional>
-                <param argument="keep_unmerged" type="boolean" truevalue="--keep-unmerged" falsevalue="" checked="false" label="Would you like to keep unmerged reads?" help="No = Unmerged reads will be excluded; Yes = unmerged reads will be artificially combined with 100 N." />
+                <param argument="keep_unmerged" type="boolean" truevalue="--keep-unmerged" falsevalue="" checked="false" label="Would you like to keep unmerged reads?" help="No = unmerged reads will be removed; Yes = unmerged reads will be artificially combined with 100 N to allow further processing." />
             </when>
             <when value="single">
                 <conditional name="input_files">
-                    <param name="file_type" type="select" label="Input type" help="Samples files can be provided in a single TAR archive or sample by sample (with one or two files each).">
+                    <param name="file_type" type="select" label="Input" help="Sample files can be provided either as a single TAR archive or as separate files per sample (one or two files each).">
                         <option value="archive" selected="true">TAR Archive</option>
-                        <option value="files_by_samples" >Files by samples</option>
+                        <option value="files_per_sample" >Files per sample</option>
                     </param>
                     <when value="archive">
-                        <param argument="--input-archive" type="data" format="tar,tgz" label="Archive file (tar format)" help="The TAR file containing the short single end reads or merged pair reads fastq file for each sample. Illumina and Aviti sequencers are currently supported." />
+                        <param argument="--input-archive" type="data" format="tar,tgz" label="Archive file (tar format)" help="The TAR file containing the short single-end reads or merged paired-end reads (.fastq.gz) for each sample. Supported sequencers: Illumina and Aviti." />
                     </when>
-                    <when value="files_by_samples">
+                    <when value="files_per_sample">
                         <repeat name="samples" title="Samples" default="1" min="1">
                             <param argument="--samples-names" type="text" label="Name" help="The sample name.">
                                 <expand macro="sanitizer_validator"/>
                             </param>
-                            <param argument="--input-R1" type="data" format="fastq" label="Short reads or merged reads (fastq format)" help="Single-end short reads or merge paired end reads fastq file. Illumina and Aviti sequencers are currently supported." />
+                            <param argument="--input-R1" type="data" format="fastq" label="The short single-end reads or merged paired-end reads (.fastq.gz)" help="Single-end short reads or merge paired-end reads (.fastq.gz). Supported sequencers: Illumina and Aviti." />
                         </repeat>
                     </when>
                 </conditional>
@@ -150,20 +153,20 @@
         </conditional>
 
         <!-- Amplicons Parameters-->
-        <param argument="--min-amplicon-size" type="integer" value="" label="Minimum amplicon size" help="The minimum size of the amplicons (with primers)"/>
-        <param argument="--max-amplicon-size" type="integer" value="" label="Maximum amplicon size" help="The maximum size of the amplicons (with primers). For paired-end reads substract 10 bases corresponding to the minimum overlap between reads."/>
+        <param argument="--min-amplicon-size" type="integer" value="" label="Minimum amplicon length" help="The minimum length of the amplicons (including primers). For paired-end reads, substract 10 bases to account for the minimum overlap between R1 and R2 reads."/>
+        <param argument="--max-amplicon-size" type="integer" value="" label="Maximum amplicon length" help="The maximum length of the amplicons (including primers). For paired-end reads, substract 10 bases to account for the minimum overlap between R1 and R2 reads."/>
 
         <!-- Primers -->
         <conditional name="is_primer_in_seq">
-            <param name="primer_choice" type="select" display="radio" label="Do the sequences include PCR primers?" help="" >
+            <param name="primer_choice" type="select" display="radio" label="Do the sequences include PCR primers?" help="Indicate whether the sequences still include PCR primers. Select “Yes” if primers are present, “No” if they have already been removed." >
                 <option value="true" selected="true">Yes</option>
                 <option value="false">No</option>     
             </param>
             <when value="true">
-                <param argument="--five-prim-primer" type="text" label="5' primer" help="The 5' primer sequence (wildcards are accepted). This primer must be written in 5' to 3' orientation.">
+                <param argument="--five-prim-primer" type="text" label="5' primer" help="Enter the 5' primer sequence. Wildcards are allowed. The sequence must be provided in 5' → 3' orientation.">
                     <expand macro="only_letter_sanitizer_validator"/>
                 </param>
-                <param argument="--three-prim-primer" type="text" label="3' primer" help="The 3' primer sequence (wildcards are accepted). This primer must be written in 5' to 3' orientation (see details in 'Primers parameters' help section)">
+                <param argument="--three-prim-primer" type="text" label="3' primer" help="Enter the 3' primer sequence. Wildcards are allowed. The sequence must be provided in 5' → 3' orientation.">
                      <expand macro="only_letter_sanitizer_validator"/>
                 </param>
             </when>
@@ -171,25 +174,25 @@
 
         <!-- Preprocessing only, clustering or denoising -->
          <conditional name="process_type">
-            <param argument="--process" type="select" display="radio" label="Process type" help="Select the type of process to perform">
-                <option value="preprocess-only">Preprocessing only</option>
-                <option value="clustering" selected="true">Preprocessing and clustering with Swarm</option>
-                <option value="denoising">Preprocessing and denoising with Dada2</option>
+            <param argument="--process" type="select" display="radio" label="Process type" help="Select the type of process to run">
+                <option value="Preprocess only">Preprocessing only</option>
+                <option value="Clustering Swarm" selected="true">Preprocessing and clustering with Swarm</option>
+                <option value="Denoising DADA2">Preprocessing and denoising with DADA2</option>
             </param>
-            <when value="clustering">
-                <param argument="--distance" type="integer" min="1" value="1" optional="false" label="Distance threshold" help="The distance threshold for clustering with Swarm"/>
+            <when value="Clustering Swarm">
+                <param argument="--distance" type="integer" min="1" value="1" optional="false" label="Swarm distance threshold" help="Distance threshold used by Swarm for clustering."/>
                 <conditional name="cluster_improvements">
-                    <param name="clustering_options" type="select" display="radio" label="Additionnally refine or denoise clustering" help="In association with --distance 1, use the Swarm --fastidious option to refine clustering (recommended since FROGS 3.2).&#10;Or use the --denoising FROGS option to perform pre-clustering with --distance = 1 before clustering with user defined distance.">
-                        <option value="--fastidious" selected="true">Refine clusters with --fastidiouis option (recommended since FROGS 3.2)</option>
-                        <option value="--denoising">Denoise with a pre-clustering (--distance : 1) step </option>
-                        <option value="">Do not refine or denoise clustering</option>
+                    <param name="clustering_options" type="select" display="radio" label="Clustering refinement" help="(i) With --distance = 1, use the Swarm --fastidious option to refine clustering (recommended since FROGS 3.2). (ii) With --distance > 1, enable pre-clustering to reduce redundancy before final clustering step. (iii) Select this option to apply neither refinement nor pre-clustering.">
+                        <option value="--fastidious" selected="true">With --distance = 1, refine clusters with --fastidious option (recommended since FROGS 3.2)</option>
+                        <option value="--denoising">With --distance > 1, perform a pre-clustering step</option>
+                        <option value="">No clustering refinement</option>
                     </param>
                 </conditional>
             </when>
-            <when value="denoising">
-                <param argument="--sample-inference" type="select" display="radio" label="Dada2 pooling method" help="Choose how to consider sample prior to sample inferance">
+            <when value="Denoising DADA2">
+                <param argument="--sample-inference" type="select" display="radio" label="DADA2 pooling method" help="Choose how to consider sample prior to sample inference">
                     <option value="pseudo-pooling" selected="true">Pseudo pooling, samples will be pseudo-pooled prior to sample inference.</option>
-                    <option value="independent">Independent, sample inference will be performed on each sample individually</option>
+                    <option value="independent">Independent, sample inference will be performed on each sample individually.</option>
                     <option value="pooling">Full pooling, all samples will be pooled together prior to sample inference.</option>
                 </param>
             </when>

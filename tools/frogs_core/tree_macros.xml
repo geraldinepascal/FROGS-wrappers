@@ -11,7 +11,7 @@
 
     <xml name="tree_inputs">
         <!-- Files -->
-        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />/>
-        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
+        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (.fasta)" help="FASTA file containing the representative sequences to be used for phylogenetic tree construction." />/>
+        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (.biom)" help="BIOM file containing the abundance table associated with the input sequences." />
     </xml>
 </macros>

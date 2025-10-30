@@ -1,5 +1,5 @@
 <tool id="FROGS5_Core_dev" name="FROGS-5 Core dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
-    <description>ASV reconstruction and taxonomic annotation</description>
+    <description>ASV reconstruction and taxonomic affiliation</description>
     <macros>
         <import>frogs_core_macros.xml</import>
         <import>processing_short_reads_macros.xml</import>
@@ -8,16 +8,16 @@
         <import>remove_chimera_macros.xml</import>
         <import>cluster_filters_macros.xml</import>
         <import>taxonomic_affiliation_macros.xml</import>
+        <import>tree_macros.xml</import>
         <import>demultiplex_macros.xml</import>
         <import>itsx_macros.xml</import>
         <import>affiliation_filters_macros.xml</import>
         <import>affiliation_postprocess_macros.xml</import>
         <import>normalisation_macros.xml</import>
-        <import>tree_macros.xml</import>
-        <import>cluster_stats_macros.xml</import>
-        <import>affiliation_stats_macros.xml</import>
         <import>biom_to_tsv_macros.xml</import>
         <import>biom_to_std_biom_macros.xml</import>
+        <import>cluster_stats_macros.xml</import>
+        <import>affiliation_stats_macros.xml</import>
         <import>tsv_to_biom_macros.xml</import>
     </macros>
 
@@ -43,6 +43,9 @@
         #elif $frogs_core_tools.tool_name == "taxonomic_affiliation":
             @TAXONOMIC_AFFILIATION_CMD_LINE@
 
+        #elif $frogs_core_tools.tool_name == "tree":
+            @TREE_CMD_LINE@
+
         ## OPTIONAL TOOLS
         #elif $frogs_core_tools.tool_name == "demultiplex":
             @DEMULTIPLEX_CMD_LINE@
@@ -59,49 +62,48 @@
         #elif $frogs_core_tools.tool_name == "normalisation":
             @NORMALISATION_CMD_LINE@
 
-        #elif $frogs_core_tools.tool_name == "tree":
-            @TREE_CMD_LINE@
+        ## COMPANION TOOLS : stat and converter
+        #elif $frogs_core_tools.tool_name == "biom_to_tsv":
+            @BIOM_TO_TSV_CMD_LINE@
 
-        ## COMPAGNON TOOLS : stat and converter
+        #elif $frogs_core_tools.tool_name == "tsv_to_biom":
+            @TSV_TO_BIOM_CMD_LINE@
+            
         #elif $frogs_core_tools.tool_name == "cluster_stats":
             @CLUSTER_STATS_CMD_LINE@
 
         #elif $frogs_core_tools.tool_name == "affiliation_stats":
             @AFFILIATION_STATS_CMD_LINE@
 
-        #elif $frogs_core_tools.tool_name == "biom_to_tsv":
-            @BIOM_TO_TSV_CMD_LINE@
-
         #elif $frogs_core_tools.tool_name == "biom_to_std_biom":
             @BIOM_TO_STD_BIOM_CMD_LINE@
 
-        #elif $frogs_core_tools.tool_name == "tsv_to_biom":
-            @TSV_TO_BIOM_CMD_LINE@
         #end if
     ]]>
     </command>
     
     <inputs>
         <conditional name="frogs_core_tools">
-            <param name="tool_name" type="select" display="radio" label="Choose the FROGS Core analysis you want to perform.">
-                <option value="" selected="true">-- Please select an analysis --</option>
-                <option value="processing_short_reads">Main 1.a. Pre-processing and denoising or clustering of short reads</option> 
-                <option value="processing_long_reads">Main 1.b. Pre-processing and denoising or clustering of long reads</option> 
-                <option value="processing_454_reads">Main 1.c. Pre-processing and denoising or clustering of 454 reads</option> 
+            <param name="tool_name" type="select" display="radio" label="Select a tool from the FROGS Core suite to run your analysis.">
+                <option value="" selected="true">-- Please select a tool --</option>
+                <option value="processing_short_reads">Main 1.a. Denoising of short reads</option> 
+                <option value="processing_long_reads">Main 1.b. Denoising of long reads</option> 
+                <option value="processing_454_reads">Main 1.c. Denoising of 454 reads</option> 
                 <option value="remove_chimera">Main 2. Remove chimera</option> 
-                <option value="cluster_filters">Main 3. Cluster filters</option> 
+                <option value="cluster_filters">Main 3. Cluster/ASV filters</option> 
                 <option value="taxonomic_affiliation">Main 4. Taxonomic affiliation</option> 
-                <option value="demultiplex">Optional 1. Demultiplex reads.</option> 
-                <option value="itsx">Optional 2. ITSx : extract ITS region </option> 
+                <option value="tree">Main 5. Phylogenetic tree building</option> 
+                <option value="demultiplex">Optional 1. Read demultiplexing</option> 
+                <option value="itsx">Optional 2. ITSx</option> 
                 <option value="affiliation_filters">Optional 3. Affiliation filters </option> 
-                <option value="affiliation_postprocess">Optional 4. Affiliation postprocess </option> 
+                <option value="affiliation_postprocess">Optional 4. Affiliation postprocessing </option> 
                 <option value="normalisation">Optional 5. Abundance normalisation </option> 
-                <option value="tree">Optional 6. ASV phylogenetic tree </option> 
-                <option value="cluster_stats">Compagnon 1. Cluster statistics</option> 
-                <option value="affiliation_stats">Compagnon 2. Affiliation statistics</option> 
-                <option value="biom_to_tsv">Compagnon 3. Convert Biom file to TSV file</option> 
-                <option value="biom_to_std_biom">Compagnon 4. Convert FROGS Biom file to standard Biom file</option> 
-                <option value="tsv_to_biom">Compagnon 5. Convert TSV file to Biom file</option> 
+                <option value="biom_to_tsv">Companion 1. Convert Biom file to TSV file</option> 
+                <option value="tsv_to_biom">Companion 2. Convert TSV file to Biom file</option> 
+                <option value="cluster_stats">Companion 3. Cluster/ASV report</option> 
+                <option value="affiliation_stats">Companion 4. Affiliation report</option> 
+                <option value="biom_to_std_biom">Companion 5. (Obsolete) Convert FROGS Biom file to standard Biom file</option> 
+                
             </param>
             <!-- ##################### processing_short_reads  ##################### -->
             <when value="processing_short_reads">
@@ -126,6 +128,10 @@
             <!-- ##################### taxonomic_affiliation  ##################### -->
             <when value="taxonomic_affiliation">
                 <expand macro="taxonomic_affiliation_inputs" />
+            </when> 
+            <!-- ##################### tree  ##################### -->
+            <when value="tree">
+                <expand macro="tree_inputs" />
             </when>
             <!-- ##################### demultiplex  ##################### -->
             <when value="demultiplex">
@@ -147,9 +153,13 @@
             <when value="normalisation">
                 <expand macro="normalisation_inputs" />
             </when>
-            <!-- ##################### tree  ##################### -->
-            <when value="tree">
-                <expand macro="tree_inputs" />
+            <!-- ##################### biom_to_tsv  ##################### -->
+            <when value="biom_to_tsv">
+                <expand macro="biom_to_tsv_inputs" />
+            </when>
+            <!-- ##################### tsv_to_biom  ##################### -->
+            <when value="tsv_to_biom">
+                <expand macro="tsv_to_biom_inputs" />
             </when>
             <!-- ##################### cluster_stats  ##################### -->
             <when value="cluster_stats">
@@ -159,17 +169,9 @@
             <when value="affiliation_stats">
                 <expand macro="affiliation_stats_inputs" />
             </when>
-            <!-- ##################### biom_to_tsv  ##################### -->
-            <when value="biom_to_tsv">
-                <expand macro="biom_to_tsv_inputs" />
-            </when>
             <!-- ##################### biom_to_std_biom  ##################### -->
             <when value="biom_to_std_biom">
                 <expand macro="biom_to_std_biom_inputs" />
-            </when>
-            <!-- ##################### tsv_to_biom  ##################### -->
-            <when value="tsv_to_biom">
-                <expand macro="tsv_to_biom_inputs" />
             </when>
         </conditional>
     </inputs>
@@ -182,7 +184,7 @@
     </tests>
     
     <help><![CDATA[
-    TODO: Fill in help.
+    For more information and detailed documentation, visit the FROGS website https://frogs.inrae.fr.
     ]]>
     </help>
 

@@ -4,8 +4,8 @@
         tsv_to_biom.py
             --input-tsv '$input_tsv'
 
-            #if $input_multihit
-                --input-multi-affi '$input_multihit'
+            #if $input_multi_affi
+                --input-multi-affi '$input_multi_affi'
             #end if
 
             --output-biom '$output_biom'
@@ -20,7 +20,7 @@
         <param argument="--input-multi-affi" type="data" format="tsv,tabular" label="Multi_affiliation File(format: TSV)" help="TSV file describing multi_affiliation blast results." optional="true" />
 
         <!-- Parameters -->
-        <param name="extract_fasta" type="select" display="radio" label="Extract seeds in FASTA file" help="If there is a 'seed_sequence' column in your TSV abundance table, you can extract seed sequences in a separated FASTA file." >
+        <param name="extract_fasta" type="select" display="radio" label="Extract seeds in FASTA file" help="If there is a 'seed_sequence' column in your TSV abundance table, you can extract seed sequences into a separate FASTA file." >
             <option value="yes">Yes</option>
             <option value="no" selected="true">No</option>
 		</param>
