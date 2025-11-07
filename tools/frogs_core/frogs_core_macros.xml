@@ -19,7 +19,7 @@
             <requirement type="package" version="@TOOL_VERSION@">frogs</requirement>
             <requirement type="package" version="1.2.11">flash</requirement>
             <requirement type="package" version="2.10">cutadapt</requirement>
-            <requirement type="package" version="2.17.0">vsearch</requirement>
+            <requirement type="package" version="2.29.1">vsearch</requirement>
             <requirement type="package" version="3.1.4">swarm</requirement>
             <requirement type="package" version="1.22.0">bioconductor-dada2</requirement>
             <requirement type="package" version="1.6.6">r-optparse</requirement>
@@ -102,7 +102,7 @@
         </data>
         <!-- Specific processing_short/454/long_reads with clustering  -->
         <data format="txt" name="output_cluster_compo" label="${tool.name} - ${tool_name}: swarms_composition.txt">
-            <filter>frogs_core_tools['process_type']['process'] == 'clustering' </filter>
+            <filter>frogs_core_tools['process_type']['process'] == 'Clustering Swarm' </filter>
             <filter>frogs_core_tools['tool_name'] == 'processing_short_reads' or frogs_core_tools['tool_name'] == 'processing_long_reads' or frogs_core_tools['tool_name'] == 'processing_454_reads' </filter>
         </data>
         <!-- Specific cluster_filters  -->
