@@ -32,7 +32,7 @@
 
     <xml name="deseq2_visualisation_inputs">
         <!-- Files -->
-        <param argument="--phyloseq-rdata" type="data" format="rdata" label="Phyloseq object (format rdata)" help="This is the result of FROGS_Stat Phyloseq Import Data or FROGS_Stat DESeq2 preprocess analysis for FUNCTION."/>
+        <param argument="--phyloseq-rdata" type="data" format="rdata" label="Phyloseq object (.Rdata)" help="This is the result of FROGS_Stat Phyloseq Import Data or FROGS_Stat DESeq2 preprocess analysis for FUNCTION."/>
         <param argument="--deseq-rdata" type="data" format="rdata" label="DESeq2 dds object (format: RData)" help="This is the result of FROGS_Stat DESeq2_Preprocess tool."/>
         <!-- Parameters -->
         <param argument="--var-exp" type="text" label="Experimental variable" help="One of your sample metadata variable that could have an effect on ASV abundances. Ex: Treatment, etc.">
