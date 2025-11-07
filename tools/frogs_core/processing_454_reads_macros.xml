@@ -89,12 +89,12 @@
                 <param argument="--distance" type="integer" min="1" value="1" optional="false" label="Swarm distance threshold" help="Distance threshold used by Swarm for clustering."/>
                 <conditional name="cluster_improvements">
                     <param name="clustering_options" type="select" display="radio" label="Clustering refinement" help="(i) With --distance = 1, use the Swarm --fastidious option to refine clustering (recommended since FROGS 3.2). (ii) With --distance > 1, enable pre-clustering to reduce redundancy before final clustering step. (iii) Select this option to apply neither refinement nor pre-clustering.">
-                        <option value="--fastidious" selected="true">With --distance = 1, refine clusters with --fastidious option (recommended since FROGS 3.2)</option>
-                        <option value="--denoising">With --distance > 1, perform a pre-clustering step</option>
+                        <option value="--fastidious" selected="true">With --distance = 1, refine clusters with Swarm --fastidious option (recommended since FROGS 3.2)</option>
+                        <option value="--pre-clustering">With --distance > 1, perform a pre-clustering step with FROGS --pre-clustering option</option>
                         <option value="">No clustering refinement</option>
                     </param>
                     <when value="--fastidious"/>
-                    <when value="--denoising"/>
+                    <when value="--pre-clustering"/>
                     <when value=""/>
                 </conditional>
             </when>
