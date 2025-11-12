@@ -3,7 +3,7 @@
     <token name="@PROCESSING_LONG_READS_CMD_LINE@">
         #set $sep = ' '
 
-        denoising.py longreads 
+        reads_processing.py longreads 
             @CPUS@
 
             ## INPUTS
@@ -38,7 +38,9 @@
             #elif $process_type.process == "Clustering Swarm"
                 --process swarm
                 --distance $process_type.distance
-                $process_type.cluster_improvements.clustering_options
+                #if $process_type.cluster_improvements.clustering_options != "no-refinement"
+                    $process_type.cluster_improvements.clustering_options
+                #end if
             #elif $process_type.process == "Denoising DADA2"
                 --process dada2
                 --sample-inference $process_type.sample_inference
@@ -108,11 +110,11 @@
                     <param name="clustering_options" type="select" display="radio" label="Clustering refinement" help="(i) With --distance = 1, use the Swarm --fastidious option to refine clustering (recommended since FROGS 3.2). (ii) With --distance > 1, enable pre-clustering to reduce redundancy before final clustering step. (iii) Select this option to apply neither refinement nor pre-clustering.">
                         <option value="--fastidious" selected="true">With --distance = 1, refine clusters with Swarm --fastidious option (recommended since FROGS 3.2)</option>
                         <option value="--pre-clustering">With --distance > 1, perform a pre-clustering step with FROGS --pre-clustering option</option>
-                        <option value="">No clustering refinement</option>
+                        <option value="no-refinement">No clustering refinement</option>
                     </param>
                     <when value="--fastidious"/>
                     <when value="--pre-clustering"/>
-                    <when value=""/>
+                    <when value="no-refinement"/>
                 </conditional>
             </when>
             <when value="Denoising DADA2">
@@ -154,10 +156,10 @@
     </xml>
 
     <xml name="swarm_processing_long_reads_test_output">
-        <output name="output_biom" file="references/01-denoising-long-swarm.biom" compare="sim_size" delta="0" />
-        <output name="output_fasta" file="references/01-denoising-long-swarm.fasta" compare="diff" lines_diff="0" />
-        <output name="output_cluster_compo" file="references/01-denoising-long-swarm_compo.tsv" compare="diff" lines_diff="0" />
-        <output name="html" file="references/01-denoising-long-swarm.html" compare="diff" lines_diff="0" />
+        <output name="output_biom" file="references/01-reads_processing-long-swarm.biom" compare="sim_size" delta="0" />
+        <output name="output_fasta" file="references/01-reads_processing-long-swarm.fasta" compare="diff" lines_diff="0" />
+        <output name="output_cluster_compo" file="references/01-reads_processing-long-swarm_compo.tsv" compare="diff" lines_diff="0" />
+        <output name="html" file="references/01-reads_processing-long-swarm.html" compare="diff" lines_diff="0" />
     </xml>
 
     <!-- Test dada2 -->
@@ -181,13 +183,13 @@
         
         <!-- Preprocessing only, clustering or denoising -->
         <conditional name="process_type">
-            <param name="process" value="denoising" />
+            <param name="process" value="Denoising DADA2" />
         </conditional>
     </xml>
 
     <xml name="dada2_processing_long_reads_test_output">
-        <output name="output_biom" file="references/01-denoising-long-dada2.biom" compare="sim_size" delta="0" />
-        <output name="output_fasta" file="references/01-denoising-long-dada2.fasta" compare="diff" lines_diff="0" />
-        <output name="html" file="references/01-denoising-long-dada2.html" compare="diff" lines_diff="0" />
+        <output name="output_biom" file="references/01-reads_processing-long-dada2.biom" compare="sim_size" delta="0" />
+        <output name="output_fasta" file="references/01-reads_processing-long-dada2.fasta" compare="diff" lines_diff="0" />
+        <output name="html" file="references/01-reads_processing-long-dada2.html" compare="diff" lines_diff="0" />
     </xml>
 </macros>
