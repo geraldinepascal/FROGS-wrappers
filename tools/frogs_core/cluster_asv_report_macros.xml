@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <macros>
-    <token name="@CLUSTER_STATS_CMD_LINE@">
-        cluster_stats.py
+    <token name="@CLUSTER_ASV_REPORT_CMD_LINE@">
+        cluster_asv_report.py
             --input-biom '$input_biom'
             #if $hierarchical_clustering == "yes"
             --hierarchical-clustering
@@ -10,7 +10,7 @@
             --html '$html'
     </token>
 
-    <xml name="cluster_stats_inputs">
+    <xml name="cluster_asv_report_inputs">
         <!-- Files -->
         <param argument="--input-biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
             <!-- Parameter -->

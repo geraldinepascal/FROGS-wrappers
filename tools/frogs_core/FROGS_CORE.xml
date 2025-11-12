@@ -15,9 +15,8 @@
         <import>affiliation_postprocess_macros.xml</import>
         <import>normalisation_macros.xml</import>
         <import>biom_to_tsv_macros.xml</import>
-        <import>biom_to_std_biom_macros.xml</import>
-        <import>cluster_stats_macros.xml</import>
-        <import>affiliation_stats_macros.xml</import>
+        <import>cluster_asv_report_macros.xml</import>
+        <import>affiliation_report_macros.xml</import>
         <import>tsv_to_biom_macros.xml</import>
     </macros>
 
@@ -69,14 +68,11 @@
         #elif $frogs_core_tools.tool_name == "tsv_to_biom":
             @TSV_TO_BIOM_CMD_LINE@
             
-        #elif $frogs_core_tools.tool_name == "cluster_stats":
-            @CLUSTER_STATS_CMD_LINE@
+        #elif $frogs_core_tools.tool_name == "cluster_asv_report":
+            @CLUSTER_ASV_REPORT_CMD_LINE@
 
-        #elif $frogs_core_tools.tool_name == "affiliation_stats":
-            @AFFILIATION_STATS_CMD_LINE@
-
-        #elif $frogs_core_tools.tool_name == "biom_to_std_biom":
-            @BIOM_TO_STD_BIOM_CMD_LINE@
+        #elif $frogs_core_tools.tool_name == "affiliation_report":
+            @AFFILIATION_REPORT_CMD_LINE@
 
         #end if
     ]]>
@@ -86,9 +82,9 @@
         <conditional name="frogs_core_tools">
             <param name="tool_name" type="select" display="radio" label="Select a tool from the FROGS Core suite to run your analysis.">
                 <option value="" selected="true">-- Please select a tool --</option>
-                <option value="processing_short_reads">Main 1.a. Denoising of short reads</option> 
-                <option value="processing_long_reads">Main 1.b. Denoising of long reads</option> 
-                <option value="processing_454_reads">Main 1.c. Denoising of 454 reads</option> 
+                <option value="processing_short_reads">Main 1.a. Reads processing of short reads</option> 
+                <option value="processing_long_reads">Main 1.b. Reads processing of long reads</option> 
+                <option value="processing_454_reads">Main 1.c. Reads processing of 454 reads</option> 
                 <option value="remove_chimera">Main 2. Remove chimera</option> 
                 <option value="cluster_filters">Main 3. Cluster/ASV filters</option> 
                 <option value="taxonomic_affiliation">Main 4. Taxonomic affiliation</option> 
@@ -100,9 +96,8 @@
                 <option value="normalisation">Optional 5. Abundance normalisation </option> 
                 <option value="biom_to_tsv">Companion 1. Convert Biom file to TSV file</option> 
                 <option value="tsv_to_biom">Companion 2. Convert TSV file to Biom file</option> 
-                <option value="cluster_stats">Companion 3. Cluster/ASV report</option> 
-                <option value="affiliation_stats">Companion 4. Affiliation report</option> 
-                <option value="biom_to_std_biom">Companion 5. (Obsolete) Convert FROGS Biom file to standard Biom file</option> 
+                <option value="cluster_asv_report">Companion 3. Cluster/ASV report</option> 
+                <option value="affiliation_report">Companion 4. Affiliation report</option>
                 
             </param>
             <!-- ##################### processing_short_reads  ##################### -->
@@ -161,17 +156,13 @@
             <when value="tsv_to_biom">
                 <expand macro="tsv_to_biom_inputs" />
             </when>
-            <!-- ##################### cluster_stats  ##################### -->
-            <when value="cluster_stats">
-                <expand macro="cluster_stats_inputs" />
+            <!-- ##################### cluster_asv_report  ##################### -->
+            <when value="cluster_asv_report">
+                <expand macro="cluster_asv_report_inputs" />
             </when>
-            <!-- ##################### affiliation_stats  ##################### -->
-            <when value="affiliation_stats">
-                <expand macro="affiliation_stats_inputs" />
-            </when>
-            <!-- ##################### biom_to_std_biom  ##################### -->
-            <when value="biom_to_std_biom">
-                <expand macro="biom_to_std_biom_inputs" />
+            <!-- ##################### affiliation_report  ##################### -->
+            <when value="affiliation_report">
+                <expand macro="affiliation_report_inputs" />
             </when>
         </conditional>
     </inputs>
