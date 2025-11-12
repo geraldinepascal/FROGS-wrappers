@@ -18,7 +18,7 @@
     
     <xml name="frogs_func_outputs">
         <!-- HTML report -->
-        <data format="html" name="html" label="${tool.name} - ${tool_name}: report.nb.html" />
+        <data format="html" name="html" label="${tool.name} - ${tool_name}: report.html" />
         <!-- ASV excluded : all but pathway -->
         <data format="tsv" name="output_excluded" label="${tool.name} - ${tool_name}: ASV_excluded.tsv">
             <filter> frogs_func_tools['tool_name'] != 'picrust2_pathways' </filter>
@@ -48,42 +48,42 @@
         </data> 
             <!-- By database Function copy number and unstrat abundance-->
                 <!-- EC-->
-        <data format="tsv" name="output_copy_ec_abund" label="${tool.name} - ${tool_name} EC_predicted_copy_numbers.tsv" from_work_dir="EC_copynumbers_predicted.tsv">
+        <data format="tsv" name="output_copy_ec_abund" label="${tool.name} - ${tool_name}: EC_predicted_copy_numbers.tsv" from_work_dir="EC_copynumbers_predicted.tsv">
             <filter> frogs_func_tools['tool_name'] == 'picrust2_functions' and "EC" in frogs_func_tools['functions'] </filter>
         </data>
         <data format="tsv" name="output_function_ec_abund" label="${tool.name} - ${tool_name}: EC_unstrat_abundance.tsv" from_work_dir="unstrat_abundance_EC.tsv">
             <filter>frogs_func_tools['tool_name'] == 'picrust2_functions' and "EC" in frogs_func_tools['functions'] </filter>
         </data>
             <!-- KO-->
-        <data format="tsv" name="output_copy_ko_abund" label="${tool.name} - ${tool_name} KO_predicted_copy_numbers.tsv" from_work_dir="KO_copynumbers_predicted.tsv">
+        <data format="tsv" name="output_copy_ko_abund" label="${tool.name} - ${tool_name}: KO_predicted_copy_numbers.tsv" from_work_dir="KO_copynumbers_predicted.tsv">
             <filter> frogs_func_tools['tool_name'] == 'picrust2_functions' and "KO" in frogs_func_tools['functions'] </filter>
         </data>
         <data format="tsv" name="output_function_ko_abund" label="${tool.name} - ${tool_name}: KO_unstrat_abundance.tsv" from_work_dir="unstrat_abundance_KO.tsv">
             <filter> frogs_func_tools['tool_name'] == 'picrust2_functions' and "KO" in frogs_func_tools['functions'] </filter>
         </data>
             <!-- PFAM-->
-        <data format="tsv" name="output_copy_pfam_abund" label="${tool.name} - ${tool_name} PFAM_predicted_copy_numbers.tsv" from_work_dir="PFAM_copynumbers_predicted.tsv">
+        <data format="tsv" name="output_copy_pfam_abund" label="${tool.name} - ${tool_name}: PFAM_predicted_copy_numbers.tsv" from_work_dir="PFAM_copynumbers_predicted.tsv">
             <filter> frogs_func_tools['tool_name'] == 'picrust2_functions' and "PFAM" in frogs_func_tools['functions'] </filter>
         </data>
         <data format="tsv" name="output_function_pfam_abund" label="${tool.name} - ${tool_name}: PFAM_unstrat_abundance.tsv" from_work_dir="unstrat_abundance_PFAM.tsv">
             <filter> frogs_func_tools['tool_name'] == 'picrust2_functions' and "PFAM" in frogs_func_tools['functions'] </filter>
         </data>
             <!-- COG-->
-        <data format="tsv" name="output_copy_cog_abund" label="${tool.name} - ${tool_name} COG_predicted_copy_numbers.tsv" from_work_dir="COG_copynumbers_predicted.tsv">
+        <data format="tsv" name="output_copy_cog_abund" label="${tool.name} - ${tool_name}: COG_predicted_copy_numbers.tsv" from_work_dir="COG_copynumbers_predicted.tsv">
             <filter> frogs_func_tools['tool_name'] == 'picrust2_functions' and "COG" in frogs_func_tools['functions'] </filter>
         </data>
         <data format="tsv" name="output_function_cog_abund" label="${tool.name} - ${tool_name}: COG_unstrat_abundance.tsv" from_work_dir="unstrat_abundance_COG.tsv">
             <filter> frogs_func_tools['tool_name'] == 'picrust2_functions' and "COG" in frogs_func_tools['functions'] </filter>
         </data>
             <!-- TIGRFAM-->
-        <data format="tsv" name="output_copy_tigrfam_abund" label="${tool.name} - ${tool_name} TIGRFAM_predicted_copy_numbers.tsv" from_work_dir="TIGRFAM_copynumbers_predicted.tsv">
+        <data format="tsv" name="output_copy_tigrfam_abund" label="${tool.name} - ${tool_name}: TIGRFAM_predicted_copy_numbers.tsv" from_work_dir="TIGRFAM_copynumbers_predicted.tsv">
             <filter> frogs_func_tools['tool_name'] == 'picrust2_functions' and "TIGRFAM" in frogs_func_tools['functions'] </filter>
         </data>
         <data format="tsv" name="output_function_tigrfam_abund" label="${tool.name} - ${tool_name}: TIGRFAM_unstrat_abundance.tsv" from_work_dir="unstrat_abundance_TIGRFAM.tsv">
             <filter> frogs_func_tools['tool_name'] == 'picrust2_functions' and "TIGRFAM" in frogs_func_tools['functions'] </filter>
         </data>
             <!-- PHENO-->
-        <data format="tsv" name="output_copy_pheno_abund" label="${tool.name} - ${tool_name} PHENO_predicted_copy_numbers.tsv" from_work_dir="PHENO_copynumbers_predicted.tsv">
+        <data format="tsv" name="output_copy_pheno_abund" label="${tool.name} - ${tool_name}: PHENO_predicted_copy_numbers.tsv" from_work_dir="PHENO_copynumbers_predicted.tsv">
             <filter> frogs_func_tools['tool_name'] == 'picrust2_functions' and "PHENO" in frogs_func_tools['functions'] </filter>
         </data>
         <data format="tsv" name="output_function_pheno_abund" label="${tool.name} - ${tool_name}: PHENO_unstrat_abundance.tsv" from_work_dir="unstrat_abundance_PHENO.tsv">
