@@ -9,54 +9,56 @@
 
             ## FILTER PARAMETERS
 
-            #if $rdp.rdp_rank
-                --min-rdp-bootstrap '$rdp.rdp_rank:$rdp.min_rdp_bootstrap'
+            #if $affiliation.affiliation_type == "FROGS_blast"
+                #if $affiliation.min_blast_length
+                    --min-blast-length $affiliation.min_blast_length
+                #end if
+                #if $affiliation.max_blast_evalue
+                    --max-blast-evalue $affiliation.max_blast_evalue
+                #end if
+                #if $affiliation.min_blast_identity
+                    --min-blast-identity $affiliation.min_blast_identity
+                #end if
+                #if $affiliation.min_blast_coverage
+                    --min-blast-coverage $affiliation.min_blast_coverage
+                #end if
+
+                #set $sep = ' '
+                #if $affiliation.keep_or_ignore.taxa_choice == "ignore"
+                    --ignore-blast-taxa
+                    #for $current in $affiliation.keep_or_ignore.taxon_ignored
+                        $sep'${current.ignore_blast_taxa}'
+                    #end for
+                #end if
+                #if $affiliation.keep_or_ignore.taxa_choice == "keep"
+                    --keep-blast-taxa
+                    #for $current in $affiliation.keep_or_ignore.taxon_kept
+                        $sep'${current.keep_blast_taxa}'
+                    #end for
+                #end if
+
+                ## SUMMARY PARAMETERS
+                --multiple-tag 'blast_affiliations'
+                --tax-consensus-tag 'blast_taxonomy'
+                --identity-tag 'perc_identity'
+                --coverage-tag 'perc_query_coverage'
+
+            #elif $affiliation.affiliation_type == "FROGS_rdp"
+                #if $affiliation.rdp_rank
+                    --min-rdp-bootstrap '$affiliation.rdp_rank:$affiliation.min_rdp_bootstrap'
+                #end if
+
+                ## SUMMARY PARAMETERS
+                --taxonomy-tag 'rdp_taxonomy'
+                --bootstrap-tag 'rdp_bootstrap'
             #end if
 
-            #if $blast.min_blast_length
-                --min-blast-length $blast.min_blast_length
-            #end if
-            #if $blast.max_blast_evalue
-                --max-blast-evalue $blast.max_blast_evalue
-            #end if
-            #if $blast.min_blast_identity
-                --min-blast-identity $blast.min_blast_identity
-            #end if
-            #if $blast.min_blast_coverage
-                --min-blast-coverage $blast.min_blast_coverage
-            #end if
-
-            #set $sep = ' '
-            #if $blast.keep_or_ignore.taxa_choice == "ignore"
-                --ignore-blast-taxa
-                #for $current in $blast.keep_or_ignore.taxon_ignored
-                    $sep'${current.ignore_blast_taxa}'
-                #end for
-            #end if
-            #if $blast.keep_or_ignore.taxa_choice == "keep"
-                --keep-blast-taxa
-                #for $current in $blast.keep_or_ignore.taxon_kept
-                    $sep'${current.keep_blast_taxa}'
-                #end for
-            #end if
-
+            ## MODE and OUTPUTS
             #if $mode == "delete"
                 --delete
                 --output-fasta '$output_fasta'
             #else
                 --mask
-            #end if
-
-            ## SUMMARY PARAMETERS
-
-            #if $summary.affiliation.affiliation_type == "FROGS_blast"
-                --multiple-tag 'blast_affiliations'
-                --tax-consensus-tag 'blast_taxonomy'
-                --identity-tag 'perc_identity'
-                --coverage-tag 'perc_query_coverage'
-            #elif $summary.affiliation.affiliation_type == "FROGS_rdp"
-                --taxonomy-tag 'rdp_taxonomy'
-                --bootstrap-tag 'rdp_bootstrap'
             #end if
 
             --output-biom '$output_biom'
@@ -67,17 +69,21 @@
 
     <xml name="affiliation_filters_inputs">
         <!-- Files -->
-        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />/>
+        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />
         <param argument="--input-biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
 
         <!-- Filters Parameters -->
         <expand macro="taxonomic_ranks"/>
-        <section name="filter" title="Filter parameters" expanded="true">
-            <param name="mode" type="select" label="Filtering mode" multiple="false" help="Do you want to delete ASV or hide affiliations?" optional="false" display="radio">
-                <option value="hide" selected="true">Hidding mode</option>
-                <option value="delete">Deleting mode</option>
+        <param name="mode" type="select" label="Filtering mode" multiple="false" help="Do you want to delete ASV or hide affiliations?" optional="false" display="radio">
+            <option value="hide" selected="true">Hidding mode</option>
+            <option value="delete">Deleting mode</option>
+        </param>
+        <conditional name="affiliation">
+            <param name="affiliation_type" type="select" label="Affiliation to process" help="Select the type of affiliation to process.">
+                <option value="FROGS_blast" selected="true">FROGS Blast</option>
+                <option value="FROGS_rdp">FROGS RDP</option>
             </param>
-            <section name="blast" title="Filter on Blast affiliations" expanded="true">
+            <when value="FROGS_blast">
                 <param argument="--max-blast-evalue" type="float" min="0.0" max="1.0" optional="true" label="Maximum e-value" help="Fill the field only if you want this treatment"/>
                 <param argument="--min-blast-identity" type="float" min="0.0" max="100" optional="true" label="Minimum identity" help="Fill the field only if you want this treatment"/>
                 <param argument="--min-blast-coverage" type="float" min="0.0" max="100" optional="true" label="Minimum coverage" help="Fill the field only if you want this treatment"/>
@@ -94,12 +100,10 @@
                             <param argument="--ignore-blast-taxa" type="text" optional="true" label="Full or partial taxon name" help="Example: &quot;unknown species&quot; or &quot;subsp.&quot;">
                                 <sanitizer invalid_char="">
                                     <valid initial="string.letters,string.digits">
-                                        <add value="/" />
-                                        <add value="+" />
                                         <add value="-" />
-                                        <add value="=" />
                                         <add value=" " />
                                         <add value="_" />
+                                        <add value="." />
                                     </valid>
                                 </sanitizer>
                                 <validator type="regex">[A-Za-z0-9 =-_/+]+</validator>
@@ -111,12 +115,10 @@
                             <param argument="--keep-blast-taxa" type="text" optional="true" label="Full or partial taxon name" help="Example: &quot;unknown species&quot; or &quot;subsp.&quot;">
                                 <sanitizer invalid_char="">
                                     <valid initial="string.letters,string.digits">
-                                        <add value="/" />
-                                        <add value="+" />
                                         <add value="-" />
-                                        <add value="=" />
                                         <add value=" " />
                                         <add value="_" />
+                                        <add value="." />
                                     </valid>
                                 </sanitizer>
                                 <validator type="regex">[A-Za-z0-9 =-_/+]+</validator>
@@ -124,8 +126,8 @@
                         </repeat>
                     </when>
                 </conditional>
-            </section>
-            <section name="rdp" title="Filter on RDP affiliations" expanded="true">
+            </when>
+            <when value="FROGS_rdp">
                 <param name="rdp_rank" type="text" optional="true" value="" label="Taxonomical rank on which to apply bootstrap filter" help="One of the available taxonomical rank name. Ex: Species">
                     <sanitizer invalid_char="">
                         <valid initial="string.letters">
@@ -135,18 +137,26 @@
                     <validator type="regex">[A-Za-z ]+</validator>
                 </param>
                 <param name="min_rdp_bootstrap" type="float" min="0.0" max="1.0" optional="true" label="Minimum bootstrap" help="Fill these two fields if you want this treatment (--min-rdp-bootstrap)"/>
-            </section>
-        </section>
-        <!-- Stat parameters -->
-         <section name="summary" title="AFfiliation summary parameters" expanded="true">
-            <conditional name="affiliation">
-                <param name="affiliation_type" type="select" label="Affiliation to process" help="Select the type of affiliation to process.">
-                    <option value="FROGS_blast" selected="true">FROGS Blast</option>
-                    <option value="FROGS_rdp">FROGS RDP</option>
-                </param>
-                <when value="FROGS_blast"/>
-                <when value="FROGS_rdp"/>
-            </conditional>
-        </section>
+            </when>
+        </conditional>
     </xml>
+
+    <!-- Test -->
+    <xml name="affiliation_filters_test_input">
+        <param name="input_fasta" value="references/04-filters.fasta" />
+        <param name="input_biom" value="references/04-filters.biom" />
+
+        <!-- Parameters -->
+        <conditional name="trim_sequence">
+			<param name="check_its_only" value="no" />
+            <param name="region" value="ITS1" />
+        </conditional>
+    </xml>
+
+    <xml name="affiliation_filters_test_output">
+        <output name="output_biom" file="references/05-itsx.biom" compare="diff" lines_diff="0" />
+        <output name="output_fasta" file="references/05-itsx.fasta" compare="diff" lines_diff="0" />
+        <output name="output_removed_sequences" file="references/05-itsx-excluded.fasta" compare="diff" lines_diff="0" />
+        <output name="html" file="references/05-itsx.html" compare="diff" lines_diff="0" />
+    </xml>    
 </macros>
