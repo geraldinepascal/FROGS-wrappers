@@ -39,12 +39,7 @@
 		<expand macro="taxonomic_ranks"/>
 		<param argument="--rarefaction-ranks" type="text" optional="false" value="Class Order Family Genus Species" 
 			label="Rarefaction ranks" help="The ranks that will be evaluated in rarefaction. Each rank is separated by one space.">
-			<sanitizer invalid_char="">
-				<valid initial="string.letters">
-					<add value=" " />
-				</valid>
-			</sanitizer>
-			<validator type="regex">[A-Za-z ]+</validator>
+			<expand macro="only_letter_sanitizer_validator"/>
 		</param>
 		<conditional name="affiliation">
 			<param name="affiliation_type" type="select" label="Affiliation to process" help="Select the type of affiliation to process. If your affiliation was generated with an external tool: use 'Custom'.">
@@ -56,18 +51,27 @@
 			<when value="FROGS_rdp"/>
 			<when value="custom">
 				<param argument="--taxonomy-tag" type="text" value="taxonomy" label="Taxonomy tag" help="The metadata title in BIOM for the taxonomy">
-					<expand macro="sanitizer_validator"/>
+					<expand macro="restricted_sanitizer_validator"/>
 				</param>
 				<param argument="--bootstrap-tag" type="text" label="Bootstrap tag" help="The metadata title in BIOM for the taxonomy bootstrap">
-					<expand macro="sanitizer_validator"/>
+					<expand macro="restricted_sanitizer_validator"/>
 				</param>
 				<param argument="--identity-tag" type="text" label="Identity tag" help="The metadata tag used in BIOM file to store the alignment identity">
-					<expand macro="sanitizer_validator"/>
+					<expand macro="restricted_sanitizer_validator"/>
 				</param>
 				<param argument="--coverage-tag" type="text" label="Coverage tag" help="The metadata tag used in BIOM file to store the alignment ASVs coverage">
-					<expand macro="sanitizer_validator"/>
+					<expand macro="restricted_sanitizer_validator"/>
 				</param>
 			</when>
 		</conditional>
     </xml>
+
+    <!-- Test -->
+    <xml name="affiliation_report_test_input">
+        <param name="input_biom" value="references/09-normalisation.biom" />
+    </xml>
+    
+    <xml name="affiliation_report_test_output">
+        <output name="html" file="references/11-affiliation_report.html" compare="diff" lines_diff="0" />
+    </xml>     
 </macros>

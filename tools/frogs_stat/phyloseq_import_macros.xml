@@ -23,7 +23,7 @@
         <!-- Parameters -->
         <param argument="--ranks" type="text" value="Kingdom Phylum Class Order Family Genus Species" 
             label="Names of taxonomic levels" help="The ordered taxonomic levels stored in BIOM. Each level is separated by one space">
-            <expand macro="sanitizer_validator"/>
+            <expand macro="restricted_sanitizer_validator"/>
         </param>
         <param argument="--normalisation" type="select" label="Do you want to normalize your data ?" help="Choose whether to normalize read abundances before performing statistical analyses (default: No)." display="radio">
             <option value="false">No, keep original abundances.</option>

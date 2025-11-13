@@ -19,7 +19,7 @@
 
     <xml name="affiliation_postprocess_inputs">
         <!-- Files -->
-        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />/>
+        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />
         <param argument="--input-biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
 
         <!-- Parameters -->
@@ -39,4 +39,21 @@
         <param argument="--identity" type="float" min="0.0" max="100.0" value="99.0" label="Minimum identity for aggregation" help="ASVs will be aggregated if they share the same taxonomy with at least X% identity"/>
         <param argument="--coverage" type="float" min="0.0" max="100.0" value="99.0" label="Minimum coverage for aggregation" help="ASVs will be aggregated if they share the same taxonomy with at least X% alignment coverage"/>
     </xml>
+
+    <!-- Test -->
+    <xml name="affiliation_postprocess_test_input">
+        <param name="input_fasta" value="references/04-filters.fasta" />
+        <param name="input_biom" value="references/06-affiliation.biom" />
+
+        <conditional name="is_HVL">
+            <param name="HVL_amplicon" value="Yes" />
+            <param name="reference" value="Unite_extract_ITS1_test" />
+        </conditional>
+    </xml>
+    
+    <xml name="affiliation_postprocess_test_output">
+        <output name="output_biom" file="references/08-affiliation_postprocessed.biom" compare="diff" lines_diff="0" />
+        <output name="output_fasta" file="references/08-affiliation_postprocessed.fasta" compare="diff" lines_diff="0" />
+        <output name="output_asv_compo" file="references/08-affiliation_postprocessed.compo.tsv" compare="diff" lines_diff="0" />
+    </xml>  
 </macros>

@@ -1,0 +1,13 @@
+#sample	count
+MgArd0001	11
+MgArd0009	13
+MgArd0017	14
+MgArd0029	26
+MgArd0038	135
+MgArd0046	53
+MgArd0054	38
+MgArd0062	139
+MgArd0073	60
+MgArd0081	19
+unmatched	492
+ambiguous	0

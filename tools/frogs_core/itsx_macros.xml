@@ -21,7 +21,7 @@
 
     <xml name="itsx_inputs">
         <!-- Files -->
-        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />/>
+        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />
         <param argument="--input-biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
 
         <!-- Parameters -->
@@ -62,5 +62,24 @@
             <!-- <option value="X">Apusozoa</option>
 			<option value="Y">Parabasalia</option> -->
         </param>
+    </xml>
+
+    <!-- Test -->
+    <xml name="itsx_test_input">
+        <param name="input_fasta" value="references/04-filters.fasta" />
+        <param name="input_biom" value="references/04-filters.biom" />
+
+        <!-- Parameters -->
+        <conditional name="trim_sequence">
+			<param name="check_its_only" value="no" />
+            <param name="region" value="ITS1" />
+        </conditional>
+    </xml>
+
+    <xml name="itsx_test_output">
+        <output name="output_biom" file="references/05-itsx.biom" compare="diff" lines_diff="0" />
+        <output name="output_fasta" file="references/05-itsx.fasta" compare="sim_size" delta="0" /> <!--same content but could be in a different order -->
+        <output name="output_removed_sequences" file="references/05-itsx-excluded.fasta" compare="diff" lines_diff="0" />
+        <output name="html" file="references/05-itsx.html" compare="diff" lines_diff="0" />
     </xml>
 </macros>

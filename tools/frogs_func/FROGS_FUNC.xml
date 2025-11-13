@@ -1,4 +1,4 @@
-<tool id="FROGS5-Func_dev" name="FROGS-5 Func dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
+<tool id="FROGS_Func" name="FROGS Func" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
     <description>Prediction of functional abundances using marker gene sequences</description>
     <macros>
         <import>frogs_func_macros.xml</import>
@@ -15,6 +15,7 @@
 
         #elif $frogs_func_tools.tool_name == "picrust2_functions"
             @PICRUST2_FUNCTIONS_CMD_LINE@
+
         #elif $frogs_func_tools.tool_name == "picrust2_pathways"
             @PICRUST2_PATHWAYS_CMD_LINE@
         #end if
@@ -29,6 +30,7 @@
                 <option value="picrust2_functions">Tool 2: functional abundance estimation (PICRUSt2)</option>
                 <option value="picrust2_pathways">Tool 3: pathway abundance estimation (PICRUSt2)</option>
             </param>
+            <when value=""/>
             <!-- ##################### picrust2_placeseq_and_copynumber  ##################### -->
             <when value="picrust2_placeseq_and_copynumber">
                 <expand macro="picrust2_placeseq_and_copynumber_inputs" />
@@ -49,11 +51,40 @@
     </outputs>
     
     <tests>
+        <!-- ##################### 1 picrust2_placeseq_and_copynumber ##################### -->
+        <test expect_num_outputs="7">
+            <conditional name="frogs_func_tools">
+                <param name="tool_name" value="picrust2_placeseq_and_copynumber"/>
+                <expand macro="picrust2_placeseq_and_copynumber_test_input"/>
+            </conditional>
+            <expand macro="picrust2_placeseq_and_copynumber_test_output"/>
+        </test>
+        <!-- ##################### 2 picrust2_functions ##################### -->
+        <test expect_num_outputs="8">
+            <conditional name="frogs_func_tools">
+                <param name="tool_name" value="picrust2_functions"/>
+                <expand macro="picrust2_functions_test_input"/>
+            </conditional>
+            <expand macro="picrust2_functions_test_output"/>
+        </test>        
+        <!-- ##################### 3 picrust2_pathways ##################### -->
+        <test expect_num_outputs="2">
+            <conditional name="frogs_func_tools">
+                <param name="tool_name" value="picrust2_pathways"/>
+                <expand macro="picrust2_pathways_test_input"/>
+            </conditional>
+            <expand macro="picrust2_pathways_test_output"/>
+        </test>    
     </tests>
 
     <help><![CDATA[
     For more information and detailed documentation, visit the FROGS website https://frogs.inrae.fr.
     ]]>
     </help>
+
+    <citations>
+        <citation type="doi">10.1093/bioinformatics/btx791</citation>
+        <citation type="doi">10.1093/bib/bbab318</citation>
+    </citations>
 
 </tool>

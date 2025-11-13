@@ -49,4 +49,25 @@
         </param>
         <param argument="--min-align" type="float" value="0.8" min="0" max="1" optional="false" label="Minimum alignment coverage" help="Proportion of the total length of an input sequence that must align with reference sequences. All others will be excluded." /> 
     </xml>
+
+    <!-- Test -->
+    <xml name="picrust2_placeseq_and_copynumber_test_input">
+        <param name="input_fasta" value="input/frogsfunc.fasta" />
+        <param name="input_biom" value="input/frogsfunc.biom" />
+
+        <!-- Parameters -->
+        <param name="marker" value="16S" />
+        <param name="placement_tool" value="sepp" />
+    </xml>
+
+    <xml name="picrust2_placeseq_and_copynumber_test_output">
+        <output name="output_fasta" file="references/25-frogsfunc_placeseqs.fasta" compare="diff" lines_diff="0" />
+        <output name="output_biom" file="references/25-frogsfunc_placeseqs.biom" compare="diff" lines_diff="0"/>
+        <output name="output_excluded" file="references/25-frogsfunc_placeseqs_excluded.txt" compare="diff" lines_diff="0" />
+        <output name="output_tree" file="references/25-frogsfunc_placeseqs_tree.nwk" compare="diff" lines_diff="0" />
+        <output name="output_closests_ref" file="references/25-frogsfunc_placeseqs_closests_ref_sequences.txt" compare="diff" lines_diff="0" />
+        <output name="html" file="references/25-frogsfunc_placeseqs_summary.html" compare="diff" lines_diff="0" />
+        <output name="output_marker_copy" file="references/25-frogsfunc_placeseqs_marker.tsv" compare="diff" lines_diff="0" /> 
+    </xml>
+
 </macros>

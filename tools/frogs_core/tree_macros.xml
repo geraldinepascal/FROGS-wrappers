@@ -11,7 +11,27 @@
 
     <xml name="tree_inputs">
         <!-- Files -->
-        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (.fasta)" help="FASTA file containing the representative sequences to be used for phylogenetic tree construction." />/>
+        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (.fasta)" help="FASTA file containing the representative sequences to be used for phylogenetic tree construction." />
         <param argument="--input-biom" type="data" format="biom1" label="Abundance file (.biom)" help="BIOM file containing the abundance table associated with the input sequences." />
+    </xml>
+
+    <!-- Test -->
+    <xml name="tree_test_input">
+        <param name="input_fasta" value="references/04-filters.fasta" />
+        <param name="input_biom" value="references/06-affiliation.biom" />
+    </xml>
+
+    <xml name="tree_test_output">
+        <output name="output_tree" file="references/15-tree-mafft.nwk" compare="sim_size" delta="30"/>
+        <output name="html" file="references/15-tree-mafft.html" compare="diff" lines_diff="2" />
+        <output name="html">
+            <assert_contents>
+                <has_text_matching expression="FROGS\sTree" />
+                <has_text_matching expression="abundance_removed.*:\s0" />
+                <has_text_matching expression="abundance_kept.*:\s73531" />
+                <has_text_matching expression="asv_removed.*:\s0" />
+                <has_text_matching expression="asv_kept.*:\s54" />
+            </assert_contents>
+        </output>
     </xml>
 </macros>

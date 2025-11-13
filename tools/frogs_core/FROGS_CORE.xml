@@ -15,9 +15,9 @@
         <import>affiliation_postprocess_macros.xml</import>
         <import>normalisation_macros.xml</import>
         <import>biom_to_tsv_macros.xml</import>
+        <import>tsv_to_biom_macros.xml</import>
         <import>cluster_asv_report_macros.xml</import>
         <import>affiliation_report_macros.xml</import>
-        <import>tsv_to_biom_macros.xml</import>
     </macros>
 
     <expand macro="frogs_core_requirements" />
@@ -97,9 +97,9 @@
                 <option value="biom_to_tsv">Companion 1. Convert Biom file to TSV file</option> 
                 <option value="tsv_to_biom">Companion 2. Convert TSV file to Biom file</option> 
                 <option value="cluster_asv_report">Companion 3. Cluster/ASV report</option> 
-                <option value="affiliation_report">Companion 4. Affiliation report</option>
-                
+                <option value="affiliation_report">Companion 4. Affiliation report</option>                
             </param>
+            <when value=""/>
             <!-- ##################### processing_short_reads  ##################### -->
             <when value="processing_short_reads">
                 <expand macro="processing_short_reads_inputs" />
@@ -123,7 +123,7 @@
             <!-- ##################### taxonomic_affiliation  ##################### -->
             <when value="taxonomic_affiliation">
                 <expand macro="taxonomic_affiliation_inputs" />
-            </when> 
+            </when>
             <!-- ##################### tree  ##################### -->
             <when value="tree">
                 <expand macro="tree_inputs" />
@@ -172,11 +172,160 @@
     </outputs>
     
     <tests>
+        <!-- ##################### 1 processing_short_reads : swarm ##################### -->
+        <test expect_num_outputs="4">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="processing_short_reads"/>
+                <expand macro="swarm_processing_short_reads_test_input"/>
+            </conditional>
+            <expand macro="swarm_processing_short_reads_test_output"/>
+        </test>
+        <!-- ##################### 2 processing_short_reads : dada2 ##################### -->
+        <test expect_num_outputs="3">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="processing_short_reads"/>
+                <expand macro="dada2_processing_short_reads_test_input"/>
+            </conditional>
+            <expand macro="dada2_processing_short_reads_test_output"/>
+        </test>
+        <!-- ##################### 3 processing_long_reads : swarm ##################### -->
+        <test expect_num_outputs="4">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="processing_long_reads"/>
+                <expand macro="swarm_processing_long_reads_test_input"/>
+            </conditional>
+            <expand macro="swarm_processing_long_reads_test_output"/>
+        </test>
+        <!-- ##################### 4 processing_long_reads : dada2 ##################### -->
+        <test expect_num_outputs="3">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="processing_long_reads"/>
+                <expand macro="dada2_processing_long_reads_test_input"/>
+            </conditional>
+            <expand macro="dada2_processing_long_reads_test_output"/>
+        </test>
+        <!-- ##################### 5 processing_454_reads : swarm ##################### -->
+        <test expect_num_outputs="4">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="processing_454_reads"/>
+                <expand macro="swarm_processing_454_reads_test_input"/>
+            </conditional>
+            <expand macro="swarm_processing_454_reads_test_output"/>
+        </test>
+        <!-- ##################### 6 remove_chimera ##################### -->
+        <test expect_num_outputs="3">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="remove_chimera"/>
+                <expand macro="remove_chimera_test_input"/>
+            </conditional>
+            <expand macro="remove_chimera_test_output"/>
+        </test>
+        <!-- ##################### 7 cluster_filters ##################### -->
+        <test expect_num_outputs="4">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="cluster_filters"/>
+                <expand macro="cluster_filters_test_input"/>
+            </conditional>
+            <expand macro="cluster_filters_test_output"/>
+        </test>
+        <!-- ##################### 8 taxonomic_affiliation ##################### -->
+        <test expect_num_outputs="2">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="taxonomic_affiliation"/>
+                <expand macro="taxonomic_affiliation_test_input"/>
+            </conditional>
+            <expand macro="taxonomic_affiliation_test_output"/>
+        </test>
+        <!-- ##################### 9 tree ##################### -->
+        <test expect_num_outputs="2">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="tree"/>
+                <expand macro="tree_test_input"/>
+            </conditional>
+            <expand macro="tree_test_output"/>
+        </test>
+        <!-- ##################### 10 demultiplex ##################### -->
+        <test expect_num_outputs="3">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="demultiplex"/>
+                <expand macro="demultiplex_test_input"/>
+            </conditional>
+            <expand macro="demultiplex_test_output"/>
+        </test>
+        <!-- ##################### 11 itsx ##################### -->
+        <test expect_num_outputs="4">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="itsx"/>
+                <expand macro="itsx_test_input"/>
+            </conditional>
+            <expand macro="itsx_test_output"/>
+        </test>
+        <!-- ##################### 12 affiliation_filters ##################### -->
+        <test expect_num_outputs="4">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="affiliation_filters"/>
+                <expand macro="affiliation_filters_test_input"/>
+            </conditional>
+            <expand macro="affiliation_filters_test_output"/>
+        </test>
+        <!-- ##################### 13 affiliation_postprocess ##################### -->
+        <test expect_num_outputs="3">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="affiliation_postprocess"/>
+                <expand macro="affiliation_postprocess_test_input"/>
+            </conditional>
+            <expand macro="affiliation_postprocess_test_output"/>
+        </test>
+        <!-- ##################### 14 normalisation ##################### -->
+        <test expect_num_outputs="3">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="normalisation"/>
+                <expand macro="normalisation_test_input"/>
+            </conditional>
+            <expand macro="normalisation_test_output"/>
+        </test>
+        <!-- ##################### 15 biom_to_tsv ##################### -->
+        <test expect_num_outputs="2">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="biom_to_tsv"/>
+                <expand macro="biom_to_tsv_test_input"/>
+            </conditional>
+            <expand macro="biom_to_tsv_test_output"/>
+        </test> 
+        <!-- ##################### 16 tsv_to_biom ##################### -->
+        <test expect_num_outputs="2">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="tsv_to_biom"/>
+                <expand macro="tsv_to_biom_test_input"/>
+            </conditional>
+            <expand macro="tsv_to_biom_test_output"/>
+        </test>        
+        <!-- ##################### 17 cluster_asv_report ##################### -->
+        <test expect_num_outputs="1">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="cluster_asv_report"/>
+                <expand macro="cluster_asv_report_test_input"/>
+            </conditional>
+            <expand macro="cluster_asv_report_test_output"/>
+        </test>   
+        <!-- ##################### 18 affiliation_report ##################### -->
+        <test expect_num_outputs="1">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="affiliation_report"/>
+                <expand macro="affiliation_report_test_input"/>
+            </conditional>
+            <expand macro="affiliation_report_test_output"/>
+        </test>   
     </tests>
     
     <help><![CDATA[
     For more information and detailed documentation, visit the FROGS website https://frogs.inrae.fr.
     ]]>
     </help>
+
+    <citations>
+        <citation type="doi">10.1093/bioinformatics/btx791</citation>
+        <citation type="doi">10.1093/bib/bbab318</citation>
+    </citations>
 
 </tool>

@@ -29,9 +29,6 @@
                 --output-asv-copy-norm '$output_asv_norm'
                 --output-weighted-nsti '$output_weighted_nsti'
                 --prefix-function-abund unstrat_abundance
-                
-                
-
     </token>
 
     <xml name="picrust2_functions_inputs">
@@ -70,4 +67,28 @@
             <option value="subtree_average">subtree_average</option>
         </param>
     </xml>
+
+    <!-- Test -->
+    <xml name="picrust2_functions_test_input">
+        <param name="input_fasta" value="references/25-frogsfunc_placeseqs.fasta" />
+        <param name="input_biom" value="references/25-frogsfunc_placeseqs.biom" />
+        <param name="input_tree" value="references/25-frogsfunc_placeseqs_tree.nwk" />
+        <param name="input_marker_copy" value="references/25-frogsfunc_placeseqs_marker.tsv" />
+
+        <!-- Parameters -->
+        <param name="marker" value="16S" />
+        <param name="functions" value="EC" />
+        <param name="max_nsti" value="2" />
+    </xml>
+
+    <xml name="picrust2_functions_test_output">
+        <output name="html" file="references/26-frogsfunc_functions_summary.html" compare="diff" lines_diff="0" />
+        <output name="output_excluded" file="references/26-frogsfunc_functions_excluded.tsv" compare="diff" lines_diff="0" />
+        <output name="output_biom" file="references/26-frogsfunc_functions.biom" compare="diff" lines_diff="0" />
+        <output name="output_fasta" file="references/26-frogsfunc_functions.fasta" compare="diff" lines_diff="0" />
+        <output name="output_asv_norm" file="references/26-frogsfunc_functions_marker_norm.tsv" compare="diff" lines_diff="0" />
+        <output name="output_weighted_nsti" file="references/26-frogsfunc_functions_weighted_nsti.tsv" compare="diff" lines_diff="0" />
+        <output name="output_function_ec_abund" file="references/26-frogsfunc_functions_unstrat_EC.tsv" compare="diff" lines_diff="0" />
+        <output name="output_copy_ec_abund" file="references/EC_copynumbers_predicted.tsv" compare="diff" lines_diff="0" />
+    </xml>   
 </macros>

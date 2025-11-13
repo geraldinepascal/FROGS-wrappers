@@ -37,12 +37,26 @@
 
     <xml name="only_letter_sanitizer_validator">
         <sanitizer invalid_char="">
-            <valid initial="string.letters"/>
+            <valid initial="string.letters">
+                <add value=" " />
+            </valid>
         </sanitizer>
         <validator type="regex">[A-Za-z]+</validator>
     </xml>
 
-    <xml name="sanitizer_validator">
+    <xml name="restricted_sanitizer_validator">
+        <sanitizer invalid_char="">
+            <valid initial="string.letters,string.digits">
+                <add value="-" />
+                <add value=" " />
+                <add value="_" />
+                <add value="." />
+            </valid>
+        </sanitizer>
+        <validator type="regex">[A-Za-z0-9- _.]+</validator>
+    </xml>
+
+    <!-- <xml name="lenient_sanitizer_validator">
         <sanitizer invalid_char="">
             <valid initial="string.letters,string.digits">
                 <add value="+" />
@@ -56,17 +70,12 @@
             </valid>
         </sanitizer>
         <validator type="regex">[A-Za-z0-9+*-= _,.]+</validator>
-    </xml>
+    </xml> -->
 
     <xml name="taxonomic_ranks">
-        <param argument="--taxonomic-ranks" name="taxonomic_ranks" type="text" optional="false" value="Domain Phylum Class Order Family Genus Species" 
+        <param argument="--taxonomic-ranks" type="text" optional="false" value="Domain Phylum Class Order Family Genus Species" 
             label="Taxonomic ranks" help="Specify the ordered taxonomic rank levels used in the reference database. Separate each rank by a single space.">
-            <sanitizer invalid_char="">
-                <valid initial="string.letters">
-                    <add value=" " />
-                </valid>
-            </sanitizer>
-            <validator type="regex">[A-Za-z ]+</validator>
+            <expand macro="restricted_sanitizer_validator"/>
         </param>
     </xml>
 

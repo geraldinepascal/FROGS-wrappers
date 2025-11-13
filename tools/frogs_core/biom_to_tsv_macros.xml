@@ -25,4 +25,17 @@
             <option value="no" >No</option>
 		</param>
     </xml>
+
+    <!-- Test -->
+    <xml name="biom_to_tsv_test_input">
+        <param name="input_fasta" value="references/09-normalisation.fasta" />
+        <param name="input_biom" value="references/09-normalisation.biom" />
+
+        <param name="extract_multi_align" value="yes" />
+    </xml>
+    
+    <xml name="biom_to_tsv_test_output">
+        <output name="output_tsv" file="references/12-biom2tsv.tsv" compare="diff" lines_diff="0" />
+        <output name="output_multihit" file="references/12-biom2tsv-affiliation_multihit.tsv" compare="diff" lines_diff="0" />
+    </xml> 
 </macros>

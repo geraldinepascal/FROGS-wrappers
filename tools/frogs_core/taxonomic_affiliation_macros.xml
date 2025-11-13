@@ -20,14 +20,12 @@
             
             --output-biom '$output_biom'
             --html '$html'
-            --nb-cpus 8
-            --java-mem 16
 
     ]]></token>
 
     <xml name="taxonomic_affiliation_inputs">
         <!-- Files -->
-        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (.fasta)" help="The sequence file to be taxonomically affiliated." />/>
+        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (.fasta)" help="The sequence file to be taxonomically affiliated." />
         <param argument="--input-biom" type="data" format="biom1" label="Abundance file (.biom)" help="The abundance file linked to the sequence to be taxonomically affiliated." />
 
          <!-- Database Choice -->
@@ -44,4 +42,19 @@
         <expand macro="taxonomic_ranks"/>
 
     </xml>
+
+    <!-- Test -->
+    <xml name="taxonomic_affiliation_test_input">
+        <param name="input_fasta" value="references/04-filters.fasta" />
+        <param name="input_biom" value="references/04-filters.biom" />
+
+        <param name="ref_file" value="ITS1_test" />
+        <param name="rdp" value="yes" />
+    </xml>
+
+    <xml name="taxonomic_affiliation_test_output">
+        <output name="output_biom" file="references/06-affiliation.biom" compare="sim_size" delta="5"/>
+        <output name="html" file="references/06-affiliation.html" compare="diff" lines_diff="4" />
+    </xml>
+
 </macros>

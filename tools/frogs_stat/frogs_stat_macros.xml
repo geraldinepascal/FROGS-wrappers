@@ -19,7 +19,19 @@
         </requirements>
     </xml>
 
-    <xml name="sanitizer_validator">
+<xml name="restricted_sanitizer_validator">
+        <sanitizer invalid_char="">
+            <valid initial="string.letters,string.digits">
+                <add value="-" />
+                <add value=" " />
+                <add value="_" />
+                <add value="." />
+            </valid>
+        </sanitizer>
+        <validator type="regex">[A-Za-z0-9- _.]+</validator>
+    </xml>
+
+    <xml name="lenient_sanitizer_validator">
         <sanitizer invalid_char="">
             <valid initial="string.letters,string.digits">
                 <add value="+" />
@@ -61,10 +73,10 @@
             <filter>frogs_stat_tools['tool_name'] == 'deseq2_fun_preprocess'</filter>
         </data>
         <!-- Ipath3 inputs : deseq2_fun_visualisation -->
-        <data format="tsv" name="Function_over_abund" label="${tool.name}- ${tool_name}: ipath_over.tsv">
+        <data format="txt" name="Function_over_abund" label="${tool.name}- ${tool_name}: ipath_over.txt" from_work_dir="ipath_over.tsv">
             <filter>frogs_stat_tools['tool_name'] == 'deseq2_fun_visualisation'</filter>
         </data>
-        <data format="tsv" name="Function_under_abund" label="${tool.name}- ${tool_name}: ipath_under.tsv">
+        <data format="txt" name="Function_under_abund" label="${tool.name}- ${tool_name}: ipath_under.txt" from_work_dir="ipath_under.tsv">
             <filter>frogs_stat_tools['tool_name'] == 'deseq2_fun_visualisation'</filter>
         </data>
     </xml>

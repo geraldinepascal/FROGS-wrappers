@@ -20,4 +20,13 @@
 		</param>
     </xml>
 
+    <!-- Test -->
+    <xml name="cluster_asv_report_test_input">
+        <param name="input_biom" value="references/09-normalisation.biom" />
+    </xml>
+    
+    <xml name="cluster_asv_report_test_output">
+        <output name="html" file="references/10-clusters-asv-report.html" compare="diff" lines_diff="0" />
+    </xml>     
+
 </macros>

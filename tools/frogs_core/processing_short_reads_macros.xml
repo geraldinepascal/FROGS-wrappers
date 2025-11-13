@@ -94,7 +94,7 @@
     <xml name="processing_short_reads_inputs">
        <!-- Files -->
         <conditional name="fastq_input">
-	      	<param name="input_type" type="select" display="radio" label=" Paired-end or Single-end reads" help="">
+	      	<param name="input_type" type="select" display="radio" label="Paired-end or Single-end reads" help="">
                 <option value="paired" selected="true">Paired-end reads</option>
 	      		<option value="single">Single-end reads or Paired reads that have already been merged.</option>
 	        </param>
@@ -110,7 +110,7 @@
                     <when value="files_per_sample">
                         <repeat name="samples" title="Samples" default="1" min="1">
                             <param argument="--samples-names" type="text" label="Sample name" help="The sample name.">
-                                <expand macro="sanitizer_validator"/>
+                                <expand macro="restricted_sanitizer_validator"/>
                             </param>
                             <param argument="--input-R1" type="data" format="fastq" label="R1 reads (.fastq.gz)" help="R1 reads fastq file. Supported sequencers: Illumina and Aviti." />
                             <param argument="--input-R2" type="data" format="fastq" label="R2 reads (.fastq.gz)" help="R2 reads fastq file. Supported sequencers: Illumina and Aviti."  />
@@ -146,7 +146,7 @@
                     <when value="files_per_sample">
                         <repeat name="samples" title="Samples" default="1" min="1">
                             <param argument="--samples-names" type="text" label="Name" help="The sample name.">
-                                <expand macro="sanitizer_validator"/>
+                                <expand macro="restricted_sanitizer_validator"/>
                             </param>
                             <param argument="--input-R1" type="data" format="fastq" label="The short single-end reads or merged paired-end reads (.fastq.gz)" help="Single-end short reads or merge paired-end reads (.fastq.gz). Supported sequencers: Illumina and Aviti." />
                         </repeat>
@@ -235,7 +235,7 @@
         
         <!-- Preprocessing only, clustering or denoising -->
         <conditional name="process_type">
-            <param name="process" value="clustering" />
+            <param name="process" value="Clustering Swarm" />
         </conditional>
     </xml>
 

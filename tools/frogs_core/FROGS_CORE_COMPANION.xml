@@ -1,0 +1,175 @@
+<tool id="FROGS_Core_companion" name="FROGS Core Companion" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
+    <description>Optional process, converter, and report</description>
+    <macros>
+        <import>frogs_core_macros.xml</import>
+        <import>demultiplex_macros.xml</import>
+        <import>affiliation_filters_macros.xml</import>
+        <import>affiliation_postprocess_macros.xml</import>
+        <import>normalisation_macros.xml</import>
+        <import>biom_to_tsv_macros.xml</import>
+        <import>tsv_to_biom_macros.xml</import>
+        <import>cluster_asv_report_macros.xml</import>
+        <import>affiliation_report_macros.xml</import>
+    </macros>
+
+    <expand macro="frogs_core_requirements" />
+
+    <command detect_errors="exit_code"><![CDATA[
+        #if $frogs_core_tools.tool_name == "demultiplex":
+            @DEMULTIPLEX_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "affiliation_filters":
+            @AFFILIATION_FILTERS_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "affiliation_postprocess":
+            @AFFILIATION_POSTPROCESS_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "normalisation":
+            @NORMALISATION_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "biom_to_tsv":
+            @BIOM_TO_TSV_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "tsv_to_biom":
+            @TSV_TO_BIOM_CMD_LINE@
+            
+        #elif $frogs_core_tools.tool_name == "cluster_asv_report":
+            @CLUSTER_ASV_REPORT_CMD_LINE@
+
+        #elif $frogs_core_tools.tool_name == "affiliation_report":
+            @AFFILIATION_REPORT_CMD_LINE@
+        #end if
+    ]]>
+    </command>
+    
+    <inputs>
+        <conditional name="frogs_core_tools">
+            <param name="tool_name" type="select" display="radio" label="Select a tool from the FROGS Core suite to run your analysis.">
+                <option value="" selected="true">-- Please select a tool --</option>
+                <option value="demultiplex">Read demultiplexing</option> 
+                <option value="affiliation_filters">Affiliation filters </option> 
+                <option value="affiliation_postprocess">Affiliation postprocessing </option> 
+                <option value="normalisation">Abundance normalisation </option> 
+                <option value="biom_to_tsv">Convert Biom file to TSV file</option> 
+                <option value="tsv_to_biom">Convert TSV file to Biom file</option> 
+                <option value="cluster_asv_report">Cluster/ASV report</option> 
+                <option value="affiliation_report">Affiliation report</option>                
+            </param>
+            <when value=""/>
+            <!-- ##################### demultiplex  ##################### -->
+            <when value="demultiplex">
+                <expand macro="demultiplex_inputs" />
+            </when>
+            <!-- ##################### affiliation_filters  ##################### -->
+            <when value="affiliation_filters">
+                <expand macro="affiliation_filters_inputs" />
+            </when>
+            <!-- ##################### affiliation_postprocess  ##################### -->
+            <when value="affiliation_postprocess">
+                <expand macro="affiliation_postprocess_inputs" />
+            </when>
+            <!-- ##################### normalisation  ##################### -->
+            <when value="normalisation">
+                <expand macro="normalisation_inputs" />
+            </when>
+            <!-- ##################### biom_to_tsv  ##################### -->
+            <when value="biom_to_tsv">
+                <expand macro="biom_to_tsv_inputs" />
+            </when>
+            <!-- ##################### tsv_to_biom  ##################### -->
+            <when value="tsv_to_biom">
+                <expand macro="tsv_to_biom_inputs" />
+            </when>
+            <!-- ##################### cluster_asv_report  ##################### -->
+            <when value="cluster_asv_report">
+                <expand macro="cluster_asv_report_inputs" />
+            </when>
+            <!-- ##################### affiliation_report  ##################### -->
+            <when value="affiliation_report">
+                <expand macro="affiliation_report_inputs" />
+            </when>
+        </conditional>
+    </inputs>
+    
+    <outputs>
+        <expand macro="frogs_core_outputs" />
+    </outputs>
+    
+    <tests>
+        <!-- ##################### 10 demultiplex ##################### -->
+        <test expect_num_outputs="3">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="demultiplex"/>
+                <expand macro="demultiplex_test_input"/>
+            </conditional>
+            <expand macro="demultiplex_test_output"/>
+        </test>
+        <!-- ##################### 12 affiliation_filters ##################### -->
+        <test expect_num_outputs="4">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="affiliation_filters"/>
+                <expand macro="affiliation_filters_test_input"/>
+            </conditional>
+            <expand macro="affiliation_filters_test_output"/>
+        </test>
+        <!-- ##################### 13 affiliation_postprocess ##################### -->
+        <test expect_num_outputs="3">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="affiliation_postprocess"/>
+                <expand macro="affiliation_postprocess_test_input"/>
+            </conditional>
+            <expand macro="affiliation_postprocess_test_output"/>
+        </test>
+        <!-- ##################### 14 normalisation ##################### -->
+        <test expect_num_outputs="3">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="normalisation"/>
+                <expand macro="normalisation_test_input"/>
+            </conditional>
+            <expand macro="normalisation_test_output"/>
+        </test>
+        <!-- ##################### 15 biom_to_tsv ##################### -->
+        <test expect_num_outputs="2">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="biom_to_tsv"/>
+                <expand macro="biom_to_tsv_test_input"/>
+            </conditional>
+            <expand macro="biom_to_tsv_test_output"/>
+        </test> 
+        <!-- ##################### 16 tsv_to_biom ##################### -->
+        <test expect_num_outputs="2">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="tsv_to_biom"/>
+                <expand macro="tsv_to_biom_test_input"/>
+            </conditional>
+            <expand macro="tsv_to_biom_test_output"/>
+        </test>        
+        <!-- ##################### 17 cluster_asv_report ##################### -->
+        <test expect_num_outputs="1">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="cluster_asv_report"/>
+                <expand macro="cluster_asv_report_test_input"/>
+            </conditional>
+            <expand macro="cluster_asv_report_test_output"/>
+        </test>   
+        <!-- ##################### 18 affiliation_report ##################### -->
+        <test expect_num_outputs="1">
+            <conditional name="frogs_core_tools">
+                <param name="tool_name" value="affiliation_report"/>
+                <expand macro="affiliation_report_test_input"/>
+            </conditional>
+            <expand macro="affiliation_report_test_output"/>
+        </test>   
+    </tests>
+    
+    <help><![CDATA[
+    For more information and detailed documentation, visit the FROGS website https://frogs.inrae.fr.
+    ]]>
+    </help>
+
+    <citations>
+        <citation type="doi">10.1093/bioinformatics/btx791</citation>
+        <citation type="doi">10.1093/bib/bbab318</citation>
+    </citations>
+
+</tool>

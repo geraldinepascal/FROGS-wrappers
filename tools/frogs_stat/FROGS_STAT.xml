@@ -1,4 +1,4 @@
-<tool id="FROGS5_Stat_dev" name="FROGS-5 Stat dev" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
+<tool id="FROGS_Stat" name="FROGS Stat" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
     <description>Analysis of community structure, composition, and differential abundances</description>
     <macros>
         <import>frogs_stat_macros.xml</import>
@@ -121,7 +121,7 @@
     </outputs>
     
     <tests>
-        <!-- ##################### phyloseq_import  OK ##################### -->
+        <!-- ##################### 1 phyloseq_import ##################### -->
         <test expect_num_outputs="2">
             <conditional name="frogs_stat_tools">
                 <param name="tool_name" value="phyloseq_import"/>
@@ -129,7 +129,7 @@
             </conditional>
             <expand macro="phyloseq_import_test_output"/>
         </test>
-        <!-- ##################### phyloseq_composition  OK ##################### -->
+        <!-- ##################### 2 phyloseq_composition ##################### -->
         <test expect_num_outputs="1">
             <conditional name="frogs_stat_tools">
                 <param name="tool_name" value="phyloseq_composition"/>
@@ -137,7 +137,7 @@
             </conditional>
             <expand macro="phyloseq_composition_test_output"/>
         </test>
-        <!-- ##################### phyloseq_alpha_diversity  OK ##################### -->
+        <!-- ##################### 3 phyloseq_alpha_diversity ##################### -->
         <test expect_num_outputs="2">
             <conditional name="frogs_stat_tools">
                 <param name="tool_name" value="phyloseq_alpha_diversity"/>
@@ -145,7 +145,7 @@
             </conditional>
             <expand macro="phyloseq_alpha_diversity_test_output"/>
         </test>        
-        <!-- ##################### phyloseq_beta_diversity OK ##################### -->
+        <!-- ##################### 4 phyloseq_beta_diversity ##################### -->
         <test expect_num_outputs="1">
             <conditional name="frogs_stat_tools">
                 <param name="tool_name" value="phyloseq_beta_diversity"/>
@@ -153,7 +153,7 @@
             </conditional>
             <expand macro="phyloseq_beta_diversity_test_output"/>
         </test>        
-        <!-- ##################### phyloseq_clustering OK ##################### -->
+        <!-- ##################### 5 phyloseq_clustering ##################### -->
         <test expect_num_outputs="1">
             <conditional name="frogs_stat_tools">
                 <param name="tool_name" value="phyloseq_clustering"/>
@@ -161,7 +161,7 @@
             </conditional>
             <expand macro="phyloseq_clustering_test_output"/>
         </test>        
-        <!-- ##################### phyloseq_structure OK ##################### -->
+        <!-- ##################### 6 phyloseq_structure ##################### -->
         <test expect_num_outputs="1">
             <conditional name="frogs_stat_tools">
                 <param name="tool_name" value="phyloseq_structure"/>
@@ -169,7 +169,7 @@
             </conditional>
             <expand macro="phyloseq_structure_test_output"/>
         </test>  
-        <!-- ##################### phyloseq_manova OK ##################### -->
+        <!-- ##################### 7 phyloseq_manova ##################### -->
         <test expect_num_outputs="1">
             <conditional name="frogs_stat_tools">
                 <param name="tool_name" value="phyloseq_manova"/>
@@ -177,7 +177,7 @@
             </conditional>
             <expand macro="phyloseq_manova_test_output"/>
         </test> 
-        <!-- ##################### deseq2_asv_preprocess OK ##################### -->
+        <!-- ##################### 8 deseq2_asv_preprocess ##################### -->
         <test expect_num_outputs="1">
             <conditional name="frogs_stat_tools">
                 <param name="tool_name" value="deseq2_asv_preprocess"/>
@@ -185,7 +185,7 @@
             </conditional>
             <expand macro="deseq2_asv_preprocess_test_output"/>
         </test>
-        <!-- ##################### deseq2_fun_preprocess OK ##################### -->
+        <!-- ##################### 9 deseq2_fun_preprocess ##################### -->
         <test expect_num_outputs="2">
             <conditional name="frogs_stat_tools">
                 <param name="tool_name" value="deseq2_fun_preprocess"/>
@@ -193,7 +193,7 @@
             </conditional>
             <expand macro="deseq2_fun_preprocess_test_output"/>
         </test> 
-        <!-- ##################### deseq2_asv_visualisation ##################### -->
+        <!-- ##################### 10 deseq2_asv_visualisation ##################### -->
         <test expect_num_outputs="1">
             <conditional name="frogs_stat_tools">
                 <param name="tool_name" value="deseq2_asv_visualisation"/>
@@ -201,7 +201,7 @@
             </conditional>
             <expand macro="deseq2_asv_visualisation_test_output"/>
         </test>
-        <!-- ##################### deseq2_fun_visualisation ##################### -->
+        <!-- ##################### 11 deseq2_fun_visualisation ##################### -->
         <test expect_num_outputs="3">
             <conditional name="frogs_stat_tools">
                 <param name="tool_name" value="deseq2_fun_visualisation"/>

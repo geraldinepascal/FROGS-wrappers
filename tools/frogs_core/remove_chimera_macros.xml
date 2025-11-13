@@ -25,4 +25,16 @@
             <option value="no" selected="true" >No</option>
 		</param>
     </xml>
+
+    <!-- Test -->
+    <xml name="remove_chimera_test_input">
+        <param name="input_fasta" value="references/01-reads_processing-swarm-vsearch.fasta" />
+        <param name="input_biom" value="references/01-reads_processing-swarm-vsearch.biom" />
+    </xml>
+
+    <xml name="remove_chimera_test_output">
+        <output name="output_fasta" file="references/03-chimera.fasta" compare="diff" lines_diff="0" />
+        <output name="output_biom" file="references/03-chimera.biom" compare="sim_size" delta="0" />
+        <output name="html" file="references/03-chimera.html" compare="diff" lines_diff="0" />
+    </xml>
 </macros>

@@ -61,7 +61,7 @@
             <when value="files_per_samples">
                 <repeat name="samples" title="Samples" default="1" min="1">
                     <param argument="--samples-names" type="text" label="Sample name" help="The sample name.">
-                        <expand macro="sanitizer_validator"/>
+                        <expand macro="restricted_sanitizer_validator"/>
                     </param>
                     <param argument="--input-R1" type="data" format="fastq" label="454 reads (.fastq.gz)" help="fastq file of 454 reads. Supported sequencers: ROCHE 454" />
                 </repeat>
@@ -107,7 +107,7 @@
     <xml name="swarm_processing_454_reads_test_input">
         <!-- Files -->
         <conditional name="input_files">
-            <param name="file_type" value="files_by_samples" />
+            <param name="file_type" value="files_per_samples" />
             <repeat name="samples">
                 <param name="samples_names" value="SRR443364_clipped" />
                 <param name="input_R1" ftype="fastq" value="input/SRR443364_clipped.fastq.gz" />
@@ -124,9 +124,9 @@
         
         <!-- Preprocessing only, clustering or denoising -->
         <conditional name="process_type">
-            <param name="process" value="clustering" />
+            <param name="process" value="Clustering Swarm" />
             <conditional name="cluster_improvements">
-                <param name="clustering_options" value="" />
+                <param name="clustering_options" value="no-refinement" />
             </conditional>
         </conditional>
     </xml>

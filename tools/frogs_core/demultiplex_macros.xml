@@ -20,7 +20,7 @@
 
     <xml name="demultiplex_inputs">
         <!-- Files -->
-        <param argument="--input_barcode" format="tsv,tabular" type="data" label="Barcode file" help="This file describes barcodes and samples (one line by sample tabulated separated from barcode sequence(s)). See Help section" />
+        <param argument="--input-barcode" format="tsv,tabular" type="data" label="Barcode file" help="This file describes barcodes and samples (one line by sample tabulated separated from barcode sequence(s)). See Help section" />
         <conditional name="fastq_input">
               <param name="fastq_input_type" type="select" display="radio" label="Single or Paired-end reads" help="Select between paired and single-end data">
                   <option value="single">Single</option>
@@ -41,5 +41,22 @@
             <option value="eol">Reverse (eol)</option>
             <option value="both">Both ends (both)</option>
         </param>
+    </xml>
+
+    <!-- Test -->
+    <xml name="demultiplex_test_input">
+        <param name="input_barcode" value="input/formation.barcode.txt" />
+        <conditional name="fastq_input">
+            <param name="fastq_input_type" value="single" />
+            <param name="input_R1" value="input/formation_small.fastq.gz" />
+        </conditional>
+        <param name="mismatches" value="1" />
+        <param name="end" value="both" />
+    </xml>
+
+    <xml name="demultiplex_test_output">
+        <output name="output_count" file="references/demultiplex_summary.txt" compare="diff" lines_diff="0" />
+        <output name="output_demultiplexed" file="references/demultiplexed.tar.gz" compare="sim_size" delta="50" />
+        <output name="output_undemultiplexed" file="references/undemultiplexed.tar.gz" compare="sim_size" delta="50" />
     </xml>
 </macros>

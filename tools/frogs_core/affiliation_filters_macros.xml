@@ -98,30 +98,14 @@
                     <when value="ignore">
                         <repeat name="taxon_ignored" title="Remove blast affiliations including these taxon / word">
                             <param argument="--ignore-blast-taxa" type="text" optional="true" label="Full or partial taxon name" help="Example: &quot;unknown species&quot; or &quot;subsp.&quot;">
-                                <sanitizer invalid_char="">
-                                    <valid initial="string.letters,string.digits">
-                                        <add value="-" />
-                                        <add value=" " />
-                                        <add value="_" />
-                                        <add value="." />
-                                    </valid>
-                                </sanitizer>
-                                <validator type="regex">[A-Za-z0-9 =-_/+]+</validator>
+                                <expand macro="restricted_sanitizer_validator"/>
                             </param>
                         </repeat>
                     </when>
                     <when value="keep">
                         <repeat name="taxon_kept" title="Keep blast affiliations including these taxon / word">
                             <param argument="--keep-blast-taxa" type="text" optional="true" label="Full or partial taxon name" help="Example: &quot;unknown species&quot; or &quot;subsp.&quot;">
-                                <sanitizer invalid_char="">
-                                    <valid initial="string.letters,string.digits">
-                                        <add value="-" />
-                                        <add value=" " />
-                                        <add value="_" />
-                                        <add value="." />
-                                    </valid>
-                                </sanitizer>
-                                <validator type="regex">[A-Za-z0-9 =-_/+]+</validator>
+                                <expand macro="restricted_sanitizer_validator"/>
                             </param>
                         </repeat>
                     </when>
@@ -129,12 +113,7 @@
             </when>
             <when value="FROGS_rdp">
                 <param name="rdp_rank" type="text" optional="true" value="" label="Taxonomical rank on which to apply bootstrap filter" help="One of the available taxonomical rank name. Ex: Species">
-                    <sanitizer invalid_char="">
-                        <valid initial="string.letters">
-                            <add value=" " />
-                        </valid>
-                    </sanitizer>
-                    <validator type="regex">[A-Za-z ]+</validator>
+                <expand macro="only_letter_sanitizer_validator"/>
                 </param>
                 <param name="min_rdp_bootstrap" type="float" min="0.0" max="1.0" optional="true" label="Minimum bootstrap" help="Fill these two fields if you want this treatment (--min-rdp-bootstrap)"/>
             </when>
@@ -144,19 +123,32 @@
     <!-- Test -->
     <xml name="affiliation_filters_test_input">
         <param name="input_fasta" value="references/04-filters.fasta" />
-        <param name="input_biom" value="references/04-filters.biom" />
+        <param name="input_biom" value="references/06-affiliation.biom" />
+        
+        <param name="mode" value="hide" />
 
-        <!-- Parameters -->
-        <conditional name="trim_sequence">
-			<param name="check_its_only" value="no" />
-            <param name="region" value="ITS1" />
+        <conditional name="affiliation">
+            <param name="affiliation_type" value="FROGS_blast" />
+            <param name="min_blast_length" value="150"/>
+            <param name="max_blast_evalue" value="1e-150"/>
+            <param name="min_blast_identity" value="100"/>
+            <param name="min_blast_coverage" value="100"/>
+            <conditional name="keep_or_ignore">
+                <param name="taxa_choice" value= "ignore"/>
+                <repeat name="taxon_ignored">
+                    <param name="ignore_blast_taxa" value="g__Sarcodon"/>
+                </repeat>
+                <repeat name="taxon_ignored">
+                    <param name="ignore_blast_taxa" value="s__Trichoderma"/>
+                </repeat>
+            </conditional>
         </conditional>
     </xml>
-
+    
     <xml name="affiliation_filters_test_output">
-        <output name="output_biom" file="references/05-itsx.biom" compare="diff" lines_diff="0" />
-        <output name="output_fasta" file="references/05-itsx.fasta" compare="diff" lines_diff="0" />
-        <output name="output_removed_sequences" file="references/05-itsx-excluded.fasta" compare="diff" lines_diff="0" />
-        <output name="html" file="references/05-itsx.html" compare="diff" lines_diff="0" />
+        <output name="output_biom" file="references/07-affiliation_masked.biom" compare="diff" lines_diff="0" />
+        <output name="output_impacted" file="references/07-impacted_ASV_masked.tsv" compare="diff" lines_diff="0" />
+        <output name="output_impacted_multihit" file="references/07-impacted_ASV_masked_multihit.tsv" compare="diff" lines_diff="0" />
+        <output name="html" file="references/07-affiliation_masked.html" compare="diff" lines_diff="0" />
     </xml>    
 </macros>

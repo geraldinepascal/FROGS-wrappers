@@ -2,14 +2,16 @@
 <macros>
     <token name="@PICRUST2_PATHWAYS_CMD_LINE@">
         frogsfunc_pathways.py
+            @CPUS@
             --input-tsv '$input_tsv'
+            --map $database.fields.path
 
           #if $normalisation
             --normalisation
           #end if
 
-          --map $database.fields.path
           --html $html
+          --output-pathways-abund '$output_pathways_abund'
     </token>
 
     <xml name="picrust2_pathways_inputs">
@@ -38,4 +40,16 @@
         <!-- Parameters-->
         <param argument="--normalisation" label="Do you want to normalize the final output table ?" help='Values are divided by sum of columns, then multiplied by 10^6 (CPM values).' type="boolean" />
     </xml>
+
+    <!-- Test -->
+    <xml name="picrust2_pathways_test_input">
+        <param name="input_tsv" value="references/26-frogsfunc_functions_unstrat_EC.tsv" />
+        <param name="marker" value="16S" />
+        <param name="database" value="Metacyc" />
+    </xml>
+
+    <xml name="picrust2_pathways_test_output">
+        <output name="output_pathways_abund" file="references/27-frogsfunc_pathways_unstrat.tsv" compare="diff" lines_diff="0" />
+        <output name="html" file="references/27-frogsfunc_pathways_summary.html" compare="diff" lines_diff="0" />
+    </xml>       
 </macros>
