@@ -107,11 +107,11 @@
             </when>
             <!-- ##################### deseq2 visualisation on ASV ##################### -->
             <when value="deseq2_asv_visualisation">
-                <expand macro="deseq2_visualisation_inputs" />
+                <expand macro="deseq2_asv_visualisation_inputs" />
             </when>
             <!-- ##################### deseq2 visualisation on Functions ##################### -->
             <when value="deseq2_fun_visualisation">
-                <expand macro="deseq2_visualisation_inputs" />
+                <expand macro="deseq2_fun_visualisation_inputs" />
             </when>
         </conditional>
     </inputs>
