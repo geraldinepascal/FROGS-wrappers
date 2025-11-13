@@ -1,4 +1,4 @@
-<tool id="FROGS_Core_main" name="FROGS Core main" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
+<tool id="FROGS_Core_Main" name="FROGS Core 1-Main" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
     <description>ASV reconstruction and taxonomic affiliation</description>
     <macros>
         <import>frogs_core_macros.xml</import>

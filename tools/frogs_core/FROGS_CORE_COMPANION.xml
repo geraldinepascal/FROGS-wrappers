@@ -1,4 +1,4 @@
-<tool id="FROGS_Core_companion" name="FROGS Core Companion" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
+<tool id="FROGS_Core_companion" name="FROGS Core 2-Companion" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
     <description>Optional process, converter, and report</description>
     <macros>
         <import>frogs_core_macros.xml</import>
