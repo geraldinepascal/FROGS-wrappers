@@ -22,19 +22,19 @@
 
     <xml name="normalisation_inputs">
         <!-- Files -->
-        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />
-        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
+        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (.fasta)" help="The sequence file to normalise." />
+        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (.biom)" help="The abundance file to normalise." />
 
         <!-- Parameters -->
         <conditional name="sampling_method">
-			<param argument="--sampling-by-min" type="select" label="Sampling method" help="Sampling by the number of sequences of the smallest sample, or select a number manually" display="radio">
-            	<option value="yes" selected="true">Sampling by the number of sequences of the smallest sample</option>
-            	<option value="no">Select a number of sequences</option>
+			<param name="sampling_by_min" type="select" label="Sampling method" help="Sample the total number of sequences per sample based on the number of sequences in the smallest sample (--sampling-by-min), or by defining a number of sequences manually (--num-reads)." display="radio">
+            	<option value="yes" selected="true">automatically, based on the number of sequences in the smallest sample </option>
+            	<option value="no">manually, by setting the number of sequences</option>
 			</param>
             <when value="yes"/>
             <when value="no">
-                <param argument="--num-reads" type="integer" optional="true" min="1" value="" label="Number of reads" help="The final number of reads per sample." />
-                <param argument="--delete-samples" type="select" label="Remove samples that have an initial number of reads below the number of reads to sample ?" display="radio">
+                <param name="num_reads" type="integer" min="1" value="" label="Number of reads" help="The final number of reads per sample." />
+                <param argument="--delete-samples" type="select" label="Removal samples that have an initial number of reads below the number of reads to sample." display="radio">
                     <option value="false">No, subsampling threshold need to at most equal to the smallest sample</option>
                     <option value="true">Yes, subsampling threshold may be greater than the smallest sample</option>
                 </param>

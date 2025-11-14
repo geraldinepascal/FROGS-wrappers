@@ -69,8 +69,8 @@
 
     <xml name="affiliation_filters_inputs">
         <!-- Files -->
-        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequence file to filter." />
-        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The abundance file to filter." />
+        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (.fasta)" help="The sequence file to filter." />
+        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (.biom)" help="The abundance file to filter." />
 
         <!-- Filters Parameters -->
         <expand macro="taxonomic_ranks"/>

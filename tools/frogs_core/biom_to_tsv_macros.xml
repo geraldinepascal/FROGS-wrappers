@@ -16,11 +16,11 @@
 
     <xml name="biom_to_tsv_inputs">
         <!-- Files -->
-        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (format: BIOM)" help="The BIOM file to convert." />
-        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (format: FASTA)" help="The sequences file. If you use this option the sequences will be added to the TSV." />
-
+        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (.fasta)" help="The sequences file. If you use this option the sequences will be added to the TSV." />
+        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (.biom)" help="The abundance file to convert." />
+        
 		<!-- Parameters -->
-		<param name="extract_multi_align" type="select" display="radio"  label="Extract multi-affiliation" help="If you have used FROGSCore Taxonomic affiliation on your data, you can extract information about multiple blast affiliation in a second TSV file.">
+		<param name="extract_multi_align" type="select" display="radio"  label="Extract multi-affiliation" help="This option will extract information about multiple blast affiliation in a second TSV file.">
             <option value="yes" selected="true">Yes</option>
             <option value="no" >No</option>
 		</param>
