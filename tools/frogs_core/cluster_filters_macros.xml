@@ -53,13 +53,11 @@
         <!-- Filter on prevalence -->
         <section name="prevalence_section" title="Filter on prevalence" expanded="true">
             <section name="global_prevalence" title="Prevalence across all samples" expanded="true">
-                <param argument="--min-sample-presence" type="integer" optional="true" label="Minimum number of samples (integer > 1)"  help="Set the minimum number of samples in which a ASV/cluster must be detected to be kept. Only ASVs/clusters found in at least this number of samples will be retained. Leave empty to skip prevalence filtering.">
-                    <validator type="in_range" min="2" message="To be effective this threshold need to be higher than 1" />
-                </param>
+                <param argument="--min-sample-presence" type="integer" min="2" optional="true" label="Minimum number of samples (integer > 1)"  help="Set the minimum number of samples in which a ASV/cluster must be detected to be kept. Only ASVs/clusters found in at least this number of samples will be retained. Leave empty to skip prevalence filtering."/>
             </section>
             <section name="replicate_prevalence" title="Prevalence by sample groups (metadata file required)" expanded="true">
                 <param argument="--replicate-tsv" type="data" format="tabular,tsv" optional="true" label="Sample replicates group (.tsv)" help="First column indicates the sample name, and the second column the group name." />
-                <param argument="--min-replicate-presence" type="float" min="0" max="1" optional="true" label="Minimum prevalence" value="0" help="Apply the prevalence filter within sample groups defined in a metadata file. The metadata file must include a column specifying the sample groups (batches). Keep ASV/cluster present in at least this proportion of replicates in at least one group (must be a proportion between 0 and 1). Leave empty to skip prevalence filtering.">
+                <param argument="--min-replicate-presence" type="float" min="0" max="1" optional="true" label="Minimum prevalence (%)" help="Apply the prevalence filter within sample groups defined in a metadata file. The metadata file must include a column specifying the sample groups (batches). Keep ASV/cluster present in at least this proportion of replicates in at least one group (must be a proportion between 0 and 1). Leave empty to skip prevalence filtering.">
                 </param>
             </section>
         </section>
@@ -72,13 +70,11 @@
                     <option value="count">Count</option>
                 </param>
                 <when value="proportion">
-                    <param argument="--min-abundance" type="float" optional="true" label="Minimum abundance proportion to keep ASV/cluster" help="Leave empty to skip this abundance filtering. For example,  0.00005 (recommended by Bokulich et al., 2013) keeps ASVs/clusters representing at least 0.005% of all sequences.">
-                        <validator type="in_range" min="0" exclude_min="true" max="1" exclude_max="true" message="The abundance proportion threshold must be strictly greater than 0 and less than 1, otherwise nothing or everything will be removed." />
+                    <param argument="--min-abundance" type="float" min="0" max="1" optional="true" label="Minimum abundance proportion to keep ASV/cluster" help="Leave empty to skip this abundance filtering. For example,  0.00005 (recommended by Bokulich et al., 2013) keeps ASVs/clusters representing at least 0.005% of all sequences.">
                     </param>
                 </when>
                 <when value="count">
-                    <param argument="--min-abundance" type="integer" optional="true" label="Minimum number of sequences to keep ASVs/clusters" help="Leave empty to skip this abundance filtering. For example, 2 keeps ASVs/cluster with at least two sequences (i.e. removes single singleton)">
-                        <validator type="in_range" min="2" message="To be effective, this threshold must be greater than 1. A value of 2 removes ASVs/clusters containing only one sequence across all samples."/>
+                    <param argument="--min-abundance" type="integer" min="2" optional="true" label="Minimum number of sequences to keep ASVs/clusters (integer > 1)" help="Leave empty to skip this abundance filtering. For example, 2 keeps ASVs/cluster with at least two sequences (i.e. removes single singleton)">
                     </param>
                 </when>
             </conditional>
@@ -86,7 +82,7 @@
 
         <!-- Filter on biggester-clusters -->
         <section name="most_abund_section" title="Filter on the most abundant" expanded="true">
-		    <param argument="--nb-biggest-clusters" type="integer" optional="true" label="Number of most abundant ASVs/clusters to keep" help="Leave empty to skip this filtering. Keeps the N most abundant ASVs/clusters." />
+		    <param argument="--nb-biggest-clusters" min="1" type="integer" optional="true" label="Number of most abundant ASVs/clusters to keep" help="Leave empty to skip this filtering. Keeps the N most abundant ASVs/clusters." />
         </section>
 
         <!-- Filter on contaminant -->

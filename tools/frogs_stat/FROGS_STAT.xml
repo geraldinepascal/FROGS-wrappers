@@ -63,10 +63,10 @@
                 <option value="phyloseq_clustering">Phyloseq: Sample clustering analysis</option>
                 <option value="phyloseq_structure">Phyloseq: Structure analysis (based on ordination methods)</option>
                 <option value="phyloseq_manova">Phyloseq: Multivariate Analysis of Variance</option>
-                <option value="deseq2_asv_preprocess">DESeq2: preprocess for differential analysis of ASV</option>
-                <option value="deseq2_fun_preprocess">DESeq2: preprocess for differential analysis of FUNCTION</option>
-                <option value="deseq2_asv_visualisation">DESeq2: visualisation of differential analysis of ASV</option>                
-                <option value="deseq2_fun_visualisation">DESeq2: visualisation of differential analysis of FUNCTION</option>      
+                <option value="deseq2_asv_preprocess">DESeq2: Preprocess for differential analysis of ASV</option>
+                <option value="deseq2_fun_preprocess">DESeq2: Preprocess for differential analysis of FUNCTION</option>
+                <option value="deseq2_asv_visualisation">DESeq2: Visualisation of differential analysis of ASV</option>                
+                <option value="deseq2_fun_visualisation">DESeq2: Visualisation of differential analysis of FUNCTION</option>      
             </param>
             <when value=""/>
             <!-- ##################### phyloseq_import  ##################### -->
