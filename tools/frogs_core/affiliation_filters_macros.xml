@@ -22,6 +22,12 @@
                 #if $affiliation.min_blast_coverage
                     --min-blast-coverage $affiliation.min_blast_coverage
                 #end if
+                #if $affiliation.min_blast_subject_coverage
+                    --min-blast-subject-coverage $affiliation.min_blast_subject_coverage
+                #end if
+                #if $affiliation.max_blast_subject_coverage
+                    --max-blast-subject-coverage $affiliation.max_blast_subject_coverage
+                #end if
 
                 #set $sep = ' '
                 #if $affiliation.keep_or_ignore.taxa_choice == "ignore"
@@ -86,7 +92,9 @@
             <when value="FROGS_blast">
                 <param argument="--max-blast-evalue" type="float" min="0.0" max="1.0" optional="true" label="Maximum e-value" help="Fill the field only if you want this treatment"/>
                 <param argument="--min-blast-identity" type="float" min="0.0" max="100" optional="true" label="Minimum identity" help="Fill the field only if you want this treatment"/>
-                <param argument="--min-blast-coverage" type="float" min="0.0" max="100" optional="true" label="Minimum coverage" help="Fill the field only if you want this treatment"/>
+                <param argument="--min-blast-coverage" type="float" min="0.0" max="100" optional="true" label="Minimum ASV coverage" help="Fill the field only if you want this treatment"/>
+                <param argument="--min-blast-subject-coverage" type="float" min="0.0" max="100" optional="true" label="Minimum subject coverage" help="Fill the field only if you want this treatment"/>
+                <param argument="--max-blast-subject-coverage" type="float" min="0.0" max="100" optional="true" label="Maximum subject coverage" help="Fill the field only if you want this treatment"/>
                 <param argument="--min-blast-length" type="integer" min="1" optional="true" label="Minimum alignment length" help="Fill the field only if you want this treatment"/>
                 <conditional name="keep_or_ignore">
                     <param name="taxa_choice" type="select" label="Keyword filters of blast affiliation" help="Do you want to keep or ignore blast affiliations according a keyword ?" display="radio" >
