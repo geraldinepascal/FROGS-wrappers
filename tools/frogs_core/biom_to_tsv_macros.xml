@@ -4,7 +4,7 @@
         biom_to_tsv.py
             --input-biom '$input_biom'
 
-            #if '$input_fasta'
+            #if $input_fasta
                 --input-fasta '$input_fasta'
             #end if
 
@@ -16,8 +16,8 @@
 
     <xml name="biom_to_tsv_inputs">
         <!-- Files -->
-        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (.fasta)" help="The sequences file. If you use this option the sequences will be added to the TSV." />
         <param argument="--input-biom" type="data" format="biom1" label="Abundance file (.biom)" help="The abundance file to convert." />
+        <param argument="--input-fasta" type="data" format="fasta" optional="true" label="Sequence file (.fasta)" help="The sequences file. If you use this option the sequences will be added to the TSV." />
         
 		<!-- Parameters -->
 		<param name="extract_multi_align" type="select" display="radio"  label="Extract multi-affiliation" help="This option will extract information about multiple blast affiliation in a second TSV file.">
