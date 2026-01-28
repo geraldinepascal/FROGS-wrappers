@@ -35,7 +35,8 @@
     </xml>
     
     <xml name="tsv_to_biom_test_output">
-        <output name="output_biom" file="references/14-tsv2biom.tsv" compare="diff" lines_diff="0" />
-        <output name="output_fasta" file="references/12-tsv2biom.fasta" compare="diff" lines_diff="0" />
+        <!-- Diff size instead of line because biom include date -->
+        <output name="output_biom" file="references/14-tsv2biom.biom" compare="sim_size" delta="0" />
+        <output name="output_fasta" file="references/14-tsv2biom.fasta" compare="diff" lines_diff="0" />
     </xml> 
 </macros>

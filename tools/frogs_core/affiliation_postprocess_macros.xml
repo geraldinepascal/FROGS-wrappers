@@ -52,7 +52,8 @@
     </xml>
     
     <xml name="affiliation_postprocess_test_output">
-        <output name="output_biom" file="references/08-affiliation_postprocessed.biom" compare="diff" lines_diff="0" />
+        <!-- Diff size instead of line because biom include date -->
+        <output name="output_biom" file="references/08-affiliation_postprocessed.biom" compare="sim_size" delta="0"  />
         <output name="output_fasta" file="references/08-affiliation_postprocessed.fasta" compare="diff" lines_diff="0" />
         <output name="output_asv_compo" file="references/08-affiliation_postprocessed.compo.tsv" compare="diff" lines_diff="0" />
     </xml>  

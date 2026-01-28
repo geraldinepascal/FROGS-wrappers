@@ -63,7 +63,7 @@
     <xml name="picrust2_placeseq_and_copynumber_test_output">
         <output name="output_fasta" file="references/25-frogsfunc_placeseqs.fasta" compare="diff" lines_diff="0" />
         <output name="output_biom" file="references/25-frogsfunc_placeseqs.biom" compare="diff" lines_diff="0"/>
-        <output name="output_excluded" file="references/25-frogsfunc_placeseqs_excluded.txt" compare="diff" lines_diff="0" />
+        <output name="output_excluded" file="references/25-frogsfunc_placeseqs_excluded.tsv" compare="diff" lines_diff="0" />
         <output name="output_tree" file="references/25-frogsfunc_placeseqs_tree.nwk" compare="diff" lines_diff="0" />
         <output name="output_closests_ref" file="references/25-frogsfunc_placeseqs_closests_ref_sequences.txt" compare="diff" lines_diff="0" />
         <output name="html" file="references/25-frogsfunc_placeseqs_summary.html" compare="diff" lines_diff="0" />

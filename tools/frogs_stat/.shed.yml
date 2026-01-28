@@ -1,0 +1,9 @@
+categories: [Metagenomics]
+description: 'Suite for metabarcoding analysis'
+homepage_url: http://frogs.inrae.fr/
+long_description: 'This is FROGS Galaxy Wrappers for FROGS Statistical tools
+FROGS is a workflow designed to produce an ASV count matrix from high depth sequencing amplicon data. 
+'
+name: frogs_stat
+owner: oinizan
+remote_repository_url: https://github.com/geraldinepascal/FROGS-wrappers/

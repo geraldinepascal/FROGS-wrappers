@@ -1,4 +1,4 @@
-<tool id="FROGS_Core_companion" name="FROGS Core 2-Companion" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
+<tool id="FROGS_Core_Companion" name="FROGS Core 2-Companion" version="@TOOL_VERSION@+galaxy@VERSION_SUFFIX@" python_template_version="3.5" profile="24.0">
     <description>Optional process, converter, and report</description>
     <macros>
         <import>frogs_core_macros.xml</import>
@@ -96,7 +96,7 @@
     </outputs>
     
     <tests>
-        <!-- ##################### 10 demultiplex ##################### -->
+        <!-- ##################### 1 demultiplex ##################### -->
         <test expect_num_outputs="3">
             <conditional name="frogs_core_tools">
                 <param name="tool_name" value="demultiplex"/>
@@ -104,7 +104,7 @@
             </conditional>
             <expand macro="demultiplex_test_output"/>
         </test>
-        <!-- ##################### 12 affiliation_filters ##################### -->
+        <!-- ##################### 2 affiliation_filters ##################### -->
         <test expect_num_outputs="4">
             <conditional name="frogs_core_tools">
                 <param name="tool_name" value="affiliation_filters"/>
@@ -112,7 +112,7 @@
             </conditional>
             <expand macro="affiliation_filters_test_output"/>
         </test>
-        <!-- ##################### 13 affiliation_postprocess ##################### -->
+        <!-- ##################### 3 affiliation_postprocess ##################### -->
         <test expect_num_outputs="3">
             <conditional name="frogs_core_tools">
                 <param name="tool_name" value="affiliation_postprocess"/>
@@ -120,7 +120,7 @@
             </conditional>
             <expand macro="affiliation_postprocess_test_output"/>
         </test>
-        <!-- ##################### 14 normalisation ##################### -->
+        <!-- ##################### 4 normalisation ##################### -->
         <test expect_num_outputs="3">
             <conditional name="frogs_core_tools">
                 <param name="tool_name" value="normalisation"/>
@@ -128,7 +128,7 @@
             </conditional>
             <expand macro="normalisation_test_output"/>
         </test>
-        <!-- ##################### 15 biom_to_tsv ##################### -->
+        <!-- ##################### 5 biom_to_tsv ##################### -->
         <test expect_num_outputs="2">
             <conditional name="frogs_core_tools">
                 <param name="tool_name" value="biom_to_tsv"/>
@@ -136,7 +136,7 @@
             </conditional>
             <expand macro="biom_to_tsv_test_output"/>
         </test> 
-        <!-- ##################### 16 tsv_to_biom ##################### -->
+        <!-- ##################### 6 tsv_to_biom ##################### -->
         <test expect_num_outputs="2">
             <conditional name="frogs_core_tools">
                 <param name="tool_name" value="tsv_to_biom"/>
@@ -144,7 +144,7 @@
             </conditional>
             <expand macro="tsv_to_biom_test_output"/>
         </test>        
-        <!-- ##################### 17 cluster_asv_report ##################### -->
+        <!-- ##################### 7 cluster_asv_report ##################### -->
         <test expect_num_outputs="1">
             <conditional name="frogs_core_tools">
                 <param name="tool_name" value="cluster_asv_report"/>
@@ -152,7 +152,7 @@
             </conditional>
             <expand macro="cluster_asv_report_test_output"/>
         </test>   
-        <!-- ##################### 18 affiliation_report ##################### -->
+        <!-- ##################### 8 affiliation_report ##################### -->
         <test expect_num_outputs="1">
             <conditional name="frogs_core_tools">
                 <param name="tool_name" value="affiliation_report"/>

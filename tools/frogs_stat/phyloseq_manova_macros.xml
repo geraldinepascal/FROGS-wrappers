@@ -28,9 +28,14 @@
     <xml name="phyloseq_manova_test_output">
         <output name="html" count="1">
          <assert_contents>
+                <!-- HTML size or line diff can't be used as many information about path, os, date are present. -->
+                <!-- Here we test only title, intermediate results and output of last R command -->
+                <has_text text='Stat: Multivariate Analysis of Variance' />
+                <has_text text='(phyloseq_manova.py v5.1.0)' />
                 <has_text text='EnvType    7    7.6565 1.09379  13.699 0.63132  1e-04 ***' />
                 <has_text text='Residuals 56    4.4713 0.07984         0.36868' />
                 <has_text text='Total     63   12.1278                 1.00000' />
+                <has_text text='─ Session info ───────────────────────────────────────────────────────────────' />
             </assert_contents>
         </output>
     </xml>

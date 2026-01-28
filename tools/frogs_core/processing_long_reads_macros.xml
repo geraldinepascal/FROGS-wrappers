@@ -63,7 +63,7 @@
                 <option value="files_per_samples" >Files per samples</option>
             </param>
             <when value="archive">
-                <param argument="--input-archive" type="data" format="tar,tgz" label="TAR archive file" help="The TAR file containing the long reads (.fastq.gz) for each sample. Supported sequencers: PACBIO and ONT." />
+                <param argument="--input-archive" type="data" format="tar,tgz" label="TAR archive file" help="The TAR file containing the long reads (.fastq.gz) for each sample. Supported sequencers: PacBio and Oxford Nanopore." />
             </when>
             <when value="files_per_samples">
                 <repeat name="samples" title="Samples" default="1" min="1">

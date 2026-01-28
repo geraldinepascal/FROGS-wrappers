@@ -1,3 +1,17 @@
+# v5.1.0+galaxy0 [2026-01]
+
+This version refers to FROGS_5.1.0 suit.
+
+### Tools updated:
+
+28 galaxy wrappers have been restructured in 4 tools to facilitate maintenance and future updates.
+* **FROGS Core 1-Main** includes tools for : read processing (3 tools), removing chimera, ASV filtering, taxonomic affiliation, phylogenetic tree construction and ITS detection.
+* **FROGS Core 2-Clustering** includes tools for : read demultiplexing, affiliation filtering and postprocessing, biom to tsv or tsv to biom conversion, and ASV and affilitation description.
+* **FROGS Func** includes tools for : placing ASV sequences, predicting ASV and functions copy numbers, computing functions and pathways abundance tables.
+* **FROGS Stat** includes tools for : importing data, calculating alpha and beta diversities, composition visulisation, sample ordination and clustering, manova analysis, and DESeq2 preprocess and visualisation.
+
+These tools use the same reference databases and associated .loc files.
+
 # v4.2.0+galaxy1 [2025-05]
 
 This version refers to FROGS_4.2.0 suit.

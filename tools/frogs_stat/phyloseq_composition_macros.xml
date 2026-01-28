@@ -43,6 +43,10 @@
     <xml name="phyloseq_composition_test_output">
         <output name="html" count="1">
             <assert_contents>
+                <!-- HTML size or line diff can't be used as many information about path, os, date are present. -->
+                <!-- Here we test only title, intermediate results and output of last R command -->
+                <has_text text='Stat: Visualise Data Composition' />
+                <has_text text='(phyloseq_composition.py v5.1.0)' />
                 <!-- check html report contents -->
                 <has_text_matching expression="Phylum: Actinobacteria.*Sample: BHT0.LOT07.*Abundance: 0.3806484555" />
                 <has_text_matching expression="Phylum: Bacteroidetes.*Sample: BHT0.LOT07.*Abundance: 0.0026380734" />
@@ -53,6 +57,7 @@
                 <has_text_matching expression="Phylum: Spirochaetes.*Sample: BHT0.LOT07.*Abundance: 0.0000000000" />
                 <has_text_matching expression="Phylum: Tenericutes.*Sample: BHT0.LOT07.*Abundance: 0.0002552974" />
                 <has_text_matching expression="Phylum: Other.*Sample: BHT0.LOT07.*Abundance: 0.0000000000" />
+                <has_text text='─ Session info ───────────────────────────────────────────────────────────────' />
             </assert_contents>
         </output>
     </xml>

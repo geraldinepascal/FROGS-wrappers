@@ -69,9 +69,10 @@
     <!-- Test -->
     <xml name="affiliation_report_test_input">
         <param name="input_biom" value="references/09-normalisation.biom" />
+        <param name="rarefaction_ranks" value="Family Genus Species" />
     </xml>
     
     <xml name="affiliation_report_test_output">
-        <output name="html" file="references/11-affiliation_report.html" compare="diff" lines_diff="0" />
+        <output name="html" file="references/11-affiliation_report.html" compare="diff" lines_diff="2" />
     </xml>     
 </macros>

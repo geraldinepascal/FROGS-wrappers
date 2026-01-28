@@ -75,44 +75,44 @@
 
     <xml name="affiliation_filters_inputs">
         <!-- Files -->
-        <param argument="--input-fasta" type="data" format="fasta" label="Sequence file (.fasta)" help="The sequence file to filter." />
-        <param argument="--input-biom" type="data" format="biom1" label="Abundance file (.biom)" help="The abundance file to filter." />
+        <param argument="--input-fasta" type="data" format="fasta" label="ASV sequences file (.fasta)" help="FASTA file containing ASV nucleotide sequences." />
+        <param argument="--input-biom" type="data" format="biom1" label="ASV abundance table (.biom)" help="BIOM file containing ASV abundance data." />
 
         <!-- Filters Parameters -->
         <expand macro="taxonomic_ranks"/>
-        <param name="mode" type="select" label="Filtering mode" multiple="false" help="Do you want to delete ASV or hide affiliations?" optional="false" display="radio">
-            <option value="hide" selected="true">Hidding mode</option>
-            <option value="delete">Deleting mode</option>
+        <param name="mode" type="select" label="Filtering strategy" multiple="false" help="Choose how ASVs should be filtered: removal from the dataset or masking of their taxonomic affiliations." optional="false" display="radio">
+            <option value="hide" selected="true">Hide affiliations</option>
+            <option value="delete">Remove ASVs</option>
         </param>
         <conditional name="affiliation">
-            <param name="affiliation_type" type="select" label="Affiliation to process" help="Select the type of affiliation to process.">
-                <option value="FROGS_blast" selected="true">FROGS Blast</option>
+            <param name="affiliation_type" type="select" label="Taxonomic affiliation method" help="Select the taxonomic affiliation method to filter.">
+                <option value="FROGS_blast" selected="true">FROGS BLAST</option>
                 <option value="FROGS_rdp">FROGS RDP</option>
             </param>
             <when value="FROGS_blast">
-                <param argument="--max-blast-evalue" type="float" min="0.0" max="1.0" optional="true" label="Maximum e-value" help="Fill the field only if you want this treatment"/>
-                <param argument="--min-blast-identity" type="float" min="0.0" max="100" optional="true" label="Minimum identity" help="Fill the field only if you want this treatment"/>
-                <param argument="--min-blast-coverage" type="float" min="0.0" max="100" optional="true" label="Minimum ASV coverage" help="Fill the field only if you want this treatment"/>
-                <param argument="--min-blast-subject-coverage" type="float" min="0.0" max="100" optional="true" label="Minimum subject coverage" help="Fill the field only if you want this treatment"/>
-                <param argument="--max-blast-subject-coverage" type="float" min="0.0" max="100" optional="true" label="Maximum subject coverage" help="Fill the field only if you want this treatment"/>
-                <param argument="--min-blast-length" type="integer" min="1" optional="true" label="Minimum alignment length" help="Fill the field only if you want this treatment"/>
+                <param argument="--max-blast-evalue" type="float" min="0.0" max="1.0" optional="true" label="Maximum BLAST e-value." help="Fill the field only if you want this treatment."/>
+                <param argument="--min-blast-identity" type="float" min="0.0" max="100" optional="true" label="Minimum identity required for BLAST hits." help="Fill the field only if you want this treatment."/>
+                <param argument="--min-blast-coverage" type="float" min="0.0" max="100" optional="true" label="Minimum ASV sequence covered by the alignment." help="Fill the field only if you want this treatment."/>
+                <param argument="--min-blast-subject-coverage" type="float" min="0.0" max="100" optional="true" label="Minimum of the reference sequence (subject) covered by the alignment." help="Fill the field only if you want this treatment"/>
+                <param argument="--max-blast-subject-coverage" type="float" min="0.0" max="100" optional="true" label="Maximum of the reference sequence (subject) covered by the alignment." help="Fill the field only if you want this treatment"/>
+                <param argument="--min-blast-length" type="integer" min="1" optional="true" label="Minimum alignment length required for BLAST hits." help="Fill the field only if you want this treatment."/>
                 <conditional name="keep_or_ignore">
-                    <param name="taxa_choice" type="select" label="Keyword filters of blast affiliation" help="Do you want to keep or ignore blast affiliations according a keyword ?" display="radio" >
-                        <option value="" selected="true">No filter</option>
-                        <option value="ignore">Ignore taxa</option>
-                        <option value="keep" >Keep taxa</option>
+                    <param name="taxa_choice" type="select" label="Taxonomic keyword filtering" help="Do you want to keep or ignore blast affiliations according a keyword ?" display="radio" >
+                        <option value="" selected="true">No keyword filtering</option>
+                        <option value="ignore">Ignore ASVs with matching taxa</option>
+                        <option value="keep" >Keep only ASVs with matching taxa</option>
                     </param>
                     <when value=""/>
                     <when value="ignore">
-                        <repeat name="taxon_ignored" title="Remove blast affiliations including these taxon / word">
-                            <param argument="--ignore-blast-taxa" type="text" optional="true" label="Full or partial taxon name" help="Example: &quot;unknown species&quot; or &quot;subsp.&quot;">
+                        <repeat name="taxon_ignored" title="Ignore affiliations containing the following keywords">
+                            <param argument="--ignore-blast-taxa" type="text" optional="true" label="Taxonomic keyword." help="Full or partial taxon name (e.g. &quot;unknown species&quot;, &quot;subsp.&quot;).">
                                 <expand macro="restricted_sanitizer_validator"/>
                             </param>
                         </repeat>
                     </when>
                     <when value="keep">
-                        <repeat name="taxon_kept" title="Keep blast affiliations including these taxon / word">
-                            <param argument="--keep-blast-taxa" type="text" optional="true" label="Full or partial taxon name" help="Example: &quot;unknown species&quot; or &quot;subsp.&quot;">
+                        <repeat name="taxon_kept" title="Keep affiliations containing the following keywords">
+                            <param argument="--keep-blast-taxa" type="text" optional="true" label="Taxonomic keyword." help="Full or partial taxon name (e.g. &quot;unknown species&quot;, &quot;subsp.&quot;).">
                                 <expand macro="restricted_sanitizer_validator"/>
                             </param>
                         </repeat>
@@ -120,10 +120,10 @@
                 </conditional>
             </when>
             <when value="FROGS_rdp">
-                <param name="rdp_rank" type="text" optional="true" value="" label="Taxonomical rank on which to apply bootstrap filter" help="One of the available taxonomical rank name. Ex: Species">
+                <param name="rdp_rank" type="text" optional="true" value="" label="Taxonomic rank for bootstrap filtering." help="Taxonomic rank at which the bootstrap threshold is applied (e.g. Species).">
                 <expand macro="only_letter_sanitizer_validator"/>
                 </param>
-                <param name="min_rdp_bootstrap" type="float" min="0.0" max="1.0" optional="true" label="Minimum bootstrap" help="Fill these two fields if you want this treatment (--min-rdp-bootstrap)"/>
+                <param name="min_rdp_bootstrap" type="float" min="0.0" max="1.0" optional="true" label="Minimum RDP bootstrap value." help="Minimum bootstrap confidence required for RDP taxonomic assignments. (--min-rdp-bootstrap)"/>
             </when>
         </conditional>
     </xml>
@@ -154,9 +154,11 @@
     </xml>
     
     <xml name="affiliation_filters_test_output">
-        <output name="output_biom" file="references/07-affiliation_masked.biom" compare="diff" lines_diff="0" />
+        <!-- Diff size instead of line because biom include date -->
+        <output name="output_biom" file="references/07-affiliation_masked.biom" compare="sim_size" delta="0" />
         <output name="output_impacted" file="references/07-impacted_ASV_masked.tsv" compare="diff" lines_diff="0" />
         <output name="output_impacted_multihit" file="references/07-impacted_ASV_masked_multihit.tsv" compare="diff" lines_diff="0" />
-        <output name="html" file="references/07-affiliation_masked.html" compare="diff" lines_diff="0" />
+        <!-- Diff line = 2 because of random sampling in rarefaction curves -->
+        <output name="html" file="references/07-affiliation_masked.html" compare="diff" lines_diff="2" />
     </xml>    
 </macros>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <macros>
 
-    <token name="@TOOL_VERSION@">5.0.2</token>
+    <token name="@TOOL_VERSION@">5.1.0</token>
     <token name="@VERSION_SUFFIX@">0</token>
     
     <token name="@CPUS@">--nb-cpus \${GALAXY_SLOTS:-1}</token>

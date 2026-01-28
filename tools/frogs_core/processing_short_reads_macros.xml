@@ -105,7 +105,7 @@
                         <option value="files_per_sample" >Files per sample</option>
                     </param>
                     <when value="archive">
-                        <param argument="--input-archive" type="data" format="tar,tgz" label="Archive file (.tar.gz)" help="The TAR file containing the short R1 R2 read pairs (.fastq.gz) for each sample. Each sample should ideally have its R1 and R2 reads named consistently (e.g., sampleX_R1.fastq.gz and sampleX_R2.fastq.gz). Supported sequencers: Illumina and Aviti." />
+                        <param argument="--input-archive" type="data" format="tar,tgz" label="Archive file (.tar.gz)" help="The TAR file containing the short R1 R2 read pairs (.fastq.gz) for each sample. Each sample should ideally have its R1 and R2 reads named consistently (e.g., sampleX_R1.fastq.gz and sampleX_R2.fastq.gz). Supported sequencers: Illumina, Aviti and IonTorrent." />
                     </when>
                     <when value="files_per_sample">
                         <repeat name="samples" title="Samples" default="1" min="1">

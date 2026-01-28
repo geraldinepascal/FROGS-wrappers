@@ -26,6 +26,14 @@
     </xml>
 
     <xml name="phyloseq_clustering_test_output">
-        <output name="html" count="1" file="references/21-phylo_clustering.nb.html" compare="diff" lines_diff="0"/>
+        <output name="html" count="1">
+            <assert_contents>
+                <!-- HTML size or line diff can't be used as many information about path, os, date are present. -->
+                <!-- Here we test only title and output of last R command -->
+                <has_text text='Stat: Sample clustering using different linkage method' />
+                <has_text text='(phyloseq_clustering.py v5.1.0)' />
+                <has_text text='─ Session info ───────────────────────────────────────────────────────────────' />
+            </assert_contents>
+        </output>
     </xml>
 </macros>

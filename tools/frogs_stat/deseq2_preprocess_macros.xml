@@ -37,6 +37,7 @@
         </conditional>
     </xml>
 
+    <!-- Test -->
     <xml name="deseq2_asv_preprocess_test_input">
         <param name="phyloseq_rdata" value="references/16-phylo_import.Rdata" />
         <param name="var_exp" value="EnvType" />
@@ -91,6 +92,7 @@
         </conditional>
     </xml>
 
+    <!-- Test -->
     <xml name="deseq2_fun_preprocess_test_input">
         <param name="sample_metadata_tsv" value="input/sample_metadata.tsv"/>
         <param name="input_functions_abund" value="input/frogsfunc_functions_unstrat_EC.tsv" />
