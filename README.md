@@ -21,11 +21,8 @@ FROGS-wrappers allow to add FROGS on a Galaxy instance.
 # Table of content
 
 * [Installing FROGS\-wrappers](#installing-frogs-wrappers)
-* [Use PEAR as reads merge software in preprocess](#use-pear-as-reads-merge-software-in-preprocess)
 * [Upload and configure the databanks](#upload-and-configure-the-databanks)
 * [Galaxy configuration](#galaxy-configuration)
-  * [Setup Galaxy environment variables](#setup-galaxy-environment-variables)
-  * [Install python packages inside virtual env](#install-python-packages-inside-virtual-env)
   * [Avoid FROGS HTML report sanitization](#avoid-FROGS-HTML-report-sanitization)
   * [Set memory and parallelisation settings](#set-memory-and-parallelisation-settings)
 * [License](#license)
@@ -37,12 +34,36 @@ FROGS-wrappers allow to add FROGS on a Galaxy instance.
 
 FROGS and is data manager are available on the Toolshed (owner : frogs).
 
-It will install FROGS thanks to [conda](https://anaconda.org/bioconda/frogs), download all these XML tools and well configure them in your Galaxy.
+It will install FROGS thanks to [conda](https://anaconda.org/bioconda/frogs), download XML tools and well configure them in your Galaxy.
 
 The 28 FROGS tools are wrapped in 4 Galaxy tools: 
 * FROGS_Core tools is composed of a Main tools wrapper and a Companion tools wrapper, each including 8 FROGS tools : https://toolshed.g2.bx.psu.edu/view/frogs/frogs_core
 * FROGS_Stat tool including 9 FROGS tools : https://toolshed.g2.bx.psu.edu/view/frogs/frogs_stat
 * FROGS_Func tool including 3 FROGS tools: https://toolshed.g2.bx.psu.edu/view/frogs/frogs_func
+
+To install FROGS-wrappers, you can follow the official Galaxy documentation : https://galaxyproject.org/admin/tools/add-tool-from-toolshed-tutorial/. You may install tools via Galaxy admin interface or in commande line using Ephemeris.
+
+For ephemeris, you can adapt the yaml file : 
+```
+install_tool_dependencies: True
+install_repository_dependencies: True
+install_resolver_dependencies: True
+
+tools:
+- name: frogs_core
+  owner: frogs
+  tool_panel_section_label: FROGS
+  tool_shed_url: https://toolshed.g2.bx.psu.edu/
+- name: frogs_stat
+  owner: frogs
+  tool_panel_section_label: FROGS
+  tool_shed_url: https://toolshed.g2.bx.psu.edu/
+- name: frogs_func
+  owner: frogs
+  tool_panel_section_label: FROGS
+  tool_shed_url: https://toolshed.g2.bx.psu.edu/
+``` 
+This will create a FROGS section in your Galaxy tool panel, and install or update FROGS wrapper tools.
 
 # Upload and configure the databanks
 
