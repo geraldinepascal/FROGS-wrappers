@@ -47,7 +47,7 @@
                 <validator type="no_options" message="A built-in database is not available" />
             </options>
         </param>
-        <param argument="--functions" type="select" label="Target function database" display="checkboxes" multiple="true" optional="false" help=" 16S : at least 'EC' or/and 'KO' should be chosen (EC for Metacyc pathway analysis or/and KO for KEGG pathway analysis) - others values are optionnal. ITS and 18S : 'EC' only available." >
+        <param argument="--functions" type="select" label="Target function database" multiple="true" optional="false" help=" 16S : at least 'EC' or/and 'KO' should be chosen (EC for Metacyc pathway analysis or/and KO for KEGG pathway analysis) - others values are optionnal. ITS and 18S : 'EC' only available." >
             <options from_data_table="frogs_picrust2_functions">
                 <column name='name' index='1' />
                 <column name='value' index='1' />
