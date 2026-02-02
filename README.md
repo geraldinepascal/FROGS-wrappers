@@ -1,35 +1,14 @@
-<!-- <p align="center">
- <a href="http://frogs.inrae.fr/">
-  <img src="FROGS.png" align="center" width="20%" style="display: block; margin: auto;"/>
-  <img src="frogs-core.png" align="center" width="20%" style="display: block; margin: auto;"/>
- </a><a href="http://frogs.inrae.fr/">
-  <img src="frogs-stat.png" align="center" width="20%" style="display: block; margin: auto;"/>
-  <img src="frogs-func.png" align="center" width="20%" style="display: block; margin: auto;"/>
- </a>
-</p> -->
-
-
-<div style="text-align: center;">
-  <!-- Première image (plus grande) -->
-  <div style="margin-bottom: 10px;">
+<p align="center">
     <a href="http://frogs.inrae.fr/">
       <img src="FROGS.png" align="center" width="20%" style="display: block; margin: auto;"/>
     </a>
-  </div>
-
+</p>
   <!-- Trois images en ligne -->
-  <div style="display: flex; justify-content: center;">
-    <a href="http://frogs.inrae.fr/">
-      <img src="frogs-core.png" width="20%"/>
-    </a>
-    <a href="http://frogs.inrae.fr/">
-      <img src="frogs-stat.png" width="20%"/>
-    </a>
-    <a href="http://frogs.inrae.fr/">
-      <img src="frogs-func.png" width="20%"/>
-    </a>
-  </div>
-</div>
+  <p align="center" style="display: flex; justify-content: center;">
+    <img src="frogs-core.png" width="15%"/>
+    <img src="frogs-stat.png" width="15%"/>
+    <img src="frogs-func.png" width="15%"/>
+  </p>
 
 Visit our web site : http://frogs.inrae.fr/
 
