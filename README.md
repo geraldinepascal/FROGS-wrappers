@@ -20,13 +20,13 @@
   <!-- Trois images en ligne -->
   <div style="display: flex; justify-content: center;">
     <a href="http://frogs.inrae.fr/">
-      <img src="frogs-core.png" width="80%"/>
+      <img src="frogs-core.png" width="20%"/>
     </a>
     <a href="http://frogs.inrae.fr/">
-      <img src="frogs-stat.png" width="80%"/>
+      <img src="frogs-stat.png" width="20%"/>
     </a>
     <a href="http://frogs.inrae.fr/">
-      <img src="frogs-func.png" width="80%"/>
+      <img src="frogs-func.png" width="20%"/>
     </a>
   </div>
 </div>
