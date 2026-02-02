@@ -13,7 +13,7 @@
   <!-- Première image (plus grande) -->
   <div style="margin-bottom: 10px;">
     <a href="http://frogs.inrae.fr/">
-      <img src="FROGS.png" align="center" width="30%" style="display: block; margin: auto;"/>
+      <img src="FROGS.png" align="center" width="20%" style="display: block; margin: auto;"/>
     </a>
   </div>
 
