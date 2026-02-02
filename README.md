@@ -1,8 +1,35 @@
-<p align="center">
+<!-- <p align="center">
  <a href="http://frogs.inrae.fr/">
-  <img src="tools/frogs/static/images/FROGS_logo.png" align="center" width="20%" style="display: block; margin: auto;"/>
+  <img src="FROGS.png" align="center" width="20%" style="display: block; margin: auto;"/>
+  <img src="frogs-core.png" align="center" width="20%" style="display: block; margin: auto;"/>
+ </a><a href="http://frogs.inrae.fr/">
+  <img src="frogs-stat.png" align="center" width="20%" style="display: block; margin: auto;"/>
+  <img src="frogs-func.png" align="center" width="20%" style="display: block; margin: auto;"/>
  </a>
-</p>
+</p> -->
+
+
+<div style="text-align: center;">
+  <!-- Première image (plus grande) -->
+  <div style="margin-bottom: 10px;">
+    <a href="http://frogs.inrae.fr/">
+      <img src="FROGS.png" width="30%" style="display: block; margin: auto;"/>
+    </a>
+  </div>
+
+  <!-- Trois images en ligne -->
+  <div style="display: flex; justify-content: center;">
+    <a href="http://frogs.inrae.fr/">
+      <img src="frogs-core.png" width="80%"/>
+    </a>
+    <a href="http://frogs.inrae.fr/">
+      <img src="frogs-stat.png" width="80%"/>
+    </a>
+    <a href="http://frogs.inrae.fr/">
+      <img src="frogs-func.png" width="80%"/>
+    </a>
+  </div>
+</div>
 
 Visit our web site : http://frogs.inrae.fr/
 
