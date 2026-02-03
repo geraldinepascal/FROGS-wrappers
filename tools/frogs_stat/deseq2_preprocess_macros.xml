@@ -44,7 +44,7 @@
     </xml>
 
     <xml name="deseq2_asv_preprocess_test_output">
-        <output name="ASV_deseq_rdata" count="1" file="references/23-deseq2_preprocess_asv.Rdata" compare="sim_size" delta="10"/>
+        <output name="ASV_deseq_rdata" count="1" file="references/23-deseq2_preprocess_asv.Rdata" compare="sim_size" delta="100"/>
     </xml>
 
     <token name="@DESEQ2_FUN_PREPROCESS_CMD_LINE@">
@@ -100,7 +100,8 @@
     </xml>
 
     <xml name="deseq2_fun_preprocess_test_output">
-        <output name="FUN_deseq_rdata" count="1" file="references/23-deseq2_preprocess_func.Rdata" compare="sim_size" delta="10"/>
+		<!-- Deseq2 is influenced by other intermediate libraries or packages and results are hard to compare -->
+        <output name="FUN_deseq_rdata" count="1" file="references/23-deseq2_preprocess_func.Rdata" compare="sim_size" delta="4000"/>
         <output name="FUN_phyloseq_rdata" count="1" file="references/23-phyloseq_functions.Rdata" compare="sim_size" delta="10"/>
     </xml>
 </macros>

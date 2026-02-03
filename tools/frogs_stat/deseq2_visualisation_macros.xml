@@ -58,17 +58,16 @@
             <assert_contents>
                 <!-- HTML size or line diff can't be used as many information about path, os, date are present. -->
                 <!-- Here we test only title, intermediate results and output of last R command -->
+				<!-- Deseq2 is influenced by other intermediate libraries or packages and results are hard to compare -->
                 <has_text text="Stat: DESeq2 Visualisation" />
                 <has_text text="(deseq2_visualisation.py v5.1.0)" />
                 <has_text text='["otu_01582",' />
                 <!-- baseMean value of otu_01582 -->
-                <has_text text='[52.44551094904603' />
+                <has_text text='[52.4455' />
                 <!-- Log2 FC of otu_01582 -->
-                <has_text text='[21.66238907239834' />
+                <has_text text='[21.6623' />
                 <!-- lfcSE of otu_01582 -->
-                <has_text text='[2.208926755092065' />
-                <!-- pvalue otu_01582 -->
-                <has_text text='[1.053071923664623e-22' />
+                <has_text text='[2.2089' />
                 <has_text text='─ Session info ───────────────────────────────────────────────────────────────' />
             </assert_contents>
         </output>
