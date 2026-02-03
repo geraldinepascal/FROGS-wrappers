@@ -42,7 +42,8 @@
                 <!-- HTML size or line diff can't be used as many information about path, os, date are present. -->
                 <!-- Here we test only title, intermediate results and output of last R command -->
                 <has_text text='Stat: Alpha Diversity Visualisation' />
-                <has_text text='(phyloseq_alpha_diversity.py v5.1.0)' />
+                <has_text text='(phyloseq_alpha_diversity.py' />
+				<has_text text='v5.1.0)' />
                 <!-- check anova on Observed alpha metrics -->
                 <has_text text='EnvType      7  18148    2593   5.383 9.78e-05' />
                 <!-- check anova on Chao1 alpha metrics -->

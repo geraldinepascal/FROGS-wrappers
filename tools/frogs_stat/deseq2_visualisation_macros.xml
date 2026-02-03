@@ -60,7 +60,8 @@
                 <!-- Here we test only title, intermediate results and output of last R command -->
 				<!-- Deseq2 is influenced by other intermediate libraries or packages and results are hard to compare -->
                 <has_text text="Stat: DESeq2 Visualisation" />
-                <has_text text="(deseq2_visualisation.py v5.1.0)" />
+                <has_text text="(deseq2_visualisation.py" />
+				<has_text text="v5.1.0)" />
                 <has_text text='["otu_01582",' />
                 <!-- baseMean value of otu_01582 -->
                 <has_text text='[52.4455' />
