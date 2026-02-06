@@ -1,4 +1,5 @@
-categories: [Metagenomics]
+categories: 
+- Metagenomics
 description: 'Suite for metabarcoding analysis'
 homepage_url: http://frogs.inrae.fr/
 long_description: | 
