@@ -48,5 +48,5 @@
 #
 # PRODUCTION FILES, with FROGS toolsheds path to adapt (Galaxy_dir and XXXXXX)
 #
-#phiX	phiX	<Galaxy_dir>/database/shed_tools/toolshed.g2.bx.psu.edu/repos/frogs/frogs/XXXXXX/frogs/tool-data/frogs_contaminant_db/phi.fa
-#Arabido_TAIR10_Chl_Mito	Arabidopsis TAIR10 Chloroplast and mitochondria	<Galaxy_dir>/database/shed_tools/toolshed.g2.bx.psu.edu/repos/frogs/frogs/XXXXXX/frogs/tool-data/frogs_contaminant_db/Araport11-TAIR10Col0_Chl_MT.fa
+#phiX	phiX	<Galaxy_dir>/database/shed_tools/toolshed.g2.bx.psu.edu/repos/frogs/frogs_core/XXXXXX/frogs_core/tool-data/frogs_contaminant_db/phi.fa
+#Arabido_TAIR10_Chl_Mito	Arabidopsis TAIR10 Chloroplast and mitochondria	<Galaxy_dir>/database/shed_tools/toolshed.g2.bx.psu.edu/repos/frogs/frogs_core/XXXXXX/frogs_core/tool-data/frogs_contaminant_db/Araport11-TAIR10Col0_Chl_MT.fa
