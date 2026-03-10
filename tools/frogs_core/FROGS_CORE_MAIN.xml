@@ -47,9 +47,9 @@
         <conditional name="frogs_core_tools">
             <param name="tool_name" type="select" display="radio" label="Select a tool from the FROGS Core suite to run your analysis.">
                 <option value="" selected="true">-- Please select a tool --</option>
-                <option value="processing_short_reads">1.a. Reads processing of short reads</option> 
-                <option value="processing_long_reads">1.b. Reads processing of long reads</option> 
-                <option value="processing_454_reads">1.c. Reads processing of 454 reads</option> 
+                <option value="processing_short_reads">1.a. Short read processing</option> 
+                <option value="processing_long_reads">1.b. Long read processing</option> 
+                <option value="processing_454_reads">1.c. 454 read processing</option> 
                 <option value="remove_chimera">2. Remove chimera</option> 
                 <option value="cluster_filters">3. Cluster/ASV filters</option> 
                 <option value="taxonomic_affiliation">4. Taxonomic affiliation</option> 
