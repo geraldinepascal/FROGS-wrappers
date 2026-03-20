@@ -80,14 +80,63 @@
     </xml>
 
     <xml name="frogs_core_outputs">
-        <!-- HTML report : all but demultiplex, affiliation_postprocess, biom_to_tsv -->
+        <!-- To control output order is preferable to define specific output first and shared output at last. -->
+            <!-- Definition of specific output type -->
+                <!-- Specific processing_short/454/long_reads with clustering  -->
+        <data format="txt" name="output_cluster_compo" label="${tool.name} - ${tool_name}: swarms_composition.txt">
+            <filter>frogs_core_tools['process_type']['process'] == 'Clustering Swarm' </filter>
+            <filter>frogs_core_tools['tool_name'] == 'processing_short_reads' or frogs_core_tools['tool_name'] == 'processing_long_reads' or frogs_core_tools['tool_name'] == 'processing_454_reads' </filter>
+        </data>
+                <!-- Specific cluster_filters  -->
+        <data format="tsv" name="output_excluded" label="${tool.name} - ${tool_name}: excluded.tsv">
+            <filter>frogs_core_tools['tool_name'] == 'cluster_filters'</filter>
+        </data>
+                <!-- Specific demultiplex  -->
+        <data format="tar" name="output_undemultiplexed" label="${tool.name} - ${tool_name}: undemultiplexed.tar.gz">
+            <filter>frogs_core_tools['tool_name'] == 'demultiplex'</filter>
+        </data>
+         <data format="tar" name="output_demultiplexed" label="${tool.name} - ${tool_name}: demultiplexed.tar.gz">
+            <filter>frogs_core_tools['tool_name'] == 'demultiplex'</filter>
+        </data>
+        <data format="tsv" name="output_count" label="${tool.name} - ${tool_name}: report.tsv">
+            <filter>frogs_core_tools['tool_name'] == 'demultiplex'</filter>
+        </data>
+                <!-- Specific itsx  -->
+        <data format="fasta" name="output_removed_sequences" label="${tool.name} - ${tool_name}: nonITS_sequence.fasta">
+            <filter>frogs_core_tools['tool_name'] == 'itsx'</filter>
+        </data>
+                <!-- Specific affiliation_filters  -->
+        <data format="tsv" name="output_impacted" label="${tool.name} - ${tool_name}: impacted_clusters.tsv">
+            <filter>frogs_core_tools['tool_name'] == 'affiliation_filters'</filter>
+        </data>
+        <data format="tsv" name="output_impacted_multihit" label="${tool.name} - ${tool_name}: impacted_clusters.multi-affiliations.tsv">
+            <filter>frogs_core_tools['tool_name'] == 'affiliation_filters'</filter>
+        </data>
+                <!-- Specific affiliation_postprocess  -->
+        <data format="tsv" name="output_asv_compo" label="${tool.name} - ${tool_name}: aggregation_composition.tsv">
+            <filter>frogs_core_tools['tool_name'] == 'affiliation_postprocess'</filter>
+        </data>
+                <!-- Specific tree  -->
+        <data format="nhx" name="output_tree" label="${tool.name} - ${tool_name}: tree.nwk">
+            <filter>frogs_core_tools['tool_name'] == 'tree'</filter>
+        </data>
+                <!-- Specific biom_to_tsv -->
+        <data format="tsv" name="output_multihit" label="${tool.name} - ${tool_name}: multi-affiliations.tsv">
+            <filter>frogs_core_tools['tool_name'] == 'biom_to_tsv' and frogs_core_tools['extract_multi_align'] == 'yes'</filter>
+        </data>
+        <data format="tsv" name="output_tsv" label="${tool.name} - ${tool_name}: abundance.tsv">
+            <filter>frogs_core_tools['tool_name'] == 'biom_to_tsv'</filter>
+        </data>
+            
+            <!-- Definition of share output type -->
+                <!-- HTML report : all but demultiplex, affiliation_postprocess, biom_to_tsv -->
         <data format="html" name="html" label="${tool.name} - ${tool_name}: report.html">
             <filter> frogs_core_tools['tool_name'] != 'demultiplex' </filter>
             <filter> frogs_core_tools['tool_name'] != 'affiliation_postprocess' </filter>
             <filter> frogs_core_tools['tool_name'] != 'biom_to_tsv' </filter>
             <filter> frogs_core_tools['tool_name'] != 'tsv_to_biom' </filter>
         </data>
-        <!-- ASV sequence fasta : all but taxonomic affiliation, demultiplex, affiliation_filter in hiding mode, tree, cluster_asv_report, affiliation_report, biom_to_tsv  -->
+                <!-- ASV sequence fasta : all but taxonomic affiliation, demultiplex, affiliation_filter in hiding mode, tree, cluster_asv_report, affiliation_report, biom_to_tsv  -->
         <data format="fasta" name="output_fasta" label="${tool.name} - ${tool_name}: sequence.fasta">
             <filter> frogs_core_tools['tool_name'] != 'taxonomic_affiliation'</filter>
             <filter> frogs_core_tools['tool_name'] != 'demultiplex'</filter>
@@ -98,58 +147,13 @@
             <filter> frogs_core_tools['tool_name'] != 'biom_to_tsv'</filter>
             <filter> frogs_core_tools['extract_fasta'] == 'yes' </filter> <!-- tsv_to_biom parameter -->
         </data>
-        <!-- ASV abundance biom : all but tree, demultiplex, cluster_asv_report, affiliation_report, biom_to_tsv  -->
+                <!-- ASV abundance biom : all but tree, demultiplex, cluster_asv_report, affiliation_report, biom_to_tsv  -->
         <data format="biom1" name="output_biom" label="${tool.name} - ${tool_name}: abundance.biom">
             <filter> frogs_core_tools['tool_name'] != 'tree'</filter> 
             <filter> frogs_core_tools['tool_name'] != 'demultiplex'</filter> 
             <filter> frogs_core_tools['tool_name'] != 'cluster_asv_report'</filter> 
             <filter> frogs_core_tools['tool_name'] != 'affiliation_report' </filter>
             <filter> frogs_core_tools['tool_name'] != 'biom_to_tsv' </filter>
-        </data>
-        <!-- Specific processing_short/454/long_reads with clustering  -->
-        <data format="txt" name="output_cluster_compo" label="${tool.name} - ${tool_name}: swarms_composition.txt">
-            <filter>frogs_core_tools['process_type']['process'] == 'Clustering Swarm' </filter>
-            <filter>frogs_core_tools['tool_name'] == 'processing_short_reads' or frogs_core_tools['tool_name'] == 'processing_long_reads' or frogs_core_tools['tool_name'] == 'processing_454_reads' </filter>
-        </data>
-        <!-- Specific cluster_filters  -->
-        <data format="tsv" name="output_excluded" label="${tool.name} - ${tool_name}: excluded.tsv">
-            <filter>frogs_core_tools['tool_name'] == 'cluster_filters'</filter>
-        </data>
-        <!-- Specific demultiplex  -->
-         <data format="tar" name="output_demultiplexed" label="${tool.name} - ${tool_name}: demultiplexed.tar.gz">
-            <filter>frogs_core_tools['tool_name'] == 'demultiplex'</filter>
-        </data>
-        <data format="tar" name="output_undemultiplexed" label="${tool.name} - ${tool_name}: undemultiplexed.tar.gz">
-            <filter>frogs_core_tools['tool_name'] == 'demultiplex'</filter>
-        </data>
-        <data format="tsv" name="output_count" label="${tool.name} - ${tool_name}: report.tsv">
-            <filter>frogs_core_tools['tool_name'] == 'demultiplex'</filter>
-        </data>
-        <!-- Specific itsx  -->
-        <data format="fasta" name="output_removed_sequences" label="${tool.name} - ${tool_name}: nonITS_sequence.fasta">
-            <filter>frogs_core_tools['tool_name'] == 'itsx'</filter>
-        </data>
-        <!-- Specific affiliation_filters  -->
-        <data format="tsv" name="output_impacted" label="${tool.name} - ${tool_name}: impacted_clusters.tsv">
-            <filter>frogs_core_tools['tool_name'] == 'affiliation_filters'</filter>
-        </data>
-        <data format="tsv" name="output_impacted_multihit" label="${tool.name} - ${tool_name}: impacted_clusters.multi-affiliations.tsv">
-            <filter>frogs_core_tools['tool_name'] == 'affiliation_filters'</filter>
-        </data>
-        <!-- Specific affiliation_postprocess  -->
-        <data format="tsv" name="output_asv_compo" label="${tool.name} - ${tool_name}: aggregation_composition.tsv">
-            <filter>frogs_core_tools['tool_name'] == 'affiliation_postprocess'</filter>
-        </data>
-        <!-- Specific tree  -->
-        <data format="nhx" name="output_tree" label="${tool.name} - ${tool_name}: tree.nwk">
-            <filter>frogs_core_tools['tool_name'] == 'tree'</filter>
-        </data>
-        <!-- Specific biom_to_tsv -->
-        <data format="tsv" name="output_tsv" label="${tool.name} - ${tool_name}: abundance.tsv">
-            <filter>frogs_core_tools['tool_name'] == 'biom_to_tsv'</filter>
-        </data>
-        <data format="tsv" name="output_multihit" label="${tool.name} - ${tool_name}: multi-affiliations.tsv">
-            <filter>frogs_core_tools['tool_name'] == 'biom_to_tsv' and frogs_core_tools['extract_multi_align'] == 'yes'</filter>
         </data>
     </xml>
 </macros>
