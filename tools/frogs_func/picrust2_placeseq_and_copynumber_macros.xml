@@ -10,7 +10,6 @@
             --input-marker-table ${marker.fields.traits}
             #end if
 
-            --min-align $min_align
             --placement-tool '$placement_tool'
             --hsp-method mp
 
@@ -47,7 +46,6 @@
                 <filter type="param_value" ref="marker" column="2" />  
             </options>
         </param>
-        <param argument="--min-align" type="float" value="0.8" min="0" max="1" optional="false" label="Minimum alignment coverage" help="Proportion of the total length of an input sequence that must align with reference sequences. All others will be excluded." /> 
     </xml>
 
     <!-- Test -->
