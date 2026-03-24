@@ -1,8 +1,14 @@
 <p align="center">
- <a href="http://frogs.inrae.fr/">
-  <img src="tools/frogs/static/images/FROGS_logo.png" align="center" width="20%" style="display: block; margin: auto;"/>
- </a>
+    <a href="http://frogs.inrae.fr/">
+      <img src="FROGS.png" align="center" width="20%" style="display: block; margin: auto;"/>
+    </a>
 </p>
+  <!-- Trois images en ligne -->
+  <p align="center" style="display: flex; justify-content: center;">
+    <img src="frogs-core.png" width="15%"/>
+    <img src="frogs-stat.png" width="15%"/>
+    <img src="frogs-func.png" width="15%"/>
+  </p>
 
 Visit our web site : http://frogs.inrae.fr/
 

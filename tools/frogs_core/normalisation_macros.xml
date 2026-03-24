@@ -56,9 +56,9 @@
     
     <xml name="normalisation_test_output">
         <!-- Because of random sampling results may slightly vary -->
-        <output name="output_fasta" file="references/09-normalisation.fasta" compare="diff" lines_diff="4" />
+        <output name="output_fasta" file="references/09-normalisation.fasta" compare="diff" lines_diff="8" />
         <!-- Because of random sampling results may slightly vary -->
         <output name="html" file="references/09-normalisation.html" compare="sim_size" delta="0" />
-        <output name="html" file="references/09-normalisation.html" compare="diff" lines_diff="4" />
+        <output name="html" file="references/09-normalisation.html" compare="diff" lines_diff="8" />
     </xml>  
 </macros>

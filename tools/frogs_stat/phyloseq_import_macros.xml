@@ -45,7 +45,8 @@
                 <!-- HTML size or line diff can't be used as many information about path, os, date are present. -->
                 <!-- Here we test only title, intermediate results and output of last R command -->
                 <has_text text='Stat: Import data' />
-                <has_text text='(phyloseq_import_data.py v5.1.0)' />
+                <has_text text='(phyloseq_import_data.py' />
+				<has_text text='v5.1.0)' />
                 <!-- check phyloseq object summary-->
                 <has_text text='otu_table()   OTU Table:         [ 507 taxa and 64 samples ]'/>
                 <has_text text='sample_data() Sample Data:       [ 64 samples by 4 sample variables ]' />

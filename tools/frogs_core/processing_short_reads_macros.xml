@@ -118,8 +118,8 @@
                     </when>
                 </conditional>
                 <!-- Paired parameters -->
-                <param argument="--R1-size" type="integer" label="R1 read length" help="Please provide the maximum length of the R1 reads." />
-                <param argument="--R2-size" type="integer" label="R2 read length" help="Please provide the maximum length of the R2 reads." />
+                <param argument="--R1-size" value="300" type="integer" label="R1 read length" help="Please provide the maximum length of the R1 reads." />
+                <param argument="--R2-size" value="300" type="integer" label="R2 read length" help="Please provide the maximum length of the R2 reads." />
                 <param argument="--mismatch-rate" type="float" value="0.1" label="Mismatch rate (used for R1-R2 merging)" help="Maximum allowed mismatch rate in the overlap region between R1 and R2 reads."/>
                 <conditional name="merge_software_type">
                     <param argument="--merge-software" type="select" display="radio" label="Paired-end merging tool" help="Select the tool used to merge paired-end reads">
@@ -129,7 +129,7 @@
                     </param>
                     <when value="vsearch"/>
                     <when value="flash">
-                        <param argument="--expected-amplicon-size" type="integer" min="0" label="Expected amplicon length" help="Specify the maximum expected amplicon length (covers ~90% of amplicons)" />
+                        <param argument="--expected-amplicon-size" type="integer" min="0" value="450" label="Expected amplicon length" help="Specify the maximum expected amplicon length (covers ~90% of amplicons)" />
                     </when>
                 </conditional>
                 <param argument="keep_unmerged" type="boolean" truevalue="--keep-unmerged" falsevalue="" checked="false" label="Would you like to keep unmerged reads?" help="No = unmerged reads will be removed; Yes = unmerged reads will be artificially combined with 100 N to allow further processing." />
@@ -156,8 +156,8 @@
         </conditional>
 
         <!-- Amplicons Parameters-->
-        <param argument="--min-amplicon-size" type="integer" value="" label="Minimum amplicon length" help="The minimum length of the amplicons (including primers). For paired-end reads, substract 10 bases to account for the minimum overlap between R1 and R2 reads."/>
-        <param argument="--max-amplicon-size" type="integer" value="" label="Maximum amplicon length" help="The maximum length of the amplicons (including primers). For paired-end reads, substract 10 bases to account for the minimum overlap between R1 and R2 reads."/>
+        <param argument="--min-amplicon-size" type="integer" value="350" label="Minimum amplicon length" help="The minimum length of the amplicons (including primers). For paired-end reads, substract 10 bases to account for the minimum overlap between R1 and R2 reads."/>
+        <param argument="--max-amplicon-size" type="integer" value="500" label="Maximum amplicon length" help="The maximum length of the amplicons (including primers). For paired-end reads, substract 10 bases to account for the minimum overlap between R1 and R2 reads."/>
 
         <!-- Primers -->
         <conditional name="is_primer_in_seq">
@@ -166,10 +166,10 @@
                 <option value="false">No</option>     
             </param>
             <when value="true">
-                <param argument="--five-prim-primer" type="text" label="5' primer" help="Enter the 5' primer sequence. Wildcards are allowed. The sequence must be provided in 5' → 3' orientation.">
+                <param argument="--five-prim-primer" type="text" value="" optional="true" label="5' primer" help="Enter the 5' primer sequence. Wildcards are allowed. The sequence must be provided in 5' → 3' orientation.">
                     <expand macro="only_letter_sanitizer_validator"/>
                 </param>
-                <param argument="--three-prim-primer" type="text" label="3' primer" help="Enter the 3' primer sequence. Wildcards are allowed. The sequence must be provided in 5' → 3' orientation.">
+                <param argument="--three-prim-primer" type="text" value="" optional="true" label="3' primer" help="Enter the 3' primer sequence. Wildcards are allowed. The sequence must be provided in 5' → 3' orientation.">
                      <expand macro="only_letter_sanitizer_validator"/>
                 </param>
             </when>

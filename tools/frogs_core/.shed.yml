@@ -1,9 +1,9 @@
-categories: [Metagenomics]
+categories: 
+- Metagenomics
 description: 'Suite for metabarcoding analysis'
 homepage_url: http://frogs.inrae.fr/
-long_description: 'This is FROGS Galaxy Wrappers for FROGS Core tools
-FROGS is a workflow designed to produce an ASV count matrix from high depth sequencing amplicon data. 
-'
+long_description: | 
+  This is FROGS Galaxy Wrappers for FROGS Core tools. FROGS is a workflow designed to produce an ASV count matrix from high depth sequencing amplicon data.
 name: frogs_core
-owner: oinizan
+owner: frogs
 remote_repository_url: https://github.com/geraldinepascal/FROGS-wrappers/

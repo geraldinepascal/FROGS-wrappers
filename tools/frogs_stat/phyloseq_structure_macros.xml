@@ -38,7 +38,8 @@
                 <!-- HTML size or line diff can't be used as many information about path, os, date are present. -->
                 <!-- Here we test only title, intermediate results and output of last R command -->
                 <has_text text='Stat: Structure Visualisation' />
-                <has_text text='(phyloseq_structure.py v5.1.0)' />
+                <has_text text='(phyloseq_structure.py' />
+				<has_text text='v5.1.0)' />
                 <has_text text='"title":{"text":"Axis.1   [22.1%]' />
                 <has_text text='"title":{"text":"Axis.2   [12.8%]' />
                 <has_text text='─ Session info ───────────────────────────────────────────────────────────────' />

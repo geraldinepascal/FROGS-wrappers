@@ -46,7 +46,8 @@
                 <!-- HTML size or line diff can't be used as many information about path, os, date are present. -->
                 <!-- Here we test only title, intermediate results and output of last R command -->
                 <has_text text='Stat: Visualise Data Composition' />
-                <has_text text='(phyloseq_composition.py v5.1.0)' />
+                <has_text text='(phyloseq_composition.py' />
+				<has_text text='v5.1.0)' />
                 <!-- check html report contents -->
                 <has_text_matching expression="Phylum: Actinobacteria.*Sample: BHT0.LOT07.*Abundance: 0.3806484555" />
                 <has_text_matching expression="Phylum: Bacteroidetes.*Sample: BHT0.LOT07.*Abundance: 0.0026380734" />

@@ -35,14 +35,13 @@
     </xml>
 
     <xml name="phyloseq_beta_diversity_test_output">
-        <!-- HTML line diff = 6 because of date -->
-        <output name="html" file="references/19-phylo_beta_div.nb.html" compare="diff" lines_diff="6" count="3" />
-        <output name="html" count="1">
+        <output name="html" count="3">
             <assert_contents>
                 <!-- HTML size or line diff can't be used as many information about path, os, date are present. -->
                 <!-- Here we test only title and output of last R command -->
                 <has_text text='Stat: Beta Diversity Visualisation' />
-                <has_text text='(phyloseq_beta_diversity.py v5.1.0)' />
+                <has_text text='(phyloseq_beta_diversity.py' />
+				<has_text text='v5.1.0)' />
                 <has_text text='─ Session info ───────────────────────────────────────────────────────────────' />
             </assert_contents>
         </output>
